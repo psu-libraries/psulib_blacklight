@@ -3,3 +3,6 @@
 collection:
   dir: solr/conf/
   name: blacklight-core
+  persist: true
+persist: true
+

@@ -21,3 +21,9 @@
 /yarn-error.log
 
 .byebug_history
+
+# Ignore junk
+.DS*
+._.DS*
+*.sublime-*
+.idea
