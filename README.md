@@ -2,7 +2,27 @@
 (Mac users) Use these instructions (from DSRD) until step 12: https://github.com/psu-stewardship/scholarsphere/wiki/How-to-Install-on-a-fresh-Mac
 
 # Dependencies 
-Verify dependencies listed in the Quickstart: https://github.com/projectblacklight/blacklight/wiki/Quickstart
+
+## Ruby
+```
+$ ruby --version
+  ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin16]
+```
+
+## Rails
+``` 
+$ rails -v
+  Rails 5.1.6
+```
+
+## Java
+
+```
+$ java --version
+  java 9
+  Java(TM) SE Runtime Environment (build 9+181)
+  Java HotSpot(TM) 64-Bit Server VM (build 9+181, mixed mode)
+```
 
 # Development Setup
 Clone the application and install:
