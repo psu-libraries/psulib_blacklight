@@ -11,7 +11,33 @@ Clone the application and install:
 git clone git@git.psu.edu:i-tech/psulib_blacklight.git ~/projects/psulib_blacklight
 cd psulib_blacklight
 bundle install
-rake db:migrate
+```
+
+Use the sample.env as a reference to generate an .env file
+```
+cp sample.env .env
+```
+Edit .env file to replace your local mysql username, password and path to your socket file.
+*Note: this information is not saved in git.*
+
+If MYSQL is not already installed, follow these instructions: https://psu.app.box.com/notes/288370435578 
+
+To find the path to your MYSQL socket file:
+
+```
+mysql -u root
+show variables like 'socket';
+```
+
+or 
+
+```
+mysql --socket
+```
+
+Create the database and run the migrations
+```
+rake db:create db:migrate
 ```
 
 Start up solr
@@ -35,4 +61,4 @@ Note: To clean out data that is being preserved explicitly run:
 solr_wrapper -d .solr_wrapper.yml clean
 ```
 
-Check http://localhost:3000/catalog.
+Go to http://localhost:3000/catalog.
