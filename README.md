@@ -1,5 +1,5 @@
 # Set up your environment 
-Use these instructions (from DSRD) until step 12: https://github.com/psu-stewardship/scholarsphere/wiki/How-to-Install-on-a-fresh-Mac
+(Mac users) Use these instructions (from DSRD) until step 12: https://github.com/psu-stewardship/scholarsphere/wiki/How-to-Install-on-a-fresh-Mac
 
 # Dependencies 
 Verify dependencies listed in the Quickstart: https://github.com/projectblacklight/blacklight/wiki/Quickstart
@@ -50,7 +50,8 @@ Start up your application
 rails s
 ```
 
-Index sample marc records from CAT (if you haven't done yet)
+# Sample records
+Index sample marc records from CAT (if you haven't done yet). You can download a sample file from https://psu.app.box.com/file/287669838155.
 ```
 rake solr:marc:index MARC_FILE=path_to_file/sample_psucat_marc.mrc 
 ```
