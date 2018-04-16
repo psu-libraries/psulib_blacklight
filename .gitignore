@@ -27,3 +27,6 @@
 ._.DS*
 *.sublime-*
 .idea
+
+# Ignore dotenv file
+.env
