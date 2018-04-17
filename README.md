@@ -34,18 +34,23 @@ $ java --version
     bundle install
     ```
 
-1. It is fine to use sqlite for development so just make sure that your Gemfile has the following *uncommented*:    
-    ```
-    gem 'sqlite3'
-    ```
-    
-    and *comment out* 
-    
-    ```
-     gem 'mysql2'
-    ```
-    
-1.  If you prefer to use MYSQL in your development then follow these steps:
+1. If you prefer to use SQLite in your development then follow these steps:
+    1.  Make sure that your Gemfile has the following *uncommented*:    
+        ```
+        gem 'sqlite3'
+        ```
+        
+        and *comment out* 
+        
+        ```
+        gem 'mysql2'
+        ```
+    1. Replace your database.yml file 
+        ```
+        cp config/sample_database.yml config/database.yml
+        ```
+        
+1.  If you prefer to use MySQL in your development then follow these steps:
       1.  Use the sample.env as a reference to generate an .env file
           ```
           cp sample.env .env
@@ -57,7 +62,9 @@ $ java --version
           mysql -u root
           show variables like 'socket';
           ```
-            or 
+          
+          or
+          
           ```
           mysql --socket
           ```
