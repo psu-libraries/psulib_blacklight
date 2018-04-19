@@ -34,29 +34,28 @@ $ java --version
     bundle install
     ```
 
-1. If you prefer to use SQLite in your development then follow these steps:
-    1.  Make sure that your Gemfile has the following *uncommented*:    
-        ```
-        gem 'sqlite3'
-        ```
-        
-        and *comment out* 
-        
-        ```
-        gem 'mysql2'
-        ```
-    1. Replace your database.yml file 
-        ```
-        cp config/sample_database.yml config/database.yml
-        ```
-        
-1.  If you prefer to use MySQL in your development then follow these steps:
+1.  We are using SQLite for our development environment but if you prefer to use MySQL then follow these steps:
+      1.  If MySQL is not already installed on your machine, follow these instructions: https://psu.app.box.com/notes/288370435578 
+      1.  Make sure that your Gemfile has the following *replace*:    
+    
+          ```gem 'mysql2', :group => [:production]```
+          
+          with
+            
+          ```gem 'mysql2' ```
+            
+          and *uncomment*:
+            
+          ```gem 'sqlite3', :group => [:development, :test]```
+       
+      1. Replace your database.yml file 
+          ```
+          cp config/sample_database.yml config/database.yml
+          ```
       1.  Use the sample.env as a reference to generate an .env file
           ```
           cp sample.env .env
           ```
-      1.  Edit .env file to replace your local mysql username, password and path to your socket file. *Note: this information is not saved in git.*
-      1.  If MYSQL is not already installed, follow these instructions: https://psu.app.box.com/notes/288370435578 
       1.  To find the path to your MYSQL socket file:
           ```
           mysql -u root
@@ -68,6 +67,7 @@ $ java --version
           ```
           mysql --socket
           ```
+      1.  Edit .env file to replace your local mysql username, password and path to your socket file. *Note: this information is not saved in git.*
 1.  Create the database and run the migrations
     ```
     rake db:create db:migrate

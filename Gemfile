@@ -8,9 +8,9 @@ end
 # Use dotenv to load ENVs
 gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
 # Use MySQL as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', :group => [:production]
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
+gem 'sqlite3', :group => [:development, :test]
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use Puma as the app server
@@ -55,6 +55,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
 gem 'blacklight', ">=6.1"
 
 group :development, :test do
