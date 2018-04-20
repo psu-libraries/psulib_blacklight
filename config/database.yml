@@ -21,5 +21,11 @@ test:
   database: blackcat_test
 
 production:
-  <<: *default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  socket: <%= ENV['DATABASE_SOCK'] %>
+  timeout: 5000
   database: blackcat_prod

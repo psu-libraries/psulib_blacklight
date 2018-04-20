@@ -34,7 +34,8 @@ $ java --version
     bundle install
     ```
 
-1.  We are using SQLite for our development environment but if you prefer to use MySQL then follow these steps:
+1.  We are using SQLite for development and test environment and MySQL for production.
+    If you prefer to use MySQL for your development then follow these steps:
       1.  If MySQL is not already installed on your machine, follow these instructions: https://psu.app.box.com/notes/288370435578 
       1.  Make sure that your Gemfile has the following *replace*:    
     
@@ -68,6 +69,7 @@ $ java --version
           mysql --socket
           ```
       1.  Edit .env file to replace your local mysql username, password and path to your socket file. *Note: this information is not saved in git.*
+      1.  Beware that you might get a slightly different schema.rb file after running rake db:migrate. You should discard those changes with `git checkout -- schema.rb` so that you don't accidentally commit them to the repository.
 1.  Create the database and run the migrations
     ```
     rake db:create db:migrate
