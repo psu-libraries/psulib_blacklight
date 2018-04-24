@@ -8,7 +8,7 @@
 $ ruby --version
   ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin16]
 ```
-If you need to upgrade your ruby version, follow these steps to upgrade using rbenv: https://psu.app.box.com/notes/288380781861
+If you need to upgrade your ruby version, follow the steps for [Upgrading Ruby version using rbenv](https://git.psu.edu/i-tech/psulib_blacklight/wikis/Upgrading-Ruby-version-using-rbenv).
 
 ## Rails
 ``` 
@@ -36,7 +36,7 @@ $ java --version
 
 1.  We are using SQLite for development and test environment and MySQL for production.
     If you prefer to use MySQL for your development then follow these steps:
-      1.  If MySQL is not already installed on your machine, follow these instructions: [Install MySQL on CentOS 7](../wikis/Install-MySQL-on-CentOS-7)       
+      1.  If MySQL is not already installed on your machine, follow these instructions: [Install MySQL on CentOS 7](https://git.psu.edu/i-tech/psulib_blacklight/wikis/Install-MySQL-on-CentOS-7).       
       1.  Make sure that your Gemfile has the following *replace*:    
     
           ```gem 'mysql2', :group => [:production]```
