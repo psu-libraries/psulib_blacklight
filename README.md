@@ -31,7 +31,7 @@ $ java --version
     ``` 
     git clone git@git.psu.edu:i-tech/psulib_blacklight.git ~/projects/psulib_blacklight
     cd psulib_blacklight
-    bundle install
+    bundle install --without production
     ```
 
 1.  We are using SQLite for development and test environment and MySQL for production.
