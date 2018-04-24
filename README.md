@@ -36,7 +36,7 @@ $ java --version
 
 1.  We are using SQLite for development and test environment and MySQL for production.
     If you prefer to use MySQL for your development then follow these steps:
-      1.  If MySQL is not already installed on your machine, follow these instructions: https://psu.app.box.com/notes/288370435578 
+      1.  If MySQL is not already installed on your machine, follow these instructions: [Install MySQL on CentOS 7](../wikis/Install-MySQL-on-CentOS-7)       
       1.  Make sure that your Gemfile has the following *replace*:    
     
           ```gem 'mysql2', :group => [:production]```
