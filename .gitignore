@@ -30,3 +30,6 @@
 
 # Ignore dotenv file
 .env
+
+# Ignore spec/examples.txt file
+spec/examples.txt
