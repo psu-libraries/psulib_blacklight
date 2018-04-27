@@ -62,5 +62,5 @@ group :development, :test do
   #gem "rubocop"
 end
 
-gem 'blacklight' #, '~> 7.0.0.rc1'
+gem 'blacklight', ">=6.1" #, '~> 7.0.0.rc1'
 gem 'blacklight-marc', '~> 6.1'

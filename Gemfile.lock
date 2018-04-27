@@ -299,7 +299,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  blacklight
+  blacklight (>= 6.1)
   blacklight-marc (~> 6.1)
   byebug
   capybara (~> 2.13)
