@@ -25,6 +25,12 @@ $ java --version
   Java HotSpot(TM) 64-Bit Server VM (build 9+181, mixed mode)
 ```
 
+## MySQL (Optional)
+
+```
+$ sudo yum install mysql mysql-devel
+```
+
 # Development setup
 1.  Make sure you have ssh keys established on your machine and make sure your public key is stored on git.psu.edu: https://docs.gitlab.com/ee/gitlab-basics/create-your-ssh-keys.html
 1.  Clone the application and install:
