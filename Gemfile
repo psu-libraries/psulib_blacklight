@@ -56,7 +56,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'blacklight', ">=6.1"
+gem 'blacklight', '~> 7.0.0.rc1'
 
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
@@ -67,3 +67,10 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'blacklight-marc', '~> 6.1'
+
+group :development, :test do
+end
+
+gem 'bootstrap', '~> 4.0'
+gem 'popper_js'
+gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
