@@ -66,11 +66,12 @@ gem 'rsolr', '>= 1.0'
 gem 'jquery-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
-gem 'blacklight-marc', '~> 6.1'
+gem 'blacklight-marc', '~> 6.2'
 
 group :development, :test do
 end
 
+gem 'webpacker', '~> 3.5'
 gem 'bootstrap', '~> 4.0'
 gem 'popper_js'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'

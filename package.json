@@ -1,5 +1,11 @@
 {
   "name": "marcrecordsb",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "blacklight-frontend": "^7.0.0-alpha.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
 }
