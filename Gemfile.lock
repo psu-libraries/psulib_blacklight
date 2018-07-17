@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/projectblacklight/blacklight-marc.git
+  revision: d0176744e70f09aced8e7ff8b7d29a62c407ce45
+  specs:
+    blacklight-marc (7.0.0.alpha)
+      blacklight (> 7.0.0.a, < 8.a)
+      library_stdnums
+      marc (>= 0.4.3, < 1.1)
+      marc-fastxmlwriter
+      rails
+      traject (~> 2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -52,13 +64,6 @@ GEM
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
       rails (~> 5.0)
-    blacklight-marc (6.2.0)
-      blacklight (> 6.1, < 8.a)
-      library_stdnums
-      marc (>= 0.4.3, < 1.1)
-      marc-fastxmlwriter
-      rails
-      traject (~> 2.1)
     bootstrap (4.1.1)
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
@@ -282,7 +287,7 @@ PLATFORMS
 
 DEPENDENCIES
   blacklight (~> 7.0.0.rc1)
-  blacklight-marc (~> 6.2)
+  blacklight-marc!
   bootstrap (~> 4.0)
   byebug
   capybara (~> 2.13)
