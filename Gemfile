@@ -56,7 +56,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'blacklight', '~> 7.0.0.rc1'
+gem 'blacklight', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight'
 
 group :development, :test do
   gem 'solr_wrapper', '>= 0.3'
@@ -66,7 +66,7 @@ gem 'rsolr', '>= 1.0'
 gem 'jquery-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
-gem 'blacklight-marc', git: "https://github.com/projectblacklight/blacklight-marc.git"
+gem 'blacklight-marc', github: 'projectblacklight/blacklight-marc'
 
 gem 'webpacker', '~> 3.5'
 gem 'bootstrap', '~> 4.0'

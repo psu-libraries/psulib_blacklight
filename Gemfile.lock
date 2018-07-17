@@ -10,6 +10,18 @@ GIT
       rails
       traject (~> 2.1)
 
+GIT
+  remote: https://github.com/projectblacklight/blacklight.git
+  revision: fed468512829c7790740d60347df7f9e21361ac6
+  specs:
+    blacklight (7.0.0.rc1)
+      deprecation
+      globalid
+      jbuilder (~> 2.7)
+      kaminari (>= 0.15)
+      nokogiri (~> 1.6)
+      rails (~> 5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -57,13 +69,6 @@ GEM
       execjs
     bcrypt (3.1.12)
     bindex (0.5.0)
-    blacklight (7.0.0.rc1)
-      deprecation
-      globalid
-      jbuilder
-      kaminari (>= 0.15)
-      nokogiri (~> 1.6)
-      rails (~> 5.0)
     bootstrap (4.1.1)
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.9, < 2)
@@ -286,7 +291,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  blacklight (~> 7.0.0.rc1)
+  blacklight (>= 7.0.0.rc1)!
   blacklight-marc!
   bootstrap (~> 4.0)
   byebug
