@@ -6,9 +6,23 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
+// require('jquery/dist/jquery');
+
+// Vendor
 require('popper.js/dist/umd/popper');
+require('typeahead.js')
 require('bootstrap/dist/js/bootstrap');
-require('blacklight-frontend/app/assets/javascripts/blacklight/blacklight')
 
-
-console.log('Hello World from Webpacker')
+// Local
+require('blacklight-frontend/app/javascript/blacklight/core')
+require('blacklight-frontend/app/javascript/blacklight/autocomplete')
+// require('blacklight-frontend/app/javascript/blacklight/checkbox_submit')
+require('blacklight-frontend/app/javascript/blacklight/modal')
+// require('blacklight-frontend/app/javascript/blacklight/bookmark_toggle')
+require('blacklight-frontend/app/javascript/blacklight/collapsable')
+require('blacklight-frontend/app/javascript/blacklight/facet_load')
+require('blacklight-frontend/app/javascript/blacklight/search_context')
+// doing the above rather than require('blacklight-frontend/app/assets/javascripts/blacklight/blacklight')
+// each script may have an import it's doing
+// also, you need to use the code for core from:
+// https://raw.githubusercontent.com/projectblacklight/blacklight/6a40c2e6065bcaf5e9dbe7f87d7b034e892e6dae/app/javascript/blacklight/core.js
