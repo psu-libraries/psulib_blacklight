@@ -17,8 +17,10 @@
 !/log/.keep
 !/tmp/.keep
 
+# node/webpacker/yarn things
 /node_modules
 /yarn-error.log
+/public/packs
 
 .byebug_history
 

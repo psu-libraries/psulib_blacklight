@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",
-    "blacklight-frontend": "^7.0.0-alpha.1"
+    "blacklight-frontend": "^7.0.0-alpha.1",
+    "popper.js": "^1.14.3"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
