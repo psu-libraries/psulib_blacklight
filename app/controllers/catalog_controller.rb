@@ -2,7 +2,7 @@
 class CatalogController < ApplicationController
 
   include Blacklight::Catalog
-  include Blacklight::DefaultComponentConfiguration # this is what I added
+  include Blacklight::DefaultComponentConfiguration
   include Blacklight::Marc::Catalog
 
 
