@@ -1756,10 +1756,6 @@ dns-txt@^2.0.2:
   dependencies:
     buffer-indexof "^1.0.0"
 
-dom@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/dom/-/dom-0.0.2.tgz#e15fb7595e329bd1278fcc858d0f7b8cf38e4b51"
-
 domain-browser@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
@@ -5631,13 +5627,6 @@ typeahead.js@^0.11.1:
   dependencies:
     jquery ">=1.7"
 
-typeahead@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/typeahead/-/typeahead-0.2.2.tgz#1400e0f282ce67d3398fc34a62ed5e1824c5929b"
-  dependencies:
-    dom "0.0.2"
-    xtend "1.0.3"
-
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
@@ -5975,10 +5964,6 @@ wrap-ansi@^2.0.0:
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
-
-xtend@1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/xtend/-/xtend-1.0.3.tgz#3f5d937353cced8e085399a563fdb22541c2960a"
 
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.1"
