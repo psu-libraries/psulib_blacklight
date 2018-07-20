@@ -1,5 +1,17 @@
 @import 'bootstrap';
 
 @import 'blacklight/blacklight';
+//@import 'blacklight_marc';
+
+// Temporary patch around bootstrap 4 compatibility for librarian view
+// https://github.com/projectblacklight/demo.projectblacklight.org/pull/10/files
+$padding-xs-horizontal: 1ch !default;
+$nav-link-padding: $nav-link-padding-y $nav-link-padding-x;
+.badge-default {
+  @extend .badge-secondary;
+}
 @import 'blacklight_marc';
 
+#marc_view .tag {
+  @extend .badge-default;
+}
