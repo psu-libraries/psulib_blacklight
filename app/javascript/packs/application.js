@@ -26,3 +26,9 @@ require('blacklight-frontend/app/javascript/blacklight/search_context')
 // each script may have an import it's doing
 // also, you need to use the code for core from:
 // https://raw.githubusercontent.com/projectblacklight/blacklight/6a40c2e6065bcaf5e9dbe7f87d7b034e892e6dae/app/javascript/blacklight/core.js
+
+Blacklight.onLoad(function() {
+    $('#about .card-header').one('click', function() {
+        $($(this).data('target')).load($(this).find('a').attr('href'));
+    });
+});
