@@ -16,9 +16,9 @@ require('bootstrap/dist/js/bootstrap');
 // Local
 require('blacklight-frontend/app/javascript/blacklight/core')
 require('blacklight-frontend/app/javascript/blacklight/autocomplete')
-// require('blacklight-frontend/app/javascript/blacklight/checkbox_submit')
+require('blacklight-frontend/app/javascript/blacklight/checkbox_submit')
 require('blacklight-frontend/app/javascript/blacklight/modal')
-// require('blacklight-frontend/app/javascript/blacklight/bookmark_toggle')
+require('blacklight-frontend/app/javascript/blacklight/bookmark_toggle')
 require('blacklight-frontend/app/javascript/blacklight/collapsable')
 require('blacklight-frontend/app/javascript/blacklight/facet_load')
 require('blacklight-frontend/app/javascript/blacklight/search_context')
