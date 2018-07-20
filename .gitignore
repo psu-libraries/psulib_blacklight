@@ -10,6 +10,8 @@
 # Ignore the SQLite database.
 /blackcat_dev
 /blackcat_test
+/psulcat_dev
+/psulcat_test
 
 # Ignore all logfiles and tempfiles.
 /log/*

@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 # initialize ENV earlier
 Dotenv::Railtie.load
 
-module Marcrecordsb
+module Psulcat
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1

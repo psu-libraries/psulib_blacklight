@@ -1,5 +1,5 @@
 {
-  "name": "marcrecordsb",
+  "name": "Psulcat",
   "private": true,
   "dependencies": {
     "@rails/webpacker": "3.5",

@@ -14,7 +14,7 @@ default: &default
 
 development:
   <<: *default
-  database: blackcat_dev
+  database: psulcat_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -23,8 +23,8 @@ test:
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  database: blackcat_test
+  database: psulcat_test
 
 production:
   <<: *default
-  database: blackcat_prod
+  database: psulcat_prod
