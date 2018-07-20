@@ -4,7 +4,8 @@
   "dependencies": {
     "@rails/webpacker": "3.5",
     "blacklight-frontend": "^7.0.0-alpha.1",
-    "popper.js": "^1.14.3"
+    "popper.js": "^1.14.3",
+    "twitter-typeahead-rails": "https://github.com/yourabi/twitter-typeahead-rails.git#v0.11.1.pre.corejavascript",
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"

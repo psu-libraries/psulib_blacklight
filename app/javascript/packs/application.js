@@ -9,8 +9,8 @@
 // require('jquery/dist/jquery');
 
 // Vendor
+require('twitter-typeahead-rails/vendor/assets/javascripts/twitter/typeahead/typeahead.bundle');
 require('popper.js/dist/umd/popper');
-require('typeahead.js')
 require('bootstrap/dist/js/bootstrap');
 
 // Local

@@ -64,8 +64,3 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'webpacker', '~> 3.5'
-
-gem 'bootstrap', '~> 4.0'
-# Do we need these gems when using webpacker?
-#gem 'popper_js'
-#gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
