@@ -10,6 +10,8 @@
 # Ignore the SQLite database.
 /blackcat_dev
 /blackcat_test
+/psulcat_dev
+/psulcat_test
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -17,8 +19,10 @@
 !/log/.keep
 !/tmp/.keep
 
+# node/webpacker/yarn things
 /node_modules
 /yarn-error.log
+/public/packs
 
 .byebug_history
 
@@ -29,4 +33,11 @@
 .idea
 
 # Ignore dotenv file
-.env
+.env/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity
+
+# Ignore solr sample data
+/solr/sample_data
