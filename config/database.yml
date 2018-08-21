@@ -26,6 +26,5 @@ production:
   pool: 5
   username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: <%= ENV['DATABASE_SOCK'] %>
   timeout: 5000
   database: psulcat_prod
