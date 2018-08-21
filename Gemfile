@@ -66,5 +66,5 @@ gem 'bootstrap', '~> 4.0'
 
 # Use MySQL as the database for Active Record
 group :production do
-  gem "mysql2", "~> 0.4.9"
+  gem "mysql2", ">= 0.4.4", "< 0.6.0"
 end
