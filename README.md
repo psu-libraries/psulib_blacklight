@@ -37,7 +37,8 @@ $ sudo yum install mysql mysql-devel
     ``` 
     git clone git@git.psu.edu:i-tech/psulib_blacklight.git ~/projects/psulib_blacklight
     cd psulib_blacklight
-    bundle install --without production
+    bundle install --without production test
+    ```
     ```
 
 1.  We are using SQLite for development and test environment and MySQL for production.
