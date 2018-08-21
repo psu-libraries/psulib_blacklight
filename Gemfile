@@ -5,8 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# Use dotenv to load ENVs
-gem 'dotenv-rails', :group => [:development, :test], require: 'dotenv/rails-now'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
