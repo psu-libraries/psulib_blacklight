@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Use dotenv to load ENVs
-gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
+gem 'dotenv-rails', :group => [:development, :test], require: 'dotenv/rails-now'
 # Use MySQL as the database for Active Record
 gem 'mysql2', :group => [:production, :test]
 # Use sqlite3 as the database for Active Record
