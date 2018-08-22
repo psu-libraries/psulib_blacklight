@@ -65,3 +65,4 @@ gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'webpacker', '~> 3.5'
 gem 'bootstrap', '~> 4.0'
+gem "bootsnap"
