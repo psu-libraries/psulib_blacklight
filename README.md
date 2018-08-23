@@ -13,7 +13,7 @@ If you need to upgrade your ruby version, follow the steps for [Upgrading Ruby v
 ## Rails
 ``` 
 $ rails -v
-  Rails 5.1.6
+  Rails 5.2.1
 ```
 
 ## Java
