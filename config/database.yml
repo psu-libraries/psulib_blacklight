@@ -24,7 +24,7 @@ production:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  username: Rails.application.credentials.db[:user]
+  password: Rails.application.credentials.db[:pw]
   timeout: 5000
   database: psulcat_prod

@@ -35,3 +35,6 @@ yarn-debug.log*
 
 # Ignore solr sample data
 /solr/sample_data
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
