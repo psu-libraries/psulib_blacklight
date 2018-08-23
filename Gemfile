@@ -5,12 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# Use dotenv to load ENVs
-gem 'dotenv-rails', :group => [:development, :test], require: 'dotenv/rails-now'
-# Use MySQL as the database for Active Record
-gem 'mysql2', :group => [:production, :test]
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', :group => [:development]
+gem 'sqlite3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.2"
 # Use Puma as the app server
@@ -56,6 +52,12 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
+# Use MySQL as the database for Active Record
+group :production do
+  gem "mysql2", ">= 0.4.4", "< 0.6.0"
+end
+
+
 gem 'blacklight', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight'
 gem 'blacklight-marc', github: 'projectblacklight/blacklight-marc'
 
@@ -66,3 +68,4 @@ gem 'devise-guests', '~> 0.6'
 gem 'webpacker', '~> 3.5'
 gem 'bootstrap', '~> 4.0'
 gem "bootsnap"
+gem "traject", "~> 2.3"
