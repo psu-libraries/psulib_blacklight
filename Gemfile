@@ -8,7 +8,7 @@ end
 gem "rails", "~> 5.2"
 gem 'sqlite3'
 gem 'puma', '~> 3.7'
-gem 'turbolinks', '~> 5'
+#gem 'turbolinks', '~> 5'
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
@@ -22,8 +22,6 @@ gem 'rsolr', '>= 1.0'
 gem 'blacklight', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight'
 gem 'blacklight-marc', github: 'projectblacklight/blacklight-marc'
 
-gem "traject", "~> 2.3"
-
 group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -33,6 +31,7 @@ end
 
 group :development, :test do
   gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
+  gem "traject", "~> 2.3"
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
