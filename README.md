@@ -13,7 +13,7 @@ If you need to upgrade your ruby version, follow the steps for [Upgrading Ruby v
 ## Rails
 ``` 
 $ rails -v
-  Rails 5.1.6
+  Rails 5.2.1
 ```
 
 ## Java
@@ -25,57 +25,15 @@ $ java --version
   Java HotSpot(TM) 64-Bit Server VM (build 9+181, mixed mode)
 ```
 
-## MySQL (Optional)
-
-```
-$ sudo yum install mysql mysql-devel
-```
-
 # Development setup
 1.  Make sure you have ssh keys established on your machine and make sure your public key is stored on git.psu.edu: https://docs.gitlab.com/ee/gitlab-basics/create-your-ssh-keys.html
 1.  Clone the application and install:
     ``` 
     git clone git@git.psu.edu:i-tech/psulib_blacklight.git ~/projects/psulib_blacklight
     cd psulib_blacklight
-    bundle install --without production
+    bundle install --without production test
     ```
 
-1.  We are using SQLite for development and test environment and MySQL for production.
-    If you prefer to use MySQL for your development then follow these steps:
-      1.  If MySQL is not already installed on your machine, follow these instructions: [Install MySQL on CentOS 7](https://git.psu.edu/i-tech/psulib_blacklight/wikis/Install-MySQL-on-CentOS-7).       
-      1.  Make sure that your Gemfile has the following *replace*:    
-    
-          ```gem 'mysql2', :group => [:production]```
-          
-          with
-            
-          ```gem 'mysql2' ```
-            
-          and *uncomment*:
-            
-          ```gem 'sqlite3', :group => [:development, :test]```
-       
-      1. Replace your database.yml file 
-          ```
-          cp config/sample_database.yml config/database.yml
-          ```
-      1.  Use the sample.env as a reference to generate an .env file
-          ```
-          cp sample.env .env
-          ```
-      1.  To find the path to your MYSQL socket file:
-          ```
-          mysql -u root
-          show variables like 'socket';
-          ```
-          
-          or
-          
-          ```
-          mysql --socket
-          ```
-      1.  Edit .env file to replace your local mysql username, password and path to your socket file. *Note: this information is not saved in git.*
-      1.  Beware that you might get a slightly different schema.rb file after running rake db:migrate. You should discard those changes with `git checkout -- schema.rb` so that you don't accidentally commit them to the repository.
 1.  Create the database and run the migrations
     ```
     rake db:create db:migrate
@@ -106,3 +64,7 @@ solr_wrapper -d .solr_wrapper.yml clean
 ```
 
 Go to http://localhost:3000/catalog.
+
+# Building and Using the javascript
+
+Follow the instructions for [How to use webpacker](https://git.psu.edu/i-tech/psulib_blacklight/wikis/How-to-Use-webpacker) to compile javascript assets.

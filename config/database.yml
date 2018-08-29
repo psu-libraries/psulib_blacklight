@@ -11,21 +11,20 @@ default: &default
 
 development:
   <<: *default
-  database: blackcat_dev
+  database: psulcat_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: blackcat_test
+  database: psulcat_test
 
 production:
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  socket: <%= ENV['DATABASE_SOCK'] %>
+  username: <%= Rails.application.credentials.db[:user] %>
+  password: <%= Rails.application.credentials.db[:pw] %>
   timeout: 5000
-  database: blackcat_prod
+  database: psulcat_prod

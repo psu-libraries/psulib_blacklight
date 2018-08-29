@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
-  
-  mount Blacklight::Engine => '/'
-  Blacklight::Marc.add_routes(self)
   root to: "catalog#index"
-    concern :searchable, Blacklight::Routes::Searchable.new
 
+  # concerns
+  concern :searchable, Blacklight::Routes::Searchable.new
+  concern :exportable, Blacklight::Routes::Exportable.new
+
+  # mounts
+  mount Blacklight::Engine => '/'
+
+  # resource and resources
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
   end
-
-  devise_for :users
-  concern :exportable, Blacklight::Routes::Exportable.new
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns :exportable
@@ -23,6 +24,9 @@ Rails.application.routes.draw do
       delete 'clear'
     end
   end
+  
+  Blacklight::Marc.add_routes(self)
+  devise_for :users
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

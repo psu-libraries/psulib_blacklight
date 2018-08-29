@@ -1,5 +1,15 @@
 {
-  "name": "marcrecordsb",
+  "name": "Psulcat",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "blacklight-frontend": "https://github.com/cdmo/blacklight.git#master",
+    "caniuse-lite": "^1.0.30000697",
+    "popper.js": "^1.14.3",
+    "twitter-typeahead-rails": "https://github.com/yourabi/twitter-typeahead-rails.git#v0.11.1.pre.corejavascript"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2",
+    "webpack": "^3.0.0"
+  }
 }
