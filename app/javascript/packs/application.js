@@ -8,13 +8,13 @@
 // layout file, like app/views/layouts/application.html.erb
 // require('jquery/dist/jquery');
 
-import Turbolinks from 'turbolinks'
-Turbolinks.start()
-
 // Vendor
 require('twitter-typeahead-rails/vendor/assets/javascripts/twitter/typeahead/typeahead.bundle');
 require('popper.js/dist/umd/popper');
 require('bootstrap/dist/js/bootstrap');
+
+import Turbolinks from 'turbolinks'
+Turbolinks.start()
 
 // Local
 require('blacklight-frontend/app/javascript/blacklight/core')
