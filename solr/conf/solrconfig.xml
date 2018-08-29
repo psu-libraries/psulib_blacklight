@@ -85,6 +85,7 @@
        -->
 
        <str name="qf">
+         id
          title_unstem_search^100000
          subtitle_unstem_search^50000
          title_t^25000
@@ -385,7 +386,7 @@
        </lst>
       -->
   </searchComponent>
-
+<!--
   <searchComponent name="suggest" class="solr.SuggestComponent">
     <lst name="suggester">
       <str name="name">mySuggester</str>
@@ -406,6 +407,6 @@
       <str>suggest</str>
     </arr>
   </requestHandler>
-
+-->
 </config>
 

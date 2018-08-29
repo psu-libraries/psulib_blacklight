@@ -79,6 +79,9 @@ class CatalogController < ApplicationController
     config.add_facet_field 'lc_1letter_facet', label: 'Call Number'
     config.add_facet_field 'subject_geo_facet', label: 'Region'
     config.add_facet_field 'subject_era_facet', label: 'Era'
+    config.add_facet_field 'library_facet', label: 'Library', sort: 'index'
+    #config.add_facet_field 'library_facet', label: 'Library', single: true, sort: 'index'
+    config.add_facet_field 'location_facet', label: 'Location', sort: 'index'
 
     config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_facet']
 
@@ -105,6 +108,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'published_display', label: 'Published'
     config.add_index_field 'published_vern_display', label: 'Published'
     config.add_index_field 'lc_callnum_display', label: 'Call number'
+    config.add_index_field 'id', label: 'Catkey'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -121,7 +125,9 @@ class CatalogController < ApplicationController
     config.add_show_field 'published_display', label: 'Published'
     config.add_show_field 'published_vern_display', label: 'Published'
     config.add_show_field 'lc_callnum_display', label: 'Call number'
+    config.add_show_field 'location_display', label: 'Location'
     config.add_show_field 'isbn_t', label: 'ISBN'
+    config.add_show_field 'id', label: 'Catkey'
         #Example of adding a show field
 	#config.add_show_field 'subject_topic_facet', label: 'Cheese'
     
