@@ -52,7 +52,7 @@ $ java --version
     Note: on a Mac you may be asked by the OS if you want to allow incoming connections to Ruby. Because this is a local dev instance, you can choose to deny incoming connections. This configuration can be found in the Security & Privacy section of the Systems Preferences. 
 
 # Sample records
-Index sample marc records from CAT (if you haven't done yet). You can download a sample file from https://psu.app.box.com/file/287669838155.
+Index sample marc records from CAT (if you haven't done yet). You can download a sample file from https://psu.app.box.com/folder/53004724072.
 ```
 rake solr:marc:index MARC_FILE=path_to_file/sample_psucat.mrc 
 ```
