@@ -54,9 +54,9 @@ $ java --version
 # Sample records
 Index sample marc records from CAT (if you haven't done yet). You can download a sample file from https://psu.app.box.com/file/287669838155.
 ```
-rake solr:marc:index MARC_FILE=path_to_file/sample_psucat_marc.mrc 
+rake solr:marc:index MARC_FILE=path_to_file/sample_psucat.mrc 
 ```
-This should index 112 documents. Check here: http://localhost:8983/solr/#/blacklight-core/query
+This should index 522 documents. Check here: http://localhost:8983/solr/#/blacklight-core/query
 
 Note: To clean out data that is being preserved explicitly run:
 ```
