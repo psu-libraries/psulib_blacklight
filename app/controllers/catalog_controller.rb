@@ -77,8 +77,6 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet', label: 'Call Number'
-    config.add_facet_field 'subject_geo_facet', label: 'Region'
-    config.add_facet_field 'subject_era_facet', label: 'Era'
 
     config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_facet']
 
@@ -124,7 +122,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'isbn_t', label: 'ISBN'
         #Example of adding a show field
 	#config.add_show_field 'subject_topic_facet', label: 'Cheese'
-    
+
 # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
     #
