@@ -13,6 +13,9 @@ require('twitter-typeahead-rails/vendor/assets/javascripts/twitter/typeahead/typ
 require('popper.js/dist/umd/popper');
 require('bootstrap/dist/js/bootstrap');
 
+import Turbolinks from 'turbolinks'
+Turbolinks.start()
+
 // Local
 require('blacklight-frontend/app/javascript/blacklight/core')
 require('blacklight-frontend/app/javascript/blacklight/autocomplete')
