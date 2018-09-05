@@ -85,6 +85,7 @@
        -->
 
        <str name="qf">
+         id
          title_unstem_search^100000
          subtitle_unstem_search^50000
          title_t^25000
