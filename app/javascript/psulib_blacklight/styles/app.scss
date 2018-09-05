@@ -1,5 +1,7 @@
+// twitter bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// blacklight upstream
 @import "~blacklight-frontend/app/assets/stylesheets/blacklight/mixins";
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/blacklight_defaults';
 @import "~blacklight-frontend/app/assets/stylesheets/blacklight/bootstrap_overrides";
@@ -19,15 +21,5 @@
 @import "~blacklight-frontend/app/assets/stylesheets/blacklight/twitter_typeahead";
 @import "~blacklight-frontend/app/assets/stylesheets/blacklight/icons";
 
-// Temporary patch around bootstrap 4 compatibility for librarian view
-// https://github.com/projectblacklight/demo.projectblacklight.org/pull/10/files
-$padding-xs-horizontal: 1ch !default;
-$nav-link-padding: $nav-link-padding-y $nav-link-padding-x;
-.badge-default {
-  @extend .badge-secondary;
-}
-//@import 'blacklight_marc';
-
-#marc_view .tag {
-  @extend .badge-default;
-}
+// blacklight-marc overridden
+@import "blacklight_marc";
