@@ -1,0 +1,33 @@
+@import '~bootstrap/scss/bootstrap';
+
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/mixins";
+@import '~blacklight-frontend/app/assets/stylesheets/blacklight/blacklight_defaults';
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/bootstrap_overrides";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/layout";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/header";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/constraints";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/controls";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/search_form";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/search_results";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/pagination";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/group";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/bookmark";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/balanced_list";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/facets";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/search_history";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/modal";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/twitter_typeahead";
+@import "~blacklight-frontend/app/assets/stylesheets/blacklight/icons";
+
+// Temporary patch around bootstrap 4 compatibility for librarian view
+// https://github.com/projectblacklight/demo.projectblacklight.org/pull/10/files
+$padding-xs-horizontal: 1ch !default;
+$nav-link-padding: $nav-link-padding-y $nav-link-padding-x;
+.badge-default {
+  @extend .badge-secondary;
+}
+//@import 'blacklight_marc';
+
+#marc_view .tag {
+  @extend .badge-default;
+}
