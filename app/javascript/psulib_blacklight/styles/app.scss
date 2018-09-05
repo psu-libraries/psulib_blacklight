@@ -4,6 +4,8 @@
 // blacklight upstream
 @import "~blacklight-frontend/app/assets/stylesheets/blacklight/mixins";
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/blacklight_defaults';
+$logo-image: url('../images/logo.png');
+
 @import "~blacklight-frontend/app/assets/stylesheets/blacklight/bootstrap_overrides";
 @import "~blacklight-frontend/app/assets/stylesheets/blacklight/layout";
 @import "~blacklight-frontend/app/assets/stylesheets/blacklight/header";

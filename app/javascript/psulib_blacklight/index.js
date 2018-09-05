@@ -1,4 +1,4 @@
-
+import './images'
 import './styles/app';
 // Vendor
 require('twitter-typeahead-rails/vendor/assets/javascripts/twitter/typeahead/typeahead.bundle');
