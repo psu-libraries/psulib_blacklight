@@ -4,6 +4,7 @@
   "dependencies": {
     "@rails/webpacker": "3.5",
     "blacklight-frontend": "https://github.com/projectblacklight/blacklight#c435caddf14af6aa36c1428995b8cc52d76d4bf2",
+    "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#v6.2.0",
     "caniuse-lite": "^1.0.30000697",
     "popper.js": "^1.14.3",
     "turbolinks": "^5.2.0",
