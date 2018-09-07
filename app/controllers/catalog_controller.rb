@@ -77,8 +77,6 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet', label: 'Call Number'
-    config.add_facet_field 'subject_geo_facet', label: 'Region'
-    config.add_facet_field 'subject_era_facet', label: 'Era'
 
     config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_facet']
 

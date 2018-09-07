@@ -92,8 +92,6 @@ class MarcIndexer < Blacklight::Marc::Indexer
     ).join(':'))
     to_field 'subject_addl_t', extract_marc("600vwxyz:610vwxyz:611vwxyz:630vwxyz:650vwxyz:651vwxyz:654vwxyz:655vwxyz")
     to_field 'subject_topic_facet', extract_marc("600abcdq:610ab:611ab:630aa:650aa:653aa:654ab:655ab", :trim_punctuation => true)
-    to_field 'subject_era_facet',  extract_marc("650y:651y:654y:655y", :trim_punctuation => true)
-    to_field 'subject_geo_facet',  extract_marc("651a:650z",:trim_punctuation => true )
      
     # Publication fields
     to_field 'published_display', extract_marc('260a', :trim_punctuation => true, :alternate_script=>false)
