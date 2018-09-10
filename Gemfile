@@ -18,7 +18,7 @@ gem "bootsnap", require: false
 gem 'rsolr', '>= 1.0'
 
 gem 'blacklight', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight'
-gem 'blacklight-marc', github: 'projectblacklight/blacklight-marc'
+gem 'blacklight-marc', github: 'cdmo/blacklight-marc'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

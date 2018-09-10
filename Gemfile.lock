@@ -10,8 +10,8 @@ GIT
       rubyzip
 
 GIT
-  remote: https://github.com/projectblacklight/blacklight-marc.git
-  revision: d0176744e70f09aced8e7ff8b7d29a62c407ce45
+  remote: https://github.com/cdmo/blacklight-marc.git
+  revision: 4d8807c728ecf601fa15eea04c19759c60c95e9f
   specs:
     blacklight-marc (7.0.0.alpha)
       blacklight (> 7.0.0.a, < 8.a)
