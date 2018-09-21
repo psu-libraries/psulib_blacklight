@@ -68,3 +68,10 @@ Go to http://localhost:3000/catalog.
 # Building and Using the javascript
 
 Follow the instructions for [How to use webpacker](https://git.psu.edu/i-tech/psulib_blacklight/wikis/How-to-Use-webpacker) to compile javascript assets.
+
+# Bootsnap -- LoadError
+
+Bootsnap is a gem used to speed up local development. We have experienced a problem where clearing the cache that bootsnap builds is necessary. Here's how:
+
+* go to the project home, then cd into tmp/cache
+* delete bootsnap-load-path-cache and bootsnap-compile-cache
