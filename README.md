@@ -8,7 +8,7 @@
 $ ruby --version
   ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin16]
 ```
-If you need to upgrade your ruby version, follow the steps for [Upgrading Ruby Version Using rbenv](Upgrading-Ruby-Version-Using-rbenv).
+If you need to upgrade your ruby version, follow the steps for [Upgrading Ruby Version Using rbenv](https://github.com/psu-libraries/psulib_blacklight/wiki/Upgrading-Ruby-Version-Using-rbenv).
 
 ## Rails
 ``` 
@@ -67,7 +67,7 @@ Go to http://localhost:3000/catalog.
 
 # Building and Using the javascript
 
-Follow the instructions for [How To Use Webpacker](How-To-Use-Webpacker) to compile javascript assets.
+Follow the instructions for [How To Use Webpacker](https://github.com/psu-libraries/psulib_blacklight/wiki/How-To-Use-Webpacker) to compile javascript assets.
 
 # Bootsnap -- LoadError
 
