@@ -8,7 +8,7 @@
 $ ruby --version
   ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-darwin16]
 ```
-If you need to upgrade your ruby version, follow the steps for [Upgrading Ruby version using rbenv](https://git.psu.edu/i-tech/psulib_blacklight/wikis/Upgrading-Ruby-version-using-rbenv).
+If you need to upgrade your ruby version, follow the steps for [Upgrading Ruby Version Using rbenv](Upgrading-Ruby-Version-Using-rbenv).
 
 ## Rails
 ``` 
@@ -26,10 +26,10 @@ $ java --version
 ```
 
 # Development setup
-1.  Make sure you have ssh keys established on your machine and make sure your public key is stored on git.psu.edu: https://docs.gitlab.com/ee/gitlab-basics/create-your-ssh-keys.html
+1.  Make sure you have ssh keys established on your machine https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#generating-a-new-ssh-key
 1.  Clone the application and install:
     ``` 
-    git clone git@git.psu.edu:i-tech/psulib_blacklight.git ~/projects/psulib_blacklight
+    git clone git@github.com:psu-libraries/psulib_blacklight.git
     cd psulib_blacklight
     bundle install --without production test
     ```
@@ -67,7 +67,7 @@ Go to http://localhost:3000/catalog.
 
 # Building and Using the javascript
 
-Follow the instructions for [How to use webpacker](https://git.psu.edu/i-tech/psulib_blacklight/wikis/How-to-Use-webpacker) to compile javascript assets.
+Follow the instructions for [How To Use Webpacker](How-To-Use-Webpacker) to compile javascript assets.
 
 # Bootsnap -- LoadError
 
