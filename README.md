@@ -65,7 +65,7 @@ solr_wrapper -d .solr_wrapper.yml clean
 
 Go to http://localhost:3000/catalog.
 
-# Building and Using the javascript
+# Building and Using Javascript
 
 Follow the instructions for [How To Use Webpacker](https://github.com/psu-libraries/psulib_blacklight/wiki/How-To-Use-Webpacker) to compile javascript assets.
 
