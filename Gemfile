@@ -31,9 +31,8 @@ group :development, :test do
   gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
   gem "traject", "~> 2.3"
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sqlite3'
 end
 
-group :production do
+group :production, :test do
   gem "mysql2", ">= 0.4.4", "< 0.6.0"
 end
