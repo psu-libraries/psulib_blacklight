@@ -1,10 +1,9 @@
 # frozen_string_literal: true
-class CatalogController < ApplicationController
 
+class CatalogController < ApplicationController
   include Blacklight::Catalog
   include Blacklight::DefaultComponentConfiguration
   include Blacklight::Marc::Catalog
-
 
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
@@ -22,31 +21,31 @@ class CatalogController < ApplicationController
     }
 
     # solr path which will be added to solr base url before the other solr params.
-    #config.solr_path = 'select'
+    # config.solr_path = 'select'
 
     # items to show per page, each number in the array represent another option to choose from.
-    #config.per_page = [10,20,50,100]
+    # config.per_page = [10,20,50,100]
 
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SearchHelper#solr_doc_params) or
     ## parameters included in the Blacklight-jetty document requestHandler.
     #
-    #config.default_document_solr_params = {
+    # config.default_document_solr_params = {
     #  qt: 'document',
     #  ## These are hard-coded in the blacklight 'document' requestHandler
     #  # fl: '*',
     #  # rows: 1,
     #  # q: '{!term f=id v=$id}'
-    #}
+    # }
 
     # solr field configuration for search results/index views
     config.index.title_field = 'title_display'
     config.index.display_type_field = 'format'
-    #config.index.thumbnail_field = 'thumbnail_path_ss'
+    # config.index.thumbnail_field = 'thumbnail_path_ss'
 
     # solr field configuration for document/show views
-    #config.show.title_field = 'title_display'
-    #config.show.display_type_field = 'format'
-    #config.show.thumbnail_field = 'thumbnail_path_ss'
+    # config.show.title_field = 'title_display'
+    # config.show.display_type_field = 'format'
+    # config.show.thumbnail_field = 'thumbnail_path_ss'
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
@@ -78,14 +77,13 @@ class CatalogController < ApplicationController
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet', label: 'Call Number'
 
-    config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['format', 'language_facet']
+    config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet']
 
-    config.add_facet_field 'example_query_facet_field', label: 'Publish Date', :query => {
-       :years_5 => { label: 'within 5 Years', fq: "pub_date:[#{Time.zone.now.year - 5 } TO *]" },
-       :years_10 => { label: 'within 10 Years', fq: "pub_date:[#{Time.zone.now.year - 10 } TO *]" },
-       :years_25 => { label: 'within 25 Years', fq: "pub_date:[#{Time.zone.now.year - 25 } TO *]" }
+    config.add_facet_field 'example_query_facet_field', label: 'Publish Date', query: {
+      years_5: { label: 'within 5 Years', fq: "pub_date:[#{Time.zone.now.year - 5} TO *]" },
+      years_10: { label: 'within 10 Years', fq: "pub_date:[#{Time.zone.now.year - 10} TO *]" },
+      years_25: { label: 'within 25 Years', fq: "pub_date:[#{Time.zone.now.year - 25} TO *]" }
     }
-
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -126,10 +124,10 @@ class CatalogController < ApplicationController
     config.add_show_field 'lc_callnum_display', label: 'Call number'
     config.add_show_field 'isbn_t', label: 'ISBN'
     config.add_show_field 'id', label: 'Catkey'
-        #Example of adding a show field
-	#config.add_show_field 'subject_topic_facet', label: 'Cheese'
-    
-# "fielded" search configuration. Used by pulldown among other places.
+    # Example of adding a show field
+    # config.add_show_field 'subject_topic_facet', label: 'Cheese'
+
+    # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
     #
     # Search fields will inherit the :qt solr request handler from
@@ -148,7 +146,6 @@ class CatalogController < ApplicationController
     # since we aren't specifying it otherwise.
 
     config.add_search_field 'all_fields', label: 'All Fields'
-
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate

@@ -1,40 +1,59 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'coveralls', require: false
-gem "rails", "~> 5.2"
-gem 'sqlite3'
-gem 'puma', '~> 3.7'
-gem 'jquery-rails'
-gem 'jbuilder', '~> 2.5'
-gem 'webpacker', '~> 3.5'
+gem 'bootsnap', require: false
 gem 'bootstrap', '~> 4.0'
+gem 'coveralls', require: false
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
-gem "bootsnap", require: false
+gem 'jbuilder', '~> 2.5'
+gem 'jquery-rails'
+gem 'puma', '~> 3.7'
+gem 'rails', '~> 5.2'
 gem 'rsolr', '>= 1.0'
+gem 'webpacker', '~> 3.5'
 
 gem 'blacklight', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight'
 gem 'blacklight-marc', github: 'cdmo/blacklight-marc'
 
 group :development do
-  gem 'web-console', '>= 3.3.0'
+  gem 'foreman', '~> 0.63.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem "foreman", "~> 0.63.0"
+  gem 'web-console', '>= 3.3.0'
 end
 
 group :development, :test do
-  gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
-  gem "traject", "~> 2.3"
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'niftany'
+  gem 'rubocop'
+  gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
+  gem 'sqlite3'
+  gem 'traject', '~> 2.3'
 end
 
-group :production do
-  gem "mysql2", ">= 0.4.4", "< 0.6.0"
+# group :development, :test do
+#   gem "solr_wrapper", ">= 0.3"
+#   gem "rspec-rails"
+#   gem "database_cleaner"
+#   gem "factory_bot_rails"
+#   gem "simplecov", require: false
+#   gem "guard-rspec", require: false
+#   gem "guard-shell"
+#   gem "launchy"
+#   gem "vcr"
+#   gem "pretender"
+#   gem "rails-controller-testing"
+#   gem "faker"
+# end
+
+group :production, :test do
+  gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 end
