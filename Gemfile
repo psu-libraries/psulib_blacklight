@@ -31,6 +31,8 @@ group :development, :test do
   gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
   gem "traject", "~> 2.3"
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "rubocop"
+  gem 'sqlite3'
 end
 
 group :production, :test do
