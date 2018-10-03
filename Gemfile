@@ -26,15 +26,16 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem "foreman", "~> 0.63.0"
+  gem 'foreman', '~> 0.63.0'
 end
 
 group :development, :test do
   gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
-  gem "traject", "~> 2.3"
+  gem 'traject', '~> 2.3'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "rubocop"
   gem 'sqlite3'
+  gem 'niftany'
 end
 
 group :production, :test do
