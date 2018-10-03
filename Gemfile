@@ -6,7 +6,6 @@ git_source(:github) do |repo_name|
 end
 
 gem "rails", "~> 5.2"
-gem 'sqlite3'
 gem 'puma', '~> 3.7'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.5'
@@ -32,6 +31,7 @@ group :development, :test do
   gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
   gem "traject", "~> 2.3"
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'sqlite3'
 end
 
 group :production do
