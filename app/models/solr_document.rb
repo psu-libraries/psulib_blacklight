@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class SolrDocument
   include Blacklight::Solr::Document
   # The following shows how to setup this blacklight document to display marc documents
@@ -9,9 +10,9 @@ class SolrDocument
   end
 
   field_semantics.merge!(
-      :title => "title_display",
-      :language => "language_facet",
-      :format => "format"
+    title: 'title_display',
+    language: 'language_facet',
+    format: 'format'
   )
 
   # self.unique_key = 'id'

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root to: "catalog#index"
+  root to: 'catalog#index'
 
   # concerns
   concern :searchable, Blacklight::Routes::Searchable.new
@@ -24,7 +26,7 @@ Rails.application.routes.draw do
       delete 'clear'
     end
   end
-  
+
   Blacklight::Marc.add_routes(self)
   devise_for :users
 
