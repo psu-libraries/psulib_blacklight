@@ -4,12 +4,6 @@ rvm:
 bundler_args: --without development
 sudo: false
 
-before_script:
-- bundle exec rake db:migrate
-- bundle exec rake db:seed
-- bundle exec yarn
-- bundle exec rails webpacker:compile
-
 script:
 - bundle exec rubocop
 
