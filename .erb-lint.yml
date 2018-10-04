@@ -4,8 +4,6 @@ exclude:
 linters:
   ClosingErbTagIndent:
     enabled: true
-  FinalNewline:
-    enabled: false
   ExtraNewline:
     enabled: true
   FinalNewline:
