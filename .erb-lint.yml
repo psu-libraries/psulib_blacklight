@@ -1,4 +1,6 @@
 ---
+exclude:
+  - '**/node_modules/**/*'
 linters:
   ClosingErbTagIndent:
     enabled: true
