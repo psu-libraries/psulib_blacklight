@@ -1,54 +1,36 @@
 // overriding "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#v6.2.0",
 
-/* border between items on marc view */
-$marc_item_separator: 1px solid $text-muted !default;
+// border between items on marc view
+$marc-item-separator: 1px solid $text-muted !default;
 // Temporary patch around bootstrap 4 compatibility for librarian view
 $padding-xs-horizontal: 1ch !default;
 // https://github.com/projectblacklight/demo.projectblacklight.org/pull/10/files
 $nav-link-padding: $nav-link-padding-y $nav-link-padding-x;
-.badge-default {
-  @extend .badge-secondary;
-}
-#marc_view .tag {
-  @extend .badge-default;
-}
 
-#librarian_view
-{
-  left:-17%;
-  text-align:left;
-  top:10%;
-  width:700px;
-}
+.marc-view {
+  text-align: left;
 
-#marc_view
-{
-  text-align:left;
-
-  .field
-  {
-    border-bottom: $marc_item_separator;
-    clear:both;
+  .field {
+    border-bottom: $marc-item-separator;
+    clear: both;
   }
 
-  .ind1, .ind2
-  {
-    display:inline;
-    padding:0 $padding-xs-horizontal;
+  .ind1,
+  .ind2 {
+    display: inline;
+    padding: 0 $padding-xs-horizontal;
   }
 
-  .subfields
-  {
-    padding-left:5em;
+  .subfields {
+    padding-left: 5em;
   }
 
-  .tag_ind
-  {
-    float:left;
+  .tag-ind {
+    float: left;
   }
 }
 
-/* refworks uses a form; we need to give it some additional padding to make it look like a link */
-#refworks-form .btn {
+// refworks uses a form; we need to give it some additional padding to make it look like a link
+.refworks-form .btn {
   padding: $nav-link-padding;
 }
