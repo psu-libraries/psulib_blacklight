@@ -39,21 +39,6 @@ group :development, :test do
   gem 'traject', '~> 2.3'
 end
 
-# group :development, :test do
-#   gem "solr_wrapper", ">= 0.3"
-#   gem "rspec-rails"
-#   gem "database_cleaner"
-#   gem "factory_bot_rails"
-#   gem "simplecov", require: false
-#   gem "guard-rspec", require: false
-#   gem "guard-shell"
-#   gem "launchy"
-#   gem "vcr"
-#   gem "pretender"
-#   gem "rails-controller-testing"
-#   gem "faker"
-# end
-
 group :production, :test do
   gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 end
