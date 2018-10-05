@@ -7,16 +7,8 @@ $padding-xs-horizontal: 1ch !default;
 // https://github.com/projectblacklight/demo.projectblacklight.org/pull/10/files
 $nav-link-padding: $nav-link-padding-y $nav-link-padding-x;
 
-.badge-default {
-  @extend .badge-secondary;
-}
-
 .marc-view {
   text-align: left;
-
-  .tag {
-    @extend .badge-default;
-  }
 
   .field {
     border-bottom: $marc-item-separator;
