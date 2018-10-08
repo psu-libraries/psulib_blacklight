@@ -10,3 +10,14 @@ AllCops:
     - 'node_modules/**/*'
     - 'tmp/**/*'
     - 'vendor/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+  # The catalog controller is just one giant block for config.
+  - 'app/controllers/catalog_controller.rb'
+  - 'db/schema.rb'
+
+Metrics/LineLength:
+  Exclude:
+  # The catalog controller is just one giant block for config.
+  - 'app/controllers/catalog_controller.rb'
