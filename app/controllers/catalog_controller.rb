@@ -194,7 +194,8 @@ class CatalogController < ApplicationController
     config.spell_max = 5
 
     # Configuration for autocomplete suggestor
-    config.autocomplete_enabled = true
+    # Disable until https://github.com/projectblacklight/blacklight/issues/1972 resolved
+    config.autocomplete_enabled = false
     config.autocomplete_path = 'suggest'
   end
 end
