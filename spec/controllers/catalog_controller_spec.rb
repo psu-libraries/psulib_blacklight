@@ -8,7 +8,7 @@ RSpec.describe CatalogController, type: :controller do
   describe 'index action' do
     it 'gets search results from the solr index' do
       get :index
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
