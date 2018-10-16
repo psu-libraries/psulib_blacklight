@@ -11,7 +11,8 @@ GIT
 
 GIT
   remote: https://github.com/cdmo/blacklight-marc.git
-  revision: 4d8807c728ecf601fa15eea04c19759c60c95e9f
+  revision: d3b36e69ab0199bc73efb7f83969fde1f6a3a838
+  ref: d3b36e69ab
   specs:
     blacklight-marc (7.0.0.alpha)
       blacklight (> 7.0.0.a, < 8.a)
@@ -23,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/projectblacklight/blacklight.git
-  revision: dabb2e75e9ef991b0d0d34b743c4949fcb4d1254
+  revision: bc8a8b8235e293187eb2adff7ec172cc79f9361f
   specs:
     blacklight (7.0.0.rc1)
       deprecation
@@ -31,7 +32,7 @@ GIT
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
-      rails (~> 5.0)
+      rails (~> 5.1)
 
 GEM
   remote: https://rubygems.org/
@@ -146,7 +147,7 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     httpclient (2.8.3)
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -176,7 +177,7 @@ GEM
     loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    mail (2.7.0)
+    mail (2.7.1)
       mini_mime (>= 0.1.1)
     marc (1.0.2)
       scrub_rb (>= 1.0.1, < 2)
@@ -204,7 +205,7 @@ GEM
       rubocop-rspec (~> 1.22, <= 1.22.2)
       scss_lint (~> 0.55)
     nio4r (2.3.1)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     parallel (1.12.1)
