@@ -5663,10 +5663,6 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
 
-"twitter-typeahead-rails@https://github.com/yourabi/twitter-typeahead-rails.git#v0.11.1.pre.corejavascript":
-  version "0.0.0"
-  resolved "https://github.com/yourabi/twitter-typeahead-rails.git#fc343ac2f026589117bad0b7234c8bc69ef8bd6a"
-
 type-is@~1.6.15, type-is@~1.6.16:
   version "1.6.16"
   resolved "https://registry.yarnpkg.com/type-is/-/type-is-1.6.16.tgz#f89ce341541c672b25ee7ae3c73dee3b2be50194"

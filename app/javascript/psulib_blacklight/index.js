@@ -1,7 +1,6 @@
 import './images'
 import './styles/app';
 // Vendor
-require('twitter-typeahead-rails/vendor/assets/javascripts/twitter/typeahead/typeahead.bundle');
 require('popper.js/dist/umd/popper');
 require('bootstrap/dist/js/bootstrap');
 
@@ -10,7 +9,6 @@ Turbolinks.start()
 
 // Local
 require('blacklight-frontend/app/javascript/blacklight/core')
-require('blacklight-frontend/app/javascript/blacklight/autocomplete')
 require('blacklight-frontend/app/javascript/blacklight/checkbox_submit')
 require('blacklight-frontend/app/javascript/blacklight/modal')
 require('blacklight-frontend/app/javascript/blacklight/bookmark_toggle')

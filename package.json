@@ -7,8 +7,7 @@
     "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#v6.2.0",
     "caniuse-lite": "^1.0.30000697",
     "popper.js": "^1.14.3",
-    "turbolinks": "^5.2.0",
-    "twitter-typeahead-rails": "https://github.com/yourabi/twitter-typeahead-rails.git#v0.11.1.pre.corejavascript"
+    "turbolinks": "^5.2.0"
   },
   "devDependencies": {
     "webpack": "^3.0.0",
