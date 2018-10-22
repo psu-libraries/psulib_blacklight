@@ -20,7 +20,7 @@ gem 'rsolr', '>= 1.0'
 gem 'webpacker', '~> 3.5'
 
 gem 'blacklight', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight'
-gem 'blacklight-marc', github: 'cdmo/blacklight-marc', ref: 'd3b36e69ab'
+gem 'blacklight-marc', github: 'psu-libraries/blacklight-marc'
 
 group :development do
   gem 'foreman', '~> 0.63.0'
