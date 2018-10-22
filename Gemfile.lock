@@ -10,19 +10,6 @@ GIT
       rubyzip
 
 GIT
-  remote: https://github.com/cdmo/blacklight-marc.git
-  revision: d3b36e69ab0199bc73efb7f83969fde1f6a3a838
-  ref: d3b36e69ab
-  specs:
-    blacklight-marc (7.0.0.alpha)
-      blacklight (> 7.0.0.a, < 8.a)
-      library_stdnums
-      marc (>= 0.4.3, < 1.1)
-      marc-fastxmlwriter
-      rails
-      traject (~> 2.1)
-
-GIT
   remote: https://github.com/projectblacklight/blacklight.git
   revision: bc8a8b8235e293187eb2adff7ec172cc79f9361f
   specs:
@@ -33,6 +20,18 @@ GIT
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
       rails (~> 5.1)
+
+GIT
+  remote: https://github.com/psu-libraries/blacklight-marc.git
+  revision: 48e25602584f1f12d48b5167d189904e2460408f
+  specs:
+    blacklight-marc (7.0.0.alpha)
+      blacklight (> 7.0.0.a, < 8.a)
+      library_stdnums
+      marc (>= 0.4.3, < 1.1)
+      marc-fastxmlwriter
+      rails
+      traject (~> 2.1)
 
 GEM
   remote: https://rubygems.org/
