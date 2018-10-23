@@ -37,7 +37,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
   gem 'sqlite3'
-  gem 'traject', '~> 2.3'
+  gem 'traject', '3.0.0'
 end
 
 group :production, :test do
