@@ -32,7 +32,6 @@ end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'erb_lint', '0.0.26'
   gem 'niftany'
   gem 'rspec-rails'
   gem 'rubocop'
