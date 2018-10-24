@@ -32,12 +32,13 @@ end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'erb_lint', '0.0.26'
   gem 'niftany'
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
   gem 'sqlite3'
-  gem 'traject', '~> 2.3'
+  gem 'traject', '3.0.0'
 end
 
 group :production, :test do
