@@ -126,11 +126,11 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     dot-properties (0.1.3)
     dotenv (2.5.0)
-    erb_lint (0.0.26)
+    erb_lint (0.0.28)
       activesupport
       better_html (~> 1.0.7)
-      colorize
       html_tokenizer
+      rainbow
       rubocop (~> 0.51)
       smart_properties
     erubi (1.7.1)
@@ -203,7 +203,8 @@ GEM
     multi_json (1.13.1)
     multipart-post (2.0.0)
     mysql2 (0.5.2)
-    niftany (0.2.0)
+    niftany (0.3.0)
+      colorize (~> 0.8.1)
       erb_lint (~> 0.0.22)
       rubocop (~> 0.51, <= 0.52.1)
       rubocop-rspec (~> 1.22, <= 1.22.2)
@@ -368,7 +369,6 @@ DEPENDENCIES
   coveralls
   devise
   devise-guests (~> 0.6)
-  erb_lint (= 0.0.26)
   foreman (~> 0.63.0)
   jbuilder (~> 2.5)
   jquery-rails
