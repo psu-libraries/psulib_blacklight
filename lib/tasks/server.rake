@@ -1,15 +1,21 @@
 # frozen_string_literal: true
 
-require "solr_wrapper" unless Rails.env.production?
+require 'solr_wrapper/rake_task'
 
 desc "Run test suite"
 task :ci do
   SolrWrapper.default_instance_options = {
       version: '7.4.0',
-      port: '8983'
+      port: '8983',
+      collection: {
+          dir: 'solr/conf/',
+          name: 'blacklight-core',
+      },
+      instance_dir: 'tmp/solr/',
+      download_dir: 'tmp/solr_dl'
   }
-  @solr_instance = SolrWrapper.default_instance
 
   Rake::Task['solr:start'].invoke
   Rake::Task['spec'].invoke
+  Rake::Task['solr:stop'].invoke
 end
