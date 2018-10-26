@@ -6,6 +6,7 @@ sudo: false
 
 script:
 - bundle exec niftany
+- bundle exec rake
 
 env:
    global:
