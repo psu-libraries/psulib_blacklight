@@ -4,9 +4,21 @@ rvm:
 bundler_args: --without development
 sudo: false
 
+jdk:
+- oraclejdk8
+
+cache:
+  directories:
+  - tmp/solr_dl/
+
+before_script:
+- bundle exec rake assets:precompile
+
 script:
 - bundle exec niftany
+- bundle exec rake
 
 env:
-   global:
-   - RAILS_ENV=test
+- TZ=America/New_York
+  global:
+  - RAILS_ENV=test
