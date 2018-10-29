@@ -4,7 +4,7 @@ inherit_gem:
   niftany: niftany_rubocop.yml
 
 AllCops:
-  TargetRubyVersion: 2.5.1
+  TargetRubyVersion: 2.5.3
   Exclude:
     - 'bin/**/*'
     - 'node_modules/**/*'
