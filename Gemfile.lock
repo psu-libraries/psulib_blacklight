@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://github.com/projectblacklight/blacklight.git
-  revision: c1ce34f2220af3b08c0ebec86d99991591f66f36
+  revision: df7e862910e67b3221c9d1379604ffb331e4fda4
   specs:
     blacklight (7.0.0.rc1)
       deprecation
@@ -81,7 +81,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (9.0.0)
     ast (2.4.0)
-    autoprefixer-rails (9.3.0)
+    autoprefixer-rails (9.3.1)
       execjs
     bcrypt (3.1.12)
     better_html (1.0.11)
@@ -203,7 +203,8 @@ GEM
     multi_json (1.13.1)
     multipart-post (2.0.0)
     mysql2 (0.5.2)
-    niftany (0.2.0)
+    niftany (0.3.0)
+      colorize (~> 0.8.1)
       erb_lint (~> 0.0.22)
       rubocop (~> 0.51, <= 0.52.1)
       rubocop-rspec (~> 1.22, <= 1.22.2)
@@ -213,7 +214,7 @@ GEM
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     parallel (1.12.1)
-    parser (2.5.1.2)
+    parser (2.5.3.0)
       ast (~> 2.4.0)
     popper_js (1.14.3)
     powerpack (0.1.2)
@@ -389,4 +390,4 @@ DEPENDENCIES
   webpacker (~> 3.5)
 
 BUNDLED WITH
-   1.16.6
+   1.17.1
