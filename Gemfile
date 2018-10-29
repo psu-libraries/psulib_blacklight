@@ -20,7 +20,7 @@ gem 'rsolr', '>= 1.0'
 gem 'webpacker', '~> 3.5'
 
 gem 'blacklight', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight'
-gem 'blacklight-marc', github: 'cdmo/blacklight-marc', ref: 'd3b36e69ab'
+gem 'blacklight-marc', github: 'psu-libraries/blacklight-marc'
 
 group :development do
   gem 'foreman', '~> 0.63.0'
@@ -37,7 +37,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
   gem 'sqlite3'
-  gem 'traject', '~> 2.3'
+  gem 'traject', '3.0.0'
 end
 
 group :production, :test do
