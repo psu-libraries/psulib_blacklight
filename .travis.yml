@@ -11,10 +11,12 @@ jdk:
 cache:
   directories:
   - tmp/solr_dl/
-  
+
+before_script:
+- bundle exec rake assets:precompile
+
 script:
 - bundle exec niftany
-- bundle exec rake assets:precompile
 - bundle exec rake
 
 env:
