@@ -1,7 +1,6 @@
 language: ruby
 rvm:
 - 2.5.3
-
 bundler_args: --without development
 sudo: false
 
@@ -21,5 +20,5 @@ script:
 
 env:
 - TZ=America/New_York
-   global:
-   - RAILS_ENV=test
+  global:
+  - RAILS_ENV=test
