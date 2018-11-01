@@ -35,7 +35,6 @@ group :development, :test do
   gem 'niftany'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
   gem 'sqlite3'
   gem 'traject', '~> 3.0'
 end
