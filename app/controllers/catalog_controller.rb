@@ -4,6 +4,10 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
 
+  rescue_from Blacklight::Exceptions::RecordNotFound do
+    redirect_to '/404'
+  end
+
   configure_blacklight do |config|
     config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
 
