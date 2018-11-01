@@ -19,6 +19,5 @@ script:
 - bundle exec rake
 
 env:
-- TZ=America/New_York
   global:
   - RAILS_ENV=test
