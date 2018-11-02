@@ -15,7 +15,7 @@ before_install:
 - docker ps -a
 
 before_script:
-- bundle exec rake assets:precompile
+- bundle exec rails assets:precompile
 
 script:
 - bundle exec niftany
