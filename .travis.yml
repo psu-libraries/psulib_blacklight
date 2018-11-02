@@ -3,17 +3,15 @@ rvm:
 - 2.5.3
 bundler_args: --without development
 sudo: false
-
-jdk:
-- oraclejdk8
+jdk: oraclejdk9
 
 cache:
   directories:
   - tmp/solr_dl/
 
 before_install:
-- docker pull solr:7
-- docker run -d -p 8983:8983 -v $PWD/lib/generators/blacklight/templates/solr/conf:/myconfig solr:7 solr-create -c blacklight-core -d /myconfig
+- docker pull solr:7.4.0
+- docker run -d -p 8983:8983 -v "$(pwd)"/solr/conf::/myconfig solr:7.4.0 solr-create -c blacklight-core -d /myconfig
 - docker ps -a
 
 before_script:
