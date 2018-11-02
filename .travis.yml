@@ -3,16 +3,19 @@ rvm:
 - 2.5.3
 bundler_args: --without development
 sudo: false
-
-jdk:
-- oraclejdk8
+jdk: oraclejdk9
 
 cache:
   directories:
   - tmp/solr_dl/
 
+before_install:
+- docker pull solr:7.4.0
+- docker run -d -p 8983:8983 -v "$(pwd)"/solr/conf:/myconfig solr:7.4.0 solr-create -c blacklight-core -d /myconfig
+- docker ps -a
+
 before_script:
-- bundle exec rake assets:precompile
+- bundle exec rails assets:precompile
 
 script:
 - bundle exec niftany

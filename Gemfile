@@ -25,6 +25,7 @@ gem 'blacklight-marc', github: 'projectblacklight/blacklight-marc'
 group :development do
   gem 'foreman', '~> 0.63.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
@@ -35,7 +36,6 @@ group :development, :test do
   gem 'niftany'
   gem 'rspec-rails'
   gem 'rubocop'
-  gem 'solr_wrapper', github: 'cbeer/solr_wrapper', branch: 'master'
   gem 'sqlite3'
   gem 'traject', '~> 3.0'
 end
