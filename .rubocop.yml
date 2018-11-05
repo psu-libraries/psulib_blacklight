@@ -17,6 +17,7 @@ Metrics/BlockLength:
   - 'app/controllers/catalog_controller.rb'
   - 'db/**/*'
   - 'spec/**/*'
+  - 'lib/tasks/**/*'
 
 Metrics/LineLength:
   Exclude:
