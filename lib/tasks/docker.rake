@@ -24,7 +24,7 @@ namespace :docker do
     print `docker pull solr:7.4.0`
     print `docker run \
             --name felix \
-            -a \
+            -a STDOUT \
             -p 8983:8983 \
             -v "$(pwd)"/solr/conf:/myconfig \
             solr:7.4.0 \
