@@ -30,7 +30,7 @@
 
 1.  Start the application
     ```
-    bundle exec rails docker:up
+    bundle exec foreman start -f Procfile.dev
     ```
     
     Note: on a Mac you may be asked by the OS if you want to allow incoming connections to Ruby. Because this is a local dev instance, you can choose to deny incoming connections. This configuration can be found in the Security & Privacy section of the Systems Preferences. 
