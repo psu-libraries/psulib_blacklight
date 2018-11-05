@@ -24,6 +24,9 @@ $ java --version
   Java(TM) SE Runtime Environment (build 9+181)
   Java HotSpot(TM) 64-Bit Server VM (build 9+181, mixed mode)
 ```
+## Docker
+
+You'll need to download [docker ce for mac](https://store.docker.com/editions/community/docker-ce-desktop-mac), including creating an account. 
 
 # Development setup
 1.  Make sure you have ssh keys established on your machine https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#generating-a-new-ssh-key
@@ -41,7 +44,7 @@ $ java --version
 
 1.  Start up solr
     ```
-    bundle exec solr_wrapper
+    bundle exec rails docker:up
     ```
 
 1.  Start up your application
@@ -60,7 +63,7 @@ This should index 522 documents. Check here: http://localhost:8983/solr/#/blackl
 
 Note: To clean out data that is being preserved explicitly run:
 ```
-solr_wrapper -d .solr_wrapper.yml clean
+bundle exec rails docker:clean
 ```
 
 Go to http://localhost:3000/catalog.
