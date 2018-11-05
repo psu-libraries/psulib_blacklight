@@ -1,3 +1,3 @@
-solr: bundle exec solr_wrapper
+solr: bundle exec rails docker:up
 web: rails s -p 3000
 webpacker: bin/webpack-dev-server
