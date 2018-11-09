@@ -340,12 +340,6 @@
       </analyzer>
     </fieldType>
 
-    <fieldType name="pid_text" class="solr.TextField" positionIncrementGap="100">
-      <analyzer>
-        <tokenizer class="solr.KeywordTokenizerFactory"/>
-      </analyzer>
-    </fieldType>
-
     <fieldType name="textSpell" class="solr.TextField" positionIncrementGap="100" >
       <analyzer>
         <tokenizer class="solr.StandardTokenizerFactory"/>
@@ -360,26 +354,6 @@
         <tokenizer class="solr.KeywordTokenizerFactory"/>
         <filter class="solr.LowerCaseFilterFactory"/>
         <filter class="solr.RemoveDuplicatesTokenFilterFactory"/>
-      </analyzer>
-    </fieldType>
-
-    <!-- queries for paths match documents at that path, or in descendent paths -->
-    <fieldType name="descendent_path" class="solr.TextField">
-      <analyzer type="index">
-        <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" />
-      </analyzer>
-      <analyzer type="query">
-        <tokenizer class="solr.KeywordTokenizerFactory" />
-      </analyzer>
-    </fieldType>
-
-    <!-- queries for paths match documents at that path, or in ancestor paths -->
-    <fieldType name="ancestor_path" class="solr.TextField">
-      <analyzer type="index">
-        <tokenizer class="solr.KeywordTokenizerFactory" />
-      </analyzer>
-      <analyzer type="query">
-        <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" />
       </analyzer>
     </fieldType>
 
