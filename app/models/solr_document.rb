@@ -10,7 +10,7 @@ class SolrDocument
   end
 
   field_semantics.merge!(
-    title: 'title_display',
+    title: 'title_display_ssm',
     language: 'language_facet_ssim',
     format: 'format'
   )

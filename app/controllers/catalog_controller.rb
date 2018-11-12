@@ -60,7 +60,7 @@ class CatalogController < ApplicationController
     # }
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'title_display'
+    config.index.title_field = 'title_display_ssm'
     config.index.display_type_field = 'format'
     # config.index.thumbnail_field = 'thumbnail_path_ss'
 
@@ -115,36 +115,36 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'title_display', label: 'Title'
-    config.add_index_field 'title_vern_display', label: 'Title'
+    config.add_index_field 'title_display_ssm', label: 'Title'
+    config.add_index_field 'title_vern_display_ssm', label: 'Title'
     config.add_index_field 'format', label: 'Format'
     config.add_index_field 'language_facet_ssim', label: 'Language'
-    config.add_index_field 'published_display', label: 'Published'
-    config.add_index_field 'published_vern_display', label: 'Published'
-    config.add_index_field 'lc_callnum_display', label: 'Call number'
+    config.add_index_field 'published_display_ssm', label: 'Published'
+    config.add_index_field 'published_vern_display_ssm', label: 'Published'
+    config.add_index_field 'lc_callnum_display_ssm', label: 'Call number'
     config.add_index_field 'id', label: 'Catkey'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_display', label: 'Title'
-    config.add_show_field 'title_vern_display', label: 'Title'
-    config.add_show_field 'subtitle_display', label: 'Subtitle'
-    config.add_show_field 'subtitle_vern_display', label: 'Subtitle'
-    config.add_show_field 'author_person_display', label: 'Author'
-    config.add_show_field 'author_person_vern_display', label: 'Author'
-    config.add_show_field 'author_corp_display', label: 'Corporate Author'
-    config.add_show_field 'author_corp_vern_display', label: 'Corporate Author'
-    config.add_show_field 'author_meeting_display', label: 'Conference Author'
-    config.add_show_field 'author_meeting_vern_display', label: 'Conference Author'
-    config.add_show_field 'addl_author_display', label: 'Additional Authors'
-    config.add_show_field 'addl_author_vern_display', label: 'Additional Authors'
+    config.add_show_field 'title_display_ssm', label: 'Title'
+    config.add_show_field 'title_vern_display_ssm', label: 'Title'
+    config.add_show_field 'subtitle_display_ssm', label: 'Subtitle'
+    config.add_show_field 'subtitle_vern_display_ssm', label: 'Subtitle'
+    config.add_show_field 'author_person_display_ssm', label: 'Author'
+    config.add_show_field 'author_person_vern_display_ssm', label: 'Author'
+    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author'
+    config.add_show_field 'author_corp_vern_display_ssm', label: 'Corporate Author'
+    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author'
+    config.add_show_field 'author_meeting_vern_display_ssm', label: 'Conference Author'
+    config.add_show_field 'addl_author_display_ssm', label: 'Additional Authors'
+    config.add_show_field 'addl_author_vern_display_ssm', label: 'Additional Authors'
     config.add_show_field 'format', label: 'Format'
-    config.add_show_field 'url_fulltext_display', label: 'URL'
-    config.add_show_field 'url_suppl_display', label: 'More Information'
+    config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
+    config.add_show_field 'url_suppl_display_ssm', label: 'More Information'
     config.add_show_field 'language_facet_ssim', label: 'Language'
-    config.add_show_field 'published_display', label: 'Published'
-    config.add_show_field 'published_vern_display', label: 'Published'
-    config.add_show_field 'lc_callnum_display', label: 'Call number'
+    config.add_show_field 'published_display_ssm', label: 'Published'
+    config.add_show_field 'published_vern_display_ssm', label: 'Published'
+    config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
     config.add_show_field 'isbn_ssim', label: 'ISBN'
     config.add_show_field 'id', label: 'Catkey'
     # Example of adding a show field
