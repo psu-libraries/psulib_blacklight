@@ -226,7 +226,7 @@
   <copyField source="author_addl_tsim" dest="author_addl_unstem_search"/>
   <copyField source="subject_tsim" dest="subject_unstem_search"/>
   <copyField source="subject_addl_tsim" dest="subject_addl_unstem_search"/>
-  <copyField source="subject_topic_facet" dest="subject_topic_unstem_search"/>
+  <copyField source="subject_topic_facet_tsim" dest="subject_topic_unstem_search"/>
 
   <!-- TODO: Look into if these are actually being used. -->
   <copyField source="*_tsim" dest="spell"/>
