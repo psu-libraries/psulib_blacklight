@@ -43,7 +43,7 @@ namespace :docker do
 
   task :conf do
     print `docker exec -it felix \
-            cp -R /myconfig /opt/solr/server/solr/blacklight-core/conf`
+            cp -R /myconfig/. /opt/solr/server/solr/blacklight-core/conf/`
   end
 
   task :down do
