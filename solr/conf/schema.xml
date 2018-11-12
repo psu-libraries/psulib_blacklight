@@ -33,7 +33,7 @@
     <dynamicField name="*_tsimv" type="text" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
 
     <!-- unstemmed text-->
-    <dynamicField name="*_unstem_search" type="text_no_stem" indexed="true" stored="false" multiValued="true" />
+    <dynamicField name="*_unstem_search" type="text_not_stemmed" indexed="true" stored="false" multiValued="true" />
 
     <!-- English text (_te...) -->
 
