@@ -68,7 +68,7 @@
          subject_addl_t^50
          title_series_unstem_search^25
          title_series_t^10
-         isbn_t
+         isbn_ssim
          text
        </str>
        <str name="pf">
@@ -159,7 +159,7 @@
          addl_author_display,
          addl_author_vern_display,
          format, 
-         isbn_t, 
+         isbn_ssim,
          language_facet, 
          lc_callnum_display,
          material_type_display, 

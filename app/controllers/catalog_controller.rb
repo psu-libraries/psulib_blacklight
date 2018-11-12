@@ -144,7 +144,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'published_display', label: 'Published'
     config.add_show_field 'published_vern_display', label: 'Published'
     config.add_show_field 'lc_callnum_display', label: 'Call number'
-    config.add_show_field 'isbn_t', label: 'ISBN'
+    config.add_show_field 'isbn_ssim', label: 'ISBN'
     config.add_show_field 'id', label: 'Catkey'
     # Example of adding a show field
     # config.add_show_field 'subject_topic_facet', label: 'Cheese'
