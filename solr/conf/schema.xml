@@ -217,15 +217,15 @@
   <copyField source="*_si" dest="suggest"/>
 
   <!-- unstemmed fields -->
-  <copyField source="title_t" dest="title_unstem_search"/>
-  <copyField source="subtitle_t" dest="subtitle_unstem_search"/>
-  <copyField source="title_addl_t" dest="title_addl_unstem_search"/>
-  <copyField source="title_added_entry_t" dest="title_added_entry_unstem_search"/>
-  <copyField source="title_series_t" dest="title_series_unstem_search"/>
-  <copyField source="author_t" dest="author_unstem_search"/>
-  <copyField source="author_addl_t" dest="author_addl_unstem_search"/>
-  <copyField source="subject_t" dest="subject_unstem_search"/>
-  <copyField source="subject_addl_t" dest="subject_addl_unstem_search"/>
+  <copyField source="title_tsim" dest="title_unstem_search"/>
+  <copyField source="subtitle_tsim" dest="subtitle_unstem_search"/>
+  <copyField source="title_addl_tsim" dest="title_addl_unstem_search"/>
+  <copyField source="title_added_entry_tsim" dest="title_added_entry_unstem_search"/>
+  <copyField source="title_series_tsim" dest="title_series_unstem_search"/>
+  <copyField source="author_tsim" dest="author_unstem_search"/>
+  <copyField source="author_addl_tsim" dest="author_addl_unstem_search"/>
+  <copyField source="subject_tsim" dest="subject_unstem_search"/>
+  <copyField source="subject_addl_tsim" dest="subject_addl_unstem_search"/>
   <copyField source="subject_topic_facet" dest="subject_topic_unstem_search"/>
 
   <!-- TODO: Look into if these are actually being used. -->
