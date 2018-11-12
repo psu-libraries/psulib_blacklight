@@ -69,7 +69,7 @@
          title_series_unstem_search^25
          title_series_t^10
          isbn_ssim
-         text
+         all_text_timv
        </str>
        <str name="pf">
          title_unstem_search^1000000
@@ -92,7 +92,7 @@
          subject_addl_t^500
          title_series_unstem_search^250
          title_series_t^100
-         text^10
+         all_text_timv^10
        </str>
        <str name="author_qf">
          author_unstem_search^200
