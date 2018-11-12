@@ -160,7 +160,7 @@
          addl_author_vern_display,
          format, 
          isbn_ssim,
-         language_facet, 
+         language_facet_ssim,
          lc_callnum_display,
          material_type_display, 
          published_display,
@@ -183,7 +183,7 @@
        <str name="facet.field">lc_1letter_facet</str>
        <str name="facet.field">lc_alpha_facet</str>
        <str name="facet.field">lc_b4cutter_facet</str>
-       <str name="facet.field">language_facet</str>
+       <str name="facet.field">language_facet_ssim</str>
        <str name="facet.field">pub_date</str>
        <str name="facet.field">subject_topic_facet</str>
 
