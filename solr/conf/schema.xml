@@ -32,6 +32,9 @@
     <dynamicField name="*_tsiv" type="text" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
     <dynamicField name="*_tsimv" type="text" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
 
+    <!-- unstemmed text-->
+    <dynamicField name="*_unstem_search" type="text_no_stem" indexed="true" stored="false" multiValued="true" />
+
     <!-- English text (_te...) -->
 
     <dynamicField name="*_tei" type="text_en" stored="false" indexed="true" multiValued="false"/>
@@ -213,6 +216,18 @@
   <copyField source="*_ssim" dest="suggest"/>
   <copyField source="*_si" dest="suggest"/>
 
+  <!-- unstemmed fields -->
+  <copyField source="title_t" dest="title_unstem_search"/>
+  <copyField source="subtitle_t" dest="subtitle_unstem_search"/>
+  <copyField source="title_addl_t" dest="title_addl_unstem_search"/>
+  <copyField source="title_added_entry_t" dest="title_added_entry_unstem_search"/>
+  <copyField source="title_series_t" dest="title_series_unstem_search"/>
+  <copyField source="author_t" dest="author_unstem_search"/>
+  <copyField source="author_addl_t" dest="author_addl_unstem_search"/>
+  <copyField source="subject_t" dest="subject_unstem_search"/>
+  <copyField source="subject_addl_t" dest="subject_addl_unstem_search"/>
+  <copyField source="subject_topic_facet" dest="subject_topic_unstem_search"/>
+
   <!-- TODO: Look into if these are actually being used. -->
   <copyField source="*_tsim" dest="spell"/>
   <copyField source="*_tesim" dest="spell"/>
@@ -279,18 +294,26 @@
       </analyzer>
     </fieldType>
 
-    <!-- A general text field that has reasonable, generic cross-language defaults:
-        it tokenizes with StandardTokenizer and down cases.  At query time only, it
-        also applies synonyms. Good for fuzzy title matching. -->
-    <fieldType name="text_not_stemmed" class="solr.TextField" positionIncrementGap="100">
+    <!-- Analyze/process text, but don't stem. Useful for matching  -->
+    <fieldType name="text_not_stemmed" class="solr.TextField" positionIncrementGap="1000" autoGeneratePhraseQueries="true">
       <analyzer type="index">
-        <tokenizer class="solr.StandardTokenizerFactory"/>
-        <filter class="solr.LowerCaseFilterFactory"/>
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="\s+(\p{Punct}+)\s+" replacement=" " />
+        <tokenizer class="solr.WhitespaceTokenizerFactory" />
+        <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
+        <filter class="solr.WordDelimiterGraphFilterFactory"
+                splitOnCaseChange="1" generateWordParts="1" catenateWords="1"
+                splitOnNumerics="0" generateNumberParts="1" catenateNumbers="1"
+                catenateAll="0" preserveOriginal="0" stemEnglishPossessive="0" />
+        <filter class="solr.FlattenGraphFilterFactory"/>
       </analyzer>
       <analyzer type="query">
-        <tokenizer class="solr.StandardTokenizerFactory"/>
-        <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
-        <filter class="solr.LowerCaseFilterFactory"/>
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="\s+(\p{Punct}+)\s+" replacement=" " />
+        <tokenizer class="solr.WhitespaceTokenizerFactory" />
+        <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
+        <filter class="solr.WordDelimiterGraphFilterFactory"
+                splitOnCaseChange="1" generateWordParts="1" catenateWords="1"
+                splitOnNumerics="0" generateNumberParts="1" catenateNumbers="1"
+                catenateAll="0" preserveOriginal="0" stemEnglishPossessive="0" />
       </analyzer>
     </fieldType>
 
