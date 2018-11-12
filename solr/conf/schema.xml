@@ -279,6 +279,21 @@
       </analyzer>
     </fieldType>
 
+    <!-- A general text field that has reasonable, generic cross-language defaults:
+        it tokenizes with StandardTokenizer and down cases.  At query time only, it
+        also applies synonyms. Good for fuzzy title matching. -->
+    <fieldType name="text_not_stemmed" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+      <analyzer type="query">
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
     <!-- A text field that only splits on whitespace for exact matching of words -->
     <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
