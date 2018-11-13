@@ -58,7 +58,7 @@
          title_added_entry_tsim^1250
          subject_topic_unstem_search^1000
          subject_unstem_search^750
-         subject_topic_facet^625
+         subject_topic_facet_ssim^625
          subject_tsim^500
          author_unstem_search^250
          author_addl_unstem_search^250
@@ -82,7 +82,7 @@
          title_added_entry_tsim^12500
          subject_topic_unstem_search^10000
          subject_unstem_search^7500
-         subject_topic_facet^6250
+         subject_topic_facet_ssim^6250
          subject_tsim^5000
          author_unstem_search^2500
          author_addl_unstem_search^2500
@@ -133,7 +133,7 @@
        <str name="subject_qf">
          subject_topic_unstem_search^200
          subject_unstem_search^125
-         subject_topic_facet^100
+         subject_topic_facet_ssim^100
          subject_tsim^50
          subject_addl_unstem_search^10
          subject_addl_tsim
@@ -142,7 +142,7 @@
          subject_topic_unstem_search^2000
          subject_unstem_search^1250
          subject_tsim^1000
-         subject_topic_facet^500
+         subject_topic_facet_ssim^500
          subject_addl_unstem_search^100
          subject_addl_tsim^10
        </str>
@@ -168,7 +168,7 @@
          pub_date_ssim,
          title_display_ssm,
          title_vern_display_ssm,
-         subject_topic_facet,
+         subject_topic_facet_ssim,
          subtitle_display_ssm,
          subtitle_vern_display_ssm,
          url_fulltext_display_ssm,
@@ -186,7 +186,7 @@
        <str name="facet.field">language_facet_ssim</str>
        <str name="facet.field">pub_date_ssim</str>
        <str name="facet.field">authors_all_facet_sim</str>
-       <str name="facet.field">subject_topic_facet</str>
+       <str name="facet.field">subject_topic_facet_ssim</str>
 
        <str name="spellcheck">true</str>
        <str name="spellcheck.dictionary">default</str>

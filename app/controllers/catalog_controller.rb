@@ -96,7 +96,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'format', label: 'Format'
     config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
     config.add_facet_field 'all_authors_facet_sim', label: 'Author', limit: true
-    config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'subject_topic_facet_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet_sim', label: 'Call Number'
 
@@ -146,9 +146,8 @@ class CatalogController < ApplicationController
     config.add_show_field 'published_vern_display_ssm', label: 'Published'
     config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
     config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'subject_topic_facet_ssim', label: 'Topic'
     config.add_show_field 'id', label: 'Catkey'
-    # Example of adding a show field
-    # config.add_show_field 'subject_topic_facet', label: 'Cheese'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
