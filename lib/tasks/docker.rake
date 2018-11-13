@@ -2,13 +2,16 @@
 
 namespace :docker do
   task :up do
+    Rake::Task['docker:pull'].invoke
     container_status = `docker inspect felix`
     container_status.strip!
 
     if container_status == '[]'
       Rake::Task['docker:first_start'].invoke
     else
+      Rake::Task['docker:start'].invoke
       Rake::Task['docker:conf'].invoke
+      Rake::Task['docker::down'].invoke
       Rake::Task['docker:start'].invoke
     end
 
@@ -22,7 +25,6 @@ namespace :docker do
   end
 
   task :first_start do
-    Rake::Task['docker:pull'].invoke
     print `docker run \
             --name felix \
             -a STDOUT \
@@ -37,7 +39,6 @@ namespace :docker do
   end
 
   task :start do
-    Rake::Task['docker:pull'].invoke
     print `docker start -a felix`
   end
 
