@@ -165,7 +165,7 @@
          material_type_display_ssm,
          published_display_ssm,
          published_vern_display_ssm,
-         pub_date,
+         pub_date_ssim,
          title_display_ssm,
          title_vern_display_ssm,
          subject_topic_facet,
