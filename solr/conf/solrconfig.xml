@@ -184,7 +184,7 @@
        <str name="facet.field">lc_alpha_facet_sim</str>
        <str name="facet.field">lc_b4cutter_facet_sim</str>
        <str name="facet.field">language_facet_ssim</str>
-       <str name="facet.field">pub_date</str>
+       <str name="facet.field">pub_date_ssim</str>
        <str name="facet.field">authors_all_facet_sim</str>
        <str name="facet.field">subject_topic_facet</str>
 

@@ -94,7 +94,7 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
     config.add_facet_field 'format', label: 'Format'
-    config.add_facet_field 'pub_date', label: 'Publication Year', single: true
+    config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
     config.add_facet_field 'all_authors_facet_sim', label: 'Author', limit: true
     config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
@@ -103,9 +103,9 @@ class CatalogController < ApplicationController
     config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
 
     config.add_facet_field 'example_query_facet_field', label: 'Publish Date', query: {
-      years_5: { label: 'within 5 Years', fq: "pub_date:[#{Time.zone.now.year - 5} TO *]" },
-      years_10: { label: 'within 10 Years', fq: "pub_date:[#{Time.zone.now.year - 10} TO *]" },
-      years_25: { label: 'within 25 Years', fq: "pub_date:[#{Time.zone.now.year - 25} TO *]" }
+      years_5: { label: 'within 5 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 5} TO *]" },
+      years_10: { label: 'within 10 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 10} TO *]" },
+      years_25: { label: 'within 25 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 25} TO *]" }
     }
 
     # Have BL send all facet field names to Solr, which has been the default
