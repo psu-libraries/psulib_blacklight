@@ -50,8 +50,8 @@
          id
          title_unstem_search^100000
          subtitle_unstem_search^50000
-         title_t^25000
-         subtitle_t^10000
+         title_tsim^25000
+         subtitle_tsim^10000
          title_addl_unstem_search^5000
          title_addl_t^2500
          title_added_entry_unstem_search^1500
@@ -74,8 +74,8 @@
        <str name="pf">
          title_unstem_search^1000000
          subtitle_unstem_search^500000
-         title_t^250000
-         subtitle_t^100000
+         title_tsim^250000
+         subtitle_tsim^100000
          title_addl_unstem_search^50000
          title_addl_t^25000
          title_added_entry_unstem_search^15000
@@ -110,8 +110,8 @@
          title_unstem_search^50000
          subtitle_unstem_search^25000
          title_addl_unstem_search^10000
-         title_t^5000
-         subtitle_t^2500
+         title_tsim^5000
+         subtitle_tsim^2500
          title_addl_t^100
          title_added_entry_unstem_search^50
          title_added_entry_t^10
@@ -122,8 +122,8 @@
          title_unstem_search^500000
          subtitle_unstem_search^250000
          title_addl_unstem_search^100000
-         title_t^50000
-         subtitle_t^25000
+         title_tsim^50000
+         subtitle_tsim^25000
          title_addl_t^1000
          title_added_entry_unstem_search^500
          title_added_entry_t^100
