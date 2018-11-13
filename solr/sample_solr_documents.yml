@@ -1,5 +1,5 @@
 ---
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - P - Language & Literature
   author_t:
   - Ayaz, Shaikh,
@@ -42,7 +42,7 @@
   format: Book
   material_type_display:
   - 375 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - PK2788.9.A9
   title_display: Fikr-i Ayāz
   title_sort: fikr-i ayāz
@@ -53,12 +53,12 @@
   author_addl_t:
   - Farruk̲h̲ī, Āṣif,
   - Pīrzādah, Shāh Muḥammad.
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - PK
   language_facet:
   - Urdu
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - M - Music
   author_t:
   - Ayaz, Shaikh,
@@ -101,7 +101,7 @@
   format: Book
   material_type_display:
   - 232 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - MLCME 2002/02660 (D)
   title_display: Sāhivāl jail kī ḍāʼirī
   title_sort: sāhivāl jail kī ḍāʼirī
@@ -131,7 +131,7 @@
   subject_topic_facet:
   - Nūrī, ʻAbd Allāh, 1949-
   - Iran. Vizārat-i Kishvar
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - DS
   title_series_t:
   - Farhang-i ʻumūmī
@@ -141,7 +141,7 @@
     ʻAbd Allāh Nūrī dar Majlis-i panjum.'
   - "‏گفت و گوى اکبر گنجى با عبد الله نورى : به پيوست  متن استيضاح عبد الله نورى در
     مجلس پنجم"
-  lc_1letter_facet:
+  lc_1letter_facet_sim:
   - D - World History
   author_t:
   - Nūrī, ʻAbd Allāh,
@@ -224,7 +224,7 @@
     عبد الله نورى در مجلس پنجم"
   material_type_display:
   - 245 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - DS318.84.N87
   subject_t:
   - Nūrī, ʻAbd Allāh, 1949-
@@ -330,7 +330,7 @@
   language_facet:
   - Japanese
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - D - World History
   author_t:
   - Vi︠a︡tkin, M. P. (Mikhail Porfirʹevich),
@@ -376,7 +376,7 @@
   format: Book
   material_type_display:
   - v.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - DK861.K3
   title_display: Ocherki po istorii Kazakhskoĭ SSR
   subject_addl_t:
@@ -394,12 +394,12 @@
   author_addl_t:
   - Institut istorii (Akademii︠a︡ nauk SSSR)
   - Akademii︠a︡ nauk Kazakhskoĭ SSR, Alma Ata.
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - DK
   language_facet:
   - Russian
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - K - Law
   author_t:
   - Korea (North)
@@ -444,7 +444,7 @@
   format: Book
   material_type_display:
   - 396 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - KPC13
   title_display: Konstitut︠s︡ii︠a︡ i osnovnye zakonodatelʹnye akty Koreĭskoĭ Narodno-Demokraticheskoĭ
     Respubliki
@@ -466,12 +466,12 @@
   - Constitution
   title_series_t:
   - Zakonodatelʹstvo stran narodnoĭ demokratii
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - KPC
   language_facet:
   - Russian
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - D - World History
   marc_display: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record><leader>01062cam
     a2200301 a 4500</leader><controlfield tag=\"001\">   77826928 </controlfield><controlfield
@@ -529,7 +529,7 @@
   format: Book
   material_type_display:
   - 255 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - DS912.38
   title_display: Koryŏ inmul yŏlchŏn
   subject_addl_t:
@@ -555,12 +555,12 @@
   title_series_t:
   - Sŏmun munʼgo ; 237
   - "瑞文 文庫 ; 237"
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - DS
   language_facet:
   - Korean
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - P - Language & Literature
   author_t:
   - Parikshit Sharma, Ogeti,
@@ -603,7 +603,7 @@
   format: Book
   material_type_display:
   - 24, 128, 2 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - PK3799.P29
   title_display: Yaśodharā-mahākāvyam
   subject_addl_t:
@@ -621,12 +621,12 @@
   - Yaśodharā (Wife of Gautama Buddha)
   title_series_t:
   - Śāradā-gaurava-grantha-mālā ; 37
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - PK
   language_facet:
   - Sanskrit
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - H - Social Sciences
   author_t:
   - Iṣlāḥī, Amīn Aḥsan,
@@ -667,7 +667,7 @@
   format: Book
   material_type_display:
   - 8, 174 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - HQ1745.5
   title_display: Pākistānī ʻaurat dorāhe par
   subject_addl_t:
@@ -684,12 +684,12 @@
   - Pakistan
   subject_topic_facet:
   - Women
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - HQ
   language_facet:
   - Urdu
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - M - Music
   author_t:
   - Nārāyaṇapaṇḍita,
@@ -735,7 +735,7 @@
   format: Book
   material_type_display:
   - xii, 24 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - Microfiche 90/61328 (P)
   title_display: Āśleṣāśataka of Nārāyaṇa Paṇḍita
   title_sort: āśleṣāśataka of nārāyaṇa paṇḍita
@@ -758,7 +758,7 @@
   subject_topic_facet:
   - Jewish pirates
   - Jewish criminals
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - G
   subtitle_t:
   - sipurim mafliʼim ha-mevusasim ʻal ʻuvdot hisṭoriyot /
@@ -766,7 +766,7 @@
   author_t:
   - Finkel, Chaim Jacob.
   - "‏פינקל, חיים יעקב"
-  lc_1letter_facet:
+  lc_1letter_facet_sim:
   - G - Geography, Anthropology, Recreation
   marc_display: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record><leader>01258cam
     a2200301 a 4500</leader><controlfield tag=\"001\">   86207417 </controlfield><controlfield
@@ -822,7 +822,7 @@
   - "‏ירושלים :‏"
   format: Book
   subtitle_vern_display: "‏ספורים מפליאים המבוססים על עובדות היסטוריות /‏"
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - G535
   material_type_display:
   - 283 p.
@@ -842,7 +842,7 @@
   language_facet:
   - Hebrew
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - B - Philosophy, Psychology, Religion
   author_t:
   - Muvaḥḥid Abṭaḥī, Ḥujjat.
@@ -910,7 +910,7 @@
   author_vern_display: "‏موحد ابطحى، خجة"
   material_type_display:
   - v. <1>
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - BP44
   title_display: Āshnāʼī bā ḥawzahʹhā-yi ʻilmīyah-ʼi Shīʻah dar ṭūl-i tārīkh
   subject_addl_t:
@@ -937,12 +937,12 @@
   - Religious institutions
   - Shiites
   - Islamic universities and colleges
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - BP
   language_facet:
   - Persian
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - M - Music
   author_t:
   - Lomtʻatʻiże, Čola,
@@ -979,7 +979,7 @@
   format: Book
   material_type_display:
   - 65 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - MLCSN 96/3906 (H)
   title_display: Mrecvelobis mušakis cʻxovrebis cesi
   subject_t:
@@ -998,7 +998,7 @@
   subtitle_t:
   - tʻeoriul-metʻoduri narkvevi /
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - K - Law
   author_t:
   - Korea (North)
@@ -1056,7 +1056,7 @@
   format: Book
   material_type_display:
   - 5 v.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - KPC13
   title_display: Pukhan pŏmnyŏngjip
   subject_addl_t:
@@ -1079,7 +1079,7 @@
   - Chʻoe, Tal-gon.
   - "鄭　慶謨，"
   - "崔　逹坤．"
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - KPC
   language_facet:
   - Korean
@@ -1096,7 +1096,7 @@
   - Karo, Joseph ben Ephraim, 1488-1575
   - Jewish law
   - Judaism
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - BM
   subtitle_t:
   - ṿe-hu perush yafeh u-menupeh ʻal Shulḥan ʻarukh Oraḥ ḥayim asher ḥiber Yosef
@@ -1107,7 +1107,7 @@
   author_t:
   - Israel Meir, ha-Kohen,
   - "‏ישראל מאיר,‏ ‏הכהן"
-  lc_1letter_facet:
+  lc_1letter_facet_sim:
   - B - Philosophy, Psychology, Religion
   marc_display: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record><leader>03361cam
     a2200493 a 4500</leader><controlfield tag=\"001\">   92828023 </controlfield><controlfield
@@ -1208,7 +1208,7 @@
   format: Book
   subtitle_vern_display: "‏והוא פירוש יפה ומנפה על שלחן ערוך ארח חיים אשר חבר יוסף
     קארו ... עם חידושי דינים שהשמיט הגאון ... והמציאם משה איסרליש /‏"
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - BM520.88.A53
   material_type_display:
   - v. <1-5>
@@ -1260,7 +1260,7 @@
   - Korea (South)
   subject_topic_facet:
   - Women
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - HQ
   subtitle_t:
   - 'kangnam yŏin kwa sin pʻalbulchʻul : Kim Hong-sin setʻae rŭpʻo.'
@@ -1268,7 +1268,7 @@
   author_t:
   - Kim, Hong-sin,
   - "김　홍신"
-  lc_1letter_facet:
+  lc_1letter_facet_sim:
   - H - Social Sciences
   marc_display: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record><leader>01149cam
     a2200301 a 4500</leader><controlfield tag=\"001\">   94120425 </controlfield><controlfield
@@ -1324,7 +1324,7 @@
   - "서울"
   format: Book
   subtitle_vern_display: "강남　여인　과　신　팔불출 : 金　洪信　세태　르포"
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - HQ1765.5
   material_type_display:
   - 289 p.
@@ -1356,7 +1356,7 @@
   subject_topic_facet:
   - Political science
   - Iranians
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - DS
   title_series_t:
   - Sipihr-i farhang va jāmiʻah ; 1
@@ -1367,7 +1367,7 @@
   author_t:
   - Rajāyī, Farhang,
   - "‏رجايى، فرهنگ ."
-  lc_1letter_facet:
+  lc_1letter_facet_sim:
   - D - World History
   marc_display: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record><leader>01484cam
     a2200349 a 4500</leader><controlfield tag=\"001\">   96933325 </controlfield><controlfield
@@ -1433,7 +1433,7 @@
   subtitle_vern_display: "‏در خردورزى سياسى و هويت ما ايرانيان /‏"
   material_type_display:
   - 323 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - DS274
   subject_t:
   - Political science
@@ -1450,7 +1450,7 @@
   language_facet:
   - Persian
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - P - Language & Literature
   author_t:
   - Nārāyaṇa Paṇḍitācārya,
@@ -1508,7 +1508,7 @@
   format: Book
   material_type_display:
   - v. <1   >
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - PK3798.N313
   title_display: Sumadhvavijayaḥ
   subject_addl_t:
@@ -1532,12 +1532,12 @@
   - Bhāvaprakāśikā
   - Padārthadīpikodbodhikā
   - Mandopakāriṇī
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - PK
   language_facet:
   - Sanskrit
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - U - Military Science
   author_t:
   - Wuld Mawlāy al-Zayn, Sayyid Muḥammad wuld Sayyid.
@@ -1597,7 +1597,7 @@
   author_vern_display: "ولد مولاي الزين، سيد محمد ولد سيد"
   material_type_display:
   - 128 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - U21.2
   title_display: al-Ḥarb fī al-alfīyah al-thālithah
   subject_addl_t:
@@ -1622,12 +1622,12 @@
   - Military art and science
   - Warfare, Conventional
   - Military weapons
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - U
   language_facet:
   - Arabic
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - D - World History
   author_t:
   - Bstan-ʼdzin-mkhas-grub,
@@ -1672,7 +1672,7 @@
   format: Book
   material_type_display:
   - 149 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - DS797.82.B663
   title_display: Bon-brgyaʼi lo rgyus lugs gñis gsal baʼi me loṅ źes bya ba bźugs
     so
@@ -1690,7 +1690,7 @@
   - Bon-brgyaʼi lo rgyus lugs gñis gsal baʼi me loṅ źes bya ba bźugs so /
   subject_geo_facet:
   - Bon-brgya (China)
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - DS
   language_facet:
   - Tibetan
@@ -1707,7 +1707,7 @@
   id: '2005461726'
   subject_topic_facet:
   - Islam
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - BP
   subtitle_t:
   - min jald al-dhāt ilá ṣidq al-sharḥ.
@@ -1715,7 +1715,7 @@
   author_t:
   - Abū al-Khayr, ʻAlī ʻAbd al-Ḥamīd.
   - "أبو الخير، علي عبد الحميد"
-  lc_1letter_facet:
+  lc_1letter_facet_sim:
   - B - Philosophy, Psychology, Religion
   marc_display: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record><leader>01127nam
     a2200277 a 4500</leader><controlfield tag=\"001\">  2005461726</controlfield><controlfield
@@ -1768,7 +1768,7 @@
   - "المعادي، القاهرة"
   format: Book
   subtitle_vern_display: "من جلد الذات إلى صدق الشرح"
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - BP161.3
   material_type_display:
   - 85 p.
@@ -1783,7 +1783,7 @@
   language_facet:
   - Arabic
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - H - Social Sciences
   marc_display: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record><leader>03730cam
     a22006257a 4500</leader><controlfield tag=\"001\">  2005553155</controlfield><controlfield
@@ -1892,7 +1892,7 @@
   format: Book
   material_type_display:
   - items 1-<13> of <13>
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - HG8695.2
   title_display: Bituaḥ u-viṭaḥon sotsyali
   subject_addl_t:
@@ -1951,12 +1951,12 @@
   - "שירות מילואים"
   - "קצבה לשירותים מיוחדים לנכים קשים"
   - "מומחים בינלאומיים על מדוכת הביטחון הסוציאלי"
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - HG
   language_facet:
   - Hebrew
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - E - History of the Americas (General)
   author_t:
   - Hearth, Amy Hill,
@@ -2025,7 +2025,7 @@
   - http://www.loc.gov/catdir/enhancements/fy0808/2007020969-s.html
   material_type_display:
   - xvii, 267 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - E99.D2
   title_display: "\"Strong Medicine speaks\""
   subject_addl_t:
@@ -2057,14 +2057,14 @@
   - Delaware Indians
   author_addl_t:
   - Strong Medicine,
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - E
   language_facet:
   - English
   subtitle_t:
   - 'a Native American elder has her say : an oral history /'
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - B - Philosophy, Psychology, Religion
   author_t:
   - Dkon-mchog-rgya-mtsho, Ra-se,
@@ -2114,7 +2114,7 @@
   format: Book
   material_type_display:
   - 208 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - BQ7684.4
   title_display: Dris lan don gcig ma
   subject_addl_t:
@@ -2136,7 +2136,7 @@
   - "ʼBri-guṅ-pa (Sect)"
   author_addl_t:
   - Sroṅ-btsan dpe mdzod khaṅ.
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - BQ
   language_facet:
   - Tibetan
@@ -2157,13 +2157,13 @@
   subject_topic_facet:
   - Padma Sambhava, ca. 717-ca. 762
   - Priests, Buddhist
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - BQ
   subtitle_t:
   - a supplication to the noble Lama Mahaguru Padmasambhava /
   author_t:
   - Ṅag-dbaṅ-blo-bzaṅ-rgya-mtsho, Dalai Lama V,
-  lc_1letter_facet:
+  lc_1letter_facet_sim:
   - B - Philosophy, Psychology, Religion
   marc_display: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record><leader>01582cam
     a2200325 a 4500</leader><controlfield tag=\"001\">  2008308175</controlfield><controlfield
@@ -2220,7 +2220,7 @@
   - '2002'
   pub_date_sort: 2002
   format: Book
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - BQ5593.P3
   material_type_display:
   - viii, 101 p.
@@ -2249,7 +2249,7 @@
   - English
   - Tibetan
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - B - Philosophy, Psychology, Religion
   author_t:
   - Bstan-ʼdzin-rgya-mtsho, Dalai Lama XIV,
@@ -2300,7 +2300,7 @@
   format: Book
   material_type_display:
   - 4, iv, 254 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - BQ4036
   title_display: Bod kyi naṅ chos ṅo sprod sñiṅ bsdus
   subject_addl_t:
@@ -2321,7 +2321,7 @@
   - Buddhism
   author_addl_t:
   - Rnam-rgyal Grwa-tshaṅ. Śes-yon Lhan-tshogs.
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - BQ
   language_facet:
   - Tibetan
@@ -2329,7 +2329,7 @@
   - goṅ sa skyabs mgon chen po mchog nas deṅ dus Bod rigs na gźon rnams la naṅ
     chos ṅo sprod bstsal ba bźugs so.
   timestamp: '2014-02-03T18:42:53.056Z'
-- lc_1letter_facet:
+- lc_1letter_facet_sim:
   - D - World History
   author_t:
   - Thub-bstan-yar-ʼphel, Rnam-grwa.
@@ -2380,7 +2380,7 @@
   format: Book
   material_type_display:
   - a-e, iv, ii, 407 p.
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - DS785
   title_display: Bod gaṅs can gyi rgyal rabs mdor bsdus dris lan brgya pa rab gsal
     śel gyi me loṅ źes bya ba bźugs so
@@ -2401,7 +2401,7 @@
   - Tibet (China)
   author_addl_t:
   - Rnam-rgyal Grwa-tshaṅ.
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - DS
   language_facet:
   - Tibetan
@@ -2500,12 +2500,12 @@
   - Japanese drama
   - Political plays, Japanese
   - Theater
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - PL
   author_t:
   - Yoshida, Hajime,
   - "吉田一"
-  lc_1letter_facet:
+  lc_1letter_facet_sim:
   - P - Language & Literature
   marc_display: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record><leader>01230nam
     a22003494a 4500</leader><controlfield tag=\"001\">  2008543486</controlfield><controlfield
@@ -2568,7 +2568,7 @@
   published_vern_display:
   - "東京"
   format: Book
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - PL832.U25
   material_type_display:
   - 480 p.
@@ -2605,7 +2605,7 @@
   - Economic history
   - World politics
   - Hong Kong (China)
-  lc_alpha_facet:
+  lc_alpha_facet_sim:
   - HC
   title_series_t:
   - Lin Xingzhi zuo pin ji ; 51
@@ -2613,7 +2613,7 @@
   author_t:
   - Lin, Xingzhi.
   - "林行止"
-  lc_1letter_facet:
+  lc_1letter_facet_sim:
   - H - Social Sciences
   marc_display: "<?xml version=\"1.0\" encoding=\"UTF-8\"?><collection xmlns=\"http://www.loc.gov/MARC21/slim\"><record><leader>01213nam
     a22003614a 4500</leader><controlfield tag=\"001\">  2009373513</controlfield><controlfield
@@ -2674,7 +2674,7 @@
   published_vern_display:
   - "臺北縣板橋市"
   format: Book
-  lc_b4cutter_facet:
+  lc_b4cutter_facet_sim:
   - HC59.15
   material_type_display:
   - 5, 300 p.
