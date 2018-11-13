@@ -45,9 +45,9 @@
   lc_b4cutter_facet_sim:
   - PK2788.9.A9
   title_display: Fikr-i Ayāz
-  title_sort: fikr-i ayāz
+  title_ssort: fikr-i ayāz
   id: 00282214
-  author_sort: Ayaz Shaikh 19231997 Fikri Ayāz
+  author_ssort: Ayaz Shaikh 19231997 Fikri Ayāz
   title_addl_t:
   - Fikr-i Ayāz /
   author_addl_t:
@@ -104,9 +104,9 @@
   lc_b4cutter_facet_sim:
   - MLCME 2002/02660 (D)
   title_display: Sāhivāl jail kī ḍāʼirī
-  title_sort: sāhivāl jail kī ḍāʼirī
+  title_ssort: sāhivāl jail kī ḍāʼirī
   id: 00282371
-  author_sort: Ayaz Shaikh 19231997 Sāhivāl jail kī ḍāʼirī
+  author_ssort: Ayaz Shaikh 19231997 Sāhivāl jail kī ḍāʼirī
   title_addl_t:
   - Sāhivāl jail kī ḍāʼirī /
   language_facet:
@@ -231,10 +231,10 @@
   - Iran. Vizārat-i Kishvar
   - Iran
   - "‏نورى، عبد الله"
-  title_sort: 'naqdī barā-yi tamām-i fuṣūl :guft va gū-yi akbar ganjī bā ʻabd
+  title_ssort: 'naqdī barā-yi tamām-i fuṣūl :guft va gū-yi akbar ganjī bā ʻabd
     allāh nūrī : bih payvast-i matn-i istīz̤āḥ-i ʻabd allāh nūrī dar majlis-i
     panjum'
-  author_sort: Nūrī ʻAbd Allāh 1949 Naqdī barāyi tamāmi fuṣūl guft va gūyi
+  author_ssort: Nūrī ʻAbd Allāh 1949 Naqdī barāyi tamāmi fuṣūl guft va gūyi
     Akbar Ganjī bā ʻAbd Allāh Nūrī  bih payvasti matni istīz̤āḥi ʻAbd Allāh
     Nūrī dar Majlisi panjum
   title_addl_t:
@@ -314,9 +314,9 @@
   - "久保栄, 1901-1958. 火山灰地"
   subject_era_facet:
   - 20th century
-  title_sort: kubo sakae "kazanbaichi" o yomu
+  title_ssort: kubo sakae "kazanbaichi" o yomu
   id: '00314247'
-  author_sort: Yoshida Hajime 1934 Kubo Sakae Kazanbaichi o yomu
+  author_ssort: Yoshida Hajime 1934 Kubo Sakae Kazanbaichi o yomu
   title_addl_t:
   - Kubo Sakae "Kazanbaichi" o yomu /
   - "久保栄 「火山灰地」 を読む"
@@ -383,9 +383,9 @@
   - History
   subject_t:
   - Kazakhstan
-  title_sort: ocherki po istorii kazakhskoĭ ssr
+  title_ssort: ocherki po istorii kazakhskoĭ ssr
   id: '43037890'
-  author_sort: Vi︠a︡tkin M P Mikhail Porfirʹevich 18951967 Ocherki po istorii Kazakhskoĭ
+  author_ssort: Vi︠a︡tkin M P Mikhail Porfirʹevich 18951967 Ocherki po istorii Kazakhskoĭ
     SSR
   title_addl_t:
   - Ocherki po istorii Kazakhskoĭ SSR.
@@ -448,10 +448,10 @@
   - KPC13
   title_display: Konstitut︠s︡ii︠a︡ i osnovnye zakonodatelʹnye akty Koreĭskoĭ Narodno-Demokraticheskoĭ
     Respubliki
-  title_sort: konstitut︠s︡ii︠a︡ i osnovnye zakonodatelʹnye akty koreĭskoĭ narodno-demokraticheskoĭ
+  title_ssort: konstitut︠s︡ii︠a︡ i osnovnye zakonodatelʹnye akty koreĭskoĭ narodno-demokraticheskoĭ
     respubliki
   id: '53029833'
-  author_sort: Korea North Laws etc Konstitut︠s︡ii︠a︡ i osnovnye zakonodatelʹnye akty
+  author_ssort: Korea North Laws etc Konstitut︠s︡ii︠a︡ i osnovnye zakonodatelʹnye akty
     Koreĭskoĭ NarodnoDemokraticheskoĭ Respubliki Konstitut︠s︡ii︠a︡ i osnovnye zakonodatelʹnye
     akty Koreĭskoĭ NarodnoDemokraticheskoĭ Respubliki
   title_addl_t:
@@ -539,9 +539,9 @@
   - Korea
   subject_era_facet:
   - Koryŏ period, 935-1392
-  title_sort: koryŏ inmul yŏlchŏn
+  title_ssort: koryŏ inmul yŏlchŏn
   id: '77826928'
-  author_sort: "\U0010FFFF Koryŏ inmul yŏlchŏn"
+  author_ssort: "\U0010FFFF Koryŏ inmul yŏlchŏn"
   title_addl_t:
   - Koryŏ inmul yŏlchŏn /
   - Koryŏsa. Yŏlchŏn. Selections
@@ -611,9 +611,9 @@
   subject_t:
   - Gautama Buddha
   - Yaśodharā (Wife of Gautama Buddha)
-  title_sort: yaśodharā-mahākāvyam
+  title_ssort: yaśodharā-mahākāvyam
   id: '78908283'
-  author_sort: Parikshit Sharma Ogeti 1930 Yaśodharāmahākāvyam
+  author_ssort: Parikshit Sharma Ogeti 1930 Yaśodharāmahākāvyam
   title_addl_t:
   - Yaśodharā-mahākāvyam /
   subject_topic_facet:
@@ -675,9 +675,9 @@
   - Pakistan Social conditions
   subject_t:
   - Women
-  title_sort: pākistānī ʻaurat dorāhe par
+  title_ssort: pākistānī ʻaurat dorāhe par
   id: '79930185'
-  author_sort: Iṣlāḥī Amīn Aḥsan 19041997 Pākistānī ʻaurat dorāhe par
+  author_ssort: Iṣlāḥī Amīn Aḥsan 19041997 Pākistānī ʻaurat dorāhe par
   title_addl_t:
   - Pākistānī ʻaurat dorāhe par /
   subject_geo_facet:
@@ -738,9 +738,9 @@
   lc_b4cutter_facet_sim:
   - Microfiche 90/61328 (P)
   title_display: Āśleṣāśataka of Nārāyaṇa Paṇḍita
-  title_sort: āśleṣāśataka of nārāyaṇa paṇḍita
+  title_ssort: āśleṣāśataka of nārāyaṇa paṇḍita
   id: '85910001'
-  author_sort: Nārāyaṇapaṇḍita 17th cent Āśleṣāśataka of Nārāyaṇa Paṇḍita
+  author_ssort: Nārāyaṇapaṇḍita 17th cent Āśleṣāśataka of Nārāyaṇa Paṇḍita
     microform
   title_addl_t:
   - Āśleṣāśataka of Nārāyaṇa Paṇḍita
@@ -829,8 +829,8 @@
   subject_t:
   - Jewish pirates
   - Jewish criminals
-  title_sort: shodede-yam yehudiyim :sipurim mafliʼim ha-mevusasim ʻal ʻuvdot hisṭoriyot
-  author_sort: Finkel Chaim Jacob Jewish pirates Hebrew Shodedeyam Yehudiyim sipurim
+  title_ssort: shodede-yam yehudiyim :sipurim mafliʼim ha-mevusasim ʻal ʻuvdot hisṭoriyot
+  author_ssort: Finkel Chaim Jacob Jewish pirates Hebrew Shodedeyam Yehudiyim sipurim
     mafliʼim hamevusasim ʻal ʻuvdot hisṭoriyot
   title_addl_t:
   - 'Shodede-yam Yehudiyim : sipurim mafliʼim ha-mevusasim ʻal ʻuvdot hisṭoriyot
@@ -920,9 +920,9 @@
   - Religious institutions
   - Shiites
   - Islamic universities and colleges
-  title_sort: āshnāʼī bā ḥawzahʹhā-yi ʻilmīyah-ʼi shīʻah dar ṭūl-i tārīkh
+  title_ssort: āshnāʼī bā ḥawzahʹhā-yi ʻilmīyah-ʼi shīʻah dar ṭūl-i tārīkh
   id: '87931798'
-  author_sort: Muvaḥḥid Abṭaḥī Ḥujjat Āshnāʼī bā ḥawzahʹhāyi ʻilmīyahʼi
+  author_ssort: Muvaḥḥid Abṭaḥī Ḥujjat Āshnāʼī bā ḥawzahʹhāyi ʻilmīyahʼi
     Shīʻah dar ṭūli tārīkh
   title_addl_t:
   - Āshnāʼī bā ḥawzahʹhā-yi ʻilmīyah-ʼi Shīʻah dar ṭūl-i tārīkh /
@@ -984,9 +984,9 @@
   title_display: Mrecvelobis mušakis cʻxovrebis cesi
   subject_t:
   - Industrial workers; life style
-  title_sort: mrecvelobis mušakis cʻxovrebis cesi :tʻeoriul-metʻoduri narkvevi
+  title_ssort: mrecvelobis mušakis cʻxovrebis cesi :tʻeoriul-metʻoduri narkvevi
   id: '90142413'
-  author_sort: Lomtʻatʻiże Čola 18791915 Mrecvelobis mušakis cʻxovrebis cesi tʻeoriulmetʻoduri
+  author_ssort: Lomtʻatʻiże Čola 18791915 Mrecvelobis mušakis cʻxovrebis cesi tʻeoriulmetʻoduri
     narkvevi
   title_addl_t:
   - 'Mrecvelobis mušakis cʻxovrebis cesi : tʻeoriul-metʻoduri narkvevi /'
@@ -1063,9 +1063,9 @@
   - Korea (North)
   subject_t:
   - Law
-  title_sort: pukhan pŏmnyŏngjip
+  title_ssort: pukhan pŏmnyŏngjip
   id: '92117465'
-  author_sort: Korea North Laws etc Pukhan pŏmnyŏngjip
+  author_ssort: Korea North Laws etc Pukhan pŏmnyŏngjip
   title_addl_t:
   - Pukhan pŏmnyŏngjip /
   - Laws, etc
@@ -1217,10 +1217,10 @@
   - Jewish law
   - Judaism
   - "‏שלחן ערוך.‏ ‏ארח חיים"
-  title_sort: sefer mishnah berurah :ṿe-hu perush yafeh u-menupeh ʻal shulḥan ʻarukh
+  title_ssort: sefer mishnah berurah :ṿe-hu perush yafeh u-menupeh ʻal shulḥan ʻarukh
     oraḥ ḥayim asher ḥiber yosef ḳaro ... ʻim ḥidushe dinim she-hishmiṭ ha-gaʼon
     ... ṿe-himtsiʼam ... mosheh iserlish
-  author_sort: Israel Meir haKohen 18381933 Mishnah berurah Sefer Mishnah berurah
+  author_ssort: Israel Meir haKohen 18381933 Mishnah berurah Sefer Mishnah berurah
     ṿehu perush yafeh umenupeh ʻal Shulḥan ʻarukh Oraḥ ḥayim asher ḥiber Yosef
     Ḳaro  ʻim ḥidushe dinim shehishmiṭ hagaʼon  ṿehimtsiʼam  Mosheh Iserlish
   title_addl_t:
@@ -1331,9 +1331,9 @@
   subject_t:
   - Women
   - Seoul (Korea)
-  title_sort: 'ajikto kŭrŏk chŏrŏk sasimnikka :kangnam yŏin kwa sin pʻalbulchʻul
+  title_ssort: 'ajikto kŭrŏk chŏrŏk sasimnikka :kangnam yŏin kwa sin pʻalbulchʻul
     : kim hong-sin setʻae rŭpʻo'
-  author_sort: Kim Hongsin 1947 Ajikto kŭrŏk chŏrŏk sasimnikka kangnam yŏin kwa
+  author_ssort: Kim Hongsin 1947 Ajikto kŭrŏk chŏrŏk sasimnikka kangnam yŏin kwa
     sin pʻalbulchʻul  Kim Hongsin setʻae rŭpʻo
   title_addl_t:
   - 'Ajikto kŭrŏk chŏrŏk sasimnikka : kangnam yŏin kwa sin pʻalbulchʻul : Kim
@@ -1439,9 +1439,9 @@
   - Political science
   - Iranians
   - Iran
-  title_sort: maʻrakah-ʼi jahānʹbīnīʹhā :dar khiradvarzī-i siyāsī va huvīyat-i
+  title_ssort: maʻrakah-ʼi jahānʹbīnīʹhā :dar khiradvarzī-i siyāsī va huvīyat-i
     mā īrānīyān
-  author_sort: Rajāyī Farhang 1952 or 3 Maʻrakahʼi jahānʹbīnīʹhā dar khiradvarzīi
+  author_ssort: Rajāyī Farhang 1952 or 3 Maʻrakahʼi jahānʹbīnīʹhā dar khiradvarzīi
     siyāsī va huvīyati mā Īrānīyān
   title_addl_t:
   - 'Maʻrakah-ʼi jahānʹbīnīʹhā : dar khiradvarzī-i siyāsī va huvīyat-i mā
@@ -1515,9 +1515,9 @@
   - Poetry
   subject_t:
   - Madhva, 13th cent
-  title_sort: sumadhvavijayaḥ
+  title_ssort: sumadhvavijayaḥ
   id: '2001417245'
-  author_sort: Nārāyaṇa Paṇḍitācārya 13th cent Sumadhvavijayaḥ
+  author_ssort: Nārāyaṇa Paṇḍitācārya 13th cent Sumadhvavijayaḥ
   title_addl_t:
   - Sumadhvavijayaḥ /
   subject_topic_facet:
@@ -1610,9 +1610,9 @@
   - Military weapons
   subject_era_facet:
   - 21st century
-  title_sort: ḥarb fī al-alfīyah al-thālithah
+  title_ssort: ḥarb fī al-alfīyah al-thālithah
   id: '2003546302'
-  author_sort: Wuld Mawlāy alZayn Sayyid Muḥammad wuld Sayyid Ḥarb fī alalfīyah
+  author_ssort: Wuld Mawlāy alZayn Sayyid Muḥammad wuld Sayyid Ḥarb fī alalfīyah
     althālithah
   title_addl_t:
   - al-Ḥarb fī al-alfīyah al-thālithah /
@@ -1681,10 +1681,10 @@
   - Kings and rulers
   subject_t:
   - Bon-brgya (China)
-  title_sort: bon-brgyaʼi lo rgyus lugs gñis gsal baʼi me loṅ źes bya ba bźugs
+  title_ssort: bon-brgyaʼi lo rgyus lugs gñis gsal baʼi me loṅ źes bya ba bźugs
     so
   id: '2004310986'
-  author_sort: Bstanʼdzinmkhasgrub 1967 Bonbrgyaʼi lo rgyus lugs gñis gsal baʼi me
+  author_ssort: Bstanʼdzinmkhasgrub 1967 Bonbrgyaʼi lo rgyus lugs gñis gsal baʼi me
     loṅ źes bya ba bźugs so
   title_addl_t:
   - Bon-brgyaʼi lo rgyus lugs gñis gsal baʼi me loṅ źes bya ba bźugs so /
@@ -1774,8 +1774,8 @@
   - 85 p.
   subject_t:
   - Islam
-  title_sort: thuqūb fī ʻaql al-ummah :min jald al-dhāt ilá ṣidq al-sharḥ
-  author_sort: Abū alKhayr ʻAlī ʻAbd alḤamīd Thuqūb fī ʻaql alummah min jald
+  title_ssort: thuqūb fī ʻaql al-ummah :min jald al-dhāt ilá ṣidq al-sharḥ
+  author_ssort: Abū alKhayr ʻAlī ʻAbd alḤamīd Thuqūb fī ʻaql alummah min jald
     aldhāt ilá ṣidq alsharḥ
   title_addl_t:
   - 'Thuqūb fī ʻaql al-ummah : min jald al-dhāt ilá ṣidq al-sharḥ.'
@@ -1909,9 +1909,9 @@
   - Accident insurance
   - Old age
   - Israel
-  title_sort: bituaḥ u-viṭaḥon sotsyali
+  title_ssort: bituaḥ u-viṭaḥon sotsyali
   id: '2005553155'
-  author_sort: "\U0010FFFF Bituaḥ uviṭaḥon sotsyali"
+  author_ssort: "\U0010FFFF Bituaḥ uviṭaḥon sotsyali"
   title_addl_t:
   - "[Bituaḥ u-viṭaḥon sotsyali]."
   - "ביטוח וביטחון סוציאלי"
@@ -2036,13 +2036,13 @@
   - Delaware women
   - Indian women shamans
   - Delaware Indians
-  title_sort: "\"strong medicine speaks\" :a native american elder has her say : an
+  title_ssort: "\"strong medicine speaks\" :a native american elder has her say : an
     oral history"
   isbn_t:
   - '9780743297790'
   - 0743297792
   id: '2007020969'
-  author_sort: Hearth Amy Hill 1958 Strong Medicine speaks a Native American elder
+  author_ssort: Hearth Amy Hill 1958 Strong Medicine speaks a Native American elder
     has her say  an oral history
   title_addl_t:
   - "\"Strong Medicine speaks\" : a Native American elder has her say : an oral history
@@ -2121,11 +2121,11 @@
   - Doctrines Miscellanea
   subject_t:
   - "ʼBri-guṅ-pa (Sect)"
-  title_sort: dris lan don gcig ma :dam paʼi chos dgoṅs pa gcig paʼi dri ba legs
+  title_ssort: dris lan don gcig ma :dam paʼi chos dgoṅs pa gcig paʼi dri ba legs
     bśad bsu baʼi pho ñaʼi dris lan dgoṅs-gcig smra baʼi mdzes rgyan źes bya ba
     bźugs so
   id: '2008305903'
-  author_sort: Dkonmchogrgyamtsho Rase 1968 Dris lan don gcig ma dam paʼi chos dgoṅs
+  author_ssort: Dkonmchogrgyamtsho Rase 1968 Dris lan don gcig ma dam paʼi chos dgoṅs
     pa gcig paʼi dri ba legs bśad bsu baʼi pho ñaʼi dris lan Dgoṅsgcig smra baʼi
     mdzes rgyan źes bya ba bźugs so
   title_addl_t:
@@ -2227,9 +2227,9 @@
   subject_t:
   - Padma Sambhava, ca. 717-ca. 762
   - Priests, Buddhist
-  title_sort: pluvial nectar of blessings :a supplication to the noble lama mahaguru
+  title_ssort: pluvial nectar of blessings :a supplication to the noble lama mahaguru
     padmasambhava
-  author_sort: Ṅagdbaṅblobzaṅrgyamtsho Dalai Lama V 16171682 Rje btsun bla ma ma
+  author_ssort: Ṅagdbaṅblobzaṅrgyamtsho Dalai Lama V 16171682 Rje btsun bla ma ma
     hā gu ru Padmaʼbyuṅgnas la gsol ba ʼdebs pa byin rlabs bdud rtsiʼi char rgyun
     English  Tibetan Pluvial nectar of blessings a supplication to the noble Lama
     Mahaguru Padmasambhava
@@ -2307,11 +2307,11 @@
   - Essence, genius, nature
   subject_t:
   - Buddhism
-  title_sort: bod kyi naṅ chos ṅo sprod sñiṅ bsdus :goṅ sa skyabs mgon chen po
+  title_ssort: bod kyi naṅ chos ṅo sprod sñiṅ bsdus :goṅ sa skyabs mgon chen po
     mchog nas deṅ dus bod rigs na gźon rnams la naṅ chos ṅo sprod bstsal ba bźugs
     so
   id: '2008308201'
-  author_sort: Bstanʼdzinrgyamtsho Dalai Lama XIV 1935 Bod kyi naṅ chos ṅo sprod
+  author_ssort: Bstanʼdzinrgyamtsho Dalai Lama XIV 1935 Bod kyi naṅ chos ṅo sprod
     sñiṅ bsdus goṅ sa skyabs mgon chen po mchog nas deṅ dus Bod rigs na gźon
     rnams la naṅ chos ṅo sprod bstsal ba bźugs so
   title_addl_t:
@@ -2388,10 +2388,10 @@
   - History Miscellanea
   subject_t:
   - Tibet (China)
-  title_sort: bod gaṅs can gyi rgyal rabs mdor bsdus dris lan brgya pa rab gsal śel
+  title_ssort: bod gaṅs can gyi rgyal rabs mdor bsdus dris lan brgya pa rab gsal śel
     gyi me loṅ źes bya ba bźugs so
   id: '2008308202'
-  author_sort: Thubbstanyarʼphel Rnamgrwa Bod gaṅs can gyi rgyal rabs mdor bsdus
+  author_ssort: Thubbstanyarʼphel Rnamgrwa Bod gaṅs can gyi rgyal rabs mdor bsdus
     dris lan brgya pa rab gsal śel gyi me loṅ źes bya ba bźugs so
   title_addl_t:
   - Bod gaṅs can gyi rgyal rabs mdor bsdus dris lan brgya pa rab gsal śel gyi me
@@ -2462,9 +2462,9 @@
   - Tibetans
   - Tibetan language
   - Teaching
-  title_sort: śes yon
+  title_ssort: śes yon
   id: '2008308478'
-  author_sort: "\U0010FFFF Śes yon"
+  author_ssort: "\U0010FFFF Śes yon"
   title_addl_t:
   - Śes yon.
   subject_geo_facet:
@@ -2578,8 +2578,8 @@
   - Political plays, Japanese
   - Theater
   - "久保栄, 1901-1958. Kazanbaichi"
-  title_sort: kubo sakae 'kazanbaichi' o yomu
-  author_sort: Yoshida Hajime 1934 Kubo Sakae Kazanbaichi o yomu
+  title_ssort: kubo sakae 'kazanbaichi' o yomu
+  author_ssort: Yoshida Hajime 1934 Kubo Sakae Kazanbaichi o yomu
   title_addl_t:
   - Kubo Sakae 'Kazanbaichi' o yomu /
   - "久保栄「火山灰地」を読む"
@@ -2682,8 +2682,8 @@
   - Economic history
   - World politics
   - Hong Kong (China)
-  title_sort: ci an zhou bian
-  author_sort: Lin Xingzhi Ci an zhou bian
+  title_ssort: ci an zhou bian
+  author_ssort: Lin Xingzhi Ci an zhou bian
   title_addl_t:
   - Ci an zhou bian /
   - "次按驟變"
