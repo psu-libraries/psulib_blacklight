@@ -53,7 +53,7 @@
          title_tsim^25000
          subtitle_tsim^10000
          title_addl_unstem_search^5000
-         title_addl_t^2500
+         title_addl_tsim^2500
          title_added_entry_unstem_search^1500
          title_added_entry_t^1250
          subject_topic_unstem_search^1000
@@ -63,9 +63,9 @@
          author_unstem_search^250
          author_addl_unstem_search^250
          author_t^100
-         author_addl_t^50
+         author_addl_tsim^50
          subject_addl_unstem_search^250
-         subject_addl_t^50
+         subject_addl_tsim^50
          title_series_unstem_search^25
          title_series_t^10
          isbn_ssim
@@ -77,7 +77,7 @@
          title_tsim^250000
          subtitle_tsim^100000
          title_addl_unstem_search^50000
-         title_addl_t^25000
+         title_addl_tsim^25000
          title_added_entry_unstem_search^15000
          title_added_entry_t^12500
          subject_topic_unstem_search^10000
@@ -87,9 +87,9 @@
          author_unstem_search^2500
          author_addl_unstem_search^2500
          author_t^1000
-         author_addl_t^500
+         author_addl_tsim^500
          subject_addl_unstem_search^2500
-         subject_addl_t^500
+         subject_addl_tsim^500
          title_series_unstem_search^250
          title_series_t^100
          all_text_timv^10
@@ -98,13 +98,13 @@
          author_unstem_search^200
          author_addl_unstem_search^50
          author_t^20
-         author_addl_t
+         author_addl_tsim
        </str>
        <str name="author_pf">
          author_unstem_search^2000
          author_addl_unstem_search^500
          author_t^200
-         author_addl_t^10
+         author_addl_tsim^10
        </str>
        <str name="title_qf">
          title_unstem_search^50000
@@ -112,7 +112,7 @@
          title_addl_unstem_search^10000
          title_tsim^5000
          subtitle_tsim^2500
-         title_addl_t^100
+         title_addl_tsim^100
          title_added_entry_unstem_search^50
          title_added_entry_t^10
          title_series_unstem_search^5
@@ -124,7 +124,7 @@
          title_addl_unstem_search^100000
          title_tsim^50000
          subtitle_tsim^25000
-         title_addl_t^1000
+         title_addl_tsim^1000
          title_added_entry_unstem_search^500
          title_added_entry_t^100
          title_series_t^50
@@ -136,7 +136,7 @@
          subject_topic_facet^100
          subject_t^50
          subject_addl_unstem_search^10
-         subject_addl_t
+         subject_addl_tsim
        </str>
        <str name="subject_pf">
          subject_topic_unstem_search^2000
@@ -144,7 +144,7 @@
          subject_t^1000
          subject_topic_facet^500
          subject_addl_unstem_search^100
-         subject_addl_t^10
+         subject_addl_tsim^10
        </str>
 
        <str name="fl">
