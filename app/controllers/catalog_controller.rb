@@ -31,7 +31,7 @@ class CatalogController < ApplicationController
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
     #
-    ## Class for converting Blacklight's url parameters to into request parameters for the search index
+    ## Class for converting Blacklight's url parameters into request parameters for the search index
     # config.search_builder_class = ::SearchBuilder
     #
     ## Model that maps search index responses to the blacklight response model
@@ -48,8 +48,8 @@ class CatalogController < ApplicationController
     # items to show per page, each number in the array represent another option to choose from.
     # config.per_page = [10,20,50,100]
 
-    ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see SearchHelper#solr_doc_params) or
-    ## parameters included in the Blacklight-jetty document requestHandler.
+    ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see
+    ## SearchHelper#solr_doc_params) or parameters included in the Blacklight-jetty document requestHandler.
     #
     # config.default_document_solr_params = {
     #  qt: 'document',
@@ -60,7 +60,7 @@ class CatalogController < ApplicationController
     # }
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'title_display'
+    config.index.title_field = 'title_display_ssm'
     config.index.display_type_field = 'format'
     # config.index.thumbnail_field = 'thumbnail_path_ss'
 
@@ -94,17 +94,18 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
     config.add_facet_field 'format', label: 'Format'
-    config.add_facet_field 'pub_date', label: 'Publication Year', single: true
-    config.add_facet_field 'subject_topic_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'language_facet', label: 'Language', limit: true
-    config.add_facet_field 'lc_1letter_facet', label: 'Call Number'
+    config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
+    config.add_facet_field 'all_authors_facet_sim', label: 'Author', limit: true
+    config.add_facet_field 'subject_topic_facet_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
+    config.add_facet_field 'lc_1letter_facet_sim', label: 'Call Number'
 
-    config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet']
+    config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
 
     config.add_facet_field 'example_query_facet_field', label: 'Publish Date', query: {
-      years_5: { label: 'within 5 Years', fq: "pub_date:[#{Time.zone.now.year - 5} TO *]" },
-      years_10: { label: 'within 10 Years', fq: "pub_date:[#{Time.zone.now.year - 10} TO *]" },
-      years_25: { label: 'within 25 Years', fq: "pub_date:[#{Time.zone.now.year - 25} TO *]" }
+      years_5: { label: 'within 5 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 5} TO *]" },
+      years_10: { label: 'within 10 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 10} TO *]" },
+      years_25: { label: 'within 25 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 25} TO *]" }
     }
 
     # Have BL send all facet field names to Solr, which has been the default
@@ -114,40 +115,39 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'title_display', label: 'Title'
-    config.add_index_field 'title_vern_display', label: 'Title'
+    config.add_index_field 'title_display_ssm', label: 'Title'
+    config.add_index_field 'title_vern_display_ssm', label: 'Title'
     config.add_index_field 'format', label: 'Format'
-    config.add_index_field 'language_facet', label: 'Language'
-    config.add_index_field 'published_display', label: 'Published'
-    config.add_index_field 'published_vern_display', label: 'Published'
-    config.add_index_field 'lc_callnum_display', label: 'Call number'
+    config.add_index_field 'language_facet_ssim', label: 'Language'
+    config.add_index_field 'published_display_ssm', label: 'Published'
+    config.add_index_field 'published_vern_display_ssm', label: 'Published'
+    config.add_index_field 'lc_callnum_display_ssm', label: 'Call number'
     config.add_index_field 'id', label: 'Catkey'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_display', label: 'Title'
-    config.add_show_field 'title_vern_display', label: 'Title'
-    config.add_show_field 'subtitle_display', label: 'Subtitle'
-    config.add_show_field 'subtitle_vern_display', label: 'Subtitle'
-    config.add_show_field 'author_person_display', label: 'Author'
-    config.add_show_field 'author_person_vern_display', label: 'Author'
-    config.add_show_field 'author_corp_display', label: 'Corporate Author'
-    config.add_show_field 'author_corp_vern_display', label: 'Corporate Author'
-    config.add_show_field 'author_meeting_display', label: 'Conference Author'
-    config.add_show_field 'author_meeting_vern_display', label: 'Conference Author'
-    config.add_show_field 'addl_author_display', label: 'Additional Authors'
-    config.add_show_field 'addl_author_vern_display', label: 'Additional Authors'
+    config.add_show_field 'title_display_ssm', label: 'Title'
+    config.add_show_field 'title_vern_display_ssm', label: 'Title'
+    config.add_show_field 'subtitle_display_ssm', label: 'Subtitle'
+    config.add_show_field 'subtitle_vern_display_ssm', label: 'Subtitle'
+    config.add_show_field 'author_person_display_ssm', label: 'Author'
+    config.add_show_field 'author_person_vern_display_ssm', label: 'Author'
+    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author'
+    config.add_show_field 'author_corp_vern_display_ssm', label: 'Corporate Author'
+    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author'
+    config.add_show_field 'author_meeting_vern_display_ssm', label: 'Conference Author'
+    config.add_show_field 'addl_author_display_ssm', label: 'Additional Authors'
+    config.add_show_field 'addl_author_vern_display_ssm', label: 'Additional Authors'
     config.add_show_field 'format', label: 'Format'
-    config.add_show_field 'url_fulltext_display', label: 'URL'
-    config.add_show_field 'url_suppl_display', label: 'More Information'
-    config.add_show_field 'language_facet', label: 'Language'
-    config.add_show_field 'published_display', label: 'Published'
-    config.add_show_field 'published_vern_display', label: 'Published'
-    config.add_show_field 'lc_callnum_display', label: 'Call number'
-    config.add_show_field 'isbn_t', label: 'ISBN'
+    config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
+    config.add_show_field 'url_suppl_display_ssm', label: 'More Information'
+    config.add_show_field 'language_facet_ssim', label: 'Language'
+    config.add_show_field 'published_display_ssm', label: 'Published'
+    config.add_show_field 'published_vern_display_ssm', label: 'Published'
+    config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
+    config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'subject_topic_facet_ssim', label: 'Topic'
     config.add_show_field 'id', label: 'Catkey'
-    # Example of adding a show field
-    # config.add_show_field 'subject_topic_facet', label: 'Cheese'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -206,10 +206,10 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
-    config.add_sort_field 'score desc, pub_date_sort desc, title_sort asc', label: 'relevance'
-    config.add_sort_field 'pub_date_sort desc, title_sort asc', label: 'year'
-    config.add_sort_field 'author_sort asc, title_sort asc', label: 'author'
-    config.add_sort_field 'title_sort asc, pub_date_sort desc', label: 'title'
+    config.add_sort_field 'score desc, pub_date_sort_itsi desc, title_ssort asc', label: 'relevance'
+    config.add_sort_field 'pub_date_sort_itsi desc, title_ssort asc', label: 'year'
+    config.add_sort_field 'author_ssort asc, title_ssort asc', label: 'author'
+    config.add_sort_field 'title_ssort asc, pub_date_sort_itsi desc', label: 'title'
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.

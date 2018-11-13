@@ -6,9 +6,10 @@ namespace :docker do
     container_status.strip!
 
     if container_status == '[]'
-      Rake::Task['docker:start'].invoke
+      Rake::Task['docker:first_start'].invoke
     else
-      print `docker start -a felix`
+      Rake::Task['docker:conf'].invoke
+      Rake::Task['docker:start'].invoke
     end
 
     Rake::Task['docker:ps'].invoke
@@ -20,8 +21,8 @@ namespace :docker do
                  -d '<delete><query>*:*</query></delete>' -out 'yes'`
   end
 
-  task :start do
-    print `docker pull solr:7.4.0`
+  task :first_start do
+    Rake::Task['docker:pull'].invoke
     print `docker run \
             --name felix \
             -a STDOUT \
@@ -29,6 +30,20 @@ namespace :docker do
             -v "$(pwd)"/solr/conf:/myconfig \
             solr:7.4.0 \
             solr-create -c blacklight-core -d /myconfig`
+  end
+
+  task :pull do
+    print `docker pull solr:7.4.0`
+  end
+
+  task :start do
+    Rake::Task['docker:pull'].invoke
+    print `docker start -a felix`
+  end
+
+  task :conf do
+    print `docker exec -it felix \
+            cp -R /myconfig/. /opt/solr/server/solr/blacklight-core/conf/`
   end
 
   task :down do
