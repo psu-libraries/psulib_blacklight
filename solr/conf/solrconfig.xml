@@ -62,7 +62,7 @@
          subject_t^500
          author_unstem_search^250
          author_addl_unstem_search^250
-         author_t^100
+         author_tsim^100
          author_addl_tsim^50
          subject_addl_unstem_search^250
          subject_addl_tsim^50
@@ -86,7 +86,7 @@
          subject_t^5000
          author_unstem_search^2500
          author_addl_unstem_search^2500
-         author_t^1000
+         author_tsim^1000
          author_addl_tsim^500
          subject_addl_unstem_search^2500
          subject_addl_tsim^500
@@ -97,13 +97,13 @@
        <str name="author_qf">
          author_unstem_search^200
          author_addl_unstem_search^50
-         author_t^20
+         author_tsim^20
          author_addl_tsim
        </str>
        <str name="author_pf">
          author_unstem_search^2000
          author_addl_unstem_search^500
-         author_t^200
+         author_tsim^200
          author_addl_tsim^10
        </str>
        <str name="title_qf">
