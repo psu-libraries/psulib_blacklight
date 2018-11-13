@@ -237,7 +237,8 @@
   <copyField source="author_tsim" dest="author_spell"/>
   <copyField source="subject_ssim" dest="subject_spell"/>
   <copyField source="title_tsim" dest="title_spell"/>
-
+  <copyField source="pub_date_ssim" dest="pub_date_sort_itsi"/>
+  
   <types>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
     <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
