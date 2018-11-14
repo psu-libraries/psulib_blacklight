@@ -20,7 +20,7 @@
 
   <schemaFactory class="ClassicIndexSchemaFactory"/>
 
-  <!-- config for the admin interface --> 
+  <!-- config for the admin interface -->
   <admin>
     <defaultQuery>*:*</defaultQuery>
   </admin>
@@ -41,7 +41,7 @@
 
        <!-- this qf and pf are used by default, if not otherwise specified by
             client. The default blacklight will use these for the
-            "keywords" search. See the author_qf/author_pf, title_qf, etc 
+            "keywords" search. See the author_qf/author_pf, title_qf, etc
             below, which the default blacklight will specify for
             those searches. You may also be interested in:
             http://wiki.apache.org/solr/LocalParams
@@ -49,9 +49,7 @@
        <str name="qf">
          id
          title_unstem_search^100000
-         subtitle_unstem_search^50000
          title_tsim^25000
-         subtitle_tsim^10000
          title_addl_unstem_search^5000
          title_addl_tsim^2500
          title_added_entry_unstem_search^1500
@@ -73,9 +71,7 @@
        </str>
        <str name="pf">
          title_unstem_search^1000000
-         subtitle_unstem_search^500000
          title_tsim^250000
-         subtitle_tsim^100000
          title_addl_unstem_search^50000
          title_addl_tsim^25000
          title_added_entry_unstem_search^15000
@@ -108,10 +104,8 @@
        </str>
        <str name="title_qf">
          title_unstem_search^50000
-         subtitle_unstem_search^25000
          title_addl_unstem_search^10000
          title_tsim^5000
-         subtitle_tsim^2500
          title_addl_tsim^100
          title_added_entry_unstem_search^50
          title_added_entry_tsim^10
@@ -120,10 +114,8 @@
        </str>
        <str name="title_pf">
          title_unstem_search^500000
-         subtitle_unstem_search^250000
          title_addl_unstem_search^100000
          title_tsim^50000
-         subtitle_tsim^25000
          title_addl_tsim^1000
          title_added_entry_unstem_search^500
          title_added_entry_tsim^100
@@ -148,7 +140,7 @@
        </str>
 
        <str name="fl">
-         id, 
+         id,
          score,
          author_person_display_ssm,
          author_person_vern_display_ssm,
@@ -158,7 +150,7 @@
          author_meeting_vern_display_ssm,
          addl_author_display_ssm,
          addl_author_vern_display_ssm,
-         format, 
+         format,
          isbn_ssim,
          language_facet_ssim,
          lc_callnum_display_ssm,
@@ -169,8 +161,6 @@
          title_display_ssm,
          title_vern_display_ssm,
          subject_topic_facet_ssim,
-         subtitle_display_ssm,
-         subtitle_vern_display_ssm,
          url_fulltext_display_ssm,
          url_suppl_display_ssm,
          marc_display_ss
