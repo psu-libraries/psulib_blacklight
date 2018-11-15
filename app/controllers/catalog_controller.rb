@@ -99,10 +99,8 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_topic_facet_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet_sim', label: 'Call Number'
-
-    config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
-
-    config.add_facet_field 'example_query_facet_field', label: 'Publish Date', query: {
+    #config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
+    config.add_facet_field 'pub_date_facet_field', label: 'Publish Date', query: {
       years_5: { label: 'within 5 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 5} TO *]" },
       years_10: { label: 'within 10 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 10} TO *]" },
       years_25: { label: 'within 25 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 25} TO *]" }
@@ -115,7 +113,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'title_display_ssm', label: 'Title'
+    #config.add_index_field 'title_display_ssm', label: 'Title'
     config.add_index_field 'title_vern_display_ssm', label: 'Title'
     config.add_index_field 'format', label: 'Format'
     config.add_index_field 'language_facet_ssim', label: 'Language'
@@ -126,7 +124,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_display_ssm', label: 'Title'
+    #config.add_show_field 'title_display_ssm', label: 'Title'
     config.add_show_field 'title_vern_display_ssm', label: 'Title'
     config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title'
     config.add_show_field 'uniform_title_vern_display_ssm', label: 'Uniform Title'
