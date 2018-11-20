@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # concerns
   concern :searchable, Blacklight::Routes::Searchable.new
   concern :exportable, Blacklight::Routes::Exportable.new
+  concern :marc_viewable, Blacklight::Marc::Routes::MarcViewable.new
 
   # mounts
   mount Blacklight::Engine => '/'
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
-    concerns :exportable
+    concerns [:exportable, :marc_viewable]
   end
 
   resources :bookmarks do
@@ -27,7 +28,6 @@ Rails.application.routes.draw do
     end
   end
 
-  Blacklight::Marc.add_routes(self)
   devise_for :users
 
   # error pages
