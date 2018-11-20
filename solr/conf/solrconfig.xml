@@ -163,7 +163,7 @@
          published_vern_display_ssm,
          pub_date_ssim,
          title_display_ssm,
-         title_vern_display_ssm,
+         title_latin_display_ssm,
          subject_topic_facet_ssim,
          url_fulltext_display_ssm,
          url_suppl_display_ssm,

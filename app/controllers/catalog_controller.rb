@@ -65,7 +65,7 @@ class CatalogController < ApplicationController
     # config.index.thumbnail_field = 'thumbnail_path_ss'
 
     # solr field configuration for document/show views
-    # config.show.title_field = 'title_display'
+    # config.show.title_field = 'title_display_ssm'
     # config.show.display_type_field = 'format'
     # config.show.thumbnail_field = 'thumbnail_path_ss'
 
@@ -113,8 +113,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    # config.add_index_field 'title_display_ssm', label: 'Title'
-    config.add_index_field 'title_vern_display_ssm', label: 'Title'
+    config.add_index_field 'title_latin_display_ssm', label: 'Title'
     config.add_index_field 'format', label: 'Format'
     config.add_index_field 'language_facet_ssim', label: 'Language'
     config.add_index_field 'published_display_ssm', label: 'Published'
@@ -124,8 +123,7 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    # config.add_show_field 'title_display_ssm', label: 'Title'
-    config.add_show_field 'title_vern_display_ssm', label: 'Title'
+    config.add_show_field 'title_latin_display_ssm', label: 'Title'
     config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title'
     config.add_show_field 'uniform_title_vern_display_ssm', label: 'Uniform Title'
     config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles'
