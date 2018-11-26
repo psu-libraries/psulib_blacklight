@@ -20,7 +20,7 @@ gem 'rsolr', '>= 1.0'
 gem 'webpacker', '~> 3.5'
 
 gem 'blacklight', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight'
-gem 'blacklight-marc', github: 'projectblacklight/blacklight-marc', ref: 'f52351c1806b26e'
+gem 'blacklight-marc', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight-marc'
 
 group :development do
   gem 'foreman', '~> 0.63.0'
@@ -32,6 +32,7 @@ end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capybara'
   gem 'niftany'
   gem 'rspec-rails'
   gem 'rubocop'
