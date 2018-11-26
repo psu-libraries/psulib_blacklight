@@ -1,6 +1,7 @@
 ---
 exclude:
   - '**/node_modules/**/*'
+  - 'vendor/**/*'
 linters:
   ClosingErbTagIndent:
     enabled: true
