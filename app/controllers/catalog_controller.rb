@@ -127,7 +127,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'title_latin_display_ssm', label: 'Title'
     config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title', separator_options: separator_options
     config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles', separator_options: separator_options
-    config.add_show_field 'related_title_display_ssm', label: 'Related Titles', separator_options: separator_options
     config.add_show_field 'author_person_display_ssm', label: 'Author', separator_options: separator_options
     config.add_show_field 'author_person_vern_display_ssm', label: 'Author', separator_options: separator_options
     config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', separator_options: separator_options
