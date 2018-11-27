@@ -65,7 +65,7 @@ class CatalogController < ApplicationController
     # config.index.thumbnail_field = 'thumbnail_path_ss'
 
     # solr field configuration for document/show views
-    # config.show.title_field = 'title_display'
+    # config.show.title_field = 'title_display_ssm'
     # config.show.display_type_field = 'format'
     # config.show.thumbnail_field = 'thumbnail_path_ss'
 
@@ -99,10 +99,8 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_topic_facet_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet_sim', label: 'Call Number'
-
-    config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
-
-    config.add_facet_field 'example_query_facet_field', label: 'Publish Date', query: {
+    # config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
+    config.add_facet_field 'pub_date_facet_field', label: 'Publish Date', query: {
       years_5: { label: 'within 5 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 5} TO *]" },
       years_10: { label: 'within 10 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 10} TO *]" },
       years_25: { label: 'within 25 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 25} TO *]" }
@@ -115,10 +113,9 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'title_display_ssm', label: 'Title'
-    config.add_index_field 'title_vern_display_ssm', label: 'Title'
-    config.add_index_field 'format', label: 'Format'
-    config.add_index_field 'language_facet_ssim', label: 'Language'
+    config.add_index_field 'title_latin_display_ssm', label: 'Title'
+    config.add_index_field 'format', label: 'Format', link_to_facet: true
+    config.add_index_field 'language_facet_ssim', label: 'Language', link_to_facet: true
     config.add_index_field 'published_display_ssm', label: 'Published'
     config.add_index_field 'published_vern_display_ssm', label: 'Published'
     config.add_index_field 'lc_callnum_display_ssm', label: 'Call number'
@@ -126,26 +123,28 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_display_ssm', label: 'Title'
-    config.add_show_field 'title_vern_display_ssm', label: 'Title'
-    config.add_show_field 'subtitle_display_ssm', label: 'Subtitle'
-    config.add_show_field 'subtitle_vern_display_ssm', label: 'Subtitle'
-    config.add_show_field 'author_person_display_ssm', label: 'Author'
-    config.add_show_field 'author_person_vern_display_ssm', label: 'Author'
-    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author'
-    config.add_show_field 'author_corp_vern_display_ssm', label: 'Corporate Author'
-    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author'
-    config.add_show_field 'author_meeting_vern_display_ssm', label: 'Conference Author'
-    config.add_show_field 'addl_author_display_ssm', label: 'Additional Authors'
-    config.add_show_field 'addl_author_vern_display_ssm', label: 'Additional Authors'
-    config.add_show_field 'format', label: 'Format'
+    separator_options = { words_connector: '<br/>', two_words_connector: '<br/>', last_word_connector: '<br/>' }
+    config.add_show_field 'title_latin_display_ssm', label: 'Title'
+    config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title', separator_options: separator_options
+    config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles', separator_options: separator_options
+    config.add_show_field 'related_title_display_ssm', label: 'Related Titles', separator_options: separator_options
+    config.add_show_field 'author_person_display_ssm', label: 'Author', separator_options: separator_options
+    config.add_show_field 'author_person_vern_display_ssm', label: 'Author', separator_options: separator_options
+    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', separator_options: separator_options
+    config.add_show_field 'author_corp_vern_display_ssm', label: 'Corporate Author', separator_options: separator_options
+    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', separator_options: separator_options
+    config.add_show_field 'author_meeting_vern_display_ssm', label: 'Conference Author', separator_options: separator_options
+    config.add_show_field 'addl_author_display_ssm', label: 'Additional Authors', separator_options: separator_options
+    config.add_show_field 'addl_author_vern_display_ssm', label: 'Additional Authors', separator_options: separator_options
+    config.add_show_field 'format', label: 'Format', link_to_facet: true, separator_options: separator_options
     config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
     config.add_show_field 'url_suppl_display_ssm', label: 'More Information'
-    config.add_show_field 'language_facet_ssim', label: 'Language'
+    config.add_show_field 'language_facet_ssim', label: 'Language', link_to_facet: true, separator_options: separator_options
     config.add_show_field 'published_display_ssm', label: 'Published'
     config.add_show_field 'published_vern_display_ssm', label: 'Published'
+    config.add_show_field 'series_title_display_ssm', label: 'Series'
     config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
-    config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'isbn_ssim', label: 'ISBN', separator_options: separator_options
     config.add_show_field 'subject_topic_facet_ssim', label: 'Topic'
     config.add_show_field 'id', label: 'Catkey'
 
