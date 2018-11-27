@@ -25,7 +25,6 @@ RSpec.describe 'RecordPageFields', type: :feature do
     end
 
     scenario 'User visits a document with a uniform title' do
-      pending 'Run these once the uniform title feature is being worked on'
       # Uniform title field will be displayed
       # TODO: pluralize label
       visit '/catalog/286971'
