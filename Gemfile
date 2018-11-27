@@ -19,7 +19,7 @@ gem 'rails', '~> 5.2'
 gem 'rsolr', '>= 1.0'
 gem 'webpacker', '~> 3.5'
 
-gem 'blacklight', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight'
+gem 'blacklight', '>= 7.0.0.rc2', github: 'projectblacklight/blacklight'
 gem 'blacklight-marc', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight-marc'
 
 group :development do
