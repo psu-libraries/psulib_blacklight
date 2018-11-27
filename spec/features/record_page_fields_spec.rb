@@ -66,7 +66,7 @@ RSpec.describe 'RecordPageFields', type: :feature do
     end
   end
 
-  feature 'Series title' do
+  feature 'Related titles' do
     let (:doc_related) { documents.find { |i| i['id'] == '13217672' } }
 
     scenario 'User visits a document with a related title' do
