@@ -12,9 +12,9 @@ GIT
 
 GIT
   remote: https://github.com/projectblacklight/blacklight.git
-  revision: 7253213a02ba18706505fe1d2c78bc839d3ce727
+  revision: dfb341ade6a81952547eaf9535e6dda2236d7cce
   specs:
-    blacklight (7.0.0.rc1)
+    blacklight (7.0.0.rc2)
       deprecation
       globalid
       jbuilder (~> 2.7)
@@ -359,7 +359,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  blacklight (>= 7.0.0.rc1)!
+  blacklight (>= 7.0.0.rc2)!
   blacklight-marc (>= 7.0.0.rc1)!
   bootsnap
   bootstrap (~> 4.0)
