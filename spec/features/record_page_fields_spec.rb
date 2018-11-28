@@ -77,4 +77,13 @@ RSpec.describe 'RecordPageFields', type: :feature do
                                     text: (doc_related['related_title_display_ssm'][0]).to_s, count: 1
     end
   end
+
+  feature 'Linked author' do
+    let (:doc_auth) { documents.find { |i| i['id'] == '20049333' } }
+
+    scenario 'User finds an author field that is linked to a faceted author search for person author' do
+      visit "/catalog/#{doc_auth['id']}"
+      expect(page).to have_link text: (doc_auth['author_person_display_ssm'][0]).to_s, count: 1
+    end
+  end
 end
