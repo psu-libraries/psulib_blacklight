@@ -95,7 +95,7 @@ class CatalogController < ApplicationController
 
     config.add_facet_field 'format', label: 'Format'
     config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
-    config.add_facet_field 'all_authors_facet_sim', label: 'Author', limit: true
+    config.add_facet_field 'all_authors_facet_ssim', label: 'Author', limit: true
     config.add_facet_field 'subject_topic_facet_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet_sim', label: 'Call Number'
@@ -128,14 +128,14 @@ class CatalogController < ApplicationController
     config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title', separator_options: separator_options
     config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles', separator_options: separator_options
     config.add_show_field 'related_title_display_ssm', label: 'Related Titles', separator_options: separator_options
-    config.add_show_field 'author_person_display_ssm', label: 'Author', separator_options: separator_options
+    config.add_show_field 'author_person_display_ssm', label: 'Author', separator_options: separator_options, link_to_facet: 'all_authors_facet_ssim'
     config.add_show_field 'author_person_vern_display_ssm', label: 'Author', separator_options: separator_options
     config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', separator_options: separator_options
     config.add_show_field 'author_corp_vern_display_ssm', label: 'Corporate Author', separator_options: separator_options
     config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', separator_options: separator_options
     config.add_show_field 'author_meeting_vern_display_ssm', label: 'Conference Author', separator_options: separator_options
-    config.add_show_field 'addl_author_display_ssm', label: 'Additional Authors', separator_options: separator_options
-    config.add_show_field 'addl_author_vern_display_ssm', label: 'Additional Authors', separator_options: separator_options
+    config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', separator_options: separator_options
+    config.add_show_field 'addl_author_vern_display_ssm', label: 'Additional Creators', separator_options: separator_options
     config.add_show_field 'format', label: 'Format', link_to_facet: true, separator_options: separator_options
     config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
     config.add_show_field 'url_suppl_display_ssm', label: 'More Information'

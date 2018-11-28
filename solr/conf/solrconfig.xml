@@ -152,6 +152,7 @@
          author_corp_vern_display_ssm,
          author_meeting_display_ssm,
          author_meeting_vern_display_ssm,
+         authors_all_facet_sim,
          addl_author_display_ssm,
          addl_author_vern_display_ssm,
          format,
