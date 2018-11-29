@@ -57,9 +57,10 @@ namespace :blackcat do
     desc 'Index sample marc records using Traject'
     task :index do
       Rake::Task['blackcat:solr:deindex'].invoke
-      traject_path = Rails.root.join('..','psulib_traject')
+      traject_path = Rails.root.join('..', 'psulib_traject')
       Bundler.with_clean_env do
-        system("cd #{traject_path} && /bin/bash -l -c 'RBENV_VERSION=jruby-9.2.0.0 bundle exec traject -c psulib_config.rb solr/sample_data/demo_psucat.mrc'")
+        system("cd #{traject_path} && /bin/bash -l -c 'RBENV_VERSION=jruby-9.2.0.0
+                bundle exec traject -c psulib_config.rb solr/sample_data/demo_psucat.mrc'")
       end
     end
   end
