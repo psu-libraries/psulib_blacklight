@@ -40,9 +40,16 @@ namespace :blackcat do
              id:22088949 OR id:472159 OR id:71224 OR id:470399 OR id:71529 OR id:834640 OR id:1793712 OR id:21601671 OR
              id:2080485 OR id:2080339 OR id:2069311 OR id:2010881 OR id:2003672 OR id:2788022 OR id:593070 OR
              id:14423715 OR id:15422566 OR id:17531126 OR id:22077448 OR id:114189 OR id:103934',
-        fl: '*, all_text_timv, title_tsim, title_245ab_tsim, title_addl_tsim,
-             title_added_entry_tsim, title_related_tsim, title_ssort, author_tsim, author_addl_t,
-             lc_1letter_facet_sim, lc_alpha_facet_sim, lc_b4cutter_facet_sim, all_authors_facet_ssim',
+        fl: 'id, marc_display_ss, all_text_timv, language_facet_ssim, format, isbn_ssim, material_type_display_ssm,
+             title_tsim, title_245ab_tsim, title_addl_tsim, title_added_entry_tsim, title_related_tsim,
+             title_latin_display_ssm, title_display_ssm, uniform_title_display_ssm, additional_title_display_ssm,
+             related_title_display_ssm, title_ssort, author_tsim, author_addl_tsim, all_authors_facet_sim,
+             author_person_display_ssm, author_corp_display_ssm, author_meeting_display_ssm, addl_author_display_ssm,
+             author_person_vern_display_ssm, author_corp_vern_display_ssm, author_meeting_vern_display_ssm,
+             addl_author_vern_display_ssm, author_ssort, subject_tsim, subject_addl_tsim, subject_topic_facet_ssim,
+             published_display_ssm, published_vern_display_ssm, pub_date_ssim, series_title_tsim, series_title_display_ssm,
+             lc_callnum_display_ssm, lc_1letter_facet_sim, lc_alpha_facet_sim, lc_b4cutter_facet_sim, url_fulltext_display_ssm,
+             url_suppl_display_ssm, all_authors_facet_ssim',
         sort: 'id desc',
         rows: 100,
         wt: :json
