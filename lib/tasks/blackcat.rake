@@ -47,9 +47,9 @@ namespace :blackcat do
              author_person_display_ssm, author_corp_display_ssm, author_meeting_display_ssm, addl_author_display_ssm,
              author_person_vern_display_ssm, author_corp_vern_display_ssm, author_meeting_vern_display_ssm,
              addl_author_vern_display_ssm, author_ssort, subject_tsim, subject_addl_tsim, subject_topic_facet_ssim,
-             published_display_ssm, published_vern_display_ssm, pub_date_ssim, series_title_tsim, series_title_display_ssm,
-             lc_callnum_display_ssm, lc_1letter_facet_sim, lc_alpha_facet_sim, lc_b4cutter_facet_sim, url_fulltext_display_ssm,
-             url_suppl_display_ssm, all_authors_facet_ssim',
+             published_display_ssm, published_vern_display_ssm, pub_date_ssim, series_title_tsim,
+             series_title_display_ssm, lc_callnum_display_ssm, lc_1letter_facet_sim, lc_alpha_facet_sim,
+             lc_b4cutter_facet_sim, url_fulltext_display_ssm, url_suppl_display_ssm, all_authors_facet_ssim',
         sort: 'id desc',
         rows: 100,
         wt: :json
