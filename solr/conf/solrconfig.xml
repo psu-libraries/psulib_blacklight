@@ -168,7 +168,8 @@
          subject_topic_facet_ssim,
          url_fulltext_display_ssm,
          url_suppl_display_ssm,
-         marc_display_ss
+         marc_display_ss,
+         bound_with_ssm
        </str>
 
        <str name="facet">true</str>

@@ -143,6 +143,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'isbn_ssim', label: 'ISBN', separator_options: separator_options
     config.add_show_field 'subject_topic_facet_ssim', label: 'Topic'
     config.add_show_field 'id', label: 'Catkey'
+    config.add_show_field 'bound_with_ssm', label: 'Bound in'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
