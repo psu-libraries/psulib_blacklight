@@ -26,11 +26,12 @@ namespace :blackcat do
     task :create_fixtures do
       Rake::Task['blackcat:solr:deindex'].invoke
       traject_path = Rails.root.join('..', 'psulib_traject')
-      fixtures = Rails.root.join('spec/fixtures/current_fixtures.json')
-      marc_file = Rails.root.join('solr/sample_data/fixtures.mrc')
+      fixtures = Rails.root.join('spec', 'fixtures', 'current_fixtures.json')
+      marc_file = Rails.root.join('solr', 'sample_data', 'fixtures.mrc')
       args = "-c lib/traject/psulib_config.rb -w Traject::JsonWriter -o #{fixtures}"
+      version = 'RBENV_VERSION=jruby-9.2.0.0'
       Bundler.with_clean_env do
-        system("cd #{traject_path} && /bin/bash -l -c 'RBENV_VERSION=jruby-9.2.0.0 bundle exec traject #{args} #{marc_file}'")
+        system("cd #{traject_path} && /bin/bash -l -c '#{version} bundle exec traject #{args} #{marc_file}'")
       end
     end
   end
