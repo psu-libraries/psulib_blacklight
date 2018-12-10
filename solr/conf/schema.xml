@@ -198,6 +198,9 @@
     <!-- suggest and spelling -->
     <dynamicField name="*spell" type="textSpell" indexed="true" stored="false" multiValued="true" />
     <dynamicField name="*suggest" type="textSuggest" indexed="true" stored="false" multiValued="true" />
+
+    <!-- JSON -->
+    <dynamicField name="*_struct" type="string" stored="true" indexed="false" multiValued="true" omitNorms="true" />
   </fields>
 
 
