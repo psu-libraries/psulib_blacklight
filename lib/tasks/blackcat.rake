@@ -27,7 +27,7 @@ namespace :blackcat do
       Rake::Task['blackcat:solr:deindex'].invoke
       traject_path = Rails.root.join('..', 'psulib_traject')
       fixtures = Rails.root.join('spec', 'fixtures', 'current_fixtures.json')
-      marc_file = Rails.root.join('solr', 'sample_data', 'fixtures.mrc')
+      marc_file = Rails.root.join('solr', 'sample_data', 'sample_psucat.mrc')
       args = "-c lib/traject/psulib_config.rb -w Traject::JsonWriter -o #{fixtures}"
       version = 'RBENV_VERSION=jruby-9.2.0.0'
       Bundler.with_clean_env do
