@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  # Makes a link to the item's bound in title. Could be refactored later to be more generic.
+  # Makes a link to a catalog item.
   def catalog_link(options = {})
     options[:value] # the value of the field
     field_data = options[:value].first
