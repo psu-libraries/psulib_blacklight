@@ -168,8 +168,9 @@
          subject_topic_facet_ssim,
          url_fulltext_display_ssm,
          url_suppl_display_ssm,
-         marc_display_ss
-       </str>
+         marc_display_ss,
+         bound_with_title_ssm: [json],
+         bound_with_notes_ssm       </str>
 
        <str name="facet">true</str>
        <str name="facet.mincount">1</str>
@@ -200,7 +201,8 @@
   <requestHandler name="document" class="solr.SearchHandler" >
     <lst name="defaults">
       <str name="echoParams">all</str>
-      <str name="fl">*</str>
+      <str name="fl">*,
+        bound_with_title_ssm: [json]</str>
       <str name="rows">1</str>
       <str name="q">{!term f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
     </lst>
