@@ -145,6 +145,18 @@ class CatalogController < ApplicationController
     config.add_show_field 'id', label: 'Catkey'
     config.add_show_field 'bound_with_title_struct', label: 'Bound in', helper_method: 'catalog_link'
     config.add_show_field 'bound_with_notes_ssm', label: 'Binding notes', separator_options: separator_options
+    config.add_show_field 'phys_desc_ssm', label: 'Physical description and medium', separator_options: separator_options
+    config.add_show_field 'form_work_ssm', label: 'Form of the work', separator_options: separator_options
+    config.add_show_field 'frequency_ssm', label: 'Current publication frequency', separator_options: separator_options
+    config.add_show_field 'audience_ssm', label: 'Audience', separator_options: separator_options
+    config.add_show_field 'duration_ssm', label: 'Duration', separator_options: separator_options
+    config.add_show_field 'sound_ssm', label: 'Sound characteristics', separator_options: separator_options
+    config.add_show_field 'music_numerical_ssm', label: 'Numeric designation of musical work', separator_options: separator_options
+    config.add_show_field 'music_format_ssm', label: 'Format of the notated music', separator_options: separator_options
+    config.add_show_field 'music_key_ssm', label: 'Musical key', separator_options: separator_options
+    config.add_show_field 'performance_ssm', label: 'Medium of performance', separator_options: separator_options
+    config.add_show_field 'video_file_ssm', label: 'Video file characteristics', separator_options: separator_options
+    config.add_show_field 'digital_file_ssm', label: 'Digital file characteristics', separator_options: separator_options
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
