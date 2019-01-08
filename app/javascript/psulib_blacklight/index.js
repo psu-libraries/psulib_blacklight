@@ -1,5 +1,7 @@
 import './images'
-import './styles/app';
+import './styles';
+import './javascripts';
+
 // Vendor
 require('popper.js/dist/umd/popper');
 require('bootstrap/dist/js/bootstrap');

@@ -196,6 +196,7 @@
        <str name="facet.field">pub_date_ssim</str>
        <str name="facet.field">authors_all_facet_sim</str>
        <str name="facet.field">subject_topic_facet_ssim</str>
+       <str name="facet.field">subject_facet</str>
 
        <str name="spellcheck">true</str>
        <str name="spellcheck.dictionary">default</str>

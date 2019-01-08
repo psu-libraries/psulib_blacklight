@@ -21,3 +21,8 @@ RSpec/ExpectActual:
 # Configuration parameters: AggregateFailuresByDefault.
 RSpec/MultipleExpectations:
   Max: 3
+
+# Offense count: 1
+Rails/OutputSafety:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
