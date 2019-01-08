@@ -9,4 +9,9 @@ module ApplicationHelper
 
     link_to field_data['linktext'], "/catalog/#{field_data['catkey']}"
   end
+
+  # Turns NNNNNN into HH:MM:SS
+  def display_duration(args)
+    args[:value]&.map { |v| v.scan(/([0-9]{2})/).join(":") }
+  end
 end
