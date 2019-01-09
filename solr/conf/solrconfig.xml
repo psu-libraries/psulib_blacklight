@@ -177,11 +177,11 @@
          audience_ssm,
          duration_ssm,
          sound_ssm,
-         music_numerical_ssm,
-         music_format_ssm,
-         music_key_ssm,
+         music_numerical_ss,
+         music_format_ss,
+         music_key_ss,
          performance_ssm,
-         video_file_ssm,
+         video_file_ss,
          digital_file_ssm
        </str>
 
