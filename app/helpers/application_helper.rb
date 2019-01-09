@@ -42,7 +42,7 @@ module ApplicationHelper
                                   title: "Search: #{sub_array[i][j]}")
         lnk_accum = lnk + content_tag(:span, SEPARATOR) # , class: 'subject-level'
       end
-      args[:document][args[:field]][i] = lnk.html_safe
+      args[:document][args[:field]][i] = sanitize lnk
     end
   end
 end
