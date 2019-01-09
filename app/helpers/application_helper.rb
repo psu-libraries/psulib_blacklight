@@ -11,6 +11,6 @@ module ApplicationHelper
 
   # Turns NNNNNN into HH:MM:SS, attached to duration_ssm
   def display_duration(options = {})
-    options[:value]&.map { |v| v.scan(/([0-9]{2})/).join(":") }
+    options[:value]&.map { |v| v.scan(/([0-9]{2})/).join(':') }
   end
 end

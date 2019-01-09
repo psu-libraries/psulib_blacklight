@@ -18,7 +18,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
 
   describe '#display_duration' do
-    let (:field_data) { { :value => ['221850'] } }
+    let (:field_data) { { value: ['221850'] } }
 
     context 'when there is a duration in NNNNNN' do
       it 'changes it to HH:MM:SS' do
