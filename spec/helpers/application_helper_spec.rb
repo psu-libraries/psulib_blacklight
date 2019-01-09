@@ -16,4 +16,15 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
     end
   end
+
+  describe '#display_duration' do
+    let (:field_data) { { :value => ['221850'] } }
+
+    context 'when there is a duration in NNNNNN' do
+      it 'changes it to HH:MM:SS' do
+        duration_values = display_duration field_data
+        expect(duration_values).to eql ['22:18:50']
+      end
+    end
+  end
 end
