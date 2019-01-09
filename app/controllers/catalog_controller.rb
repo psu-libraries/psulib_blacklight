@@ -151,11 +151,11 @@ class CatalogController < ApplicationController
     config.add_show_field 'audience_ssm', label: 'Audience'
     config.add_show_field 'duration_ssm', label: 'Duration', helper_method: 'display_duration'
     config.add_show_field 'sound_ssm', label: 'Sound Characteristics'
-    config.add_show_field 'music_numerical_ss', label: 'Musical Work Number'
-    config.add_show_field 'music_format_ss', label: 'Music Format'
-    config.add_show_field 'music_key_ss', label: 'Musical key'
+    config.add_show_field 'music_numerical_ssm', label: 'Musical Work Number'
+    config.add_show_field 'music_format_ssm', label: 'Music Format'
+    config.add_show_field 'music_key_ssm', label: 'Musical key'
     config.add_show_field 'performance_ssm', label: 'Medium of performance'
-    config.add_show_field 'video_file_ss', label: 'Video file characteristics'
+    config.add_show_field 'video_file_ssm', label: 'Video file characteristics'
     config.add_show_field 'digital_file_ssm', label: 'Digital file characteristics'
 
     # "fielded" search configuration. Used by pulldown among other places.
