@@ -170,7 +170,20 @@
          url_suppl_display_ssm,
          marc_display_ss,
          bound_with_title_ssm: [json],
-         bound_with_notes_ssm       </str>
+         bound_with_notes_ssm,
+         phys_desc_ssm,
+         form_work_ssm,
+         frequency_ssm,
+         audience_ssm,
+         duration_ssm,
+         sound_ssm,
+         music_numerical_ssm,
+         music_format_ssm,
+         music_key_ssm,
+         performance_ssm,
+         video_file_ssm,
+         digital_file_ssm
+       </str>
 
        <str name="facet">true</str>
        <str name="facet.mincount">1</str>
