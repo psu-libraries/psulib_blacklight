@@ -149,7 +149,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'form_work_ssm', label: 'Form of work', separator_options: separator_options
     config.add_show_field 'frequency_ssm', label: 'Publication Frequency', separator_options: separator_options
     config.add_show_field 'audience_ssm', label: 'Audience', separator_options: separator_options
-    config.add_show_field 'duration_ssm', label: 'Duration', separator_options: separator_options, helper_method: 'duration_display'
+    config.add_show_field 'duration_ssm', label: 'Duration', separator_options: separator_options, helper_method: 'display_duration'
     config.add_show_field 'sound_ssm', label: 'Sound Characteristics', separator_options: separator_options
     config.add_show_field 'music_numerical_ssm', label: 'Musical Work Number', separator_options: separator_options
     config.add_show_field 'music_format_ssm', label: 'Music Format', separator_options: separator_options
