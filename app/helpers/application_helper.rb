@@ -36,11 +36,8 @@ module ApplicationHelper
       all_subjects[i].each_with_index do |subsubject, j|
         lnk = lnk_accum + link_to(subsubject,
                                   "/?f[subject_facet][]=#{CGI.escape sub_array[i][j]}",
-                                  class: 'search-subject',
-                                  'data-toggle' => 'tooltip',
-                                  'data-original-title' => "Search: #{sub_array[i][j]}",
-                                  title: "Search: #{sub_array[i][j]}")
-        lnk_accum = lnk + content_tag(:span, SEPARATOR) # , class: 'subject-level'
+                                  class: 'search-subject', title: "Search: #{sub_array[i][j]}")
+        lnk_accum = lnk + content_tag(:span, SEPARATOR, class: 'subject-level')
       end
       args[:document][args[:field]][i] = sanitize lnk
     end
