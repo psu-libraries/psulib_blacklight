@@ -13,7 +13,7 @@ module ApplicationHelper
   def display_duration(options = {})
     options[:value]&.map { |v| v.scan(/([0-9]{2})/).join(':') }
   end
-  
+
   SEPARATOR = '—'
   QUERYSEP = '—'
   def subjectify(args)
