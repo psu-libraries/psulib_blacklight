@@ -96,7 +96,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'format', label: 'Format'
     config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
     config.add_facet_field 'all_authors_facet_ssim', label: 'Author', limit: true
-    config.add_facet_field 'subject_topic_facet_ssim', label: 'Topic', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'subject_topic_facet_ssim', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet_sim', label: 'Call Number'
     # config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
@@ -123,27 +123,26 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    separator_options = { words_connector: '<br/>', two_words_connector: '<br/>', last_word_connector: '<br/>' }
     config.add_show_field 'title_latin_display_ssm', label: 'Title'
-    config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title', separator_options: separator_options
-    config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles', separator_options: separator_options
-    config.add_show_field 'related_title_display_ssm', label: 'Related Titles', separator_options: separator_options
-    config.add_show_field 'author_person_display_ssm', label: 'Author', separator_options: separator_options, link_to_facet: 'all_authors_facet_ssim'
-    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', separator_options: separator_options, link_to_facet: 'all_authors_facet_ssim'
-    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', separator_options: separator_options, link_to_facet: 'all_authors_facet_ssim'
-    config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', separator_options: separator_options, link_to_facet: 'all_authors_facet_ssim'
-    config.add_show_field 'format', label: 'Format', link_to_facet: true, separator_options: separator_options
+    config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title'
+    config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles'
+    config.add_show_field 'related_title_display_ssm', label: 'Related Titles'
+    config.add_show_field 'author_person_display_ssm', label: 'Author', link_to_facet: 'all_authors_facet_ssim'
+    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', link_to_facet: 'all_authors_facet_ssim'
+    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: 'all_authors_facet_ssim'
+    config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: 'all_authors_facet_ssim'
+    config.add_show_field 'format', label: 'Format', link_to_facet: true
     config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
     config.add_show_field 'url_suppl_display_ssm', label: 'More Information'
-    config.add_show_field 'language_facet_ssim', label: 'Language', link_to_facet: true, separator_options: separator_options
+    config.add_show_field 'language_facet_ssim', label: 'Language', link_to_facet: true
     config.add_show_field 'published_display_ssm', label: 'Published'
     config.add_show_field 'published_vern_display_ssm', label: 'Published'
     config.add_show_field 'series_title_display_ssm', label: 'Series'
     config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
-    config.add_show_field 'isbn_ssim', label: 'ISBN', separator_options: separator_options
-    config.add_show_field 'subject_topic_facet_ssim', label: 'Topic'
+    config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
     config.add_show_field 'id', label: 'Catkey'
-    config.add_show_field 'bound_with_title_struct', label: 'Bound in', helper_method: 'catalog_link'
+    config.add_show_field 'bound_with_title_struct', label: 'Bound in', helper_method: :catalog_link
     config.add_show_field 'bound_with_notes_ssm', label: 'Binding notes'
     config.add_show_field 'phys_desc_ssm', label: 'Physical Description'
     config.add_show_field 'form_work_ssm', label: 'Form of work'

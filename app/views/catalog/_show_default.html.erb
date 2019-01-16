@@ -14,6 +14,9 @@
     <% else %>
       <dd class="blacklight-<%= field_name.parameterize %> col-md-9">
         <ul>
+          <% if field_config[:link_to_facet] %>
+            <% field.separator_options = { words_connector: '<br/>', two_words_connector: '<br/>', last_word_connector: '<br/>' } %>
+          <% end %>
           <% if field_config[:helper_method] || field_config[:link_to_facet] %>
             <% values = Array.wrap(doc_presenter.field_value(field)) %>
           <% else %>

@@ -17,6 +17,32 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
+  SEPARATOR = '—'
+  describe '#subjectify' do
+    let (:field_data) { ['Renewable energy sources—Research—United States—Finance—History',
+                         'Federal aid to research—United States—History'] }
+    let (:subjects_doc) { { value: field_data } }
+
+    context 'when subjects include subfields v, x, y, and z' do
+      it 'provides links to subject facet search based on hierarchy' do
+        full_subject = subjectify subjects_doc
+        sub_subjects = []
+        field_data.each do |subject|
+          sub_subjects << subject.split(SEPARATOR)
+        end
+        field_data.each_with_index do |subject, i|
+          sub_subjects[i].each do |component|
+            c = Regexp.escape(component)
+            expect(full_subject[i].include?('class="search-subject" '\
+                                        "title=\"Search: #{subject[/.*#{c}/]}\" "\
+                                        "href=\"/?f%5Bsubject_facet%5D%5B%5D=#{CGI.escape subject[/.*#{c}/]}\">"\
+                                        "#{component}</a>")).to eq true
+          end
+        end
+      end
+    end
+  end
+
   describe '#display_duration' do
     let (:field_data) { { value: ['221850'] } }
 

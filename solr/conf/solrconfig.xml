@@ -166,6 +166,7 @@
          related_title_display_ssm,
          series_title_display_ssm,
          subject_topic_facet_ssim,
+         subject_display_ssm,
          url_fulltext_display_ssm,
          url_suppl_display_ssm,
          marc_display_ss,
@@ -196,6 +197,7 @@
        <str name="facet.field">pub_date_ssim</str>
        <str name="facet.field">authors_all_facet_sim</str>
        <str name="facet.field">subject_topic_facet_ssim</str>
+       <str name="facet.field">subject_facet</str>
 
        <str name="spellcheck">true</str>
        <str name="spellcheck.dictionary">default</str>

@@ -7,7 +7,7 @@ RSpec.describe 'Errors', type: :request do
     before (:all) { get '/404' }
 
     it 'has http status 404' do
-      expect(response).to have_http_status(404)
+      expect(response).to have_http_status(:not_found)
     end
 
     it 'redirects to customized not_found error page' do
@@ -19,7 +19,7 @@ RSpec.describe 'Errors', type: :request do
     before (:all) { get '/500' }
 
     it 'has http status 500' do
-      expect(response).to have_http_status(500)
+      expect(response).to have_http_status(:internal_server_error)
     end
 
     it 'redirects to customized internal_server_error error page' do
@@ -33,7 +33,7 @@ RSpec.describe 'Errors', type: :request do
       expect(response).to redirect_to('/404')
       follow_redirect!
 
-      expect(response).to have_http_status(404)
+      expect(response).to have_http_status(:not_found)
       expect(response.body).to include("The page you were looking for doesn't exist")
     end
   end
