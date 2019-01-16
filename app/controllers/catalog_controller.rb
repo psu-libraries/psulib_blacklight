@@ -123,7 +123,6 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    separator_options = { words_connector: '<br/>', two_words_connector: '<br/>', last_word_connector: '<br/>' }
     config.add_show_field 'title_latin_display_ssm', label: 'Title'
     config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title'
     config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles'
@@ -132,7 +131,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', link_to_facet: 'all_authors_facet_ssim'
     config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: 'all_authors_facet_ssim'
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: 'all_authors_facet_ssim'
-    config.add_show_field 'format', label: 'Format', link_to_facet: true, separator_options: separator_options
+    config.add_show_field 'format', label: 'Format', link_to_facet: true
     config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
     config.add_show_field 'url_suppl_display_ssm', label: 'More Information'
     config.add_show_field 'language_facet_ssim', label: 'Language', link_to_facet: true

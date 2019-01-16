@@ -21,21 +21,11 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe '#subjectify' do
     let (:field_data) { ['Renewable energy sources—Research—United States—Finance—History',
                          'Federal aid to research—United States—History'] }
-    let (:subjects_document) do
-      {
-        subject_display_ssm: field_data
-      }
-    end
-    let(:field_config) do
-      {
-        field: :subject_display_ssm,
-        document: subjects_document
-      }.with_indifferent_access
-    end
+    let (:subjects_doc) { { value: field_data } }
 
     context 'when subjects include subfields v, x, y, and z' do
       it 'provides links to subject facet search based on hierarchy' do
-        full_subject = subjectify field_config
+        full_subject = subjectify subjects_doc
         sub_subjects = []
         field_data.each do |subject|
           sub_subjects << subject.split(SEPARATOR)

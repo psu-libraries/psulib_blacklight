@@ -12,10 +12,11 @@ module ApplicationHelper
   SEPARATOR = '—'
   QUERYSEP = '—'
   # Links to subject facet for the hierarchical subjects
-  def subjectify(args)
+  def subjectify(options = {})
+    result = []
     all_subjects = []
     sub_array = []
-    args[:document][args[:field]].each_with_index do |subject, i|
+    options[:value].each_with_index do |subject, i|
       spl_sub = subject.split(QUERYSEP)
       sub_array << []
       subject_accum = ''
@@ -26,7 +27,7 @@ module ApplicationHelper
       end
       all_subjects[i] = subject.split(QUERYSEP)
     end
-    args[:document][args[:field]].each_with_index do |_subject, i|
+    options[:value].each_with_index do |_subject, i|
       lnk = ''
       lnk_accum = ''
       all_subjects[i].each_with_index do |subsubject, j|
@@ -35,8 +36,9 @@ module ApplicationHelper
                                   class: 'search-subject', title: "Search: #{sub_array[i][j]}")
         lnk_accum = lnk + content_tag(:span, SEPARATOR, class: 'subject-level')
       end
-      args[:document][args[:field]][i] = sanitize lnk
+      result << sanitize(lnk)
     end
+    result
   end
 
   # Turns NNNNNN into HH:MM:SS, attached to duration_ssm
