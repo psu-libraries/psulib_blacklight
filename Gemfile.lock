@@ -22,6 +22,13 @@ GIT
       nokogiri (~> 1.6)
       rails (~> 5.1)
 
+PATH
+  remote: /Users/cdm32/Desktop/blacklight_advanced_search
+  specs:
+    blacklight_advanced_search (7.0.0.alpha)
+      blacklight (> 7.0.0.a, < 8.a)
+      parslet
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -213,6 +220,7 @@ GEM
     parallel (1.12.1)
     parser (2.5.3.0)
       ast (~> 2.4.0)
+    parslet (1.8.2)
     popper_js (1.14.3)
     powerpack (0.1.2)
     public_suffix (3.0.3)
@@ -361,6 +369,7 @@ PLATFORMS
 DEPENDENCIES
   blacklight (>= 7.0.0.rc2)!
   blacklight-marc (>= 7.0.0.rc1)!
+  blacklight_advanced_search!
   bootsnap
   bootstrap (~> 4.0)
   byebug
