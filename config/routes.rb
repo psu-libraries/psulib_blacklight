@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   mount Blacklight::Engine => '/'
   mount BlacklightAdvancedSearch::Engine => '/'
 
-
   # resource and resources
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns :searchable
