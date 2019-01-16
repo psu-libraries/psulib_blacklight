@@ -2,28 +2,28 @@
 <%# default partial to display solr document fields in catalog show view -%>
 <dl class="row dl-invert document-metadata">
   <% doc_presenter.fields_to_render.each do |field_name, field| -%>
-      <dt class="blacklight-<%= field_name.parameterize %> col-md-3"><%= render_document_show_field_label document, field: field_name %></dt>
-      <% field_config = doc_presenter.configuration.show_fields.fetch(field_name) %>
-      <% if document[field_name].length == 1 || !document[field_name].is_a?(Array) %>
-          <% if field_config[:helper_method] || field_config[:link_to_facet] %>
-              <% value = doc_presenter.field_value field %>
-          <% else %>
-              <% value = document[field_name] %>
-          <% end %>
-          <dd class="blacklight-<%= field_name.parameterize %> col-md-9"><%= safe_join(Array.wrap(value)) %></dd>
+    <dt class="blacklight-<%= field_name.parameterize %> col-md-3"><%= render_document_show_field_label document, field: field_name %></dt>
+    <% field_config = doc_presenter.configuration.show_fields.fetch(field_name) %>
+    <% if document[field_name].length == 1 || !document[field_name].is_a?(Array) %>
+      <% if field_config[:helper_method] || field_config[:link_to_facet] %>
+        <% value = doc_presenter.field_value field %>
       <% else %>
-          <dd class="blacklight-<%= field_name.parameterize %> col-md-9">
-            <ul>
-              <% if field_config[:helper_method] || field_config[:link_to_facet] %>
-                  <% values = Array.wrap(doc_presenter.field_value(field)) %>
-              <% else %>
-                  <% values = document[field_name] %>
-              <% end %>
-              <% values.each do |value| %>
-                  <li class="list_items"> <%= safe_join(Array.wrap(value)) %> </li>
-              <% end %>
-            </ul>
-          </dd>
+        <% value = document[field_name] %>
       <% end %>
+      <dd class="blacklight-<%= field_name.parameterize %> col-md-9"><%= safe_join(Array.wrap(value)) %></dd>
+    <% else %>
+      <dd class="blacklight-<%= field_name.parameterize %> col-md-9">
+        <ul>
+          <% if field_config[:helper_method] || field_config[:link_to_facet] %>
+            <% values = Array.wrap(doc_presenter.field_value(field)) %>
+          <% else %>
+            <% values = document[field_name] %>
+          <% end %>
+          <% values.each do |value| %>
+            <li class="list_items"> <%= safe_join(Array.wrap(value)) %> </li>
+          <% end %>
+        </ul>
+      </dd>
+    <% end %>
   <% end %>
 </dl>
