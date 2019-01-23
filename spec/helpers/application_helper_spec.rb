@@ -43,6 +43,17 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
+  describe '#genre_links' do
+    let (:field_data) { ['Film adaptations', 'Feature Films'] }
+    let (:genre_doc) { { value: field_data } }
+
+    it 'assembles a link to genre search' do
+      links = genre_links genre_doc
+      expect(links).to include '<a href="/?f%5Bgenre_full_facet_ssim%5D%5B%5D=Film+adaptations">Film adaptations</a>'
+      expect(links).to include '<a href="/?f%5Bgenre_full_facet_ssim%5D%5B%5D=Feature+Films">Feature Films</a>'
+    end
+  end
+
   describe '#display_duration' do
     let (:field_data) { { value: ['221850'] } }
 
