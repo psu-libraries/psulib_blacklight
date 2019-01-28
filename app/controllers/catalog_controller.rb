@@ -97,6 +97,8 @@ class CatalogController < ApplicationController
     config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
     config.add_facet_field 'all_authors_facet_ssim', label: 'Author', limit: true
     config.add_facet_field 'subject_topic_facet_ssim', label: 'Subject', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'genre_facet_ssim', label: 'Genre', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'genre_full_facet_ssim', label: 'Genre', show: false
     config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet_sim', label: 'Call Number'
     # config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
@@ -141,6 +143,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
     config.add_show_field 'isbn_ssim', label: 'ISBN'
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
+    config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
     config.add_show_field 'id', label: 'Catkey'
     config.add_show_field 'bound_with_title_struct', label: 'Bound in', helper_method: :catalog_link
     config.add_show_field 'bound_with_notes_ssm', label: 'Binding notes'
@@ -148,7 +151,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'form_work_ssm', label: 'Form of work'
     config.add_show_field 'frequency_ssm', label: 'Publication Frequency'
     config.add_show_field 'audience_ssm', label: 'Audience'
-    config.add_show_field 'duration_ssm', label: 'Duration', helper_method: 'display_duration'
+    config.add_show_field 'duration_ssm', label: 'Duration', helper_method: :display_duration
     config.add_show_field 'sound_ssm', label: 'Sound Characteristics'
     config.add_show_field 'music_numerical_ssm', label: 'Musical Work Number'
     config.add_show_field 'music_format_ssm', label: 'Music Format'
