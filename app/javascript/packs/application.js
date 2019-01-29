@@ -9,4 +9,3 @@
 
 import 'psulib_blacklight'
 import 'blacklight_advanced_search'
-

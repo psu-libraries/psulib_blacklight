@@ -8,6 +8,7 @@ require('bootstrap/dist/js/bootstrap');
 
 import Turbolinks from 'turbolinks'
 Turbolinks.start()
+import chosen from 'imports?jQuery=jquery,$=jquery,this=>window,chosen';
 
 // Local
 require('blacklight-frontend/app/javascript/blacklight/core')
@@ -17,6 +18,7 @@ require('blacklight-frontend/app/javascript/blacklight/bookmark_toggle')
 require('blacklight-frontend/app/javascript/blacklight/collapsable')
 require('blacklight-frontend/app/javascript/blacklight/facet_load')
 require('blacklight-frontend/app/javascript/blacklight/search_context')
+
 // doing the above rather than require('blacklight-frontend/app/assets/javascripts/blacklight/blacklight')
 // each script may have an import it's doing
 // also, you need to use the code for core from:
