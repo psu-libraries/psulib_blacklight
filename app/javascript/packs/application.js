@@ -8,4 +8,3 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import 'psulib_blacklight'
-import 'blacklight_advanced_search'
