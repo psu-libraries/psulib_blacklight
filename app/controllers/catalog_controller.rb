@@ -210,9 +210,9 @@ class CatalogController < ApplicationController
     config.add_search_field('title') do |field|
       field.include_in_advanced_search = false
       field.solr_parameters = {
-          'spellcheck.dictionary': 'title',
-          qf: "${title_qf}",
-          pf: "${title_pf}"
+        'spellcheck.dictionary': 'title',
+        qf: '${title_qf}',
+        pf: '${title_pf}'
       }
     end
 
