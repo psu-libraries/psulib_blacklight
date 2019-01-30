@@ -217,7 +217,7 @@ class CatalogController < ApplicationController
 
     # Specifying a :qt only to show it's possible, and so our internal automated
     # tests can test it. In this case it's the same as
-    # config[:default_solr_parameters][:qt], so isn't actually neccesary.
+    # config[:default_solr_parameters][:qt], so isn't actually necessary.
     config.add_search_field('subject') do |field|
       field.qt = 'search'
       field.solr_parameters = {
