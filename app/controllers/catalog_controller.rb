@@ -203,6 +203,7 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('author') do |field|
+      field.label = 'Author/Creator'
       field.solr_parameters = {
         'spellcheck.dictionary': 'author',
         qf: '\'${author_qf}\'',
