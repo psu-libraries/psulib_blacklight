@@ -197,15 +197,14 @@ class CatalogController < ApplicationController
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
-
     config.add_search_field('title') do |field|
       field.solr_parameters = {
-          qf: '${title_qf}',
-          pf: '${title_pf}'
+        qf: '${title_qf}',
+        pf: '${title_pf}'
       }
       field.solr_adv_parameters = {
-          qf:  '$qf_title',
-          pf:  '$pf_title',
+        qf:  '$qf_title',
+        pf:  '$pf_title'
       }
     end
 
@@ -234,7 +233,7 @@ class CatalogController < ApplicationController
       field.include_in_simple_select = false
       field.label = 'ISBN/ISSN'
       field.solr_parameters = {
-        qf:  '$qf_number',
+        qf:  '$qf_number'
       }
     end
 
