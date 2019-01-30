@@ -15,7 +15,11 @@ class CatalogController < ApplicationController
     # config.advanced_search[:qt] ||= 'advanced'
     config.advanced_search[:url_key] ||= 'advanced'
     config.advanced_search[:query_parser] ||= 'edismax'
-    config.advanced_search[:form_solr_parameters] ||= {}
+    config.advanced_search[:form_solr_parameters] ||= {
+      # 'facet.field' => ['language_facet_ssim'], # will add 'library', 'location', 'material_type'
+      'facet.limit' => -1, # return all facet values
+      'facet.sort' => 'index' # sort by byte order of values
+    }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
 
     config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
@@ -222,6 +226,12 @@ class CatalogController < ApplicationController
         pf: '\'${subject_pf}\''
       }
     end
+
+    ## Stubs for Advanced Search as per https://github.com/psu-libraries/psulib_blacklight/wiki/Advanced-Search
+    # config.add_search_field('Series')
+    # config.add_search_field('Publisher')
+    # config.add_search_field('ISBN/ISSN')
+    # config.add_search_field('Publication date')
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
