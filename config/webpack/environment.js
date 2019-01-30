@@ -8,13 +8,6 @@ const webpack = require('webpack')
 // environment.config.set('output.filename', '[name].js')
 // Merge custom config
 // environment.config.merge(customConfig)
-//
-// environment.loaders.append('ChosenJSLoader', {
-//     test: require.resolve("chosen"),
-//     loader: 'imports?jQuery=jquery,$=jquery,this=>window',
-//     },
-// );
-
 
 environment.plugins.prepend(
     'Provide',

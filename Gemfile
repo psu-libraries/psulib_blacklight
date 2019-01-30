@@ -20,8 +20,8 @@ gem 'rsolr', '>= 1.0'
 gem 'webpacker', '~> 3.5'
 
 gem 'blacklight', '>= 7.0.1', github: 'projectblacklight/blacklight'
-gem 'blacklight_advanced_search', github: 'projectblacklight/blacklight_advanced_search', ref: '9c23f0e9aad6a789ec912336766289927ea0729b'
 gem 'blacklight-marc', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight-marc'
+gem 'blacklight_advanced_search', github: 'projectblacklight/blacklight_advanced_search', ref: '9c23f0e9aad6a789ec91233'
 
 group :development do
   gem 'foreman', '~> 0.63.0'

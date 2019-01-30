@@ -5,10 +5,11 @@ import './javascripts';
 // Vendor
 require('popper.js/dist/umd/popper');
 require('bootstrap/dist/js/bootstrap');
+require('bootstrap-select/dist/css/bootstrap-select')
+require('bootstrap-select/dist/js/bootstrap-select')
 
 import Turbolinks from 'turbolinks'
-Turbolinks.start()
-import chosen from 'imports?jQuery=jquery,$=jquery,this=>window,chosen';
+Turbolinks.start();
 
 // Local
 require('blacklight-frontend/app/javascript/blacklight/core')

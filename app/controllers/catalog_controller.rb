@@ -196,17 +196,17 @@ class CatalogController < ApplicationController
     config.add_search_field('title') do |field|
       # solr_parameters hash are sent to Solr as ordinary url query params.
       field.solr_parameters = {
-          'spellcheck.dictionary': 'title',
-          qf: '\'${title_qf}\'',
-          pf: '\'${title_pf}\''
+        'spellcheck.dictionary': 'title',
+        qf: '\'${title_qf}\'',
+        pf: '\'${title_pf}\''
       }
     end
 
     config.add_search_field('author') do |field|
       field.solr_parameters = {
-          'spellcheck.dictionary': 'author',
-          qf: '\'${author_qf}\'',
-          pf: '\'${author_pf}\''
+        'spellcheck.dictionary': 'author',
+        qf: '\'${author_qf}\'',
+        pf: '\'${author_pf}\''
       }
     end
 
@@ -216,9 +216,9 @@ class CatalogController < ApplicationController
     config.add_search_field('subject') do |field|
       field.qt = 'search'
       field.solr_parameters = {
-          'spellcheck.dictionary': 'subject',
-          qf: '\'${subject_qf}\'',
-          pf: '\'${subject_pf}\''
+        'spellcheck.dictionary': 'subject',
+        qf: '\'${subject_qf}\'',
+        pf: '\'${subject_pf}\''
       }
     end
 
