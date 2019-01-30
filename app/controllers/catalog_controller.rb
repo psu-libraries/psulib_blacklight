@@ -197,22 +197,15 @@ class CatalogController < ApplicationController
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
-    config.add_search_field('title_adv') do |field|
-      field.include_in_simple_select = false
-      field.label = 'Title'
-      field.solr_parameters = {
-        'spellcheck.dictionary': 'title',
-        qf: "'${title_qf}'",
-        pf: "'${title_pf}'"
-      }
-    end
 
     config.add_search_field('title') do |field|
-      field.include_in_advanced_search = false
       field.solr_parameters = {
-        'spellcheck.dictionary': 'title',
-        qf: '${title_qf}',
-        pf: '${title_pf}'
+          qf: '${title_qf}',
+          pf: '${title_pf}'
+      }
+      field.solr_adv_parameters = {
+          qf:  '$qf_title',
+          pf:  '$pf_title',
       }
     end
 
