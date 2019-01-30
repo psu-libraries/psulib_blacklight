@@ -220,8 +220,8 @@ class CatalogController < ApplicationController
       field.label = 'Author/Creator'
       field.solr_parameters = {
         'spellcheck.dictionary': 'author',
-        qf: '\'${author_qf}\'',
-        pf: '\'${author_pf}\''
+        qf: "'${author_qf}'",
+        pf: "'${author_pf}'"
       }
     end
 
@@ -232,8 +232,8 @@ class CatalogController < ApplicationController
       field.qt = 'search'
       field.solr_parameters = {
         'spellcheck.dictionary': 'subject',
-        qf: '\'${subject_qf}\'',
-        pf: '\'${subject_pf}\''
+        qf: "'${subject_qf}'",
+        pf: "'${subject_pf}'"
       }
     end
 
