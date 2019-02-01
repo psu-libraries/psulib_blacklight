@@ -143,6 +143,12 @@
          subject_addl_tsim^10
        </str>
 
+       <!-- for advanced search number text box -->
+       <str name="number_qf">
+         id
+         isbn_ssim
+       </str>
+
        <str name="fl">
          id,
          score,

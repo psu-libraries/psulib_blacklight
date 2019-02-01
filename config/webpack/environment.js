@@ -9,7 +9,6 @@ const webpack = require('webpack')
 // Merge custom config
 // environment.config.merge(customConfig)
 
-
 environment.plugins.prepend(
     'Provide',
     new webpack.ProvidePlugin({

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CatalogController < ApplicationController
+  include BlacklightAdvancedSearch::Controller
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
 
@@ -9,6 +10,18 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    # default advanced config values
+    config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
+    # config.advanced_search[:qt] ||= 'advanced'
+    config.advanced_search[:url_key] ||= 'advanced'
+    config.advanced_search[:query_parser] ||= 'edismax'
+    config.advanced_search[:form_solr_parameters] ||= {
+      # 'facet.field' => ['language_facet_ssim'], # will add 'library', 'location', 'material_type'
+      # 'facet.limit' => -1, # return all facet values
+      # 'facet.sort' => 'index' # sort by byte order of values
+    }
+    config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
+
     config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
 
     config.add_results_collection_tool(:sort_widget)
@@ -178,40 +191,58 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
 
-    config.add_search_field 'all_fields', label: 'All Fields'
+    config.add_search_field 'all_fields', label: 'Keyword'
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
     # of Solr search fields.
 
     config.add_search_field('title') do |field|
-      # solr_parameters hash are sent to Solr as ordinary url query params.
       field.solr_parameters = {
         'spellcheck.dictionary': 'title',
         qf: '${title_qf}',
         pf: '${title_pf}'
       }
+      field.solr_adv_parameters = {
+        'spellcheck.dictionary': 'title',
+        qf:  '$title_qf',
+        pf:  '$title_pf'
+      }
     end
 
     config.add_search_field('author') do |field|
+      field.label = 'Author/Creator'
       field.solr_parameters = {
         'spellcheck.dictionary': 'author',
-        qf: '${author_qf}',
-        pf: '${author_pf}'
+        qf: "'${author_qf}'",
+        pf: "'${author_pf}'"
       }
     end
 
     # Specifying a :qt only to show it's possible, and so our internal automated
     # tests can test it. In this case it's the same as
-    # config[:default_solr_parameters][:qt], so isn't actually neccesary.
+    # config[:default_solr_parameters][:qt], so isn't actually necessary.
     config.add_search_field('subject') do |field|
       field.qt = 'search'
       field.solr_parameters = {
         'spellcheck.dictionary': 'subject',
-        qf: '${subject_qf}',
-        pf: '${subject_pf}'
+        qf: "'${subject_qf}'",
+        pf: "'${subject_pf}'"
       }
     end
+
+    config.add_search_field('identifiers') do |field|
+      field.include_in_simple_select = false
+      field.label = 'ISBN/ISSN'
+      field.solr_parameters = {
+        qf:  '$number_qf'
+      }
+    end
+
+    ## Stubs for Advanced Search as per https://github.com/psu-libraries/psulib_blacklight/wiki/Advanced-Search
+    # config.add_search_field('Series')
+    # config.add_search_field('Publisher')
+    # config.add_search_field('Publication date')
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and

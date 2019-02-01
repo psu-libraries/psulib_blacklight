@@ -5,9 +5,11 @@ import './javascripts';
 // Vendor
 require('popper.js/dist/umd/popper');
 require('bootstrap/dist/js/bootstrap');
+require('bootstrap-select/dist/css/bootstrap-select')
+require('bootstrap-select/dist/js/bootstrap-select')
 
 import Turbolinks from 'turbolinks'
-Turbolinks.start()
+Turbolinks.start();
 
 // Local
 require('blacklight-frontend/app/javascript/blacklight/core')
@@ -17,6 +19,7 @@ require('blacklight-frontend/app/javascript/blacklight/bookmark_toggle')
 require('blacklight-frontend/app/javascript/blacklight/collapsable')
 require('blacklight-frontend/app/javascript/blacklight/facet_load')
 require('blacklight-frontend/app/javascript/blacklight/search_context')
+
 // doing the above rather than require('blacklight-frontend/app/assets/javascripts/blacklight/blacklight')
 // each script may have an import it's doing
 // also, you need to use the code for core from:

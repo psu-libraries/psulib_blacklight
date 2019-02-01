@@ -12,15 +12,24 @@ GIT
 
 GIT
   remote: https://github.com/projectblacklight/blacklight.git
-  revision: dfb341ade6a81952547eaf9535e6dda2236d7cce
+  revision: 39d676481858aa3540455c3a7f4ec7e0862cb6c4
   specs:
-    blacklight (7.0.0.rc2)
+    blacklight (7.0.1)
       deprecation
       globalid
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
       nokogiri (~> 1.6)
       rails (~> 5.1)
+
+GIT
+  remote: https://github.com/projectblacklight/blacklight_advanced_search.git
+  revision: 9c23f0e9aad6a789ec912336766289927ea0729b
+  ref: 9c23f0e9aad6a789ec91233
+  specs:
+    blacklight_advanced_search (7.0.0.alpha)
+      blacklight (~> 7.0)
+      parslet
 
 GEM
   remote: https://rubygems.org/
@@ -213,6 +222,7 @@ GEM
     parallel (1.12.1)
     parser (2.5.3.0)
       ast (~> 2.4.0)
+    parslet (1.8.2)
     popper_js (1.14.3)
     powerpack (0.1.2)
     public_suffix (3.0.3)
@@ -359,8 +369,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  blacklight (>= 7.0.0.rc2)!
+  blacklight (>= 7.0.1)!
   blacklight-marc (>= 7.0.0.rc1)!
+  blacklight_advanced_search!
   bootsnap
   bootstrap (~> 4.0)
   byebug
