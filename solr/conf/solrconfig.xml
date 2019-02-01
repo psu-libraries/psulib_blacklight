@@ -144,7 +144,7 @@
        </str>
 
        <!-- for advanced search number text box -->
-       <str name="qf_number">
+       <str name="number_qf">
          id
          isbn_ssim
        </str>

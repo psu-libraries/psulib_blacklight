@@ -199,12 +199,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('title') do |field|
       field.solr_parameters = {
+        'spellcheck.dictionary': 'title',
         qf: '${title_qf}',
         pf: '${title_pf}'
       }
       field.solr_adv_parameters = {
-        qf:  '$qf_title',
-        pf:  '$pf_title'
+        'spellcheck.dictionary': 'title',
+        qf:  '$title_qf',
+        pf:  '$title_pf'
       }
     end
 
@@ -233,7 +235,7 @@ class CatalogController < ApplicationController
       field.include_in_simple_select = false
       field.label = 'ISBN/ISSN'
       field.solr_parameters = {
-        qf:  '$qf_number'
+        qf:  '$number_qf'
       }
     end
 
