@@ -17,8 +17,8 @@ class CatalogController < ApplicationController
     config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
       # 'facet.field' => ['language_facet_ssim'], # will add 'library', 'location', 'material_type'
-      'facet.limit' => -1, # return all facet values
-      'facet.sort' => 'index' # sort by byte order of values
+      # 'facet.limit' => -1, # return all facet values
+      # 'facet.sort' => 'index' # sort by byte order of values
     }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
 
