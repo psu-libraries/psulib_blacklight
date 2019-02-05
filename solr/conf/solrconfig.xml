@@ -162,8 +162,10 @@
          language_facet_ssim,
          lc_callnum_display_ssm,
          material_type_display_ssm,
-         published_display_ssm,
-         published_vern_display_ssm,
+         publication_display_ssm
+         overall_imprint_display_ssm,
+         edition_display_ssm,
+         copyright_display_ssm,
          pub_date_ssim,
          title_display_ssm,
          title_latin_display_ssm,

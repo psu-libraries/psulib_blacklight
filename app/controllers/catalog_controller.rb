@@ -10,6 +10,7 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    config.index.document_presenter_class = PsulIndexPresenter
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
     # config.advanced_search[:qt] ||= 'advanced'
@@ -107,19 +108,14 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
     config.add_facet_field 'format', label: 'Format'
+    config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
     config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
-    config.add_facet_field 'all_authors_facet_ssim', label: 'Author', limit: true
+    config.add_facet_field 'all_authors_facet_ssim', label: 'Author', show: false
     config.add_facet_field 'subject_topic_facet_ssim', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_facet_ssim', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_full_facet_ssim', label: 'Genre', show: false
-    config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
     config.add_facet_field 'lc_1letter_facet_sim', label: 'Call Number'
     # config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
-    config.add_facet_field 'pub_date_facet_field', label: 'Publish Date', query: {
-      years_5: { label: 'within 5 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 5} TO *]" },
-      years_10: { label: 'within 10 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 10} TO *]" },
-      years_25: { label: 'within 25 Years', fq: "pub_date_ssim:[#{Time.zone.now.year - 25} TO *]" }
-    }
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -130,48 +126,48 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field 'title_latin_display_ssm', label: 'Title'
     config.add_index_field 'format', label: 'Format', link_to_facet: true
-    config.add_index_field 'language_facet_ssim', label: 'Language', link_to_facet: true
-    config.add_index_field 'published_display_ssm', label: 'Published'
-    config.add_index_field 'published_vern_display_ssm', label: 'Published'
+    config.add_index_field 'publication_display_ssm', label: 'Publication Statement'
+    config.add_index_field 'language_facet_ssim', label: 'Language'
     config.add_index_field 'lc_callnum_display_ssm', label: 'Call number'
     config.add_index_field 'id', label: 'Catkey'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field 'title_latin_display_ssm', label: 'Title'
+    config.add_show_field 'author_person_display_ssm', label: 'Author', link_to_facet: :all_authors_facet_ssim
+    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', link_to_facet: :all_authors_facet_ssim
+    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: :all_authors_facet_ssim
     config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title'
     config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles'
-    config.add_show_field 'related_title_display_ssm', label: 'Related Titles'
-    config.add_show_field 'author_person_display_ssm', label: 'Author', link_to_facet: 'all_authors_facet_ssim'
-    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', link_to_facet: 'all_authors_facet_ssim'
-    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: 'all_authors_facet_ssim'
-    config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: 'all_authors_facet_ssim'
     config.add_show_field 'format', label: 'Format', link_to_facet: true
-    config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
-    config.add_show_field 'url_suppl_display_ssm', label: 'More Information'
-    config.add_show_field 'language_facet_ssim', label: 'Language', link_to_facet: true
-    config.add_show_field 'published_display_ssm', label: 'Published'
-    config.add_show_field 'published_vern_display_ssm', label: 'Published'
+    config.add_show_field 'overall_imprint_display_ssm', label: 'Published'
+    config.add_show_field 'copyright_display_ssm', label: 'Copyright Date'
+    config.add_show_field 'edition_display_ssm', label: 'Edition'
+    config.add_show_field 'phys_desc_ssm', label: 'Physical Description'
+    config.add_show_field 'language_facet_ssim', label: 'Language'
     config.add_show_field 'series_title_display_ssm', label: 'Series'
-    config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
-    config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet_ssim
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
     config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
-    config.add_show_field 'id', label: 'Catkey'
-    config.add_show_field 'bound_with_title_struct', label: 'Bound in', helper_method: :catalog_link
-    config.add_show_field 'bound_with_notes_ssm', label: 'Binding notes'
-    config.add_show_field 'phys_desc_ssm', label: 'Physical Description'
-    config.add_show_field 'form_work_ssm', label: 'Form of work'
+    config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'related_title_display_ssm', label: 'Related Titles'
+    config.add_show_field 'duration_ssm', label: 'Duration', helper_method: :display_duration
     config.add_show_field 'frequency_ssm', label: 'Publication Frequency'
     config.add_show_field 'audience_ssm', label: 'Audience'
-    config.add_show_field 'duration_ssm', label: 'Duration', helper_method: :display_duration
     config.add_show_field 'sound_ssm', label: 'Sound Characteristics'
     config.add_show_field 'music_numerical_ssm', label: 'Musical Work Number'
-    config.add_show_field 'music_format_ssm', label: 'Music Format'
+    config.add_show_field 'music_format_ssm', label: 'Format of Notated Music'
     config.add_show_field 'music_key_ssm', label: 'Musical key'
-    config.add_show_field 'performance_ssm', label: 'Medium of performance'
-    config.add_show_field 'video_file_ssm', label: 'Video file characteristics'
-    config.add_show_field 'digital_file_ssm', label: 'Digital file characteristics'
+    config.add_show_field 'performance_ssm', label: 'Medium of Performance'
+    config.add_show_field 'video_file_ssm', label: 'Video File Characteristics'
+    config.add_show_field 'digital_file_ssm', label: 'Digital File characteristics'
+    config.add_show_field 'form_work_ssm', label: 'Form of work'
+    config.add_show_field 'bound_with_notes_ssm', label: 'Binding notes'
+    config.add_show_field 'bound_with_title_struct', label: 'Bound in', helper_method: :catalog_link
+    config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
+    config.add_show_field 'url_suppl_display_ssm', label: 'More Information'
+    config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
+    config.add_show_field 'id', label: 'Catkey'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
