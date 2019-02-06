@@ -158,8 +158,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
     config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
     config.add_show_field 'id', label: 'Catkey'
-    config.add_show_field 'bound_with_title_struct', label: 'Bound in', helper_method: :bound_link
-    config.add_show_field 'bound_with_notes_ssm', label: 'Binding notes'
+    config.add_show_field 'bound_with_struct', label: 'Binding notes', helper_method: :bound_info
     config.add_show_field 'phys_desc_ssm', label: 'Physical Description'
     config.add_show_field 'form_work_ssm', label: 'Form of work'
     config.add_show_field 'frequency_ssm', label: 'Publication Frequency'

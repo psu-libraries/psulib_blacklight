@@ -2,12 +2,20 @@
 
 module ApplicationHelper
   # Makes a link to a catalog item.
-  def bound_link(options = {})
-    field_data = options[:value].first
-    field_data = JSON.parse field_data
+  def bound_info(options = {})
+    field_data = options[:value]
 
-    link = link_to field_data['linktext'], "/catalog/#{field_data['catkey']}"
-    content_tag 'span', "#{field_data['callnumber']} (#{field_data['format']}) bound in " + link, options = nil, escape = false
+    contents = field_data.map do |item|
+      json = JSON.parse item
+      if json['bound_catkey'].nil?
+        json['bound_title']
+      else
+        link = link_to json['bound_title'], "/catalog/#{json['bound_catkey']}"
+        "#{json['bound_callnumber']} (#{json['bound_format']}) bound in " + link
+      end
+    end
+
+    content_tag 'span', contents.join('<br>'), nil, false
   end
 
   SEPARATOR = '—'

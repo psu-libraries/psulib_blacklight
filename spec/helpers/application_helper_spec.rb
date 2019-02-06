@@ -3,18 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationHelper, type: :helper do
-  describe '#bound_link' do
-
-    let (:field_data) { ['{"catkey": "355035", "linktext": '\
-        '"The high-caste Hindu woman / With introduction by Rachel L. Bodley", "format": '\
-        '"Microfilm, Microfiche, etc.", "callnumber": "AY67.N5W7 1922-24"}'] }
-    let (:bound_link_doc) { { value: field_data } }
+  describe '#bound_info' do
+    let (:field_data) { ['{"bound_catkey": "355035", "bound_title": '\
+        '"The high-caste Hindu woman / With introduction by Rachel L. Bodley", "bound_format": '\
+        '"Microfilm, Microfiche, etc.", "bound_callnumber": "AY67.N5W7 1922-24"}'] }
+    let (:bound_info_doc) { { value: field_data } }
 
     context 'when there is a single value for a link field' do
       it 'assembles a link' do
         link_text = '<span>AY67.N5W7 1922-24 (Microfilm, Microfiche, etc.) bound in <a href="/catalog/355035">The high'\
                     '-caste Hindu woman / With introduction by Rachel L. Bodley</a></span>'
-        link = bound_link bound_link_doc
+        link = bound_info bound_info_doc
         expect(link).to eql link_text
       end
     end
