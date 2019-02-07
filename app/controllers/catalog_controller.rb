@@ -162,8 +162,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'video_file_ssm', label: 'Video File Characteristics'
     config.add_show_field 'digital_file_ssm', label: 'Digital File characteristics'
     config.add_show_field 'form_work_ssm', label: 'Form of work'
-    config.add_show_field 'bound_with_notes_ssm', label: 'Binding notes'
-    config.add_show_field 'bound_with_title_struct', label: 'Bound in', helper_method: :catalog_link
+    config.add_show_field 'bound_with_struct', label: 'Binding notes', helper_method: :bound_info
     config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
     config.add_show_field 'url_suppl_display_ssm', label: 'More Information'
     config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
