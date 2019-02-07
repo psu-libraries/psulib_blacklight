@@ -67,6 +67,8 @@
          series_title_unstem_search^25
          series_title_tsim^10
          isbn_ssim
+         toc_ssim
+         abstract_ssim
          all_text_timv
        </str>
        <str name="pf">
@@ -88,6 +90,8 @@
          subject_addl_tsim^500
          series_title_unstem_search^250
          series_title_tsim^100
+         toc_ssim^50
+         abstract_ssim^50
          all_text_timv^10
        </str>
        <str name="author_qf">
@@ -190,7 +194,59 @@
          music_key_ssm,
          performance_ssm,
          video_file_ssm,
-         digital_file_ssm
+         digital_file_ssm,
+         general_note_ssm,
+         with_note_ssm,
+         dissertation_note_ssm,
+         bibliography_note_ssm,
+         toc_ssim,
+         restrictions_access_note_ssm,
+         scale_graphic_material_note_ssm,
+         creation_production_credits_ssm,
+         citation_references_note_ssm,
+         indexed_by_note_ssm,
+         selectively_indexed_by_note_ssm,
+         references_note_ssm,
+         participant_performer_ssm,
+         type_report_period_note_ssm,
+         special_numbering_ssm,
+         file_data_type_ssm,
+         date_place_event_note_ssm,
+         abstract_ssim,
+         audience_notes_ssm,
+         reading_grade_ssm,
+         interest_age_ssm,
+         interest_grade_ssm,
+         geographic_coverage_ssm,
+         preferred_citation_ssm,
+         supplement_ssm,
+         other_forms_ssm,
+         reproduction_note_ssm,
+         original_version_note_ssm,
+         originals_loc_ssm,
+         dup_loc_ssm,
+         funding_information_ssm,
+         technical_details_ssm,
+         terms_use_reproduction_ssm,
+         source_aquisition_ssm,
+         copyright_status_ssm,
+         associated_materials_ssm,
+         related_materials_ssm,
+         administrative_history_note_ssm,
+         biographical_sketch_note_ssm,
+         language_note_ssm,
+         former_title_ssm,
+         issuing_ssm,
+         index_note_ssm,
+         finding_aid_note_ssm,
+         documentation_info_note_ssm,
+         provenance_note_ssm,
+         version_copy_id_note_ssm,
+         methodology_ssm,
+         complexity_ssm,
+         action_note_ssm,
+         exhibitions_ssm,
+         awards_ssm
        </str>
 
        <str name="facet">true</str>
