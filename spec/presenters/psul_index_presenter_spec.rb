@@ -24,7 +24,7 @@ RSpec.describe PsulIndexPresenter do
         end
       end
 
-      it 'has no label for publication statement, but still has a label for format'
+      it 'has no label for publication statement, but still has a label for format' do
         expect(presenter.fields['publication_display_ssm'].label).to be_nil
         expect(presenter.fields['format'].label).to eq('Format')
       end
