@@ -187,7 +187,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'special_numbering_ssm', label: 'Special Numbering'
     config.add_show_field 'file_data_type_ssm', label: 'Type of File/Data'
     config.add_show_field 'date_place_event_note_ssm', label: 'Data/Place of Event'
-    config.add_show_field 'abstract_ssim', label: 'Abstract'
+    config.add_show_field 'notes_summary_ssim', label: 'Summary'
     config.add_show_field 'audience_notes_ssm', label: 'Audience Notes'
     config.add_show_field 'reading_grade_ssm', label: 'Reading Grade'
     config.add_show_field 'interest_age_ssm', label: 'Interest Age'
