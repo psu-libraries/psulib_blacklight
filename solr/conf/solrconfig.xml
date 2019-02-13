@@ -156,69 +156,62 @@
        <str name="fl">
          id,
          score,
+         lc_callnum_display_ssm,
+         marc_display_ss,
+         title_display_ssm,
+         title_latin_display_ssm,
          author_person_display_ssm,
          author_corp_display_ssm,
          author_meeting_display_ssm,
          authors_all_facet_sim,
-         addl_author_display_ssm,
-         format,
-         isbn_ssim,
-         language_facet_ssim,
-         lc_callnum_display_ssm,
-         material_type_display_ssm,
-         publication_display_ssm
-         overall_imprint_display_ssm,
-         edition_display_ssm,
-         copyright_display_ssm,
-         pub_date_ssim,
-         title_display_ssm,
-         title_latin_display_ssm,
          uniform_title_display_ssm,
          additional_title_display_ssm,
-         related_title_display_ssm,
+         format,
+         publication_display_ssm,
+         pub_date_ssim,
+         overall_imprint_display_ssm,
+         copyright_display_ssm,
+         edition_display_ssm,
+         phys_desc_ssm,
+         language_facet_ssim,
+         language_note_ssm,
+         restrictions_access_note_ssm,
+         toc_ssim,
+         notes_summary_ssim,
          series_title_display_ssm,
+         addl_author_display_ssm,
          subject_topic_facet_ssim,
          subject_display_ssm,
          genre_display_ssm,
-         url_fulltext_display_ssm,
-         url_suppl_display_ssm,
-         marc_display_ss,
-         bound_with_title_ssm: [json],
-         bound_with_notes_ssm,
-         phys_desc_ssm,
-         form_work_ssm,
+         isbn_ssim,
+         related_title_display_ssm,
+         duration_ssm,
          frequency_ssm,
          audience_ssm,
-         duration_ssm,
+         reading_grade_ssm,
+         interest_age_ssm,
+         interest_grade_ssm,
          sound_ssm,
          music_numerical_ssm,
          music_format_ssm,
          music_key_ssm,
          performance_ssm,
          video_file_ssm,
+         scale_graphic_material_note_ssm,
          digital_file_ssm,
+         audience_notes_ssm,
+         form_work_ssm,
          general_note_ssm,
-         with_note_ssm,
          dissertation_note_ssm,
          bibliography_note_ssm,
-         toc_ssim,
-         restrictions_access_note_ssm,
-         scale_graphic_material_note_ssm,
+         with_note_ssm,
          creation_production_credits_ssm,
          citation_references_note_ssm,
-         indexed_by_note_ssm,
-         selectively_indexed_by_note_ssm,
-         references_note_ssm,
          participant_performer_ssm,
          type_report_period_note_ssm,
          special_numbering_ssm,
          file_data_type_ssm,
          date_place_event_note_ssm,
-         notes_summary_ssim,
-         audience_notes_ssm,
-         reading_grade_ssm,
-         interest_age_ssm,
-         interest_grade_ssm,
          geographic_coverage_ssm,
          preferred_citation_ssm,
          supplement_ssm,
@@ -231,12 +224,11 @@
          technical_details_ssm,
          terms_use_reproduction_ssm,
          source_aquisition_ssm,
+         related_materials_ssm,
          copyright_status_ssm,
          associated_materials_ssm,
-         related_materials_ssm,
          administrative_history_note_ssm,
          biographical_sketch_note_ssm,
-         language_note_ssm,
          former_title_ssm,
          issuing_ssm,
          index_note_ssm,
@@ -249,22 +241,28 @@
          action_note_ssm,
          exhibitions_ssm,
          awards_ssm
+         bound_with_struct: [json],
+         indexed_by_note_ssm,
+         selectively_indexed_by_note_ssm,
+         references_note_ssm,
+         url_fulltext_display_ssm,
+         url_suppl_display_ssm
        </str>
 
        <str name="facet">true</str>
        <str name="facet.mincount">1</str>
        <str name="facet.limit">20</str>
+       <str name="facet.field">all_authors_facet_ssim</str>
        <str name="facet.field">format</str>
-       <str name="facet.field">lc_1letter_facet_sim</str>
-       <str name="facet.field">lc_alpha_facet_sim</str>
-       <str name="facet.field">lc_b4cutter_facet_sim</str>
        <str name="facet.field">language_facet_ssim</str>
        <str name="facet.field">pub_date_ssim</str>
-       <str name="facet.field">authors_all_facet_sim</str>
        <str name="facet.field">subject_topic_facet_ssim</str>
        <str name="facet.field">subject_facet</str>
        <str name="facet.field">genre_facet_ssim</str>
        <str name="facet.field">genre_full_facet_ssim</str>
+       <str name="facet.field">lc_1letter_facet_sim</str>
+       <str name="facet.field">lc_alpha_facet_sim</str>
+       <str name="facet.field">lc_b4cutter_facet_sim</str>
 
        <str name="spellcheck">true</str>
        <str name="spellcheck.dictionary">default</str>
