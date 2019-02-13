@@ -107,10 +107,10 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
+    config.add_facet_field 'all_authors_facet_ssim', label: 'Author', show: false
     config.add_facet_field 'format', label: 'Format'
     config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
     config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
-    config.add_facet_field 'all_authors_facet_ssim', label: 'Author', show: false
     config.add_facet_field 'subject_topic_facet_ssim', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_facet_ssim', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_full_facet_ssim', label: 'Genre', show: false
@@ -127,9 +127,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'title_latin_display_ssm', label: 'Title'
     config.add_index_field 'format', label: 'Format', link_to_facet: true
     config.add_index_field 'publication_display_ssm', label: 'Publication Statement'
-    config.add_index_field 'language_facet_ssim', label: 'Language'
-    config.add_index_field 'lc_callnum_display_ssm', label: 'Call number'
-    config.add_index_field 'id', label: 'Catkey'
+    config.add_index_field 'url_fulltext_display_ssm', label: 'URL'
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
@@ -145,6 +143,10 @@ class CatalogController < ApplicationController
     config.add_show_field 'edition_display_ssm', label: 'Edition'
     config.add_show_field 'phys_desc_ssm', label: 'Physical Description'
     config.add_show_field 'language_facet_ssim', label: 'Language'
+    config.add_show_field 'language_note_ssm', label: 'Language Note'
+    config.add_show_field 'restrictions_access_note_ssm', label: 'Restrictions on Access'
+    config.add_show_field 'toc_ssim', label: 'Contents'
+    config.add_show_field 'notes_summary_ssim', label: 'Summary'
     config.add_show_field 'series_title_display_ssm', label: 'Series'
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet_ssim
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
@@ -154,19 +156,69 @@ class CatalogController < ApplicationController
     config.add_show_field 'duration_ssm', label: 'Duration', helper_method: :display_duration
     config.add_show_field 'frequency_ssm', label: 'Publication Frequency'
     config.add_show_field 'audience_ssm', label: 'Audience'
+    config.add_show_field 'reading_grade_ssm', label: 'Reading Grade'
+    config.add_show_field 'interest_age_ssm', label: 'Interest Age'
+    config.add_show_field 'interest_grade_ssm', label: 'Interest Grade'
     config.add_show_field 'sound_ssm', label: 'Sound Characteristics'
     config.add_show_field 'music_numerical_ssm', label: 'Musical Work Number'
     config.add_show_field 'music_format_ssm', label: 'Format of Notated Music'
     config.add_show_field 'music_key_ssm', label: 'Musical key'
     config.add_show_field 'performance_ssm', label: 'Medium of Performance'
     config.add_show_field 'video_file_ssm', label: 'Video File Characteristics'
+    config.add_show_field 'scale_graphic_material_note_ssm', label: 'Scale Note for Graphic Material'
     config.add_show_field 'digital_file_ssm', label: 'Digital File characteristics'
+    config.add_show_field 'audience_notes_ssm', label: 'Audience Notes'
     config.add_show_field 'form_work_ssm', label: 'Form of work'
+    config.add_show_field 'general_note_ssm', label: 'Note'
+    config.add_show_field 'dissertation_note_ssm', label: 'Dissertation Note'
+    config.add_show_field 'bibliography_note_ssm', label: 'Bibliography Note'
+    config.add_show_field 'with_note_ssm', label: 'With'
+    config.add_show_field 'creation_production_credits_ssm', label: 'Creation/Production Credits Note'
+    config.add_show_field 'citation_references_note_ssm', label: 'Citation/References Note'
+    config.add_show_field 'participant_performer_ssm', label: 'Participant/Performer Note'
+    config.add_show_field 'type_report_period_note_ssm', label: 'Type of Report and Period Covered Note'
+    config.add_show_field 'special_numbering_ssm', label: 'Special Numbering'
+    config.add_show_field 'file_data_type_ssm', label: 'Type of File/Data'
+    config.add_show_field 'date_place_event_note_ssm', label: 'Data/Place of Event'
+    config.add_show_field 'geographic_coverage_ssm', label: 'Geographic Coverage'
+    config.add_show_field 'preferred_citation_ssm', label: 'Preferred Citation'
+    config.add_show_field 'supplement_ssm', label: 'Supplement Note'
+    config.add_show_field 'other_forms_ssm', label: 'Other Forms'
+    config.add_show_field 'reproduction_note_ssm', label: 'Reproduction Note'
+    config.add_show_field 'original_version_note_ssm', label: 'Original Version'
+    config.add_show_field 'originals_loc_ssm', label: 'Location of Originals'
+    config.add_show_field 'dup_loc_ssm', label: 'Location of Duplicates'
+    config.add_show_field 'funding_information_ssm', label: 'Funding Information'
+    config.add_show_field 'technical_details_ssm', label: 'Technical Details'
+    config.add_show_field 'terms_use_reproduction_ssm', label: 'Terms of Use and Reproduction'
+    config.add_show_field 'source_aquisition_ssm', label: 'Source of Acquisition'
+    config.add_show_field 'related_materials_ssm', label: 'Related Materials'
+    config.add_show_field 'copyright_status_ssm', label: 'Copyright Note'
+    config.add_show_field 'associated_materials_ssm', label: 'Associated Materials'
+    config.add_show_field 'administrative_history_note_ssm', label: 'Administrative History'
+    config.add_show_field 'biographical_sketch_note_ssm', label: 'Biographical Note'
+    config.add_show_field 'former_title_ssm', label: 'Title Varies'
+    config.add_show_field 'issuing_ssm', label: 'Issuing Body'
+    config.add_show_field 'index_note_ssm', label: 'Index Note'
+    config.add_show_field 'finding_aid_note_ssm', label: 'Finding Aid Note'
+    config.add_show_field 'documentation_info_note_ssm', label: 'Documentation Information'
+    config.add_show_field 'provenance_note_ssm', label: 'Provenance'
+    config.add_show_field 'version_copy_id_note_ssm', label: 'Version/Copy ID'
+    config.add_show_field 'methodology_ssm', label: 'Methodology Note'
+    config.add_show_field 'complexity_ssm', label: 'Complexity Note'
+    config.add_show_field 'action_note_ssm', label: 'Action Note'
+    config.add_show_field 'exhibitions_ssm', label: 'Exhibitions'
+    config.add_show_field 'awards_ssm', label: 'Awards'
     config.add_show_field 'bound_with_struct', label: 'Binding notes', helper_method: :bound_info
+    config.add_show_field 'indexed_by_note_ssm', label: 'Indexed By'
+    config.add_show_field 'selectively_indexed_by_note_ssm', label: 'Selectively Indexed By'
+    config.add_show_field 'references_note_ssm', label: 'Reviewed/Cited In'
+
+    # TODO: Access/availability fields
     config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
     config.add_show_field 'url_suppl_display_ssm', label: 'More Information'
-    config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
-    config.add_show_field 'id', label: 'Catkey'
+    # config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
+    # config.add_show_field 'id', label: 'Catkey'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
