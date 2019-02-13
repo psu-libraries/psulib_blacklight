@@ -68,7 +68,7 @@
          series_title_tsim^10
          isbn_ssim
          toc_ssim
-         abstract_ssim
+         notes_summary_ssim
          all_text_timv
        </str>
        <str name="pf">
@@ -91,7 +91,7 @@
          series_title_unstem_search^250
          series_title_tsim^100
          toc_ssim^50
-         abstract_ssim^50
+         notes_summary_ssim^50
          all_text_timv^10
        </str>
        <str name="author_qf">
@@ -214,7 +214,7 @@
          special_numbering_ssm,
          file_data_type_ssm,
          date_place_event_note_ssm,
-         abstract_ssim,
+         notes_summary_ssim,
          audience_notes_ssm,
          reading_grade_ssm,
          interest_age_ssm,
