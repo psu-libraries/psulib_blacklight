@@ -151,7 +151,8 @@ class CatalogController < ApplicationController
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet_ssim
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
     config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
-    config.add_show_field 'isbn_ssim', label: 'ISBN'
+    config.add_show_field 'isbn_ssm', label: 'ISBN'
+    config.add_show_field 'issn_ssm', label: 'ISSN'
     config.add_show_field 'related_title_display_ssm', label: 'Related Titles'
     config.add_show_field 'duration_ssm', label: 'Duration', helper_method: :display_duration
     config.add_show_field 'frequency_ssm', label: 'Publication Frequency'
