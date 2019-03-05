@@ -66,7 +66,8 @@
          subject_addl_tsim^50
          series_title_unstem_search^25
          series_title_tsim^10
-         isbn_ssim
+         isbn_sim
+         issn_sim
          toc_ssim
          notes_summary_ssim
          all_text_timv
@@ -150,7 +151,8 @@
        <!-- for advanced search number text box -->
        <str name="number_qf">
          id
-         isbn_ssim
+         isbn_sim
+         issn_sim
        </str>
 
        <str name="fl">
@@ -183,7 +185,8 @@
          subject_topic_facet_ssim,
          subject_display_ssm,
          genre_display_ssm,
-         isbn_ssim,
+         isbn_ssm,
+         issn_ssm,
          related_title_display_ssm,
          duration_ssm,
          frequency_ssm,
