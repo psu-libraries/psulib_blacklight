@@ -125,7 +125,7 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field 'title_latin_display_ssm', label: 'Title'
-    config.add_index_field 'format', label: 'Format', link_to_facet: true
+    config.add_index_field 'format', label: 'Format'
     config.add_index_field 'publication_display_ssm', label: 'Publication Statement'
     config.add_index_field 'url_fulltext_display_ssm', label: 'URL'
 
@@ -137,7 +137,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: :all_authors_facet_ssim
     config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title'
     config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles'
-    config.add_show_field 'format', label: 'Format', link_to_facet: true
+    config.add_show_field 'format', label: 'Format'
     config.add_show_field 'overall_imprint_display_ssm', label: 'Published'
     config.add_show_field 'copyright_display_ssm', label: 'Copyright Date'
     config.add_show_field 'edition_display_ssm', label: 'Edition'
@@ -167,7 +167,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'performance_ssm', label: 'Medium of Performance'
     config.add_show_field 'video_file_ssm', label: 'Video File Characteristics'
     config.add_show_field 'scale_graphic_material_note_ssm', label: 'Scale Note for Graphic Material'
-    config.add_show_field 'digital_file_ssm', label: 'Digital File characteristics'
+    config.add_show_field 'digital_file_ssm', label: 'Digital File Characteristics'
     config.add_show_field 'audience_notes_ssm', label: 'Audience Notes'
     config.add_show_field 'form_work_ssm', label: 'Form of work'
     config.add_show_field 'general_note_ssm', label: 'Note'
