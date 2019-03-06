@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootsnap', require: false
-gem 'bootstrap', '~> 4.0'
+gem "bootstrap", ">= 4.3.1"
 gem 'coveralls', require: false
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
