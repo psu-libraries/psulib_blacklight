@@ -1,6 +1,7 @@
 .documents-list {
   .blacklight-format::before {
     @extend %fa-icon;
+    // scss-lint:disable PlaceholderInExtend
     @extend .fas;
 
     padding-right: .2em;
