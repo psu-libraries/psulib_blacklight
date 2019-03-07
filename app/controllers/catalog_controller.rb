@@ -148,6 +148,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'toc_ssim', label: 'Contents'
     config.add_show_field 'notes_summary_ssim', label: 'Summary'
     config.add_show_field 'series_title_display_ssm', label: 'Series'
+    config.add_show_field 'dates_of_pub_ssim', label: 'Dates of Publication and/or Sequential Designation'
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet_ssim
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
     config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
