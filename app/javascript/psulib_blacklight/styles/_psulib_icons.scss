@@ -1,82 +1,84 @@
-.blacklight-format::before {
-  @extend %fa-icon;
-  @extend .fas;
+.documents-list {
+  .blacklight-format::before {
+    @extend %fa-icon;
+    @extend .fas;
 
-  padding-right: .2em;
-}
+    padding-right: .2em;
+  }
 
-.blacklight-archives-manuscripts .blacklight-format::before {
-  content: fa-content($fa-var-archive);
-}
+  .blacklight-archives-manuscripts .blacklight-format::before {
+    content: fa-content($fa-var-archive);
+  }
 
-.blacklight-audio .blacklight-format::before {
-  content: fa-content($fa-var-volume-up);
-}
+  .blacklight-audio .blacklight-format::before {
+    content: fa-content($fa-var-volume-up);
+  }
 
-.blacklight-book .blacklight-format::before {
-  content: fa-content($fa-var-book);
-}
+  .blacklight-book .blacklight-format::before {
+    content: fa-content($fa-var-book);
+  }
 
-.blacklight-congress .blacklight-format::before {
-  content: fa-content($fa-var-book-open);
-}
+  .blacklight-congress .blacklight-format::before {
+    content: fa-content($fa-var-book-open);
+  }
 
-.blacklight-games-toys .blacklight-format::before {
-  content: fa-content($fa-var-chess);
-}
+  .blacklight-games-toys .blacklight-format::before {
+    content: fa-content($fa-var-chess);
+  }
 
-.blacklight-government-document .blacklight-format::before {
-  content: fa-content($fa-var-file-alt);
-}
+  .blacklight-government-document .blacklight-format::before {
+    content: fa-content($fa-var-file-alt);
+  }
 
-.blacklight-image .blacklight-format::before {
-  content: fa-content($fa-var-image);
-}
+  .blacklight-image .blacklight-format::before {
+    content: fa-content($fa-var-image);
+  }
 
-.blacklight-instructional-material .blacklight-format::before {
-  content: fa-content($fa-var-chalkboard-teacher);
-}
+  .blacklight-instructional-material .blacklight-format::before {
+    content: fa-content($fa-var-chalkboard-teacher);
+  }
 
-.blacklight-journal-periodical .blacklight-format::before {
-  content: fa-content($fa-var-book-open);
-}
+  .blacklight-journal-periodical .blacklight-format::before {
+    content: fa-content($fa-var-book-open);
+  }
 
-.blacklight-juvenile-book .blacklight-format::before {
-  content: fa-content($fa-var-book);
-}
+  .blacklight-juvenile-book .blacklight-format::before {
+    content: fa-content($fa-var-book);
+  }
 
-.blacklight-kit .blacklight-format::before {
-  content: fa-content($fa-var-microscope);
-}
+  .blacklight-kit .blacklight-format::before {
+    content: fa-content($fa-var-microscope);
+  }
 
-.blacklight-maps-atlases-globes .blacklight-format::before {
-  content: fa-content($fa-var-map);
-}
+  .blacklight-maps-atlases-globes .blacklight-format::before {
+    content: fa-content($fa-var-map);
+  }
 
-.blacklight-musical-score .blacklight-format::before {
-  content: fa-content($fa-var-book-open);
-}
+  .blacklight-musical-score .blacklight-format::before {
+    content: fa-content($fa-var-book-open);
+  }
 
-.blacklight-newspaper .blacklight-format::before {
-  content: fa-content($fa-var-newspaper);
-}
+  .blacklight-newspaper .blacklight-format::before {
+    content: fa-content($fa-var-newspaper);
+  }
 
-.blacklight-proceeding-congress .blacklight-format::before {
-  content: fa-content($fa-var-book-open);
-}
+  .blacklight-proceeding-congress .blacklight-format::before {
+    content: fa-content($fa-var-book-open);
+  }
 
-.blacklight-reporter .blacklight-format::before {
-  content: fa-content($fa-var-book);
-}
+  .blacklight-reporter .blacklight-format::before {
+    content: fa-content($fa-var-book);
+  }
 
-.blacklight-statute .blacklight-format::before {
-  content: fa-content($fa-var-book);
-}
+  .blacklight-statute .blacklight-format::before {
+    content: fa-content($fa-var-book);
+  }
 
-.blacklight-thesis-dissertation .blacklight-format::before {
-  content: fa-content($fa-var-graduation-cap);
-}
+  .blacklight-thesis-dissertation .blacklight-format::before {
+    content: fa-content($fa-var-graduation-cap);
+  }
 
-.blacklight-video .blacklight-format::before {
-  content: fa-content($fa-var-video);
+  .blacklight-video .blacklight-format::before {
+    content: fa-content($fa-var-video);
+  }
 }
