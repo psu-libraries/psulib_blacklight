@@ -4,82 +4,163 @@
     // scss-lint:disable PlaceholderInExtend
     @extend .fas;
 
-    padding-right: .2em;
+    color: $gray-600;
+    padding-right: .3em;
   }
 
-  .blacklight-archives-manuscripts .blacklight-format::before {
-    content: fa-content($fa-var-archive);
+  .document-thumbnail {
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+
+    a:hover {
+      color: inherit;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .icon {
+      @extend %fa-icon;
+      // scss-lint:disable PlaceholderInExtend
+      @extend .fas;
+      @extend .fa-5x;
+
+      color: $gray-600;
+    }
   }
 
-  .blacklight-audio .blacklight-format::before {
-    content: fa-content($fa-var-volume-up);
+  .blacklight-archives-manuscripts {
+    .blacklight-format::before,
+    .icon-archives-manuscripts::before {
+      content: fa-content($fa-var-archive);
+    }
   }
 
-  .blacklight-book .blacklight-format::before {
-    content: fa-content($fa-var-book);
+  .blacklight-audio {
+    .blacklight-format::before,
+    .icon-audio::before {
+      content: fa-content($fa-var-volume-up);
+    }
   }
 
-  .blacklight-congress .blacklight-format::before {
-    content: fa-content($fa-var-book-open);
+  .blacklight-book {
+    .blacklight-format::before,
+    .icon-book::before {
+      content: fa-content($fa-var-book);
+    }
   }
 
-  .blacklight-games-toys .blacklight-format::before {
-    content: fa-content($fa-var-chess);
+  .blacklight-congress {
+    .blacklight-format::before,
+    .icon-congress::before {
+      content: fa-content($fa-var-book-open);
+    }
   }
 
-  .blacklight-government-document .blacklight-format::before {
-    content: fa-content($fa-var-file-alt);
+  .blacklight-games-toys {
+    .blacklight-format::before,
+    .icon-games-toys::before {
+      content: fa-content($fa-var-chess);
+    }
   }
 
-  .blacklight-image .blacklight-format::before {
-    content: fa-content($fa-var-image);
+  .blacklight-government-document {
+    .blacklight-format::before,
+    .icon-government-document::before {
+      content: fa-content($fa-var-file-alt);
+    }
   }
 
-  .blacklight-instructional-material .blacklight-format::before {
-    content: fa-content($fa-var-chalkboard-teacher);
+  .blacklight-image {
+    .blacklight-format::before,
+    .icon-image::before {
+      content: fa-content($fa-var-image);
+    }
   }
 
-  .blacklight-journal-periodical .blacklight-format::before {
-    content: fa-content($fa-var-book-open);
+  .blacklight-instructional-material {
+    .blacklight-format::before,
+    .icon-instructional-material::before {
+      content: fa-content($fa-var-chalkboard-teacher);
+    }
   }
 
-  .blacklight-juvenile-book .blacklight-format::before {
-    content: fa-content($fa-var-book);
+  .blacklight-journal-periodical {
+    .blacklight-format::before,
+    .icon-journal-periodical::before {
+      content: fa-content($fa-var-book-open);
+    }
   }
 
-  .blacklight-kit .blacklight-format::before {
-    content: fa-content($fa-var-microscope);
+  .blacklight-juvenile-book {
+    .blacklight-format::before,
+    .icon-juvenile-book::before {
+      content: fa-content($fa-var-book);
+    }
   }
 
-  .blacklight-maps-atlases-globes .blacklight-format::before {
-    content: fa-content($fa-var-map);
+  .blacklight-kit {
+    .blacklight-format::before,
+    .icon-kit::before {
+      content: fa-content($fa-var-microscope);
+    }
   }
 
-  .blacklight-musical-score .blacklight-format::before {
-    content: fa-content($fa-var-book-open);
+  .blacklight-maps-atlases-globes {
+    .blacklight-format::before,
+    .icon-maps-atlases-globes::before {
+      content: fa-content($fa-var-map);
+    }
   }
 
-  .blacklight-newspaper .blacklight-format::before {
-    content: fa-content($fa-var-newspaper);
+  .blacklight-musical-score {
+    .blacklight-format::before,
+    .icon-musical-score::before {
+      content: fa-content($fa-var-book-open);
+    }
   }
 
-  .blacklight-proceeding-congress .blacklight-format::before {
-    content: fa-content($fa-var-book-open);
+  .blacklight-newspaper {
+    .blacklight-format::before,
+    .icon-newspaper::before {
+      content: fa-content($fa-var-newspaper);
+    }
   }
 
-  .blacklight-reporter .blacklight-format::before {
-    content: fa-content($fa-var-book);
+  .blacklight-proceeding-congress {
+    .blacklight-format::before,
+    .icon-proceeding-congress::before {
+      content: fa-content($fa-var-book-open);
+    }
   }
 
-  .blacklight-statute .blacklight-format::before {
-    content: fa-content($fa-var-book);
+  .blacklight-reporter {
+    .blacklight-format::before,
+    .icon-reporter::before {
+      content: fa-content($fa-var-book);
+    }
   }
 
-  .blacklight-thesis-dissertation .blacklight-format::before {
-    content: fa-content($fa-var-graduation-cap);
+  .blacklight-statute {
+    .blacklight-format::before,
+    .icon-statute::before {
+      content: fa-content($fa-var-book);
+    }
   }
 
-  .blacklight-video .blacklight-format::before {
-    content: fa-content($fa-var-video);
+  .blacklight-thesis-dissertation {
+    .blacklight-format::before,
+    .icon-thesis-dissertation::before {
+      content: fa-content($fa-var-graduation-cap);
+    }
+  }
+
+  .blacklight-video {
+    .blacklight-format::before,
+    .icon-video::before {
+      content: fa-content($fa-var-video);
+    }
   }
 }

@@ -76,12 +76,12 @@ class CatalogController < ApplicationController
     # solr field configuration for search results/index views
     config.index.title_field = 'title_display_ssm'
     config.index.display_type_field = 'format'
-    # config.index.thumbnail_field = 'thumbnail_path_ss'
+    config.index.thumbnail_method = :render_thumbnail
 
     # solr field configuration for document/show views
     # config.show.title_field = 'title_display_ssm'
     # config.show.display_type_field = 'format'
-    # config.show.thumbnail_field = 'thumbnail_path_ss'
+    # config.show.thumbnail_field = :render_thumbnail
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
