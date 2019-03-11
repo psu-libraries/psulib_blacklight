@@ -1,4 +1,19 @@
-.documents-list {
+.page-sidebar .document-thumbnail {
+  // scss-lint:disable PlaceholderInExtend
+  @extend .fa-7x;
+
+  display: block;
+  margin-bottom: .5em;
+  text-align: center;
+}
+
+.documents-list .document-thumbnail {
+  // scss-lint:disable PlaceholderInExtend
+  @extend .fa-5x;
+}
+
+.documents-list,
+.page-sidebar {
   .blacklight-format::before {
     @extend %fa-icon;
     // scss-lint:disable PlaceholderInExtend
@@ -14,7 +29,6 @@
       text-decoration: none;
     }
 
-
     a:hover {
       color: inherit;
       cursor: pointer;
@@ -25,142 +39,103 @@
       @extend %fa-icon;
       // scss-lint:disable PlaceholderInExtend
       @extend .fas;
-      @extend .fa-5x;
 
       color: $gray-600;
     }
   }
 
-  .blacklight-archives-manuscripts {
-    .blacklight-format::before,
-    .icon-archives-manuscripts::before {
-      content: fa-content($fa-var-archive);
-    }
+  .blacklight-archives-manuscripts .blacklight-format::before,
+  .icon-archives-manuscripts::before {
+    content: fa-content($fa-var-archive);
   }
 
-  .blacklight-audio {
-    .blacklight-format::before,
-    .icon-audio::before {
-      content: fa-content($fa-var-volume-up);
-    }
+  .blacklight-audio .blacklight-format::before,
+  .icon-audio::before {
+    content: fa-content($fa-var-volume-up);
   }
 
-  .blacklight-book {
-    .blacklight-format::before,
-    .icon-book::before {
-      content: fa-content($fa-var-book);
-    }
+  .blacklight-book .blacklight-format::before,
+  .icon-book::before {
+    content: fa-content($fa-var-book);
   }
 
-  .blacklight-congress {
-    .blacklight-format::before,
-    .icon-congress::before {
-      content: fa-content($fa-var-book-open);
-    }
+  .blacklight-congress .blacklight-format::before,
+  .icon-congress::before {
+    content: fa-content($fa-var-book-open);
   }
 
-  .blacklight-games-toys {
-    .blacklight-format::before,
-    .icon-games-toys::before {
-      content: fa-content($fa-var-chess);
-    }
+  .blacklight-games-toys .blacklight-format::before,
+  .icon-games-toys::before {
+    content: fa-content($fa-var-chess);
   }
 
-  .blacklight-government-document {
-    .blacklight-format::before,
-    .icon-government-document::before {
-      content: fa-content($fa-var-file-alt);
-    }
+  .blacklight-government-document .blacklight-format::before,
+  .icon-government-document::before {
+    content: fa-content($fa-var-file-alt);
   }
 
-  .blacklight-image {
-    .blacklight-format::before,
-    .icon-image::before {
-      content: fa-content($fa-var-image);
-    }
+  .blacklight-image .blacklight-format::before,
+  .icon-image::before {
+    content: fa-content($fa-var-image);
   }
 
-  .blacklight-instructional-material {
-    .blacklight-format::before,
-    .icon-instructional-material::before {
-      content: fa-content($fa-var-chalkboard-teacher);
-    }
+  .blacklight-instructional-material .blacklight-format::before,
+  .icon-instructional-material::before {
+    content: fa-content($fa-var-chalkboard-teacher);
   }
 
-  .blacklight-journal-periodical {
-    .blacklight-format::before,
-    .icon-journal-periodical::before {
-      content: fa-content($fa-var-book-open);
-    }
+  .blacklight-journal-periodical .blacklight-format::before,
+  .icon-journal-periodical::before {
+    content: fa-content($fa-var-book-open);
   }
 
-  .blacklight-juvenile-book {
-    .blacklight-format::before,
-    .icon-juvenile-book::before {
-      content: fa-content($fa-var-book);
-    }
+  .blacklight-juvenile-book .blacklight-format::before,
+  .icon-juvenile-book::before {
+    content: fa-content($fa-var-book);
   }
 
-  .blacklight-kit {
-    .blacklight-format::before,
-    .icon-kit::before {
-      content: fa-content($fa-var-microscope);
-    }
+  .blacklight-kit .blacklight-format::before,
+  .icon-kit::before {
+    content: fa-content($fa-var-microscope);
   }
 
-  .blacklight-maps-atlases-globes {
-    .blacklight-format::before,
-    .icon-maps-atlases-globes::before {
-      content: fa-content($fa-var-map);
-    }
+  .blacklight-maps-atlases-globes .blacklight-format::before,
+  .icon-maps-atlases-globes::before {
+    content: fa-content($fa-var-map);
   }
 
-  .blacklight-musical-score {
-    .blacklight-format::before,
-    .icon-musical-score::before {
-      content: fa-content($fa-var-book-open);
-    }
+  .blacklight-musical-score .blacklight-format::before,
+  .icon-musical-score::before {
+    content: fa-content($fa-var-book-open);
   }
 
-  .blacklight-newspaper {
-    .blacklight-format::before,
-    .icon-newspaper::before {
-      content: fa-content($fa-var-newspaper);
-    }
+  .blacklight-newspaper .blacklight-format::before,
+  .icon-newspaper::before {
+    content: fa-content($fa-var-newspaper);
   }
 
-  .blacklight-proceeding-congress {
-    .blacklight-format::before,
-    .icon-proceeding-congress::before {
-      content: fa-content($fa-var-book-open);
-    }
+  .blacklight-proceeding-congress .blacklight-format::before,
+  .icon-proceeding-congress::before {
+    content: fa-content($fa-var-book-open);
   }
 
-  .blacklight-reporter {
-    .blacklight-format::before,
-    .icon-reporter::before {
-      content: fa-content($fa-var-book);
-    }
+  .blacklight-reporter .blacklight-format::before,
+  .icon-reporter::before {
+    content: fa-content($fa-var-book);
   }
 
-  .blacklight-statute {
-    .blacklight-format::before,
-    .icon-statute::before {
-      content: fa-content($fa-var-book);
-    }
+  .blacklight-statute .blacklight-format::before,
+  .icon-statute::before {
+    content: fa-content($fa-var-book);
   }
 
-  .blacklight-thesis-dissertation {
-    .blacklight-format::before,
-    .icon-thesis-dissertation::before {
-      content: fa-content($fa-var-graduation-cap);
-    }
+  .blacklight-thesis-dissertation .blacklight-format::before,
+  .icon-thesis-dissertation::before {
+    content: fa-content($fa-var-graduation-cap);
   }
 
-  .blacklight-video {
-    .blacklight-format::before,
-    .icon-video::before {
-      content: fa-content($fa-var-video);
-    }
+  .blacklight-video .blacklight-format::before,
+  .icon-video::before {
+    content: fa-content($fa-var-video);
   }
 }

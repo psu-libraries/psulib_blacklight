@@ -67,8 +67,8 @@ module ApplicationHelper
     options[:value]&.map { |v| v.scan(/([0-9]{2})/).join(':') }
   end
 
-  # To render format icon as the default thumbnail for now
-  def render_thumbnail(document, _options)
+  # To render format icon on search results as the default thumbnail for now
+  def render_thumbnail(document, _options = {})
     content_tag(:span, '', class: "icon icon-#{document[:format][0].parameterize}")
   end
 end
