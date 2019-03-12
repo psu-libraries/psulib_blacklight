@@ -216,9 +216,10 @@ class CatalogController < ApplicationController
     config.add_show_field 'selectively_indexed_by_note_ssm', label: 'Selectively Indexed By'
     config.add_show_field 'references_note_ssm', label: 'Reviewed/Cited In'
 
-    # TODO: Access/availability fields
-    config.add_show_field 'url_fulltext_display_ssm', label: 'URL'
-    config.add_show_field 'url_suppl_display_ssm', label: 'More Information'
+    # Order not yet specified
+    config.add_show_field 'full_links_struct', label: 'Access Online', helper_method: :generic_link
+    config.add_show_field 'partial_links_struct', label: 'View More Online', helper_method: :generic_link
+    config.add_show_field 'suppl_links_struct', label: 'View More Online', helper_method: :generic_link
     # config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
     # config.add_show_field 'id', label: 'Catkey'
 

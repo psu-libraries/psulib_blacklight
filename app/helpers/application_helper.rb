@@ -66,4 +66,13 @@ module ApplicationHelper
   def display_duration(options = {})
     options[:value]&.map { |v| v.scan(/([0-9]{2})/).join(':') }
   end
+
+  # Make a link out of a url and text
+  def generic_link(options = {})
+    field_data = options[:value]
+    field_data.map do |item|
+      json = JSON.parse item
+      link_to json['text'], json['url']
+    end
+  end
 end
