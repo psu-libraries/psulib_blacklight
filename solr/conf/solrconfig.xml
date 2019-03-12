@@ -249,7 +249,10 @@
          selectively_indexed_by_note_ssm,
          references_note_ssm,
          url_fulltext_display_ssm,
-         url_suppl_display_ssm
+         url_suppl_display_ssm,
+         full_links_struct,
+         partial_links_struct,
+         suppl_links_struct
        </str>
 
        <str name="facet">true</str>

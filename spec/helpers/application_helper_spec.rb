@@ -81,7 +81,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     context 'when there is a single url and text pair' do
       it 'assembles all the link correctly' do
         link = generic_link link_doc
-        expect(link).to eql ['<a href="http://usacac.army.mil/CAC2/MilitaryReview/mrpast2.asp">usacac.army.mil</a>']
+        expect(link).to eql '<span><a href="http://usacac.army.mil/CAC2/MilitaryReview/mrpast2.asp">usacac.army.mil</a></span>'
       end
     end
   end

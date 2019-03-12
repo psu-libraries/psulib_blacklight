@@ -70,9 +70,10 @@ module ApplicationHelper
   # Make a link out of a url and text
   def generic_link(options = {})
     field_data = options[:value]
-    field_data.map do |item|
+    contents = field_data.map do |item|
       json = JSON.parse item
       link_to json['text'], json['url']
     end
+    content_tag 'span', contents.join('<br>'), nil, false
   end
 end

@@ -127,7 +127,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'title_latin_display_ssm', label: 'Title'
     config.add_index_field 'format', label: 'Format', link_to_facet: true
     config.add_index_field 'publication_display_ssm', label: 'Publication Statement'
-    config.add_index_field 'url_fulltext_display_ssm', label: 'URL'
+    config.add_index_field 'full_links_struct', label: 'Access Online', helper_method: :generic_link
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
