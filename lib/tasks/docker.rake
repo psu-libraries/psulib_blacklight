@@ -5,13 +5,12 @@ namespace :docker do
     Rake::Task['docker:pull'].invoke
     container_status = `docker inspect felix`
     container_status.strip!
-
     if container_status == '[]'
       Rake::Task['docker:first_start'].invoke
     else
       Rake::Task['docker:start'].invoke
       Rake::Task['docker:conf'].invoke
-      Rake::Task['docker::down'].invoke
+      Rake::Task['docker:down'].invoke
       Rake::Task['docker:start'].invoke
     end
 
@@ -28,6 +27,7 @@ namespace :docker do
     print `docker run \
             --name felix \
             -a STDOUT \
+            -e SOLR_HEAP=1G \
             -p 8983:8983 \
             -v "$(pwd)"/solr/conf:/myconfig \
             solr:7.4.0 \
