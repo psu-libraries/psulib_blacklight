@@ -83,6 +83,15 @@ RSpec.describe ApplicationHelper, type: :helper do
         link = generic_link link_doc
         expect(link).to eql '<span><a href="http://usacac.army.mil/CAC2/MilitaryReview/mrpast2.asp">usacac.arm'\
                             'y.mil</a></span>'
+
+  describe '#render_thumbnail' do
+    let (:document) { { format: ['Book'] } }
+
+    context 'when a record has no thumbnail' do
+      it 'format icon is the default thumbnail' do
+        thumbnail = render_thumbnail document
+        expect(thumbnail).to have_css '.faspsu-book'
+
       end
     end
   end
