@@ -75,10 +75,10 @@ module ApplicationHelper
       link_to json['text'], json['url']
     end
     content_tag 'span', contents.join('<br>'), nil, false
+  end
 
   # To render format icon on search results as the default thumbnail for now
   def render_thumbnail(document, _options = {})
     content_tag(:span, '', class: "fas faspsu-#{document[:format][0].parameterize}")
-
   end
 end
