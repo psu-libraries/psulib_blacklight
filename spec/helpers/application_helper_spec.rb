@@ -74,6 +74,19 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
+  describe '#generic_link' do
+    let (:field_data) { ['{"text":"usacac.army.mil","url":"http://usacac.army.mil/CAC2/MilitaryReview/mrpast2.asp"}'] }
+    let (:link_doc) { { value: field_data } }
+
+    context 'when there is a single url and text pair' do
+      it 'assembles all the link correctly' do
+        link = generic_link link_doc
+        expect(link).to eql '<span><a href="http://usacac.army.mil/CAC2/MilitaryReview/mrpast2.asp">usacac.arm'\
+                            'y.mil</a></span>'
+      end
+    end
+  end
+
   describe '#render_thumbnail' do
     let (:document) { { format: ['Book'] } }
 

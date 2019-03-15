@@ -67,6 +67,16 @@ module ApplicationHelper
     options[:value]&.map { |v| v.scan(/([0-9]{2})/).join(':') }
   end
 
+  # Make a link out of a url and text
+  def generic_link(options = {})
+    field_data = options[:value]
+    contents = field_data.map do |item|
+      json = JSON.parse item
+      link_to json['text'], json['url']
+    end
+    content_tag 'span', contents.join('<br>'), nil, false
+  end
+
   # To render format icon on search results as the default thumbnail for now
   def render_thumbnail(document, _options = {})
     content_tag(:span, '', class: "fas faspsu-#{document[:format][0].parameterize}")
