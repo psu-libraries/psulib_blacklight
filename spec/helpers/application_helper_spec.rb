@@ -80,7 +80,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     context 'when a record has no thumbnail' do
       it 'format icon is the default thumbnail' do
         thumbnail = render_thumbnail document
-        expect(thumbnail).to have_css '.icon-book'
+        expect(thumbnail).to have_css '.faspsu-book'
       end
     end
   end
