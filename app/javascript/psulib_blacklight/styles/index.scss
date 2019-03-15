@@ -1,6 +1,12 @@
 // twitter bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// font awesome
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
+
 // blacklight upstream
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/mixins';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/blacklight_defaults';
@@ -26,3 +32,4 @@ $logo-image: url('../images/logo.png');
 @import 'blacklight_marc';
 
 @import 'show_default';
+@import 'psulib_icons';

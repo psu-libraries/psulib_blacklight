@@ -66,4 +66,9 @@ module ApplicationHelper
   def display_duration(options = {})
     options[:value]&.map { |v| v.scan(/([0-9]{2})/).join(':') }
   end
+
+  # To render format icon on search results as the default thumbnail for now
+  def render_thumbnail(document, _options = {})
+    content_tag(:span, '', class: "fas faspsu-#{document[:format][0].parameterize}")
+  end
 end
