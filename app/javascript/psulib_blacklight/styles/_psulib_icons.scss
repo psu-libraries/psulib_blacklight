@@ -132,4 +132,9 @@
   .faspsu-video::before {
     content: fa-content($fa-var-video);
   }
+
+  .blacklight-other .blacklight-format::before,
+  .faspsu-other::before {
+    content: fa-content($fa-var-scroll);
+  }
 }
