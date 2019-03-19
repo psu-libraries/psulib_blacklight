@@ -15,7 +15,7 @@ gem 'devise-guests', '~> 0.6'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'puma', '~> 3.7'
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 5.2.2'
 gem 'rsolr', '>= 1.0'
 gem 'webpacker', '~> 3.5'
 
