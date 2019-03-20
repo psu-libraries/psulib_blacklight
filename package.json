@@ -4,7 +4,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
     "@rails/webpacker": "3.5",
-    "blacklight-frontend": "https://github.com/projectblacklight/blacklight#c435caddf14af6aa36c1428995b8cc52d76d4bf2",
+    "blacklight-frontend": "https://github.com/projectblacklight/blacklight#037633c43975feadd02605cae08f15abc474e98d",
     "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#v6.2.0",
     "bootstrap-select": "^1.13.5",
     "caniuse-lite": "^1.0.30000697",
