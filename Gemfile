@@ -10,7 +10,7 @@ end
 gem 'bootsnap', require: false
 gem 'bootstrap', '>= 4.3.1'
 gem 'coveralls', require: false
-gem "devise", ">= 4.6.0"
+gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
