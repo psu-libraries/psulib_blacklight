@@ -7,7 +7,7 @@
       <dd class="blacklight-<%= field_name.parameterize %> col-md-12"><%= doc_presenter.field_value field %></dd>
     <% else %>
       <dt class="blacklight-<%= field_name.parameterize %> col-md-auto"><%= render_index_field_label document, field: field_name %></dt>
-      <dd class="blacklight-<%= field_name.parameterize %> col-md-10"><%= doc_presenter.field_value field %></dd>
+      <dd class="blacklight-<%= field_name.parameterize %> col-md-9 pl-md-0"><%= doc_presenter.field_value field %></dd>
     <% end -%>
   <% end -%>
 
