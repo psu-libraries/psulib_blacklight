@@ -963,6 +963,10 @@ binary-extensions@^1.0.0:
   version "0.0.0"
   resolved "https://github.com/projectblacklight/blacklight-marc.git#83bda968603623db43eb9d5c95c706a3797e0e9a"
 
+"blacklight-range-limit@https://github.com/projectblacklight/blacklight_range_limit.git#v7.0.0":
+  version "0.0.0"
+  resolved "https://github.com/projectblacklight/blacklight_range_limit.git#74ce87903ac602e1fcdb407fd60b7ba38f09895a"
+
 block-stream@*:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/block-stream/-/block-stream-0.0.9.tgz#13ebfe778a03205cfe03751481ebb4b3300c126a"
