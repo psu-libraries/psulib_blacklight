@@ -115,6 +115,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_topic_facet_ssim', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_facet_ssim', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_full_facet_ssim', label: 'Genre', show: false
+    config.add_facet_field 'media_type_facet_ssim', label: 'Media Type', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'lc_1letter_facet_sim', label: 'Call Number'
     # config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
 
