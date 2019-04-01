@@ -108,13 +108,11 @@ class CatalogController < ApplicationController
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
     config.add_facet_field 'access_facet_ssim', label: 'Access'
-    config.add_facet_field 'all_authors_facet_ssim', label: 'Author', show: false
     config.add_facet_field 'format', label: 'Format'
     config.add_facet_field 'language_facet_ssim', label: 'Language', limit: true
     config.add_facet_field 'pub_date_ssim', label: 'Publication Year', single: true
     config.add_facet_field 'subject_topic_facet_ssim', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_facet_ssim', label: 'Genre', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'genre_full_facet_ssim', label: 'Genre', show: false
     config.add_facet_field 'lc_1letter_facet_sim', label: 'Call Number'
     # config.add_facet_field 'example_pivot_field', label: 'Pivot Field', pivot: ['format', 'language_facet_ssim']
 
