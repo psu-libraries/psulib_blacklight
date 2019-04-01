@@ -231,7 +231,7 @@
   <copyField source="author_addl_tsim" dest="author_addl_unstem_search"/>
   <copyField source="subject_tsim" dest="subject_unstem_search"/>
   <copyField source="subject_addl_tsim" dest="subject_addl_unstem_search"/>
-  <copyField source="subject_topic_facet_ssim" dest="subject_topic_unstem_search"/>
+  <copyField source="subject_topic_facet_ssim" dest="subject_topic_unstem_search" docValues="true"/>
   <copyField source="genre_tsim" dest="genre_unstem_search"/>
 
   <!-- TODO: Look into if these are actually being used. -->
