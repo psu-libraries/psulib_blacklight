@@ -261,7 +261,7 @@
        <str name="facet.field">all_authors_facet</str>
        <str name="facet.field">format</str>
        <str name="facet.field">language_facet</str>
-       <str name="facet.field">pub_date_facet</str>
+       <str name="facet.field">pub_date_itsi</str>
        <str name="facet.field">subject_topic_facet</str>
        <str name="facet.field">subject_facet</str>
        <str name="facet.field">genre_facet</str>
