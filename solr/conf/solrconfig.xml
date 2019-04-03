@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
+  <!--for Sematext Monitoring-->
+  <jmx />
+
   <!-- NOTE: various comments and unused configuration possibilities have been purged
        from this file.  Please refer to http://wiki.apache.org/solr/SolrConfigXml,
        as well as the default solrconfig file included with Solr -->
