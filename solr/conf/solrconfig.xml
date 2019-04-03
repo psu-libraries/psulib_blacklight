@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
+  <!--for Sematext Monitoring-->
+  <jmx />
+
   <!-- NOTE: various comments and unused configuration possibilities have been purged
        from this file.  Please refer to http://wiki.apache.org/solr/SolrConfigXml,
        as well as the default solrconfig file included with Solr -->
@@ -56,7 +59,7 @@
          title_related_tsim^1250
          subject_topic_unstem_search^1000
          subject_unstem_search^750
-         subject_topic_facet_ssim^625
+         subject_topic_facet_sim^625
          subject_tsim^500
          author_unstem_search^250
          author_addl_unstem_search^250
@@ -81,7 +84,7 @@
          title_related_tsim^12500
          subject_topic_unstem_search^10000
          subject_unstem_search^7500
-         subject_topic_facet_ssim^6250
+         subject_topic_facet_sim^6250
          subject_tsim^5000
          author_unstem_search^2500
          author_addl_unstem_search^2500
@@ -134,7 +137,7 @@
        <str name="subject_qf">
          subject_topic_unstem_search^200
          subject_unstem_search^125
-         subject_topic_facet_ssim^100
+         subject_topic_facet_sim^100
          subject_tsim^50
          subject_addl_unstem_search^10
          subject_addl_tsim
@@ -143,7 +146,7 @@
          subject_topic_unstem_search^2000
          subject_unstem_search^1250
          subject_tsim^1000
-         subject_topic_facet_ssim^500
+         subject_topic_facet_sim^500
          subject_addl_unstem_search^100
          subject_addl_tsim^10
        </str>
@@ -170,19 +173,18 @@
          additional_title_display_ssm,
          format,
          publication_display_ssm,
-         pub_date_ssim,
+         pub_date_ssm,
          overall_imprint_display_ssm,
          copyright_display_ssm,
          edition_display_ssm,
          phys_desc_ssm,
-         language_facet_ssim,
+         language_ssim,
          language_note_ssm,
          restrictions_access_note_ssm,
          toc_ssim,
          notes_summary_ssim,
          series_title_display_ssm,
          addl_author_display_ssm,
-         subject_topic_facet_ssim,
          subject_display_ssm,
          genre_display_ssm,
          isbn_ssm,
@@ -258,16 +260,16 @@
        <str name="facet">true</str>
        <str name="facet.mincount">1</str>
        <str name="facet.limit">20</str>
-       <str name="facet.field">access_facet_ssim</str>
-       <str name="facet.field">all_authors_facet_ssim</str>
+       <str name="facet.field">access_facet</str>
+       <str name="facet.field">all_authors_facet</str>
        <str name="facet.field">format</str>
-       <str name="facet.field">language_facet_ssim</str>
-       <str name="facet.field">pub_date_ssim</str>
-       <str name="facet.field">subject_topic_facet_ssim</str>
+       <str name="facet.field">language_facet</str>
+       <str name="facet.field">pub_date_itsi</str>
+       <str name="facet.field">subject_topic_facet</str>
        <str name="facet.field">subject_facet</str>
-       <str name="facet.field">genre_facet_ssim</str>
+       <str name="facet.field">genre_facet</str>
        <str name="facet.field">genre_full_facet_ssim</str>
-       <str name="facet.field">lc_1letter_facet_sim</str>
+       <str name="facet.field">lc_1letter_facet</str>
        <str name="facet.field">lc_alpha_facet_sim</str>
        <str name="facet.field">lc_b4cutter_facet_sim</str>
 
