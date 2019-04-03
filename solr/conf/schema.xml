@@ -211,20 +211,20 @@
     <!-- JSON -->
     <dynamicField name="*_struct" type="string" stored="true" indexed="false" multiValued="true" omitNorms="true"/>
 
-    <!-- docValue tests -->
+    <!-- docValues -->
     <!-- Facets -->
-    <field name="access_facet"        type="string" docValues="true" indexed="false" stored="false" multiValued="true" />
-    <field name="all_authors_facet"   type="string" docValues="true" indexed="false" stored="false" multiValued="true" />
-    <field name="format"              type="string" docValues="true" indexed="false" stored="false" multiValued="true"/>
-    <field name="genre_facet"         type="string" docValues="true" indexed="false" stored="false" multiValued="true" />
-    <field name="genre_full_facet"    type="string" docValues="true" indexed="false" stored="false" multiValued="true" />
-    <field name="language_facet"      type="string" docValues="true" indexed="false" stored="false" multiValued="true" />
-    <field name="lc_1letter_facet"    type="string" docValues="true" indexed="false" stored="false" multiValued="true" />
-    <field name="pub_date_facet"      type="string" docValues="true" indexed="false" stored="false" multiValued="true" />
-    <field name="subject_topic_facet" type="string" docValues="true" indexed="false" stored="false" multiValued="true" />
+    <field name="access_facet"        type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="all_authors_facet"   type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="format"              type="string" docValues="true" indexed="true" stored="false" multiValued="true"/>
+    <field name="genre_facet"         type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="genre_full_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="language_facet"      type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="lc_1letter_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="pub_date_facet"      type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="subject_topic_facet" type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
 
     <!-- Sorts -->
-    <field name="title_sort"          type="string" docValues="true" indexed="false" stored="false" multiValued="true" />
+    <field name="title_sort"          type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
   </fields>
 
 
