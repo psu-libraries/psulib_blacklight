@@ -269,6 +269,7 @@
        <str name="facet.field">subject_facet</str>
        <str name="facet.field">genre_facet</str>
        <str name="facet.field">genre_full_facet_ssim</str>
+       <str name="facet.field">media_type_facet</str>
        <str name="facet.field">lc_1letter_facet</str>
        <str name="facet.field">lc_alpha_facet_sim</str>
        <str name="facet.field">lc_b4cutter_facet_sim</str>
