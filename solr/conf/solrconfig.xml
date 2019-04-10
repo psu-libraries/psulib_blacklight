@@ -259,7 +259,6 @@
 
        <str name="facet">true</str>
        <str name="facet.mincount">1</str>
-       <str name="facet.limit">20</str>
        <str name="facet.field">access_facet</str>
        <str name="facet.field">all_authors_facet</str>
        <str name="facet.field">format</str>
