@@ -274,6 +274,7 @@
        <str name="facet.field">lc_b4cutter_facet_sim</str>
        <str name="facet.field">campus_facet</str>
        <str name="facet.field">up_library_facet</str>
+       <str name="facet.field">library_facet</str>
 
        <str name="spellcheck">true</str>
        <str name="spellcheck.dictionary">default</str>
