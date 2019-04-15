@@ -17,9 +17,9 @@ class CatalogController < ApplicationController
     config.advanced_search[:url_key] ||= 'advanced'
     config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
-      # 'facet.field' => ['language_facet_ssim'], # will add 'library', 'location', 'material_type'
-      # 'facet.limit' => -1, # return all facet values
-      # 'facet.sort' => 'index' # sort by byte order of values
+      'facet.field' => %w[access_facet format language_facet media_type_facet library_facet pub_date_facet],
+      'facet.limit' => -1,
+      'facet.sort' => 'index'
     }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
 
@@ -109,6 +109,9 @@ class CatalogController < ApplicationController
 
     config.add_facet_field 'access_facet', label: 'Access'
     config.add_facet_field 'format', label: 'Format'
+    config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true
+    config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
+    config.add_facet_field 'up_library_facet', label: 'University Park Library', sort: 'index', limit: -1, single: true
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'pub_date_facet', label: 'Publication Year', single: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
