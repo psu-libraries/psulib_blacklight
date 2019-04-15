@@ -351,5 +351,27 @@
 
   <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler" />
 
+  <query>
+    <filterCache class="solr.FastLRUCache"
+                 size="1000"
+                 initialSize="1000"
+                 autowarmCount="100"/>
+
+    <queryResultCache class="solr.LRUCache"
+                      size="1000"
+                      initialSize="1000"
+                      autowarmCount="100"/>
+
+    <documentCache class="solr.LRUCache"
+                   size="1000"
+                   initialSize="1000"/>
+
+    <enableLazyFieldLoading>true</enableLazyFieldLoading>
+
+    <queryResultWindowSize>100</queryResultWindowSize>
+    <queryResultMaxDocsCached>500</queryResultMaxDocsCached>
+    <useColdSearcher>false</useColdSearcher>
+  </query>
+
 </config>
 
