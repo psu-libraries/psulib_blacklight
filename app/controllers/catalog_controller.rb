@@ -109,9 +109,9 @@ class CatalogController < ApplicationController
 
     config.add_facet_field 'access_facet', label: 'Access'
     config.add_facet_field 'format', label: 'Format'
-    config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index'
-    config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1
-    config.add_facet_field 'up_library_facet', label: 'University Park Library', sort: 'index'
+    config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true
+    config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
+    config.add_facet_field 'up_library_facet', label: 'University Park Library', sort: 'index', limit: -1, single: true
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'pub_date_facet', label: 'Publication Year', single: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
