@@ -292,8 +292,10 @@ class CatalogController < ApplicationController
       }
     end
 
-    ## Stubs for Advanced Search as per https://github.com/psu-libraries/psulib_blacklight/wiki/Advanced-Search
-    # config.add_search_field('Series')
+    config.add_search_field('series') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = { :qf => "series_title_tsim" }
+    end
     # config.add_search_field('Publisher')
     # config.add_search_field('Publication date')
 
