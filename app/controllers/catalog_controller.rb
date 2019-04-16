@@ -296,6 +296,11 @@ class CatalogController < ApplicationController
       field.include_in_simple_select = false
       field.solr_parameters = { :qf => "series_title_tsim" }
     end
+
+    config.add_search_field('publisher') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = { :qf => "publisher_manufacturer_tsim" }
+    end
     # config.add_search_field('Publisher')
     # config.add_search_field('Publication date')
 
