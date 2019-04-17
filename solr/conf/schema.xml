@@ -271,7 +271,7 @@
   <copyField source="subject_tsim" dest="subject_spell"/>
   <copyField source="title_tsim" dest="title_spell"/>
   <copyField source="pub_date_facet" dest="pub_date_ssm"/>
-  <copyField source="pub_date_facet" dest="pub_date_itsi"/>
+  <copyField source="pub_date_facet" dest="pub_date_sort_itsi"/>
   <copyField source="language_facet" dest="language_ssim"/>
   <copyField source="subject_topic_facet" dest="subject_topic_facet_sim"/>
 
