@@ -19,7 +19,7 @@ class CatalogController < ApplicationController
     config.advanced_search[:url_key] ||= 'advanced'
     config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
-      'facet.field' => %w[access_facet format language_facet media_type_facet library_facet pub_date_facet],
+      'facet.field' => %w[access_facet format language_facet media_type_facet library_facet],
       'facet.limit' => -1,
       'facet.sort' => 'index'
     }
@@ -114,8 +114,12 @@ class CatalogController < ApplicationController
     config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'up_library_facet', label: 'University Park Library', sort: 'index', limit: -1, single: true
+    config.add_facet_field 'pub_date_sort_itsi', label: 'Publication Year', single: true, range: {
+        num_segments: 10,
+        assumed_boundaries: [1100, Time.now.year + 1],
+        segments: true
+    }
     config.add_facet_field 'language_facet', label: 'Language', limit: true
-    config.add_facet_field 'pub_date_facet', label: 'Publication Year', single: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z'
