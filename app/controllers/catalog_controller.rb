@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class CatalogController < ApplicationController
-
   include BlacklightRangeLimit::ControllerOverride
   include BlacklightAdvancedSearch::Controller
   include Blacklight::Catalog
@@ -115,7 +114,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'up_library_facet', label: 'University Park Library', sort: 'index', limit: -1, single: true
     config.add_facet_field 'pub_date_sort_itsi', label: 'Publication Year', single: true, range: {
-        segments: false
+      segments: false
     }
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
@@ -298,12 +297,12 @@ class CatalogController < ApplicationController
 
     config.add_search_field('series') do |field|
       field.include_in_simple_select = false
-      field.solr_parameters = { :qf => "series_title_tsim" }
+      field.solr_parameters = { qf: 'series_title_tsim' }
     end
 
     config.add_search_field('publisher') do |field|
       field.include_in_simple_select = false
-      field.solr_parameters = { :qf => "publisher_manufacturer_tsim" }
+      field.solr_parameters = { qf: 'publisher_manufacturer_tsim' }
     end
     # config.add_search_field('Publisher')
     # config.add_search_field('Publication date')
