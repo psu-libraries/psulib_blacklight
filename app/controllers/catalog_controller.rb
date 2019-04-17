@@ -115,9 +115,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: -1, single: true
     config.add_facet_field 'pub_date_sort_itsi', label: 'Publication Year', single: true, range: {
-        num_segments: 10,
-        assumed_boundaries: [1100, Time.now.year + 1],
-        segments: true
+        segments: false
     }
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
