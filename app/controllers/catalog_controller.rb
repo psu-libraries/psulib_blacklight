@@ -20,6 +20,8 @@ class CatalogController < ApplicationController
     config.advanced_search[:form_solr_parameters] ||= {
       'facet.field' => %w[access_facet format language_facet media_type_facet library_facet],
       'facet.limit' => -1,
+      'f.language_facet.facet.limit' => -1,
+      'f.format.facet.limit' => -1,
       'facet.sort' => 'index'
     }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
