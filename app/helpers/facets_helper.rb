@@ -5,7 +5,7 @@ module FacetsHelper
 
   def initial_collapse(field, display_facet)
     if display_facet.class == Blacklight::Solr::Response::Facets::FacetItem
-      pivot_facet_child_in_params?(field, display_facet) ? 'collapse in' : 'collapse'
+      pivot_facet_child_in_params?(field, display_facet) ? 'collapse show' : 'collapse'
     else
       'facet-values'
     end

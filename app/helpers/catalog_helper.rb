@@ -2,5 +2,4 @@
 
 module CatalogHelper
   include Blacklight::CatalogHelperBehavior
-  include Blacklight::ConfigurationHelperBehavior
 end
