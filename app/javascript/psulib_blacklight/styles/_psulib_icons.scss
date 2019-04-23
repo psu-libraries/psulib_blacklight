@@ -138,3 +138,41 @@
     content: fa-content($fa-var-scroll);
   }
 }
+
+// Pivot Facets
+.toggle {
+  padding-bottom: .5rem;
+
+  &:before {
+    @extend %fa-icon;
+    // scss-lint:disable PlaceholderInExtend
+    @extend .fas;
+    @extend .fa-sm;
+
+    content: fa-content($fa-var-minus-square);
+    padding-right: .5em;
+    vertical-align: middle;
+  }
+}
+
+.toggle.collapsed {
+  padding-bottom: .5rem;
+
+  &:before {
+    @extend %fa-icon;
+    // scss-lint:disable PlaceholderInExtend
+    @extend .fas;
+    @extend .fa-sm;
+
+    content: fa-content($fa-var-plus-square);
+    padding-right: .5em;
+    vertical-align: middle;
+  }
+}
+
+a:link.toggle,
+a:visited.toggle,
+a:hover.toggle,
+a:active.toggle {
+  text-decoration: none;
+}

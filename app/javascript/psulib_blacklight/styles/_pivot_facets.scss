@@ -1,0 +1,16 @@
+.pivot-facet .facet-label {
+  display: inline;
+  padding-left: 0;
+  word-break: keep-all;
+}
+
+.pivot-facet .pivot-facet {
+  width: 100%;
+  padding: 0 0 0 3.5em;
+
+  &.collapse.in,
+  &.collapsing {
+    display: table;
+  }
+}
+
