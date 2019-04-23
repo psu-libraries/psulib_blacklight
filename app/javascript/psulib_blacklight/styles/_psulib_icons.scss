@@ -157,15 +157,11 @@
 
   }
 
-  .toggle {
-    &::before {
-      content: fa-content($fa-var-minus-square);
-    }
+  .toggle::before {
+    content: fa-content($fa-var-minus-square);
   }
 
-  .toggle.collapsed {
-    &::before {
-      content: fa-content($fa-var-plus-square);
-    }
+  .toggle.collapsed::before {
+    content: fa-content($fa-var-plus-square);
   }
 }
