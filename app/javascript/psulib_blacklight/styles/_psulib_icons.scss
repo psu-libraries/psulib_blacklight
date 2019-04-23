@@ -140,39 +140,32 @@
 }
 
 // Pivot Facets
-.toggle {
-  padding-bottom: .5rem;
+.pivot-facet {
+  .toggle,
+  .toggle.collapsed {
+    padding-bottom: .5rem;
 
-  &:before {
-    @extend %fa-icon;
-    // scss-lint:disable PlaceholderInExtend
-    @extend .fas;
-    @extend .fa-sm;
+    &::before {
+      @extend %fa-icon;
+      // scss-lint:disable PlaceholderInExtend
+      @extend .fas;
+      @extend .fa-sm;
 
-    content: fa-content($fa-var-minus-square);
-    padding-right: .5em;
-    vertical-align: middle;
+      padding-right: .5em;
+      vertical-align: middle;
+    }
+
   }
-}
 
-.toggle.collapsed {
-  padding-bottom: .5rem;
-
-  &:before {
-    @extend %fa-icon;
-    // scss-lint:disable PlaceholderInExtend
-    @extend .fas;
-    @extend .fa-sm;
-
-    content: fa-content($fa-var-plus-square);
-    padding-right: .5em;
-    vertical-align: middle;
+  .toggle {
+    &::before {
+      content: fa-content($fa-var-minus-square);
+    }
   }
-}
 
-a:link.toggle,
-a:visited.toggle,
-a:hover.toggle,
-a:active.toggle {
-  text-decoration: none;
+  .toggle.collapsed {
+    &::before {
+      content: fa-content($fa-var-plus-square);
+    }
+  }
 }
