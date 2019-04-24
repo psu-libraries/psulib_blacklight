@@ -271,12 +271,10 @@ class CatalogController < ApplicationController
 
     config.add_search_field('title') do |field|
       field.solr_parameters = {
-        'spellcheck.dictionary': 'title',
         qf: '${title_qf}',
         pf: '${title_pf}'
       }
       field.solr_adv_parameters = {
-        'spellcheck.dictionary': 'title',
         qf:  '$title_qf',
         pf:  '$title_pf'
       }
@@ -285,7 +283,6 @@ class CatalogController < ApplicationController
     config.add_search_field('author') do |field|
       field.label = 'Author/Creator'
       field.solr_parameters = {
-        'spellcheck.dictionary': 'author',
         qf: "'${author_qf}'",
         pf: "'${author_pf}'"
       }
@@ -297,7 +294,6 @@ class CatalogController < ApplicationController
     config.add_search_field('subject') do |field|
       field.qt = 'search'
       field.solr_parameters = {
-        'spellcheck.dictionary': 'subject',
         qf: "'${subject_qf}'",
         pf: "'${subject_pf}'"
       }
@@ -331,10 +327,6 @@ class CatalogController < ApplicationController
     config.add_sort_field 'pub_date_sort_itsi desc, title_sort asc', label: 'year'
     config.add_sort_field 'author_ssort asc, title_sort asc', label: 'author'
     config.add_sort_field 'title_sort asc, pub_date_sort_itsi desc', label: 'title'
-
-    # If there are more than this many search results, no spelling ("did you
-    # mean") suggestion is offered.
-    config.spell_max = 5
 
     # Configuration for autocomplete suggestor
     # Disable until https://github.com/projectblacklight/blacklight/issues/1972 resolved
