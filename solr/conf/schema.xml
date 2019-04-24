@@ -220,6 +220,7 @@
     <field name="genre_full_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="language_facet"      type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="lc_1letter_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="lc_rest_facet"       type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="pub_date_facet"      type="tint"   docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="subject_topic_facet" type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="media_type_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />

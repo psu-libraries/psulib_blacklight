@@ -138,3 +138,30 @@
     content: fa-content($fa-var-scroll);
   }
 }
+
+// Pivot Facets
+.pivot-facet {
+  .toggle,
+  .toggle.collapsed {
+    padding-bottom: .5rem;
+
+    &::before {
+      @extend %fa-icon;
+      // scss-lint:disable PlaceholderInExtend
+      @extend .fas;
+      @extend .fa-sm;
+
+      padding-right: .5em;
+      vertical-align: middle;
+    }
+
+  }
+
+  .toggle::before {
+    content: fa-content($fa-var-minus-square);
+  }
+
+  .toggle.collapsed::before {
+    content: fa-content($fa-var-plus-square);
+  }
+}
