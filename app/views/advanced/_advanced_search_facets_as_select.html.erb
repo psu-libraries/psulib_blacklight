@@ -22,3 +22,17 @@
     </div>
   <% end %>
 <% end %>
+
+<%# Publication Date is a range input %>
+<% pub_date = facet_configuration_for_field('pub_date_sort_itsi') %>
+<div class="form-group advanced-search-facet row">
+  <%= label_tag pub_date.field.parameterize, class: 'col-sm-4 control-label' do %>
+    <%= pub_date.label %>
+  <% end %>
+  <div class="col-sm-8 range_limit">
+    <label for="range_pub_date_start_sort_begin" class="sr-only">Publication date range (starting year)</label>
+    <%= render_range_input(pub_date.field, :begin) %> –
+    <label for="range_pub_date_start_sort_end" class="sr-only">Publication date range (ending year)</label>
+    <%= render_range_input(pub_date.field, :end) %>
+  </div>
+</div>
