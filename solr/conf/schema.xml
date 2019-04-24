@@ -262,15 +262,6 @@
   <copyField source="subject_topic_facet" dest="subject_topic_unstem_search"/>
   <copyField source="genre_tsim" dest="genre_unstem_search"/>
 
-  <!-- TODO: Look into if these are actually being used. -->
-  <copyField source="*_tsim" dest="spell"/>
-  <copyField source="*_tesim" dest="spell"/>
-  <copyField source="*_ssim" dest="spell"/>
-  <copyField source="*_si" dest="spell"/>
-
-  <copyField source="author_tsim" dest="author_spell"/>
-  <copyField source="subject_tsim" dest="subject_spell"/>
-  <copyField source="title_tsim" dest="title_spell"/>
   <copyField source="pub_date_facet" dest="pub_date_ssm"/>
   <copyField source="pub_date_facet" dest="pub_date_itsi"/>
   <copyField source="language_facet" dest="language_ssim"/>
