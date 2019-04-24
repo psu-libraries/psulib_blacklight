@@ -270,8 +270,7 @@
        <str name="facet.field">genre_full_facet_ssim</str>
        <str name="facet.field">media_type_facet</str>
        <str name="facet.field">lc_1letter_facet</str>
-       <str name="facet.field">lc_alpha_facet_sim</str>
-       <str name="facet.field">lc_b4cutter_facet_sim</str>
+       <str name="facet.field">lc_rest_facet</str>
        <str name="facet.field">campus_facet</str>
        <str name="facet.field">up_library_facet</str>
        <str name="facet.field">library_facet</str>
