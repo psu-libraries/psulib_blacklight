@@ -7,21 +7,21 @@ RSpec.describe FacetsHelper do
   let(:child_item) do
     Blacklight::Solr::Response::Facets::FacetItem.new(value: 'child value', field: 'child_item', items: [])
   end
-  let(:pivot_items) do
+  let(:parent_item) do
     Blacklight::Solr::Response::Facets::FacetItem.new(value: 'parent value', field: 'parent_item', items: [child_item])
   end
-  let(:pivot_facet) { Blacklight::Solr::Response::Facets::FacetField.new('pivot_facet', [pivot_items]) }
+  let(:pivot_facet) { Blacklight::Solr::Response::Facets::FacetField.new('pivot_facet', [parent_item]) }
 
   describe 'initial_collapse' do
-    it 'returns \'facet-values\' for to be added as a class to pivot facet parent element' do
+    it 'returns \'facet-values\' which is added as a class to the pivot facet parent element' do
       expect(helper.initial_collapse('pivot_facet', pivot_facet)).to eq('facet-values')
     end
 
-    it 'returns \'collapse\' for unselected pivot facet child items' do
+    it 'returns \'collapse\' for unselected pivot facet' do
       expect(helper.initial_collapse('pivot_facet', child_item)).to eq('collapse')
     end
 
-    it 'returns \'collapse show\' for selected pivot facet child items' do
+    it 'returns \'collapse show\' for selected pivot facet' do
       allow(helper).to receive_messages(params: { f: { 'child_item' => ['child value'] } })
       expect(helper.initial_collapse('pivot_facet', child_item)).to eq('collapse show')
     end
@@ -37,26 +37,26 @@ RSpec.describe FacetsHelper do
   describe 'pivot_facet_child_in_params?' do
     it 'checks if pivot facet child items are not selected' do
       expect(helper.pivot_facet_child_in_params?('pivot_facet', child_item)).to be false
-      expect(helper.pivot_facet_child_in_params?('pivot_facet', pivot_items)).to be false
+      expect(helper.pivot_facet_child_in_params?('pivot_facet', parent_item)).to be false
       expect(helper.pivot_facet_child_in_params?('pivot_facet', pivot_facet)).to be false
     end
 
     it 'checks if pivot facet child items are selected' do
       allow(helper).to receive_messages(params: { f: { 'child_item' => ['child value'] } })
       expect(helper.pivot_facet_child_in_params?('pivot_facet', child_item)).to be true
-      expect(helper.pivot_facet_child_in_params?('pivot_facet', pivot_items)).to be true
+      expect(helper.pivot_facet_child_in_params?('pivot_facet', parent_item)).to be true
       expect(helper.pivot_facet_child_in_params?('pivot_facet', pivot_facet)).to be true
     end
   end
 
   describe 'pivot_facet_in_params?' do
     it 'checks if pivot facet parent item is not selected' do
-      expect(helper.pivot_facet_in_params?('pivot_facet', pivot_items)).not_to be true
+      expect(helper.pivot_facet_in_params?('pivot_facet', parent_item)).not_to be true
     end
 
     it 'checks if pivot facet parent item is selected' do
       allow(helper).to receive_messages(params: { f: { 'parent_item' => ['parent value'] } })
-      expect(helper.pivot_facet_in_params?('pivot_facet', pivot_items)).to be true
+      expect(helper.pivot_facet_in_params?('pivot_facet', parent_item)).to be true
     end
   end
 
