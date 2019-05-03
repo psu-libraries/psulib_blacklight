@@ -173,7 +173,6 @@
          additional_title_display_ssm,
          format,
          publication_display_ssm,
-         pub_date_ssm,
          overall_imprint_display_ssm,
          copyright_display_ssm,
          edition_display_ssm,
