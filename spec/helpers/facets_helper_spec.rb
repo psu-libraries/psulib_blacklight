@@ -28,9 +28,10 @@ RSpec.describe FacetsHelper do
   end
 
   describe 'facet_value_id' do
-    it 'generates an id for pivot facet child items but not for parent items' do
+    it 'generates an id for pivot facet child items but not for pivot facet root' do
       expect(helper.facet_value_id(pivot_facet)).to eq ''
       expect(helper.facet_value_id(child_item)).to eq 'id=child_item-child-value'
+      expect(helper.facet_value_id(parent_item)).to eq 'id=parent_item-parent-value'
     end
   end
 
@@ -46,6 +47,11 @@ RSpec.describe FacetsHelper do
       expect(helper.pivot_facet_child_in_params?('pivot_facet', child_item)).to be true
       expect(helper.pivot_facet_child_in_params?('pivot_facet', parent_item)).to be true
       expect(helper.pivot_facet_child_in_params?('pivot_facet', pivot_facet)).to be true
+    end
+
+    it 'checks if child item is selected on parent item' do
+      allow(helper).to receive_messages(params: { f: { 'child_item' => ['child value'] } })
+      expect(helper.pivot_facet_in_params?('parent_item', child_item)).to be true
     end
   end
 
@@ -77,26 +83,26 @@ RSpec.describe FacetsHelper do
       end
     end
 
-    it 'checks if the facet field is selected in the user params' do
+    it 'checks if the facet field is selected in the request params' do
       allow(helper).to receive_messages(params: { f: { 'basic-field' => ['x'] } })
       expect(helper).to be_facet_field_in_params('basic-field')
-      expect(helper.facet_field_in_params?('other-field')).not_to be true
+      expect(helper).not_to be_facet_field_in_params('other-field')
     end
 
-    it 'checks if the pivot facet field is selected in the user params' do
+    it 'checks if the pivot facet field is selected in the request params' do
       allow(helper).to receive_messages(params: { f: { 'pivot_a' => ['x'] } })
       expect(helper).to be_facet_field_in_params('pivot_a')
-      expect(helper.facet_field_in_params?('pivot_b')).not_to be true
+      expect(helper).not_to be_facet_field_in_params('pivot_b')
     end
 
     describe 'pivot_facet_field_in_params?' do
       it 'checks if pivot is not selected' do
-        expect(helper.pivot_facet_field_in_params?(pivot)).not_to be true
+        expect(helper).not_to be_pivot_facet_field_in_params(pivot)
       end
 
       it 'checks if pivot is selected' do
         allow(helper).to receive_messages(params: { f: { 'pivot_a' => ['x'] } })
-        expect(helper.pivot_facet_field_in_params?(pivot)).to be true
+        expect(helper).to be_pivot_facet_field_in_params(pivot)
       end
     end
   end
