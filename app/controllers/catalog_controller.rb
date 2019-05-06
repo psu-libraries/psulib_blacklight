@@ -19,6 +19,7 @@ class CatalogController < ApplicationController
     config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
       'facet.field' => %w[access_facet format language_facet media_type_facet library_facet],
+      'facet.pivot' => '',
       'facet.limit' => -1,
       'f.language_facet.facet.limit' => -1,
       'f.format.facet.limit' => -1,
