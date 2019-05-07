@@ -2,6 +2,7 @@
 
 class CatalogController < ApplicationController
   include BlacklightAdvancedSearch::Controller
+  include BlacklightRangeLimit::ControllerOverride
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
 
@@ -17,8 +18,11 @@ class CatalogController < ApplicationController
     config.advanced_search[:url_key] ||= 'advanced'
     config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
-      'facet.field' => %w[access_facet format language_facet media_type_facet library_facet pub_date_facet],
+      'facet.field' => %w[access_facet format language_facet media_type_facet library_facet lc_1letter_facet],
+      'facet.pivot' => '',
       'facet.limit' => -1,
+      'f.language_facet.facet.limit' => -1,
+      'f.format.facet.limit' => -1,
       'facet.sort' => 'index'
     }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
@@ -112,8 +116,8 @@ class CatalogController < ApplicationController
     config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: -1, single: true
+    config.add_facet_field 'pub_date_itsi', label: 'Publication Year', range: { segments: false }
     config.add_facet_field 'language_facet', label: 'Language', limit: true
-    config.add_facet_field 'pub_date_facet', label: 'Publication Year', single: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z'
@@ -266,12 +270,10 @@ class CatalogController < ApplicationController
 
     config.add_search_field('title') do |field|
       field.solr_parameters = {
-        'spellcheck.dictionary': 'title',
         qf: '${title_qf}',
         pf: '${title_pf}'
       }
       field.solr_adv_parameters = {
-        'spellcheck.dictionary': 'title',
         qf:  '$title_qf',
         pf:  '$title_pf'
       }
@@ -280,7 +282,6 @@ class CatalogController < ApplicationController
     config.add_search_field('author') do |field|
       field.label = 'Author/Creator'
       field.solr_parameters = {
-        'spellcheck.dictionary': 'author',
         qf: "'${author_qf}'",
         pf: "'${author_pf}'"
       }
@@ -292,7 +293,6 @@ class CatalogController < ApplicationController
     config.add_search_field('subject') do |field|
       field.qt = 'search'
       field.solr_parameters = {
-        'spellcheck.dictionary': 'subject',
         qf: "'${subject_qf}'",
         pf: "'${subject_pf}'"
       }
@@ -306,8 +306,15 @@ class CatalogController < ApplicationController
       }
     end
 
-    ## Stubs for Advanced Search as per https://github.com/psu-libraries/psulib_blacklight/wiki/Advanced-Search
-    # config.add_search_field('Series')
+    config.add_search_field('series') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = { qf: 'series_title_tsim' }
+    end
+
+    config.add_search_field('publisher') do |field|
+      field.include_in_simple_select = false
+      field.solr_parameters = { qf: 'publisher_manufacturer_tsim' }
+    end
     # config.add_search_field('Publisher')
     # config.add_search_field('Publication date')
 
@@ -315,14 +322,10 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
-    config.add_sort_field 'score desc, pub_date_sort_itsi desc, title_sort asc', label: 'relevance'
-    config.add_sort_field 'pub_date_sort_itsi desc, title_sort asc', label: 'year'
+    config.add_sort_field 'score desc, pub_date_itsi desc, title_sort asc', label: 'relevance'
+    config.add_sort_field 'pub_date_itsi desc, title_sort asc', label: 'year'
     config.add_sort_field 'author_ssort asc, title_sort asc', label: 'author'
-    config.add_sort_field 'title_sort asc, pub_date_sort_itsi desc', label: 'title'
-
-    # If there are more than this many search results, no spelling ("did you
-    # mean") suggestion is offered.
-    config.spell_max = 5
+    config.add_sort_field 'title_sort asc, pub_date_itsi desc', label: 'title'
 
     # Configuration for autocomplete suggestor
     # Disable until https://github.com/projectblacklight/blacklight/issues/1972 resolved

@@ -8,3 +8,4 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import 'psulib_blacklight'
+import 'psulib_blacklight_range_limit'

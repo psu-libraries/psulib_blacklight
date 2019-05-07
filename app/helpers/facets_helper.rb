@@ -3,9 +3,9 @@
 module FacetsHelper
   include Blacklight::FacetsHelperBehavior
 
-  def initial_collapse(field, display_facet)
+  def initial_collapse(field_name, display_facet)
     if display_facet.class == Blacklight::Solr::Response::Facets::FacetItem
-      pivot_facet_child_in_params?(field, display_facet) ? 'collapse show' : 'collapse'
+      pivot_facet_child_in_params?(field_name, display_facet) ? 'collapse show' : 'collapse'
     else
       'facet-values'
     end
@@ -19,8 +19,8 @@ module FacetsHelper
     end
   end
 
-  def pivot_facet_child_in_params?(field, item, pivot_in_params = false)
-    pivot_in_params = true if pivot_facet_in_params?(field, item)
+  def pivot_facet_child_in_params?(field_name, item, pivot_in_params = false)
+    pivot_in_params = true if pivot_facet_in_params?(field_name, item)
     if item.items.present?
       item.items.each do |pivot_item|
         pivot_in_params = true if pivot_facet_child_in_params?(pivot_item.field, pivot_item)
@@ -29,11 +29,11 @@ module FacetsHelper
     pivot_in_params
   end
 
-  def pivot_facet_in_params?(field, item)
-    field = item.field if item && item.respond_to?(:field)
+  def pivot_facet_in_params?(field_name, item)
+    field_name = item.field if item && item.respond_to?(:field)
 
     value = facet_value_for_facet_item(item)
-    params[:f] && params[:f][field] && params[:f][field].include?(value)
+    params[:f] && params[:f][field_name] && params[:f][field_name].include?(value)
   end
 
   ##

@@ -32,3 +32,8 @@ Blacklight.onLoad(function() {
         $($(this).data('target')).load($(this).find('a').attr('href'));
     });
 });
+
+// Otherwise bootstrap-select won't fire on turbolinked clicks to Advance Search
+$(document).on('turbolinks:load', function() {
+    $(window).trigger('load.bs.select.data-api');
+});
