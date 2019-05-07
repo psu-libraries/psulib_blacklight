@@ -11,22 +11,62 @@
 
   <luceneMatchVersion>7.4.0</luceneMatchVersion>
 
-  <directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.StandardDirectoryFactory}"/>
+  <directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}"/>
 
   <!-- solr lib dirs -->
   <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lib" />
   <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs" />
 
-  <dataDir>${solr.blacklight-core.data.dir:}</dataDir>
+  <!-- using default data directory here, for the vanilla Solr installation-->
+  <dataDir>${solr.data.dir:}</dataDir>
 
   <codecFactory class="solr.SchemaCodecFactory"/>
 
   <schemaFactory class="ClassicIndexSchemaFactory"/>
 
+  <indexConfig>
+    <!-- native is the default, but let's be safe -->
+    <lockType>${solr.lock.type:native}</lockType>
+    
+    <!-- in-memory buffer of 200MB per shard. If it fills up, 
+     a hard commit is done, but the transaction log isn't cleared up,
+     so we still have to rely on the hard commit policy -->
+    <ramBufferSizeMB>200</ramBufferSizeMB>
+  </indexConfig>  
+
+  <updateHandler class="solr.DirectUpdateHandler2">
+
+    <!-- this is our transaction log for SolrCloud-->
+    <updateLog>
+      <str name="dir">${solr.ulog.dir:}</str>
+      <int name="numVersionBuckets">${solr.ulog.numVersionBuckets:65536}</int>
+    </updateLog>
+
+    <!-- hard commit every 10 minutes or 100K docs, whichever comes first -->
+    <autoCommit>
+      <maxTime>600000</maxTime>
+      <maxDocs>100000</maxDocs>
+      <openSearcher>false</openSearcher>
+    </autoCommit>
+
+    <!-- soft commit every 20 minutes -->
+    <autoSoftCommit>
+      <maxTime>1200000</maxTime>
+    </autoSoftCommit>
+
+  </updateHandler>
+
+  <updateRequestProcessorChain name="cloud" default="true">
+    <processor class="solr.LogUpdateProcessorFactory"/>
+    <processor class="solr.DistributedUpdateProcessorFactory"/>
+    <processor class="solr.RunUpdateProcessorFactory"/>
+  </updateRequestProcessorChain>
+
   <!-- config for the admin interface -->
   <admin>
     <defaultQuery>*:*</defaultQuery>
   </admin>
+
 
   <requestHandler name="search" class="solr.SearchHandler" default="true">
     <!-- default values for query parameters can be specified, these
@@ -205,9 +245,6 @@
       <str name="defType">lucene</str>
     </lst>
   </requestHandler>
-
-
-  <requestHandler name="/replication" class="solr.ReplicationHandler" startup="lazy" />
 
   <requestDispatcher handleSelect="true" >
     <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048" />
