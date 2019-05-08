@@ -41,7 +41,10 @@ namespace :docker do
   end
 
   task :run do
-    trap('SIGINT') { print `docker stop felix`; exit }
+    trap('SIGINT') do
+      print `docker stop felix`
+      exit
+    end
     print `docker run \
             --name felix \
             -it \
@@ -70,7 +73,10 @@ namespace :docker do
   end
 
   task :start do
-    trap('SIGINT') { print `docker stop felix`; exit }
+    trap('SIGINT') do
+      print `docker stop felix`
+      exit
+    end
     print `docker start -a felix`
   end
 
