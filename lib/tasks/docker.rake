@@ -50,6 +50,18 @@ namespace :docker do
             -DzkRun`
   end
 
+  task :run_ci do
+    print `docker run \
+            -d=true \
+            --name felix \
+            -it \
+            -e SOLR_HEAP=1G \
+            -p 8983:8983 \
+            -v "$(pwd)"/solr/conf:/myconfig \
+            solr:7.4.0 \
+            -DzkRun`
+  end
+
   task :pull do
     print `docker pull solr:7.4.0`
   end
