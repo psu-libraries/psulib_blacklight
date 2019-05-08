@@ -6,10 +6,12 @@ namespace :docker do
     container_status = `docker inspect felix`
     container_status.strip!
     if container_status == '[]'
-      Rake::Task['docker:first_start'].invoke
+      Rake::Task['docker:run'].invoke
+      Rake::Task['docker:up_zk_config'].invoke
+      Rake::Task['docker:create_collection'].invoke
     else
       Rake::Task['docker:start'].invoke
-      Rake::Task['docker:conf'].invoke
+      Rake::Task['docker:up_zk_config'].invoke
       Rake::Task['docker:down'].invoke
       Rake::Task['docker:start'].invoke
     end
@@ -23,15 +25,25 @@ namespace :docker do
                  -d '<delete><query>*:*</query></delete>' -out 'yes'`
   end
 
-  task :first_start do
+  task :up_zk_config do
+    print `docker exec -it --user=solr felix bin/solr zk upconfig -n psu -d /myconfig -z localhost:9983`
+  end
+
+  task :create_collection do
+    print `docker exec -it --user=solr felix bin/solr create_collection -c blacklight-core`
+  end
+
+
+  task :run do
     print `docker run \
             --name felix \
+            -it \
             -a STDOUT \
             -e SOLR_HEAP=1G \
             -p 8983:8983 \
             -v "$(pwd)"/solr/conf:/myconfig \
             solr:7.4.0 \
-            solr-create -c blacklight-core -d /myconfig`
+            -DzkRun`
   end
 
   task :pull do
