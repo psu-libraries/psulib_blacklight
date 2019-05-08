@@ -13,13 +13,11 @@ env:
   global:
   - RAILS_ENV=test
 
-before_install:
+before_script:
 - bundle exec rails docker:pull
 - bundle exec rails docker:run
 - bundle exec rails docker:build
 - docker ps -a
-
-before_script:
 - bundle exec rails assets:precompile
 
 script:
