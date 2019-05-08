@@ -17,7 +17,6 @@ before_script:
 - bundle exec rails docker:pull
 - bundle exec rails docker:run_ci
 - bundle exec rails docker:build
-- docker ps -a
 - bundle exec rails assets:precompile
 
 script:
