@@ -12,12 +12,14 @@ namespace :docker do
       Rake::Task['docker:run'].invoke
     else
       Rake::Task['docker:start'].invoke
-      Rake::Task['docker:up_zk_config'].invoke
-      Rake::Task['docker:down'].invoke
-      Rake::Task['docker:start'].invoke
     end
 
     Rake::Task['docker:ps'].invoke
+  end
+
+  task reload: [:start, :up_zk_config] do
+    Rake::Task['docker:down'].invoke
+    Rake::Task['docker:up']
   end
 
   task :clean do
@@ -39,6 +41,7 @@ namespace :docker do
   end
 
   task :run do
+    trap('SIGINT') { print `docker stop felix`; exit }
     print `docker run \
             --name felix \
             -it \
@@ -67,9 +70,11 @@ namespace :docker do
   end
 
   task :start do
+    trap('SIGINT') { print `docker stop felix`; exit }
     print `docker start -a felix`
   end
 
+  # Doesn't actually get called, can't call it in the trap call under the start task. Rake::Task can't be used there.
   task :down do
     print `docker stop felix`
   end
