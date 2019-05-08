@@ -34,7 +34,7 @@ namespace :docker do
     print `docker exec -it --user=solr felix bin/solr create -c #{BLACKLIGHT_CORE} -d /myconfig`
   end
 
-  task :build => [:up_zk_config] do
+  task build: [:up_zk_config] do
     Rake::Task['docker:create_collection'].invoke
   end
 
