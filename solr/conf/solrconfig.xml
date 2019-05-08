@@ -198,6 +198,7 @@
          issn_sim
        </str>
 
+       <!-- list fields to be displayed in the search results page -->
        <str name="fl">
          id,
          score,
@@ -208,23 +209,20 @@
          full_links_struct
        </str>
 
+       <!-- list fields to be displayed as facets -->
        <str name="facet">true</str>
        <str name="facet.mincount">1</str>
        <str name="facet.field">access_facet</str>
-       <str name="facet.field">all_authors_facet</str>
        <str name="facet.field">format</str>
-       <str name="facet.field">language_facet</str>
+       <str name="facet.field">campus_facet</str>
+       <str name="facet.field">up_library_facet</str>
        <str name="facet.field">pub_date_itsi</str>
+       <str name="facet.field">language_facet</str>
        <str name="facet.field">subject_topic_facet</str>
-       <str name="facet.field">subject_facet</str>
        <str name="facet.field">genre_facet</str>
-       <str name="facet.field">genre_full_facet_ssim</str>
        <str name="facet.field">media_type_facet</str>
        <str name="facet.field">lc_1letter_facet</str>
        <str name="facet.field">lc_rest_facet</str>
-       <str name="facet.field">campus_facet</str>
-       <str name="facet.field">up_library_facet</str>
-       <str name="facet.field">library_facet</str>
      </lst>
   </requestHandler>
 
