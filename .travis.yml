@@ -14,8 +14,9 @@ env:
   - RAILS_ENV=test
 
 before_install:
-- docker pull solr:7.4.0
-- docker run -d -p 8983:8983 -v "$(pwd)"/solr/conf:/myconfig solr:7.4.0 solr-create -c blacklight-core -d /myconfig
+- bundle exec rails docker:pull
+- bundle exec rails docker:run
+- bundle exec rails docker:build
 - docker ps -a
 
 before_script:
