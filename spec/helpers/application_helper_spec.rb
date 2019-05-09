@@ -58,8 +58,8 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     it 'assembles a link to genre search' do
       links = genre_links genre_doc
-      expect(links).to include '<a href="/?f%5Bgenre_full_facet_ssim%5D%5B%5D=Film+adaptations">Film adaptations</a>'
-      expect(links).to include '<a href="/?f%5Bgenre_full_facet_ssim%5D%5B%5D=Feature+Films">Feature Films</a>'
+      expect(links).to include '<a href="/?f%5Bgenre_full_facet%5D%5B%5D=Film+adaptations">Film adaptations</a>'
+      expect(links).to include '<a href="/?f%5Bgenre_full_facet%5D%5B%5D=Feature+Films">Feature Films</a>'
     end
   end
 

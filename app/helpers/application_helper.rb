@@ -55,7 +55,7 @@ module ApplicationHelper
     result = []
 
     options[:value].each do |genre|
-      link = link_to genre, "/?f[genre_full_facet_ssim][]=#{CGI.escape genre}"
+      link = link_to genre, "/?f[genre_full_facet][]=#{CGI.escape genre}"
       result << sanitize(link)
     end
 
