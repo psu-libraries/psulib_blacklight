@@ -1,36 +1,15 @@
-<div class="jumbotron text-center">
-  <h1 class="jumbotron-heading"><%= t('blacklight.welcome') %></h1>
+<h1>Penn State University Libraries Catalog</h1>
+<p class="lead">Read more about <a href="#">the work we've been doing to improve your search experience</a> and
+  <a href="#">check out our discovery roadmap</a>. You can also:
+  <a href="#searchtips">learn more</a> about searching the catalog,
+  <a href="https://libraries.psu.edu/ask">Ask a Librarian</a> for help finding materials,
+  and <a href="#">send us feedback</a> on how we can improve your experience.</p>
 
-  <p class="lead">Blacklight is a multi-institutional open-source collaboration building a better discovery platform framework.</p>
-
-  <p>
-    <%= link_to 'Read the Documentation', 'https://github.com/projectblacklight/blacklight/wiki', class: 'btn btn-primary' %>
-    <%= link_to 'See Examples', 'http://projectblacklight.org', class: 'btn btn-outline-secondary' %>
-  </p>
-</div>
-
-<div id="getting-started">
-  <h2>Here’s how to get started customizing your application:</h2>
-
-  <p>There are many ways to override specific behaviors and views in Blacklight. Because Blacklight is distributed as a Rails engine-based gem, all customization of Blacklight behavior should be done within your application by overriding Blacklight-provided behaviors with your own.</p>
-
-  <p>
-    <ol>
-      <li>To modify this text, you need to <a href="http://guides.rubyonrails.org/engines.html#improving-engine-functionality">override the Blacklight-provided view</a>.
-  You can copy this file, located in the blacklight gem: <br />
-  <%= Blacklight.root %>/app/views/catalog/_home_text.html.erb <br />
-  to your own application: <br />
-   <%= Rails.root %>/app/views/catalog/_home_text.html.erb
-      </li>
-      <li><a href="https://github.com/projectblacklight/blacklight/wiki/Indexing-your-data-into-solr">Index your own data</a> into Solr</li>
-      <li><a href="https://github.com/projectblacklight/blacklight/wiki#blacklight-configuration">Configure Blacklight</a> to match your data and user-experience needs</li>
-      <li><a href="https://github.com/projectblacklight/blacklight/wiki#support">Get in touch</a> with your comments, questions, and ideas</li>
-    </ol>
-  </p>
-</div>
-
-<%# This is the same panel shown in the Rails welcome template %>
-<div id="about" class="card">
-  <h2 class='card-header collapsed collapse-toggle' data-toggle="collapse" data-target="#about-content"><a href="/rails/info/properties">About your application&rsquo;s environment</a></h2>
-  <div id="about-content" class="card-block collapse"></div>
-</div>
+<h2>Other Library Resources</h2>
+<ul class="list-inline">
+  <li class="list-inline-item"><a href="https://psu.summon.serialssolutions.com/" target="_blank">LionSearch (Articles)</a></li>
+  <li class="list-inline-item"><a href="https://libraries.psu.edu/databases" target="_blank">Databases</a></li>
+  <li class="list-inline-item"><a href=" https://sk8es4mc2l.search.serialssolutions.com/ejp/?libHash=SK8ES4MC2L#/search/?searchControl=title&searchType=a_to_z&criteria=A&language=en-US&titleType=JOURNALS">E-journals</a></li>
+  <li class="list-inline-item"><a href="https://digital.libraries.psu.edu/">Digital collections</a></li>
+  <li class="list-inline-item"><a href="https://libraries.psu.edu/findingaids/finaidaz.html">Archival Collections</a></li>
+</ul>
