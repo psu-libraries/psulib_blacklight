@@ -4,8 +4,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
     "@rails/webpacker": "3.5",
-    "blacklight-frontend": "https://github.com/projectblacklight/blacklight#037633c43975feadd02605cae08f15abc474e98d",
-    "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#v6.2.0",
+    "blacklight-frontend": "7.1.0-alpha",
+    "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#v7.0.0.rc1",
     "blacklight-range-limit": "https://github.com/projectblacklight/blacklight_range_limit.git#v7.0.0",
     "bootstrap-select": "^1.13.5",
     "caniuse-lite": "^1.0.30000697",
