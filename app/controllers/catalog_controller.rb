@@ -156,19 +156,19 @@ class CatalogController < ApplicationController
     config.add_show_field 'restrictions_access_note_ssm', label: 'Restrictions on Access'
     config.add_show_field 'toc_ssim', label: 'Contents'
     config.add_show_field 'notes_summary_ssim', label: 'Summary'
-    config.add_show_field 'serials_continues_display_ssim', label: 'Continues'
-    config.add_show_field 'serials_continued_by_display_ssim', label: 'Continued By'
-    config.add_show_field 'serials_continues_in_part_display_ssim', label: 'Continues in Part'
-    config.add_show_field 'serials_continued_in_part_by_display_ssim', label: 'Continued in Part By'
-    config.add_show_field 'serials_formed_from_display_ssim', label: 'Formed From'
-    config.add_show_field 'serials_absorbs_display_ssim', label: 'Asborbs'
-    config.add_show_field 'serials_absorbed_by_display_ssim', label: 'Asborbed By'
-    config.add_show_field 'serials_absorbs_in_part_display_ssim', label: 'Asborbs in Part'
-    config.add_show_field 'serials_absorbed_in_part_by_display_ssim', label: 'Asborbed in Part By'
-    config.add_show_field 'serials_separated_from_display_ssim', label: 'Separated From'
-    config.add_show_field 'serials_split_into_display_ssim', label: 'Split Into'
-    config.add_show_field 'serials_merged_to_form_display_ssim', label: 'Merged to Form'
-    config.add_show_field 'serials_changed_back_to_display_ssim', label: 'Changed Back To'
+    config.add_show_field 'serials_continues_display_ssim', label: 'Continues', helper_method: :title_links
+    config.add_show_field 'serials_continued_by_display_ssim', label: 'Continued By', helper_method: :title_links
+    config.add_show_field 'serials_continues_in_part_display_ssim', label: 'Continues in Part', helper_method: :title_links
+    config.add_show_field 'serials_continued_in_part_by_display_ssim', label: 'Continued in Part By', helper_method: :title_links
+    config.add_show_field 'serials_formed_from_display_ssim', label: 'Formed From', helper_method: :title_links
+    config.add_show_field 'serials_absorbs_display_ssim', label: 'Asborbs', helper_method: :title_links
+    config.add_show_field 'serials_absorbed_by_display_ssim', label: 'Asborbed By', helper_method: :title_links
+    config.add_show_field 'serials_absorbs_in_part_display_ssim', label: 'Asborbs in Part', helper_method: :title_links
+    config.add_show_field 'serials_absorbed_in_part_by_display_ssim', label: 'Asborbed in Part By', helper_method: :title_links
+    config.add_show_field 'serials_separated_from_display_ssim', label: 'Separated From', helper_method: :title_links
+    config.add_show_field 'serials_split_into_display_ssim', label: 'Split Into', helper_method: :title_links
+    config.add_show_field 'serials_merged_to_form_display_ssim', label: 'Merged to Form', helper_method: :title_links
+    config.add_show_field 'serials_changed_back_to_display_ssim', label: 'Changed Back To', helper_method: :title_links
     config.add_show_field 'dates_of_pub_ssim', label: 'Dates of Publication and/or Sequential Designation'
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify

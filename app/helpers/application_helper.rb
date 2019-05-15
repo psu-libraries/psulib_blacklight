@@ -81,4 +81,16 @@ module ApplicationHelper
   def render_thumbnail(document, _options = {})
     content_tag(:span, '', class: "fas faspsu-#{document[:format][0].parameterize}")
   end
+
+  # Makes a link to title search
+  def title_links(options = {})
+    result = []
+
+    options[:value].each do |serial_title|
+      link = link_to serial_title, "/?search_field=title&q=#{CGI.escape serial_title}"
+      result << sanitize(link)
+    end
+
+    result
+  end
 end
