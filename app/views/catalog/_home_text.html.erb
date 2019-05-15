@@ -1,15 +1,18 @@
 <h1>Penn State University Libraries Catalog</h1>
-<p class="lead">Read more about <a href="#">the work we've been doing to improve your search experience</a> and
-  <a href="#">check out our discovery roadmap</a>. You can also:
-  <a href="#searchtips">learn more</a> about searching the catalog,
-  <a href="https://libraries.psu.edu/ask">Ask a Librarian</a> for help finding materials,
-  and <a href="#">send us feedback</a> on how we can improve <y></y>our experience.</p>
+<p class="lead">Read more about <%= link_to "the work we've been doing to improve your search experience", page_path('about') %> and
+  <%= link_to 'check out our discovery roadmap', 'https://libraries.psu.edu/library-search-roadmap' %>.</p>
+<p>You can also:</p>
+<ul>
+  <li><%= link_to 'Learn more', page_path('search_tips') %> about searching the catalog</li>
+  <li><%= link_to 'Ask a Librarian', 'https://libraries.psu.edu/ask' %> for help finding materials</li>
+  <li><%= link_to 'Send us feedback', '#tbd' %> on how we can improve your experience</li>
+</ul>
 
 <h2>Other Library Resources</h2>
 <ul class="list-inline">
-  <li class="list-inline-item"><a href="https://psu.summon.serialssolutions.com/" target="_blank">LionSearch (Articles)</a></li>
-  <li class="list-inline-item"><a href="https://libraries.psu.edu/databases" target="_blank">Databases</a></li>
-  <li class="list-inline-item"><a href=" https://sk8es4mc2l.search.serialssolutions.com/ejp/?libHash=SK8ES4MC2L#/search/?searchControl=title&searchType=a_to_z&criteria=A&language=en-US&titleType=JOURNALS">E-journals</a></li>
-  <li class="list-inline-item"><a href="https://digital.libraries.psu.edu/">Digital collections</a></li>
-  <li class="list-inline-item"><a href="https://libraries.psu.edu/findingaids/finaidaz.html">Archival Collections</a></li>
+  <li class="list-inline-item"><%= link_to 'LionSearch (Articles)', 'https://psu.summon.serialssolutions.com/' %></li>
+  <li class="list-inline-item"><%= link_to 'Databases', 'https://libraries.psu.edu/databases' %></li>
+  <li class="list-inline-item"><%= link_to 'E-journals', 'https://sk8es4mc2l.search.serialssolutions.com/ejp/?libHash=SK8ES4MC2L#/search/?searchControl=title&searchType=a_to_z&criteria=A&language=en-US&titleType=JOURNALS' %></li>
+  <li class="list-inline-item"><%= link_to 'Digital collections', 'https://digital.libraries.psu.edu/' %></li>
+  <li class="list-inline-item"><%= link_to 'Archival Collections', 'https://libraries.psu.edu/findingaids/finaidaz.html' %></li>
 </ul>
