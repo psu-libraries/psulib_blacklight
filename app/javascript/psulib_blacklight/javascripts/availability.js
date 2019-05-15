@@ -8,7 +8,7 @@
  *
  * @returns {Promise}
  */
-var loadLocations = function () {
+loadLocations = function () {
     return new Promise (function(resolve, reject) {
         $.getJSON('locations', function(data) {
             resolve(data);
@@ -18,127 +18,139 @@ var loadLocations = function () {
 
 $(document).ready(function () {
     // Load Sirsi locations
-    loadLocations().then(function(fromResolve) {
-        var locations =  fromResolve;
-        var inProcessLocations = locations.in_process;
-        var illLocations = locations.request_via_ill;
-        var inLibraryUseLocations = locations.in_library_use;
-        var all_locations = locations.all_locations;
-        var all_libraries = locations.libraries;
+    loadLocations().then(function(locations) {
+        all_locations = locations.all_locations;
+        all_libraries = locations.libraries;
 
         // Sirsi Web Services Availability url
-        var url = "url here";
+        url = 'sirsi url here';
 
         $('.availability').each(function () {
-            var availabilityHoldingsPlaceHolder = $(this).find('.availability-holdings');
-            var availabilitySnippetPlaceHolder = $(this).find('.availability-snippet');
-
+            var availability = $(this);
+            var availabilityHoldingsPlaceHolder = availability.find('.availability-holdings');
+            var availabilitySnippetPlaceHolder = availability.find('.availability-snippet');
             // Get the catkeys
-            var catkeys = $(this).attr("data-keys");
+            catkeys = $(this).attr("data-keys");
             // Format catkeys to compose titleID params
-            var titleIDs = '&titleID=' + catkeys;
+            titleIDs = '&titleID=' + catkeys;
 
             $.get(url + titleIDs, function (xml) {
-                var totalCopiesAvailable = 0;
-                var locations = [];
-                var libraries = [];
-                var online = [];
-                var checkedout = false;
-                var inProcess = [];
-                var viaILL = [];
-                var inLibraryUse = false;
+                totalCopiesAvailable = 0;
+                holdings = [];
+                libraries = [];
 
                 $(xml).find('TitleInfo').each(function () {
                     totalCopiesAvailable += parseInt($(this).find("totalCopiesAvailable").text(), 10);
+                    $(this).children('CallInfo').each(function () {
+                        libraryID = $(this).children('libraryID').text();
+                        library = (libraryID in all_libraries) ? all_libraries[libraryID] : "";
+                        callNumber = $(this).children('callNumber').text();
+                        numberOfCopies = $(this).children('numberOfCopies').text();
 
-                    $(this).children("CallInfo").each(function () {
-                        var libraryID = $(this).children("libraryID").text();
-                        // Check if online resource
-                        if(libraryID.toUpperCase() == 'ONLINE') {
-                            online.push("Online");
-                        }
-                        else {
-                            libraries.push(all_libraries[libraryID]);
-
-                            var callNumber = $(this).children("callNumber").text();
+                        // Only for not online items (online items uses 856 urls for display)
+                        if (libraryID.toUpperCase() !== 'ONLINE') {
+                            libraries[library] = numberOfCopies;
+                            // Holdings
                             $(this).children("ItemInfo").each(function () {
-                                var currentLocationID = $(this).children("currentLocationID").text();
-                                currentLocationID = currentLocationID.toUpperCase();
-                                // No location info if item is checked out
-                                if (currentLocationID == "CHECKEDOUT") {
-                                    checkedout = true;
-                                }
-                                // No location info if item is in process, get the message
-                                else if(currentLocationID in inProcessLocations) {
-                                    inProcess.push(inProcessLocations[currentLocationID]);
-                                }
-                                // No location info if item is available via ILL, get the message
-                                else if(currentLocationID in illLocations) {
-                                    viaILL.push(illLocations[currentLocationID]);
-                                }
-                                else {
-                                    var location = (currentLocationID in all_locations) ? all_locations[currentLocationID] : "";
-                                    locations.push(location + ', ' + callNumber);
-                                    // Check if in library use only
-                                    if(currentLocationID in inLibraryUseLocations) {
-                                        inLibraryUse = true;
-                                    }
-                                }
+                                currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
+                                homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
+                                chargeable = $(this).children("chargeable").text();
+                                status = resolveStatus(chargeable, homeLocationID, currentLocationID);
+
+                                var location = (homeLocationID in all_locations) ? all_locations[homeLocationID] : "";
+                                holdings.push({
+                                    library : library,
+                                    location: location,
+                                    callNumber: callNumber,
+                                    status: status
+                                });
                             });
                         }
                     });
                 });
 
                 // If at least one copy available, then display Available
-                var available = totalCopiesAvailable > 0 && (locations.length > 0 || online.length > 0);
-
-                // Check locations and add to the display text
-                var locationText = "";
-                if(locations.length > 0) {
-                    // If available in 1 or 2 locations, display location and call number,
-                    // If available in more than one location, display as "Multiple Locations"
-                    locationText = locations.length > 1 ? "Multiple Locations" : locations[0] ;
+                if (Object.keys(holdings).length > 0) {
+                    availabilityHoldings(availabilityHoldingsPlaceHolder, holdings, libraries);
+                    availabilitySnippet(availabilitySnippetPlaceHolder, libraries, totalCopiesAvailable);
+                } else {
+                    availability.hide();
                 }
-
-                // Check if online and add to the display text
-                if(online.length > 0) {
-                    // If only available online, add that to display
-                    locationText += locationText ? ", Online" : "Online";
-                }
-
-                var label = "";
-                if(available) {
-                    // If available only in one location which is a in library use location then
-                    // display label as In Library Use, otherwise display Available
-                    label = (inLibraryUse && locations.length == 1) ? "In Library Use" : "Available";
-                }
-                else {
-                    if(checkedout) {
-                        label = 'Checked Out';
-                    }
-                    else if(inProcess.length > 0) {
-                        label = 'In Process'
-                        locationText  = inProcess[0];
-                    }
-                    else if(viaILL.length > 0) {
-                        label='Request via ILL'
-                        locationText = viaILL[0];
-                    }
-                }
-
-                availabilityHoldings(availabilityHoldingsPlaceHolder, label, locationText);
-                availabilitySnippet(availabilitySnippetPlaceHolder, libraries);
             }, "xml");
         });
     });
 });
 
-var availabilitySnippet = function (availabilitySnippetPlaceHolder, libraries) {
-    var librariesText = libraries.slice(0,2).join(', ');
-    availabilitySnippetPlaceHolder.html(librariesText);
-};
+function availabilitySnippet(availabilitySnippetPlaceHolder, libraries, totalCopiesAvailable) {
+    if (totalCopiesAvailable > 0) {
+        librariesText = Object.keys(libraries).slice(0, 2).join(', ');
+        snippet = libraries.length > 2 ? 'Multiple Locations' : librariesText;
+    }
+    else {
+        // No available copies, do not display a snippet
+        snippet = '';
+    }
+    availabilitySnippetPlaceHolder.html(snippet);
+}
 
-var availabilityHoldings = function (availabilityHoldingsPlaceHolder, status, locationText) {
-    var availability = '<p><span class="label">' + status + '</span> ' + locationText + '</p>';
+function availabilityHoldings(availabilityHoldingsPlaceHolder, holdings, libraries) {
+    availability = resolveHoldings(holdings, libraries);
     availabilityHoldingsPlaceHolder.html(availability);
-};
+}
+
+function resolveHoldings(allHoldings, libraries) {
+    allHoldings = groupByLibrary(allHoldings);
+
+    holdingsDisplay = '<table class="table">';
+    if (Object.keys(allHoldings).length > 0) {
+        for (library in allHoldings) {
+            holdingsPerLibrary = allHoldings[library];
+            numberOfCopiesAtLibrary = libraries[library];
+            holdingsDisplay += '<thead class="thead-light"><tr>';
+            holdingsDisplay += '<th scope="col" colspan="2">' + library + ' (' + numberOfCopiesAtLibrary + ')</th>';
+            holdingsDisplay += '<th scope="col">Status</th>';
+            holdingsDisplay += '</tr></thead>';
+
+            holdingsPerLibrary.forEach(function (holding) {
+                holdingsDisplay += '<tbody><tr>'
+                holdingsDisplay += '<td>' + holding.location + '</td>';
+                holdingsDisplay += '<td>' + holding.callNumber + '</td>';
+                holdingsDisplay += '<td>' + holding.status + '</td>';
+                holdingsDisplay += '</tr></tbody>';
+            });
+        }
+    }
+    holdingsDisplay += '</table>';
+    return holdingsDisplay;
+}
+
+// Group holding by library
+function groupByLibrary(holdings) {
+    return holdings.reduce(function (acc, obj) {
+        var key = obj['library'];
+        if (!acc[key]) {
+            acc[key] = [];
+        }
+        acc[key].push(obj);
+        return acc;
+    }, {});
+}
+
+function resolveStatus(chargeable, homeLocationID, currentLocationID) {
+    if (chargeable === 'true') {
+        status = homeLocationID !== 'ON-ORDER' ? 'Available' : 'Being Acquired by the Library';
+    }
+    else {
+        switch (currentLocationID) {
+            case 'CHECKEDOUT':
+                status = 'Checked Out';
+                break;
+            case 'MISSING':
+                status = 'Missing';
+                break;
+            default:
+                status = 'Not Available';
+        }
+    }
+    return status;
+}
