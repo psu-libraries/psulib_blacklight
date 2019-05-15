@@ -40,5 +40,4 @@ Rails.application.routes.draw do
 
   # locations
   get 'locations' => 'availability#index'
-
 end
