@@ -324,7 +324,6 @@ class CatalogController < ApplicationController
     # except in the relevancy case).
     config.add_sort_field 'score desc, pub_date_itsi desc, title_sort asc', label: 'relevance'
     config.add_sort_field 'pub_date_itsi desc, title_sort asc', label: 'year'
-    config.add_sort_field 'author_ssort asc, title_sort asc', label: 'author'
     config.add_sort_field 'title_sort asc, pub_date_itsi desc', label: 'title'
 
     # Configuration for autocomplete suggestor
