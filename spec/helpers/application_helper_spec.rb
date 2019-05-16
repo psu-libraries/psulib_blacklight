@@ -97,4 +97,15 @@ RSpec.describe ApplicationHelper, type: :helper do
       end
     end
   end
+
+  describe '#title_links' do
+    let (:field_data) { ['Some Title', 'Another Title'] }
+    let (:title_doc) { { value: field_data } }
+
+    it 'assembles a link to title search' do
+      links = title_links title_doc
+      expect(links).to include '<a href="/?search_field=title&amp;q=Some+Title">Some Title</a>'
+      expect(links).to include '<a href="/?search_field=title&amp;q=Another+Title">Another Title</a>'
+    end
+  end
 end
