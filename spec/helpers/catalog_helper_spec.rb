@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ApplicationHelper, type: :helper do
+RSpec.describe CatalogHelper, type: :helper do
   describe '#bound_info' do
     let (:field_data) { ['{"bound_catkey": "355035", "bound_title": '\
         '"The high-caste Hindu woman / With introduction by Rachel L. Bodley", "bound_format": '\
@@ -106,6 +106,18 @@ RSpec.describe ApplicationHelper, type: :helper do
       links = title_links title_doc
       expect(links).to include '<a href="/?search_field=title&amp;q=Some+Title">Some Title</a>'
       expect(links).to include '<a href="/?search_field=title&amp;q=Another+Title">Another Title</a>'
+    end
+  end
+
+  describe '#marc_view_link' do
+    let (:document) { { id: 12345 } }
+
+    context 'when a record has no thumbnail' do
+      it 'format icon is the default thumbnail' do
+        marc_record_details = marc_record_details document
+        expect(marc_record_details).to include "<a id=\"marc_record_link\" href=\"/catalog/#{document[:id]}/librarian_view\">View MARC record</a>"
+        expect(marc_record_details).to include "Catkey: #{document[:id]}"
+      end
     end
   end
 end

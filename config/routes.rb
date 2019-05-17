@@ -38,5 +38,5 @@ Rails.application.routes.draw do
   match '/422' => 'errors#not_found', via: :all
   match '/500' => 'errors#internal_server_error', via: :all
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'catalog/:id/librarian_view', to: 'catalog#librarian_view', as: 'marc_view'
 end
