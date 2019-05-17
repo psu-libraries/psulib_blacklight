@@ -109,16 +109,14 @@ RSpec.describe CatalogHelper, type: :helper do
     end
   end
 
-  describe '#marc_view_link' do
+  describe '#marc_record_details' do
     let (:document) { { id: 12345 } }
 
-    context 'when a record has no thumbnail' do
-      it 'format icon is the default thumbnail' do
-        marc_record_details = marc_record_details document
-        expect(marc_record_details).to include '<a id="marc_record_link"'\
-                                                "href=\"/catalog/#{document[:id]}/librarian_view\">View MARC record</a>"
-        expect(marc_record_details).to include "catkey: #{document[:id]}"
-      end
+    it 'adds correct marc record details' do
+      marc_record_details = marc_record_details document
+      expect(marc_record_details).to include '<a id="marc_record_link" '\
+                                              "href=\"/catalog/#{document[:id]}/librarian_view\">View MARC record</a>"
+      expect(marc_record_details).to include "catkey: #{document[:id]}"
     end
   end
 end
