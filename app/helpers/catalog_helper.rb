@@ -102,7 +102,7 @@ module CatalogHelper
       'View MARC record',
       marc_view_path(document[:id]), id: 'marc_record_link'
     )
-    details.push "Catkey: #{document[:id]}"
+    details.push "catkey: #{document[:id]}"
     safe_join(details, ' | ')
   end
 end
