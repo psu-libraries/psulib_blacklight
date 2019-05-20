@@ -25,7 +25,7 @@ $(document).ready(function () {
         // Sirsi Web Services Availability url
         url = 'sirsi url here';
 
-        $('.availability').each(function () {
+        $('.availability').each(function() {
             var availability = $(this);
             var availabilityHoldingsPlaceHolder = availability.find('.availability-holdings');
             var availabilitySnippetPlaceHolder = availability.find('.availability-snippet');
@@ -41,6 +41,7 @@ $(document).ready(function () {
 
                 $(xml).find('TitleInfo').each(function () {
                     totalCopiesAvailable += parseInt($(this).find("totalCopiesAvailable").text(), 10);
+
                     $(this).children('CallInfo').each(function () {
                         libraryID = $(this).children('libraryID').text();
                         library = (libraryID in all_libraries) ? all_libraries[libraryID] : "";
@@ -53,6 +54,7 @@ $(document).ready(function () {
                             libAndCount['library'] = library
                             libAndCount['numberOfCopies'] = numberOfCopies
                             libraries.push(libAndCount);
+
                             // Holdings
                             $(this).children("ItemInfo").each(function () {
                                 currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
