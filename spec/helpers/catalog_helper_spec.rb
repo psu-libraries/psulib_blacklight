@@ -112,7 +112,7 @@ RSpec.describe CatalogHelper, type: :helper do
   describe '#marc_record_details' do
     let (:document) { { id: 12345 } }
 
-    it 'adds correct marc record details' do
+    it 'adds a link to the marc record details (aka "librarian view")' do
       marc_record_details = marc_record_details document
       expect(marc_record_details).to include '<a id="marc_record_link" '\
                                               "href=\"/catalog/#{document[:id]}/librarian_view\">View MARC record</a>"
