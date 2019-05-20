@@ -119,13 +119,13 @@ function printAvailabilityData(availabilityData) {
 }
 
 function librariesText(holdingData){
-    librariesString = ""
+    libraries = []
 
     for (index in holdingData) {
-        librariesString = holdingData[index].summary.library
+        libraries.push(holdingData[index].summary.library)
     }
 
-    return librariesString
+    return libraries.join(', ')
 }
 
 function availabilitySnippet(availabilitySnippetPlaceHolder, holdingData, totalCopiesAvailable) {
