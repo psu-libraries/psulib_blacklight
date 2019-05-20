@@ -77,7 +77,7 @@ $(document).ready(function () {
                     rawHoldings = groupByLibrary(holdings);
                     availabilityStructuredData = availabilityDataStructurer(rawHoldings, libraries);
                     availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData))
-                    availabilitySnippet(availabilitySnippetPlaceHolder, libraries, totalCopiesAvailable);
+                    availabilitySnippet(availabilitySnippetPlaceHolder, availabilityStructuredData, totalCopiesAvailable);
                 } else {
                     availability.hide();
                 }
@@ -87,46 +87,47 @@ $(document).ready(function () {
 });
 
 function printAvailabilityData(availabilityData) {
-    return markupForHoldings = `
-                        ${availabilityData.map(data => `
-                            <h4>${data.library} (${data.countAtLibrary})</h4>
-                            <table class="table table-hover table-sm">
-                                <caption class="sr-only">Listing where to find this item in our buildings.</caption>
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>Location</th>
-                                        <th>Call number</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    ${data.map(holding => `
+    availabilityData.forEach(function(element) {
+        markupForHoldings = `
+                                <h4>${element.summary.library} (${element.summary.countAtLibrary} copies)</h4>
+                                <table class="table table-hover table-sm">
+                                    <caption class="sr-only">Listing where to find this item in our buildings.</caption>
+                                    <thead class="thead-light">
                                         <tr>
-                                            <td>${holding.location}</td>
-                                            <td>${holding.callNumber}</td>
-                                            <td>${holding.status}</td>
+                                            <th>Location</th>
+                                            <th>Call number</th>
+                                            <th>Status</th>
                                         </tr>
-                                    `)}
-                                </tbody>
-                            </table>
-                        `).join('')}
-                        `
+                                    </thead>
+                                    <tbody>
+                                        ${element.holdings.map(holding => `
+                                            <tr>
+                                                <td>${holding.location}</td>
+                                                <td>${holding.callNumber}</td>
+                                                <td>${holding.status}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            `
+    })
 
+    return markupForHoldings
 }
 
-function librariesText(libraries){
+function librariesText(holdingData){
     librariesString = ""
 
-    for (data in libraries) {
-        librariesString = libraries[data]['library']
+    for (index in holdingData) {
+        librariesString = holdingData[index].summary.library
     }
 
     return librariesString
 }
 
-function availabilitySnippet(availabilitySnippetPlaceHolder, libraries, totalCopiesAvailable) {
+function availabilitySnippet(availabilitySnippetPlaceHolder, holdingData, totalCopiesAvailable) {
     if (totalCopiesAvailable > 0) {
-        snippet = libraries.length > 2 ? 'Multiple Locations' : librariesText(libraries);
+        snippet = holdingData.length > 2 ? 'Multiple Locations' : librariesText(holdingData);
     }
     else {
         // No available copies, do not display a snippet
@@ -139,18 +140,16 @@ function availabilityDataStructurer(holdingMetadata, availableCountInLibraries) 
     availabilityStructuredData = []
     if (Object.keys(holdingMetadata).length > 0) {
         Object.keys(holdingMetadata).forEach(function (library, index){
-            availableCopiesCount = ''
-            availableCountInLibraries.find(function(item) {
-                if (item.library == library){
-                    availableCopiesCount = item.numberOfCopies
-                }
-            })
-            summary = []
-            summary['library'] = library
-            summary['countAtLibrary'] = availableCopiesCount
-            availabilityStructuredData[index] = summary
+            holdingData = {
+                            "summary":
+                                {
+                                    "library": library,
+                                    "countAtLibrary": holdingMetadata[library].length
+                                },
+                            "holdings":  holdingMetadata[library]
+                          }
 
-            availabilityStructuredData[index].push(holdingMetadata[library][0])
+            availabilityStructuredData[index] = holdingData
         })
     }
     return availabilityStructuredData
