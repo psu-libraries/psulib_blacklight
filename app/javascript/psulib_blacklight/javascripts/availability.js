@@ -76,12 +76,11 @@ $(document).ready(function () {
 
                 // If at least one copy available, then display Available
                 if (Object.keys(holdings).length > 0) {
+                    availability.removeClass("d-none").addClass("d-block");
                     rawHoldings = groupByLibrary(holdings);
                     availabilityStructuredData = availabilityDataStructurer(rawHoldings, libraries);
                     availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData))
                     availabilitySnippet(availabilitySnippetPlaceHolder, availabilityStructuredData, totalCopiesAvailable);
-                } else {
-                    availability.hide();
                 }
             }, "xml");
         });
