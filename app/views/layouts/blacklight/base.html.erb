@@ -46,6 +46,8 @@
   <div class="row">
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
+
+  <%= render partial: 'marc_record_details' if @search_context && @document %>
 </div>
 
 <%= render partial: 'shared/footer' %>
