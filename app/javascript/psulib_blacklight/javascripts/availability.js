@@ -89,9 +89,10 @@ $(document).ready(function () {
 });
 
 function printAvailabilityData(availabilityData) {
+    markupForHoldings = ''
     availabilityData.forEach(function(element) {
-        markupForHoldings = `
-                                <h4>${element.summary.library} (${element.summary.countAtLibrary} copies)</h4>
+        markupForHoldings += `
+                                <h4>${element.summary.library} (${element.summary.countAtLibrary} ${element.summary.pluralize})</h4>
                                 <table class="table table-hover table-sm">
                                     <caption class="sr-only">Listing where to find this item in our buildings.</caption>
                                     <thead class="thead-light">
@@ -142,11 +143,13 @@ function availabilityDataStructurer(holdingMetadata, availableCountInLibraries) 
     availabilityStructuredData = []
     if (Object.keys(holdingMetadata).length > 0) {
         Object.keys(holdingMetadata).forEach(function (library, index){
+            pluralize = (holdingMetadata[library].length > 1) ? 'items' : 'item';
             holdingData = {
                             "summary":
                                 {
                                     "library": library,
-                                    "countAtLibrary": holdingMetadata[library].length
+                                    "countAtLibrary": holdingMetadata[library].length,
+                                    "pluralize": pluralize
                                 },
                             "holdings":  holdingMetadata[library]
                           }
