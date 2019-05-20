@@ -25,7 +25,7 @@ $(document).ready(function () {
         // Sirsi Web Services Availability url
         url = 'sirsi url here';
 
-        $('.availability').each(function () {
+        $('.availability').each(function() {
             var availability = $(this);
             var availabilityHoldingsPlaceHolder = availability.find('.availability-holdings');
             var availabilitySnippetPlaceHolder = availability.find('.availability-snippet');
@@ -41,6 +41,7 @@ $(document).ready(function () {
 
                 $(xml).find('TitleInfo').each(function () {
                     totalCopiesAvailable += parseInt($(this).find("totalCopiesAvailable").text(), 10);
+
                     $(this).children('CallInfo').each(function () {
                         libraryID = $(this).children('libraryID').text();
                         library = (libraryID in all_libraries) ? all_libraries[libraryID] : "";
@@ -49,7 +50,11 @@ $(document).ready(function () {
 
                         // Only for not online items (online items uses 856 urls for display)
                         if (libraryID.toUpperCase() !== 'ONLINE') {
-                            libraries[library] = numberOfCopies;
+                            libAndCount = []
+                            libAndCount['library'] = library
+                            libAndCount['numberOfCopies'] = numberOfCopies
+                            libraries.push(libAndCount);
+
                             // Holdings
                             $(this).children("ItemInfo").each(function () {
                                 currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
@@ -71,8 +76,10 @@ $(document).ready(function () {
 
                 // If at least one copy available, then display Available
                 if (Object.keys(holdings).length > 0) {
-                    availabilityHoldings(availabilityHoldingsPlaceHolder, holdings, libraries);
-                    availabilitySnippet(availabilitySnippetPlaceHolder, libraries, totalCopiesAvailable);
+                    rawHoldings = groupByLibrary(holdings);
+                    availabilityStructuredData = availabilityDataStructurer(rawHoldings, libraries);
+                    availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData))
+                    availabilitySnippet(availabilitySnippetPlaceHolder, availabilityStructuredData, totalCopiesAvailable);
                 } else {
                     availability.hide();
                 }
@@ -81,10 +88,49 @@ $(document).ready(function () {
     });
 });
 
-function availabilitySnippet(availabilitySnippetPlaceHolder, libraries, totalCopiesAvailable) {
+function printAvailabilityData(availabilityData) {
+    markupForHoldings = ''
+    availabilityData.forEach(function(element) {
+        markupForHoldings += `
+                                <h4>${element.summary.library} (${element.summary.countAtLibrary} ${element.summary.pluralize})</h4>
+                                <table class="table table-hover table-sm">
+                                    <caption class="sr-only">Listing where to find this item in our buildings.</caption>
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Location</th>
+                                            <th>Call number</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${element.holdings.map(holding => `
+                                            <tr>
+                                                <td>${holding.location}</td>
+                                                <td>${holding.callNumber}</td>
+                                                <td>${holding.status}</td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            `
+    })
+
+    return markupForHoldings
+}
+
+function librariesText(holdingData){
+    libraries = []
+
+    for (index in holdingData) {
+        libraries.push(holdingData[index].summary.library)
+    }
+
+    return libraries.join(', ')
+}
+
+function availabilitySnippet(availabilitySnippetPlaceHolder, holdingData, totalCopiesAvailable) {
     if (totalCopiesAvailable > 0) {
-        librariesText = Object.keys(libraries).slice(0, 2).join(', ');
-        snippet = libraries.length > 2 ? 'Multiple Locations' : librariesText;
+        snippet = holdingData.length > 2 ? 'Multiple Locations' : librariesText(holdingData);
     }
     else {
         // No available copies, do not display a snippet
@@ -93,35 +139,25 @@ function availabilitySnippet(availabilitySnippetPlaceHolder, libraries, totalCop
     availabilitySnippetPlaceHolder.html(snippet);
 }
 
-function availabilityHoldings(availabilityHoldingsPlaceHolder, holdings, libraries) {
-    availability = resolveHoldings(holdings, libraries);
-    availabilityHoldingsPlaceHolder.html(availability);
-}
+function availabilityDataStructurer(holdingMetadata, availableCountInLibraries) {
+    availabilityStructuredData = []
+    if (Object.keys(holdingMetadata).length > 0) {
+        Object.keys(holdingMetadata).forEach(function (library, index){
+            pluralize = (holdingMetadata[library].length > 1) ? 'items' : 'item';
+            holdingData = {
+                            "summary":
+                                {
+                                    "library": library,
+                                    "countAtLibrary": holdingMetadata[library].length,
+                                    "pluralize": pluralize
+                                },
+                            "holdings":  holdingMetadata[library]
+                          }
 
-function resolveHoldings(allHoldings, libraries) {
-    allHoldings = groupByLibrary(allHoldings);
-
-    holdingsDisplay = '<table class="table">';
-    if (Object.keys(allHoldings).length > 0) {
-        for (library in allHoldings) {
-            holdingsPerLibrary = allHoldings[library];
-            numberOfCopiesAtLibrary = libraries[library];
-            holdingsDisplay += '<thead class="thead-light"><tr>';
-            holdingsDisplay += '<th scope="col" colspan="2">' + library + ' (' + numberOfCopiesAtLibrary + ')</th>';
-            holdingsDisplay += '<th scope="col">Status</th>';
-            holdingsDisplay += '</tr></thead>';
-
-            holdingsPerLibrary.forEach(function (holding) {
-                holdingsDisplay += '<tbody><tr>'
-                holdingsDisplay += '<td>' + holding.location + '</td>';
-                holdingsDisplay += '<td>' + holding.callNumber + '</td>';
-                holdingsDisplay += '<td>' + holding.status + '</td>';
-                holdingsDisplay += '</tr></tbody>';
-            });
-        }
+            availabilityStructuredData[index] = holdingData
+        })
     }
-    holdingsDisplay += '</table>';
-    return holdingsDisplay;
+    return availabilityStructuredData
 }
 
 // Group holding by library
@@ -154,3 +190,4 @@ function resolveStatus(chargeable, homeLocationID, currentLocationID) {
     }
     return status;
 }
+
