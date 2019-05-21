@@ -61,11 +61,6 @@
     display: table-row;
     font-size: 14px;
     line-height: 1.4;
-
-    .selected {
-      //@extend .text-success;
-    }
-
   }
 
   .remove {
@@ -125,7 +120,7 @@
   }
 }
 
-//style for pivot facet's nested list
+// Style for pivot facet's nested list
 .pivot-facet {
   @extend .list-unstyled;
 

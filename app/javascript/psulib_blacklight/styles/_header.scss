@@ -51,7 +51,7 @@
   }
 
   .submit-search-text {
-    // hide 'search' label at very small screens
+    // Hide 'search' label at very small screens
     @media screen and (max-width: breakpoint-max(xs)) {
       @include sr-only();
     }
