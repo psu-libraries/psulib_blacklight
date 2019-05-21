@@ -2,9 +2,9 @@
   document ||= @document
   id = document[:id]
 %>
-<div class="availability d-none" data-keys="<%= id %>">
+<div class="availability" data-keys="<%= id %>">
   <div class="row">
-    <div class="col-md-3 pr-0">
+    <div class="col-md-3 pr-0 availability-button invisible">
       <p>
         <button class="btn btn-primary header" type="button" data-toggle="collapse" data-target="#availability-<%= id %>" aria-expanded="false" aria-controls="<%= id %>-location">
           <span>Check availability</span>

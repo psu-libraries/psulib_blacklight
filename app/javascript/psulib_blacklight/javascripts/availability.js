@@ -27,6 +27,7 @@ $(document).ready(function () {
 
         $('.availability').each(function() {
             var availability = $(this);
+            var availabilityButton = availability.find('.availability-button');
             var availabilityHoldingsPlaceHolder = availability.find('.availability-holdings');
             var availabilitySnippetPlaceHolder = availability.find('.availability-snippet');
             // Get the catkeys
@@ -76,11 +77,13 @@ $(document).ready(function () {
 
                 // If at least one copy available, then display Available
                 if (Object.keys(holdings).length > 0) {
-                    availability.removeClass("d-none").addClass("d-block");
+                    availabilityButton.removeClass("invisible").addClass("visible");
                     rawHoldings = groupByLibrary(holdings);
                     availabilityStructuredData = availabilityDataStructurer(rawHoldings, libraries);
-                    availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData))
+                    availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData));
                     availabilitySnippet(availabilitySnippetPlaceHolder, availabilityStructuredData, totalCopiesAvailable);
+                } else {
+                    availability.addClass("invisible");
                 }
             }, "xml");
         });
