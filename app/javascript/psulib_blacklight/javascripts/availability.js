@@ -1,7 +1,11 @@
 /**
  * @file
- * Real Time Availability info from Sirsi Web Services
+ * Real Time Availability
  */
+
+$(document).on('turbolinks:load', function() {
+    loadAvailability();
+});
 
 /**
  * Load locations
@@ -16,7 +20,10 @@ loadLocations = function () {
     });
 };
 
-$(document).ready(function () {
+/**
+ * Load real time holdings and availability info from Sirsi Web Services
+ */
+loadAvailability = function () {
     // Load Sirsi locations
     loadLocations().then(function(locations) {
         all_locations = locations.all_locations;
@@ -94,7 +101,7 @@ $(document).ready(function () {
             }, "xml");
         }
     });
-});
+};
 
 function printAvailabilityData(availabilityData) {
     markupForHoldings = '';
