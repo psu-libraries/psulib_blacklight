@@ -1,7 +1,6 @@
-/*
-  Header bar at top (Bootstrap nav-bar)
-*/
+// scss-lint:disable PlaceholderInExtend
 
+// Header bar at top (Bootstrap nav-bar)
 .topbar > .container {
   @media (max-width: breakpoint-max(xs)) {
     margin-left: 0;
@@ -15,25 +14,25 @@
  }
 
 .site-title-container {
-  flex: 0 0 auto
+  flex: 0 0 auto;
 }
 
 .site-title {
+  border-left: 1px solid $white;
+  color: $white;
   font-family: $headings-font-family;
+  font-size: 1.6em;
+  height: 35px;
+  line-height: 35px;
+  margin-left: 10px;
+  padding-left: 1rem;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  margin-left: 10px;
-  border-left: 1px solid $white;
-  height: 35px;
-  padding-left: 1rem;
-  color: white;
-  font-size: 1.6em;
-  line-height: 35px;
 
   &:hover {
-    text-decoration: none;
     color: $white;
+    text-decoration: none;
   }
 }
 

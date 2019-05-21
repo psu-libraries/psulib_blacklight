@@ -1,3 +1,5 @@
+// scss-lint:disable PlaceholderInExtend
+
 .sidenav {
   .navbar-toggler {
     border-color: $navbar-light-toggler-border-color;
@@ -51,9 +53,9 @@
 
 .facet-values {
   display: table;
+  margin-bottom: 0;
   table-layout: fixed;
   width: 100%;
-  margin-bottom: 0;
 
   li {
     display: table-row;
@@ -72,39 +74,37 @@
     padding-left: $spacer / 2;
 
     &:hover {
-      color: theme-color("danger");
+      color: theme-color('danger');
       text-decoration: none;
     }
   }
 
   @mixin hyphens-auto {
     overflow-wrap: break-word;
-    -webkit-hyphens: auto;
-    -o-hyphens: auto;
     hyphens: auto;
   }
 
   .facet-label {
+    @include hyphens-auto;
     display: table-cell;
     padding-bottom: $spacer / 2;
-    @include hyphens-auto;
   }
 
   .facet-count {
     display: table-cell;
-    vertical-align: top;
     text-align: right;
+    vertical-align: top;
     width: 5em;
   }
 }
 
 .facet-extended-list {
   .sort-options {
-    text-align:right;
+    text-align: right;
   }
 
   .prev-next-links {
-    float:left;
+    float: left;
   }
 }
 
@@ -116,9 +116,7 @@
   }
 }
 
-/* Sidenav
--------------------------------------------------- */
-
+// Sidenav
 .facet-pagination {
   @extend .clearfix;
 
@@ -127,14 +125,12 @@
   }
 }
 
-
-
-/* style for pivot facet's nested list */
-
+//style for pivot facet's nested list
 .pivot-facet {
   @extend .list-unstyled;
 
-  ul, .pivot-facet {
+  ul,
+  .pivot-facet {
     @extend .list-unstyled;
     @extend .py-1;
     @extend .px-3;
