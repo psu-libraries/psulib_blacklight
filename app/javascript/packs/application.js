@@ -6,6 +6,7 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
+require.context('../psulib_blacklight/images/', true)
 
 import 'psulib_blacklight'
 import 'psulib_blacklight_range_limit'

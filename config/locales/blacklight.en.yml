@@ -1,3 +1,5 @@
 en:
   blacklight:
-    application_name: 'Blacklight'
+    organization_name: 'The Pennsylvania State University Libraries'
+    application_name: 'Penn State University Libraries Catalog'
+    application_short_name: 'Catalog'

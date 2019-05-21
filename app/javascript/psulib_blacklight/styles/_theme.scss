@@ -1,8 +1,13 @@
 // Bootstrap overrides
-$headings-font-family: "Roboto Slab", Arial, sans-serif;
-$font-family-sans-serif: "Open Sans", Georgia, serif;
+//  Fonts
+$headings-font-family: "Roboto Slab", Georgia, sans-serif;
+$font-family-sans-serif: "Open Sans", Arial, serif;
 
-$psu-dark-blue: #0a0f15;
+//  Navbar
+$navbar-brand-padding-y: 0;
+
+//  Theme colors
+$psu-dark-blue: #1f427c;
 
 $theme-colors: (
         "dark": $psu-dark-blue,
