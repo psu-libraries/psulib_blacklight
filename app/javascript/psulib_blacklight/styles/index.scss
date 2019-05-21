@@ -25,7 +25,6 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/group';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/bookmark';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/balanced_list';
-@import '~blacklight-frontend/app/assets/stylesheets/blacklight/facets';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/search_history';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/modal';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/icons';
@@ -33,6 +32,9 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 // Blacklight-marc overridden
 @import 'blacklight_marc';
 
+// Blacklight over-rides
+@import 'header';
+@import 'facets';
 
 // Local
 @import 'show_default';
