@@ -1,5 +1,10 @@
-// Your variable overrides
-
-
+// Bootstrap overrides
 $headings-font-family: "Roboto Slab", Arial, sans-serif;
 $font-family-sans-serif: "Open Sans", Georgia, serif;
+
+$psu-dark-blue: #0a0f15;
+
+$theme-colors: (
+        "dark": $psu-dark-blue,
+        "light": #f2f2f2,
+);
