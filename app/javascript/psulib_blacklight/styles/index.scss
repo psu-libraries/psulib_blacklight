@@ -5,9 +5,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'header';
 
-// Fonts - see index.js psulib_blacklight/index.js
-
-//@import '~roboto-fontface/css/roboto/sass/roboto-fontface.scss';
+// Fonts - see also psulib_blacklight/index.js
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
