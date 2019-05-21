@@ -1,3 +1,8 @@
+// Load Open Sans typeface
+require('typeface-open-sans')
+// Load Roboto Slab typeface
+require('typeface-roboto-slab')
+
 import './images'
 import './styles';
 import './javascripts';

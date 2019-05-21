@@ -1,18 +1,22 @@
-// twitter bootstrap
+// PSU Libraries Bootstrap overrides
+@import 'theme';
+
+// Twitter bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// font awesome
+// Fonts - see index.js psulib_blacklight/index.js
+
+//@import '~roboto-fontface/css/roboto/sass/roboto-fontface.scss';
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 
-
-// blacklight upstream
+// Blacklight upstream
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/mixins';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/blacklight_defaults';
 $logo-image: url('../images/logo.png');
 
-@import '~blacklight-frontend/app/assets/stylesheets/blacklight/bootstrap_overrides';
+@import '~blacklight-frontend/app/assets/stylesheets/blacklight/bootstrap_overrides'; // Blacklight bootstrap overrides
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/layout';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/header';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/constraints';
@@ -28,10 +32,11 @@ $logo-image: url('../images/logo.png');
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/modal';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/icons';
 
-// blacklight-marc overridden
+// Blacklight-marc overridden
 @import 'blacklight_marc';
 
-// local
+
+// Local
 @import 'show_default';
 @import 'psulib_icons';
 @import 'pivot_facets';
