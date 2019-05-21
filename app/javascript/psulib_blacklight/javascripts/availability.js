@@ -21,27 +21,25 @@ $(document).ready(function () {
     loadLocations().then(function(locations) {
         all_locations = locations.all_locations;
         all_libraries = locations.libraries;
+        titleIDs = "";
 
         // Sirsi Web Services Availability url
         url = 'sirsi url here';
 
         $('.availability').each(function() {
-            var availability = $(this);
-            var availabilityButton = availability.find('.availability-button');
-            var availabilityHoldingsPlaceHolder = availability.find('.availability-holdings');
-            var availabilitySnippetPlaceHolder = availability.find('.availability-snippet');
             // Get the catkeys
             catkeys = $(this).attr("data-keys");
             // Format catkeys to compose titleID params
-            titleIDs = '&titleID=' + catkeys;
+            titleIDs += '&titleID=' + catkeys;
+        });
 
+        if (titleIDs.length > 0) {
             $.get(url + titleIDs, function (xml) {
-                totalCopiesAvailable = 0;
-                holdings = [];
-                libraries = [];
-
                 $(xml).find('TitleInfo').each(function () {
-                    totalCopiesAvailable += parseInt($(this).find("totalCopiesAvailable").text(), 10);
+                    holdings = [];
+                    libraries = [];
+                    titleID = $(this).children('titleID').text();
+                    totalCopiesAvailable = parseInt($(this).find("totalCopiesAvailable").text(), 10);
 
                     $(this).children('CallInfo').each(function () {
                         libraryID = $(this).children('libraryID').text();
@@ -65,7 +63,7 @@ $(document).ready(function () {
 
                                 var location = (homeLocationID in all_locations) ? all_locations[homeLocationID] : "";
                                 holdings.push({
-                                    library : library,
+                                    library: library,
                                     location: location,
                                     callNumber: callNumber,
                                     status: status
@@ -73,25 +71,33 @@ $(document).ready(function () {
                             });
                         }
                     });
-                });
 
-                // If at least one copy available, then display Available
-                if (Object.keys(holdings).length > 0) {
-                    availabilityButton.removeClass("invisible").addClass("visible");
-                    rawHoldings = groupByLibrary(holdings);
-                    availabilityStructuredData = availabilityDataStructurer(rawHoldings, libraries);
-                    availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData));
-                    availabilitySnippet(availabilitySnippetPlaceHolder, availabilityStructuredData, totalCopiesAvailable);
-                } else {
-                    availability.addClass("invisible");
-                }
+                    $('.availability[data-keys="' + titleID +'"]').each(function () {
+                        availability = $(this);
+                        availabilityButton = availability.find('.availability-button');
+                        availabilityHoldingsPlaceHolder = availability.find('.availability-holdings');
+                        availabilitySnippetPlaceHolder = availability.find('.availability-snippet');
+
+                        // If at least one physical copy, then display availability and holding info
+                        if (Object.keys(holdings).length > 0) {
+                            availabilityButton.removeClass("invisible").addClass("visible");
+                            rawHoldings = groupByLibrary(holdings);
+                            availabilityStructuredData = availabilityDataStructurer(rawHoldings, libraries);
+                            availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData));
+                            availabilitySnippet(availabilitySnippetPlaceHolder, availabilityStructuredData, totalCopiesAvailable);
+                        } else {
+                            availability.addClass("invisible");
+                        }
+                    });
+
+                });
             }, "xml");
-        });
+        }
     });
 });
 
 function printAvailabilityData(availabilityData) {
-    markupForHoldings = ''
+    markupForHoldings = '';
     availabilityData.forEach(function(element) {
         markupForHoldings += `
                                 <h4>${element.summary.library} (${element.summary.countAtLibrary} ${element.summary.pluralize})</h4>
@@ -115,19 +121,19 @@ function printAvailabilityData(availabilityData) {
                                     </tbody>
                                 </table>
                             `
-    })
+    });
 
-    return markupForHoldings
+    return markupForHoldings;
 }
 
 function librariesText(holdingData){
-    libraries = []
+    libraries = [];
 
     for (index in holdingData) {
-        libraries.push(holdingData[index].summary.library)
+        libraries.push(holdingData[index].summary.library);
     }
 
-    return libraries.join(', ')
+    return libraries.join(', ');
 }
 
 function availabilitySnippet(availabilitySnippetPlaceHolder, holdingData, totalCopiesAvailable) {
@@ -142,35 +148,38 @@ function availabilitySnippet(availabilitySnippetPlaceHolder, holdingData, totalC
 }
 
 function availabilityDataStructurer(holdingMetadata, availableCountInLibraries) {
-    availabilityStructuredData = []
+    availabilityStructuredData = [];
     if (Object.keys(holdingMetadata).length > 0) {
         Object.keys(holdingMetadata).forEach(function (library, index){
             pluralize = (holdingMetadata[library].length > 1) ? 'items' : 'item';
             holdingData = {
-                            "summary":
-                                {
-                                    "library": library,
-                                    "countAtLibrary": holdingMetadata[library].length,
-                                    "pluralize": pluralize
-                                },
-                            "holdings":  holdingMetadata[library]
-                          }
+                "summary":
+                    {
+                        "library": library,
+                        "countAtLibrary": holdingMetadata[library].length,
+                        "pluralize": pluralize
+                    },
+                "holdings":  holdingMetadata[library]
+            };
 
-            availabilityStructuredData[index] = holdingData
+            availabilityStructuredData[index] = holdingData;
         })
     }
-    return availabilityStructuredData
+
+    return availabilityStructuredData;
 }
 
 // Group holding by library
 function groupByLibrary(holdings) {
-    return holdings.reduce(function (acc, obj) {
-        var key = obj['library'];
-        if (!acc[key]) {
-            acc[key] = [];
+    return holdings.reduce(function (accumulator, object) {
+        var key = object['library'];
+
+        if (!accumulator[key]) {
+            accumulator[key] = [];
         }
-        acc[key].push(obj);
-        return acc;
+        accumulator[key].push(object);
+
+        return accumulator;
     }, {});
 }
 
@@ -190,6 +199,7 @@ function resolveStatus(chargeable, homeLocationID, currentLocationID) {
                 status = 'Not Available';
         }
     }
+
     return status;
 }
 
