@@ -75,8 +75,8 @@ function loadAvailability(locations) {
                     if (Object.keys(holdings).length > 0) {
                         availabilityButton.removeClass("invisible").addClass("visible");
                         var rawHoldings = groupByLibrary(holdings);
-                        var availabilityStructuredData = availabilityDataStructurer(rawHoldings, libraries);
-                        availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData));
+                        var availabilityStructuredData = availabilityDataStructurer(rawHoldings);
+                        availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData, titleID));
                         availabilitySnippet(availabilitySnippetPlaceHolder, availabilityStructuredData, totalCopiesAvailable);
                     } else {
                         availability.addClass("invisible");
@@ -88,12 +88,15 @@ function loadAvailability(locations) {
     }
 }
 
-function printAvailabilityData(availabilityData) {
+function printAvailabilityData(availabilityData, titleID) {
     var markupForHoldings = '';
-    availabilityData.forEach(function(element) {
+    availabilityData.forEach(function(element, index) {
+        var holdings = element.holdings;
+        var uniqueID = titleID + index;
+        var moreHoldings = holdings.length > 4 ? holdings.splice(4,holdings.length) : [];
         markupForHoldings += `
                                 <h4>${element.summary.library} (${element.summary.countAtLibrary} ${element.summary.pluralize})</h4>
-                                <table class="table table-hover table-sm">
+                                <table id="holdings-${uniqueID}" class="table table-hover table-sm">
                                     <caption class="sr-only">Listing where to find this item in our buildings.</caption>
                                     <thead class="thead-light">
                                         <tr>
@@ -103,16 +106,27 @@ function printAvailabilityData(availabilityData) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        ${element.holdings.map(holding => `
+                                        ${holdings.map(holding => `
                                             <tr>
                                                 <td>${holding.location}</td>
                                                 <td>${holding.callNumber}</td>
                                                 <td>${holding.status}</td>
                                             </tr>
                                         `).join('')}
-                                    </tbody>
-                                </table>
-                            `
+                                        ${moreHoldings.map(moreHolding => `
+                                             <tr class="collapse more-holdings-${uniqueID}">
+                                                <td>${moreHolding.location}</td>
+                                                <td>${moreHolding.callNumber}</td>
+                                                <td>${moreHolding.status}</td>
+                                            </tr>     
+                                         `).join('')}
+                                        </tbody>
+                                    </table>
+                                    <tr>
+                              `;
+        if (moreHoldings.length > 0) {
+            markupForHoldings += `<a class="more-holdings toggle-more" data-toggle="collapse" href=".more-holdings-${uniqueID}" role="button" aria-expanded="false" aria-controls="holdings-${uniqueID}">View More</a>`;
+        }
     });
 
     return markupForHoldings;
@@ -140,13 +154,13 @@ function availabilitySnippet(availabilitySnippetPlaceHolder, holdingData, totalC
     availabilitySnippetPlaceHolder.html(snippet);
 }
 
-function availabilityDataStructurer(holdingMetadata, availableCountInLibraries) {
+function availabilityDataStructurer(holdingMetadata) {
     var availabilityStructuredData = [];
     var holdingData = [];
     var pluralize = "";
 
     if (Object.keys(holdingMetadata).length > 0) {
-        Object.keys(holdingMetadata).forEach(function (library, index){
+        Object.keys(holdingMetadata).forEach(function (library, index) {
             pluralize = (holdingMetadata[library].length > 1) ? 'items' : 'item';
             holdingData = {
                 "summary":
@@ -155,7 +169,7 @@ function availabilityDataStructurer(holdingMetadata, availableCountInLibraries) 
                         "countAtLibrary": holdingMetadata[library].length,
                         "pluralize": pluralize
                     },
-                "holdings":  holdingMetadata[library]
+                "holdings": holdingMetadata[library]
             };
 
             availabilityStructuredData[index] = holdingData;
@@ -200,3 +214,14 @@ function resolveStatus(chargeable, homeLocationID, currentLocationID) {
     return status;
 }
 
+$(document).ready(function() {
+    $(".availability").on("click", "[class^=more-holdings]", function () {
+        $(this).toggleClass('toggle-more');
+        if ($(this).hasClass('toggle-more')) {
+            $(this).text("View More");
+        }
+        else {
+            $(this).text("View Less");
+        }
+    });
+});
