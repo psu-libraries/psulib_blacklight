@@ -1,0 +1,133 @@
+// scss-lint:disable PlaceholderInExtend
+
+.sidenav {
+  .navbar-toggler {
+    border-color: $navbar-light-toggler-border-color;
+    color: $navbar-light-active-color;
+
+    @include hover-focus {
+      color: $navbar-light-active-color;
+    }
+  }
+
+  .navbar-toggler-icon {
+    background-image: $navbar-light-toggler-icon-bg;
+  }
+}
+
+.facets-toggleable {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    &#{$infix} {
+      @include media-breakpoint-up($next) {
+
+        // scss-lint:disable ImportantRule
+        .facets-collapse {
+          display: block !important;
+          width: 100%;
+        }
+        // scss-lint:enable ImportantRule
+
+        .navbar-toggler {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.facets-heading {
+  @extend .h4;
+  line-height: inherit;
+}
+
+.facet-limit {
+  margin-bottom: $spacer;
+
+  .card-body {
+    padding: $spacer;
+  }
+}
+
+.facet-values {
+  display: table;
+  margin-bottom: 0;
+  table-layout: fixed;
+  width: 100%;
+
+  li {
+    display: table-row;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .remove {
+    color: $text-muted;
+    font-weight: bold;
+    padding-left: $spacer / 2;
+
+    &:hover {
+      color: theme-color('danger');
+      text-decoration: none;
+    }
+  }
+
+  @mixin hyphens-auto {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .facet-label {
+    @include hyphens-auto;
+    display: table-cell;
+    padding-bottom: $spacer / 2;
+  }
+
+  .facet-count {
+    display: table-cell;
+    text-align: right;
+    vertical-align: top;
+    width: 5em;
+  }
+}
+
+.facet-extended-list {
+  .sort-options {
+    text-align: right;
+  }
+
+  .prev-next-links {
+    float: left;
+  }
+}
+
+.facet-field-heading {
+  @extend .h6;
+
+  a {
+    color: inherit;
+  }
+}
+
+// Sidenav
+.facet-pagination {
+  @extend .clearfix;
+
+  &.top {
+    padding: $modal-inner-padding;
+  }
+}
+
+// Style for pivot facet's nested list
+.pivot-facet {
+  @extend .list-unstyled;
+
+  ul,
+  .pivot-facet {
+    @extend .list-unstyled;
+    @extend .py-1;
+    @extend .px-3;
+  }
+}

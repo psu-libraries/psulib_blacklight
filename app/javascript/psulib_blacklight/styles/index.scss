@@ -1,20 +1,20 @@
-// twitter bootstrap
-@import '~bootstrap/scss/bootstrap';
+// PSU Libraries Bootstrap overrides
+@import 'theme';
 
-// font awesome
+// Twitter bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import 'header';
+
+// Fonts - see also psulib_blacklight/index.js
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 
-
-// blacklight upstream
+// Blacklight upstream
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/mixins';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/blacklight_defaults';
-$logo-image: url('../images/logo.png');
-
-@import '~blacklight-frontend/app/assets/stylesheets/blacklight/bootstrap_overrides';
+@import '~blacklight-frontend/app/assets/stylesheets/blacklight/bootstrap_overrides'; // Blacklight bootstrap overrides
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/layout';
-@import '~blacklight-frontend/app/assets/stylesheets/blacklight/header';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/constraints';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/controls';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/search_form';
@@ -23,15 +23,18 @@ $logo-image: url('../images/logo.png');
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/group';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/bookmark';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/balanced_list';
-@import '~blacklight-frontend/app/assets/stylesheets/blacklight/facets';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/search_history';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/modal';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/icons';
 
-// blacklight-marc overridden
+// Blacklight-marc overridden
 @import 'blacklight_marc';
 
-// local
+// Blacklight over-rides
+@import 'header';
+@import 'facets';
+
+// Local
 @import 'show_default';
 @import 'psulib_icons';
 @import 'pivot_facets';
