@@ -6,4 +6,3 @@ en:
     search:
       facets:
         title: 'Refine search results'
-      start_over: 'New Search'
