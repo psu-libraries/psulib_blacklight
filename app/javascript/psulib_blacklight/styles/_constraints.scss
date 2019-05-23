@@ -1,0 +1,56 @@
+.applied-filter {
+  margin-right: 10px;
+  padding-right: 10px;
+  border-right: 2px solid $gray-500;
+
+  &:last-of-type {
+    margin-right: 0;
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .constraint-value {
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+    @media (max-width: breakpoint-max(xs)) {
+      max-width: breakpoint-max(xs) / 2;
+    }
+
+    @media (min-width: breakpoint-min(sm)) and (max-width: breakpoint-max(sm)) {
+      max-width: breakpoint-min(sm) / 2;
+    }
+
+    @media (min-width: breakpoint-min(md)) and (max-width: breakpoint-max(md)) {
+      max-width: breakpoint-min(md) / 2;
+    }
+
+    @media (min-width: breakpoint-min(lg)) {
+      max-width: breakpoint-min(lg) / 2;
+    }
+  }
+
+  .filter-name:after {
+    color: $gray-600;
+    content: "❯";
+    font-size: 90%;
+    padding-left: $caret-width;
+  }
+
+  .remove:hover, .remove:active {
+    color: $danger;
+    text-decoration: none;
+  }
+
+  //&:after {
+  //  color: $gray-600;
+  //  content: "|";
+  //}
+  .filter-name {
+    color: $gray-700;
+  }
+
+  .filter-value {
+    font-weight: 700;
+  }
+}
