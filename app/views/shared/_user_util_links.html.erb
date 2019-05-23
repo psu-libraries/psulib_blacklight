@@ -1,0 +1,6 @@
+<ul class="navbar-nav">
+  <%= render_nav_actions do |config, action|%>
+    <li class="nav-item"><%= action %></li>
+  <% end %>
+    <li><%= link_to 'My Account', 'https://libraries.psu.edu/services/borrow-renew/my-library-accounts', class: 'nav-link' %></li>
+</ul>
