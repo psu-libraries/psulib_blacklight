@@ -28,6 +28,9 @@
   <% end %>
 
   <div class="col-md">
-    <%= link_to 'Advanced search', blacklight_advanced_search_engine.advanced_search_path(search_state.to_h), class: 'd-none d-md-block' %>
+    <ul class="list-inline mt-1 mb-0">
+      <li class="list-inline-item"><%= link_to 'Advanced search', blacklight_advanced_search_engine.advanced_search_path(search_state.to_h), class: 'd-none d-md-block' %></li>
+      <li class="list-inline-item"><%= link_to t('blacklight.search.start_over'), start_over_path, class: 'd-none d-md-block' %></li>
+    </ul>
   </div>
 </div>
