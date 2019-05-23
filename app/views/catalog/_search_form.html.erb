@@ -27,6 +27,7 @@
     </div>
   <% end %>
 
-<div class="col">
-  <%= link_to 'Advanced search', blacklight_advanced_search_engine.advanced_search_path(search_state.to_h) %>
+  <div class="col-md">
+    <%= link_to 'Advanced search', blacklight_advanced_search_engine.advanced_search_path(search_state.to_h), class: 'd-none d-md-block' %>
+  </div>
 </div>
