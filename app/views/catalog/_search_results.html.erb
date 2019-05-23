@@ -1,4 +1,4 @@
-<% @page_title = t('blacklight.search.page_title.title', :constraints => render_search_to_page_title(params), :application_name => application_name) %>
+<% @page_title = t('blacklight.search.page_title.title', constraints: render_search_to_page_title(params), application_name: application_name) %>
 
 <% content_for(:head) do -%>
   <%= render_opensearch_response_metadata %>
@@ -17,7 +17,7 @@
 <h2 class="sr-only"><%= t('blacklight.search.search_results') %></h2>
 
 <%- if @response.empty? %>
-  <%= render "zero_results" %>
+  <%= render 'zero_results' %>
 <%- elsif render_grouped_response? %>
   <%= render_grouped_document_index %>
 <%- else %>
@@ -25,4 +25,3 @@
 <%- end %>
 
 <%= render 'results_pagination' %>
-

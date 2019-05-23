@@ -1,17 +1,17 @@
 .applied-filter {
+  border-right: 2px solid $gray-500;
   margin-right: 10px;
   padding-right: 10px;
-  border-right: 2px solid $gray-500;
 
   &:last-of-type {
+    border-right: 0;
     margin-right: 0;
     padding-right: 0;
-    border-right: 0;
   }
 
   .constraint-value {
-    text-overflow: ellipsis;
     overflow: hidden;
+    text-overflow: ellipsis;
 
     @media (max-width: breakpoint-max(xs)) {
       max-width: breakpoint-max(xs) / 2;
@@ -30,22 +30,19 @@
     }
   }
 
-  .filter-name:after {
+  .filter-name::after {
     color: $gray-600;
-    content: "❯";
+    content: '❯';
     font-size: 90%;
     padding-left: $caret-width;
   }
 
-  .remove:hover, .remove:active {
+  .remove:hover,
+  .remove:active {
     color: $danger;
     text-decoration: none;
   }
 
-  //&:after {
-  //  color: $gray-600;
-  //  content: "|";
-  //}
   .filter-name {
     color: $gray-700;
   }
