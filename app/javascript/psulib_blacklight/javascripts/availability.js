@@ -2,7 +2,7 @@
  * @file
  * Real Time Availability
  */
-import locations from './locations.json';
+import locations from './libraries_locations.json';
 
 $(document).on('turbolinks:load', function() {
     loadAvailability(locations);
