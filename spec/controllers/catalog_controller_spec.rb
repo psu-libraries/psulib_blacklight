@@ -17,8 +17,8 @@ RSpec.describe CatalogController, type: :controller do
       expect(get: '/catalog/:id').to route_to(controller: 'catalog', action: 'show', id: ':id')
     end
 
-    it 'routes librarian_view properly' do
-      expect(get: '/catalog/:id/librarian_view').to route_to(controller: 'catalog', action: 'librarian_view', id: ':id')
+    it 'routes marc_view properly' do
+      expect(get: '/catalog/:id/marc_view').to route_to(controller: 'catalog', action: 'librarian_view', id: ':id')
     end
   end
 end
