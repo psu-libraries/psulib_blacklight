@@ -4,3 +4,8 @@ en:
     application_name: 'Penn State University Libraries Catalog'
     application_short_name: 'Catalog'
     back_to_search: 'Back to Search Results'
+    tools:
+      librarian_view: 'MARC View'
+    search:
+      librarian_view:
+        title: 'MARC View'
