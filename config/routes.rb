@@ -39,5 +39,4 @@ Rails.application.routes.draw do
   match '/500' => 'errors#internal_server_error', via: :all
 
   get 'catalog/:id/marc_view', to: 'catalog#librarian_view', as: 'marc_view'
-  get 'locations' => 'availability#index'
 end
