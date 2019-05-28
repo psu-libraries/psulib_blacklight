@@ -114,7 +114,7 @@ function printAvailabilityData(availabilityData, titleID) {
                                             </tr>
                                         `).join('')}
                                         ${moreHoldings.map(moreHolding => `
-                                             <tr class="collapse more-holdings-${uniqueID}">
+                                             <tr class="collapse" id="collapseHoldings${uniqueID}">
                                                 <td>${moreHolding.location}</td>
                                                 <td>${moreHolding.callNumber}</td>
                                                 <td>${moreHolding.status}</td>
@@ -125,7 +125,7 @@ function printAvailabilityData(availabilityData, titleID) {
                                     <tr>
                               `;
         if (moreHoldings.length > 0) {
-            markupForHoldings += `<a class="more-holdings toggle-more" data-toggle="collapse" href=".more-holdings-${uniqueID}" role="button" aria-expanded="false" aria-controls="holdings-${uniqueID}">View More</a>`;
+            markupForHoldings += `<button class="btn btn-primary toggle-more" data-type="view-more-holdings" data-target="#collapseHoldings${uniqueID}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseHoldings${uniqueID}">View More</button>`;
         }
     });
 
@@ -215,7 +215,7 @@ function resolveStatus(chargeable, homeLocationID, currentLocationID) {
 }
 
 $(document).ready(function() {
-    $(".availability").on("click", "[class^=more-holdings]", function () {
+    $(".availability").on("click", "[data-type=view-more-holdings]", function () {
         $(this).toggleClass('toggle-more');
         if ($(this).hasClass('toggle-more')) {
             $(this).text("View More");
