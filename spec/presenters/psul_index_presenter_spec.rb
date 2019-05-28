@@ -22,15 +22,19 @@ RSpec.describe PsulIndexPresenter do
 
       let(:config) do
         Blacklight::Configuration.new.configure do |config|
-          config.add_index_field 'publication_display_ssm'
+          config.add_index_field 'author_person_display_ssm'
+          config.add_index_field 'author_corp_display_ssm'
+          config.add_index_field 'author_meeting_display_ssm'
           config.add_index_field 'format'
+          config.add_index_field 'publication_display_ssm'
+          config.add_index_field 'edition_display_ssm'
           config.add_index_field 'url_fulltext_display_ssm'
         end
       end
 
-      it 'has no label for publication statement and format but still has a label for URL' do
-        expect(presenter.fields['publication_display_ssm'].label).to be_nil
+      it 'has no label for format and publication statement but still has a label for URL' do
         expect(presenter.fields['format'].label).to be_nil
+        expect(presenter.fields['publication_display_ssm'].label).to be_nil
         expect(presenter.fields['url_fulltext_display_ssm'].label).to be_not_nil
       end
     end
