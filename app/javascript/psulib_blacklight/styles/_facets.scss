@@ -39,8 +39,9 @@
 }
 
 .facets-heading {
-  @extend .h4;
+  @extend .h5;
   line-height: inherit;
+  margin: 0;
 }
 
 .facet-limit {

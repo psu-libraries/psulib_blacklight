@@ -9,7 +9,7 @@
 
     <title><%= render_page_title %></title>
     <%= opensearch_description_tag application_name, opensearch_catalog_url(format: 'xml') %>
-    <%= favicon_link_tag %>
+    <%= favicon_link_tag asset_pack_path('psulib_blacklight/images/icons/favicon.ico') %>
     <%= stylesheet_pack_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
     <%= csrf_meta_tags %>
@@ -18,7 +18,7 @@
   <body class="<%= render_body_class %>">
     <%= render partial: 'shared/header_navbar' %>
 
-    <div id="main-container" class="<%= container_classes %>">
+    <div id="main-container" class="<%= container_classes %> mt-4">
       <%= content_for(:container_header) %>
 
       <%= render partial: 'shared/flash_msg', layout: 'shared/flash_messages' %>
@@ -26,7 +26,7 @@
       <% if @search_context %>
           <% if current_search_session %>
               <div id="appliedParams" class="clearfix constraints-container">
-                <%= link_to t('blacklight.search.start_over'), start_over_path, class: 'catalog_startOverLink btn btn-primary' %>
+                <%= link_to t('blacklight.search.start_over'), start_over_path %>
                 <%= link_back_to_catalog class: 'btn btn-outline-secondary' %>
               </div>
           <% end %>

@@ -1,5 +1,6 @@
 // PSU Libraries Bootstrap overrides
 @import 'theme';
+@import 'psulib_utilities';
 
 // Twitter bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -15,7 +16,6 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/blacklight_defaults';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/bootstrap_overrides'; // Blacklight bootstrap overrides
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/layout';
-@import '~blacklight-frontend/app/assets/stylesheets/blacklight/constraints';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/controls';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/search_form';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/search_results';
@@ -33,6 +33,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 // Blacklight over-rides
 @import 'header';
 @import 'facets';
+@import 'constraints';
 
 // Local
 @import 'show_default';

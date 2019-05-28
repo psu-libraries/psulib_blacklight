@@ -9,3 +9,5 @@ en:
     search:
       librarian_view:
         title: 'MARC View'
+      facets:
+        title: 'Refine search results'

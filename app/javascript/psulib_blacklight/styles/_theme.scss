@@ -1,17 +1,22 @@
+// Theme colors
+$psu-dark-blue: #1f427c;
+$psu-blue: #0071bc;
+$link-color: $psu-blue;
+$grayish: #e6e6e6;
+
 // Bootstrap overrides
 //  Fonts
 $headings-font-family: "Roboto Slab", Georgia, sans-serif;
 $font-family-sans-serif: "Open Sans", Arial, serif;
 
-//  Navbar
-$navbar-brand-padding-y: 0;
-
-//  Theme colors
-$psu-dark-blue: #1f427c;
-$psu-blue: #0071bc;
-$link-color: $psu-blue;
-
+//  Color overrides
 $theme-colors: (
         "dark": $psu-dark-blue,
         "light": #f2f2f2,
 );
+
+//  Navbar
+$navbar-brand-padding-y: 0;
+
+//  Facet heading background color
+$card-cap-bg: $grayish;
