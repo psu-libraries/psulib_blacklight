@@ -15,19 +15,15 @@ function loadAvailability(locations) {
     // Load Sirsi locations
     var all_locations = locations.locations;
     var all_libraries = locations.libraries;
-    var titleIDs = "";
+    var titleIDs = [];
 
-    // Sirsi Web Services Availability url
-    var url = 'sirsi url here';
+    // Get the catkeys
     $('.availability').each(function() {
-        // Get the catkeys
-        var catkeys = $(this).attr("data-keys");
-        // Format catkeys to compose titleID params
-        titleIDs += '&titleID=' + catkeys;
+        titleIDs.push($(this).attr("data-keys"));
     });
 
     if (titleIDs.length > 0) {
-        $.get(url + titleIDs, function (xml) {
+        $.get('/available/' + titleIDs.join(','), function (xml) {
             $(xml).find('TitleInfo').each(function () {
                 var holdings = [];
                 var libraries = [];
