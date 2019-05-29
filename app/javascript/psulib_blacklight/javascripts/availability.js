@@ -48,7 +48,7 @@ function loadAvailability(locations) {
                             var currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
                             var homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
                             var chargeable = $(this).children("chargeable").text();
-                            var status = resolveStatus(chargeable, homeLocationID, currentLocationID);
+                            var status = resolveStatus(chargeable, homeLocationID, currentLocationID, titleID);
 
                             var location = (homeLocationID in all_locations) ? all_locations[homeLocationID] : "";
                             holdings.push({
@@ -80,7 +80,14 @@ function loadAvailability(locations) {
                 });
 
             });
-        }, "xml");
+        }, "xml")
+            .done(function(data) {
+                // Now that the availability data has been rendered, check for ILL options and update links
+                $('.availability-holdings [data-type="ill-link"]').each(function() {
+                    var catkey = $(this).data('catkey');
+                    createILLURL($(this), catkey)
+                });
+            });
     }
 }
 
@@ -193,7 +200,7 @@ function groupByLibrary(holdings) {
     }, {});
 }
 
-function resolveStatus(chargeable, homeLocationID, currentLocationID) {
+function resolveStatus(chargeable, homeLocationID, currentLocationID, titleID) {
     var status = "";
     if (chargeable === 'true') {
         status = homeLocationID !== 'ON-ORDER' ? 'Available' : 'Being Acquired by the Library';
@@ -206,12 +213,31 @@ function resolveStatus(chargeable, homeLocationID, currentLocationID) {
             case 'MISSING':
                 status = 'Missing';
                 break;
+            case 'ILLEND':
+                status = `<a data-type="ill-link" data-catkey="${titleID}" href="#"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> This copy unavailable, submit request via Interlibrary Loan</a>`;
+                break;
             default:
                 status = 'Not Available';
         }
     }
 
     return status;
+}
+
+function createILLURL(jQueryObj, catkey) {
+    $.get(`/catalog/${catkey}/raw.json`, function(data) {
+        var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll?Action=10&Form=30";
+        if (Object.keys(data).length > 0) {
+            var ISBN = data.isbn_ssm;
+            var title = data.title_display_ssm;
+            var author = data.author_tsim;
+            var pubdate = data.pub_date_itsi;
+            ILLURL += `&isbn=${ISBN}&title=${title}&aulast=${author}.&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu&date=%5B${pubdate}%5D`;
+        }
+        var spinner = jQueryObj.find('span');
+        spinner.remove();
+        jQueryObj.attr('href', ILLURL);
+    });
 }
 
 $(document).ready(function() {
