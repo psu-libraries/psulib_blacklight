@@ -139,7 +139,7 @@ function librariesText(holdingData){
     var libraries = [];
 
     for (var index in holdingData) {
-        if (holdingData[index].summary.library !== 'ON-ORDER') {
+        if (holdingData[index].summary.library === 'ON-ORDER') {
             libraries.push('')
         } else {
             libraries.push(holdingData[index].summary.library);
