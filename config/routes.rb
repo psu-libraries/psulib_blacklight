@@ -42,8 +42,7 @@ Rails.application.routes.draw do
     params[:titleID].split(',').each do |catkey|
       catkeys << "&titleID=#{catkey}"
     end
-
-    "#{Rails.application.credentials.dig(:sirsi_url)}#{catkeys.join()}"
+    "#{Rails.application.credentials.dig(:sirsi_url)}#{catkeys.join}"
   end)
   get 'catalog/:id/marc_view', to: 'catalog#librarian_view', as: 'marc_view'
 end
