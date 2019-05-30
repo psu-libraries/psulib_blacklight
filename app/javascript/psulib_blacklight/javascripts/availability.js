@@ -15,19 +15,15 @@ function loadAvailability(locations) {
     // Load Sirsi locations
     var all_locations = locations.locations;
     var all_libraries = locations.libraries;
-    var titleIDs = "";
+    var titleIDs = [];
 
-    // Sirsi Web Services Availability url
-    var url = 'sirsi url here';
+    // Get the catkeys
     $('.availability').each(function() {
-        // Get the catkeys
-        var catkeys = $(this).attr("data-keys");
-        // Format catkeys to compose titleID params
-        titleIDs += '&titleID=' + catkeys;
+        titleIDs.push($(this).attr("data-keys"));
     });
 
     if (titleIDs.length > 0) {
-        $.get(url + titleIDs, function (xml) {
+        $.get('/available/' + titleIDs.join(','), function (xml) {
             $(xml).find('TitleInfo').each(function () {
                 var holdings = [];
                 var libraries = [];
@@ -52,7 +48,7 @@ function loadAvailability(locations) {
                             var currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
                             var homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
                             var chargeable = $(this).children("chargeable").text();
-                            var status = resolveStatus(chargeable, homeLocationID, currentLocationID);
+                            var status = resolveStatus(chargeable, homeLocationID, currentLocationID, titleID);
 
                             var location = (homeLocationID in all_locations) ? all_locations[homeLocationID] : "";
                             holdings.push({
@@ -84,7 +80,14 @@ function loadAvailability(locations) {
                 });
 
             });
-        }, "xml");
+        }, "xml")
+            .done(function(data) {
+                // Now that the availability data has been rendered, check for ILL options and update links
+                $('.availability-holdings [data-type="ill-link"]').each(function() {
+                    var catkey = $(this).data('catkey');
+                    createILLURL($(this), catkey)
+                });
+            });
     }
 }
 
@@ -114,7 +117,7 @@ function printAvailabilityData(availabilityData, titleID) {
                                             </tr>
                                         `).join('')}
                                         ${moreHoldings.map(moreHolding => `
-                                             <tr class="collapse more-holdings-${uniqueID}">
+                                             <tr class="collapse" id="collapseHoldings${uniqueID}">
                                                 <td>${moreHolding.location}</td>
                                                 <td>${moreHolding.callNumber}</td>
                                                 <td>${moreHolding.status}</td>
@@ -125,7 +128,7 @@ function printAvailabilityData(availabilityData, titleID) {
                                     <tr>
                               `;
         if (moreHoldings.length > 0) {
-            markupForHoldings += `<a class="more-holdings toggle-more" data-toggle="collapse" href=".more-holdings-${uniqueID}" role="button" aria-expanded="false" aria-controls="holdings-${uniqueID}">View More</a>`;
+            markupForHoldings += `<button class="btn btn-primary toggle-more" data-type="view-more-holdings" data-target="#collapseHoldings${uniqueID}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseHoldings${uniqueID}">View More</button>`;
         }
     });
 
@@ -136,7 +139,11 @@ function librariesText(holdingData){
     var libraries = [];
 
     for (var index in holdingData) {
-        libraries.push(holdingData[index].summary.library);
+        if (holdingData[index].summary.library === 'ON-ORDER') {
+            libraries.push('')
+        } else {
+            libraries.push(holdingData[index].summary.library);
+        }
     }
 
     return libraries.join(', ');
@@ -193,7 +200,7 @@ function groupByLibrary(holdings) {
     }, {});
 }
 
-function resolveStatus(chargeable, homeLocationID, currentLocationID) {
+function resolveStatus(chargeable, homeLocationID, currentLocationID, titleID) {
     var status = "";
     if (chargeable === 'true') {
         status = homeLocationID !== 'ON-ORDER' ? 'Available' : 'Being Acquired by the Library';
@@ -206,6 +213,9 @@ function resolveStatus(chargeable, homeLocationID, currentLocationID) {
             case 'MISSING':
                 status = 'Missing';
                 break;
+            case 'ILLEND':
+                status = `<a data-type="ill-link" data-catkey="${titleID}" href="#"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> This copy unavailable, submit request via Interlibrary Loan</a>`;
+                break;
             default:
                 status = 'Not Available';
         }
@@ -214,8 +224,24 @@ function resolveStatus(chargeable, homeLocationID, currentLocationID) {
     return status;
 }
 
+function createILLURL(jQueryObj, catkey) {
+    $.get(`/catalog/${catkey}/raw.json`, function(data) {
+        var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll?Action=10&Form=30";
+        if (Object.keys(data).length > 0) {
+            var ISBN = data.isbn_ssm;
+            var title = data.title_display_ssm;
+            var author = data.author_tsim;
+            var pubdate = data.pub_date_itsi;
+            ILLURL += `&isbn=${ISBN}&title=${title}&aulast=${author}.&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu&date=%5B${pubdate}%5D`;
+        }
+        var spinner = jQueryObj.find('span');
+        spinner.remove();
+        jQueryObj.attr('href', ILLURL);
+    });
+}
+
 $(document).ready(function() {
-    $(".availability").on("click", "[class^=more-holdings]", function () {
+    $(".availability").on("click", "[data-type=view-more-holdings]", function () {
         $(this).toggleClass('toggle-more');
         if ($(this).hasClass('toggle-more')) {
             $(this).text("View More");
