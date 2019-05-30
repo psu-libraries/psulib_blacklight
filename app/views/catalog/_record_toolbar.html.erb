@@ -1,0 +1,17 @@
+<div class="record-actions btn-group btn-group-sm" role="group" aria-label="Button group with nested dropdown">
+
+  <%= render_cite_link(citation_solr_document_path(id: @document)) %>
+  <div class="btn-group btn-group-sm" role="group">
+
+    <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</button>
+
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      <%= link_to "EndNote", solr_document_path(@document, :format => 'endnote'), rel: 'nofollow', class: "dropdown-item" %>
+      <%= link_to "RefWorks", refworks_export_url({url: polymorphic_url(url_for_document(@document), format: :refworks_marc_txt, only_path: false)}), rel: 'nofollow', class: "dropdown-item", :target => "_blank"  %>
+      <%= link_to "SMS", sms_solr_document_path(:id => @document), {:id => 'smsLink', :data => {:ajax_modal => "trigger"}, class: "dropdown-item", rel: 'nofollow'} %>
+      <%= link_to "Email", email_solr_document_path(:id => @document), {:id => 'emailLink', :data => {:ajax_modal => "trigger"}, class: "dropdown-item", rel: 'nofollow'} %>
+    </div>
+  </div>
+
+</div>
+      <%= render(:partial => 'bookmark_control', :locals => {:document=> @document}) %>
