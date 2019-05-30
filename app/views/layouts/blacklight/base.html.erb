@@ -25,14 +25,15 @@
       <%= render partial: 'shared/flash_msg', layout: 'shared/flash_messages' %>
 
       <% if @search_context %>
+        <div class="row border-bottom pb-2 mb-2">
           <% if current_search_session %>
-              <div id="appliedParams" class="clearfix constraints-container">
-                <%= link_to t('blacklight.search.start_over'), start_over_path %>
-                <%= link_back_to_catalog class: 'btn btn-outline-secondary' %>
+              <div id="appliedParams" class="col-auto">
+                <%= link_back_to_catalog class: 'btn btn-outline-secondary btn-sm' %>
               </div>
           <% end %>
 
           <%= render 'previous_next_doc' if @search_context %>
+        </div>
       <% end %>
 
       <div class="row">
