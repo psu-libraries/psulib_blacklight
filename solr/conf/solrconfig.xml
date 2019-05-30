@@ -204,8 +204,12 @@
          score,
          title_display_ssm,
          title_latin_display_ssm,
+         author_person_display_ssm,
+         author_corp_display_ssm,
+         author_meeting_display_ssm,
          format,
          publication_display_ssm,
+         edition_display_ssm,
          full_links_struct
        </str>
 
