@@ -11,12 +11,16 @@ RSpec.describe PsulIndexPresenter do
   let(:request_context) { instance_double(ActionView::Base, document_index_view_type: 'list') }
   let(:config) { Blacklight::Configuration.new }
 
-  describe '#label' do
-    context 'when a document has a publication statement' do
+  describe '#fields' do
+    context 'on search results view' do
       let(:document) do
         SolrDocument.new(id: 1,
+                         author_person_display_ssm: 'Author 1',
+                         author_corp_display_ssm: 'Author 2',
+                         author_meeting_display_ssm: 'Author 3',
                          format: 'Book',
-                         publication_display_ssm: 'This is the publication statement of the document',
+                         publication_display_ssm: 'This is the publication statement',
+                         edition_display_ssm: 'This is the edition',
                          url_fulltext_display_ssm: 'some url')
       end
 
@@ -32,9 +36,22 @@ RSpec.describe PsulIndexPresenter do
         end
       end
 
-      it 'has no label for format and publication statement but still has a label for URL' do
-        expect(presenter.fields['format'].label).to be_nil
+      it 'has no label for author fields' do
+        expect(presenter.fields['author_person_display_ssm'].label).to be_nil
+        expect(presenter.fields['author_corp_display_ssm'].label).to be_nil
+        expect(presenter.fields['author_meeting_display_ssm'].label).to be_nil
+      end
+
+      it 'has no label for publication and edition fields' do
         expect(presenter.fields['publication_display_ssm'].label).to be_nil
+        expect(presenter.fields['edition_display_ssm'].label).to be_nil
+      end
+
+      it 'has no label for format' do
+        expect(presenter.fields['format'].label).to be_nil
+      end
+
+      it 'has a label for URL' do
         expect(presenter.fields['url_fulltext_display_ssm'].label).to be_not_nil
       end
     end
