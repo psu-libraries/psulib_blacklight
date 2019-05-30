@@ -81,7 +81,7 @@ module CatalogHelper
 
   # To render format icon on search results as the default thumbnail for now
   def render_thumbnail(document, _options = {})
-    content_tag(:span, '', class: "fas faspsu-#{document[:format][0].parameterize}")
+    content_tag(:span, '', class: "fas fa-5x faspsu-#{document[:format][0].parameterize}")
   end
 
   # Makes a link to title search

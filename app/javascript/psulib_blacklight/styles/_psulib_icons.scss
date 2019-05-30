@@ -1,140 +1,130 @@
-.page-sidebar .document-thumbnail {
-  // scss-lint:disable PlaceholderInExtend
-  @extend .fa-7x;
-
+.document-thumbnail {
   display: block;
   margin-bottom: .5em;
   text-align: center;
 }
 
-.documents-list .document-thumbnail {
+
+.blacklight-format::before {
+  @extend %fa-icon;
   // scss-lint:disable PlaceholderInExtend
-  @extend .fa-5x;
+  @extend .fas;
+
+  color: $gray-600;
+  padding-right: .3em;
 }
 
-.documents-list,
-.page-sidebar {
-  .blacklight-format::before {
-    @extend %fa-icon;
-    // scss-lint:disable PlaceholderInExtend
-    @extend .fas;
+.document-thumbnail {
+  color: $gray-600;
 
-    color: $gray-600;
-    padding-right: .3em;
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 
-  .document-thumbnail {
-    color: $gray-600;
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: inherit;
-      cursor: pointer;
-      text-decoration: none;
-    }
+  a:hover {
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
   }
+}
 
-  .blacklight-archives-manuscripts .blacklight-format::before,
-  .faspsu-archives-manuscripts::before {
-    content: fa-content($fa-var-archive);
-  }
+.blacklight-archives-manuscripts .blacklight-format::before,
+.faspsu-archives-manuscripts::before {
+  content: fa-content($fa-var-archive);
+}
 
-  .blacklight-audio .blacklight-format::before,
-  .faspsu-audio::before {
-    content: fa-content($fa-var-volume-up);
-  }
+.blacklight-audio .blacklight-format::before,
+.faspsu-audio::before {
+  content: fa-content($fa-var-volume-up);
+}
 
-  .blacklight-book .blacklight-format::before,
-  .faspsu-book::before {
-    content: fa-content($fa-var-book);
-  }
+.blacklight-book .blacklight-format::before,
+.faspsu-book::before {
+  content: fa-content($fa-var-book);
+}
 
-  .blacklight-congress .blacklight-format::before,
-  .faspsu-congress::before {
-    content: fa-content($fa-var-book-open);
-  }
+.blacklight-congress .blacklight-format::before,
+.faspsu-congress::before {
+  content: fa-content($fa-var-book-open);
+}
 
-  .blacklight-games-toys .blacklight-format::before,
-  .faspsu-games-toys::before {
-    content: fa-content($fa-var-chess);
-  }
+.blacklight-games-toys .blacklight-format::before,
+.faspsu-games-toys::before {
+  content: fa-content($fa-var-chess);
+}
 
-  .blacklight-government-document .blacklight-format::before,
-  .faspsu-government-document::before {
-    content: fa-content($fa-var-file-alt);
-  }
+.blacklight-government-document .blacklight-format::before,
+.faspsu-government-document::before {
+  content: fa-content($fa-var-file-alt);
+}
 
-  .blacklight-image .blacklight-format::before,
-  .faspsu-image::before {
-    content: fa-content($fa-var-image);
-  }
+.blacklight-image .blacklight-format::before,
+.faspsu-image::before {
+  content: fa-content($fa-var-image);
+}
 
-  .blacklight-instructional-material .blacklight-format::before,
-  .faspsu-instructional-material::before {
-    content: fa-content($fa-var-chalkboard-teacher);
-  }
+.blacklight-instructional-material .blacklight-format::before,
+.faspsu-instructional-material::before {
+  content: fa-content($fa-var-chalkboard-teacher);
+}
 
-  .blacklight-journal-periodical .blacklight-format::before,
-  .faspsu-journal-periodical::before {
-    content: fa-content($fa-var-book-open);
-  }
+.blacklight-journal-periodical .blacklight-format::before,
+.faspsu-journal-periodical::before {
+  content: fa-content($fa-var-book-open);
+}
 
-  .blacklight-juvenile-book .blacklight-format::before,
-  .faspsu-juvenile-book::before {
-    content: fa-content($fa-var-book);
-  }
+.blacklight-juvenile-book .blacklight-format::before,
+.faspsu-juvenile-book::before {
+  content: fa-content($fa-var-book);
+}
 
-  .blacklight-kit .blacklight-format::before,
-  .faspsu-kit::before {
-    content: fa-content($fa-var-microscope);
-  }
+.blacklight-kit .blacklight-format::before,
+.faspsu-kit::before {
+  content: fa-content($fa-var-microscope);
+}
 
-  .blacklight-maps-atlases-globes .blacklight-format::before,
-  .faspsu-maps-atlases-globes::before {
-    content: fa-content($fa-var-map);
-  }
+.blacklight-maps-atlases-globes .blacklight-format::before,
+.faspsu-maps-atlases-globes::before {
+  content: fa-content($fa-var-map);
+}
 
-  .blacklight-musical-score .blacklight-format::before,
-  .faspsu-musical-score::before {
-    content: fa-content($fa-var-book-open);
-  }
+.blacklight-musical-score .blacklight-format::before,
+.faspsu-musical-score::before {
+  content: fa-content($fa-var-book-open);
+}
 
-  .blacklight-newspaper .blacklight-format::before,
-  .faspsu-newspaper::before {
-    content: fa-content($fa-var-newspaper);
-  }
+.blacklight-newspaper .blacklight-format::before,
+.faspsu-newspaper::before {
+  content: fa-content($fa-var-newspaper);
+}
 
-  .blacklight-proceeding-congress .blacklight-format::before,
-  .faspsu-proceeding-congress::before {
-    content: fa-content($fa-var-book-open);
-  }
+.blacklight-proceeding-congress .blacklight-format::before,
+.faspsu-proceeding-congress::before {
+  content: fa-content($fa-var-book-open);
+}
 
-  .blacklight-reporter .blacklight-format::before,
-  .faspsu-reporter::before {
-    content: fa-content($fa-var-book);
-  }
+.blacklight-reporter .blacklight-format::before,
+.faspsu-reporter::before {
+  content: fa-content($fa-var-book);
+}
 
-  .blacklight-statute .blacklight-format::before,
-  .faspsu-statute::before {
-    content: fa-content($fa-var-book);
-  }
+.blacklight-statute .blacklight-format::before,
+.faspsu-statute::before {
+  content: fa-content($fa-var-book);
+}
 
-  .blacklight-thesis-dissertation .blacklight-format::before,
-  .faspsu-thesis-dissertation::before {
-    content: fa-content($fa-var-graduation-cap);
-  }
+.blacklight-thesis-dissertation .blacklight-format::before,
+.faspsu-thesis-dissertation::before {
+  content: fa-content($fa-var-graduation-cap);
+}
 
-  .blacklight-video .blacklight-format::before,
-  .faspsu-video::before {
-    content: fa-content($fa-var-video);
-  }
+.blacklight-video .blacklight-format::before,
+.faspsu-video::before {
+  content: fa-content($fa-var-video);
+}
 
-  .blacklight-other .blacklight-format::before,
-  .faspsu-other::before {
-    content: fa-content($fa-var-scroll);
-  }
+.blacklight-other .blacklight-format::before,
+.faspsu-other::before {
+  content: fa-content($fa-var-scroll);
 }

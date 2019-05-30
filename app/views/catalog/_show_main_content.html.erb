@@ -2,7 +2,13 @@
 <% content_for(:head) { render_link_rel_alternates } %>
 
 <div id="document" class="document <%= render_document_class %>" itemscope itemtype="<%= @document.itemtype %>">
+    <% unless @document[:format][0].empty? %>
+      <div class="document-thumbnail">
+        <span class="fas fa-7x faspsu-<%= @document[:format][0].parameterize %>"></span>
+      </div>
+    <% end %>
   <div id="doc_<%= @document.id.to_s.parameterize %>">
+
     <%= render_document_partials @document, blacklight_config.view_config(:show).partials %>
   </div>
 </div>
