@@ -2,16 +2,28 @@
 <% content_for(:head) { render_link_rel_alternates } %>
 
 <div id="document" class="document <%= render_document_class %>" itemscope itemtype="<%= @document.itemtype %>">
-  <% unless @document[:format][0].empty? %>
-    <div class="document-thumbnail">
-      <span class="fas fa-7x faspsu-<%= @document[:format][0].parameterize %>"></span>
+  <div class="row">
+    <div class="col-3">
+      <% unless @document[:format][0].empty? %>
+        <div class="document-thumbnail">
+          <span class="fas fa-7x faspsu-<%= @document[:format][0].parameterize %>"></span>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+    <div class="col-9">
+      <%= render partial: 'show_header_default', locals: { document: @document, :tag => :h1 } %>
+      <%= render partial: 'show_top_fields', locals: { document: @document } %>
 
-  <div id="doc_<%= @document.id.to_s.parameterize %>">
-
-    <%= render_document_partials @document, blacklight_config.view_config(:show).partials %>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div id="doc_<%= @document.id.to_s.parameterize %>">
+          <%= render_document_partials @document, blacklight_config.view_config(:show).partials %>
+        </div>
+      </div>
+    </div>
   </div>
+
 
   <% unless @document.more_like_this.empty? %>
     <div class="card">

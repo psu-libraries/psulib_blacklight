@@ -132,17 +132,18 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_latin_display_ssm', label: 'Title'
-    config.add_show_field 'author_person_display_ssm', label: 'Author', link_to_facet: :all_authors_facet
-    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', link_to_facet: :all_authors_facet
-    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: :all_authors_facet
-    config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title'
-    config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles'
-    config.add_show_field 'format', label: 'Format'
-    config.add_show_field 'overall_imprint_display_ssm', label: 'Published'
-    config.add_show_field 'copyright_display_ssm', label: 'Copyright Date'
-    config.add_show_field 'edition_display_ssm', label: 'Edition'
-    config.add_show_field 'phys_desc_ssm', label: 'Physical Description'
+    config.add_show_field 'title_latin_display_ssm', label: 'Title', if: false
+    config.add_show_field 'author_person_display_ssm', label: 'Author', link_to_facet: :all_authors_facet, if: false
+    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', link_to_facet: :all_authors_facet, if: false
+    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: :all_authors_facet, if: false
+    config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title', if: false
+    config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles', if: false
+    config.add_show_field 'overall_imprint_display_ssm', label: 'Published', if: false
+    config.add_show_field 'copyright_display_ssm', label: 'Copyright Date', if: false
+    config.add_show_field 'edition_display_ssm', label: 'Edition', if: false
+    config.add_show_field 'format', label: 'Format', if: false
+    config.add_show_field 'phys_desc_ssm', label: 'Physical Description', if: false
+    config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet, if: false
     config.add_show_field 'series_title_display_ssm', label: 'Series'
     config.add_show_field 'language_ssim', label: 'Language'
     config.add_show_field 'language_note_ssm', label: 'Language Note'
@@ -163,7 +164,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'serials_merged_to_form_display_ssim', label: 'Merged to Form', helper_method: :title_links
     config.add_show_field 'serials_changed_back_to_display_ssim', label: 'Changed Back To', helper_method: :title_links
     config.add_show_field 'dates_of_pub_ssim', label: 'Dates of Publication and/or Sequential Designation'
-    config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
     config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
     config.add_show_field 'isbn_ssm', label: 'ISBN'

@@ -1,0 +1,16 @@
+<% document = @document %>
+<% doc_presenter = show_presenter(document) %>
+<dl class="row">
+  <% document_show_fields(document).each do |field_name, field| -%>
+    <% if render_top_field? document, field, field_name %>
+      <dt class="col-3 text-right blacklight-<%= field_name.parameterize %>-label"><%= render_document_show_field_label(document, field: field_name).html_safe %></dt>
+      <% if doc_presenter.configuration.show_fields.fetch(field_name)[:helper_method] %>
+        <% value = doc_presenter.field_value field_name %>
+      <% else %>
+        <% value = document[field_name] %>
+      <% end %>
+      <dd class="col-9 blacklight-<%= field_name.parameterize %>"><%= safe_join(Array.wrap(value)) %></dd>
+
+    <% end %>
+  <% end %>
+</dl>
