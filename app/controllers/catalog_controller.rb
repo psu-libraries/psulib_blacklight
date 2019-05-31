@@ -72,7 +72,7 @@ class CatalogController < ApplicationController
     config.index.thumbnail_method = :render_thumbnail
 
     # solr field configuration for document/show views
-    # config.show.title_field = 'title_display_ssm'
+    config.show.partials = [:show]
     # config.show.display_type_field = 'format'
     # config.show.thumbnail_field = :render_thumbnail
 
