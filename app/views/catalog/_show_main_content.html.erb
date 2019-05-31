@@ -11,7 +11,7 @@
       <% end %>
     </div>
     <div class="col-9">
-      <%= render partial: 'show_header_default', locals: { document: @document, :tag => :h1 } %>
+      <%= render partial: 'show_header_default', locals: { document: @document, tag: :h1 } %>
       <%= render partial: 'show_top_fields', locals: { document: @document } %>
 
     </div>
@@ -23,7 +23,6 @@
       </div>
     </div>
   </div>
-
 
   <% unless @document.more_like_this.empty? %>
     <div class="card">

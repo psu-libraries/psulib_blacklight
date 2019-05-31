@@ -32,7 +32,7 @@ class CatalogController < ApplicationController
     config.add_results_collection_tool(:sort_widget)
     config.add_results_collection_tool(:per_page_widget)
     config.add_results_collection_tool(:view_type_group)
-    
+
     config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
 
     ## Class for sending and receiving requests from a search index
