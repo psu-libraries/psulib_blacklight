@@ -1,0 +1,7 @@
+.announcement {
+  border-bottom: 3px solid $secondary;
+
+  @include media-breakpoint-down(sm) {
+    display: none;
+  }
+}
