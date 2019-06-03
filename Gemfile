@@ -26,11 +26,13 @@ gem 'blacklight_advanced_search', github: 'projectblacklight/blacklight_advanced
 gem 'blacklight_range_limit', '~> 7.1'
 
 group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'foreman', '~> 0.63.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  # gem 'web-console', '>= 3.3.0'
 end
 
 group :development, :test do
