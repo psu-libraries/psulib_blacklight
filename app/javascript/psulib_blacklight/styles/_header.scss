@@ -1,13 +1,5 @@
 // scss-lint:disable PlaceholderInExtend
 
-// Header bar at top (Bootstrap nav-bar)
-.topbar > .container {
-  @media (max-width: breakpoint-max(xs)) {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
-
 .navbar-brand {
   padding-left: 0;
   padding-right: 0;
@@ -59,6 +51,17 @@
     // Hide 'search' label at very small screens
     @media screen and (max-width: breakpoint-max(xs)) {
       @include sr-only();
+    }
+  }
+}
+
+.navbar-nav {
+  @include media-breakpoint-down(sm) {
+    flex-direction: row;
+
+    .nav-item {
+      font-size: .75rem;
+      margin-left: 26px;
     }
   }
 }
