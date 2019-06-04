@@ -6,6 +6,16 @@ import locations from './libraries_locations.json';
 
 $(document).on('turbolinks:load', function() {
     loadAvailability(locations);
+
+    $(".availability").on("click", "[data-type=view-more-holdings]", function () {
+        $(this).toggleClass('toggle-more');
+        if ($(this).hasClass('toggle-more')) {
+            $(this).text("View More");
+        }
+        else {
+            $(this).text("View Less");
+        }
+    });
 });
 
 /**
@@ -239,15 +249,3 @@ function createILLURL(jQueryObj, catkey) {
         jQueryObj.attr('href', ILLURL);
     });
 }
-
-$(document).ready(function() {
-    $(".availability").on("click", "[data-type=view-more-holdings]", function () {
-        $(this).toggleClass('toggle-more');
-        if ($(this).hasClass('toggle-more')) {
-            $(this).text("View More");
-        }
-        else {
-            $(this).text("View Less");
-        }
-    });
-});
