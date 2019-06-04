@@ -333,5 +333,7 @@ class CatalogController < ApplicationController
     # Disable until https://github.com/projectblacklight/blacklight/issues/1972 resolved
     config.autocomplete_enabled = false
     config.autocomplete_path = 'suggest'
+
+    config.raw_endpoint.enabled = true
   end
 end

@@ -1,0 +1,10 @@
+.availability-error {
+  &::before {
+    @extend %fa-icon;
+    // scss-lint:disable PlaceholderInExtend
+    @extend .fas;
+    @extend .fa-sm;
+    content: fa-content($fa-var-exclamation-triangle);
+    padding-right: .5em;
+  }
+}
