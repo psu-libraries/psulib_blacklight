@@ -59,8 +59,15 @@ function loadAvailability(locations) {
                             var homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
                             var chargeable = $(this).children("chargeable").text();
                             var status = resolveStatus(chargeable, homeLocationID, currentLocationID, titleID);
-
                             var location = (homeLocationID in all_locations) ? all_locations[homeLocationID] : "";
+
+                            location = status["statusCode"] === "ON-ORDER" ? "" : location ;
+
+                            if (status["statusCode"] === 'ILLEND' ) {
+                                location = '';
+                                callNumber = '';
+                            }
+
                             holdings.push({
                                 library: library,
                                 location: location,
@@ -97,6 +104,11 @@ function loadAvailability(locations) {
                     var catkey = $(this).data('catkey');
                     createILLURL($(this), catkey)
                 });
+            }).fail(function(data) {
+                $('.availability').each(function () {
+                    $(this).addClass('availability-error alert alert-light');
+                    $(this).html("Error: could not determine availability");
+                });
             });
     }
 }
@@ -123,14 +135,14 @@ function printAvailabilityData(availabilityData, titleID) {
                                             <tr>
                                                 <td>${holding.location}</td>
                                                 <td>${holding.callNumber}</td>
-                                                <td>${holding.status}</td>
+                                                <td>${holding.status['statusText']}</td>
                                             </tr>
                                         `).join('')}
                                         ${moreHoldings.map(moreHolding => `
                                              <tr class="collapse" id="collapseHoldings${uniqueID}">
                                                 <td>${moreHolding.location}</td>
                                                 <td>${moreHolding.callNumber}</td>
-                                                <td>${moreHolding.status}</td>
+                                                <td>${moreHolding.status['statusText']}</td>
                                             </tr>     
                                          `).join('')}
                                         </tbody>
@@ -211,27 +223,35 @@ function groupByLibrary(holdings) {
 }
 
 function resolveStatus(chargeable, homeLocationID, currentLocationID, titleID) {
-    var status = "";
+    var statusCode = '';
+    var statusText = '';
+
     if (chargeable === 'true') {
-        status = homeLocationID !== 'ON-ORDER' ? 'Available' : 'Being Acquired by the Library';
+        if (homeLocationID === 'ON-ORDER') {
+            statusCode = 'ON-ORDER';
+            statusText = 'Being Acquired by the Library';
+        } else {
+            statusCode = statusText = 'Available';
+        }
     }
     else {
         switch (currentLocationID) {
             case 'CHECKEDOUT':
-                status = 'Checked Out';
+                statusCode = statusText = 'Checked Out';
                 break;
             case 'MISSING':
-                status = 'Missing';
+                statusCode = statusText = 'Missing';
                 break;
             case 'ILLEND':
-                status = `<a data-type="ill-link" data-catkey="${titleID}" href="#"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> This copy unavailable, submit request via Interlibrary Loan</a>`;
+                statusCode = 'ILLEND';
+                statusText = `<a data-type="ill-link" data-catkey="${titleID}" href="#"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> This copy unavailable, submit request via Interlibrary Loan</a>`;
                 break;
             default:
-                status = 'Not Available';
+                statusCode = statusText = 'Not Available';
         }
     }
 
-    return status;
+    return {statusCode:statusCode, statusText: statusText};
 }
 
 function createILLURL(jQueryObj, catkey) {
