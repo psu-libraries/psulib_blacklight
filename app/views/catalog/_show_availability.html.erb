@@ -2,13 +2,11 @@
   document ||= @document
   id = document[:id]
 %>
-<div class="blacklight-availability col mt-md-5">
+<div class="blacklight-availability col">
   <div class="availability" data-keys="<%= id %>">
-      <div class="card card-body border-right-0 border-left-0">
-        <h4 class="card-title">Availability and Holdings</h4>
-        <div class="availability-holdings">
-          <p><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Finding items...</p>
-        </div>
-      </div>
+    <h4>Availability and Holdings</h4>
+    <div class="availability-holdings">
+      <p><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Finding items...</p>
+    </div>
   </div>
 </div>

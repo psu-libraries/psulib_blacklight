@@ -2,7 +2,7 @@
 <% content_for(:head) { render_link_rel_alternates } %>
 
 <div id="document" class="document <%= render_document_class %>" itemscope itemtype="<%= @document.itemtype %>">
-  <div class="row">
+  <div class="row document-metadata metadata-primary">
 
     <div class="col-3">
       <% unless @document[:format][0].empty? %>
@@ -19,11 +19,11 @@
 
   </div>
 
-  <div class="row">
+  <div class="row document-metadata metadata-availability">
     <%= render partial: 'show_availability', locals: { document: @document } %>
   </div>
 
-  <div class="row">
+  <div class="row document-metadata metadata-secondary">
     <div class="col">
       <div id="doc_<%= @document.id.to_s.parameterize %>">
         <%= render_document_partials @document, blacklight_config.view_config(:show).partials %>
