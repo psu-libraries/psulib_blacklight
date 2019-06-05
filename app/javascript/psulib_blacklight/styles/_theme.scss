@@ -4,7 +4,7 @@ $psu-blue: #0071bc;
 $link-color: $psu-blue;
 $grayish: #e6e6e6;
 
-// Bootstrap overrides
+// Bootstrap overrides (pre-bootsrap load, meaning before bootstrap vars are set)
 //  Fonts
 $headings-font-family: "Roboto Slab", Georgia, sans-serif;
 $font-family-sans-serif: "Open Sans", Arial, serif;
@@ -20,3 +20,20 @@ $navbar-brand-padding-y: 0;
 
 //  Facet heading background color
 $card-cap-bg: $grayish;
+
+//  Heading font size
+//   Please note, $font-size-base is defined in _variables.scss in Twitter Bootstrap. It is defined
+//   here as well because it is required for proper heading font size changes. It is the same value as
+//   $font-size-base in _variables.scss.
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+
+//   Heading sizes, using scales (see https://www.modularscale.com)
+$major_third: 1.25;
+$major_second: 1.125;
+$ratio: $major_third;
+$h6-font-size: $font-size-base !default;
+$h5-font-size: $h6-font-size * $ratio !default;
+$h4-font-size: $h5-font-size * $ratio !default;
+$h3-font-size: $h4-font-size * $ratio !default;
+$h2-font-size: $h3-font-size * $ratio !default;
+$h1-font-size: $h2-font-size * $ratio !default;
