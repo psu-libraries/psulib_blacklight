@@ -3,6 +3,7 @@
 
 <div id="document" class="document <%= render_document_class %>" itemscope itemtype="<%= @document.itemtype %>">
   <div class="row">
+
     <div class="col-3">
       <% unless @document[:format][0].empty? %>
         <div class="document-thumbnail">
@@ -10,29 +11,36 @@
         </div>
       <% end %>
     </div>
+
     <div class="col-9">
       <%= render partial: 'show_header_default', locals: { document: @document, tag: :h1 } %>
       <%= render partial: 'show_top_fields', locals: { document: @document } %>
-
     </div>
-    <div class="row">
-      <div class="col">
-        <div id="doc_<%= @document.id.to_s.parameterize %>">
-          <%= render_document_partials @document, blacklight_config.view_config(:show).partials %>
-        </div>
+
+  </div>
+
+  <div class="row">
+    <%= render partial: 'show_availability', locals: { document: @document } %>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div id="doc_<%= @document.id.to_s.parameterize %>">
+        <%= render_document_partials @document, blacklight_config.view_config(:show).partials %>
       </div>
     </div>
   </div>
 
-  <% unless @document.more_like_this.empty? %>
-    <div class="card">
-      <div class="card-header">More Like This</div>
-      <div class="card-body">
-        <%= render collection: @document.more_like_this, partial: 'show_more_like_this', as: :document %>
-      </div>
-    </div>
-  <% end %>
 </div>
+
+<% unless @document.more_like_this.empty? %>
+  <div class="card">
+    <div class="card-header">More Like This</div>
+    <div class="card-body">
+      <%= render collection: @document.more_like_this, partial: 'show_more_like_this', as: :document %>
+    </div>
+  </div>
+<% end %>
 
 <% if @document.respond_to?(:export_as_openurl_ctx_kev) %>
   <!--

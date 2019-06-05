@@ -47,9 +47,9 @@ module CatalogHelper
                                   class: 'search-subject', title: "Search: #{sub_array[i][j]}")
         lnk_accum = lnk + content_tag(:span, SEPARATOR, class: 'subject-level')
       end
-      result << sanitize(lnk)
+      result << content_tag('li', lnk, nil, false)
     end
-    result
+    content_tag 'ul', result.join(''), nil, false
   end
 
   # Makes a link to genre full facet
@@ -58,10 +58,10 @@ module CatalogHelper
 
     options[:value].each do |genre|
       link = link_to genre, "/?f[genre_full_facet][]=#{CGI.escape genre}"
-      result << sanitize(link)
+      result << content_tag('li', link, nil, false)
     end
 
-    result
+    content_tag 'ul', result.join(''), nil, false
   end
 
   # Turns NNNNNN into HH:MM:SS, attached to duration_ssm
