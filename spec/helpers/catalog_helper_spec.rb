@@ -33,7 +33,7 @@ RSpec.describe CatalogHelper, type: :helper do
     let (:subjects_doc) { { value: field_data } }
 
     context 'when subjects include subfields v, x, y, and z' do
-      it 'provides links to subject facet search based on hierarchy' do
+      it 'provides links to subject facet search based on hierarchy that includes v, x, y and z' do
         full_subject = subjectify subjects_doc
         expect(full_subject).to include('<a class="search-subject" title="Search: Renewable energy sources—Research—Un'\
                                         'ited States—Finance—History" href="/?f[subject_facet][]=Renewable+energy+sour'\
@@ -47,7 +47,7 @@ RSpec.describe CatalogHelper, type: :helper do
     let (:field_data) { ['Film adaptations', 'Feature Films'] }
     let (:genre_doc) { { value: field_data } }
 
-    it 'assembles a link to genre search' do
+    it 'assembles an unordered list of links to genre search' do
       links = genre_links genre_doc
       expect(links).to eq '<ul><li><a href="/?f[genre_full_facet][]=Film+adaptations">Film adaptations</a></li><li><a '\
                           'href="/?f[genre_full_facet][]=Feature+Films">Feature Films</a></li></ul>'
