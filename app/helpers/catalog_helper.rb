@@ -105,8 +105,4 @@ module CatalogHelper
     details.push "catkey: #{document[:id]}"
     safe_join(details, ' | ')
   end
-
-  def render_top_field?(document, field, field_name)
-    !should_render_show_field?(document, field) && document[field_name].present?
-  end
 end
