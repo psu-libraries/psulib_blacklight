@@ -2,9 +2,13 @@
   document ||= @document
   id = document[:id]
 %>
+
 <div class="blacklight-availability col">
   <div class="availability" data-keys="<%= id %>">
     <h4>Availability and Holdings</h4>
+    <div class="hold-button text-right invisible mb-2">
+        <%= link_to 'I Want It', "http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=#{id}", class: 'btn btn-primary pr-4 pl-4' %>
+      </div>
     <div class="availability-holdings">
       <p><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Finding items...</p>
     </div>
