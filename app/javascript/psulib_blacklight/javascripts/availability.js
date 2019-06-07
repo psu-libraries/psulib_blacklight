@@ -39,6 +39,7 @@ function loadAvailability(locations) {
                 var libraries = [];
                 var titleID = $(this).children('titleID').text();
                 var totalCopiesAvailable = parseInt($(this).find("totalCopiesAvailable").text(), 10);
+                var holdable = $(this).find("holdable").text();
 
                 $(this).children('CallInfo').each(function () {
                     var libraryID = $(this).children('libraryID').text();
@@ -83,6 +84,12 @@ function loadAvailability(locations) {
                     var availabilityButton = availability.find('.availability-button');
                     var availabilityHoldingsPlaceHolder = availability.find('.availability-holdings');
                     var availabilitySnippetPlaceHolder = availability.find('.availability-snippet');
+                    var holdButton = availability.find('.hold-button');
+
+                    // If holdable, then display the hold button
+                    if (holdable === 'true' && totalCopiesAvailable > 0) {
+                        holdButton.removeClass("invisible").addClass("visible");
+                    }
 
                     // If at least one physical copy, then display availability and holding info
                     if (Object.keys(holdings).length > 0) {
