@@ -3,11 +3,11 @@
 }
 
 .metadata {
-  &-availability{
-
-    border-top: 1px solid $gray-400;
+  &-availability {
     border-bottom: 1px solid $gray-400;
+    border-top: 1px solid $gray-400;
   }
+
   &-secondary {
     ul {
       padding-left: 18px;
