@@ -1,15 +1,40 @@
-.pivot-facet .facet-label {
-  display: inline;
-  padding-left: 0;
-  word-break: keep-all;
-}
+// Pivot Facets
+.pivot-facet {
+  .toggle,
+  .toggle.collapsed {
+    padding-bottom: .5rem;
 
-.pivot-facet .pivot-facet {
-  padding: 0 0 0 3.5em;
-  width: 100%;
+    &::before {
+      @extend %fa-icon;
+      // scss-lint:disable PlaceholderInExtend
+      @extend .fas;
+      @extend .fa-sm;
+      padding-right: .5em;
+      vertical-align: middle;
+    }
+  }
 
-  &.collapse.show,
-  &.collapsing {
-    display: table;
+  .toggle::before {
+    content: fa-content($fa-var-minus-square);
+  }
+
+  .toggle.collapsed::before {
+    content: fa-content($fa-var-plus-square);
+  }
+
+  .facet-label {
+    display: inline;
+    padding-left: 0;
+    word-break: keep-all;
+  }
+
+  .pivot-facet {
+    padding: 0 0 0 3.5em;
+    width: 100%;
+
+    &.collapse.show,
+    &.collapsing {
+      display: table;
+    }
   }
 }

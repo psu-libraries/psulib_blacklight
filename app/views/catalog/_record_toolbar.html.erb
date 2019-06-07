@@ -1,0 +1,20 @@
+<div class="record-actions btn-group btn-group-sm" role="group" aria-label="Button group with nested dropdown">
+  <%= render_show_doc_actions @document do |config, inner| %>
+    <% if (config.key == :citation) %>
+      <%= inner %>
+    <% end %>
+  <% end %>
+
+  <div class="btn-group btn-group-sm" role="group">
+    <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      <%= render_show_doc_actions @document do |config, inner| %>
+        <% if (config.key != :citation) %>
+          <%= inner %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render(partial: 'bookmark_control', locals: { document: @document }) %>

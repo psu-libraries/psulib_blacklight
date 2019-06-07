@@ -11,6 +11,14 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    # Controls the document actions (also called "tools"), note that blacklight_marc adds refworks and endnote
+    config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params, html_class: 'dropdown-item')
+    config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params, html_class: 'dropdown-item')
+    config.add_show_tools_partial(:citation, html_class: 'btn btn-info')
+    config.show.document_actions.refworks.html_class = 'dropdown-item'
+    config.show.document_actions.endnote.html_class = 'dropdown-item'
+    config.show.document_actions.delete_field('librarian_view') # removing something added by blacklight_marc
+
     config.index.document_presenter_class = PsulIndexPresenter
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
@@ -33,17 +41,7 @@ class CatalogController < ApplicationController
     config.add_results_collection_tool(:per_page_widget)
     config.add_results_collection_tool(:view_type_group)
 
-    config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
-    config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params)
-    config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params)
-    config.add_show_tools_partial(:citation)
-
     config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
-
-    # From blacklight-marc
-    config.add_show_tools_partial(:librarian_view, if: :render_librarian_view_control?, define_method: false)
-    config.add_show_tools_partial(:refworks, if: :render_refworks_action?, modal: false)
-    config.add_show_tools_partial(:endnote, if: :render_endnote_action?, modal: false, path: :single_endnote_catalog_path, define_method: false)
 
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
@@ -82,7 +80,7 @@ class CatalogController < ApplicationController
     config.index.thumbnail_method = :render_thumbnail
 
     # solr field configuration for document/show views
-    # config.show.title_field = 'title_display_ssm'
+    config.show.partials = [:show]
     # config.show.display_type_field = 'format'
     # config.show.thumbnail_field = :render_thumbnail
 
@@ -142,17 +140,18 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field 'title_latin_display_ssm', label: 'Title'
-    config.add_show_field 'author_person_display_ssm', label: 'Author', link_to_facet: :all_authors_facet
-    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', link_to_facet: :all_authors_facet
-    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: :all_authors_facet
-    config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title'
-    config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles'
-    config.add_show_field 'format', label: 'Format'
-    config.add_show_field 'overall_imprint_display_ssm', label: 'Published'
-    config.add_show_field 'copyright_display_ssm', label: 'Copyright Date'
-    config.add_show_field 'edition_display_ssm', label: 'Edition'
-    config.add_show_field 'phys_desc_ssm', label: 'Physical Description'
+    config.add_show_field 'title_latin_display_ssm', label: 'Title', top_field: true, if: false
+    config.add_show_field 'author_person_display_ssm', label: 'Author', link_to_facet: :all_authors_facet, top_field: true, if: false
+    config.add_show_field 'author_corp_display_ssm', label: 'Corporate Author', link_to_facet: :all_authors_facet, top_field: true, if: false
+    config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: :all_authors_facet, top_field: true, if: false
+    config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title', top_field: true, if: false
+    config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles', top_field: true, if: false
+    config.add_show_field 'overall_imprint_display_ssm', label: 'Published', top_field: true, if: false
+    config.add_show_field 'copyright_display_ssm', label: 'Copyright Date', top_field: true, if: false
+    config.add_show_field 'edition_display_ssm', label: 'Edition', top_field: true, if: false
+    config.add_show_field 'format', label: 'Format', top_field: true, if: false
+    config.add_show_field 'phys_desc_ssm', label: 'Physical Description', top_field: true, if: false
+    config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet, top_field: true, if: false
     config.add_show_field 'series_title_display_ssm', label: 'Series'
     config.add_show_field 'language_ssim', label: 'Language'
     config.add_show_field 'language_note_ssm', label: 'Language Note'
@@ -173,7 +172,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'serials_merged_to_form_display_ssim', label: 'Merged to Form', helper_method: :title_links
     config.add_show_field 'serials_changed_back_to_display_ssim', label: 'Changed Back To', helper_method: :title_links
     config.add_show_field 'dates_of_pub_ssim', label: 'Dates of Publication and/or Sequential Designation'
-    config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
     config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
     config.add_show_field 'isbn_ssm', label: 'ISBN'
@@ -181,6 +179,9 @@ class CatalogController < ApplicationController
     config.add_show_field 'related_title_display_ssm', label: 'Related Titles'
     config.add_show_field 'duration_ssm', label: 'Duration', helper_method: :display_duration
     config.add_show_field 'frequency_ssm', label: 'Publication Frequency'
+    config.add_show_field 'finding_aid_note_ssm', label: 'Finding Aid Note'
+    config.add_show_field 'provenance_note_ssm', label: 'Provenance'
+    config.add_show_field 'dissertation_note_ssm', label: 'Dissertation Note'
     config.add_show_field 'audience_ssm', label: 'Audience'
     config.add_show_field 'reading_grade_ssm', label: 'Reading Grade'
     config.add_show_field 'interest_age_ssm', label: 'Interest Age'
@@ -193,10 +194,9 @@ class CatalogController < ApplicationController
     config.add_show_field 'video_file_ssm', label: 'Video File Characteristics'
     config.add_show_field 'scale_graphic_material_note_ssm', label: 'Scale Note for Graphic Material'
     config.add_show_field 'digital_file_ssm', label: 'Digital File Characteristics'
-    config.add_show_field 'audience_notes_ssm', label: 'Audience Notes'
     config.add_show_field 'form_work_ssm', label: 'Form of work'
+    config.add_show_field 'audience_notes_ssm', label: 'Audience Notes'
     config.add_show_field 'general_note_ssm', label: 'Note'
-    config.add_show_field 'dissertation_note_ssm', label: 'Dissertation Note'
     config.add_show_field 'bibliography_note_ssm', label: 'Bibliography Note'
     config.add_show_field 'with_note_ssm', label: 'With'
     config.add_show_field 'creation_production_credits_ssm', label: 'Creation/Production Credits Note'
@@ -226,9 +226,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'former_title_ssm', label: 'Title Varies'
     config.add_show_field 'issuing_ssm', label: 'Issuing Body'
     config.add_show_field 'index_note_ssm', label: 'Index Note'
-    config.add_show_field 'finding_aid_note_ssm', label: 'Finding Aid Note'
     config.add_show_field 'documentation_info_note_ssm', label: 'Documentation Information'
-    config.add_show_field 'provenance_note_ssm', label: 'Provenance'
     config.add_show_field 'version_copy_id_note_ssm', label: 'Version/Copy ID'
     config.add_show_field 'methodology_ssm', label: 'Methodology Note'
     config.add_show_field 'complexity_ssm', label: 'Complexity Note'

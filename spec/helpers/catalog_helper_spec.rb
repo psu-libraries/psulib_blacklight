@@ -33,21 +33,12 @@ RSpec.describe CatalogHelper, type: :helper do
     let (:subjects_doc) { { value: field_data } }
 
     context 'when subjects include subfields v, x, y, and z' do
-      it 'provides links to subject facet search based on hierarchy' do
+      it 'provides links to subject facet search based on hierarchy that includes v, x, y and z' do
         full_subject = subjectify subjects_doc
-        sub_subjects = []
-        field_data.each do |subject|
-          sub_subjects << subject.split(SEPARATOR)
-        end
-        field_data.each_with_index do |subject, i|
-          sub_subjects[i].each do |component|
-            c = Regexp.escape(component)
-            expect(full_subject[i].include?('class="search-subject" '\
-                                        "title=\"Search: #{subject[/.*#{c}/]}\" "\
-                                        "href=\"/?f%5Bsubject_facet%5D%5B%5D=#{CGI.escape subject[/.*#{c}/]}\">"\
-                                        "#{component}</a>")).to eq true
-          end
-        end
+        expect(full_subject).to include('<a class="search-subject" title="Search: Renewable energy sources—Research—Un'\
+                                        'ited States—Finance—History" href="/?f[subject_facet][]=Renewable+energy+sour'\
+                                        'ces%E2%80%94Research%E2%80%94United+States%E2%80%94Finance%E2%80%94History">H'\
+                                        'istory</a></li>')
       end
     end
   end
@@ -56,10 +47,10 @@ RSpec.describe CatalogHelper, type: :helper do
     let (:field_data) { ['Film adaptations', 'Feature Films'] }
     let (:genre_doc) { { value: field_data } }
 
-    it 'assembles a link to genre search' do
+    it 'assembles an unordered list of links to genre search' do
       links = genre_links genre_doc
-      expect(links).to include '<a href="/?f%5Bgenre_full_facet%5D%5B%5D=Film+adaptations">Film adaptations</a>'
-      expect(links).to include '<a href="/?f%5Bgenre_full_facet%5D%5B%5D=Feature+Films">Feature Films</a>'
+      expect(links).to eq '<ul><li><a href="/?f[genre_full_facet][]=Film+adaptations">Film adaptations</a></li><li><a '\
+                          'href="/?f[genre_full_facet][]=Feature+Films">Feature Films</a></li></ul>'
     end
   end
 

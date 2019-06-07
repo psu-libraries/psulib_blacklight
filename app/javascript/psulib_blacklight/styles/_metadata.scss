@@ -1,0 +1,16 @@
+.document-metadata {
+  padding: 30px 0;
+}
+
+.metadata {
+  &-availability {
+    border-bottom: 1px solid $gray-400;
+    border-top: 1px solid $gray-400;
+  }
+
+  &-secondary {
+    ul {
+      padding-left: 18px;
+    }
+  }
+}
