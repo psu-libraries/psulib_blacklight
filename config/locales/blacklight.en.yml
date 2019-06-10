@@ -8,6 +8,7 @@ en:
     back_to_search: 'Back to Search Results'
     tools:
       librarian_view: 'MARC View'
+      sms: 'SMS'
     search:
       librarian_view:
         title: 'MARC View'
