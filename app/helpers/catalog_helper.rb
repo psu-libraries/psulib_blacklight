@@ -81,7 +81,14 @@ module CatalogHelper
 
   # To render format icon on search results as the default thumbnail for now
   def render_thumbnail(document, _options = {})
-    content_tag(:span, '', class: "fas fa-5x faspsu-#{document[:format][0].parameterize}")
+    isbn_values = document.fetch(:isbn_valid_ssm, [])
+
+    if isbn_values.empty?
+      content_tag(:span, '', class: "fas fa-5x faspsu-#{document[:format][0].parameterize}")
+    else
+      content_tag(:span, '', class: "fas fa-5x faspsu-#{document[:format][0].parameterize}",
+                data: { isbn: isbn_values, type: "isbn"})
+    end
   end
 
   # Makes a link to title search
