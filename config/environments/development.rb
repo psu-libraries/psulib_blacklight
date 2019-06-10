@@ -36,7 +36,7 @@ Rails.application.configure do
   end
 
   config.action_mailer.default_options = {
-      from: 'noreply@psu.edu'
+    from: 'noreply@psu.edu'
   }
 
   # Don't care if the mailer can't send.
