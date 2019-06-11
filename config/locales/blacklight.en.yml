@@ -8,11 +8,26 @@ en:
     back_to_search: 'Back to Search Results'
     tools:
       librarian_view: 'MARC View'
+      sms: 'SMS'
     search:
       librarian_view:
         title: 'MARC View'
       facets:
         title: 'Refine search results'
+    email:
+      text:
+        latin_title: 'Title: %{value}'
+        published: 'Published: %{value}'
+        edition: 'Edition: %{value}'
+        subject:
+          one: 'PSU Libraries Item Record: %{title}'
+          other: 'PSU Libraries Item Records'
+    sms:
+      text:
+        latin_title: "Title: %{value}"
+        format: "Format: %{value}"
+        published: "Published: %{value}"
+        edition: "Edition: %{value}"
   support:
     array:
       words_connector: "<br>"
