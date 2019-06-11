@@ -211,7 +211,8 @@
          overall_imprint_display_ssm,
          publication_display_ssm,
          edition_display_ssm,
-         full_links_struct
+         full_links_struct,
+         isbn_valid_ssm
        </str>
 
        <!-- list fields to be displayed as facets -->

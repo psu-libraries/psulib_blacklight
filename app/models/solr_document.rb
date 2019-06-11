@@ -19,6 +19,7 @@ class SolrDocument
   # SMS uses the semantic field mappings below to generate the body of an SMS email.
   SolrDocument.use_extension(Blacklight::Document::Sms)
 
+  # below can be deleted?
   # The following shows how to setup this blacklight document to display marc documents
   extension_parameters[:marc_source_field] = :marc_display_ss
   extension_parameters[:marc_format_type] = :marcxml
