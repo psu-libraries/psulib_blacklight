@@ -3,7 +3,7 @@
 <dl class="row">
   <% blacklight_config.show_fields.each do |field_name, field| -%>
     <% if field.top_field && !document[field_name].nil? %>
-        <dt class="blacklight-<%= field_name.parameterize %> col-md-3"><%= render_document_show_field_label document, field: field_name %></dt>
+        <dt class="blacklight-<%= field_name.parameterize %>-label col-md-3"><%= render_document_show_field_label document, field: field_name %></dt>
         <dd class="blacklight-<%= field_name.parameterize %> col-md-9"><%= doc_presenter.field_value field %></dd>
     <% end %>
   <% end %>
