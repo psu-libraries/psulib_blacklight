@@ -87,7 +87,7 @@ module CatalogHelper
       content_tag(:span, '', class: "fas fa-5x faspsu-#{document[:format][0].parameterize}")
     else
       content_tag(:span, '', class: "fas fa-5x faspsu-#{document[:format][0].parameterize}",
-                data: { isbn: isbn_values, type: "isbn"})
+                             data: { isbn: isbn_values, type: 'isbn' })
     end
   end
 
