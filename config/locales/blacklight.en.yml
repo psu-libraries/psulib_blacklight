@@ -14,6 +14,8 @@ en:
         title: 'MARC View'
       facets:
         title: 'Refine search results'
+      continue_search:
+        title: 'Or continue your search in'
     email:
       text:
         latin_title: 'Title: %{value}'

@@ -25,6 +25,14 @@
   <%= render_grouped_document_index %>
 <%- else %>
   <%= render_document_index %>
+    <%- if @response.response[:numFound] < 3 %>
+      <div class="card bg-light mt-4 mb-3">
+        <h3 class="card-header facet-field-heading"><%= t 'blacklight.search.continue_search.title' %></h3>
+        <div class="card-body">
+          <%= render 'continue_search_in' %>
+        </div>
+      </div>
+    <%- end %>
 <%- end %>
 
 <%= render 'results_pagination' %>
