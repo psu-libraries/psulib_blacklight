@@ -1,22 +1,17 @@
 $(document).on('turbolinks:load', function() {
-    var isbns_prefixed = '';
+    var isbns_prefixed = [];
 
     $("[data-type='isbn']").each(function(index, thumbnail) {
         var isbn_values = $(thumbnail).data('isbn');
-        var isbn_prefixed = [];
 
-        if(isbn_values) {
-            isbn_prefixed = isbn_values.map(isbn => "ISBN:" + isbn);
-        }
-        if(isbn_prefixed.length > 0) {
-            if (isbns_prefixed !== '') isbns_prefixed += ',';
-            isbns_prefixed += isbn_prefixed.join();
+        if (isbn_values) {
+            isbns_prefixed.push(isbn_values.map(isbn => "ISBN:" + isbn));
         }
     });
 
     $.ajax(
         {
-            url: "https://books.google.com/books?jscmd=viewapi&bibkeys=" + isbns_prefixed,
+            url: "https://books.google.com/books?jscmd=viewapi&bibkeys=" + isbns_prefixed.join(),
             dataType: "jsonp",
             jsonp: "callback"
         }
