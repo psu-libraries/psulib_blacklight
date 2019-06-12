@@ -4,8 +4,8 @@ $(document).on('turbolinks:load', function() {
     $("[data-type='isbn']").each(function(index, thumbnail) {
         var isbn_values = $(thumbnail).data('isbn');
 
-        if(isbn_values) {
-            isbns_prefixed = isbn_values.map(isbn => "ISBN:" + isbn);
+        if (isbn_values) {
+            isbns_prefixed.push(isbn_values.map(isbn => "ISBN:" + isbn));
         }
     });
 
