@@ -11,7 +11,10 @@
   <h1 class="sr-only top-content-title"><%= t('blacklight.search.header') %></h1>
 <% end %>
 
-<%= render 'search_header' %>
+<%- unless @response.empty? %>
+  <%= render 'search_header' %>
+<%- end %>
+
 <%= render 'constraints' %>
 
 <h2 class="sr-only"><%= t('blacklight.search.search_results') %></h2>
@@ -22,6 +25,14 @@
   <%= render_grouped_document_index %>
 <%- else %>
   <%= render_document_index %>
+    <%- if @response.response[:numFound] < 3 %>
+      <div class="card bg-light mt-4 mb-3">
+        <h3 class="card-header facet-field-heading"><%= t 'blacklight.search.continue_search.title' %></h3>
+        <div class="card-body">
+          <%= render 'continue_search_in' %>
+        </div>
+      </div>
+    <%- end %>
 <%- end %>
 
 <%= render 'results_pagination' %>

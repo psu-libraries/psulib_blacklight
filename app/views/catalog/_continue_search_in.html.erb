@@ -1,0 +1,8 @@
+<ul>
+  <li><%= link_to 'All of LionSearch', "https://psu.summon.serialssolutions.com/#!/search?ho=t&l=en&q=#{params[:q]}" %></li>
+  <li><%= link_to 'Libraries worldwide (WorldCat)', "http://worldcat.org/search?q=#{params[:q]}" %></li>
+  <li><%= link_to 'Pennsylvania libraries (E-Z Borrow)', "https://cat.libraries.psu.edu/cgi-auth/authenticate.exe?cmdname=PL&where=https://ezb.relaisd2d.com/?LS=PSU&query=#{params[:q]}" %></li>
+  <li><%= link_to 'More academic libraries (UBorrow)', "http://uborrow.relaisd2d.com/service-proxy/?command=mkauth&LS=PENNSTATE&PI=PENNSTATE&query=#{params[:q]}" %></li>
+  <li><%= link_to 'Public domain books and journals: HathiTrust', "https://catalog.hathitrust.org/Search/Home?lookfor=#{params[:q]}&searchtype=all&ft=ft&setft=true" %></li>
+  <li><%= link_to 'Articles: Google Scholar', "http://scholar.google.com/scholar?inst=15460120341296470254&q=#{params[:q]}" %></li>
+</ul>
