@@ -6,7 +6,8 @@ module Blacklight::Document::Email
   def to_email_text
     semantics = to_semantic_values
     body = []
-    ['title', 'latin_title', 'published', 'edition', 'format', 'language'].each do |field|
+    ['title', 'latin_title', 'author', 'corporate_author', 'conference_author',
+     'published', 'edition', 'format', 'language'].each do |field|
       if semantics[field.to_sym].present?
         value = semantics[field.to_sym]
         label = "blacklight.email.text.#{field}"
