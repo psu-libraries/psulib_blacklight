@@ -8,7 +8,6 @@ cache:
   yarn: true
   directories:
   - tmp/solr_dl/
-jdk: oraclejdk9
 env:
   global:
   - RAILS_ENV=test
