@@ -154,7 +154,6 @@ function printAvailabilityData(availabilityData, titleID) {
                                          `).join('')}
                                         </tbody>
                                     </table>
-                                    <tr>
                               `;
         if (moreHoldings.length > 0) {
             markupForHoldings += `<button class="btn btn-primary toggle-more" data-type="view-more-holdings" data-target="#collapseHoldings${uniqueID}" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseHoldings${uniqueID}">View More</button>`;
