@@ -17,9 +17,7 @@
 
   </div>
 
-  <div class="row document-metadata metadata-availability">
-    <%= render partial: 'show_availability', locals: { document: @document } %>
-  </div>
+  <%= render partial: 'show_availability', locals: { document: @document } if @document %>
 
   <div class="row document-metadata metadata-secondary">
     <div class="col">

@@ -4,11 +4,12 @@
 
 .metadata {
   &-availability {
-    border-bottom: 1px solid $gray-400;
     border-top: 1px solid $gray-400;
   }
 
   &-secondary {
+    border-top: 1px solid $gray-400;
+
     ul {
       padding-left: 18px;
     }
