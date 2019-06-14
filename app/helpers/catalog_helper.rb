@@ -95,12 +95,12 @@ module CatalogHelper
   def title_links(options = {})
     result = []
 
-    options[:value].each do |serial_title|
+    result = options[:value].collect do |serial_title|
       link = link_to serial_title, "/?search_field=title&q=#{CGI.escape serial_title}"
-      result << sanitize(link)
+      content_tag('li', link, nil, false)
     end
 
-    result
+    content_tag 'ul', result.join(''), nil, false
   end
 
   def marc_record_details(document)
