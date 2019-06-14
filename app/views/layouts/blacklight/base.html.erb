@@ -15,9 +15,10 @@
     <%= csrf_meta_tags %>
     <%= content_for(:head) %>
   </head>
+
   <body class="<%= render_body_class %>">
-  <%= render partial: 'shared/announcement' if Psulcat::Application.config.show_announcement %>
-  <%= render partial: 'shared/header_navbar' %>
+    <%= render partial: 'shared/announcement' if Psulcat::Application.config.show_announcement %>
+    <%= render partial: 'shared/header_navbar' %>
 
     <div id="main-container" class="<%= container_classes %> mt-4">
       <%= content_for(:container_header) %>
