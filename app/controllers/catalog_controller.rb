@@ -149,7 +149,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'overall_imprint_display_ssm', label: 'Published', top_field: true, if: false
     config.add_show_field 'copyright_display_ssm', label: 'Copyright Date', top_field: true, if: false
     config.add_show_field 'edition_display_ssm', label: 'Edition', top_field: true, if: false
-    config.add_show_field 'format', label: 'Format', top_field: true, if: false
     config.add_show_field 'phys_desc_ssm', label: 'Physical Description', top_field: true, if: false
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet, top_field: true, if: false
     config.add_show_field 'series_title_display_ssm', label: 'Series'
