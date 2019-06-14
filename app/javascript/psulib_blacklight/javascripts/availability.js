@@ -128,7 +128,7 @@ function printAvailabilityData(availabilityData, titleID) {
         var moreHoldings = holdings.length > 4 ? holdings.splice(4,holdings.length) : [];
         markupForHoldings += `
                                 <h5>${element.summary.library} (${element.summary.countAtLibrary} ${element.summary.pluralize})</h5>
-                                <table id="holdings-${uniqueID}" class="table table-hover table-sm">
+                                <table id="holdings-${uniqueID}" class="table table-sm">
                                     <caption class="sr-only">Listing where to find this item in our buildings.</caption>
                                     <thead class="thead-light">
                                         <tr>
