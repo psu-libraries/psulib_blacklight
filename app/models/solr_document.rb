@@ -7,6 +7,9 @@ class SolrDocument
   field_semantics.merge!(
     title: 'title_display_ssm',
     latin_title: 'title_latin_display_ssm',
+    author: 'author_person_display_ssm',
+    corporate_author: 'author_corp_display_ssm',
+    conference_author: 'author_meeting_display_ssm',
     published: 'overall_imprint_display_ssm',
     edition: 'edition_display_ssm',
     format: 'format',

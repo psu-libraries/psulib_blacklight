@@ -19,14 +19,21 @@ en:
     email:
       text:
         latin_title: 'Title: %{value}'
+        author: 'Author: %{value}'
+        corporate_author: 'Corporate Author: %{value}'
+        conference_author: 'Conference Author: %{value}'
         published: 'Published: %{value}'
         edition: 'Edition: %{value}'
         subject:
           one: 'PSU Libraries Item Record: %{title}'
           other: 'PSU Libraries Item Records'
+        url: '%{url}'
     sms:
       text:
         latin_title: "Title: %{value}"
+        author: 'Author: %{value}'
+        corporate_author: 'Corporate Author: %{value}'
+        conference_author: 'Conference Author: %{value}'
         format: "Format: %{value}"
         published: "Published: %{value}"
         edition: "Edition: %{value}"
