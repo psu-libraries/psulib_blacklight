@@ -4,7 +4,7 @@ en:
     application_name: 'Penn State University Libraries Catalog'
     application_short_name: 'Catalog'
     announcement:
-      html: 'This is the new catalog search, <a href="/about">read more about this new catalog</a>.'
+      html: 'Welcome to the new Penn State Libraries Catalog. <a href="/about">Learn more</a> about the project, <a href="/#tbd">submit feedback</a> on your experience, or switch to <a href="https://cat.libraries.psu.edu">classic Cat</a>. '
     back_to_search: 'Back to Search Results'
     tools:
       librarian_view: 'MARC View'
