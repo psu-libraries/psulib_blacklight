@@ -93,10 +93,10 @@ RSpec.describe CatalogHelper, type: :helper do
     let (:field_data) { ['Some Title', 'Another Title'] }
     let (:title_doc) { { value: field_data } }
 
-    it 'assembles a link to title search' do
+    it 'assembles a link to title search and puts it in a list' do
       links = title_links title_doc
-      expect(links).to include '<a href="/?search_field=title&amp;q=Some+Title">Some Title</a>'
-      expect(links).to include '<a href="/?search_field=title&amp;q=Another+Title">Another Title</a>'
+      expect(links).to match '<ul><li><a href="/?search_field=title&amp;q=Some+Title">Some Title</a></li><li><a href="'\
+                             '/?search_field=title&amp;q=Another+Title">Another Title</a></li></ul>'
     end
   end
 
