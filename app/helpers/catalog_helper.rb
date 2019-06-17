@@ -93,9 +93,7 @@ module CatalogHelper
 
   # Makes a link to title search
   def title_links(options = {})
-    result = []
-
-    result = options[:value].collect do |serial_title|
+    result = options[:value].map do |serial_title|
       link = link_to serial_title, "/?search_field=title&q=#{CGI.escape serial_title}"
       content_tag('li', link, nil, false)
     end
