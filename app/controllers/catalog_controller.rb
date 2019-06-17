@@ -151,6 +151,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'edition_display_ssm', label: 'Edition', top_field: true, if: false
     config.add_show_field 'phys_desc_ssm', label: 'Physical Description', top_field: true, if: false
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet, top_field: true, if: false
+    config.add_show_field 'full_links_struct', label: 'Access Online', top_field: true, helper_method: :generic_link, if: false
     config.add_show_field 'series_title_display_ssm', label: 'Series'
     config.add_show_field 'language_ssim', label: 'Language'
     config.add_show_field 'language_note_ssm', label: 'Language Note'
@@ -238,7 +239,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'references_note_ssm', label: 'Reviewed/Cited In'
 
     # Order not yet specified
-    config.add_show_field 'full_links_struct', label: 'Access Online', helper_method: :generic_link
     config.add_show_field 'partial_links_struct', label: 'Access Online', helper_method: :generic_link
     config.add_show_field 'suppl_links_struct', label: 'View More Online', helper_method: :generic_link
     # config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
