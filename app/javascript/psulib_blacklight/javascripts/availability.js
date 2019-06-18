@@ -33,7 +33,7 @@ function loadAvailability(locations) {
     });
 
     if (titleIDs.length > 0) {
-        $.get('/available/' + titleIDs.join(','), function (xml) {
+        $.get('/available/' + titleIDs.join('ocm,'), function (xml) {
             $(xml).find('TitleInfo').each(function () {
                 var holdings = [];
                 var libraries = [];
@@ -114,7 +114,7 @@ function loadAvailability(locations) {
             }).fail(function(data) {
                 $('.availability').each(function () {
                     $(this).addClass('availability-error alert alert-light');
-                    $(this).html("Error: could not determine availability");
+                    $(this).html("Please check back shortly for item availability or <a href=\"https://libraries.psu.edu/ask\">ask a librarian</a> for assistance.");
                 });
             });
     }
