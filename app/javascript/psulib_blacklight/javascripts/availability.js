@@ -3,9 +3,10 @@
  * Real Time Availability
  */
 import locations from './libraries_locations.json';
+import item_types from './item_types.json';
 
 $(document).on('turbolinks:load', function() {
-    loadAvailability(locations);
+    loadAvailability(locations, item_types);
 
     $(".availability").on("click", "[data-type=view-more-holdings]", function () {
         $(this).toggleClass('toggle-more');
@@ -21,10 +22,12 @@ $(document).on('turbolinks:load', function() {
 /**
  * Load real time holdings and availability info from Sirsi Web Services
  */
-function loadAvailability(locations) {
+function loadAvailability(locations, item_types) {
     // Load Sirsi locations
     var all_locations = locations.locations;
     var all_libraries = locations.libraries;
+    var request_via_ill_locations = locations.request_via_ill;
+    var all_item_types = item_types.item_types;
     var titleIDs = [];
 
     // Get the catkeys
@@ -33,7 +36,7 @@ function loadAvailability(locations) {
     });
 
     if (titleIDs.length > 0) {
-        $.get('/available/' + titleIDs.join('ocm,'), function (xml) {
+        $.get('/available/' + titleIDs.join(','), function (xml) {
             $(xml).find('TitleInfo').each(function () {
                 var holdings = [];
                 var libraries = [];
@@ -57,23 +60,20 @@ function loadAvailability(locations) {
                         // Holdings
                         $(this).children("ItemInfo").each(function () {
                             var currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
-                            var homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
-                            var chargeable = $(this).children("chargeable").text();
-                            var status = resolveStatus(chargeable, homeLocationID, currentLocationID, titleID);
-                            var location = (homeLocationID in all_locations) ? all_locations[homeLocationID] : "";
+                            var location = resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID);
+                            var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
+                            var itemType = (itemTypeID in all_item_types) ? all_item_types[itemTypeID] : "";
+                            // var chargeable = $(this).children("chargeable").text();
 
-                            location = status["statusCode"] === "ON-ORDER" ? "" : location ;
-
-                            if (status["statusCode"] === 'ILLEND' ) {
-                                location = '';
-                                callNumber = '';
-                            }
+                            // if (currentLocationID === 'ILLEND' ) {
+                            //     callNumber = '';
+                            // }
 
                             holdings.push({
                                 library: library,
                                 location: location,
                                 callNumber: callNumber,
-                                status: status
+                                itemType: itemType
                             });
                         });
                     }
@@ -132,24 +132,24 @@ function printAvailabilityData(availabilityData, titleID) {
                                     <caption class="sr-only">Listing where to find this item in our buildings.</caption>
                                     <thead class="thead-light">
                                         <tr>
-                                            <th>Location</th>
                                             <th>Call number</th>
-                                            <th>Status</th>
+                                            <th>Material</th>
+                                            <th>Location</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         ${holdings.map(holding => `
                                             <tr>
-                                                <td>${holding.location}</td>
                                                 <td>${holding.callNumber}</td>
-                                                <td>${holding.status['statusText']}</td>
+                                                <td>${holding.itemType}</td>
+                                                <td>${holding.location}</td>
                                             </tr>
                                         `).join('')}
                                         ${moreHoldings.map(moreHolding => `
                                              <tr class="collapse" id="collapseHoldings${uniqueID}">
-                                                <td>${moreHolding.location}</td>
                                                 <td>${moreHolding.callNumber}</td>
-                                                <td>${moreHolding.status['statusText']}</td>
+                                                <td>${moreHolding.itemType}</td>
+                                                <td>${moreHolding.location}</td>
                                             </tr>     
                                          `).join('')}
                                         </tbody>
@@ -228,36 +228,17 @@ function groupByLibrary(holdings) {
     }, {});
 }
 
-function resolveStatus(chargeable, homeLocationID, currentLocationID, titleID) {
-    var statusCode = '';
-    var statusText = '';
+function resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID) {
+    var location = '';
 
-    if (chargeable === 'true') {
-        if (homeLocationID === 'ON-ORDER') {
-            statusCode = 'ON-ORDER';
-            statusText = 'Being Acquired by the Library';
-        } else {
-            statusCode = statusText = 'Available';
-        }
-    }
-    else {
-        switch (currentLocationID) {
-            case 'CHECKEDOUT':
-                statusCode = statusText = 'Checked Out';
-                break;
-            case 'MISSING':
-                statusCode = statusText = 'Missing';
-                break;
-            case 'ILLEND':
-                statusCode = 'ILLEND';
-                statusText = `<a data-type="ill-link" data-catkey="${titleID}" href="#"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> This copy unavailable, submit request via Interlibrary Loan</a>`;
-                break;
-            default:
-                statusCode = statusText = 'Not Available';
-        }
+    // Check request via ILL locations
+    if (currentLocationID in request_via_ill_locations) {
+        location = `<a data-type="ill-link" data-catkey="${titleID}" href="#"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Copy unavailable, request via Interlibrary Loan</a>`;
+    } else {
+        location = (currentLocationID in all_locations) ? all_locations[currentLocationID] : "";
     }
 
-    return {statusCode:statusCode, statusText: statusText};
+    return location;
 }
 
 function createILLURL(jQueryObj, catkey) {
