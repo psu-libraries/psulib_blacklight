@@ -1,9 +1,20 @@
 <h1>Search Tips</h1>
-<h2>Simple Search</h2>
-<p>Use the simple search box at the top of the page to search by keywords in the entire record. You can change the drop-down to limit your search to words in the title, author/creator name, or subject. Use quotes around exact phrases to get more specific results, e.g. "remote sensing."</p>
 
-<h2>Sidebar Facets</h2>
-<p>Narrow your search results using the facets on the left sidebar. Know you're looking for a musical score? Use the Formats tab and select Musical Score. You can also narrow results:</p>
+<p>Search the Libraries Catalog to find books, government documents, journals, newspapers, maps, archival collections, music, videos, conference proceedings, and more.</p>
+
+<p>If you're looking for individual journal or newspaper articles, more ebooks, and ejournals use <%= link_to 'LionSearch', 'https://psu.summon.serialssolutions.com/' %> or a <%= link_to 'database', 'https://libraries.psu.edu/databases' %> instead. To request books, journal articles, and other materials you can't find in our library systems, use our <%= link_to 'Interlibrary Loan services', 'https://libraries.psu.edu/services/interlibrary-loan-services' %> or <%= link_to 'Ask a Librarian', 'https://libraries.psu.edu/ask/' %> for help.</p>
+
+<h2>Simple Search</h2>
+<p>Use the simple search box at the top of the page to search by keywords in the entire record.</p>
+
+<p>Change the drop-down to limit your search to words in the title, author/creator name, or subject. Use quotes around exact phrases to get more specific results, e.g. "remote sensing."</p>
+
+<h3>Level Up</h3>
+
+<p>Use "+" before a term to make it required. (Otherwise results matching only some of your terms may be included). Use "-" before a word or phrase to exclude results with that word (e.g. <code>animal cloning -sheep</code> if you are getting too many results specifically about sheep cloning).</p>
+
+<h3>Sidebar Facets</h3>
+<p>Narrow your search results using the facets on the left sidebar. Know you're looking for a musical score? Use the Formats facet tab and select Musical Score. You can also narrow results:</p>
 <ul>
   <li>by whether material is in a library or online</li>
   <li>to only one campus or library</li>
@@ -14,11 +25,11 @@
   <li>by how it's classified, e.g. philosophy, botany, etc.</li>
 </ul>
 
-<p>Clear facets by unchecking them in the sidebar, closing the facet's box[describe better] at the top of the page, or choosing "Start Over" at the top of the page.</p>
+<p>Clear facets by unchecking them in the sidebar or at the top of search results. To clear all facets and start over, choose "Start Over" at the top of the page.</p>
 
 <h2>Advanced Search</h2>
 
-<p>You can also use the Advanced Search[/advanced] to construct a complicated search. For example, if you only want books about homelessness published after 2000, you'd use the following fields:</p>
+<p>You can also use the <%= link_to 'Advanced Search', page_path('advanced') %> to construct a complicated search. For example, if you only want books about homelessness published after 2000, you'd use the following fields:</p>
 <pre>Keyword: homelessness
 Format: book
 Publication year: 2000 - [leave blank]</pre>
