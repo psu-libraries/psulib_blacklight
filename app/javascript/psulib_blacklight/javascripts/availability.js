@@ -60,7 +60,7 @@ function loadAvailability(locations, item_types) {
                         // Holdings
                         $(this).children("ItemInfo").each(function () {
                             var currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
-                            var location = resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID);
+                            var location = resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID, callNumber);
                             var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
                             var itemType = (itemTypeID in all_item_types) ? all_item_types[itemTypeID] : "";
                             // var chargeable = $(this).children("chargeable").text();
@@ -109,7 +109,8 @@ function loadAvailability(locations, item_types) {
                 // Now that the availability data has been rendered, check for ILL options and update links
                 $('.availability-holdings [data-type="ill-link"]').each(function() {
                     var catkey = $(this).data('catkey');
-                    createILLURL($(this), catkey)
+                    var callNumber = $(this).data('call-number');
+                    createILLURL($(this), catkey, callNumber);
                 });
             }).fail(function(data) {
                 $('.availability').each(function () {
@@ -228,12 +229,12 @@ function groupByLibrary(holdings) {
     }, {});
 }
 
-function resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID) {
+function resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID, callNumber) {
     var location = '';
 
     // Check request via ILL locations
     if (currentLocationID in request_via_ill_locations) {
-        location = `<a data-type="ill-link" data-catkey="${titleID}" href="#"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Copy unavailable, request via Interlibrary Loan</a>`;
+        location = `<a data-type="ill-link" data-catkey="${titleID}" data-call-number="${callNumber}" href="#"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Copy unavailable, request via Interlibrary Loan</a>`;
     } else {
         location = (currentLocationID in all_locations) ? all_locations[currentLocationID] : "";
     }
@@ -241,15 +242,15 @@ function resolveLocation(currentLocationID, request_via_ill_locations, all_locat
     return location;
 }
 
-function createILLURL(jQueryObj, catkey) {
+function createILLURL(jQueryObj, catkey, callNumber) {
     $.get(`/catalog/${catkey}/raw.json`, function(data) {
         var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll?Action=10&Form=30";
         if (Object.keys(data).length > 0) {
             var ISBN = data.isbn_ssm;
             var title = data.title_display_ssm;
             var author = data.author_tsim;
-            var pubdate = data.pub_date_itsi;
-            ILLURL += `&isbn=${ISBN}&title=${title}&aulast=${author}.&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu&date=%5B${pubdate}%5D`;
+            var pubdate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
+            ILLURL += `&isbn=${ISBN}&title=${title}&aulast=${author}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu&date=${pubdate}`;
         }
         var spinner = jQueryObj.find('span');
         spinner.remove();
