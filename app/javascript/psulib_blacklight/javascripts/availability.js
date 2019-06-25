@@ -110,7 +110,15 @@ function loadAvailability(locations, item_types) {
                 $('.availability-holdings [data-type="ill-link"]').each(function() {
                     var catkey = $(this).data('catkey');
                     var callNumber = $(this).data('call-number');
-                    createILLURL($(this), catkey, callNumber);
+                    var archivalThesis = $(this).is('[data-archival-thesis]');
+                    createILLURL($(this), catkey, callNumber, archivalThesis);
+                });
+                // Now that the availability data has been rendered, check for Aeon options and update links
+                $('.availability-holdings [data-type="aeon-link"]').each(function() {
+                    var catkey = $(this).data('catkey');
+                    var callNumber = $(this).data('call-number');
+                    var itemLocation = $(this).data('item-location');
+                    createAeonURL($(this), catkey, callNumber, itemLocation);
                 });
             }).fail(function(data) {
                 $('.availability').each(function () {
@@ -231,10 +239,16 @@ function groupByLibrary(holdings) {
 
 function resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID, callNumber) {
     var location = '';
+    var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 
     // Check request via ILL locations
     if (currentLocationID in request_via_ill_locations) {
-        location = `<a data-type="ill-link" data-catkey="${titleID}" data-call-number="${callNumber}" href="#"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Copy unavailable, request via Interlibrary Loan</a>`;
+        location = `<a data-type="ill-link" data-catkey="${titleID}" data-call-number="${callNumber}" href="#">${spinner}Copy unavailable, request via Interlibrary Loan</a>`;
+    } else if (['ARKTHESES', 'AH-X-TRANS'].includes(currentLocationID)) {
+        var aeonLocation = (currentLocationID in all_locations) ? all_locations[currentLocationID] : "";
+        location = `<a data-type="ill-link" data-catkey="${titleID}" data-call-number="${callNumber}" data-archival-thesis href="#">${spinner}Request Scan - Penn State Users</a><br>
+                    <a href="https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html">Request Scan - Guest</a><br>
+                    <a data-type="aeon-link" data-catkey="${titleID}" data-call-number="${callNumber}" data-archival-thesis data-item-location="${aeonLocation}" href="#">${spinner}View in Special Collections</a>`;
     } else {
         location = (currentLocationID in all_locations) ? all_locations[currentLocationID] : "";
     }
@@ -242,18 +256,48 @@ function resolveLocation(currentLocationID, request_via_ill_locations, all_locat
     return location;
 }
 
-function createILLURL(jQueryObj, catkey, callNumber) {
+function createILLURL(jQueryObj, catkey, callNumber, archivalThesis) {
     $.get(`/catalog/${catkey}/raw.json`, function(data) {
-        var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll?Action=10&Form=30";
+        var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/OpenURL?Action=10";
+
         if (Object.keys(data).length > 0) {
-            var ISBN = data.isbn_ssm;
             var title = data.title_display_ssm;
-            var author = data.author_tsim;
+            var author = data.author_tsim ? data.author_tsim : "";
             var pubdate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
-            ILLURL += `&isbn=${ISBN}&title=${title}&aulast=${author}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu&date=${pubdate}`;
+            if (archivalThesis) {
+                ILLURL += "&Form=20&Genre=GenericRequestThesisDigitization";
+            }
+            else {
+                var ISBN = data.isbn_ssm ? data.isbn_ssm : "";
+                ILLURL += `&Form=30&isbn=${ISBN}`;
+            }
+            ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
+            if (author) {
+                ILLURL += `&aulast=${author}`;
+            }
+            if (pubdate) {
+                ILLURL += `&date=${pubdate}`;
+            }
         }
         var spinner = jQueryObj.find('span');
         spinner.remove();
         jQueryObj.attr('href', ILLURL);
+    });
+}
+
+function createAeonURL(jQueryObj, catkey, callNumber, itemLocation) {
+    $.get(`/catalog/${catkey}/raw.json`, function(data) {
+        var aeonURL = "https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30";
+            if (Object.keys(data).length > 0) {
+            var title = data.title_display_ssm;
+            var author = data.author_tsim ? data.author_tsim : "";
+            var publisher = data.publisher_name_ssm ? data.publisher_name_ssm : "";
+            var pubdate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
+            var edition = data.edition_display_ssm ? data.edition_display_ssm : "";
+            aeonURL += `&ReferenceNumber=${catkey}&Genre=THESIS&ItemTitle=${title}&ItemAuthor=${author}&Location=${itemLocation}&ItemNumber=&ItemEdition=${edition}&CallNumber=${callNumber}&ItemPublisher=${publisher}&ItemDate=${pubdate}&ItemVolume=&ItemInfo1=`;
+        }
+        var spinner = jQueryObj.find('span');
+        spinner.remove();
+        jQueryObj.attr('href', aeonURL);
     });
 }
