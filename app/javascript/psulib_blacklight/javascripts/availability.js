@@ -65,9 +65,10 @@ function loadAvailability(locations, item_types) {
                             var itemType = (itemTypeID in all_item_types) ? all_item_types[itemTypeID] : "";
                             // var chargeable = $(this).children("chargeable").text();
 
-                            // if (currentLocationID === 'ILLEND' ) {
-                            //     callNumber = '';
-                            // }
+                            // Do not display call number for on loan items
+                            if (currentLocationID === 'ILLEND') {
+                                callNumber = '';
+                            }
 
                             holdings.push({
                                 library: library,
