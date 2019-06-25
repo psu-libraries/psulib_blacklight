@@ -294,8 +294,9 @@ function createAeonURL(jQueryObj, catkey, callNumber, itemLocation) {
             var author = data.author_tsim ? data.author_tsim : "";
             var publisher = data.publisher_name_ssm ? data.publisher_name_ssm : "";
             var pubdate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
+            var pubPlace = data.publication_place_ssm ? data.publication_place_ssm : "";
             var edition = data.edition_display_ssm ? data.edition_display_ssm : "";
-            aeonURL += `&ReferenceNumber=${catkey}&Genre=THESIS&ItemTitle=${title}&ItemAuthor=${author}&Location=${itemLocation}&ItemNumber=&ItemEdition=${edition}&CallNumber=${callNumber}&ItemPublisher=${publisher}&ItemDate=${pubdate}&ItemVolume=&ItemInfo1=`;
+            aeonURL += `&ReferenceNumber=${catkey}&Genre=THESIS&ItemTitle=${title}&ItemAuthor=${author}&Location=${itemLocation}&ItemNumber=&ItemEdition=${edition}&CallNumber=${callNumber}&ItemPublisher=${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubdate}&ItemVolume=&ItemInfo1=`;
         }
         var spinner = jQueryObj.find('span');
         spinner.remove();
