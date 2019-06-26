@@ -88,7 +88,7 @@ function loadAvailability(locations, item_types) {
                     var holdButton = availability.find('.hold-button');
 
                     // If holdable, then display the hold button
-                    if (holdable === 'true' && totalCopiesAvailable > 0) {
+                    if (holdable === 'true') {
                         holdButton.removeClass("invisible").addClass("visible");
                     }
 
