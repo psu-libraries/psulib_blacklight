@@ -16,6 +16,9 @@ en:
         title: 'Refine search results'
       continue_search:
         title: 'Or continue your search in'
+      zero_results:
+        remove_fields: ''
+        use_fewer_keywords: 'Use X to remove sUse fewer keywords to start, then refine your search using the links on the left.'
     email:
       text:
         latin_title: 'Title: %{value}'
