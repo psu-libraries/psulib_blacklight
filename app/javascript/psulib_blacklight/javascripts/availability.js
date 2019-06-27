@@ -283,7 +283,7 @@ function createILLURL(jQueryObj, item) {
         var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/OpenURL?Action=10";
 
         if (Object.keys(data).length > 0) {
-            var title = data.title_display_ssm;
+            var title = data.title_245ab_tsim;
             var author = data.author_tsim ? data.author_tsim : "";
             var pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
             if (item.archivalThesis) {
@@ -312,7 +312,7 @@ function createAeonURL(jQueryObj, item) {
         var aeonURL = "https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30";
         aeonURL += `&ReferenceNumber=${item.catkey}&Genre=BOOK&Location=${item.itemLocation}&ItemNumber=${item.itemID}&CallNumber=${item.callNumber}`;
         if (Object.keys(data).length > 0) {
-            var title = data.title_display_ssm;
+            var title = data.title_245ab_tsim;
             var author = data.author_tsim ? data.author_tsim : "";
             var publisher = data.publisher_name_ssm ? data.publisher_name_ssm : "";
             var pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
