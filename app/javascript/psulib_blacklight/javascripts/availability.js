@@ -40,7 +40,7 @@ function loadAvailability(locations, item_types) {
             $(xml).find('TitleInfo').each(function () {
                 var holdings = [];
                 var libraries = [];
-                var titleID = $(this).children('titleID').text();
+                var catkey = $(this).children('titleID').text();
                 var totalCopiesAvailable = parseInt($(this).find("totalCopiesAvailable").text(), 10);
                 var holdable = $(this).find("holdable").text();
 
@@ -61,7 +61,13 @@ function loadAvailability(locations, item_types) {
                         $(this).children("ItemInfo").each(function () {
                             var currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
                             var itemID = $(this).children("itemID").text();
-                            var location = resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID, callNumber, itemID);
+                            var item = {
+                                catkey: catkey,
+                                currentLocationID: currentLocationID,
+                                callNumber: callNumber,
+                                itemID: itemID
+                            };
+                            var location = resolveLocation(item, request_via_ill_locations, all_locations);
                             var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
                             var itemType = (itemTypeID in all_item_types) ? all_item_types[itemTypeID] : "";
                             // var chargeable = $(this).children("chargeable").text();
@@ -81,7 +87,7 @@ function loadAvailability(locations, item_types) {
                     }
                 });
 
-                $('.availability[data-keys="' + titleID +'"]').each(function () {
+                $('.availability[data-keys="' + catkey +'"]').each(function () {
                     var availability = $(this);
                     var availabilityButton = availability.find('.availability-button');
                     var availabilityHoldingsPlaceHolder = availability.find('.availability-holdings');
@@ -98,7 +104,7 @@ function loadAvailability(locations, item_types) {
                         availabilityButton.removeClass("invisible").addClass("visible");
                         var rawHoldings = groupByLibrary(holdings);
                         var availabilityStructuredData = availabilityDataStructurer(rawHoldings);
-                        availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData, titleID));
+                        availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData, catkey));
                         availabilitySnippet(availabilitySnippetPlaceHolder, availabilityStructuredData, totalCopiesAvailable);
                     } else {
                         availability.addClass("invisible");
@@ -113,7 +119,12 @@ function loadAvailability(locations, item_types) {
                     var catkey = $(this).data('catkey');
                     var callNumber = $(this).data('call-number');
                     var archivalThesis = $(this).is('[data-archival-thesis]');
-                    createILLURL($(this), catkey, callNumber, archivalThesis);
+                    var item = {
+                        catkey: catkey,
+                        callNumber: callNumber,
+                        archivalThesis: archivalThesis
+                    }
+                    createILLURL($(this), item);
                 });
                 // Now that the availability data has been rendered, check for Aeon options and update links
                 $('.availability-holdings [data-type="aeon-link"]').each(function() {
@@ -121,7 +132,13 @@ function loadAvailability(locations, item_types) {
                     var callNumber = $(this).data('call-number');
                     var itemLocation = $(this).data('item-location');
                     var itemID = $(this).data('item-id');
-                    createAeonURL($(this), catkey, callNumber, itemLocation, itemID);
+                    var item = {
+                        catkey: catkey,
+                        callNumber: callNumber,
+                        itemLocation: itemLocation,
+                        itemID: itemID
+                    };
+                    createAeonURL($(this), item);
                 });
             }).fail(function(data) {
                 $('.availability').each(function () {
@@ -132,11 +149,11 @@ function loadAvailability(locations, item_types) {
     }
 }
 
-function printAvailabilityData(availabilityData, titleID) {
+function printAvailabilityData(availabilityData, catkey) {
     var markupForHoldings = '';
     availabilityData.forEach(function(element, index) {
         var holdings = element.holdings;
-        var uniqueID = titleID + index;
+        var uniqueID = catkey + index;
         var moreHoldings = holdings.length > 4 ? holdings.splice(4,holdings.length) : [];
         markupForHoldings += `
                                 <h5>${element.summary.library} (${element.summary.countAtLibrary} ${element.summary.pluralize})</h5>
@@ -240,41 +257,43 @@ function groupByLibrary(holdings) {
     }, {});
 }
 
-function resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID, callNumber, itemID) {
+function resolveLocation(item, request_via_ill_locations, all_locations) {
     var location = '';
     var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 
     // Check request via ILL locations
-    if (currentLocationID in request_via_ill_locations) {
-        location = `<a data-type="ill-link" data-catkey="${titleID}" data-call-number="${callNumber}" href="#">${spinner}Copy unavailable, request via Interlibrary Loan</a>`;
-    } else if (['ARKTHESES', 'AH-X-TRANS'].includes(currentLocationID)) {
-        var aeonLocation = (currentLocationID in all_locations) ? all_locations[currentLocationID] : "";
-        location = `<a data-type="ill-link" data-catkey="${titleID}" data-call-number="${callNumber}" data-archival-thesis href="#">${spinner}Request Scan - Penn State Users</a><br>
+    if (item.currentLocationID in request_via_ill_locations) {
+        location = `<a data-type="ill-link" data-catkey="${item.catkey}" data-call-number="${item.callNumber}" href="#">${spinner}Copy unavailable, request via Interlibrary Loan</a>`;
+    } else if (['ARKTHESES', 'AH-X-TRANS'].includes(item.currentLocationID)) {
+        var aeonLocation = (item.currentLocationID in all_locations) ? all_locations[item.currentLocationID] : "";
+        var shared = `data-catkey="${item.catkey}" data-call-number="${item.callNumber}" data-archival-thesis`;
+
+        location = `<a data-type="ill-link" ${shared} href="#">${spinner}Request Scan - Penn State Users</a><br>
                     <a href="https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html">Request Scan - Guest</a><br>
-                    <a data-type="aeon-link" data-catkey="${titleID}" data-call-number="${callNumber}" data-item-id="${itemID}" data-archival-thesis data-item-location="${aeonLocation}" href="#">${spinner}View in Special Collections</a>`;
+                    <a data-type="aeon-link" ${shared} data-item-id="${item.itemID}" data-item-location="${aeonLocation}" href="#">${spinner}View in Special Collections</a>`;
     } else {
-        location = (currentLocationID in all_locations) ? all_locations[currentLocationID] : "";
+        location = (item.currentLocationID in all_locations) ? all_locations[item.currentLocationID] : "";
     }
 
     return location;
 }
 
-function createILLURL(jQueryObj, catkey, callNumber, archivalThesis) {
-    $.get(`/catalog/${catkey}/raw.json`, function(data) {
+function createILLURL(jQueryObj, item) {
+    $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
         var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/OpenURL?Action=10";
 
         if (Object.keys(data).length > 0) {
             var title = data.title_display_ssm;
             var author = data.author_tsim ? data.author_tsim : "";
             var pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
-            if (archivalThesis) {
+            if (item.archivalThesis) {
                 ILLURL += "&Form=20&Genre=GenericRequestThesisDigitization";
             }
             else {
                 var ISBN = data.isbn_ssm ? data.isbn_ssm : "";
                 ILLURL += `&Form=30&isbn=${ISBN}`;
             }
-            ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
+            ILLURL += `&title=${title}&callno=${item.callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
             if (author) {
                 ILLURL += `&aulast=${author}`;
             }
@@ -288,10 +307,10 @@ function createILLURL(jQueryObj, catkey, callNumber, archivalThesis) {
     });
 }
 
-function createAeonURL(jQueryObj, catkey, callNumber, itemLocation, itemID) {
-    $.get(`/catalog/${catkey}/raw.json`, function(data) {
+function createAeonURL(jQueryObj, item) {
+    $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
         var aeonURL = "https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30";
-        aeonURL += `&ReferenceNumber=${catkey}&Genre=BOOK&Location=${itemLocation}&ItemNumber=${itemID}&CallNumber=${callNumber}`;
+        aeonURL += `&ReferenceNumber=${item.catkey}&Genre=BOOK&Location=${item.itemLocation}&ItemNumber=${item.itemID}&CallNumber=${item.callNumber}`;
         if (Object.keys(data).length > 0) {
             var title = data.title_display_ssm;
             var author = data.author_tsim ? data.author_tsim : "";
