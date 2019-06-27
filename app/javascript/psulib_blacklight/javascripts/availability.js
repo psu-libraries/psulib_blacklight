@@ -60,7 +60,8 @@ function loadAvailability(locations, item_types) {
                         // Holdings
                         $(this).children("ItemInfo").each(function () {
                             var currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
-                            var location = resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID, callNumber);
+                            var itemID = $(this).children("itemID").text();
+                            var location = resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID, callNumber, itemID);
                             var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
                             var itemType = (itemTypeID in all_item_types) ? all_item_types[itemTypeID] : "";
                             // var chargeable = $(this).children("chargeable").text();
@@ -119,7 +120,8 @@ function loadAvailability(locations, item_types) {
                     var catkey = $(this).data('catkey');
                     var callNumber = $(this).data('call-number');
                     var itemLocation = $(this).data('item-location');
-                    createAeonURL($(this), catkey, callNumber, itemLocation);
+                    var itemID = $(this).data('item-id');
+                    createAeonURL($(this), catkey, callNumber, itemLocation, itemID);
                 });
             }).fail(function(data) {
                 $('.availability').each(function () {
@@ -238,7 +240,7 @@ function groupByLibrary(holdings) {
     }, {});
 }
 
-function resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID, callNumber) {
+function resolveLocation(currentLocationID, request_via_ill_locations, all_locations, titleID, callNumber, itemID) {
     var location = '';
     var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 
@@ -249,7 +251,7 @@ function resolveLocation(currentLocationID, request_via_ill_locations, all_locat
         var aeonLocation = (currentLocationID in all_locations) ? all_locations[currentLocationID] : "";
         location = `<a data-type="ill-link" data-catkey="${titleID}" data-call-number="${callNumber}" data-archival-thesis href="#">${spinner}Request Scan - Penn State Users</a><br>
                     <a href="https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html">Request Scan - Guest</a><br>
-                    <a data-type="aeon-link" data-catkey="${titleID}" data-call-number="${callNumber}" data-archival-thesis data-item-location="${aeonLocation}" href="#">${spinner}View in Special Collections</a>`;
+                    <a data-type="aeon-link" data-catkey="${titleID}" data-call-number="${callNumber}" data-item-id="${itemID}" data-archival-thesis data-item-location="${aeonLocation}" href="#">${spinner}View in Special Collections</a>`;
     } else {
         location = (currentLocationID in all_locations) ? all_locations[currentLocationID] : "";
     }
@@ -264,7 +266,7 @@ function createILLURL(jQueryObj, catkey, callNumber, archivalThesis) {
         if (Object.keys(data).length > 0) {
             var title = data.title_display_ssm;
             var author = data.author_tsim ? data.author_tsim : "";
-            var pubdate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
+            var pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
             if (archivalThesis) {
                 ILLURL += "&Form=20&Genre=GenericRequestThesisDigitization";
             }
@@ -276,8 +278,8 @@ function createILLURL(jQueryObj, catkey, callNumber, archivalThesis) {
             if (author) {
                 ILLURL += `&aulast=${author}`;
             }
-            if (pubdate) {
-                ILLURL += `&date=${pubdate}`;
+            if (pubDate) {
+                ILLURL += `&date=${pubDate}`;
             }
         }
         var spinner = jQueryObj.find('span');
@@ -286,17 +288,20 @@ function createILLURL(jQueryObj, catkey, callNumber, archivalThesis) {
     });
 }
 
-function createAeonURL(jQueryObj, catkey, callNumber, itemLocation) {
+function createAeonURL(jQueryObj, catkey, callNumber, itemLocation, itemID) {
     $.get(`/catalog/${catkey}/raw.json`, function(data) {
         var aeonURL = "https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30";
-            if (Object.keys(data).length > 0) {
+        aeonURL += `&ReferenceNumber=${catkey}&Genre=BOOK&Location=${itemLocation}&ItemNumber=${itemID}&CallNumber=${callNumber}`;
+        if (Object.keys(data).length > 0) {
             var title = data.title_display_ssm;
             var author = data.author_tsim ? data.author_tsim : "";
             var publisher = data.publisher_name_ssm ? data.publisher_name_ssm : "";
-            var pubdate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
+            var pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
             var pubPlace = data.publication_place_ssm ? data.publication_place_ssm : "";
             var edition = data.edition_display_ssm ? data.edition_display_ssm : "";
-            aeonURL += `&ReferenceNumber=${catkey}&Genre=THESIS&ItemTitle=${title}&ItemAuthor=${author}&Location=${itemLocation}&ItemNumber=&ItemEdition=${edition}&CallNumber=${callNumber}&ItemPublisher=${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubdate}&ItemVolume=&ItemInfo1=`;
+            var restrictions = data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : "";
+            aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}`;
+
         }
         var spinner = jQueryObj.find('span');
         spinner.remove();
