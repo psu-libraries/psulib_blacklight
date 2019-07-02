@@ -265,14 +265,14 @@ function printLocationHTML(item, illiadLocations, allLocations) {
     if (item.currentLocationID in illiadLocations) {
         location = `<a data-type="ill-link" data-catkey="${item.catkey}" data-call-number="${item.callNumber}" href="#">${spinner}Copy unavailable, request via Interlibrary Loan</a>`;
     } else if (['ARKTHESES', 'AH-X-TRANS'].includes(item.currentLocationID)) {
-        var aeonLocation = (item.currentLocationID in allLocations) ? allLocations[item.currentLocationID] : "";
+        var aeonLocation = mapLocation(allLocations, item);
         var shared = `data-catkey="${item.catkey}" data-call-number="${item.callNumber}" data-archival-thesis`;
 
         location = `<a data-type="ill-link" ${shared} href="#">${spinner}Request Scan - Penn State Users</a><br>
                     <a href="https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html">Request Scan - Guest</a><br>
                     <a data-type="aeon-link" ${shared} data-item-id="${item.itemID}" data-item-location="${aeonLocation}" href="#">${spinner}View in Special Collections</a>`;
     } else {
-        location = (item.currentLocationID in allLocations) ? allLocations[item.currentLocationID] : "";
+        location = mapLocation(allLocations, item);
     }
 
     return location;
@@ -326,4 +326,8 @@ function createAeonURL(jQueryObj, item) {
         spinner.remove();
         jQueryObj.attr('href', aeonURL);
     });
+}
+
+function mapLocation(locations, item) {
+    return (item.currentLocationID in locations) ? locations[item.currentLocationID] : "";
 }
