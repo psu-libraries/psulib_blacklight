@@ -46,12 +46,12 @@ function loadAvailability(locations, item_types) {
 
                 $(this).children('CallInfo').each(function () {
                     var libraryID = $(this).children('libraryID').text();
-                    var library = (libraryID in allLibraries) ? allLibraries[libraryID] : "";
-                    var callNumber = $(this).children('callNumber').text();
-                    var numberOfCopies = $(this).children('numberOfCopies').text();
 
                     // Only for not online items (online items uses 856 urls for display)
                     if (libraryID.toUpperCase() !== 'ONLINE') {
+                        var library = (libraryID in allLibraries) ? allLibraries[libraryID] : "";
+                        var callNumber = $(this).children('callNumber').text();
+                        var numberOfCopies = $(this).children('numberOfCopies').text();
                         var libAndCount = [];
                         libAndCount['library'] = library;
                         libAndCount['numberOfCopies'] = numberOfCopies;
