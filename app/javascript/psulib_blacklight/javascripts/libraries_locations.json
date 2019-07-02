@@ -753,5 +753,18 @@
     "WSCRANTON": "Scranton",
     "XTERNAL": "Associated Libraries",
     "YORK": "York"
+  },
+  "request_via_ill": {
+    "BINDERY": "This copy unavailable, submit request via Interlibrary Loan",
+    "BINDPRP-DN": "Dickinson School of Law, Carlisle - Material in Bindery Prep",
+    "DARCHIVE-P": "This copy unavailable, submit request via Interlibrary Loan",
+    "DEPTCHARGE": "Material has been checked out to a department",
+    "HARSHBARGR": "Interreligious Lib. 111 Pasquerilla Spiritual Ctr. Unavailable",
+    "ILL": "On loan to another library",
+    "ILLEND": "On loan to another library",
+    "LOST": "This copy unavailable, submit request via Interlibrary Loan",
+    "MISSING": "This copy unavailable, submit request via Interlibrary Loan",
+    "REPAIR": "Material being repaired",
+    "CANCELED": "Order Canceled; see order record for details."
   }
 }
