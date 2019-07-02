@@ -24,10 +24,10 @@ $(document).on('turbolinks:load', function() {
  */
 function loadAvailability(locations, item_types) {
     // Load Sirsi locations
-    var all_locations = locations.locations;
-    var all_libraries = locations.libraries;
-    var request_via_ill_locations = locations.request_via_ill;
-    var all_item_types = item_types.item_types;
+    var allLocations = locations.locations;
+    var allLibraries = locations.libraries;
+    var illiadLocations = locations.request_via_ill;
+    var allItemTypes = item_types.item_types;
     var titleIDs = [];
 
     // Get the catkeys
@@ -46,7 +46,7 @@ function loadAvailability(locations, item_types) {
 
                 $(this).children('CallInfo').each(function () {
                     var libraryID = $(this).children('libraryID').text();
-                    var library = (libraryID in all_libraries) ? all_libraries[libraryID] : "";
+                    var library = (libraryID in allLibraries) ? allLibraries[libraryID] : "";
                     var callNumber = $(this).children('callNumber').text();
                     var numberOfCopies = $(this).children('numberOfCopies').text();
 
@@ -67,9 +67,9 @@ function loadAvailability(locations, item_types) {
                                 callNumber: callNumber,
                                 itemID: itemID
                             };
-                            var location = resolveLocation(item, request_via_ill_locations, all_locations);
+                            var location = resolveLocation(item, illiadLocations, allLocations);
                             var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
-                            var itemType = (itemTypeID in all_item_types) ? all_item_types[itemTypeID] : "";
+                            var itemType = (itemTypeID in allItemTypes) ? allItemTypes[itemTypeID] : "";
                             // var chargeable = $(this).children("chargeable").text();
 
                             // Do not display call number for on loan items
@@ -257,22 +257,22 @@ function groupByLibrary(holdings) {
     }, {});
 }
 
-function resolveLocation(item, request_via_ill_locations, all_locations) {
+function resolveLocation(item, illiadLocations, allLocations) {
     var location = '';
     var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 
     // Check request via ILL locations
-    if (item.currentLocationID in request_via_ill_locations) {
+    if (item.currentLocationID in illiadLocations) {
         location = `<a data-type="ill-link" data-catkey="${item.catkey}" data-call-number="${item.callNumber}" href="#">${spinner}Copy unavailable, request via Interlibrary Loan</a>`;
     } else if (['ARKTHESES', 'AH-X-TRANS'].includes(item.currentLocationID)) {
-        var aeonLocation = (item.currentLocationID in all_locations) ? all_locations[item.currentLocationID] : "";
+        var aeonLocation = (item.currentLocationID in allLocations) ? allLocations[item.currentLocationID] : "";
         var shared = `data-catkey="${item.catkey}" data-call-number="${item.callNumber}" data-archival-thesis`;
 
         location = `<a data-type="ill-link" ${shared} href="#">${spinner}Request Scan - Penn State Users</a><br>
                     <a href="https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html">Request Scan - Guest</a><br>
                     <a data-type="aeon-link" ${shared} data-item-id="${item.itemID}" data-item-location="${aeonLocation}" href="#">${spinner}View in Special Collections</a>`;
     } else {
-        location = (item.currentLocationID in all_locations) ? all_locations[item.currentLocationID] : "";
+        location = (item.currentLocationID in allLocations) ? allLocations[item.currentLocationID] : "";
     }
 
     return location;
