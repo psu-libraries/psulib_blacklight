@@ -67,7 +67,7 @@ function loadAvailability(locations, item_types) {
                                 callNumber: callNumber,
                                 itemID: itemID
                             };
-                            var location = resolveLocation(item, illiadLocations, allLocations);
+                            var location = printLocationHTML(item, illiadLocations, allLocations);
                             var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
                             var itemType = (itemTypeID in allItemTypes) ? allItemTypes[itemTypeID] : "";
                             // var chargeable = $(this).children("chargeable").text();
@@ -257,7 +257,7 @@ function groupByLibrary(holdings) {
     }, {});
 }
 
-function resolveLocation(item, illiadLocations, allLocations) {
+function printLocationHTML(item, illiadLocations, allLocations) {
     var location = '';
     var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 
