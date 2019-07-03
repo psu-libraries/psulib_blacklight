@@ -17,7 +17,7 @@
     "typeface-roboto-slab": "^0.0.72"
   },
   "devDependencies": {
-    "webpack": "^3.0.0",
-    "webpack-dev-server": "2.11.2"
+    "webpack": "^4.29",
+    "webpack-dev-server": "^3.1"
   }
 }
