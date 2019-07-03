@@ -18,7 +18,7 @@ gem 'jquery-rails'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.2.2'
 gem 'rsolr', '>= 1.0'
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.0'
 
 gem 'blacklight', '>= 7.0.1', github: 'projectblacklight/blacklight'
 gem 'blacklight-marc', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight-marc'
@@ -32,7 +32,6 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  # gem 'web-console', '>= 3.3.0'
 end
 
 group :development, :test do
