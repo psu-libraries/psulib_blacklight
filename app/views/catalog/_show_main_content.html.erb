@@ -4,13 +4,13 @@
 <div id="document" class="document <%= render_document_class %>" itemscope itemtype="<%= @document.itemtype %>">
   <div class="row document-metadata metadata-primary">
 
-    <div class="col-2">
+    <div class="col-3 col-lg-2">
       <% unless @document[:format][0].empty? %>
         <%= render_thumbnail @document %>
       <% end %>
     </div>
 
-    <div class="col-10">
+    <div class="col-9 col-lg-10">
       <%= render partial: 'show_header_default', locals: { document: @document, tag: :h1 } %>
       <%= render partial: 'show_top_fields', locals: { document: @document } %>
     </div>
