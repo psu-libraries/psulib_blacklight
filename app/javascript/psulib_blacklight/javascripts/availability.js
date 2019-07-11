@@ -107,7 +107,10 @@ function loadAvailability(locations, item_types) {
                         availabilityHoldingsPlaceHolder.html(printAvailabilityData(availabilityStructuredData, catkey));
                         availabilitySnippet(availabilitySnippetPlaceHolder, availabilityStructuredData, totalCopiesAvailable);
                     } else {
-                        availability.addClass("invisible");
+                        // Document view
+                        $('.metadata-availability').remove();
+                        // Results view
+                        $(this).parent('.blacklight-availability').remove();
                     }
                 });
 
