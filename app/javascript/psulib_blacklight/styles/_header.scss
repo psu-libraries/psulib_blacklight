@@ -7,6 +7,7 @@
 
 .site-title-container {
   flex: 0 0 auto;
+  margin-right: 60px;
 }
 
 .site-title {
@@ -56,12 +57,16 @@
 }
 
 .navbar-nav {
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(md) {
     flex-direction: row;
 
     .nav-item {
       font-size: .75rem;
-      margin-left: 26px;
+      text-align: center;
+
+      &:not(:first-child) {
+        margin-left: 26px;
+      }
     }
   }
 }
