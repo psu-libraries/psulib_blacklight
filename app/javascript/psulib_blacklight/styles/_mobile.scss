@@ -1,6 +1,7 @@
 .fa-responsive-sizing {
   font-size: 5em;
 }
+
 @include media-breakpoint-down(sm) {
   h1 {
     font-size: $h1-mobile-font-size;
