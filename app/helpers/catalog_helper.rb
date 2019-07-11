@@ -84,10 +84,12 @@ module CatalogHelper
     isbn_values = document.fetch(:isbn_valid_ssm, [])
 
     if isbn_values.empty?
-      content_tag(:span, '', class: "fas fa-5x faspsu-#{document[:format][0].parameterize}")
+      content_tag(:span, '',
+                  class: "fas fa-responsive-sizing faspsu-#{document[:format][0].parameterize}")
     else
-      content_tag(:span, '', class: "fas fa-5x faspsu-#{document[:format][0].parameterize}",
-                             data: { isbn: isbn_values, type: 'isbn' })
+      content_tag(:span, '',
+                  class: "fas fa-responsive-sizing faspsu-#{document[:format][0].parameterize}",
+                  data: { isbn: isbn_values, type: 'isbn' })
     end
   end
 
