@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   match '/404' => 'errors#not_found', via: :all
   match '/422' => 'errors#not_found', via: :all
   match '/500' => 'errors#internal_server_error', via: :all
+
   get '/available/:titleID', to: redirect(Proc.new do |params|
     catkeys = []
     params[:titleID].split(',').each do |catkey|
@@ -45,4 +46,7 @@ Rails.application.routes.draw do
     "#{Rails.application.credentials.dig(:sirsi_url)}#{catkeys.join}"
   end)
   get 'catalog/:id/marc_view', to: 'catalog#librarian_view', as: 'marc_view'
+
+  # catchall for not predefined requests - keep this at the very bottom of the routes file
+  match '*catch_unknown_routes' => 'errors#not_found', via: :all
 end
