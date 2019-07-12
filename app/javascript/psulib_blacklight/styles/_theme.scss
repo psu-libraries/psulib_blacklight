@@ -38,3 +38,11 @@ $h4-font-size: $h5-font-size * $ratio !default;
 $h3-font-size: $h4-font-size * $ratio !default;
 $h2-font-size: $h3-font-size * $ratio !default;
 $h1-font-size: $h2-font-size * $ratio !default;
+
+$mobile-ratio: 1.08;
+$h6-mobile-font-size: $font-size-base !default;
+$h5-mobile-font-size: $h6-mobile-font-size * $mobile-ratio !default;
+$h4-mobile-font-size: $h5-mobile-font-size * $mobile-ratio !default;
+$h3-mobile-font-size: $h4-mobile-font-size * $mobile-ratio !default;
+$h2-mobile-font-size: $h3-mobile-font-size * $mobile-ratio !default;
+$h1-mobile-font-size: $h2-mobile-font-size * $mobile-ratio !default;

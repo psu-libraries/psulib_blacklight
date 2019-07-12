@@ -25,7 +25,7 @@ $(document).on('turbolinks:load', function() {
                     var identifier = response_item.bib_key.split(":")[1];
                     var thumb_url_zoom_1 = response_item.thumbnail_url.slice(0,-1) + "1"; // instead of zoom of 5
                     $('[data-' + type.toLowerCase() + '*="' + identifier + '"]')
-                        .replaceWith(`<img src="${thumb_url_zoom_1}">`);
+                        .replaceWith(`<img class="img-fluid" src="${thumb_url_zoom_1}">`);
                 }
             }
         }

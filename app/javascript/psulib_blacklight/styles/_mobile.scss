@@ -1,0 +1,33 @@
+.fa-responsive-sizing {
+  font-size: 5em;
+}
+
+@include media-breakpoint-down(sm) {
+  h1 {
+    font-size: $h1-mobile-font-size;
+  }
+
+  h2 {
+    font-size: $h2-mobile-font-size;
+  }
+
+  h3 {
+    font-size: $h3-mobile-font-size;
+  }
+
+  h4 {
+    font-size: $h4-mobile-font-size;
+  }
+
+  h5 {
+    font-size: $h5-mobile-font-size;
+  }
+
+  h6 {
+    font-size: $h6-mobile-font-size;
+  }
+
+  .fa-responsive-sizing {
+    font-size: 4em;
+  }
+}

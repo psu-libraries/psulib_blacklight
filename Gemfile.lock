@@ -12,14 +12,14 @@ GIT
 
 GIT
   remote: https://github.com/projectblacklight/blacklight.git
-  revision: 39d676481858aa3540455c3a7f4ec7e0862cb6c4
+  revision: 3e6cb292e0a7de606ec73b568292a6e170bc8cb6
+  ref: 3e6cb292e0a7de606ec73b568292a6e170bc8cb6
   specs:
-    blacklight (7.0.1)
+    blacklight (7.1.0)
       deprecation
       globalid
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
-      nokogiri (~> 1.6)
       rails (~> 5.1)
 
 GIT
@@ -387,7 +387,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  blacklight (>= 7.0.1)!
+  blacklight!
   blacklight-marc (>= 7.0.0.rc1)!
   blacklight_advanced_search!
   blacklight_range_limit (~> 7.1)
