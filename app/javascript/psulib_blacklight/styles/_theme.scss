@@ -46,3 +46,9 @@ $h4-mobile-font-size: $h5-mobile-font-size * $mobile-ratio !default;
 $h3-mobile-font-size: $h4-mobile-font-size * $mobile-ratio !default;
 $h2-mobile-font-size: $h3-mobile-font-size * $mobile-ratio !default;
 $h1-mobile-font-size: $h2-mobile-font-size * $mobile-ratio !default;
+
+// Escape hatches for font size adjustments
+.arrow-icon {
+  transform: rotate(45deg); /* Equal to rotateZ(45deg) */
+  font-size: 20px;
+}
