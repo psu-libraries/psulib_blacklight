@@ -40,6 +40,13 @@ en:
         format: "Format: %{value}"
         published: "Published: %{value}"
         edition: "Edition: %{value}"
+  views:
+    pagination_compact:
+      next: '<span class="d-none d-md-inline">Next </span><i class="fa fa-arrow-right"></i>'
+      previous: '<i class="fa fa-arrow-left"></i><span class="d-none d-md-inline"> Previous</span>'
+    pagination:
+      previous: '<i class="fa fa-arrow-left"></i> <span class="d-none d-md-inline"> Previous</span>'
+      next: '<span class="d-none d-md-inline">Next </span><i class="fa fa-arrow-right"></i>'
   support:
     array:
       words_connector: "<br>"
