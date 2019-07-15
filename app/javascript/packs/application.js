@@ -10,3 +10,4 @@ require.context('../psulib_blacklight/images/', true)
 
 import 'psulib_blacklight'
 import 'psulib_blacklight_range_limit'
+import 'blacklight_overrides'
