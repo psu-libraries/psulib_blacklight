@@ -1,0 +1,31 @@
+.ask {
+  display: none;
+
+  @include media-breakpoint-up(md) {
+    box-shadow: 10px 10px 5px 0 $shadow;
+    cursor: pointer;
+    display: block;
+    padding: 0;
+    position: fixed;
+    right: -2px;
+    top: 65%;
+    z-index: 1;
+
+    .fa-spin {
+      padding: 20px;
+    }
+
+    button {
+      color: $off-white;
+      line-height: 1;
+      margin-bottom: 0;
+      padding: 0;
+      text-transform: uppercase;
+    }
+
+    &__part1 {
+      font-size: 32px;
+    }
+  }
+}
+

@@ -14,10 +14,12 @@
     <%= javascript_pack_tag 'application' %>
     <%= csrf_meta_tags %>
     <%= content_for(:head) %>
+    <script src="https://v2.libanswers.com/load_chat.php?hash=d51e38627705fc23934afaba4f563cc8"></script>
   </head>
 
   <body class="<%= render_body_class %>">
-    <%= render partial: 'shared/announcement' if Psulcat::Application.config.show_announcement %>
+
+  <%= render partial: 'shared/announcement' if Psulcat::Application.config.show_announcement %>
     <%= render partial: 'shared/header_navbar' %>
 
     <div id="main-container" class="<%= container_classes %>">
@@ -45,6 +47,7 @@
       <div class="row">
         <%= content_for?(:content) ? yield(:content) : yield %>
       </div>
+      <div class="ask" id="libchat_d51e38627705fc23934afaba4f563cc8"></div>
     </div>
 
     <%= render partial: 'shared/footer' %>
