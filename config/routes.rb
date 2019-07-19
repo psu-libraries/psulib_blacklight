@@ -45,6 +45,13 @@ Rails.application.routes.draw do
     end
     "#{Rails.application.credentials.dig(:sirsi_url)}#{catkeys.join}"
   end)
+  get '/available/bound/:itemID', to: redirect(Proc.new do |params|
+    itemids = []
+    params[:itemID].split(',').each do |id|
+      itemids << "&itemID=#{id}"
+    end
+    "#{Rails.application.credentials.dig(:sirsi_item_url)}#{itemids.join}"
+  end)
   get 'catalog/:id/marc_view', to: 'catalog#librarian_view', as: 'marc_view'
 
   # catchall for not predefined requests - keep this at the very bottom of the routes file
