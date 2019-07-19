@@ -3,25 +3,20 @@
 .navbar-brand {
   padding-left: 0;
   padding-right: 0;
- }
 
-.site-title-container {
-  flex: 0 0 auto;
-  margin-right: 60px;
-}
+  a {
+    display: inline-block;
+    max-width: 50%;
+  }
+ }
 
 .site-title {
   border-left: 1px solid $white;
   color: $white;
   font-family: $headings-font-family;
-  font-size: 1.6em;
-  height: 35px;
-  line-height: 35px;
+  font-size: 25px;
   margin-left: 10px;
   padding-left: 1rem;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 
   &:hover {
     color: $white;
