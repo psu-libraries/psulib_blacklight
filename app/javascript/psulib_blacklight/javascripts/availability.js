@@ -112,6 +112,8 @@ function getAllHoldings(allHoldings, titleInfo) {
 }
 
 function getBoundHoldings(boundHoldings, titleInfo) {
+    boundHoldings[titleInfo.catkey] = [];
+
     titleInfo.jQueryObj.children('BoundwithLinkInfo').each(function () {
         var linkedAsParent = $(this).children('linkedAsParent').text();
         var linkedItemID = $(this).children('itemID').text();
@@ -121,14 +123,15 @@ function getBoundHoldings(boundHoldings, titleInfo) {
             var linkedCatkey = $(this).children('titleID').text();
 
             if (linkedAsParent === 'true' && titleInfo.catkey !== linkedCatkey) {
-                boundHoldings[linkedItemID] = [];
+                boundHoldings[titleInfo.catkey][linkedItemID] = [];
                 var linkedTitle = $(this).children('title').text();
                 var author = $(this).children('author').text();
                 var yearOfPublication = $(this).children('yearOfPublication').text();
                 var boundinStatement = callNumber + " bound in " + linkedTitle + " " + author + " " + yearOfPublication;
-console.log(linkedItemID);
-                boundHoldings[linkedItemID].push({
+
+                boundHoldings[titleInfo.catkey][linkedItemID].push({
                     catkey: titleInfo.catkey,
+                    linkedItemID: linkedItemID,
                     linkedCatkey: linkedCatkey,
                     linkedTitle: linkedTitle,
                     author: author,
@@ -147,10 +150,17 @@ console.log(linkedItemID);
 }
 
 function processBoundParents(boundHoldings, allHoldings) {
-    var itemIDs = Object.keys(boundHoldings);
+    var catkeys = Object.keys(boundHoldings);
+
+    var itemIDs = [];
+    $.each(catkeys, function(i, catkey) {
+        itemIDs.push(Object.keys(boundHoldings[catkey]));
+    });
+    itemIDs = $.map(itemIDs, function(value){ return value; });
+
     $.get('/available/bound/' + itemIDs.join(','), function (xml) {
         $(xml).find('TitleInfo').each(function () {
-            var catkey = $(this).children('titleID').text();
+            var parentCatkey = $(this).children('titleID').text();
 
             $(this).children('CallInfo').each(function () {
                 var libraryID = $(this).children('libraryID').text();
@@ -161,17 +171,23 @@ function processBoundParents(boundHoldings, allHoldings) {
                     var itemID = $(this).children("itemID").text();
                     var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
 
-                    if (itemID in boundHoldings) {
-                        boundHoldings[itemID].forEach(function (boundHolding) {
-                            boundHolding.parentCatkey = catkey;
-                            boundHolding.parentCallNumber = callNumber;
-                            boundHolding.itemTypeID = itemTypeID;
-                            boundHolding.libraryID = libraryID;
-                            boundHolding.locationID = currentLocationID;
+                    $.each(catkeys, function(i, catkey) {
+                        if (itemID in boundHoldings[catkey]) {
+                            boundHoldings[catkey][itemID].forEach(function (boundHolding) {
+                                boundHolding.parentCatkey = parentCatkey;
+                                boundHolding.parentCallNumber = callNumber;
+                                boundHolding.itemTypeID = itemTypeID;
+                                boundHolding.libraryID = libraryID;
+                                boundHolding.locationID = currentLocationID;
 
-                            allHoldings[boundHolding.catkey].push(boundHolding);
-                        });
-                    }
+                                allHoldings[catkey].push(boundHolding);
+
+                                // once processed remove to avoid duplicates
+                                // when children of same parent are in the search results
+                                delete boundHoldings[catkey][itemID];
+                            });
+                        }
+                    });
                 });
             });
         });
