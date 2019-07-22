@@ -13,7 +13,8 @@ class CatalogController < ApplicationController
   configure_blacklight do |config|
     # Controls the document actions (also called "tools"), note that blacklight_marc adds refworks and endnote
     config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params, html_class: 'dropdown-item')
-    config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params, html_class: 'dropdown-item')
+    # TODO: hide SMS action for now, should be enabled when fixed
+    # config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params, html_class: 'dropdown-item')
     config.show.document_actions.refworks.html_class = 'dropdown-item'
     config.show.document_actions.endnote.html_class = 'dropdown-item'
     config.show.document_actions.delete_field('librarian_view') # removing something added by blacklight_marc
