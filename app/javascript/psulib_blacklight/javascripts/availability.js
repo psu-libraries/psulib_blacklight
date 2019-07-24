@@ -225,7 +225,10 @@ function availabilityDisplay(allHoldings) {
                     holdButton.removeClass("invisible").addClass("visible");
                 }
             } else {
-                availability.addClass("invisible");
+                // Document view
+                $('.metadata-availability').remove();
+                // Results view
+                $(this).parent('.blacklight-availability').remove();
             }
         }
     });
