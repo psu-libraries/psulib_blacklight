@@ -146,6 +146,10 @@ function getBoundHoldings(boundHoldings, titleInfo) {
         });
     });
 
+    if (Object.keys(boundHoldings[titleInfo.catkey]).length == 0) {
+        delete boundHoldings[titleInfo.catkey];
+    }
+
     return boundHoldings;
 }
 
