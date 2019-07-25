@@ -53,7 +53,7 @@ Rails.application.routes.draw do
     "#{Rails.application.credentials.dig(:sirsi_item_url)}#{itemids.join}"
   end)
   get 'catalog/:id/marc_view', to: 'catalog#librarian_view', as: 'marc_view'
-    
+
   get '/about' => 'high_voltage/pages#show', id: 'about'
   get '/search_tips' => 'high_voltage/pages#show', id: 'search_tips'
 
