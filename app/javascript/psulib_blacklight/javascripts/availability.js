@@ -146,6 +146,10 @@ function getBoundHoldings(boundHoldings, titleInfo) {
         });
     });
 
+    if (Object.keys(boundHoldings[titleInfo.catkey]).length == 0) {
+        delete boundHoldings[titleInfo.catkey];
+    }
+
     return boundHoldings;
 }
 
@@ -225,7 +229,10 @@ function availabilityDisplay(allHoldings) {
                     holdButton.removeClass("invisible").addClass("visible");
                 }
             } else {
-                availability.addClass("invisible");
+                // Document view
+                $('.metadata-availability').remove();
+                // Results view
+                $(this).parent('.blacklight-availability').remove();
             }
         }
     });
