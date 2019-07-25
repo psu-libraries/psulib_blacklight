@@ -54,6 +54,9 @@ Rails.application.routes.draw do
   end)
   get 'catalog/:id/marc_view', to: 'catalog#librarian_view', as: 'marc_view'
 
+  get '/about' => 'high_voltage/pages#show', id: 'about'
+  get '/search_tips' => 'high_voltage/pages#show', id: 'search_tips'
+
   # catchall for not predefined requests - keep this at the very bottom of the routes file
   match '*catch_unknown_routes' => 'errors#not_found', via: :all
 end
