@@ -396,10 +396,10 @@ function printLocationHTML(item) {
     return location;
 }
 
-function createILLURL(jQueryObj) {
-    var illLinkObj = ";"
+function createILLURL() {
+    // Now that the availability data has been rendered, check for ILL options and update links
     $('.availability-holdings [data-type="ill-link"]').each(function () {
-        illLinkObj = $(this);
+        var illLinkObj = $(this);
         var catkey = $(this).data('catkey');
         var callNumber = $(this).data('call-number');
         var archivalThesis = $(this).is('[data-archival-thesis]');
@@ -408,10 +408,9 @@ function createILLURL(jQueryObj) {
             callNumber: callNumber,
             archivalThesis: archivalThesis
         };
-
-        $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
             var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/OpenURL?Action=10";
 
+        $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
                 var title = data.title_245ab_tsim;
                 var author = data.author_tsim ? data.author_tsim : "";
@@ -431,6 +430,7 @@ function createILLURL(jQueryObj) {
                     ILLURL += `&date=${pubDate}`;
                 }
             }
+        }).done(function () {
             var spinner = illLinkObj.find('span');
             spinner.remove();
             illLinkObj.attr('href', ILLURL);
@@ -439,10 +439,9 @@ function createILLURL(jQueryObj) {
 }
 
 function createAeonURL() {
-    var aeonLinkObj = "";
     // Now that the availability data has been rendered, check for Aeon options and update links
     $('.availability-holdings [data-type="aeon-link"]').each(function () {
-        aeonLinkObj = $(this);
+        var aeonLinkObj = $(this);
         var catkey = $(this).data('catkey');
         var callNumber = $(this).data('call-number');
         var itemLocation = $(this).data('item-location');
@@ -454,9 +453,9 @@ function createAeonURL() {
             itemID: itemID
         };
 
-        $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
             var aeonURL = "https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30";
             aeonURL += `&ReferenceNumber=${item.catkey}&Genre=BOOK&Location=${item.itemLocation}&ItemNumber=${item.itemID}&CallNumber=${item.callNumber}`;
+        $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
                 var title = data.title_245ab_tsim;
                 var author = data.author_tsim ? data.author_tsim : "";
@@ -466,8 +465,8 @@ function createAeonURL() {
                 var edition = data.edition_display_ssm ? data.edition_display_ssm : "";
                 var restrictions = data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : "";
                 aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}`;
-
             }
+        }).done(function () {
             var spinner = aeonLinkObj.find('span');
             spinner.remove();
             aeonLinkObj.attr('href', aeonURL);
