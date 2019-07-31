@@ -6,8 +6,19 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
+
 require.context('../psulib_blacklight/images/', true)
+
+import Turbolinks from 'turbolinks';
+document.addEventListener("DOMContentLoaded", function(event) {
+    Turbolinks.start();
+});
 
 import 'psulib_blacklight'
 import 'psulib_blacklight_range_limit'
 import 'blacklight_overrides'
+import {executeAskALibrarian} from 'ask_a_librarian';
+
+document.addEventListener("turbolinks:load", function() {
+    executeAskALibrarian()
+});

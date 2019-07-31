@@ -1,4 +1,6 @@
-$(document).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', executeBookCovers);
+
+function executeBookCovers() {
     var isbns_prefixed = [];
 
     $("[data-type='isbn']").each(function(index, thumbnail) {
@@ -29,5 +31,5 @@ $(document).on('turbolinks:load', function() {
                 }
             }
         }
-    )
-});
+    );
+}

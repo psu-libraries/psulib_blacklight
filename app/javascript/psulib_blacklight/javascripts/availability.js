@@ -11,7 +11,9 @@ var allLibraries = locations.libraries;
 var illiadLocations = locations.request_via_ill;
 var allItemTypes = item_types.item_types;
 
-$(document).on('turbolinks:load', function() {
+$(document).on('turbolinks:load', executeAvailability);
+
+function executeAvailability() {
     loadAvailability();
 
     $(".availability").on("click", "[data-type=view-more-holdings]", function () {
@@ -23,7 +25,7 @@ $(document).on('turbolinks:load', function() {
             $(this).text("View Less");
         }
     });
-});
+}
 
 /**
  * Load real time holdings and availability info from Sirsi Web Services
