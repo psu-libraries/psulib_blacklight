@@ -6,6 +6,13 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
 
+  # Only get search results from the solr index
+  def index
+    return nil unless params.key? 'q'
+
+    super
+  end
+
   rescue_from Blacklight::Exceptions::RecordNotFound do
     redirect_to '/404'
   end
