@@ -6,9 +6,14 @@ RSpec.describe CatalogController, type: :controller do
   let(:doc_id) { '20049333' }
 
   describe 'index action' do
-    it 'gets search results from the solr index' do
+    it 'gets the homepage and doesn\'t hit Solr' do
       get :index
-      expect(response).to be_successful
+      expect(assigns(:response)).to be_nil
+    end
+
+    it "has docs for query with results" do
+      get :index, params: { q: '' }
+      expect(assigns(:response).docs).not_to be_empty
     end
   end
 
