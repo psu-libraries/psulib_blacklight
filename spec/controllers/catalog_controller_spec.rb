@@ -11,8 +11,13 @@ RSpec.describe CatalogController, type: :controller do
       expect(assigns(:response)).to be_nil
     end
 
-    it 'has docs for query with results' do
+    it 'has docs for query with q param' do
       get :index, params: { q: '' }
+      expect(assigns(:response)).not_to be_nil
+    end
+
+    it 'has docs for query with just f param' do
+      get :index, params: { f: { format: '' } }
       expect(assigns(:response)).not_to be_nil
     end
   end
