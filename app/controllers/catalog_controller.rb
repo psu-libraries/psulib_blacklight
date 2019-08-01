@@ -8,7 +8,7 @@ class CatalogController < ApplicationController
 
   # Only get search results from the solr index
   def index
-    return nil unless params.key? 'q'
+    return nil unless params.key?('f') || params.key?('q')
 
     super
   end
