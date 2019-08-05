@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="h-100">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -34,7 +34,7 @@
   </script>
 </head>
 
-<body class="<%= render_body_class %>">
+<body class="d-flex flex-column h-100">
 
 <%= render partial: 'shared/announcement' if Psulcat::Application.config.show_announcement %>
 <%= render partial: 'shared/header_navbar' %>

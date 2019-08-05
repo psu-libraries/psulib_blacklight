@@ -15,4 +15,12 @@ module LayoutHelper
   def sidebar_classes
     'page-sidebar col-md-4'
   end
+
+  ##
+  # Class used for specifying main layout container classes. Can be
+  # overwritten to return 'container-fluid' for Bootstrap full-width layout
+  # @return [String]
+  def container_classes
+    'container main-blacklight-container'
+  end
 end
