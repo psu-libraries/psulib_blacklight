@@ -1,20 +1,21 @@
 footer {
-  color: #ddd;
-  background: #0A0F15;
+  background: $nearly-black;
+  color: $grayish;
   padding-top: 20px;
 
-  & a {
-    color: #6888c2;
+  a {
+    color: $light-blue;
   }
 
   h2 {
+    color: $grayish;
     font-size: 13px;
-    text-transform: uppercase;
     font-weight: 700;
-    color: #ddd;
+    text-transform: uppercase;
   }
 
-  p, li {
+  p,
+  li {
     font-size: 12px;
     line-height: 1.7;
   }
@@ -45,9 +46,9 @@ footer {
     ul {
       @include make-col-ready();
       @include make-col(6);
-      padding-left: 0;
-      margin-left: 0;
       list-style: none;
+      margin-left: 0;
+      padding-left: 0;
     }
   }
 
@@ -75,7 +76,6 @@ footer {
 
     &__meta {
       @include make-col(4);
-      border: none;
     }
 
     &__social {
