@@ -42,42 +42,44 @@ function loadAvailability() {
         var allHoldings = [];
         var boundHoldings = [];
 
-        $.get('/available/' + titleIDs.join(','), function (xml) {
-            $(xml).find('TitleInfo').each(function () {
-                var catkey = $(this).children('titleID').text();
-                var totalCopiesAvailable = parseInt($(this).find("totalCopiesAvailable").text(), 10);
-                var holdable = $(this).find("holdable").text();
-                var numberOfBoundwithLinks = parseInt($(this).find("numberOfBoundwithLinks").text(), 10);
+        $.ajax({
+            url: '/available/' + titleIDs.join(','),
+            crossDomain: true
+        }).then(function (response) {
+                $(response).find('TitleInfo').each(function () {
+                    var catkey = $(this).children('titleID').text();
+                    var totalCopiesAvailable = parseInt($(this).find("totalCopiesAvailable").text(), 10);
+                    var holdable = $(this).find("holdable").text();
+                    var numberOfBoundwithLinks = parseInt($(this).find("numberOfBoundwithLinks").text(), 10);
 
-                var titleInfo = {
-                    jQueryObj: $(this),
-                    catkey: catkey,
-                    totalCopiesAvailable: totalCopiesAvailable,
-                    holdable: holdable
-                };
+                    var titleInfo = {
+                        jQueryObj: $(this),
+                        catkey: catkey,
+                        totalCopiesAvailable: totalCopiesAvailable,
+                        holdable: holdable
+                    };
 
-                // Process for regular records
-                allHoldings = getAllHoldings(allHoldings, titleInfo);
+                    // Process for regular records
+                    allHoldings = getAllHoldings(allHoldings, titleInfo);
 
-                // Process for bound-with records
-                if (numberOfBoundwithLinks > 0) {
-                    boundHoldings = getBoundHoldings(boundHoldings, titleInfo);
-                }
-            });
-        }, "xml")
-            .then(function () {
-                    if (Object.keys(boundHoldings).length > 0) {
-                        // Get bound with parents and print availability data
-                        processBoundParents(boundHoldings, allHoldings);
+                    // Process for bound-with records
+                    if (numberOfBoundwithLinks > 0) {
+                        boundHoldings = getBoundHoldings(boundHoldings, titleInfo);
                     }
-                    else {
-                        // Print availability data
-                        availabilityDisplay(allHoldings);
-                    }
-                }, function() {
-                    displayErrorMsg();
+                });
+
+                if (Object.keys(boundHoldings).length > 0) {
+                    // Get bound with parents and print availability data
+                    processBoundParents(boundHoldings, allHoldings);
                 }
-            );
+                else {
+                    // Print availability data
+                    availabilityDisplay(allHoldings);
+                }
+            }, function() {
+                displayErrorMsg();
+            }
+        );
     }
 }
 
@@ -164,8 +166,11 @@ function processBoundParents(boundHoldings, allHoldings) {
     });
     itemIDs = $.map(itemIDs, function(value){ return value; });
 
-    $.get('/available/bound/' + itemIDs.join(','), function (xml) {
-        $(xml).find('TitleInfo').each(function () {
+    $.ajax({
+        url: '/available/bound/' + itemIDs.join(','),
+        crossDomain: true
+    }).then(function (response) {
+        $(response).find('TitleInfo').each(function () {
             var parentCatkey = $(this).children('titleID').text();
 
             $(this).children('CallInfo').each(function () {
@@ -197,13 +202,12 @@ function processBoundParents(boundHoldings, allHoldings) {
                 });
             });
         });
-    }, "xml")
-        .then(function () {
-            // Print availability data
-            availabilityDisplay(allHoldings);
-        }, function () {
-            displayErrorMsg();
-        });
+
+        // Print availability data
+        availabilityDisplay(allHoldings);
+    }, function () {
+        displayErrorMsg();
+    });
 }
 
 function availabilityDisplay(allHoldings) {
