@@ -14,7 +14,7 @@ Metrics/BlockLength:
 # Offense count: 1
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
-  Max: 225
+  Max: 227
 
 # Offense count: 3
 RSpec/ExpectActual:
