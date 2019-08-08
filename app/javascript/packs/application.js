@@ -9,8 +9,10 @@
 
 require.context('../psulib_blacklight/images/', true)
 
+import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 document.addEventListener("DOMContentLoaded", function(event) {
+    Rails.start();
     Turbolinks.start();
 });
 
