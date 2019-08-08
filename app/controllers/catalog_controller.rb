@@ -340,4 +340,24 @@ class CatalogController < ApplicationController
 
     config.raw_endpoint.enabled = true
   end
+
+  PAGINATION_THRESHOLD = 250
+  before_action only: :index do
+    if params[:page] && params[:page].to_i > PAGINATION_THRESHOLD
+      Rails.logger.info("Pagination threshold exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
+      flash[:error] = "You have paginated too deep into the result set. Please contact us using the feedback form if you
+                       have a need to view results past page #{PAGINATION_THRESHOLD}."
+      redirect_to '/404'
+    end
+  end
+
+  FACET_PAGINATION_THRESHOLD = 50
+  before_action only: :facet do
+    if params['facet.page'] && params['facet.page'].to_i > FACET_PAGINATION_THRESHOLD
+      Rails.logger.info("Facet pagination threshold exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
+      flash[:error] = "You have paginated too deep into facets. Please contact us using the feedback form if you have a
+                       need to view facets past page #{FACET_PAGINATION_THRESHOLD}."
+      redirect_to '/404'
+    end
+  end
 end

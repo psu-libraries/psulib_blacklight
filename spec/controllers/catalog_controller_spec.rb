@@ -10,6 +10,19 @@ RSpec.describe CatalogController, type: :controller do
       get :index
       expect(assigns(:response)).to be_nil
     end
+
+    it 'pages too deep' do
+      get :index, params: { page: 251 }
+      expect(:response).to redirect_to '/404'
+    end
+  end
+
+  describe 'facet action' do
+    it 'facet pages too deep' do
+      get :facet, params: { id: 'format', 'facet.page': 51 }
+
+      expect(response).to redirect_to '/404'
+    end
   end
 
   describe 'route check' do
