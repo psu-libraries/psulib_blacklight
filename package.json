@@ -10,6 +10,7 @@
     "bootstrap-select": "^1.13.5",
     "caniuse-lite": "^1.0.30000697",
     "popper.js": "^1.14.3",
+    "rails-ujs": "^5.2.3",
     "sass-loader": "^7.1.0",
     "turbolinks": "^5.2.0",
     "typeface-open-sans": "^0.0.54",
