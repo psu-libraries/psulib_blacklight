@@ -22,5 +22,6 @@ import 'blacklight_overrides'
 import {executeAskALibrarian} from 'ask_a_librarian';
 
 document.addEventListener("turbolinks:load", function() {
-    executeAskALibrarian()
+    executeAskALibrarian();
+    Blacklight.doBookmarkToggleBehavior();
 });
