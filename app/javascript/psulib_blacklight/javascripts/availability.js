@@ -413,19 +413,20 @@ function createILLURL() {
     $('.availability-holdings [data-type="ill-link"]').each(function () {
         var illLinkObj = $(this);
         var catkey = $(this).data('catkey');
-        var callNumber = $(this).data('call-number');
+        var callNumber = encodeURIComponent($(this).data('call-number'));
         var archivalThesis = $(this).is('[data-archival-thesis]');
         var item = {
             catkey: catkey,
             callNumber: callNumber,
             archivalThesis: archivalThesis
         };
-            var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/OpenURL?Action=10";
+
+        var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/OpenURL?Action=10";
 
         $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
-                var title = data.title_245ab_tsim;
-                var author = data.author_tsim ? data.author_tsim : "";
+                var title = encodeURIComponent(data.title_245ab_tsim);
+                var author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
                 var pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
                 if (item.archivalThesis) {
                     ILLURL += "&Form=20&Genre=GenericRequestThesisDigitization";
@@ -455,8 +456,8 @@ function createAeonURL() {
     $('.availability-holdings [data-type="aeon-link"]').each(function () {
         var aeonLinkObj = $(this);
         var catkey = $(this).data('catkey');
-        var callNumber = $(this).data('call-number');
-        var itemLocation = $(this).data('item-location');
+        var callNumber = encodeURIComponent($(this).data('call-number'));
+        var itemLocation = encodeURIComponent($(this).data('item-location'));
         var itemID = $(this).data('item-id');
         var itemTypeID = $(this).data('item-type');
         var item = {
@@ -472,13 +473,13 @@ function createAeonURL() {
 
         $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
-                var title = data.title_245ab_tsim;
-                var author = data.author_tsim ? data.author_tsim : "";
-                var publisher = data.publisher_name_ssm ? data.publisher_name_ssm : "";
-                var pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
-                var pubPlace = data.publication_place_ssm ? data.publication_place_ssm : "";
-                var edition = data.edition_display_ssm ? data.edition_display_ssm : "";
-                var restrictions = data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : "";
+                var title = encodeURIComponent(data.title_245ab_tsim);
+                var author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
+                var publisher = encodeURIComponent(data.publisher_name_ssm ? data.publisher_name_ssm : "");
+                var pubDate = encodeURIComponent(data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "");
+                var pubPlace = encodeURIComponent(data.publication_place_ssm ? data.publication_place_ssm : "");
+                var edition = encodeURIComponent(data.edition_display_ssm ? data.edition_display_ssm : "");
+                var restrictions = encodeURIComponent(data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : "");
                 aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}`;
             }
         }).done(function () {
