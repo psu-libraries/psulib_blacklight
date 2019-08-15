@@ -261,7 +261,9 @@ function printAvailabilityData(availabilityData) {
                 catkey: catkey,
                 currentLocationID: holding.locationID,
                 callNumber: holding.callNumber,
-                itemID: holding.itemID
+                itemID: holding.itemID,
+                libraryID: holding.libraryID,
+                itemTypeID: holding.itemTypeID
             };
             holding.location = printLocationHTML(item);
             holding.itemType = (holding.itemTypeID in allItemTypes) ? allItemTypes[holding.itemTypeID] : "";
@@ -390,11 +392,15 @@ function printLocationHTML(item) {
         location = `<a data-type="ill-link" data-catkey="${item.catkey}" data-call-number="${item.callNumber}" href="#">${spinner}Copy unavailable, request via Interlibrary Loan</a>`;
     } else if (['ARKTHESES', 'AH-X-TRANS'].includes(item.currentLocationID)) {
         var aeonLocation = mapLocation(allLocations, item);
-        var shared = `data-catkey="${item.catkey}" data-call-number="${item.callNumber}" data-archival-thesis`;
+        var shared = `data-catkey="${item.catkey}" data-call-number="${item.callNumber}" data-link-type="archival-thesis" data-item-type="${item.itemTypeID}"`;
 
         location = `<a data-type="ill-link" ${shared} href="#">${spinner}Request Scan - Penn State Users</a><br>
                     <a href="https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html">Request Scan - Guest</a><br>
                     <a data-type="aeon-link" ${shared} data-item-id="${item.itemID}" data-item-location="${aeonLocation}" href="#">${spinner}View in Special Collections</a>`;
+    } else if (['UP-SPECCOL'].includes(item.libraryID)) {
+        var aeonLocation = mapLocation(allLocations, item);
+
+        location = `${aeonLocation} <a data-type="aeon-link" data-catkey="${item.catkey}" data-call-number="${item.callNumber}" data-link-type="archival-material" data-item-type="${item.itemTypeID}" data-item-id="${item.itemID}" data-item-location="${aeonLocation}" href="#">${spinner}Request Material</a>`;
     } else {
         location = mapLocation(allLocations, item);
     }
@@ -452,15 +458,18 @@ function createAeonURL() {
         var callNumber = $(this).data('call-number');
         var itemLocation = $(this).data('item-location');
         var itemID = $(this).data('item-id');
+        var itemTypeID = $(this).data('item-type');
         var item = {
             catkey: catkey,
             callNumber: callNumber,
             itemLocation: itemLocation,
-            itemID: itemID
+            itemID: itemID,
+            genre: itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK"
         };
 
-            var aeonURL = "https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30";
-            aeonURL += `&ReferenceNumber=${item.catkey}&Genre=BOOK&Location=${item.itemLocation}&ItemNumber=${item.itemID}&CallNumber=${item.callNumber}`;
+        var aeonURL = "https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll?Action=10&Form=30";
+        aeonURL += `&ReferenceNumber=${item.catkey}&Genre=${item.genre}&Location=${item.itemLocation}&ItemNumber=${item.itemID}&CallNumber=${item.callNumber}`;
+
         $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
                 var title = data.title_245ab_tsim;
