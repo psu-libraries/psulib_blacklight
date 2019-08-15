@@ -460,15 +460,9 @@ function createAeonURL() {
     $('.availability-holdings [data-type="aeon-link"]').each(function () {
         var aeonLinkObj = $(this);
         var catkey = $(this).data('catkey');
-<<<<<<< HEAD
         var callNumber = encodeURIComponent($(this).data('call-number'));
         var itemLocation = encodeURIComponent($(this).data('item-location'));
-        var itemID = encodeURIComponent($(this).data('item-id'));
-=======
-        var callNumber = $(this).data('call-number');
-        var itemLocation = $(this).data('item-location');
         var itemID = $(this).data('item-id');
->>>>>>> adding aeon link for non-thesis archival materials
         var itemTypeID = $(this).data('item-type');
         var item = {
             catkey: catkey,
@@ -478,11 +472,7 @@ function createAeonURL() {
             genre: itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK"
         };
 
-<<<<<<< HEAD
         var aeonURL = "https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30";
-=======
-        var aeonURL = "https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll?Action=10&Form=30";
->>>>>>> adding aeon link for non-thesis archival materials
         aeonURL += `&ReferenceNumber=${item.catkey}&Genre=${item.genre}&Location=${item.itemLocation}&ItemNumber=${item.itemID}&CallNumber=${item.callNumber}`;
 
         $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
