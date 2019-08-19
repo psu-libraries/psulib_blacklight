@@ -42,8 +42,9 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'rubocop'
+  gem 'selenium-webdriver'
   gem 'sqlite3'
-  gem 'traject', '~> 3.0'
+  gem 'webdrivers', '~> 4.0'
 end
 
 group :production, :test do
