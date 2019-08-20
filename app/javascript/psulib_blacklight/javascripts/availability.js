@@ -400,7 +400,7 @@ function printLocationHTML(item) {
     } else if (['UP-SPECCOL'].includes(item.libraryID)) {
         var aeonLocation = mapLocation(allLocations, item);
 
-        location = `${aeonLocation} <a data-type="aeon-link" data-catkey="${item.catkey}" data-call-number="${item.callNumber}" data-link-type="archival-material" data-item-type="${item.itemTypeID}" data-item-id="${item.itemID}" data-item-location="${aeonLocation}" href="#">${spinner}Request Material</a>`;
+        location = `${aeonLocation}<br><a data-type="aeon-link" data-catkey="${item.catkey}" data-call-number="${item.callNumber}" data-link-type="archival-material" data-item-type="${item.itemTypeID}" data-item-id="${item.itemID}" data-item-location="${aeonLocation}" href="#">${spinner}Request Material</a>`;
     } else {
         location = mapLocation(allLocations, item);
     }
@@ -458,7 +458,7 @@ function createAeonURL() {
         var catkey = $(this).data('catkey');
         var callNumber = encodeURIComponent($(this).data('call-number'));
         var itemLocation = encodeURIComponent($(this).data('item-location'));
-        var itemID = $(this).data('item-id');
+        var itemID = encodeURIComponent($(this).data('item-id'));
         var itemTypeID = $(this).data('item-type');
         var item = {
             catkey: catkey,
@@ -468,7 +468,7 @@ function createAeonURL() {
             genre: itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK"
         };
 
-        var aeonURL = "https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll?Action=10&Form=30";
+        var aeonURL = "https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30";
         aeonURL += `&ReferenceNumber=${item.catkey}&Genre=${item.genre}&Location=${item.itemLocation}&ItemNumber=${item.itemID}&CallNumber=${item.callNumber}`;
 
         $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
