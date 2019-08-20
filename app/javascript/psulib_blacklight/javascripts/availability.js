@@ -400,11 +400,7 @@ function printLocationHTML(item) {
     } else if (['UP-SPECCOL'].includes(item.libraryID)) {
         var aeonLocation = mapLocation(allLocations, item);
 
-<<<<<<< HEAD
         location = `${aeonLocation}<br><a data-type="aeon-link" data-catkey="${item.catkey}" data-call-number="${item.callNumber}" data-link-type="archival-material" data-item-type="${item.itemTypeID}" data-item-id="${item.itemID}" data-item-location="${aeonLocation}" href="#">${spinner}Request Material</a>`;
-=======
-        location = `${aeonLocation} <a data-type="aeon-link" data-catkey="${item.catkey}" data-call-number="${item.callNumber}" data-link-type="archival-material" data-item-type="${item.itemTypeID}" data-item-id="${item.itemID}" data-item-location="${aeonLocation}" href="#">${spinner}Request Material</a>`;
->>>>>>> adding aeon link for non-thesis archival materials
     } else {
         location = mapLocation(allLocations, item);
     }
@@ -462,7 +458,7 @@ function createAeonURL() {
         var catkey = $(this).data('catkey');
         var callNumber = encodeURIComponent($(this).data('call-number'));
         var itemLocation = encodeURIComponent($(this).data('item-location'));
-        var itemID = $(this).data('item-id');
+        var itemID = encodeURIComponent($(this).data('item-id'));
         var itemTypeID = $(this).data('item-type');
         var item = {
             catkey: catkey,
