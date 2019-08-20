@@ -338,6 +338,16 @@ function availabilityDataStructurer(holdingMetadata) {
             library = (libraryID in allLibraries) ? allLibraries[libraryID] : "";
             pluralize = (holdingMetadata[libraryID].length > 1) ? 'items' : 'item';
 
+            // Supplement data with an itemType and remove callNumber conditionally
+            holdingMetadata[libraryID].forEach( function(element) {
+                element.itemType = (element.itemTypeID in allItemTypes) ? allItemTypes[element.itemTypeID] : "";
+
+                // Do not display call number for on loan items
+                if (element.locationID === 'ILLEND') {
+                    element.callNumber = '';
+                }
+            });
+
             holdingData = {
                 "summary":
                     {
@@ -351,31 +361,6 @@ function availabilityDataStructurer(holdingMetadata) {
             availabilityStructuredData[index] = holdingData;
         })
     }
-
-
-
-    availabilityStructuredData.forEach(function(element) {
-        var holdings = element.holdings;
-        var catkey = holdings[0].catkey;
-
-
-        holdings.forEach( function(holding) {
-            var item = {
-                catkey: catkey,
-                currentLocationID: holding.locationID,
-                callNumber: holding.callNumber,
-                itemID: holding.itemID,
-                libraryID: holding.libraryID,
-                itemTypeID: holding.itemTypeID
-            };
-            holding.itemType = (holding.itemTypeID in allItemTypes) ? allItemTypes[holding.itemTypeID] : "";
-
-            // Do not display call number for on loan items
-            if (holding.locationID === 'ILLEND') {
-                holding.callNumber = '';
-            }
-        });
-    });
 
     return availabilityStructuredData;
 }
@@ -399,7 +384,7 @@ function generateLocationHTML(item) {
 
     // Location information presented to the user is different based on a few scenarios
     // First, if it's related to ILL
-    if (item.currentLocationID in illiadLocations) {
+    if (item.locationID in illiadLocations) {
         illLocation = `<a 
                             data-type="ill-link" 
                             data-catkey="${item.catkey}" 
@@ -411,8 +396,8 @@ function generateLocationHTML(item) {
     }
 
     // AEON
-    if (['ARKTHESES', 'AH-X-TRANS'].includes(item.currentLocationID)) {
-        var aeonLocationText = mapLocation(allLocations, item);
+    if (['ARKTHESES', 'AH-X-TRANS'].includes(item.locationID)) {
+        var aeonLocationText = mapLocation(allLocations, item.locationID);
 
         var aeonLocation = `<a 
                                 data-type="ill-link" 
@@ -439,8 +424,7 @@ function generateLocationHTML(item) {
 
     // Special Colletions
     if (['UP-SPECCOL'].includes(item.libraryID)) {
-        var specialCollectionsText = mapLocation(allLocations, item);
-
+        var specialCollectionsText = mapLocation(allLocations, item.locationID);
         var specialCollectionsLocation = `${specialCollectionsText} 
                                         <a 
                                             data-type="aeon-link" 
@@ -453,8 +437,9 @@ function generateLocationHTML(item) {
                                             href="#">${spinner}Request Material</a>`;
         return specialCollectionsLocation;
     }
+
     // Otherwise use the default translation map for location display, no link
-    return mapLocation(allLocations, item);
+    return mapLocation(allLocations, item.locationID);
 }
 
 function createILLURL() {
@@ -543,8 +528,8 @@ function createAeonURL() {
     });
 }
 
-function mapLocation(locations, item) {
-    return (item.currentLocationID in locations) ? locations[item.currentLocationID] : "";
+function mapLocation(locations, locationID) {
+    return (locationID in locations) ? locations[locationID] : "";
 }
 
 function displayErrorMsg() {
