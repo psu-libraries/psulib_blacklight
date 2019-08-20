@@ -255,25 +255,6 @@ function printAvailabilityData(availabilityData) {
         var holdings = element.holdings;
         var catkey = holdings[0].catkey;
         var uniqueID = catkey + index;
-
-        holdings.forEach(function(holding) {
-            var item = {
-                catkey: catkey,
-                currentLocationID: holding.locationID,
-                callNumber: holding.callNumber,
-                itemID: holding.itemID,
-                libraryID: holding.libraryID,
-                itemTypeID: holding.itemTypeID
-            };
-            holding.location = printLocationHTML(item);
-            holding.itemType = (holding.itemTypeID in allItemTypes) ? allItemTypes[holding.itemTypeID] : "";
-
-            // Do not display call number for on loan items
-            if (holding.locationID === 'ILLEND') {
-                holding.callNumber = '';
-            }
-        });
-
         var moreHoldings = holdings.length > 4 ? holdings.splice(4,holdings.length) : [];
 
         markupForHoldings += `
@@ -293,7 +274,7 @@ function printAvailabilityData(availabilityData) {
                                             <tr>
                                                 <td>${holding.callNumber}</td>
                                                 <td>${holding.itemType}</td>
-                                                <td>${holding.location}</td>
+                                                <td>${printLocationHTML(holding)}</td>
                                             </tr>
                                         `).join('')}
                                         ${moreHoldings.map(moreHolding => `
@@ -369,6 +350,31 @@ function availabilityDataStructurer(holdingMetadata) {
             availabilityStructuredData[index] = holdingData;
         })
     }
+
+
+
+    availabilityStructuredData.forEach(function(element) {
+        var holdings = element.holdings;
+        var catkey = holdings[0].catkey;
+
+
+        holdings.forEach( function(holding) {
+            var item = {
+                catkey: catkey,
+                currentLocationID: holding.locationID,
+                callNumber: holding.callNumber,
+                itemID: holding.itemID,
+                libraryID: holding.libraryID,
+                itemTypeID: holding.itemTypeID
+            };
+            holding.itemType = (holding.itemTypeID in allItemTypes) ? allItemTypes[holding.itemTypeID] : "";
+
+            // Do not display call number for on loan items
+            if (holding.locationID === 'ILLEND') {
+                holding.callNumber = '';
+            }
+        });
+    });
 
     return availabilityStructuredData;
 }
