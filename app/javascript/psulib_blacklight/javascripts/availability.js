@@ -10,7 +10,6 @@ var allLocations = locations.locations;
 var allLibraries = locations.libraries;
 var illiadLocations = locations.request_via_ill;
 var allItemTypes = item_types.item_types;
-const scanURL = 'https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html';
 
 $(document).on('turbolinks:load', executeAvailability);
 
@@ -282,7 +281,7 @@ function printAvailabilityData(availabilityData) {
                                              <tr class="collapse" id="collapseHoldings${uniqueID}">
                                                 <td>${moreHolding.callNumber}</td>
                                                 <td>${moreHolding.itemType}</td>
-                                                <td>${moreHolding.location}</td>
+                                                <td>${generateLocationHTML(moreHolding)}</td>
                                             </tr>     
                                          `).join('')}
                                         </tbody>
@@ -339,7 +338,7 @@ function availabilityDataStructurer(holdingMetadata) {
             pluralize = (holdingMetadata[libraryID].length > 1) ? 'items' : 'item';
 
             // Supplement data with an itemType and remove callNumber conditionally
-            holdingMetadata[libraryID].forEach( function(element) {
+            holdingMetadata[libraryID].forEach(function(element) {
                 element.itemType = (element.itemTypeID in allItemTypes) ? allItemTypes[element.itemTypeID] : "";
 
                 // Do not display call number for on loan items
@@ -379,16 +378,16 @@ function groupByLibrary(holdings) {
     }, {});
 }
 
-function generateLocationHTML(item) {
+function generateLocationHTML(holding) {
     var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 
     // Location information presented to the user is different based on a few scenarios
     // First, if it's related to ILL
-    if (item.locationID in illiadLocations) {
+    if (holding.locationID in illiadLocations) {
         illLocation = `<a 
                             data-type="ill-link" 
-                            data-catkey="${item.catkey}" 
-                            data-call-number="${item.callNumber}" 
+                            data-catkey="${holding.catkey}" 
+                            data-call-number="${holding.callNumber}" 
                             href="#"
                         >${spinner}Copy unavailable, request via Interlibrary Loan</a>`;
 
@@ -396,50 +395,52 @@ function generateLocationHTML(item) {
     }
 
     // AEON
-    if (['ARKTHESES', 'AH-X-TRANS'].includes(item.locationID)) {
-        var aeonLocationText = mapLocation(allLocations, item.locationID);
+    if (['ARKTHESES', 'AH-X-TRANS'].includes(holding.locationID)) {
+        var aeonLocationText = mapLocation(allLocations, holding.locationID);
 
         var aeonLocation = `<a 
                                 data-type="ill-link" 
-                                data-catkey="${item.catkey}" 
-                                data-call-number="${item.callNumber}" 
+                                data-catkey="${holding.catkey}" 
+                                data-call-number="${holding.callNumber}" 
                                 data-link-type="archival-thesis" 
-                                data-item-type="${item.itemTypeID}" 
+                                data-item-type="${holding.itemTypeID}" 
                                 href="#">${spinner}Request Scan - Penn State Users</a><br>
                             <a 
                                 href="https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html">Request Scan - 
                                 Guest</a><br>
                             <a 
                                 data-type="aeon-link" 
-                                data-catkey="${item.catkey}"
-                                data-call-number="${item.callNumber}"
+                                data-catkey="${holding.catkey}"
+                                data-call-number="${holding.callNumber}"
                                 data-link-type="archival-thesis"
-                                data-item-type="${item.itemTypeID}"
-                                data-item-id="${item.itemID}"
+                                data-item-type="${holding.itemTypeID}"
+                                data-item-id="${holding.itemID}"
                                 data-item-location="${aeonLocationText}"
                                 href="#">${spinner}View in Special Collections</a>`;
 
         return aeonLocation;
     }
 
-    // Special Colletions
-    if (['UP-SPECCOL'].includes(item.libraryID)) {
-        var specialCollectionsText = mapLocation(allLocations, item.locationID);
+    // Special Collections
+    if (['UP-SPECCOL'].includes(holding.libraryID)) {
+        var specialCollectionsText = mapLocation(allLocations, holding.locationID);
+
         var specialCollectionsLocation = `${specialCollectionsText} 
                                         <a 
                                             data-type="aeon-link" 
-                                            data-catkey="${item.catkey}" 
-                                            data-call-number="${item.callNumber}" 
+                                            data-catkey="${holding.catkey}" 
+                                            data-call-number="${holding.callNumber}" 
                                             data-link-type="archival-material" 
-                                            data-item-type="${item.itemTypeID}" 
-                                            data-item-id="${item.itemID}" 
+                                            data-item-type="${holding.itemTypeID}" 
+                                            data-item-id="${holding.itemID}" 
                                             data-item-location="${specialCollectionsText}" 
                                             href="#">${spinner}Request Material</a>`;
+
         return specialCollectionsLocation;
     }
 
     // Otherwise use the default translation map for location display, no link
-    return mapLocation(allLocations, item.locationID);
+    return mapLocation(allLocations, holding.locationID);
 }
 
 function createILLURL() {
