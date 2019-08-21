@@ -272,14 +272,14 @@ function printAvailabilityData(availabilityData) {
                                     <tbody>
                                         ${holdings.map(holding => `
                                             <tr>
-                                                <td>${holding.callNumber}</td>
+                                                <td>${generateCallNumber(holding)}</td>
                                                 <td>${holding.itemType}</td>
                                                 <td>${generateLocationHTML(holding)}</td>
                                             </tr>
                                         `).join('')}
                                         ${moreHoldings.map(moreHolding => `
                                              <tr class="collapse" id="collapseHoldings${uniqueID}">
-                                                <td>${moreHolding.callNumber}</td>
+                                                <td>${generateCallNumber(moreHolding)}</td>
                                                 <td>${moreHolding.itemType}</td>
                                                 <td>${generateLocationHTML(moreHolding)}</td>
                                             </tr>     
@@ -340,11 +340,6 @@ function availabilityDataStructurer(holdingMetadata) {
             // Supplement data with an itemType and remove callNumber conditionally
             holdingMetadata[libraryID].forEach(function(element) {
                 element.itemType = (element.itemTypeID in allItemTypes) ? allItemTypes[element.itemTypeID] : "";
-
-                // Do not display call number for on loan items
-                if (element.locationID === 'ILLEND') {
-                    element.callNumber = '';
-                }
             });
 
             holdingData = {
@@ -378,13 +373,18 @@ function groupByLibrary(holdings) {
     }, {});
 }
 
+function generateCallNumber(holding) {
+    // Do not display call number for on loan items
+    return (holding.locationID === 'ILLEND') ? "" : holding.callNumber;
+}
+
 function generateLocationHTML(holding) {
     var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
 
     // Location information presented to the user is different based on a few scenarios
     // First, if it's related to ILL
     if (holding.locationID in illiadLocations) {
-        illLocation = `<a 
+        var illLocation = `<a 
                             data-type="ill-link" 
                             data-catkey="${holding.catkey}" 
                             data-call-number="${holding.callNumber}" 
