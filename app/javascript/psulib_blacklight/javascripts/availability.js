@@ -449,7 +449,7 @@ function createILLURL() {
         var illLinkObj = $(this);
         var catkey = $(this).data('catkey');
         var callNumber = encodeURIComponent($(this).data('call-number'));
-        var linkType = $(this).data('linkType');
+        var linkType = $(this).data('link-type');
 
         var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/OpenURL?Action=10";
 
