@@ -21,6 +21,6 @@ module LayoutHelper
   # overwritten to return 'container-fluid' for Bootstrap full-width layout
   # @return [String]
   def container_classes
-    'container main-blacklight-container'
+    'container'
   end
 end
