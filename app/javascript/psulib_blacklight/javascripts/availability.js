@@ -425,7 +425,7 @@ function generateLocationHTML(holding) {
     if (['UP-SPECCOL'].includes(holding.libraryID)) {
         var specialCollectionsText = mapLocation(allLocations, holding.locationID);
 
-        var specialCollectionsLocation = `${specialCollectionsText} 
+        var specialCollectionsLocation = `${specialCollectionsText}<br> 
                                         <a 
                                             data-type="aeon-link" 
                                             data-catkey="${holding.catkey}" 
@@ -449,28 +449,23 @@ function createILLURL() {
         var illLinkObj = $(this);
         var catkey = $(this).data('catkey');
         var callNumber = encodeURIComponent($(this).data('call-number'));
-        var archivalThesis = $(this).is('[data-archival-thesis]');
-        var item = {
-            catkey: catkey,
-            callNumber: callNumber,
-            archivalThesis: archivalThesis
-        };
+        var linkType = $(this).data('linkType');
 
         var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/OpenURL?Action=10";
 
-        $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
+        $.get(`/catalog/${catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
                 var title = encodeURIComponent(data.title_245ab_tsim);
                 var author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
                 var pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
-                if (item.archivalThesis) {
+                if (linkType === "archival-thesis") {
                     ILLURL += "&Form=20&Genre=GenericRequestThesisDigitization";
                 }
                 else {
                     var ISBN = data.isbn_ssm ? data.isbn_ssm : "";
                     ILLURL += `&Form=30&isbn=${ISBN}`;
                 }
-                ILLURL += `&title=${title}&callno=${item.callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
+                ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
                 if (author) {
                     ILLURL += `&aulast=${author}`;
                 }
@@ -495,19 +490,12 @@ function createAeonURL() {
         var itemLocation = encodeURIComponent($(this).data('item-location'));
         var itemID = encodeURIComponent($(this).data('item-id'));
         var itemTypeID = $(this).data('item-type');
-        var item = {
-            catkey: catkey,
-            callNumber: callNumber,
-            itemLocation: itemLocation,
-            itemID: itemID,
-            genre: itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK"
-        };
+        var genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
+        var aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=${catkey}
+                       &Genre=${genre}&Location=${itemLocation}&ItemNumber=${itemID}
+                       &CallNumber=${callNumber}`;
 
-        var aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=${item.catkey}
-                       &Genre=${item.genre}&Location=${item.itemLocation}&ItemNumber=${item.itemID}
-                       &CallNumber=${item.callNumber}`;
-
-        $.get(`/catalog/${item.catkey}/raw.json`, function(data) {
+        $.get(`/catalog/${catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
                 var title = encodeURIComponent(data.title_245ab_tsim);
                 var author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
