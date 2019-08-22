@@ -4,7 +4,8 @@
 
 // Twitter bootstrap
 @import '~bootstrap/scss/bootstrap';
-@import 'header';
+@import 'twitter_bootstrap_overrides';
+
 
 // Fonts - see also psulib_blacklight/index.js
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';

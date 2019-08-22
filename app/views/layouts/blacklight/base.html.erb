@@ -39,7 +39,7 @@
 <%= render partial: 'shared/announcement' if Psulcat::Application.config.show_announcement %>
 <%= render partial: 'shared/header_navbar' %>
 
-<div id="main-container" class="<%= container_classes %>">
+<div id="main-container" class="main-blacklight-container <%= container_classes %>">
   <%= content_for(:container_header) %>
 
   <%= render partial: 'shared/flash_msg', layout: 'shared/flash_messages' %>
