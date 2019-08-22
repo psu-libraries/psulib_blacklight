@@ -37,7 +37,7 @@ end
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
-  gem 'niftany'
+  gem 'niftany', '0.3.0'
   gem 'pry-byebug'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
