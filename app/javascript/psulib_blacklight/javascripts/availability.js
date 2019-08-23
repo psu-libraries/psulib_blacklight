@@ -495,9 +495,18 @@ function createAeonURL() {
         var itemID = encodeURIComponent($(this).data('item-id'));
         var itemTypeID = $(this).data('item-type');
         var genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
-        var aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=${catkey}
+        var linkType = $(this).data('link-type');
+        // Form 20 for Archival Materials, Form 30 for Archival Thesis
+        var formID = linkType === "archival-thesis" ? 30 : 20;
+        var aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=${formID}&ReferenceNumber=${catkey}
                        &Genre=${genre}&Location=${itemLocation}&ItemNumber=${itemID}
                        &CallNumber=${callNumber}`;
+
+        var valueRequest = itemTypeID === "ARCHIVES" ? "GenericRequestManuscript" : "GenericRequestMonograph";
+
+        if (linkType === "archival-material") {
+            aeonURL += `&Value=${valueRequest}`;
+        }
 
         $.get(`/catalog/${catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
