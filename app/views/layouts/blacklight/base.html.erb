@@ -23,7 +23,7 @@
       (function () {
           var u = "https://analytics.libraries.psu.edu/matomo/";
           _paq.push(['setTrackerUrl', u + 'matomo.php']);
-          _paq.push(['setSiteId', <%= ENV.fetch 'MATOMO_ID', nil %>]);
+          _paq.push(['setSiteId', <%= ENV.fetch 'MATOMO_ID', 10 %>]);
           var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
           g.type = 'text/javascript';
           g.async = true;
