@@ -10,6 +10,8 @@ var allLocations = locations.locations;
 var allLibraries = locations.libraries;
 var illiadLocations = locations.request_via_ill;
 var allItemTypes = item_types.item_types;
+const sirsiUrl = 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true&includeBoundTogether=true';
+const sirsiItemUrl = 'https://cat.libraries.psu.edu:9443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true';
 
 $(document).on('turbolinks:load', executeAvailability);
 
@@ -41,9 +43,10 @@ function loadAvailability() {
     if (titleIDs.length > 0) {
         var allHoldings = [];
         var boundHoldings = [];
+        const sirsiRequestParams = titleIDs.map(url => '&titleID=' + url).join('');
 
         $.ajax({
-            url: '/available/' + titleIDs.join(','),
+            url: sirsiUrl + sirsiRequestParams,
             crossDomain: true
         }).then(function (response) {
                 $(response).find('TitleInfo').each(function () {
@@ -165,9 +168,10 @@ function processBoundParents(boundHoldings, allHoldings) {
         itemIDs.push(Object.keys(boundHoldings[catkey]));
     });
     itemIDs = $.map(itemIDs, function(value){ return value; });
+    const sirsiBoundRequestParams = itemIDs.map(url => '&itemID=' + url).join('');
 
     $.ajax({
-        url: '/available/bound/' + itemIDs.join(','),
+        url: sirsiItemUrl + sirsiBoundRequestParams,
         crossDomain: true
     }).then(function (response) {
         $(response).find('TitleInfo').each(function () {
