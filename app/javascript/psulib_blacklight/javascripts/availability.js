@@ -10,6 +10,8 @@ var allLocations = locations.locations;
 var allLibraries = locations.libraries;
 var illiadLocations = locations.request_via_ill;
 var allItemTypes = item_types.item_types;
+var movedLocations = ["SMITH", "SPC-CATOI", "SPC-CATOII", "SPC-SCIPRK"];
+
 const sirsiUrl = 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true&includeBoundTogether=true';
 const sirsiItemUrl = 'https://cat.libraries.psu.edu:9443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true';
 
@@ -98,6 +100,7 @@ function getAllHoldings(allHoldings, titleInfo) {
 
             $(this).children("ItemInfo").each(function () {
                 var currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
+                var homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
                 var itemID = $(this).children("itemID").text();
                 var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
 
@@ -105,6 +108,7 @@ function getAllHoldings(allHoldings, titleInfo) {
                     catkey: titleInfo.catkey,
                     libraryID: libraryID,
                     locationID: currentLocationID,
+                    homeLocationID: homeLocationID,
                     itemID: itemID,
                     callNumber: callNumber,
                     itemTypeID: itemTypeID,
@@ -183,6 +187,7 @@ function processBoundParents(boundHoldings, allHoldings) {
 
                 $(this).children("ItemInfo").each(function () {
                     var currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
+                    var homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
                     var itemID = $(this).children("itemID").text();
                     var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
 
@@ -194,6 +199,7 @@ function processBoundParents(boundHoldings, allHoldings) {
                                 boundHolding.itemTypeID = itemTypeID;
                                 boundHolding.libraryID = libraryID;
                                 boundHolding.locationID = currentLocationID;
+                                boundHolding.homeLocationID = homeLocationID;
 
                                 allHoldings[catkey].push(boundHolding);
 
@@ -426,7 +432,7 @@ function generateLocationHTML(holding) {
     }
 
     // Special Collections
-    if (['UP-SPECCOL'].includes(holding.libraryID)) {
+    if (['UP-SPECCOL'].includes(holding.libraryID) && !isMovedLocation(holding.homeLocationID)) {
         var specialCollectionsText = mapLocation(allLocations, holding.locationID);
 
         var specialCollectionsLocation = `${specialCollectionsText}<br> 
@@ -532,4 +538,8 @@ function displayErrorMsg() {
         $(this).html("Please check back shortly for item availability or " +
                      "<a href=\"https://libraries.psu.edu/ask\">ask a librarian</a> for assistance.");
     });
+}
+
+function isMovedLocation(location) {
+    return movedLocations.includes(location);
 }
