@@ -6,6 +6,13 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
 
+  # Only get search results from the solr index
+  def index
+    return nil if current_search_session.blank?
+
+    super
+  end
+
   rescue_from Blacklight::Exceptions::RecordNotFound do
     redirect_to '/404'
   end
@@ -35,15 +42,13 @@ class CatalogController < ApplicationController
     }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
 
-    # TODO: hide bookmark until fixed
-    # config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+    config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
 
     config.add_results_collection_tool(:sort_widget)
     config.add_results_collection_tool(:per_page_widget)
     config.add_results_collection_tool(:view_type_group)
 
-    # TODO: hide bookmark until fixed
-    # config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
+    config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
 
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
@@ -334,5 +339,25 @@ class CatalogController < ApplicationController
     config.autocomplete_path = 'suggest'
 
     config.raw_endpoint.enabled = true
+  end
+
+  PAGINATION_THRESHOLD = 250
+  before_action only: :index do
+    if params[:page] && params[:page].to_i > PAGINATION_THRESHOLD
+      Rails.logger.info("Pagination threshold exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
+      flash[:error] = "You have paginated too deep into the result set. Please contact us using the feedback form if you
+                       have a need to view results past page #{PAGINATION_THRESHOLD}."
+      redirect_to '/404'
+    end
+  end
+
+  FACET_PAGINATION_THRESHOLD = 50
+  before_action only: :facet do
+    if params['facet.page'] && params['facet.page'].to_i > FACET_PAGINATION_THRESHOLD
+      Rails.logger.info("Facet pagination threshold exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
+      flash[:error] = "You have paginated too deep into facets. Please contact us using the feedback form if you have a
+                       need to view facets past page #{FACET_PAGINATION_THRESHOLD}."
+      redirect_to '/404'
+    end
   end
 end

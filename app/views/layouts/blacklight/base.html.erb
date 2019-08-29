@@ -1,70 +1,73 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Internet Explorer use the highest version available -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="en" class="h-100">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Internet Explorer use the highest version available -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title><%= render_page_title %></title>
-    <%= opensearch_description_tag application_name, opensearch_catalog_url(format: 'xml') %>
-    <%= favicon_link_tag asset_pack_path('media/psulib_blacklight/images/icons/favicon.ico') %>
-    <%= stylesheet_pack_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
-    <%= csrf_meta_tags %>
-    <%= content_for(:head) %>
-    <script src="https://v2.libanswers.com/load_chat.php?hash=d51e38627705fc23934afaba4f563cc8"></script>
+  <title><%= render_page_title %></title>
+  <%= opensearch_description_tag application_name, opensearch_catalog_url(format: 'xml') %>
+  <%= favicon_link_tag asset_pack_path('media/psulib_blacklight/images/icons/favicon.ico') %>
+  <%= stylesheet_pack_tag 'application' %>
+  <%= javascript_pack_tag 'application', defer: true %>
+  <%= csrf_meta_tags %>
+  <%= content_for(:head) %>
 
-    <script type="text/javascript">
-        var _paq = window._paq || [];
-        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-        _paq.push(['trackPageView']);
-        _paq.push(['enableLinkTracking']);
-        (function() {
-            var u="https://analytics.libraries.psu.edu/matomo/";
-            _paq.push(['setTrackerUrl', u+'matomo.php']);
-            _paq.push(['setSiteId', <%= ENV.fetch 'MATOMO_ID', nil %>]);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-        })();
-    </script>
-  </head>
+  <script type="text/javascript">
+      var _paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function () {
+          var u = "https://analytics.libraries.psu.edu/matomo/";
+          _paq.push(['setTrackerUrl', u + 'matomo.php']);
+          _paq.push(['setSiteId', <%= ENV.fetch 'MATOMO_ID', 10 %>]);
+          var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+          g.type = 'text/javascript';
+          g.async = true;
+          g.defer = true;
+          g.src = u + 'matomo.js';
+          s.parentNode.insertBefore(g, s);
+      })();
+  </script>
+</head>
 
-  <body class="<%= render_body_class %>">
+<body class="d-flex flex-column h-100">
 
-  <%= render partial: 'shared/announcement' if Psulcat::Application.config.show_announcement %>
-    <%= render partial: 'shared/header_navbar' %>
+<%= render partial: 'shared/announcement' if Psulcat::Application.config.show_announcement %>
+<%= render partial: 'shared/header_navbar' %>
 
-    <div id="main-container" class="<%= container_classes %>">
-      <%= content_for(:container_header) %>
+<div id="main-container" class="main-blacklight-container <%= container_classes %>">
+  <%= content_for(:container_header) %>
 
-      <%= render partial: 'shared/flash_msg', layout: 'shared/flash_messages' %>
+  <%= render partial: 'shared/flash_msg', layout: 'shared/flash_messages' %>
 
-      <% if @document || @search_context %>
-        <div class="seconday-actions row justify-content border-bottom pb-2 mb-2">
-        <% if @search_context %>
-            <% if current_search_session %>
-                <div id="appliedParams" class="col-auto">
-                  <%= link_back_to_catalog label: t('blacklight.back_to_search.html'), class: 'btn btn-outline-secondary btn-sm' %>
-                </div>
-            <% end %>
-
-            <%= render 'previous_next_doc' %>
+  <% if @document || @search_context %>
+    <div class="seconday-actions row justify-content border-bottom pb-2 mb-2">
+      <% if @search_context %>
+        <% if current_search_session %>
+          <div id="appliedParams" class="col-auto">
+            <%= link_back_to_catalog label: t('blacklight.back_to_search.html'), class: 'btn btn-outline-secondary btn-sm' %>
+          </div>
         <% end %>
-        <% if @document %>
-            <%= render 'record_toolbar' %>
-        <% end %>
-        </div>
+
+        <%= render 'previous_next_doc' %>
       <% end %>
-
-      <div class="row">
-        <%= content_for?(:content) ? yield(:content) : yield %>
-      </div>
-      <div class="ask" id="libchat_d51e38627705fc23934afaba4f563cc8"></div>
+      <% if @document %>
+        <%= render 'record_toolbar' %>
+      <% end %>
     </div>
+  <% end %>
 
-    <%= render partial: 'shared/footer' %>
-    <%= render partial: 'shared/modal' %>
-  </body>
+  <div class="row">
+    <%= content_for?(:content) ? yield(:content) : yield %>
+  </div>
+  <div class="ask" id="libchat_d51e38627705fc23934afaba4f563cc8"></div>
+</div>
+
+<%= render partial: 'shared/footer' %>
+<%= render partial: 'shared/modal' %>
+</body>
 </html>
