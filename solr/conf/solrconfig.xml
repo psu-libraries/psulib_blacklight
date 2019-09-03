@@ -196,6 +196,8 @@
          id
          isbn_sim
          issn_sim
+         oclc_number_ssim
+         lccn_ssim
        </str>
 
        <!-- list fields to be displayed in the search results page -->
