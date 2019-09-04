@@ -89,6 +89,7 @@ RSpec.describe CatalogHelper, type: :helper do
     end
     context 'when a record has bibkeys' do
       let (:document) { { format: ['Book'], isbn_valid_ssm: ['1818181818'] } }
+
       it 'markup sent back containing those bibkeys' do
         thumbnail = render_thumbnail document
         expect(thumbnail).to include 'data-isbn="[&quot;1818181818&quot;]"'
