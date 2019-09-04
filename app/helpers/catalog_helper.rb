@@ -82,14 +82,19 @@ module CatalogHelper
   # To render format icon on search results as the default thumbnail for now
   def render_thumbnail(document, _options = {})
     isbn_values = document.fetch(:isbn_valid_ssm, [])
+    oclc_values = document.fetch(:oclc_number_ssim, [])
+    lccn_values = document.fetch(:lccn_ssim, [])
 
-    if isbn_values.empty?
+    if isbn_values.empty? && oclc_values.empty? && lccn_values.empty?
       content_tag(:span, '',
                   class: "fas fa-responsive-sizing faspsu-#{document[:format][0].parameterize}")
     else
       content_tag(:span, '',
                   class: "fas fa-responsive-sizing faspsu-#{document[:format][0].parameterize}",
-                  data: { isbn: isbn_values, type: 'isbn' })
+                  data: { isbn: isbn_values,
+                          oclc: oclc_values,
+                          lccn: lccn_values,
+                          type: 'bibkeys' })
     end
   end
 
