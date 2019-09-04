@@ -7,6 +7,10 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
+
+
+import bookCovers from "../book_covers";
+
 require.context('../psulib_blacklight/images/', true)
 
 import Rails from 'rails-ujs';
@@ -23,5 +27,6 @@ import {executeAskALibrarian} from 'ask_a_librarian';
 
 document.addEventListener("turbolinks:load", function() {
     executeAskALibrarian();
+    bookCovers.start();
     Blacklight.doBookmarkToggleBehavior();
 });
