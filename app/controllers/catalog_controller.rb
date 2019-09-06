@@ -307,7 +307,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field('identifiers') do |field|
       field.include_in_simple_select = false
-      field.label = 'ISBN/ISSN'
+      field.label = 'Identifiers (ISBN, ISSN, OCLC, LCCN)'
       field.solr_parameters = {
         qf:  '$number_qf'
       }

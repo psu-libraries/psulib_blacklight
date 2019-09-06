@@ -196,6 +196,8 @@
          id
          isbn_sim
          issn_sim
+         oclc_number_ssim
+         lccn_ssim
        </str>
 
        <!-- list fields to be displayed in the search results page -->
@@ -212,7 +214,9 @@
          publication_display_ssm,
          edition_display_ssm,
          full_links_struct,
-         isbn_valid_ssm
+         isbn_valid_ssm,
+         oclc_number_ssim,
+         lccn_ssim
        </str>
 
        <!-- list fields to be displayed as facets -->
