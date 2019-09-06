@@ -35,5 +35,15 @@
     margin-bottom: 20px;
     margin-top: 20px;
   }
-}
 
+  .clear-bookmarks,
+  .share-widget .dropdown-toggle {
+    display: block;
+    width: 100%;
+  }
+
+  .sort-dropdown,
+  .per-page-dropdown {
+    display: flex;
+  }
+}
