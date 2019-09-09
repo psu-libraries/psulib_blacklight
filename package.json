@@ -17,7 +17,21 @@
     "typeface-roboto-slab": "^0.0.72"
   },
   "devDependencies": {
+    "jest": "^24.9.0",
     "webpack": "^4.29",
     "webpack-dev-server": "^3.1"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "roots": [
+      "spec/javascript"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "app/javascript"
+    ]
   }
 }
+
