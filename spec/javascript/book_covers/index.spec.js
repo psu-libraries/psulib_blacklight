@@ -27,3 +27,4 @@ describe('bookCovers', () => {
        expect( replaceWith.mock.calls.length ).toBe(1);
    });
 });
+
