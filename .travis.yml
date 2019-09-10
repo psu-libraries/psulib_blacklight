@@ -25,3 +25,4 @@ before_script:
 script:
 - bundle exec niftany
 - bundle exec rake
+- yarn test
