@@ -36,18 +36,24 @@ const bookCovers = {
                 jsonp: "callback"
             }
         ).done(function(response) {
-            for (var bibkey in response) {
-                let response_item = response[bibkey];
-
-                if (response_item.hasOwnProperty("thumbnail_url")) {
-                    var type = response_item.bib_key.split(":")[0];
-                    var identifier = response_item.bib_key.split(":")[1];
-                    var thumb_url_zoom_1 = response_item.thumbnail_url.slice(0,-1) + "1"; // instead of zoom of 5
-                    $('[data-' + type.toLowerCase() + '*="' + identifier + '"]')
-                        .replaceWith(`<img class="img-fluid" src="${thumb_url_zoom_1}">`);
-                }
-            }
+            bookCovers.parseXhrGoogleResponse(response);
+        }).fail(function( jqXHR, textStatus) {
+            console.log(jqXHR, textStatus, 'bookCovers');
         });
+    },
+
+    parseXhrGoogleResponse(response, $) {
+        for (let bibkey in response) {
+            let response_item = response[bibkey];
+
+            if (response_item.hasOwnProperty("thumbnail_url")) {
+                let type = response_item.bib_key.split(":")[0];
+                let identifier = response_item.bib_key.split(":")[1];
+                let thumb_url_zoom_1 = response_item.thumbnail_url.slice(0,-1) + "1"; // instead of zoom of 5
+                $('[data-' + type.toLowerCase() + '*="' + identifier + '"]')
+                    .replaceWith(`<img class="img-fluid" src="${thumb_url_zoom_1}">`);
+            }
+        }
     }
 };
 
