@@ -1,14 +1,17 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest": true,
+        "jquery": true
     },
     "extends": [
         "eslint:recommended"
     ],
     "globals": {
         "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+        "SharedArrayBuffer": "readonly",
+        "Blacklight": "writeable"
     },
     "parserOptions": {
         "ecmaVersion": 2018,
