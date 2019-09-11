@@ -12,8 +12,11 @@ var illiadLocations = locations.request_via_ill;
 var allItemTypes = item_types.item_types;
 var movedLocations = ["SMITH", "SPC-CATOI", "SPC-CATOII", "SPC-SCIPRK"];
 
-const sirsiUrl = 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true&includeBoundTogether=true';
-const sirsiItemUrl = 'https://cat.libraries.psu.edu:9443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true';
+const sirsiUrl = 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
+                 'clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true' +
+                 '&includeBoundTogether=true';
+const sirsiItemUrl = 'https://cat.libraries.psu.edu:9443/symwsbc/rest/standard/lookupTitleInfo?' +
+                     'clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true';
 
 $(document).on('turbolinks:load', executeAvailability);
 
@@ -53,9 +56,11 @@ function loadAvailability() {
         }).then(function (response) {
                 $(response).find('TitleInfo').each(function () {
                     var catkey = $(this).children('titleID').text();
-                    var totalCopiesAvailable = parseInt($(this).find("totalCopiesAvailable").text(), 10);
+                    var totalCopiesAvailable = parseInt($(this)
+                                                .find("totalCopiesAvailable").text(), 10);
                     var holdable = $(this).find("holdable").text();
-                    var numberOfBoundwithLinks = parseInt($(this).find("numberOfBoundwithLinks").text(), 10);
+                    var numberOfBoundwithLinks = parseInt($(this)
+                                                    .find("numberOfBoundwithLinks").text(), 10);
 
                     var titleInfo = {
                         jQueryObj: $(this),
@@ -138,7 +143,8 @@ function getBoundHoldings(boundHoldings, titleInfo) {
                 var linkedTitle = $(this).children('title').text();
                 var author = $(this).children('author').text();
                 var yearOfPublication = $(this).children('yearOfPublication').text();
-                var boundinStatement = callNumber + " bound in " + linkedTitle + " " + author + " " + yearOfPublication;
+                var boundinStatement = callNumber + " bound in " + linkedTitle + " " + author +
+                                       " " + yearOfPublication;
 
                 boundHoldings[titleInfo.catkey][linkedItemID].push({
                     catkey: titleInfo.catkey,
@@ -186,7 +192,9 @@ function processBoundParents(boundHoldings, allHoldings) {
                 var callNumber = $(this).children('callNumber').text();
 
                 $(this).children("ItemInfo").each(function () {
-                    var currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
+                    var currentLocationID = $(this).children("currentLocationID")
+                                                   .text()
+                                                   .toUpperCase();
                     var homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
                     var itemID = $(this).children("itemID").text();
                     var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
@@ -271,7 +279,8 @@ function printAvailabilityData(availabilityData) {
                                 <h5>${element.summary.library} (${element.summary.countAtLibrary} 
                                     ${element.summary.pluralize})</h5>
                                 <table id="holdings-${uniqueID}" class="table table-sm">
-                                    <caption class="sr-only">Listing where to find this item in our buildings.</caption>
+                                    <caption class="sr-only">Listing where to find this item in our
+                                                             buildings.</caption>
                                     <thead class="thead-light">
                                         <tr>
                                             <th>Call number</th>
@@ -298,9 +307,12 @@ function printAvailabilityData(availabilityData) {
                                     </table>
                               `;
         if (moreHoldings.length > 0) {
-            markupForHoldings += `<button class="btn btn-primary toggle-more" data-type="view-more-holdings" 
-                                   data-target="#collapseHoldings${uniqueID}" data-toggle="collapse" role="button" 
-                                   aria-expanded="false" aria-controls="collapseHoldings${uniqueID}">View More
+            markupForHoldings += `<button class="btn btn-primary toggle-more" 
+                                    data-type="view-more-holdings" 
+                                    data-target="#collapseHoldings${uniqueID}" 
+                                    data-toggle="collapse" role="button" 
+                                    aria-expanded="false" 
+                                    aria-controls="collapseHoldings${uniqueID}">View More
                                    </button>`;
         }
     });
@@ -389,7 +401,8 @@ function generateCallNumber(holding) {
 }
 
 function generateLocationHTML(holding) {
-    var spinner = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+    var spinner = '<span class="spinner-border spinner-border-sm" ' +
+        '                role="status" aria-hidden="true"></span>';
 
     // Location information presented to the user is different based on a few scenarios
     // First, if it's related to ILL
@@ -406,6 +419,7 @@ function generateLocationHTML(holding) {
 
     // AEON
     if (['ARKTHESES', 'AH-X-TRANS'].includes(holding.locationID)) {
+        const illiadURL = "https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html";
         var aeonLocationText = mapLocation(allLocations, holding.locationID);
 
         var aeonLocation = `<a 
@@ -415,9 +429,7 @@ function generateLocationHTML(holding) {
                                 data-link-type="archival-thesis" 
                                 data-item-type="${holding.itemTypeID}" 
                                 href="#">${spinner}Request Scan - Penn State Users</a><br>
-                            <a 
-                                href="https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html">Request Scan - 
-                                Guest</a><br>
+                            <a href="${illiadURL}">Request Scan - Guest</a><br>
                             <a 
                                 data-type="aeon-link" 
                                 data-catkey="${holding.catkey}"
@@ -454,14 +466,15 @@ function generateLocationHTML(holding) {
 }
 
 function createILLURL() {
+    let ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/" +
+                   "OpenURL?Action=10";
     // Now that the availability data has been rendered, check for ILL options and update links
     $('.availability-holdings [data-type="ill-link"]').each(function () {
         var illLinkObj = $(this);
         var catkey = $(this).data('catkey');
         var callNumber = encodeURIComponent($(this).data('call-number'));
-        var linkType = $(this).data('link-type');
 
-        var ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/OpenURL?Action=10";
+        var linkType = $(this).data('link-type');
 
         $.get(`/catalog/${catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
@@ -475,7 +488,8 @@ function createILLURL() {
                     var ISBN = data.isbn_ssm ? data.isbn_ssm : "";
                     ILLURL += `&Form=30&isbn=${ISBN}`;
                 }
-                ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
+                ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2F
+                           catalog.libraries.psu.edu`;
                 if (author) {
                     ILLURL += `&aulast=${author}`;
                 }
@@ -501,9 +515,9 @@ function createAeonURL() {
         var itemID = encodeURIComponent($(this).data('item-id'));
         var itemTypeID = $(this).data('item-type');
         var genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
-        var aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=${catkey}
-                       &Genre=${genre}&Location=${itemLocation}&ItemNumber=${itemID}
-                       &CallNumber=${callNumber}`;
+        var aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30
+                       &ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}
+                       &ItemNumber=${itemID}&CallNumber=${callNumber}`;
 
         $.get(`/catalog/${catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
