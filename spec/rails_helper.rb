@@ -13,8 +13,8 @@ require 'webmock/rspec'
 
 # allow connections to localhost, webdrivers
 WebMock.disable_net_connect!(
-    allow_localhost: true,
-    allow: "chromedriver.storage.googleapis.com"
+  allow_localhost: true,
+  allow: 'chromedriver.storage.googleapis.com'
 )
 # Add additional requires below this line. Rails is not loaded until this point!
 
