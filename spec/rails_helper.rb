@@ -11,9 +11,11 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'webmock/rspec'
 
-# allow connections to localhost, umlaut and bibdata marc record service
-WebMock.disable_net_connect!(allow_localhost: true)
-
+# allow connections to localhost, webdrivers
+WebMock.disable_net_connect!(
+    allow_localhost: true,
+    allow: "chromedriver.storage.googleapis.com"
+)
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
