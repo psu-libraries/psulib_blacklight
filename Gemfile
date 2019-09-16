@@ -37,6 +37,7 @@ end
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
+  gem 'launchy'
   gem 'niftany'
   gem 'pry-byebug'
   gem 'rails-controller-testing'
@@ -45,6 +46,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'sqlite3'
   gem 'webdrivers', '~> 4.0'
+  gem 'webmock', require: false
 end
 
 group :production, :test do
