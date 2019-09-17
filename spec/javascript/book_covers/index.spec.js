@@ -24,7 +24,7 @@ describe('bookCovers', () => {
 
        bookCovers.parseXhrGoogleResponse(response, jQuery);
 
-       expect( replaceWith.mock.calls.length ).toBe(1);
+       expect(replaceWith.mock.calls.length).toBe(1);
    });
 });
 
