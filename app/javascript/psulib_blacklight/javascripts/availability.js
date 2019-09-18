@@ -361,7 +361,7 @@ function availabilityDataStructurer(holdingMetadata) {
 
             // Supplement data with an itemType and remove callNumber conditionally
             holdingMetadata[libraryID].forEach(function(element) {
-                element.itemType = (element.itemTypeID in allItemTypes) ? element.itemTypeID : "";
+                element.itemType = (element.itemTypeID in allItemTypes) ? allItemTypes[element.itemTypeID] : "";
             });
 
             holdingData = {
