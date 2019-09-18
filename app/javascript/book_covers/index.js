@@ -36,7 +36,7 @@ const bookCovers = {
                 jsonp: "callback"
             }
         ).done(function(response) {
-            bookCovers.parseXhrGoogleResponse(response);
+            bookCovers.parseXhrGoogleResponse(response, $);
         }).fail(function( jqXHR, textStatus) {
             console.log(jqXHR, textStatus, 'bookCovers');
         });
@@ -46,10 +46,11 @@ const bookCovers = {
         for (let bibkey in response) {
             let response_item = response[bibkey];
 
-            if (response_item.hasOwnProperty("thumbnail_url")) {
+            if (Object.prototype.hasOwnProperty.call(response_item, "thumbnail_url")) {
                 let type = response_item.bib_key.split(":")[0];
                 let identifier = response_item.bib_key.split(":")[1];
-                let thumb_url_zoom_1 = response_item.thumbnail_url.slice(0,-1) + "1"; // instead of zoom of 5
+                // instead of zoom of 5
+                let thumb_url_zoom_1 = response_item.thumbnail_url.slice(0,-1) + "1";
                 $('[data-' + type.toLowerCase() + '*="' + identifier + '"]')
                     .replaceWith(`<img class="img-fluid" src="${thumb_url_zoom_1}">`);
             }

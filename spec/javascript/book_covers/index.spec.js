@@ -16,7 +16,12 @@ describe('bookCovers', () => {
    });
 
    it('replaces HTML with book covers from Google Books', () => {
-       const response = {"ISBN:9780972658355": {"bib_key":"ISBN:9780972658355","info_url":"https://books.google.com/books?id=EPJVAAAACAAJ\u0026source=gbs_ViewAPI","preview_url":"https://books.google.com/books?id=EPJVAAAACAAJ\u0026source=gbs_ViewAPI","thumbnail_url":"https://books.google.com/books/content?id=EPJVAAAACAAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5","preview":"noview","embeddable":false,"can_download_pdf":false,"can_download_epub":false,"is_pdf_drm_enabled":false,"is_epub_drm_enabled":false}};
+       const response = {"ISBN:9780972658355": {"bib_key":"ISBN:9780972658355","info_url":"https://books.google" +
+               ".com/books?id=EPJVAAAACAAJ\u0026source=gbs_ViewAPI","preview_url":"https://books.google" +
+               ".com/books?id=EPJVAAAACAAJ\u0026source=gbs_ViewAPI","thumbnail_url":"https://books.google" +
+               ".com/books/content?id=EPJVAAAACAAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5",
+               "preview":"noview","embeddable":false,"can_download_pdf":false,"can_download_epub":false,
+               "is_pdf_drm_enabled":false,"is_epub_drm_enabled":false}};
        const replaceWith = jest.fn();
        const jQuery = jest.fn(() => ({
            replaceWith
@@ -27,3 +32,4 @@ describe('bookCovers', () => {
        expect( replaceWith.mock.calls.length ).toBe(1);
    });
 });
+
