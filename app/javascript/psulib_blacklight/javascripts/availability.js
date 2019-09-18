@@ -10,7 +10,7 @@ var allLocations = locations.locations;
 var allLibraries = locations.libraries;
 var illiadLocations = locations.request_via_ill;
 var allItemTypes = item_types.item_types;
-var movedLocations = ["SMITH", "SPC-CATOI", "SPC-CATOII", "SPC-SCIPRK"];
+var movedLocations = [];
 
 const sirsiUrl = 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
                  'clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true' +
