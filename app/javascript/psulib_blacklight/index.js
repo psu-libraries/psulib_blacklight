@@ -13,8 +13,8 @@ import 'bootstrap-select/dist/js/bootstrap-select'
 import 'typeface-open-sans'
 import 'typeface-roboto-slab'
 
-// Blacklight Upstream Over-rides
-// doing the above rather than require('blacklight-frontend/app/assets/javascripts/blacklight/blacklight')
+// Blacklight Upstream Javascript
+// Picking and choosing rather than taking all JS from BL
 import 'blacklight-frontend/app/javascript/blacklight/core'
 import 'blacklight-frontend/app/javascript/blacklight/checkbox_submit'
 import 'blacklight-frontend/app/javascript/blacklight/modal'
