@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/projectblacklight/blacklight.git
-  revision: 164c9b905d5798c6444a78a9e9ab6ad682dc26c6
+  revision: 271477779c39ccc90e52832667f9afae3335ef2d
   specs:
     blacklight (7.1.0)
       deprecation
@@ -381,7 +381,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  blacklight (~> 7.0)!
+  blacklight (= 7.1.0)!
   blacklight-marc (>= 7.0.0.rc1)!
   blacklight_advanced_search!
   blacklight_range_limit (~> 7.1)
