@@ -1,4 +1,5 @@
 .navbar + .container {
+  // scss-lint:disable PlaceholderInExtend
   @extend .py-2;
 }
 
@@ -7,7 +8,7 @@
   margin-bottom: 0;
 
   &::after {
-    content: "❯";
+    content: '❯';
     float: right;
     transform: rotate(90deg);
   }
@@ -17,7 +18,7 @@
 
     &::after {
       transform: rotate(0deg);
-      transition: transform 0.1s ease;
+      transition: transform .1s ease;
     }
   }
 }
