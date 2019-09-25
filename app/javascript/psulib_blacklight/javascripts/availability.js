@@ -6,11 +6,11 @@ import locations from './libraries_locations.json';
 import item_types from './item_types.json';
 
 // Load Sirsi locations
-var allLocations = locations.locations;
-var allLibraries = locations.libraries;
-var illiadLocations = locations.request_via_ill;
-var allItemTypes = item_types.item_types;
-var movedLocations = [];
+const allLocations = locations.locations;
+const allLibraries = locations.libraries;
+const illiadLocations = locations.request_via_ill;
+const allItemTypes = item_types.item_types;
+const movedLocations = [];
 
 const sirsiUrl = 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
                  'clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true' +
@@ -38,7 +38,7 @@ function executeAvailability() {
  * Load real time holdings and availability info from Sirsi Web Services
  */
 function loadAvailability() {
-    var titleIDs = [];
+    let titleIDs = [];
 
     // Get the catkeys
     $('.availability').each(function () {
@@ -46,23 +46,22 @@ function loadAvailability() {
     });
 
     if (titleIDs.length > 0) {
-        var allHoldings = [];
-        var boundHoldings = [];
+        let allHoldings = [];
+        let boundHoldings = [];
         const sirsiRequestParams = titleIDs.map(url => '&titleID=' + url).join('');
 
         $.ajax({
-            url: sirsiUrl + sirsiRequestParams,
-            crossDomain: true
+            url: sirsiUrl + sirsiRequestParams
         }).then(function (response) {
                 $(response).find('TitleInfo').each(function () {
-                    var catkey = $(this).children('titleID').text();
-                    var totalCopiesAvailable = parseInt($(this)
+                    const catkey = $(this).children('titleID').text();
+                    const totalCopiesAvailable = parseInt($(this)
                                                 .find("totalCopiesAvailable").text(), 10);
-                    var holdable = $(this).find("holdable").text();
-                    var numberOfBoundwithLinks = parseInt($(this)
+                    const holdable = $(this).find("holdable").text();
+                    const numberOfBoundwithLinks = parseInt($(this)
                                                     .find("numberOfBoundwithLinks").text(), 10);
 
-                    var titleInfo = {
+                    const titleInfo = {
                         jQueryObj: $(this),
                         catkey: catkey,
                         totalCopiesAvailable: totalCopiesAvailable,
@@ -97,17 +96,17 @@ function getAllHoldings(allHoldings, titleInfo) {
     allHoldings[titleInfo.catkey] = [];
 
     titleInfo.jQueryObj.children('CallInfo').each(function () {
-        var libraryID = $(this).children('libraryID').text();
+        const libraryID = $(this).children('libraryID').text();
 
         // Only for not online items (online items uses 856 urls for display)
         if (libraryID.toUpperCase() !== 'ONLINE') {
-            var callNumber = $(this).children('callNumber').text();
+            const callNumber = $(this).children('callNumber').text();
 
             $(this).children("ItemInfo").each(function () {
-                var currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
-                var homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
-                var itemID = $(this).children("itemID").text();
-                var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
+                const currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
+                const homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
+                const itemID = $(this).children("itemID").text();
+                const itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
 
                 allHoldings[titleInfo.catkey].push({
                     catkey: titleInfo.catkey,
@@ -131,19 +130,19 @@ function getBoundHoldings(boundHoldings, titleInfo) {
     boundHoldings[titleInfo.catkey] = [];
 
     titleInfo.jQueryObj.children('BoundwithLinkInfo').each(function () {
-        var linkedAsParent = $(this).children('linkedAsParent').text();
-        var linkedItemID = $(this).children('itemID').text();
-        var callNumber = $(this).children('callNumber').text();
+        const linkedAsParent = $(this).children('linkedAsParent').text();
+        const linkedItemID = $(this).children('itemID').text();
+        const callNumber = $(this).children('callNumber').text();
 
         $(this).children('linkedTitle').each(function () {
-            var linkedCatkey = $(this).children('titleID').text();
+            const linkedCatkey = $(this).children('titleID').text();
 
             if (linkedAsParent === 'true' && titleInfo.catkey !== linkedCatkey) {
                 boundHoldings[titleInfo.catkey][linkedItemID] = [];
-                var linkedTitle = $(this).children('title').text();
-                var author = $(this).children('author').text();
-                var yearOfPublication = $(this).children('yearOfPublication').text();
-                var boundinStatement = callNumber + " bound in " + linkedTitle + " " + author +
+                const linkedTitle = $(this).children('title').text();
+                const author = $(this).children('author').text();
+                const yearOfPublication = $(this).children('yearOfPublication').text();
+                const boundinStatement = callNumber + " bound in " + linkedTitle + " " + author +
                                        " " + yearOfPublication;
 
                 boundHoldings[titleInfo.catkey][linkedItemID].push({
@@ -171,9 +170,9 @@ function getBoundHoldings(boundHoldings, titleInfo) {
 }
 
 function processBoundParents(boundHoldings, allHoldings) {
-    var catkeys = Object.keys(boundHoldings);
+    const catkeys = Object.keys(boundHoldings);
 
-    var itemIDs = [];
+    let itemIDs = [];
     $.each(catkeys, function(i, catkey) {
         itemIDs.push(Object.keys(boundHoldings[catkey]));
     });
@@ -181,23 +180,22 @@ function processBoundParents(boundHoldings, allHoldings) {
     const sirsiBoundRequestParams = itemIDs.map(url => '&itemID=' + url).join('');
 
     $.ajax({
-        url: sirsiItemUrl + sirsiBoundRequestParams,
-        crossDomain: true
+        url: sirsiItemUrl + sirsiBoundRequestParams
     }).then(function (response) {
         $(response).find('TitleInfo').each(function () {
-            var parentCatkey = $(this).children('titleID').text();
+            const parentCatkey = $(this).children('titleID').text();
 
             $(this).children('CallInfo').each(function () {
-                var libraryID = $(this).children('libraryID').text();
-                var callNumber = $(this).children('callNumber').text();
+                const libraryID = $(this).children('libraryID').text();
+                const callNumber = $(this).children('callNumber').text();
 
                 $(this).children("ItemInfo").each(function () {
-                    var currentLocationID = $(this).children("currentLocationID")
+                    const currentLocationID = $(this).children("currentLocationID")
                                                    .text()
                                                    .toUpperCase();
-                    var homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
-                    var itemID = $(this).children("itemID").text();
-                    var itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
+                    const homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
+                    const itemID = $(this).children("itemID").text();
+                    const itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
 
                     $.each(catkeys, function(i, catkey) {
                         if (itemID in boundHoldings[catkey]) {
@@ -230,21 +228,21 @@ function processBoundParents(boundHoldings, allHoldings) {
 
 function availabilityDisplay(allHoldings) {
     $('.availability').each(function () {
-        var availability = $(this);
-        var catkey = availability.data("keys");
+        const availability = $(this);
+        const catkey = availability.data("keys");
 
         if (catkey in allHoldings) {
-            var rawHoldings = allHoldings[catkey];
-            var availabilityButton = availability.find('.availability-button');
-            var holdingsPlaceHolder = availability.find('.availability-holdings');
-            var snippetPlaceHolder = availability.find('.availability-snippet');
-            var holdButton = availability.find('.hold-button');
+            const rawHoldings = allHoldings[catkey];
+            const availabilityButton = availability.find('.availability-button');
+            const holdingsPlaceHolder = availability.find('.availability-holdings');
+            const snippetPlaceHolder = availability.find('.availability-snippet');
+            const holdButton = availability.find('.hold-button');
 
             // If at least one physical copy, then display availability and holding info
             if (Object.keys(rawHoldings).length > 0) {
                 availabilityButton.removeClass("invisible").addClass("visible");
-                var holdings = groupByLibrary(rawHoldings);
-                var structuredHoldings = availabilityDataStructurer(holdings);
+                const holdings = groupByLibrary(rawHoldings);
+                const structuredHoldings = availabilityDataStructurer(holdings);
                 holdingsPlaceHolder.html(printAvailabilityData(structuredHoldings));
                 availabilitySnippet(snippetPlaceHolder, structuredHoldings);
 
@@ -267,13 +265,13 @@ function availabilityDisplay(allHoldings) {
 }
 
 function printAvailabilityData(availabilityData) {
-    var markupForHoldings = '';
+    let markupForHoldings = '';
 
     availabilityData.forEach(function(element, index) {
-        var holdings = element.holdings;
-        var catkey = holdings[0].catkey;
-        var uniqueID = catkey + index;
-        var moreHoldings = holdings.length > 4 ? holdings.splice(4,holdings.length) : [];
+        const holdings = element.holdings;
+        const catkey = holdings[0].catkey;
+        const uniqueID = catkey + index;
+        const moreHoldings = holdings.length > 4 ? holdings.splice(4,holdings.length) : [];
 
         markupForHoldings += `
                                 <h5>${element.summary.library} (${element.summary.countAtLibrary} 
@@ -321,9 +319,9 @@ function printAvailabilityData(availabilityData) {
 }
 
 function librariesText(holdingData) {
-    var libraries = [];
+    let libraries = [];
 
-    for (var index in holdingData) {
+    for (let index in holdingData) {
         if (holdingData[index].summary.library === 'ON-ORDER') {
             libraries.push('')
         } else {
@@ -335,8 +333,8 @@ function librariesText(holdingData) {
 }
 
 function availabilitySnippet(snippetPlaceHolder, holdingData) {
-    var snippet = "";
-    var totalCopiesAvailable = holdingData[0].holdings[0].totalCopiesAvailable;
+    let snippet = "";
+    const totalCopiesAvailable = holdingData[0].holdings[0].totalCopiesAvailable;
 
     if (totalCopiesAvailable > 0) {
         snippet = holdingData.length > 2 ? 'Multiple Locations' : librariesText(holdingData);
@@ -349,10 +347,10 @@ function availabilitySnippet(snippetPlaceHolder, holdingData) {
 }
 
 function availabilityDataStructurer(holdingMetadata) {
-    var availabilityStructuredData = [];
-    var holdingData = [];
-    var pluralize = "";
-    var library = "";
+    let availabilityStructuredData = [];
+    let holdingData = [];
+    let pluralize = "";
+    let library = "";
 
     if (Object.keys(holdingMetadata).length > 0) {
         Object.keys(holdingMetadata).forEach(function (libraryID, index) {
@@ -384,7 +382,7 @@ function availabilityDataStructurer(holdingMetadata) {
 // Group holding by library
 function groupByLibrary(holdings) {
     return holdings.reduce(function (accumulator, object) {
-        var key = object['libraryID'];
+        const key = object['libraryID'];
 
         if (!accumulator[key]) {
             accumulator[key] = [];
@@ -401,13 +399,13 @@ function generateCallNumber(holding) {
 }
 
 function generateLocationHTML(holding) {
-    var spinner = '<span class="spinner-border spinner-border-sm" ' +
+    const spinner = '<span class="spinner-border spinner-border-sm" ' +
         '                role="status" aria-hidden="true"></span>';
 
     // Location information presented to the user is different based on a few scenarios
     // First, if it's related to ILL
     if (holding.locationID in illiadLocations) {
-        var illLocation = `<a 
+        const illLocation = `<a 
                             data-type="ill-link" 
                             data-catkey="${holding.catkey}" 
                             data-call-number="${holding.callNumber}" 
@@ -420,9 +418,9 @@ function generateLocationHTML(holding) {
     // AEON
     if (['ARKTHESES', 'AH-X-TRANS'].includes(holding.locationID)) {
         const illiadURL = "https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html";
-        var aeonLocationText = mapLocation(allLocations, holding.locationID);
+        const aeonLocationText = mapLocation(allLocations, holding.locationID);
 
-        var aeonLocation = `<a 
+        const aeonLocation = `<a 
                                 data-type="ill-link" 
                                 data-catkey="${holding.catkey}" 
                                 data-call-number="${holding.callNumber}" 
@@ -445,9 +443,9 @@ function generateLocationHTML(holding) {
 
     // Special Collections
     if (['UP-SPECCOL'].includes(holding.libraryID) && !isMovedLocation(holding.homeLocationID)) {
-        var specialCollectionsText = mapLocation(allLocations, holding.locationID);
+        const specialCollectionsText = mapLocation(allLocations, holding.locationID);
 
-        var specialCollectionsLocation = `${specialCollectionsText}<br> 
+        const specialCollectionsLocation = `${specialCollectionsText}<br> 
                                         <a 
                                             data-type="aeon-link" 
                                             data-catkey="${holding.catkey}" 
@@ -470,22 +468,21 @@ function createILLURL() {
                    "OpenURL?Action=10";
     // Now that the availability data has been rendered, check for ILL options and update links
     $('.availability-holdings [data-type="ill-link"]').each(function () {
-        var illLinkObj = $(this);
-        var catkey = $(this).data('catkey');
-        var callNumber = encodeURIComponent($(this).data('call-number'));
-
-        var linkType = $(this).data('link-type');
+        let illLinkObj = $(this);
+        const catkey = $(this).data('catkey');
+        const callNumber = encodeURIComponent($(this).data('call-number'));
+        const linkType = $(this).data('link-type');
 
         $.get(`/catalog/${catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
-                var title = encodeURIComponent(data.title_245ab_tsim);
-                var author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
-                var pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
+                const title = encodeURIComponent(data.title_245ab_tsim);
+                const author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
+                const pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
                 if (linkType === "archival-thesis") {
                     ILLURL += "&Form=20&Genre=GenericRequestThesisDigitization";
                 }
                 else {
-                    var ISBN = data.isbn_ssm ? data.isbn_ssm : "";
+                    const ISBN = data.isbn_ssm ? data.isbn_ssm : "";
                     ILLURL += `&Form=30&isbn=${ISBN}`;
                 }
                 ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2F
@@ -498,7 +495,7 @@ function createILLURL() {
                 }
             }
         }).done(function () {
-            var spinner = illLinkObj.find('span');
+            let spinner = illLinkObj.find('span');
             spinner.remove();
             illLinkObj.attr('href', ILLURL);
         });
@@ -508,33 +505,33 @@ function createILLURL() {
 function createAeonURL() {
     // Now that the availability data has been rendered, check for Aeon options and update links
     $('.availability-holdings [data-type="aeon-link"]').each(function () {
-        var aeonLinkObj = $(this);
-        var catkey = $(this).data('catkey');
-        var callNumber = encodeURIComponent($(this).data('call-number'));
-        var itemLocation = encodeURIComponent($(this).data('item-location'));
-        var itemID = encodeURIComponent($(this).data('item-id'));
-        var itemTypeID = $(this).data('item-type');
-        var genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
-        var aeonURL = 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30' +
-                      `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
-                      `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
+        let aeonLinkObj = $(this);
+        const catkey = $(this).data('catkey');
+        const callNumber = encodeURIComponent($(this).data('call-number'));
+        const itemLocation = encodeURIComponent($(this).data('item-location'));
+        const itemID = encodeURIComponent($(this).data('item-id'));
+        const itemTypeID = $(this).data('item-type');
+        const genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
+        let aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30
+                       &ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}
+                       &ItemNumber=${itemID}&CallNumber=${callNumber}`;
 
         $.get(`/catalog/${catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
-                var title = encodeURIComponent(data.title_245ab_tsim);
-                var author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
-                var publisher = encodeURIComponent(data.publisher_name_ssm ? data.publisher_name_ssm : "");
-                var pubDate = encodeURIComponent(data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "");
-                var pubPlace = encodeURIComponent(data.publication_place_ssm ? data.publication_place_ssm : "");
-                var edition = encodeURIComponent(data.edition_display_ssm ? data.edition_display_ssm : "");
-                var restrictions = encodeURIComponent(
-                                      data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : ""
-                                   );
-                aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=` +
-                           `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}`;
+                const title = encodeURIComponent(data.title_245ab_tsim);
+                const author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
+                const publisher = encodeURIComponent(data.publisher_name_ssm ? data.publisher_name_ssm : "");
+                const pubDate = encodeURIComponent(data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "");
+                const pubPlace = encodeURIComponent(data.publication_place_ssm ? data.publication_place_ssm : "");
+                const edition = encodeURIComponent(data.edition_display_ssm ? data.edition_display_ssm : "");
+                const restrictions = encodeURIComponent(
+                                        data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : ""
+                                     );
+                aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=${publisher}
+                            &ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}`;
             }
         }).done(function () {
-            var spinner = aeonLinkObj.find('span');
+            let spinner = aeonLinkObj.find('span');
             spinner.remove();
             aeonLinkObj.attr('href', aeonURL);
         });
