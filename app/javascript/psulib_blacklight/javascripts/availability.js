@@ -485,8 +485,7 @@ function createILLURL() {
                     const ISBN = data.isbn_ssm ? data.isbn_ssm : "";
                     ILLURL += `&Form=30&isbn=${ISBN}`;
                 }
-                ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2F
-                           catalog.libraries.psu.edu`;
+                ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
                 if (author) {
                     ILLURL += `&aulast=${author}`;
                 }
