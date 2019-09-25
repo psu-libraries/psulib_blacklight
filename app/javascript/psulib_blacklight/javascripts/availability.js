@@ -515,9 +515,9 @@ function createAeonURL() {
         var itemID = encodeURIComponent($(this).data('item-id'));
         var itemTypeID = $(this).data('item-type');
         var genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
-        var aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30
-                       &ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}
-                       &ItemNumber=${itemID}&CallNumber=${callNumber}`;
+        var aeonURL = 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30' +
+                      `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
+                      `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
 
         $.get(`/catalog/${catkey}/raw.json`, function(data) {
             if (Object.keys(data).length > 0) {
@@ -530,8 +530,8 @@ function createAeonURL() {
                 var restrictions = encodeURIComponent(
                                       data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : ""
                                    );
-                aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=${publisher}
-                            &ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}`;
+                aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=` +
+                           `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}`;
             }
         }).done(function () {
             var spinner = aeonLinkObj.find('span');
