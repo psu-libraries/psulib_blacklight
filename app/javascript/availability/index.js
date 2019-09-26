@@ -15,10 +15,10 @@ const availability = {
     movedLocations: [],
 
     sirsiUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
-        'clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true' +
-        '&includeBoundTogether=true',
+    'clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true' +
+    '&includeBoundTogether=true',
     sirsiItemUrl: 'https://cat.libraries.psu.edu:9443/symwsbc/rest/standard/lookupTitleInfo?' +
-        'clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true',
+    'clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true',
 
     executeAvailability() {
         availability.loadAvailability();
@@ -351,6 +351,7 @@ const availability = {
         let holdingData = [];
         let pluralize = "";
         let library = "";
+        let allItemTypes = availability.allItemTypes;
 
         if (Object.keys(holdingMetadata).length > 0) {
             Object.keys(holdingMetadata).forEach(function (libraryID, index) {
@@ -359,7 +360,7 @@ const availability = {
 
                 // Supplement data with an itemType and remove callNumber conditionally
                 holdingMetadata[libraryID].forEach(function(element) {
-                    element.itemType = element.itemTypeID in availability.allItemTypes ? availability.allItemTypes[element.itemTypeID] : "";
+                    element.itemType = element.itemTypeID in allItemTypes ? allItemTypes[element.itemTypeID] : "";
                 });
 
                 holdingData = {
@@ -511,9 +512,9 @@ const availability = {
             const itemID = encodeURIComponent($(this).data('item-id'));
             const itemTypeID = $(this).data('item-type');
             const genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
-            let aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30
-                       &ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}
-                       &ItemNumber=${itemID}&CallNumber=${callNumber}`;
+            let aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30` +
+                `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
+                `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
 
             $.get(`/catalog/${catkey}/raw.json`, function(data) {
                 if (Object.keys(data).length > 0) {
@@ -526,8 +527,8 @@ const availability = {
                     const restrictions = encodeURIComponent(
                         data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : ""
                     );
-                    aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=${publisher}
-                            &ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}`;
+                    aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=` +
+                        `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}`;
                 }
             }).done(function () {
                 let spinner = aeonLinkObj.find('span');
