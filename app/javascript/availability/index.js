@@ -274,6 +274,7 @@ const availability = {
             const moreHoldings = holdings.length > 4 ? holdings.splice(4,holdings.length) : [];
 
             markupForHoldings += `
+                            <div data-library="${element.summary.libraryID}">
                                 <h5>${element.summary.library} (${element.summary.countAtLibrary} 
                                     ${element.summary.pluralize})</h5>
                                 <table id="holdings-${uniqueID}" class="table table-sm">
@@ -313,6 +314,8 @@ const availability = {
                                     aria-controls="collapseHoldings${uniqueID}">View More
                                    </button>`;
             }
+
+            markupForHoldings += '</div>';
         });
 
         return markupForHoldings;
@@ -366,6 +369,7 @@ const availability = {
                 holdingData = {
                     "summary":
                         {
+                            "libraryID": libraryID,
                             "library": library,
                             "countAtLibrary": holdingMetadata[libraryID].length,
                             "pluralize": pluralize
