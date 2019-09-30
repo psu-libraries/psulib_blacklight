@@ -176,8 +176,6 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    launchy (2.4.3)
-      addressable (~> 2.3)
     library_stdnums (1.6.0)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -393,7 +391,6 @@ DEPENDENCIES
   devise-guests (~> 0.6)
   foreman (~> 0.63.0)
   high_voltage (~> 3.1)
-  launchy
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.4.4, < 0.6.0)
   niftany
