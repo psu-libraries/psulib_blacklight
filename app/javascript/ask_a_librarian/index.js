@@ -1,9 +1,9 @@
 
 const askALibrarian = {
     start() {
-        if (document.querySelector('.libchat_online') === null) {
+        // if (document.querySelector('.libchat_online') === null) {
             this.executeAskALibrarian();
-        }
+        // }
     },
     /*eslint-disable */
     executeAskALibrarian() {
