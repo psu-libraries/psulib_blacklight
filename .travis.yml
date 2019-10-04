@@ -1,6 +1,4 @@
 dist: xenial
-services:
-  - xvfb
 language: ruby
 rvm:
   - 2.5.3
@@ -14,7 +12,9 @@ cache:
 env:
   global:
     - RAILS_ENV=test
-
+addons:
+  chrome: stable
+  
 before_install:
   - gem update --system
   - gem install bundler
@@ -28,7 +28,6 @@ before_script:
 
 script:
   - bundle exec niftany
-  - xvfb-run --server-args="-screen 0 1024x768x24" make test
   - bundle exec rake
   - yarn lint
   - yarn test
