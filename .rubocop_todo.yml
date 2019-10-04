@@ -16,13 +16,19 @@ Metrics/BlockLength:
 Metrics/ClassLength:
   Max: 247
 
+# Offense count: 8
+# Configuration parameters: Max.
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/features/availability_spec.rb'
+
 # Offense count: 3
 RSpec/ExpectActual:
   Exclude:
     - 'spec/routing/**/*'
     - 'spec/controllers/catalog_controller_spec.rb'
 
-# Offense count: 9
+# Offense count: 16
 # Configuration parameters: AggregateFailuresByDefault.
 RSpec/MultipleExpectations:
-  Max: 3
+  Max: 6
