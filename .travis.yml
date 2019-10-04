@@ -4,32 +4,37 @@ services:
 
 language: ruby
 rvm:
-- 2.5.3
+  - 2.5.3
 bundler_args: --without development
 sudo: false
 cache:
   bundler: true
   yarn: true
   directories:
-  - tmp/solr_dl/
+    - tmp/solr_dl/
 env:
   global:
-  - RAILS_ENV=test
+    - RAILS_ENV=test
 
 before_install:
-- gem update --system
-- gem install bundler
+  - gem update --system
+  - gem install bundler
 
 before_script:
-- bundle exec rails docker:pull
-- bundle exec rails docker:run_ci
-- bundle exec rails docker:build
-- bundle exec rails assets:precompile
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
+  - rackup  # start a Web server
+  - sleep 3 # give Web server some time to bind to sockets, etc
+  - bundle exec rails docker:pull
+  - bundle exec rails docker:run_ci
+  - bundle exec rails docker:build
+  - bundle exec rails assets:precompile
 
 script:
-- bundle exec niftany
-- xvfb-run --server-args="-screen 0 1024x768x24" make test
-- bundle exec rake
-- yarn lint
-- yarn test
+  - bundle exec niftany
+  - xvfb-run --server-args="-screen 0 1024x768x24" make test
+  - bundle exec rake
+  - yarn lint
+  - yarn test
 
