@@ -10,8 +10,8 @@
 
 
 import bookCovers from "../book_covers";
-
-require.context('../psulib_blacklight/images/', true)
+import askALibrarian from "../ask_a_librarian";
+require.context('../psulib_blacklight/images/', true);
 
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
@@ -23,10 +23,9 @@ document.addEventListener("DOMContentLoaded", function() {
 import 'psulib_blacklight'
 import 'psulib_blacklight_range_limit'
 import 'blacklight_overrides'
-import {executeAskALibrarian} from 'ask_a_librarian';
 
 document.addEventListener("turbolinks:load", function() {
-    executeAskALibrarian();
+    askALibrarian.start();
     bookCovers.start();
     Blacklight.doBookmarkToggleBehavior();
 });

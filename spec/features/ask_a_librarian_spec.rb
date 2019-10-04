@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.feature 'AskALibrarians', type: :feature do
-  describe 'side widget slides in as expected', js: true do
+RSpec.feature 'Ask a librarian', type: :feature do
+  describe 'side tab widget', js: true do
     it 'shows up on the homepage' do
       visit root_path
       expect(page).to have_css('button.libchat_online')
     end
 
-    it 'shows up on a catalog item page only once when clicking back button in browser' do
+    it 'shows up on a catalog item page only once' do
       visit '/catalog/22090269'
       expect(page).to have_css('button.libchat_online', count: 1)
       click_link 'View MARC record'

@@ -24,5 +24,15 @@ Metrics/LineLength:
   # The catalog controller is just one giant block for config.
   - 'app/controllers/catalog_controller.rb'
 
+RSpec/MultipleExpectations:
+  Exclude:
+  # Feature specs are special.
+  - 'spec/features/**/*'
+
+RSpec/ExampleLength:
+  Exclude:
+  # Feature specs are special.
+  - 'spec/features/**/*'
+  
 Capybara/FeatureMethods:
   Enabled: false
