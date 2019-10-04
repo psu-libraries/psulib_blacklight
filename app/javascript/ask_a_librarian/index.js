@@ -5,6 +5,7 @@ const askALibrarian = {
             this.executeAskALibrarian();
         }
     },
+    /*eslint-disable */
     executeAskALibrarian() {
         // This function is taken from the SpringShare website. It is the contents of the Ask a
         // Librarian "widget" that lives on their server. This function may require periodic updates
@@ -156,6 +157,7 @@ const askALibrarian = {
             buttonWidget.config = options, buttonWidget.cascadeServer = cascadeServer, buttonWidget.referer = referer, buttonWidget.refererTitle = refererTitle, "complete" === document.readyState || "interactive" === document.readyState ? buttonWidget.start() : (document.addEventListener("DOMContentLoaded", buttonWidget.start.bind(buttonWidget), !1), window.addEventListener("load", buttonWidget.start.bind(buttonWidget), !1));
         })();
     }
+    /*eslint-enable */
 }
 
 export default askALibrarian;
