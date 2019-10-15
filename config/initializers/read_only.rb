@@ -1,1 +1,3 @@
-READONLY = YAML.load_file("#{Rails.root.to_s}/config/read_only.yml")
+# frozen_string_literal: true
+
+READONLY = YAML.load_file(Rails.root.join('config', 'read_only.yml'))
