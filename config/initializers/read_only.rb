@@ -1,0 +1,1 @@
+READONLY = YAML.load_file("#{Rails.root.to_s}/config/read_only.yml")

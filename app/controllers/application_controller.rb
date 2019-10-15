@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  before_action do |_controller|
+    flash[:error] = READONLY['message'].html_safe if READONLY['read_only']
+  end
+
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
   layout 'blacklight'
