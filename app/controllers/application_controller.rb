@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   before_action do |_controller|
-    flash[:error] = READONLY['message'].html_safe if READONLY['read_only']
+    flash[:error] = view_context.sanitize(READONLY['message']) if READONLY['read_only']
   end
 
   # Adds a few additional behaviors into the application controller
