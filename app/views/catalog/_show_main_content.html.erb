@@ -17,7 +17,7 @@
 
   </div>
 
-  <%= render partial: 'show_availability', locals: { document: @document } if @document && !READONLY['read_only'] %>
+  <%= render partial: 'show_availability', locals: { document: @document } if @document && !readonly? %>
 
   <div class="row document-metadata metadata-secondary">
     <div class="col">
