@@ -36,6 +36,9 @@ yarn-debug.log*
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore read only settings
+/config/readonly.yml
+
 # Ignore spec/examples.txt file
 spec/examples.txt
 
