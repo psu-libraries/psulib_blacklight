@@ -366,16 +366,23 @@ class CatalogController < ApplicationController
   before_action :readonly_message
 
   def readonly?
-    readonly_path = Rails.root.join('config', 'read_only.yml')
-    if File.file?(readonly_path)
-      @readonly_settings = YAML.load_file(readonly_path)
-      @readonly_settings['read_only']
+    if readonly_file?
+      @readonly_settings = readonly_status
+      @readonly_settings[:readonly] || false
     else
       false
     end
   end
 
   private
+
+    def readonly_status
+      HashWithIndifferentAccess.new(YAML.load_file(Rails.root.join('config', 'readonly.yml')))
+    end
+
+    def readonly_file?
+      File.file?(Rails.root.join('config', 'readonly.yml'))
+    end
 
     def readonly_message
       flash.now[:error] = ActionController::Base.helpers.sanitize(@readonly_settings['message']) if readonly?

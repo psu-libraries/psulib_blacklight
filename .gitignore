@@ -37,7 +37,7 @@ yarn-debug.log*
 /config/master.key
 
 # Ignore read only settings
-/config/read_only.yml
+/config/readonly.yml
 
 # Ignore spec/examples.txt file
 spec/examples.txt

@@ -34,4 +34,29 @@ RSpec.describe CatalogController, type: :controller do
       expect(get: '/catalog/:id/marc_view').to route_to(controller: 'catalog', action: 'librarian_view', id: ':id')
     end
   end
+
+  describe 'readonly?' do
+    it 'returns true when readonly is set to true in read_only.yml' do
+      allow_any_instance_of(CatalogController).to receive(:readonly_file?).and_return(true)
+      allow_any_instance_of(CatalogController).to receive(:readonly_status).and_return({readonly: true})
+      expect(controller.readonly?).to be true
+    end
+
+    it 'readonly is set to false with read_only.yml' do
+      allow_any_instance_of(CatalogController).to receive(:readonly_file?).and_return(true)
+      allow_any_instance_of(CatalogController).to receive(:readonly_status).and_return({readonly: false})
+      expect(controller.readonly?).to be false
+    end
+
+    it 'readonly is set to false by default if read_only.yml does not exists' do
+      allow_any_instance_of(CatalogController).to receive(:readonly_file?).and_return(false)
+      expect(controller.readonly?).to be false
+    end
+
+    it 'readonly is set to false if read_only.yml exists but read_only key is missing' do
+      allow_any_instance_of(CatalogController).to receive(:readonly_file?).and_return(true)
+      allow_any_instance_of(CatalogController).to receive(:readonly_status).and_return({})
+      expect(controller.readonly?).to be false
+    end
+  end
 end
