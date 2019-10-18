@@ -366,12 +366,7 @@ class CatalogController < ApplicationController
   before_action :readonly_message
 
   def readonly?
-    if readonly_file?
-      @readonly_settings = readonly_status
-      @readonly_settings[:readonly] || false
-    else
-      false
-    end
+    (readonly_file? && readonly_status[:readonly]) || false
   end
 
   private
@@ -385,6 +380,6 @@ class CatalogController < ApplicationController
     end
 
     def readonly_message
-      flash.now[:error] = ActionController::Base.helpers.sanitize(@readonly_settings['message']) if readonly?
+      flash.now[:error] = ActionController::Base.helpers.sanitize(readonly_status[:message]) if readonly?
     end
 end
