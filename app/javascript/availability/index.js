@@ -257,6 +257,12 @@ const availability = {
                     $(this).parent('.blacklight-availability').remove();
                 }
             }
+            else {
+                // Results view
+                // When catkey not in the response, even the spinner
+                // should not be displayed so remove the parent
+                $(this).parent('.blacklight-availability').remove();
+            }
         });
 
         // Check for ILL and Aeon options and update links
