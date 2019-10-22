@@ -538,8 +538,9 @@ const availability = {
                         data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : ""
                     );
                     const subLocation = encodeURIComponent(data.sublocation_ssm ? data.sublocation_ssm.join("; ") : "");
-                    aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=${publisher}` +
-                        `&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}&SubLocation=${subLocation}`;
+                    aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=` +
+                        `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}` +
+                        `&SubLocation=${subLocation}`;
 
                 }
             }).done(function () {
