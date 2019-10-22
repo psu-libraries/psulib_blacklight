@@ -12,14 +12,13 @@ gem 'coveralls', require: false
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
 gem 'high_voltage', '~> 3.1'
-gem 'jbuilder', '~> 2.5'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.2.2'
 gem 'rsolr', '>= 1.0'
 gem 'webpacker', '~> 4.0'
 
-gem 'blacklight', '7.1.0', github: 'projectblacklight/blacklight'
-gem 'blacklight-marc', '>= 7.0.0.rc1', github: 'projectblacklight/blacklight-marc'
+gem 'blacklight', '~> 7.0'
+gem 'blacklight-marc', '>= 7.0.0.rc1'
 gem 'blacklight_advanced_search', github: 'projectblacklight/blacklight_advanced_search', ref: '9c23f0e9aad6a789ec91233'
 gem 'blacklight_range_limit', '~> 7.1'
 

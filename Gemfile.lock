@@ -1,27 +1,4 @@
 GIT
-  remote: https://github.com/projectblacklight/blacklight-marc.git
-  revision: c0ff1d9cb5d3c12449310deeb25bd657072c9681
-  specs:
-    blacklight-marc (7.0.0.rc1)
-      blacklight (~> 7.0)
-      library_stdnums
-      marc (>= 0.4.3, < 1.1)
-      marc-fastxmlwriter
-      rails
-      traject (~> 3.0)
-
-GIT
-  remote: https://github.com/projectblacklight/blacklight.git
-  revision: 271477779c39ccc90e52832667f9afae3335ef2d
-  specs:
-    blacklight (7.1.0)
-      deprecation
-      globalid
-      jbuilder (~> 2.7)
-      kaminari (>= 0.15)
-      rails (~> 5.1)
-
-GIT
   remote: https://github.com/projectblacklight/blacklight_advanced_search.git
   revision: 9c23f0e9aad6a789ec912336766289927ea0729b
   ref: 9c23f0e9aad6a789ec91233
@@ -93,6 +70,19 @@ GEM
       smart_properties
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
+    blacklight (7.2.0)
+      deprecation
+      globalid
+      jbuilder (~> 2.7)
+      kaminari (>= 0.15)
+      rails (~> 5.1)
+    blacklight-marc (7.0.0.rc1)
+      blacklight (> 7.0.0.a, < 8.a)
+      library_stdnums
+      marc (>= 0.4.3, < 1.1)
+      marc-fastxmlwriter
+      rails
+      traject (~> 3.0)
     blacklight_range_limit (7.1.0)
       blacklight (>= 7.0)
       rails (>= 3.0)
@@ -347,7 +337,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tins (1.21.1)
-    traject (3.1.0)
+    traject (3.2.0)
       concurrent-ruby (>= 0.8.0)
       dot-properties (>= 0.1.1)
       hashie (~> 3.1)
@@ -391,8 +381,8 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  blacklight (= 7.1.0)!
-  blacklight-marc (>= 7.0.0.rc1)!
+  blacklight (~> 7.0)
+  blacklight-marc (>= 7.0.0.rc1)
   blacklight_advanced_search!
   blacklight_range_limit (~> 7.1)
   bootsnap
@@ -403,7 +393,6 @@ DEPENDENCIES
   devise-guests (~> 0.6)
   foreman (~> 0.63.0)
   high_voltage (~> 3.1)
-  jbuilder (~> 2.5)
   launchy
   listen (>= 3.0.5, < 3.2)
   mysql2 (>= 0.4.4, < 0.6.0)

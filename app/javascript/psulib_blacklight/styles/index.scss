@@ -16,6 +16,7 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 // Blacklight upstream
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/mixins';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/blacklight_defaults';
+@import '~blacklight-frontend/app/assets/stylesheets/blacklight/bootstrap_overrides'; // Blacklight bootstrap overrides
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/layout';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/search_form';
 @import '~blacklight-frontend/app/assets/stylesheets/blacklight/search_results';
@@ -36,7 +37,6 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import 'constraints';
 @import 'announcement';
 @import 'metadata';
-@import 'bootstrap_overrides';
 
 // Local
 @import 'mobile';
