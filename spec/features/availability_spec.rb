@@ -129,8 +129,7 @@ RSpec.feature 'Availability', type: :feature do
       visit '/catalog/1793712'
       within 'div[class*="hold-button"]' do
         expect(page).to have_link(
-          'I Want It',
-                            href: 'http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=1793712'
+          'I Want It', href: 'http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=1793712'
         )
       end
     end
