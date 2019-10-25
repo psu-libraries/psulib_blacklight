@@ -9,36 +9,35 @@ RSpec.feature 'Availability', type: :feature do
       expect(page).to have_selector 'button[data-target="#availability-5112336"]'
     end
 
-    it 'that has holdings but no availability snippet' do
+    it 'that has holdings but none are available' do
       visit '/?utf8=✓&search_field=all_fields&q=Eva+Oper+in+drei+Akten'
-      expect(page).not_to have_selector '.availability-snippet'
+      expect(page).not_to have_selector '.availability-snippet'  # Shouldn't show the location teaser text next to the show availability button
     end
 
-    it 'that has holdings and an availability snippet for multiple locations' do
+    it 'that has holdings available in 3 or more locations' do
       visit '/?utf8=✓&search_field=all_fields&q=0802132138'
       expect(page).to have_selector '.availability-snippet',
                                     exact_text: 'Multiple Locations'
     end
 
-    it 'that has holdings and an availability snippet with 2 locations' do
+    it 'that has holdings available in exactly 2 locations' do
       visit '/?utf8=✓&search_field=all_fields&q=0060125896'
       expect(page).to have_selector '.availability-snippet',
                                     exact_text: 'Altoona, Pattee Library and Paterno Library Stacks'
     end
 
-    it 'that has holdings and an availability snippet with one location' do
+    it 'that has holdings available in only 1 location' do
       visit '/?utf8=✓&search_field=all_fields&q=9780147513861'
       expect(page).to have_selector '.availability-snippet',
                                     exact_text: 'Pattee Library and Paterno Library Stacks'
     end
 
-    it 'uses \'View Availability\' button to display and hide holdings' do
+    it 'and clicks the \'View Availability\' button to display and hide holdings' do
       visit '/?utf8=✓&search_field=all_fields&q=9781599901091'
       expect(page).to have_selector 'button[data-target="#availability-5112336"]'
       expect(page).not_to have_selector '.availability-5112336'
       click_button('View Availability')
-      sleep 1 # let collapse animation finish and wait for it to re-collapse
-      expect(page).not_to have_selector '.availability-5112336'
+      expect(page).not_to have_selector '.availability-5112336', wait: 3
       expect(page).to have_content 'PZ8.G3295Su 2008'
       expect(page).to have_content 'Fiction G4672sun 2008'
     end
