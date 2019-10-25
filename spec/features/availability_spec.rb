@@ -10,7 +10,7 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     it 'that has holdings but no availability snippet' do
-      visit '/?utf8=✓&search_field=all_fields&q=9781599901091'
+      visit '/?utf8=✓&search_field=all_fields&q=Eva+Oper+in+drei+Akten'
       expect(page).not_to have_selector '.availability-snippet'
     end
 
