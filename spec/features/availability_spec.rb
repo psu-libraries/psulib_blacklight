@@ -11,7 +11,8 @@ RSpec.feature 'Availability', type: :feature do
 
     it 'that has holdings but none are available' do
       visit '/?utf8=✓&search_field=all_fields&q=Eva+Oper+in+drei+Akten'
-      expect(page).not_to have_selector '.availability-snippet'  # Shouldn't show the location teaser text next to the show availability button
+      # Shouldn't show the location teaser text next to the show availability button
+      expect(page).not_to have_selector '.availability-snippet'
     end
 
     it 'that has holdings available in 3 or more locations' do
