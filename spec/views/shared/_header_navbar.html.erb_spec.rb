@@ -11,7 +11,7 @@ RSpec.describe 'shared/_header_navbar', type: :view do
     assign(:search_bar, Blacklight::SearchBarPresenter.new(controller, blacklight_config))
   end
 
-  it 'display search bar except on Advanced Search' do
+  it 'displays search bar except on Advanced Search' do
     render 'shared/header_navbar'
     expect(rendered).to have_selector '.navbar-search'
   end
