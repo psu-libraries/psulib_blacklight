@@ -17,7 +17,7 @@ RSpec.describe 'shared/_header_navbar', type: :view do
   end
 
   it 'does not display search bar on Advanced Search' do
-    assign(:search_fields_for_advanced_search, Blacklight::SearchBarPresenter.new(controller, blacklight_config))
+    assign(:search_fields_for_advanced_search, :search_bar)
     render 'shared/header_navbar'
     expect(rendered).not_to have_selector '.navbar-search'
   end
