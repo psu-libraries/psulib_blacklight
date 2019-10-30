@@ -17,7 +17,7 @@ const availability = {
     sirsiUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
     'clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true' +
     '&includeBoundTogether=true',
-    sirsiItemUrl: 'https://cat.libraries.psu.edu:9443/symwsbc/rest/standard/lookupTitleInfo?' +
+    sirsiItemUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
     'clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true',
 
     executeAvailability() {
