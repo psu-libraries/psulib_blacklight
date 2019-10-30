@@ -80,7 +80,7 @@ RSpec.feature 'Availability', type: :feature do
   end
 
   describe 'Archival Material:' do
-    it 'has \'Request Material\' link so it can be requested through Aeon', js: true do
+    it 'has a \'Request Material\' link so it can be requested through Aeon', js: true do
       visit '/catalog/1836205'
       expect(page).to have_css 'a[data-type="aeon-link"][data-call-number="RBM 2457 box1 AX/SP/10155/11"]'
       expect(page).to have_link(
@@ -90,7 +90,23 @@ RSpec.feature 'Availability', type: :feature do
                                 'Collections%2C%20104%20Paterno&ItemNumber=000076995675&CallNumber='\
                                 'RBM%202457%20box1%20AX%2FSP%2F10155%2F11&ItemTitle=Fiona%20Pitt-Kethley%20'\
                                 'literary%20papers&ItemAuthor=Pitt-Kethley%2C%20Fiona%2C%201954-&ItemEdition'\
-                                '=&ItemPublisher=&ItemPlace=&ItemDate=&ItemInfo1=Unrestricted%20access.'
+                                '=&ItemPublisher=&ItemPlace=&ItemDate=&ItemInfo1=Unrestricted%20access.&SubLocation='
+      )
+    end
+
+    it 'has a \'Request Material\' link with subLocation info', js: true do
+      visit '/catalog/107'
+      expect(page).to have_css 'a[data-type="aeon-link"][data-call-number="AP2.O354 1870/71"]'
+      # The important part below is `&SubLocation=Christmas%3B%20Nathaniel%20Hawthorne` which fills out a hidden input
+      # in the AEON request form.
+      expect(page).to have_link(
+        'Request Material',
+                          href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=107&'\
+                                'Genre=BOOK&Location=Rare%20Books%20%26%20Mss%2C%201st%20Floor%20Paterno%2C%2'\
+                                '0American%20Lit.%20Coll.&ItemNumber=000021534850&CallNumber=AP2.O354%201870%'\
+                                '2F71&ItemTitle=The%20Christmas%20locket&ItemAuthor=&ItemEdition=&ItemPublish'\
+                                'er=Roberts%20brothers&ItemPlace=Boston&ItemDate=1870-&ItemInfo1=&SubLocation'\
+                                '=Christmas%3B%20Nathaniel%20Hawthorne'
       )
     end
   end
@@ -116,9 +132,9 @@ RSpec.feature 'Availability', type: :feature do
                             href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=123730&'\
                                   'Genre=BOOK&Location=Archival%20Thesis&ItemNumber=000052322808&CallNumber=Thesis%'\
                                   '201968mMyers%2CJE&ItemTitle=Ecology%20of%20the%20wild-trapped%20and%20transplant'\
-                                  'ed%20ring-necked%20pheasant%20near%20Centre%20Hall%2C%20Pennsylvania&ItemAuthor='\
-                                  'Myers%2C%20James%20E.&ItemEdition=&ItemPublisher=publisher%20not%20identified&'\
-                                  'ItemPlace=Place%20of%20publication%20not%20identified&ItemDate=1968&ItemInfo1='
+                                  'ed%20ring-necked%20pheasant%20near%20Centre%20Hall%2C%20Pennsylvania&ItemAuthor=My'\
+                                  'ers%2C%20James%20E.&ItemEdition=&ItemPublisher=publisher%20not%20identified&ItemPla'\
+                                  'ce=Place%20of%20publication%20not%20identified&ItemDate=1968&ItemInfo1=&SubLocation='
         )
       end
     end
