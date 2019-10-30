@@ -97,7 +97,8 @@ RSpec.feature 'Availability', type: :feature do
     it 'has a \'Request Material\' link with subLocation info', js: true do
       visit '/catalog/107'
       expect(page).to have_css 'a[data-type="aeon-link"][data-call-number="AP2.O354 1870/71"]'
-      # The important part below is `&SubLocation=Christmas%3B%20Nathaniel%20Hawthorne` which fills out a hidden input in the AEON request form.
+      # The important part below is `&SubLocation=Christmas%3B%20Nathaniel%20Hawthorne` which fills out a hidden input
+      # in the AEON request form.
       expect(page).to have_link(
         'Request Material',
                           href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=107&'\
