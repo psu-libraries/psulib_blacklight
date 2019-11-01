@@ -12,20 +12,16 @@ class ApplicationController < ActionController::Base
   # behavior until we can define all possible param  in the future.
   ActionController::Parameters.permit_all_parameters = true
 
-  helper_method :readonly?, :announcement_message
+  helper_method :readonly?, :readonly_message
 
-  before_action :readonly_message
+  before_action :flash_readonly
 
-  def readonly?
-    (readonly_file? && readonly_status[:readonly]) || false
+  def readonly?(arg)
+    (readonly_file? && readonly_status[arg]) || false
   end
 
-  def announcement_message
-    if readonly_file? && readonly_status.key?(:announcement)
-      ActionController::Base.helpers.sanitize(readonly_status[:announcement])
-    else
-      ActionController::Base.helpers.sanitize(t('blacklight.announcement.html'))
-    end
+  def readonly_message(arg)
+    ActionController::Base.helpers.sanitize(readonly_status[arg])
   end
 
   private
@@ -38,7 +34,7 @@ class ApplicationController < ActionController::Base
       File.file?(Rails.root.join('config', 'readonly.yml'))
     end
 
-    def readonly_message
-      flash.now[:error] = ActionController::Base.helpers.sanitize(readonly_status[:message]) if readonly?
+    def flash_readonly
+      flash.now[:error] = readonly_message(:readonly) if readonly?(:readonly)
     end
 end
