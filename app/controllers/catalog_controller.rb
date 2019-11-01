@@ -370,7 +370,7 @@ class CatalogController < ApplicationController
   end
 
   def announcement_message
-    if readonly_file? && readonly_status.has_key?(:announcement)
+    if readonly_file? && readonly_status.key?(:announcement)
       ActionController::Base.helpers.sanitize(readonly_status[:announcement])
     else
       ActionController::Base.helpers.sanitize(t('blacklight.announcement.html'))
