@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationController, type: :controller do
-  describe 'readonly?' do
-    let(:application_controller) { described_class.new }
+  let(:application_controller) { described_class.new }
 
+  describe 'readonly?' do
     it 'returns true when readonly is set to true in read_only.yml' do
       allow(application_controller).to receive(:readonly_file?).and_return(true)
       allow(application_controller).to receive(:readonly_status).and_return(readonly: true)
@@ -27,6 +27,24 @@ RSpec.describe ApplicationController, type: :controller do
       allow(application_controller).to receive(:readonly_file?).and_return(true)
       allow(application_controller).to receive(:readonly_status).and_return({})
       expect(application_controller.readonly?).to be false
+    end
+  end
+
+  describe 'announcement_message' do
+    it 'returns the announcement message when it is set in read_only.yml' do
+      allow(application_controller).to receive(:readonly_file?).and_return(true)
+      allow(application_controller).to receive(:readonly_status).and_return(announcement: 'Test message')
+      expect(application_controller.announcement_message).to eq 'Test message'
+    end
+
+    it 'returns the default announcement message when it is not set in read_only.yml' do
+      allow(application_controller).to receive(:readonly_file?).and_return(false)
+      expect(application_controller.announcement_message).to eq I18n.t('blacklight.announcement.html')
+    end
+
+    it 'returns the default announcement message if read_only.yml does not exists' do
+      allow(application_controller).to receive(:readonly_file?).and_return(false)
+      expect(application_controller.announcement_message).to eq I18n.t('blacklight.announcement.html')
     end
   end
 end
