@@ -6,8 +6,6 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
 
-  helper_method :readonly?, :announcement_message
-
   # Only get search results from the solr index
   def index
     return nil if current_search_session.blank?
@@ -362,32 +360,4 @@ class CatalogController < ApplicationController
       redirect_to '/404'
     end
   end
-
-  before_action :readonly_message
-
-  def readonly?
-    (readonly_file? && readonly_status[:readonly]) || false
-  end
-
-  def announcement_message
-    if readonly_file? && readonly_status.key?(:announcement)
-      ActionController::Base.helpers.sanitize(readonly_status[:announcement])
-    else
-      ActionController::Base.helpers.sanitize(t('blacklight.announcement.html'))
-    end
-  end
-
-  private
-
-    def readonly_status
-      HashWithIndifferentAccess.new(YAML.load_file(Rails.root.join('config', 'readonly.yml')))
-    end
-
-    def readonly_file?
-      File.file?(Rails.root.join('config', 'readonly.yml'))
-    end
-
-    def readonly_message
-      flash.now[:error] = ActionController::Base.helpers.sanitize(readonly_status[:message]) if readonly?
-    end
 end
