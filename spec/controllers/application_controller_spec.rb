@@ -37,12 +37,13 @@ RSpec.describe ApplicationController, type: :controller do
       expect(application_controller.announcement_message).to eq 'Test message'
     end
 
-    it 'returns the default announcement message when it is not set in read_only.yml' do
-      allow(application_controller).to receive(:readonly_file?).and_return(false)
+    it 'returns the default announcement if it is not set in read_only.yml' do
+      allow(application_controller).to receive(:readonly_file?).and_return(true)
+      allow(application_controller).to receive(:readonly_status).and_return({})
       expect(application_controller.announcement_message).to eq I18n.t('blacklight.announcement.html')
     end
 
-    it 'returns the default announcement message if read_only.yml does not exists' do
+    it 'returns the default announcement if read_only.yml does not exists' do
       allow(application_controller).to receive(:readonly_file?).and_return(false)
       expect(application_controller.announcement_message).to eq I18n.t('blacklight.announcement.html')
     end
