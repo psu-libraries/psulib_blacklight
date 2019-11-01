@@ -6,7 +6,7 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
 
-  helper_method :readonly?
+  helper_method :readonly?, :announcement_message
 
   # Only get search results from the solr index
   def index
@@ -367,6 +367,14 @@ class CatalogController < ApplicationController
 
   def readonly?
     (readonly_file? && readonly_status[:readonly]) || false
+  end
+
+  def announcement_message
+    if readonly_file? && readonly_status.has_key?(:announcement)
+      ActionController::Base.helpers.sanitize(readonly_status[:announcement])
+    else
+      ActionController::Base.helpers.sanitize(t('blacklight.announcement.html'))
+    end
   end
 
   private
