@@ -3,13 +3,10 @@
 class SitemapController < ApplicationController
   def index
     @access_list = access_list
-    # require 'pry'
-    # binding.pry
-
   end
 
   def show
-    @solr_response = Blacklight.default_index.connection.select({params: {q: "{!prefix f=hashed_id_ssi v=1}}",fl: 'id,last_updated'} })
+    @solr_response = Blacklight.default_index.connection.select({params: {q: "{!prefix f=hashed_id_si v=#{access_params}}}",fl: 'id,last_updated'} })
   end
 
   private
