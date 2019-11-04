@@ -6,7 +6,7 @@ class SitemapController < ApplicationController
   end
 
   def show
-    @solr_response = Blacklight.default_index.connection.select({params: {q: "{!prefix f=hashed_id_si v=#{access_params}}}",fl: 'id,last_updated'} })
+    @solr_response = Blacklight.default_index.connection.select({params: {q: "{!prefix f=hashed_id_ssi v=#{access_params}}}",fl: 'id,last_updated'} })
   end
 
   private
