@@ -36,7 +36,7 @@
 
 <body class="d-flex flex-column h-100">
 
-<%= render partial: 'shared/announcement' if blackcat_message?(:announcement) %>
+<%= render partial: 'shared/announcement' if blackcat_message?(:announcement) || Psulcat::Application.config.show_announcement %>
 <%= render partial: 'shared/header_navbar' %>
 
 <div id="main-container" class="main-blacklight-container <%= container_classes %>">

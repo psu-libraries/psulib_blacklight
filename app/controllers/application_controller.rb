@@ -21,7 +21,13 @@ class ApplicationController < ActionController::Base
   end
 
   def blackcat_message(arg)
-    ActionController::Base.helpers.sanitize(message_status[arg])
+    # Falls back to blacklight.en.yml for announcement if not defined
+    if arg == :announcement && !blackcat_message?(arg)
+      message = t('blacklight.announcement.html')
+    else
+      message = message_status[arg]
+    end
+    ActionController::Base.helpers.sanitize(message)
   end
 
   private
