@@ -12,29 +12,29 @@ class ApplicationController < ActionController::Base
   # behavior until we can define all possible param  in the future.
   ActionController::Parameters.permit_all_parameters = true
 
-  helper_method :readonly?, :readonly_message
+  helper_method :blackcat_message?, :blackcat_message
 
   before_action :flash_readonly
 
-  def readonly?(arg)
-    (readonly_file? && readonly_status[arg]) || false
+  def blackcat_message?(arg)
+    (message_file? && message_status[arg]) || false
   end
 
-  def readonly_message(arg)
-    ActionController::Base.helpers.sanitize(readonly_status[arg])
+  def blackcat_message(arg)
+    ActionController::Base.helpers.sanitize(message_status[arg])
   end
 
   private
 
-    def readonly_status
-      HashWithIndifferentAccess.new(YAML.load_file(Rails.root.join('config', 'readonly.yml')))
+    def message_status
+      HashWithIndifferentAccess.new(YAML.load_file(Rails.root.join('config', 'blackcat_messages.yml')))
     end
 
-    def readonly_file?
-      File.file?(Rails.root.join('config', 'readonly.yml'))
+    def message_file?
+      File.file?(Rails.root.join('config', 'blackcat_messages.yml'))
     end
 
     def flash_readonly
-      flash.now[:error] = readonly_message(:readonly) if readonly?(:readonly)
+      flash.now[:error] = blackcat_message(:readonly) if blackcat_message?(:readonly)
     end
 end

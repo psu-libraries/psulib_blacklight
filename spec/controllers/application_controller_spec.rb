@@ -7,34 +7,34 @@ RSpec.describe ApplicationController, type: :controller do
 
   describe 'readonly?' do
     it 'returns true when readonly is set to true in read_only.yml' do
-      allow(application_controller).to receive(:readonly_file?).and_return(true)
-      allow(application_controller).to receive(:readonly_status).and_return(readonly: true)
-      expect(application_controller.readonly?(:readonly)).to be true
+      allow(application_controller).to receive(:message_file?).and_return(true)
+      allow(application_controller).to receive(:message_status).and_return(readonly: true)
+      expect(application_controller.blackcat_message?(:readonly)).to be true
     end
 
     it 'readonly is set to false with read_only.yml' do
-      allow(application_controller).to receive(:readonly_file?).and_return(true)
-      allow(application_controller).to receive(:readonly_status).and_return(readonly: false)
-      expect(application_controller.readonly?(:readonly)).to be false
+      allow(application_controller).to receive(:message_file?).and_return(true)
+      allow(application_controller).to receive(:message_status).and_return(readonly: false)
+      expect(application_controller.blackcat_message?(:readonly)).to be false
     end
 
     it 'readonly is set to false by default if read_only.yml does not exists' do
-      allow(application_controller).to receive(:readonly_file?).and_return(false)
-      expect(application_controller.readonly?(:readonly)).to be false
+      allow(application_controller).to receive(:message_file?).and_return(false)
+      expect(application_controller.blackcat_message?(:readonly)).to be false
     end
 
     it 'readonly is set to false if read_only.yml exists but read_only key is missing' do
-      allow(application_controller).to receive(:readonly_file?).and_return(true)
-      allow(application_controller).to receive(:readonly_status).and_return({})
-      expect(application_controller.readonly?(:readonly)).to be false
+      allow(application_controller).to receive(:message_file?).and_return(true)
+      allow(application_controller).to receive(:message_status).and_return({})
+      expect(application_controller.blackcat_message?(:readonly)).to be false
     end
   end
 
   describe 'announcement_message' do
     it 'returns the announcement message when it is set in read_only.yml' do
-      allow(application_controller).to receive(:readonly_file?).and_return(true)
-      allow(application_controller).to receive(:readonly_status).and_return(announcement: 'Test message')
-      expect(application_controller.readonly_message(:announcement)).to eq 'Test message'
+      allow(application_controller).to receive(:message_file?).and_return(true)
+      allow(application_controller).to receive(:message_status).and_return(announcement: 'Test message')
+      expect(application_controller.blackcat_message(:announcement)).to eq 'Test message'
     end
   end
 end
