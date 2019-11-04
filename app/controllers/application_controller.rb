@@ -12,33 +12,29 @@ class ApplicationController < ActionController::Base
   # behavior until we can define all possible param  in the future.
   ActionController::Parameters.permit_all_parameters = true
 
-  helper_method :readonly?, :announcement_message
+  helper_method :blackcat_message?, :blackcat_message
 
-  before_action :readonly_message
+  before_action :flash_readonly
 
-  def readonly?
-    (readonly_file? && readonly_status[:readonly]) || false
+  def blackcat_message?(arg)
+    (message_file? && message_status[arg]) || false
   end
 
-  def announcement_message
-    if readonly_file? && readonly_status.key?(:announcement)
-      ActionController::Base.helpers.sanitize(readonly_status[:announcement])
-    else
-      ActionController::Base.helpers.sanitize(t('blacklight.announcement.html'))
-    end
+  def blackcat_message(arg)
+    ActionController::Base.helpers.sanitize(message_status[arg])
   end
 
   private
 
-    def readonly_status
-      HashWithIndifferentAccess.new(YAML.load_file(Rails.root.join('config', 'readonly.yml')))
+    def message_status
+      HashWithIndifferentAccess.new(YAML.load_file(Rails.root.join('config', 'blackcat_messages.yml')))
     end
 
-    def readonly_file?
-      File.file?(Rails.root.join('config', 'readonly.yml'))
+    def message_file?
+      File.file?(Rails.root.join('config', 'blackcat_messages.yml'))
     end
 
-    def readonly_message
-      flash.now[:error] = ActionController::Base.helpers.sanitize(readonly_status[:message]) if readonly?
+    def flash_readonly
+      flash.now[:error] = blackcat_message(:readonly) if blackcat_message?(:readonly)
     end
 end
