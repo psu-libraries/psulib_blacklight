@@ -17,17 +17,19 @@ class ApplicationController < ActionController::Base
   before_action :flash_readonly
 
   def blackcat_message?(arg)
-    (message_file? && message_status[arg]) || false
+    (message_file? && message_status[arg]) || I18n.exists?("blacklight.#{arg}", :en)
   end
 
   def blackcat_message(arg)
-    # Falls back to blacklight.en.yml for announcement if not defined
-    message = if arg == :announcement && !blackcat_message?(arg)
-                t('blacklight.announcement.html')
-              else
-                message_status[arg]
-              end
-    ActionController::Base.helpers.sanitize(message)
+    message = ""
+
+    if message_file? && message_status[arg]
+      message = message_status[arg]
+    else
+      message = t("blacklight.#{arg}.html")
+    end
+
+    ActionController::Base.helpers.sanitize message
   end
 
   private
