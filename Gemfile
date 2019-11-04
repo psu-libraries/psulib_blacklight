@@ -8,13 +8,16 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootsnap', require: false
+gem 'builder'
 gem 'coveralls', require: false
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
 gem 'high_voltage', '~> 3.1'
+# gem 'nokogiri'
 gem 'puma', '~> 3.7'
 gem 'rails', '~> 5.2.2'
 gem 'rsolr', '>= 1.0'
+gem 'sitemap_generator'
 gem 'webpacker', '~> 4.0'
 
 gem 'blacklight', '~> 7.0'
