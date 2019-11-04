@@ -21,13 +21,11 @@ class ApplicationController < ActionController::Base
   end
 
   def blackcat_message(arg)
-    message = ""
-
-    if message_file? && message_status[arg]
-      message = message_status[arg]
-    else
-      message = t("blacklight.#{arg}.html")
-    end
+    message = if message_file? && message_status[arg]
+                message_status[arg]
+              else
+                t("blacklight.#{arg}.html")
+              end
 
     ActionController::Base.helpers.sanitize message
   end
