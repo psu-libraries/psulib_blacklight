@@ -22,7 +22,7 @@ class SitemapController < ApplicationController
   end
 
   def access_list
-    average_chunk = [10000, max_documents].min # Sufficiently less than 50,000 max per sitemap
+    average_chunk = [10, max_documents].min # Sufficiently less than 50,000 max per sitemap
     access = (Math.log(max_documents / average_chunk) / Math.log(16)).ceil
     (0...(16**access))
         .to_a
