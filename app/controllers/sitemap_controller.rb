@@ -11,6 +11,7 @@ class SitemapController < ApplicationController
             params:
                 {
                     q: "{!prefix f=hashed_id_ssi v=#{access_params}}}",
+                    defType: "lucene",
                     fl: 'id,timestamp'}
         })
   end
