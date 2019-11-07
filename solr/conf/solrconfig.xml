@@ -221,8 +221,7 @@
          full_links_struct,
          isbn_valid_ssm,
          oclc_number_ssim,
-         lccn_ssim,
-         hashed_id_ssi
+         lccn_ssim
        </str>
 
        <!-- list fields to be displayed as facets -->
