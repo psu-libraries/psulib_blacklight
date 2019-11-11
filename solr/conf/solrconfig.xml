@@ -64,7 +64,7 @@
   <updateRequestProcessorChain name="dedupe">
     <processor class="solr.processor.SignatureUpdateProcessorFactory">
       <bool name="enabled">true</bool>
-      <str name="signatureField">hashed_id_ssi</str>
+      <str name="signatureField">hashed_id_si</str>
       <bool name="overwriteDupes">false</bool>
       <str name="fields">id</str>
       <str name="signatureClass">solr.processor.Lookup3Signature</str>
