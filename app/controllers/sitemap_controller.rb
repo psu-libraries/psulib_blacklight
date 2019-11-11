@@ -20,7 +20,7 @@ class SitemapController < ApplicationController
   private
 
     def access_params
-      params.require(:id)
+      params.require(:id) # :id collides with Solr id but they are different. This is the Sitemap ID.
     end
 
     def max_documents
