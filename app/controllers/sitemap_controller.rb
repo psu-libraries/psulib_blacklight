@@ -11,7 +11,8 @@ class SitemapController < ApplicationController
             {
               q: "{!prefix f=hashed_id_si v=#{access_params}}}",
               defType: 'lucene',
-              fl: 'id,timestamp'
+              fl: 'id,timestamp',
+              rows: 3_000_000 # a sufficiently large number to prevent Solr from ever attempting paging
             }
     )
   end
@@ -29,7 +30,7 @@ class SitemapController < ApplicationController
     end
 
     def access_list
-      average_chunk = [40000, max_documents].min # Sufficiently less than 50,000 max per sitemap
+      average_chunk = [10000, max_documents].min # Sufficiently less than 50,000 max per sitemap
       access = (Math.log(max_documents / average_chunk) / Math.log(16)).ceil
       (0...(16**access))
         .to_a
