@@ -30,8 +30,10 @@ class SitemapController < ApplicationController
       end
     end
 
+    # Important note: 4,000 is a good average_chunk because it's large enough to fit into the 4096 leaves option (3
+    # character placeholders) scheme, and can be rendered by Rails performantly. Larger numbers can tax Rails.
     def access_list
-      average_chunk = [10000, max_documents].min # Sufficiently less than 50,000 max per sitemap
+      average_chunk = [4000, max_documents].min # Sufficiently less than 50,000 max per sitemap
       access = (Math.log(max_documents / average_chunk) / Math.log(16)).ceil
       (0...(16**access))
         .to_a
