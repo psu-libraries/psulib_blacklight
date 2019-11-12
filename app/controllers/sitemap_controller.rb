@@ -12,6 +12,7 @@ class SitemapController < ApplicationController
               q: "{!prefix f=hashed_id_si v=#{access_params}}}",
               defType: 'lucene',
               fl: 'id,timestamp',
+              facet: false,
               rows: 3_000_000 # a sufficiently large number to prevent Solr from ever attempting paging
             }
     )
