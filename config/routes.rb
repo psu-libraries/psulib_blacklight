@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     concerns :range_searchable
   end
 
+  resources :sitemap, defaults: { format: :xml }, only: [:index, :show]
+
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns [:exportable, :marc_viewable]
   end

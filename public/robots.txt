@@ -1,2 +1,3 @@
 User-agent: *
 Crawl-delay: 10
+Sitemap: http://catalog.libraries.psu.edu/sitemap.xml
