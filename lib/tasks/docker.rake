@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
-require 'http'
-
 BLACKLIGHT_CORE = 'psul_blacklight'
-SOLR_URL = 'http://127.0.0.1:8983/solr'
 
 namespace :docker do
   task :up do
@@ -20,8 +17,9 @@ namespace :docker do
     Rake::Task['docker:ps'].invoke
   end
 
-  task :reload do
-    HTTP.get "#{SOLR_URL}/admin/collections?action=RELOAD&name=#{BLACKLIGHT_CORE}"
+  task reload: [:start, :up_zk_config] do
+    Rake::Task['docker:down'].invoke
+    Rake::Task['docker:up']
   end
 
   task :clean do
@@ -34,7 +32,7 @@ namespace :docker do
     print `docker exec -it --user=solr felix bin/solr zk upconfig -n #{BLACKLIGHT_CORE} -d /myconfig -z localhost:9983`
   end
 
-  task create_collection: [:reload] do
+  task :create_collection do
     print `docker exec -it --user=solr felix bin/solr create -c #{BLACKLIGHT_CORE} -d /myconfig`
   end
 
