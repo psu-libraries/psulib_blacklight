@@ -16,7 +16,8 @@
     "sass-loader": "^7.1.0",
     "turbolinks": "^5.2.0",
     "typeface-open-sans": "^0.0.54",
-    "typeface-roboto-slab": "^0.0.72"
+    "typeface-roboto-slab": "^0.0.72",
+    "webpack": "^4.29"
   },
   "devDependencies": {
     "eslint": "^6.3.0",
@@ -26,7 +27,6 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
     "jest": "^24.9.0",
-    "webpack": "^4.29",
     "webpack-dev-server": "^3.1"
   },
   "scripts": {
