@@ -1,8 +1,9 @@
 User-agent: *
-Crawl-delay: 10
-Sitemap: http://catalog.libraries.psu.edu/sitemap.xml
+Sitemap: https://catalog.libraries.psu.edu/sitemap.xml
 Disallow: /*q=*
 Disallow: /?f*
+Disallow: /catalog?utf8=✓*
 Disallow: /catalog.atom
 Disallow: /catalog.rss
 Disallow: /catalog/*/email
+Disallow: /catalog/*/marc_view
