@@ -65,13 +65,13 @@ RSpec.feature 'Availability', type: :feature do
   describe 'User opens a record with many holdings in a library' do
     it 'toggles 4 or more holdings with View More/View Less button', js: true do
       visit '/catalog/1793712'
-      within 'div[data-library="UP-MICRO"]' do
+      within 'div[data-library="UP-PAT"]' do
         expect(page).to have_selector 'button', text: /View More/
         expect(page).not_to have_selector 'button', text: /View Less/
         expect(page).to have_xpath './/tbody/tr', count: 4
         click_button('View More')
         sleep 1 # let collapse animation finish and wait for it to re-collapse
-        expect(page).to have_xpath './/tbody/tr', count: 28
+        expect(page).to have_xpath './/tbody/tr', count: 75
         expect(page).to have_selector 'button', text: /View Less/
         click_button('View Less')
         expect(page).to have_xpath './/tbody/tr', count: 4
@@ -82,6 +82,7 @@ RSpec.feature 'Availability', type: :feature do
   describe 'Archival Material:' do
     it 'has a \'Request Material\' link so it can be requested through Aeon', js: true do
       visit '/catalog/1836205'
+      click_button('View More')
       expect(page).to have_css 'a[data-type="aeon-link"][data-call-number="RBM 2457 box1 AX/SP/10155/11"]'
       expect(page).to have_link(
         'Request Material',
