@@ -12,7 +12,7 @@ gem 'coveralls', require: false
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
 gem 'high_voltage', '~> 3.1'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.2'
 gem 'rsolr', '>= 1.0'
 gem 'webpacker', '~> 4.0'
