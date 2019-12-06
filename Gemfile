@@ -42,7 +42,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'sqlite3'
   gem 'webdrivers', '~> 4.0'
-  gem 'webmock', require: false
+  gem 'webmock'
 end
 
 group :production, :test do
