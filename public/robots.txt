@@ -1,8 +1,6 @@
 User-agent: *
 Sitemap: https://catalog.libraries.psu.edu/sitemap.xml
-Disallow: /*q=*
-Disallow: /?f*
-Disallow: /catalog?utf8=✓*
+Disallow: /*?*
 Disallow: /catalog.atom
 Disallow: /catalog.rss
 Disallow: /catalog/*/email
