@@ -43,11 +43,11 @@ en:
         edition: "Edition: %{value}"
   views:
     pagination_compact:
-      next: '<span class="d-none d-md-inline">Next </span><i class="fas fa-arrow-right"></i>'
-      previous: '<i class="fas fa-arrow-left"></i><span class="d-none d-md-inline"> Previous</span>'
+      next: 'Next &#10145;'
+      previous: '&#11013; Previous'
     pagination:
-      previous: '<i class="fas fa-arrow-left"></i> <span class="d-none d-md-inline"> Previous</span>'
-      next: '<span class="d-none d-md-inline">Next </span><i class="fas fa-arrow-right"></i>'
+      previous: '&#11013; Previous'
+      next: 'Next &#10145;'
   support:
     array:
       words_connector: "<br>"

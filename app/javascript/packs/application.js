@@ -28,4 +28,5 @@ document.addEventListener("turbolinks:load", function() {
     availability.executeAvailability();
     bookCovers.start();
     Blacklight.doBookmarkToggleBehavior();
+    Blacklight.doSearchContextBehavior();
 });
