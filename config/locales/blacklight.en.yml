@@ -43,11 +43,11 @@ en:
         edition: "Edition: %{value}"
   views:
     pagination_compact:
-      next: 'Next &#10145;'
-      previous: '&#11013; Previous'
+      next: 'Next &rarr;'
+      previous: '&larr; Previous'
     pagination:
-      previous: '&#11013; Previous'
-      next: 'Next &#10145;'
+      previous: '&larr; Previous'
+      next: 'Next &rarr;'
   support:
     array:
       words_connector: "<br>"
