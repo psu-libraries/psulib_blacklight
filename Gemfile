@@ -15,6 +15,7 @@ gem 'high_voltage', '~> 3.1'
 gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.2'
 gem 'rsolr', '>= 1.0'
+gem 'sprockets', '< 4.0'
 gem 'webpacker', '~> 4.0'
 
 gem 'blacklight', '~> 7.0'
