@@ -30,18 +30,6 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
-  describe 'alert message' do
-    before do
-      allow(application_controller).to receive(:blackcat_message).with(:alert).and_return('An F5 Sharknado is approaching the eastern seaboard, take cover.')
-      allow(application_controller).to receive(:blackcat_message?).with(:alert).and_return(true)
-    end
-
-    it 'flashes the alert message when present in blackcat_messages.yml' do
-      application_controller.send(:flash_alert)
-      expect(flash[:error]).to match('An F5 Sharknado is approaching the eastern seaboard, take cover.')
-    end
-  end
-
   describe 'announcement_message' do
     it 'returns the announcement message when it is set in blackcat_messages.yml' do
       allow(application_controller).to receive(:message_file?).and_return(true)
