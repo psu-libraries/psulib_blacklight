@@ -28,7 +28,7 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     it 'that has holdings available in only 1 location' do
-      visit '/?utf8=✓&search_field=all_fields&q=9780147513861'
+      visit '/?utf8=✓&search_field=all_fields&q=9789004407336'
       expect(page).to have_selector '.availability-snippet',
                                     exact_text: 'Pattee Library and Paterno Library Stacks'
     end
