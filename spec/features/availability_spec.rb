@@ -28,7 +28,7 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     it 'that has holdings available in only 1 location' do
-      visit '/?utf8=✓&search_field=all_fields&q=9789004407336'
+      visit '/?utf8=✓&search_field=all_fields&q=9788836636174'
       expect(page).to have_selector '.availability-snippet',
                                     exact_text: 'Pattee Library and Paterno Library Stacks'
     end
@@ -71,7 +71,7 @@ RSpec.feature 'Availability', type: :feature do
         expect(page).to have_xpath './/tbody/tr', count: 4
         click_button('View More')
         sleep 1 # let collapse animation finish and wait for it to re-collapse
-        expect(page).to have_xpath './/tbody/tr', count: 75
+        expect(page).to have_xpath './/tbody/tr', count: 76
         expect(page).to have_selector 'button', text: /View Less/
         click_button('View Less')
         expect(page).to have_xpath './/tbody/tr', count: 4
