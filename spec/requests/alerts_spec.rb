@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'yaml'
 
 RSpec.describe 'Errors', type: :request do
   describe 'alert message' do
