@@ -9,7 +9,7 @@ RSpec.describe 'Errors', type: :request do
         allow(YAML).to receive(:load_file).and_call_original
         allow(YAML).to receive(:load_file)
           .with(Rails.root.join('config', 'blackcat_messages.yml'))
-          .and_return(YAML.load('alert: stubbed alert'))
+          .and_return(YAML.safe_load('alert: stubbed alert'))
       end
 
       it 'flashes the alert message when present in blackcat_messages.yml' do
