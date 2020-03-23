@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
-require 'yaml'
 
-RSpec.describe 'Errors', type: :request do
+RSpec.describe 'Blackcat Messages', type: :request do
   describe 'alert message' do
     context 'when there is a value present for the "alert" key' do
       before do
