@@ -13,7 +13,7 @@ RSpec.describe 'Errors', type: :request do
       end
 
       it 'flashes the alert message when present in blackcat_messages.yml' do
-        get '/catalog'
+        get root_path
         expect(flash[:error]).to match('stubbed alert')
       end
     end
