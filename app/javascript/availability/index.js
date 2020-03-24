@@ -6,6 +6,8 @@
 import locations from './libraries_locations.json';
 import item_types from './item_types.json';
 
+const readOnlyHolds = true;
+
 const availability = {
     // Load Sirsi locations
     allLocations: locations.locations,
@@ -247,7 +249,7 @@ const availability = {
                     availability.availabilitySnippet(snippetPlaceHolder, structuredHoldings);
 
                     // If holdable, then display the hold button
-                    if (rawHoldings[0].holdable === 'true') {
+                    if (!readOnlyHolds && rawHoldings[0].holdable === 'true') {
                         holdButton.removeClass("invisible").addClass("visible");
                     }
                 } else {
