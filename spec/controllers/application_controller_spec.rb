@@ -18,12 +18,12 @@ RSpec.describe ApplicationController, type: :controller do
       expect(application_controller.blackcat_message?(:readonly)).to be false
     end
 
-    it 'readonly is set to false by default if blackcat_messages.yml does not exists' do
+    it 'readonly is set to false by default if blackcat_messages.yml does not exist' do
       allow(application_controller).to receive(:message_file?).and_return(false)
       expect(application_controller.blackcat_message?(:readonly)).to be false
     end
 
-    it 'readonly is set to false if blackcat_messages.yml exists but read_only key is missing' do
+    it 'readonly is set to false if blackcat_messages.yml exists but readonly key is missing' do
       allow(application_controller).to receive(:message_file?).and_return(true)
       allow(application_controller).to receive(:message_status).and_return({})
       expect(application_controller.blackcat_message?(:readonly)).to be false

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :blackcat_message?, :blackcat_message, :readonly_holds?
 
-  before_action :flash_readonly
+  before_action :flash_readonly, :flash_alert
 
   def blackcat_message?(arg)
     (message_file? && message_status[arg]) || I18n.exists?("blacklight.#{arg}", :en)
@@ -46,5 +46,9 @@ class ApplicationController < ActionController::Base
 
     def flash_readonly
       flash.now[:error] = blackcat_message(:readonly) if blackcat_message?(:readonly)
+    end
+
+    def flash_alert
+      flash.now[:error] = blackcat_message(:alert) if blackcat_message?(:alert)
     end
 end
