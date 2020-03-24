@@ -13,9 +13,9 @@ RSpec.describe 'Blackcat Messages', type: :request do
       end
 
       it 'flashes the alert message when present in blackcat_messages.yml' do
-        skip("Test passes locally but not on Travis.") if ENV['TRAVIS']
+        skip('Test passes locally but not on Travis.') if ENV['TRAVIS']
         get root_path
-        
+
         expect(flash[:error]).to match('stubbed alert')
       end
     end
