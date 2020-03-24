@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # behavior until we can define all possible param  in the future.
   ActionController::Parameters.permit_all_parameters = true
 
-  helper_method :blackcat_message?, :blackcat_message
+  helper_method :blackcat_message?, :blackcat_message, :readonly_holds?
 
   before_action :flash_readonly
 
@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
               end
 
     ActionController::Base.helpers.sanitize message
+  end
+
+  def readonly_holds?
+    (message_file? && message_status[:readonly_holds]) || false
   end
 
   private
