@@ -3,16 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe BlackcatConfig::Builder do
+  subject(:builder) { described_class.new }
+
+  let(:config) { '' }
+  let(:config_file) { YAML.safe_load(config) }
+
   before do
     allow(YAML).to receive(:load_file).and_call_original
     allow(YAML).to receive(:load_file)
       .with(Rails.root.join('config', 'blackcat_messages.yml'))
-      .and_return(YAML.safe_load(config))
+      .and_return(config_file)
   end
-
-  subject(:builder) { described_class.new }
-
-  let(:config) { '' }
 
   describe '#readonly_holds?' do
     it 'returns false when readonly_holds is not set' do
