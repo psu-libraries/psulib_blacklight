@@ -16,7 +16,7 @@ RSpec.describe 'Blackcat Messages', type: :request do
     context 'when there is a value present for the "alert" key' do
       let (:config) { 'alert: stubbed alert' }
 
-      it 'flashes the alert message when present in blackcat_config.yml' do
+      it 'flashes the alert message when present in blackcat_messages.yml' do
         skip('Test passes locally but not on Travis.') if ENV['TRAVIS']
         get root_path
 
@@ -37,7 +37,7 @@ RSpec.describe 'Blackcat Messages', type: :request do
     context 'when there is a value present for the "announcement" key' do
       let (:config) { 'announcement: stubbed announcement' }
 
-      it 'display the announcement message when present in blackcat_config.yml' do
+      it 'display the announcement message when present in blackcat_messages.yml' do
         get root_path
 
         expect(response.body).to include 'stubbed announcement'
