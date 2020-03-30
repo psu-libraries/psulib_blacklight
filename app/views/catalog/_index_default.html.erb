@@ -11,6 +11,6 @@
     <% end -%>
   <% end -%>
   <dd class="blacklight-availability col-md-12">
-    <%= render partial: 'index_availability', locals: { document: document } unless blackcat_message?(:readonly) %>
+    <%= render partial: 'index_availability', locals: { document: document } unless blackcat_config.blackcat_message?(:readonly) %>
   </dd>
 </dl>

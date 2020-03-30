@@ -12,43 +12,21 @@ class ApplicationController < ActionController::Base
   # behavior until we can define all possible param  in the future.
   ActionController::Parameters.permit_all_parameters = true
 
-  helper_method :blackcat_message?, :blackcat_message, :readonly_holds?
+  helper_method :blackcat_config
 
   before_action :flash_readonly, :flash_alert
 
-  def blackcat_message?(arg)
-    (message_file? && message_status[arg]) || I18n.exists?("blacklight.#{arg}", :en)
-  end
-
-  def blackcat_message(arg)
-    message = if message_file? && message_status[arg]
-                message_status[arg]
-              else
-                t("blacklight.#{arg}.html")
-              end
-
-    ActionController::Base.helpers.sanitize message
-  end
-
-  def readonly_holds?
-    (message_file? && message_status[:readonly_holds]) || false
+  def blackcat_config
+    @blackcat_config ||= BlackcatConfig::Builder.new
   end
 
   private
 
-    def message_status
-      HashWithIndifferentAccess.new(YAML.load_file(Rails.root.join('config', 'blackcat_messages.yml')))
-    end
-
-    def message_file?
-      File.file?(Rails.root.join('config', 'blackcat_messages.yml'))
-    end
-
     def flash_readonly
-      flash.now[:error] = blackcat_message(:readonly) if blackcat_message?(:readonly)
+      flash.now[:error] = blackcat_config.blackcat_message(:readonly) if blackcat_config.blackcat_message?(:readonly)
     end
 
     def flash_alert
-      flash.now[:error] = blackcat_message(:alert) if blackcat_message?(:alert)
+      flash.now[:error] = blackcat_config.blackcat_message(:alert) if blackcat_config.blackcat_message?(:alert)
     end
 end
