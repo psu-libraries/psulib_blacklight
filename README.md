@@ -69,6 +69,8 @@ alert:
 readonly_holds:
 ```
 
+`readonly_holds` expects a truthy value. `true` or any text here would evaluate to true and hide the I Want It button globally. Not being present at all, having a blank value or `false` all evaluate to `false` and leave the I Want It button in place.
+
 Add values in place to add alert messages like the following:
 
 ```yml 
@@ -81,5 +83,4 @@ The above would set the announcement bar as "Some big deal" and would flash an e
 Note. If both readonly and alert are present in the yml, alert will be the message flashed as error and the availability will be turned off. Usually though you'd just set the flash error in a readonly mode by just setting a message in `readonly:`.
 
 If one of the special keys isn't present, there is no ill-effect. It is just not there and the system operates as per usual. 
-
 
