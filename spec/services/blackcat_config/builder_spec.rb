@@ -11,7 +11,7 @@ RSpec.describe BlackcatConfig::Builder do
   before do
     allow(YAML).to receive(:load_file).and_call_original
     allow(YAML).to receive(:load_file)
-      .with(Rails.root.join('config', 'blackcat_messages.yml'))
+      .with(Rails.root.join('config', 'blackcat_admin.yml'))
       .and_return(config_file)
   end
 
@@ -21,7 +21,7 @@ RSpec.describe BlackcatConfig::Builder do
       expect(builder.readonly_holds?).to be false
     end
 
-    context 'when readonly_holds is set in blackcat_messages.yml' do
+    context 'when readonly_holds is set in blackcat_admin.yml' do
       let(:config) { 'readonly_holds: true' }
 
       it 'returns true' do
@@ -37,7 +37,7 @@ RSpec.describe BlackcatConfig::Builder do
       expect(builder.blackcat_message?(:readonly)).to be false
     end
 
-    context 'when an announcement is set in blackcat_messages.yml' do
+    context 'when an announcement is set in blackcat_admin.yml' do
       let(:config) { 'announcement: This is an announcement.' }
 
       it 'returns true' do
@@ -46,7 +46,7 @@ RSpec.describe BlackcatConfig::Builder do
       end
     end
 
-    context 'when a readonly message is set in blackcat_messages.yml' do
+    context 'when a readonly message is set in blackcat_admin.yml' do
       let(:config) { 'readonly: This is a message for readonly.' }
 
       it 'returns true' do
@@ -62,7 +62,7 @@ RSpec.describe BlackcatConfig::Builder do
       expect(builder.blackcat_message(:announcement)).to match I18n.t('blacklight.announcement.html')
     end
 
-    context 'when an announcement is set in blackcat_messages.yml' do
+    context 'when an announcement is set in blackcat_admin.yml' do
       let(:config) { 'announcement: This is an announcement.' }
 
       it 'returns the announcement message' do
@@ -71,7 +71,7 @@ RSpec.describe BlackcatConfig::Builder do
       end
     end
 
-    context 'when a readonly message is set in blackcat_messages.yml' do
+    context 'when a readonly message is set in blackcat_admin.yml' do
       let(:config) { 'readonly: This is a message for readonly.' }
 
       it 'returns the readonly message' do

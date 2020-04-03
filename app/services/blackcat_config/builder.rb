@@ -29,10 +29,10 @@ class BlackcatConfig::Builder
     def config_load
       return nil unless config_file?
 
-      HashWithIndifferentAccess.new(YAML.load_file(Rails.root.join('config', 'blackcat_messages.yml')))
+      HashWithIndifferentAccess.new(YAML.load_file(Rails.root.join('config', 'blackcat_admin.yml')))
     end
 
     def config_file?
-      File.file?(Rails.root.join('config', 'blackcat_messages.yml'))
+      File.file?(Rails.root.join('config', 'blackcat_admin.yml'))
     end
 end

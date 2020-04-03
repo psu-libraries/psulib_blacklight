@@ -37,7 +37,7 @@ yarn-debug.log*
 /config/master.key
 
 # Ignore read only settings
-/config/blackcat_messages.yml
+/config/blackcat_admin.yml
 
 # Ignore spec/examples.txt file
 spec/examples.txt

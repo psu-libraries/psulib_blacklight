@@ -6,7 +6,7 @@ RSpec.describe 'Blackcat Messages', type: :request do
   before do
     allow(YAML).to receive(:load_file).and_call_original
     allow(YAML).to receive(:load_file)
-      .with(Rails.root.join('config', 'blackcat_messages.yml'))
+      .with(Rails.root.join('config', 'blackcat_admin.yml'))
       .and_return(YAML.safe_load(config))
   end
 
@@ -16,7 +16,7 @@ RSpec.describe 'Blackcat Messages', type: :request do
     context 'when there is a value present for the "alert" key' do
       let (:config) { 'alert: stubbed alert' }
 
-      it 'flashes the alert message when present in blackcat_messages.yml' do
+      it 'flashes the alert message when present in blackcat_admin.yml' do
         skip('Test passes locally but not on Travis.') if ENV['TRAVIS']
         get root_path
 
@@ -35,7 +35,7 @@ RSpec.describe 'Blackcat Messages', type: :request do
   end
 
   describe 'announcement message' do
-    context 'when there is a value present for the "announcement" key in blackcat_messages.yml' do
+    context 'when there is a value present for the "announcement" key in blackcat_admin.yml' do
       let (:config) { 'announcement: stubbed announcement' }
 
       it 'display the announcement message' do
@@ -46,7 +46,7 @@ RSpec.describe 'Blackcat Messages', type: :request do
       end
     end
 
-    context 'when there is not a value present for the "announcement" key in blackcat_messages.yml' do
+    context 'when there is not a value present for the "announcement" key in blackcat_admin.yml' do
       it 'falls back to blacklight.en.yml announcement' do
         skip('Test passes locally but not on Travis.') if ENV['TRAVIS']
         get root_path

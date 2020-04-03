@@ -56,9 +56,9 @@ Follow the instructions for [How To Use Webpacker](https://github.com/psu-librar
 
 # Application notes
 
-## "Blackcat Messages" feature
+## "Blackcat Admin" feature
 
-You can add an optional non-tracked (by git) yml file at `config/blackcat_messages.yml` to (1) modify the announcement bar (thin bar at top), (2) put the site in "readonly" (no availability data) with a message flashed as error, (3) to add an ad-hoc alert (flash error message) or (4) to put holds in readonly mode by hiding the I Want It button. 
+You can add an optional non-tracked (by git) yml file at `config/blackcat_admin.yml` to (1) modify the announcement bar (thin bar at top), (2) put the site in "readonly" (no availability data) with a message flashed as error, (3) to add an ad-hoc alert (flash error message) or (4) to put holds in readonly mode by hiding the I Want It button. 
 
 The keys dictate the behavior:
 
