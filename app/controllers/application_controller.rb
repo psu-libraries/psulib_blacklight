@@ -14,19 +14,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :blackcat_config
 
-  before_action :flash_readonly, :flash_alert
-
-  def blackcat_config
-    @blackcat_config ||= BlackcatConfig::Builder.new
-  end
+  before_action :flash_alert
 
   private
 
-    def flash_readonly
-      flash.now[:error] = blackcat_config.blackcat_message(:readonly) if blackcat_config.blackcat_message?(:readonly)
-    end
-
     def flash_alert
-      flash.now[:error] = blackcat_config.blackcat_message(:alert) if blackcat_config.blackcat_message?(:alert)
+      flash.now[:error] = ENV['alert']
     end
 end

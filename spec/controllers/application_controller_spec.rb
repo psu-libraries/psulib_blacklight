@@ -3,16 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationController, type: :controller do
-  let(:config_builder) { instance_double(BlackcatConfig::Builder) }
+  describe '#flash_alert' do
+    it 'when ENV[\'alert\'] is present' do
+      ENV['alert'] = 'Problems!'
+      expect(controller.send(:flash_alert)).to eq 'Problems!'
+    end
 
-  before do
-    allow(config_builder).to receive(:readonly_holds?).and_return(true)
-    allow(BlackcatConfig::Builder).to receive(:new).and_return(config_builder)
-  end
-
-  describe 'blackcat_config' do
-    it 'assigns blackcat config' do
-      expect(controller.blackcat_config.readonly_holds?).to be true
+    it 'when ENV[\'alert\'] is not present' do
+      ENV['alert'] = nil
+      expect(controller.send(:flash_alert)).to be_nil
     end
   end
 end

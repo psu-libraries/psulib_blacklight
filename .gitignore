@@ -44,3 +44,6 @@ spec/examples.txt
 
 # testing output
 coverage
+
+# Ignore application configuration
+/config/application.yml
