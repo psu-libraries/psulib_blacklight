@@ -150,7 +150,7 @@ RSpec.feature 'Availability', type: :feature do
   describe 'Hold Button - I want It', js: true do
     context 'when I Want It is in readonly state' do
       before do
-        ENV['readonly_holds'] = 'true'
+        Settings.readonly_holds = 'true'
       end
 
       it 'does not display even for a record with holdable items' do

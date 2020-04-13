@@ -13,12 +13,4 @@ class ApplicationController < ActionController::Base
   ActionController::Parameters.permit_all_parameters = true
 
   helper_method :blackcat_config
-
-  before_action :flash_alert
-
-  private
-
-    def flash_alert
-      flash.now[:error] = ENV['alert']
-    end
 end

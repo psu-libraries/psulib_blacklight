@@ -8,10 +8,10 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootsnap', require: false
+gem 'config'
 gem 'coveralls', require: false
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
-gem 'config'
 gem 'high_voltage', '~> 3.1'
 gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.2'
