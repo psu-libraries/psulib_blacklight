@@ -9,14 +9,12 @@ end
 
 gem 'bootsnap', require: false
 gem 'config'
-gem 'coveralls', require: false
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
 gem 'high_voltage', '~> 3.1'
 gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.2'
 gem 'rsolr', '>= 1.0'
-gem 'sprockets', '< 4.0'
 gem 'webpacker', '~> 4.0'
 
 gem 'blacklight', '~> 7.0'
@@ -42,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop'
   gem 'selenium-webdriver'
+  gem 'simplecov', require: false
   gem 'sqlite3'
   gem 'webdrivers', '~> 4.0'
   gem 'webmock'

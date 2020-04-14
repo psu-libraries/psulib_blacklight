@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/6d63cfd46af32f8d4bd1/maintainability)](https://codeclimate.com/github/psu-libraries/psulib_blacklight/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/6d63cfd46af32f8d4bd1/test_coverage)](https://codeclimate.com/github/psu-libraries/psulib_blacklight/test_coverage)
+
 The Penn State University Libraries' catalog. Built on Blacklight, using Traject for ingesting binary marc.
 
 # Software Dependencies 
