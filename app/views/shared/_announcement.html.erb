@@ -1,7 +1,7 @@
-<div class="announcement container-fluid bg-light">
+<div class="announcement container-fluid <%= Settings&.announcement&.html_class || t('blacklight.announcement.html_class') %>">
   <div class="row align-items-center">
     <div class="col align-content-center">
-      <p class="text-center mt-2 mb-2 pb-1"><i class="fas fa-bullhorn"></i><%= blackcat_config.blackcat_message(:announcement) %></p>
+      <p class="text-center mt-2 mb-2 pb-1"><i class="fas <%= Settings&.announcement&.icon || t('blacklight.announcement.icon') %>"></i> <%= sanitize Settings&.announcement&.message || t('blacklight.announcement.message.html') %></p>
     </div>
   </div>
 </div>

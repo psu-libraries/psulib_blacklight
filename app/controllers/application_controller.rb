@@ -13,20 +13,4 @@ class ApplicationController < ActionController::Base
   ActionController::Parameters.permit_all_parameters = true
 
   helper_method :blackcat_config
-
-  before_action :flash_readonly, :flash_alert
-
-  def blackcat_config
-    @blackcat_config ||= BlackcatConfig::Builder.new
-  end
-
-  private
-
-    def flash_readonly
-      flash.now[:error] = blackcat_config.blackcat_message(:readonly) if blackcat_config.blackcat_message?(:readonly)
-    end
-
-    def flash_alert
-      flash.now[:error] = blackcat_config.blackcat_message(:alert) if blackcat_config.blackcat_message?(:alert)
-    end
 end

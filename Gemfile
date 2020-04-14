@@ -8,6 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootsnap', require: false
+gem 'config'
 gem 'coveralls', require: false
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'

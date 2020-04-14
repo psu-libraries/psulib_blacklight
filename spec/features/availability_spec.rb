@@ -4,12 +4,8 @@ require 'rails_helper'
 
 RSpec.feature 'Availability', type: :feature do
   let (:stubbed_controller) { CatalogController.new }
-  let (:config_builder) { instance_double(BlackcatConfig::Builder) }
 
   before do
-    allow(config_builder).to receive(:blackcat_message?).and_return(false)
-    allow(config_builder).to receive(:readonly_holds?).and_return(false)
-    allow(stubbed_controller).to receive(:blackcat_config).and_return(config_builder)
     allow(CatalogController).to receive(:new).and_return(stubbed_controller)
   end
 
@@ -154,7 +150,7 @@ RSpec.feature 'Availability', type: :feature do
   describe 'Hold Button - I want It', js: true do
     context 'when I Want It is in readonly state' do
       before do
-        allow(config_builder).to receive(:readonly_holds?).and_return(true)
+        Settings.readonly_holds = 'true'
       end
 
       it 'does not display even for a record with holdable items' do
