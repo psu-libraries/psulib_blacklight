@@ -150,7 +150,7 @@ RSpec.feature 'Availability', type: :feature do
   describe 'Hold Button - I want It', js: true do
     context 'when I Want It is in readonly state' do
       before do
-        Settings.readonly_holds = 'true'
+        Settings.readonly_holds = true
       end
 
       it 'does not display even for a record with holdable items' do
@@ -160,6 +160,10 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     context 'when I Want It is not in readonly state' do
+      before do
+        Settings.readonly_holds = false
+      end
+
       it 'displays when a record has least one holdable item' do
         visit '/catalog/21588551'
         within 'div[class*="hold-button"]' do
