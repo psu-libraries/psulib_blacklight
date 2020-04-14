@@ -3,6 +3,12 @@
 require 'rails_helper'
 
 RSpec.feature 'Availability', type: :feature do
+  let (:stubbed_controller) { CatalogController.new }
+
+  before do
+    allow(CatalogController).to receive(:new).and_return(stubbed_controller)
+  end
+
   describe 'User searches for a record', js: true do
     it 'that has holdings and a \'View Availability\' button' do
       visit '/?utf8=✓&search_field=all_fields&q=9781599901091'
@@ -142,17 +148,30 @@ RSpec.feature 'Availability', type: :feature do
   end
 
   describe 'Hold Button - I want It', js: true do
-    it 'displays when a record has least one holdable item' do
-      visit '/catalog/1793712'
-      within 'div[class*="hold-button"]' do
-        expect(page).to have_link(
-          'I Want It', href: 'http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=1793712'
-        )
+    context 'when I Want It is in readonly state' do
+      before do
+        Settings.readonly_holds = 'true'
+      end
+
+      it 'does not display even for a record with holdable items' do
+        visit '/catalog/21588551'
+        expect(page).not_to have_link('I Want It', href: 'http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=21588551')
       end
     end
-    it 'does not display when a record has no holdable items' do
-      visit '/catalog/107'
-      expect(page).not_to have_link('I Want It')
+
+    context 'when I Want It is not in readonly state' do
+      it 'displays when a record has least one holdable item' do
+        visit '/catalog/21588551'
+        within 'div[class*="hold-button"]' do
+          expect(page).to have_link(
+            'I Want It', href: 'http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=21588551'
+          )
+        end
+      end
+      it 'does not display when a record has no holdable items' do
+        visit '/catalog/107'
+        expect(page).not_to have_link('I Want It')
+      end
     end
   end
 

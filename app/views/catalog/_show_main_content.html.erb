@@ -17,7 +17,7 @@
 
   </div>
 
-  <%= render partial: 'show_availability', locals: { document: @document } if @document && !blackcat_message?(:readonly) %>
+  <%= render partial: 'show_availability', locals: { document: @document } if @document && !Settings&.readonly %>
 
   <div class="row document-metadata metadata-secondary">
     <div class="col">

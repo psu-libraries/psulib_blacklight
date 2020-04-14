@@ -56,29 +56,28 @@ Follow the instructions for [How To Use Webpacker](https://github.com/psu-librar
 
 # Application notes
 
-## "Blackcat Messages" feature
+## "Blackcat Admin" feature
 
-You can add an optional non-tracked (by git) yml file at `config/blackcat_messages.yml` to (1) modify the announcement bar (thin bar at top), (2) put the site in "readonly" (no availability data) with a message flashed as err or (3) to add an ad-hoc alert (flash error message).
+The [config](https://rubygems.org/gems/config) gem provides a means for adding ad-hoc config as needed. The file `config/settings.yml` is not tracked in git. So far 4 settings have been added:
 
-The keys dictate the behavior:
+1. modify the announcement bar (thin bar at top)
+1. put the site in "readonly" (no availability data)
+1. put holds in readonly mode by hiding the I Want It button. 
 
-```yml
-readonly: 
+Here is a sample of what the settings.yml file might look like:
+
+```rb
+# Strings
 announcement:
-alert:
+  # See https://fontawesome.com/icons
+  icon: fa-exclamation-circle
+  message: All University Libraries locations are closed, but we're here to help! See <a href="https://libraries.psu.edu/covid19"> University Libraries COVID-19 (novel coronavirus) Updates and Resources</a> for more information.
+  # See https://getbootstrap.com/docs/4.4/utilities/colors/
+  html_class: bg-warning
+
+# Booleans
+readonly: false
+readonly_holds: true
 ```
 
-Add values in place to add alert messages like the following:
-
-```yml 
-announcement: Some big deal
-alert: Your pants are on fire
-```
-
-The above would set the announcement bar as "Some big deal" and would flash an error message of "Your pants are on fire"
-
-Note. If both readonly and alert are present in the yml, alert will be the message flashed as error and the availability will be turned off. Usually though you'd just set the flash error in a readonly mode by just setting a message in `readonly:`.
-
-If one of the special keys isn't present, there is no ill-effect. It is just not there and the system operates as per usual. 
-
-
+If one of the special keys isn't present, there is no ill-effect. It is just not there and the system operates as per usual. If the announcement array isn't present, then the default announcement in the translation file will show.
