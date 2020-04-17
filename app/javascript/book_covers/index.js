@@ -14,11 +14,14 @@ const bookCovers = {
             let lccn_values = JSON.parse(thumbnail.dataset.lccn);
             let oclc_values = JSON.parse(thumbnail.dataset.oclc);
 
-            if (isbn_values) {
-                bibkeys_prefixed.push(isbn_values.map(isbn => "ISBN:" + isbn));
-            }
+            // Order of data is important, as we learned in INC1422412. OCLC first will render the
+            // correct book cover, ISBN will render the wrong one. The issue was for the record with
+            // OCLC:951360498 and ISBN:9788851117283.
             if (oclc_values) {
                 bibkeys_prefixed.push(oclc_values.map(oclc => "OCLC:" + oclc));
+            }
+            if (isbn_values) {
+                bibkeys_prefixed.push(isbn_values.map(isbn => "ISBN:" + isbn));
             }
             if (lccn_values) {
                 bibkeys_prefixed.push(lccn_values.map(lccn => "LCCN:" + lccn));
