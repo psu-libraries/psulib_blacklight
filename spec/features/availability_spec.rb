@@ -86,7 +86,7 @@ RSpec.feature 'Availability', type: :feature do
   end
 
   describe 'Archival Material:' do
-    it 'has a \'Request Material\' link so it can be requested through Aeon', js: true do
+    it 'has a "Request Material" link so it can be requested through Aeon', js: true do
       visit '/catalog/1836205'
       click_button('View More')
       expect(page).to have_css 'a[data-type="aeon-link"][data-call-number="RBM 2457 box1 AX/SP/10155/11"]'
