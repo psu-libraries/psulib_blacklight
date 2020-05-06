@@ -10,6 +10,10 @@ The Penn State University Libraries' catalog. Built on Blacklight, using Traject
 | `rails`   |  5.2.1 |
 | `solr`   |  7.4.0 |
 
+## When upgrading Blacklight
+
+Because we use webpacker, when upgrading the Blacklight gem for this application, we should also update `package.json` to the same version as the installed gem so as to keep these things in step from Blacklight.
+
 # Development 
 
 ## For Macs
