@@ -8,7 +8,7 @@ class EtasController < ApplicationController
   private
 
     def etas_links
-      return {} unless etas_fulltext_item? hathitrust_response_hash
+      return unless etas_fulltext_item? hathitrust_response_hash
 
       etas_url = hathitrust_etas_url(hathitrust_response_hash)
 
