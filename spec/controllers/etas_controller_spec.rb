@@ -9,6 +9,7 @@ RSpec.describe EtasController, type: :controller do
       stub_request(:get, 'https://catalog.hathitrust.org/api/volumes/brief/oclc/21383783.json')
         .to_return(status: 200, body: json, headers: {})
     end
+
     it 'will render a link to HathiTrust ETAS' do
       get :show, params: { id: '21383783' }
 

@@ -2,7 +2,7 @@
 
 namespace :yarn do
   desc 'Install all JavaScript dependencies as specified via Yarn'
-  task :install do
+  task install: :environment do
     task 'yarn:install' => []
     Rake::Task['yarn:install'].clear
     # Install only production deps when for not usual envs.

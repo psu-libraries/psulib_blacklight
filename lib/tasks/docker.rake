@@ -3,7 +3,7 @@
 BLACKLIGHT_CORE = 'psul_blacklight'
 
 namespace :docker do
-  task :up do
+  task up: :environment do
     Rake::Task['docker:pull'].invoke
     container_status = `docker inspect felix`
     container_status.strip!
@@ -22,17 +22,17 @@ namespace :docker do
     Rake::Task['docker:up']
   end
 
-  task :clean do
+  task clean: :environment do
     print `docker exec -it felix \
             post -c #{BLACKLIGHT_CORE} \
                  -d '<delete><query>*:*</query></delete>' -out 'yes'`
   end
 
-  task :up_zk_config do
+  task up_zk_config: :environment do
     print `docker exec -it --user=solr felix bin/solr zk upconfig -n #{BLACKLIGHT_CORE} -d /myconfig -z localhost:9983`
   end
 
-  task :create_collection do
+  task create_collection: :environment do
     print `docker exec -it --user=solr felix bin/solr create -c #{BLACKLIGHT_CORE} -d /myconfig`
   end
 
@@ -40,7 +40,7 @@ namespace :docker do
     Rake::Task['docker:create_collection'].invoke
   end
 
-  task :run do
+  task run: :environment do
     trap('SIGINT') do
       print `docker stop felix`
       exit
@@ -56,7 +56,7 @@ namespace :docker do
             -DzkRun`
   end
 
-  task :run_ci do
+  task run_ci: :environment do
     print `docker run \
             -d=true \
             --name felix \
@@ -68,11 +68,11 @@ namespace :docker do
             -DzkRun`
   end
 
-  task :pull do
+  task pull: :environment do
     print `docker pull solr:7.4.0`
   end
 
-  task :start do
+  task start: :environment do
     trap('SIGINT') do
       print `docker stop felix`
       exit
@@ -81,11 +81,11 @@ namespace :docker do
   end
 
   # Doesn't actually get called, can't call it in the trap call under the start task. Rake::Task can't be used there.
-  task :down do
+  task down: :environment do
     print `docker stop felix`
   end
 
-  task :ps do
+  task ps: :environment do
     print `docker ps`
   end
 end
