@@ -4,6 +4,10 @@ require 'rails_helper'
 
 RSpec.feature 'Ask a librarian', type: :feature do
   describe 'side tab widget', js: true do
+    before do
+      stub_request(:any, /hathitrust/).to_return(status: 200, body: "{}", headers: {})
+    end
+
     it 'shows up on the homepage' do
       visit root_path
       expect(page).to have_css('button.libchat_online')

@@ -98,6 +98,10 @@ module CatalogHelper
     end
   end
 
+  def oclc_number(document, _options = {})
+    document.fetch(:oclc_number_ssim, [])&.first
+  end
+
   # Makes a link to title search
   def title_links(options = {})
     result = options[:value].map do |serial_title|

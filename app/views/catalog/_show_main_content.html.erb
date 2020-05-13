@@ -13,6 +13,7 @@
     <div class="col-9 col-lg-10">
       <%= render partial: 'show_header_default', locals: { document: @document, tag: :h1 } %>
       <%= render partial: 'show_top_fields', locals: { document: @document } %>
+      <div data-etas-oclc="<%= oclc_number @document %>"></div>
     </div>
 
   </div>

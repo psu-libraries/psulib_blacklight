@@ -30,4 +30,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  blackcat:
+    links:
+      hathitrust: 'Check out digital copy through HathiTrust'

@@ -97,6 +97,16 @@ RSpec.describe CatalogHelper, type: :helper do
     end
   end
 
+  describe '#oclc_number' do
+    let (:document) { { oclc_number_ssim: ['123456'] } }
+
+    it 'returns the OCLC number' do
+      oclc_num = oclc_number document
+
+      expect(oclc_num).to be '123456'
+    end
+  end
+
   describe '#title_links' do
     let (:field_data) { ['Some Title', 'Another Title'] }
     let (:title_doc) { { value: field_data } }

@@ -7,6 +7,7 @@ RSpec.feature 'Availability', type: :feature do
 
   before do
     allow(CatalogController).to receive(:new).and_return(stubbed_controller)
+    stub_request(:any, /hathitrust/).to_return(status: 200, body: "{}", headers: {})
   end
 
   describe 'User searches for a record', js: true do
