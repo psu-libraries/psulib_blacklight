@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'BookCovers', type: :feature do
   before do
-    stub_request(:any, /hathitrust/).to_return(status: 200, body: "{}", headers: {})
+    stub_request(:any, /hathitrust/).to_return(status: 200, body: '{}', headers: {})
   end
 
   describe 'User searches for a book' do
