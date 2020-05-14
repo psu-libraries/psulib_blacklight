@@ -1,17 +1,16 @@
 <% doc_presenter = index_presenter(document) %>
 <%# default partial to display solr document fields in catalog index view -%>
-<dl class="document-metadata dl-invert row">
-
+<dl class="document-metadata dl-invert">
   <% doc_presenter.fields_to_render.each do |field_name, field| -%>
     <% if field[:label].nil? %>
-      <dd class="blacklight-<%= field_name.parameterize %> col-md-12"><%= doc_presenter.field_value field %></dd>
+      <dd class="blacklight-<%= field_name.parameterize %>"><%= doc_presenter.field_value field %></dd>
     <% else %>
-      <dt class="blacklight-<%= field_name.parameterize %> col-md-auto"><%= render_index_field_label document, field: field_name %></dt>
-      <dd class="blacklight-<%= field_name.parameterize %> col-md-9 pl-md-0"><%= doc_presenter.field_value field %></dd>
+      <dt class="blacklight-<%= field_name.parameterize %>"><%= render_index_field_label document, field: field_name %></dt>
+      <dd class="blacklight-<%= field_name.parameterize %> pl-md-0"><%= doc_presenter.field_value field %></dd>
     <% end -%>
   <% end -%>
-  <div data-etas-oclc="<%= oclc_number document %>"></div>
-  <dd class="blacklight-availability col-md-12">
-    <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
-  </dd>
+  <dd class="d-inline-block" data-etas-oclc="<%= oclc_number document %>"></dd>
 </dl>
+<div class="blacklight-availability">
+  <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
+</div>
