@@ -4,9 +4,13 @@ require 'rails_helper'
 
 RSpec.feature 'Ask a librarian', type: :feature do
   describe 'side tab widget', js: true do
+    before do
+      stub_request(:any, /hathitrust/).to_return(status: 200, body: '{}', headers: {})
+    end
+
     it 'shows up on the homepage' do
       visit root_path
-      expect(page).to have_css('button.libchat_online')
+      expect(page).to have_css('button[class^="libchat"]')
     end
 
     it 'shows up on a catalog item page only once after going to MARC View and back' do
@@ -17,7 +21,7 @@ RSpec.feature 'Ask a librarian', type: :feature do
       page.assert_selector('h1',
                                 text: 'Ethical and Social Issues in the Information Age by Joseph Migga Kizza',
                                 wait: 10)
-      expect(page).to have_css('button.libchat_online', count: 1)
+      expect(page).to have_css('button[class^="libchat"]', count: 1)
     end
   end
 end

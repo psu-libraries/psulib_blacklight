@@ -10,6 +10,8 @@
 import bookCovers from "../book_covers";
 import askALibrarian from "../ask_a_librarian";
 import availability from "../availability";
+import hathiETAS from "../hathi";
+
 require.context('../psulib_blacklight/images/', true);
 
 import Rails from 'rails-ujs';
@@ -27,6 +29,7 @@ document.addEventListener("turbolinks:load", function() {
     askALibrarian.start();
     availability.executeAvailability();
     bookCovers.start();
+    hathiETAS();
     Blacklight.doBookmarkToggleBehavior();
     Blacklight.doSearchContextBehavior();
 });

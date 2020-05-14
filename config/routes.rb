@@ -33,6 +33,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :etas, only: [:show]
+
   devise_for :users
 
   # error pages

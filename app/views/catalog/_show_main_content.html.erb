@@ -2,7 +2,7 @@
 <% content_for(:head) { render_link_rel_alternates } %>
 
 <div id="document" class="document <%= render_document_class %>" itemscope itemtype="<%= @document.itemtype %>">
-  <div class="row document-metadata metadata-primary">
+  <div class="row document-metadata metadata-primary py-4">
 
     <div class="col-3 col-lg-2 text-center">
       <% unless @document[:format][0].empty? %>
@@ -13,13 +13,14 @@
     <div class="col-9 col-lg-10">
       <%= render partial: 'show_header_default', locals: { document: @document, tag: :h1 } %>
       <%= render partial: 'show_top_fields', locals: { document: @document } %>
+      <div data-etas-oclc="<%= oclc_number @document %>"></div>
     </div>
 
   </div>
 
   <%= render partial: 'show_availability', locals: { document: @document } if @document && !Settings&.readonly %>
 
-  <div class="row document-metadata metadata-secondary">
+  <div class="row document-metadata metadata-secondary py-4">
     <div class="col">
       <div id="doc_<%= @document.id.to_s.parameterize %>">
         <%= render_document_partials @document, blacklight_config.view_config(:show).partials %>

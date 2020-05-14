@@ -7,6 +7,7 @@ scss_files: "**/*.scss"
 exclude:
   - 'vendor/*'
   - 'node_modules/**/*'
+  - 'app/javascript/psulib_blacklight/styles/_callouts.scss'
 
 # List of gem names to load custom linters from (make sure they are already
 # installed)

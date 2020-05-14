@@ -7,6 +7,7 @@ RSpec.feature 'Availability', type: :feature do
 
   before do
     allow(CatalogController).to receive(:new).and_return(stubbed_controller)
+    stub_request(:any, /hathitrust/).to_return(status: 200, body: '{}', headers: {})
   end
 
   describe 'User searches for a record', js: true do
@@ -18,7 +19,8 @@ RSpec.feature 'Availability', type: :feature do
     it 'that has holdings but none are available' do
       visit '/?utf8=✓&search_field=all_fields&q=Eva+Oper+in+drei+Akten'
       # Shouldn't show the location teaser text next to the show availability button
-      expect(page).not_to have_selector '.availability-snippet'
+      expect(page).to have_selector '.availability-snippet',
+                                    exact_text: ''
     end
 
     it 'that has holdings available in 3 or more locations' do
