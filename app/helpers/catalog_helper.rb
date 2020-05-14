@@ -98,7 +98,7 @@ module CatalogHelper
     end
   end
 
-  def oclc_number(document, _options = {})
+  def oclc_number(document)
     document.fetch(:oclc_number_ssim, [])&.first
   end
 
