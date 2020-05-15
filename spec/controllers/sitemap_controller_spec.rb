@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe SitemapController, type: :controller do
   describe 'calculations and responses from solr' do
-    let(:sitemap) { SitemapController.new }
+    let(:sitemap) { described_class.new }
 
     before do
       allow(sitemap).to receive(:max_documents).and_return(7_500_000)

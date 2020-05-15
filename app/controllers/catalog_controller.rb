@@ -281,8 +281,8 @@ class CatalogController < ApplicationController
         pf: '${title_pf}'
       }
       field.solr_adv_parameters = {
-        qf:  '$title_qf',
-        pf:  '$title_pf'
+        qf: '$title_qf',
+        pf: '$title_pf'
       }
     end
 
@@ -309,7 +309,7 @@ class CatalogController < ApplicationController
       field.include_in_simple_select = false
       field.label = 'Identifiers (ISBN, ISSN, OCLC, LCCN)'
       field.solr_parameters = {
-        qf:  '$number_qf'
+        qf: '$number_qf'
       }
     end
 

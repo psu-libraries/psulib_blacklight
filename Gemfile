@@ -38,7 +38,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
-  gem 'rubocop'
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'sqlite3'

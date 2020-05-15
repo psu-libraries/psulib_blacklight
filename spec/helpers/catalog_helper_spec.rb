@@ -19,6 +19,7 @@ RSpec.describe CatalogHelper, type: :helper do
         expect(link).to eql link_text
       end
     end
+
     context 'when there is only a title (subfield a)' do
       it 'just prints that subfield' do
         expect(bound_info(bound_info_lite_doc)).to eql '<span>Bound in: The Tale of The Blah Blah Blah</span>'
@@ -26,7 +27,6 @@ RSpec.describe CatalogHelper, type: :helper do
     end
   end
 
-  SEPARATOR = '—'
   describe '#subjectify' do
     let (:field_data) { ['Renewable energy sources—Research—United States—Finance—History',
                          'Federal aid to research—United States—History'] }
@@ -34,6 +34,7 @@ RSpec.describe CatalogHelper, type: :helper do
 
     context 'when subjects include subfields v, x, y, and z' do
       it 'provides links to subject facet search based on hierarchy that includes v, x, y and z' do
+        stub_const 'SEPARATOR', '—'
         full_subject = subjectify subjects_doc
         expect(full_subject).to include('<a class="search-subject" title="Search: Renewable energy sources—Research—Un'\
                                         'ited States—Finance—History" href="/?f[subject_facet][]=Renewable+energy+sour'\
@@ -87,6 +88,7 @@ RSpec.describe CatalogHelper, type: :helper do
         expect(thumbnail).to have_css '.faspsu-book'
       end
     end
+
     context 'when a record has bibkeys' do
       let (:document) { { format: ['Book'], isbn_valid_ssm: ['1818181818'] } }
 

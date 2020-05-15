@@ -9,7 +9,7 @@
         <%= select_tag(:search_field,
                        options_for_select(search_fields, h(params[:search_field])),
                        title: t('blacklight.search.form.search_field.title'),
-                       id:    'search_field',
+                       id: 'search_field',
                        class: 'custom-select search-field') %>
       <% elsif search_fields.length == 1 %>
         <%= hidden_field_tag :search_field, search_fields.first.last %>
