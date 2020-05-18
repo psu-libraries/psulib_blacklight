@@ -16,6 +16,10 @@ env:
 addons:
   chrome: stable
 
+branches:
+  only:
+    - master
+
 before_install:
   - yes | gem update --system
   - gem install bundler
