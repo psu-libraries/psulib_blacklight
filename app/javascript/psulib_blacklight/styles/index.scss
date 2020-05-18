@@ -32,13 +32,13 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
 // Blacklight over-rides
 @import 'header';
-@import 'footer';
 @import 'facets';
 @import 'constraints';
-@import 'announcement';
-@import 'metadata';
 
 // Local
+@import 'metadata';
+@import 'announcement';
+@import 'footer';
 @import 'mobile';
 @import 'show_default';
 @import 'psulib_icons';
