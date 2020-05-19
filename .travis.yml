@@ -16,6 +16,10 @@ env:
 addons:
   chrome: stable
 
+branches:
+  only:
+    - master
+
 before_install:
   - nvm install
   - yes | gem update --system
