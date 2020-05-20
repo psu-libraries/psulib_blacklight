@@ -166,10 +166,10 @@ RSpec.feature 'Availability', type: :feature do
       end
 
       it 'displays when a record has least one holdable item' do
-        visit '/catalog/21588551'
+        visit '/catalog/24053587'
         within 'div[class*="hold-button"]' do
           expect(page).to have_link(
-            'I Want It', href: 'http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=21588551'
+            'I Want It', href: 'http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=24053587'
           )
         end
       end
