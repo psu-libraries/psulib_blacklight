@@ -26,7 +26,6 @@ class CatalogController < ApplicationController
     config.show.document_actions.endnote.html_class = 'dropdown-item'
     config.show.document_actions.delete_field('librarian_view') # removing something added by blacklight_marc
 
-    config.index.document_presenter_class = PsulIndexPresenter
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
     # config.advanced_search[:qt] ||= 'advanced'
@@ -137,12 +136,12 @@ class CatalogController < ApplicationController
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
     config.add_index_field 'title_latin_display_ssm', label: 'Title'
-    config.add_index_field 'author_person_display_ssm', label: 'Author', link_to_facet: :all_authors_facet
-    config.add_index_field 'author_corp_display_ssm', label: 'Corporate Author', link_to_facet: :all_authors_facet
-    config.add_index_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: :all_authors_facet
-    config.add_index_field 'format', label: 'Format'
-    config.add_index_field 'publication_display_ssm', label: 'Publication Statement'
-    config.add_index_field 'edition_display_ssm', label: 'Edition'
+    config.add_index_field 'author_person_display_ssm', label: 'Author', link_to_facet: :all_authors_facet, sr_only: true
+    config.add_index_field 'author_corp_display_ssm', label: 'Corporate Author', link_to_facet: :all_authors_facet, sr_only: true
+    config.add_index_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: :all_authors_facet, sr_only: true
+    config.add_index_field 'format', label: 'Format', sr_only: true
+    config.add_index_field 'publication_display_ssm', label: 'Publication Statement', sr_only: true
+    config.add_index_field 'edition_display_ssm', label: 'Edition', sr_only: true
     config.add_index_field 'full_links_struct', label: 'Access Online', helper_method: :generic_link
 
     # solr fields to be displayed in the show (single result) view
