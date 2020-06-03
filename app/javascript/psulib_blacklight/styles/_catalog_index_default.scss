@@ -1,0 +1,12 @@
+article.document {
+  margin-bottom: $spacer;
+  padding-bottom: $spacer;
+}
+
+.index-default-container {
+  @include make-container();
+
+  dd {
+    margin-bottom: 4px;
+  }
+}
