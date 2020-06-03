@@ -1,7 +1,9 @@
+// scss-lint:disable QualifyingElement
 article.document {
   margin-bottom: $spacer;
   padding-bottom: $spacer;
 }
+// scss-lint:enable QualifyingElement
 
 .index-default-container {
   @include make-container();
