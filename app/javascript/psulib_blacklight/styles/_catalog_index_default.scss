@@ -5,10 +5,10 @@ article.document {
 }
 // scss-lint:enable QualifyingElement
 
-.index-default-container {
-  @include make-container();
+.documents-list .document-metadata {
+  padding-left: 0;
 
-  dd {
-    margin-bottom: 4px;
+  li {
+    list-style: none;
   }
 }
