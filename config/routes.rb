@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     concerns :range_searchable
   end
 
+  resource :bento, controller: :bento, defaults: { format: :json }, only: [:index], as: 'bento', path: '/bento' do
+    concerns :searchable
+  end
+
   resources :sitemap, defaults: { format: :xml }, only: [:index, :show]
 
   resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
