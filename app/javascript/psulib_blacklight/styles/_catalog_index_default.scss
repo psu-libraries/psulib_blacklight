@@ -1,0 +1,14 @@
+// scss-lint:disable QualifyingElement
+article.document {
+  margin-bottom: $spacer;
+  padding-bottom: $spacer;
+}
+// scss-lint:enable QualifyingElement
+
+.documents-list .document-metadata {
+  padding-left: 0;
+
+  li {
+    list-style: none;
+  }
+}
