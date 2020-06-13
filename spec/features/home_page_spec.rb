@@ -8,6 +8,6 @@ RSpec.feature 'Home Page', type: :feature do
   end
 
   it 'does not render any facets' do
-    expect(page).not_to have_css('#facets')
+    expect(page).to have_css('#facets')
   end
 end

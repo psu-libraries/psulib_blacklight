@@ -6,9 +6,10 @@ RSpec.describe CatalogController, type: :controller do
   let(:doc_id) { '20049333' }
 
   describe 'index action' do
-    it 'gets the homepage and doesn\'t hit Solr' do
+    it 'gets the homepage and renders only the homepage facets' do
       get :index
-      expect(assigns(:response)).to be_nil
+      configured_home_page_facets = %w[access_facet format campus_facet media_type_facet classification_pivot_field]
+      expect(assigns(:blacklight_config)[:facet_fields].keys).to eq(configured_home_page_facets)
     end
 
     it 'pages too deep' do
