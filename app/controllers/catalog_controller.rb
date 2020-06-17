@@ -146,8 +146,8 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'access_facet', label: 'Access'
-    config.add_facet_field 'format', label: 'Format'
+    config.add_facet_field 'access_facet', label: 'Access', collapse: false
+    config.add_facet_field 'format', label: 'Format', limit: true
     config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: -1, single: true
@@ -161,10 +161,10 @@ class CatalogController < ApplicationController
     config.add_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet]
 
     config.add_home_facet_field 'access_facet', label: 'Access', collapse: false
-    config.add_home_facet_field 'format', label: 'Format', collapse: false
-    config.add_home_facet_field 'campus_facet', label: 'Campus', collapse: false, sort: 'index', limit: -1, single: true
-    config.add_home_facet_field 'media_type_facet', label: 'Media Type', collapse: false, limit: 20, index_range: 'A'..'Z'
-    config.add_home_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet], collapse: false
+    config.add_home_facet_field 'format', label: 'Format', limit: true, collapse: false
+    config.add_home_facet_field 'campus_facet', label: 'Campus', collapse: false, sort: 'index', limit: -1, single: true, collapse: true
+    config.add_home_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z', collapse: true
+    config.add_home_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet], collapse: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
