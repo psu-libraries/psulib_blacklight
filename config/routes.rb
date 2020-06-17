@@ -15,8 +15,7 @@ Rails.application.routes.draw do
 
   # resource and resources
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
-    concerns :searchable
-    concerns :range_searchable
+    concerns [:searchable, :range_searchable]
   end
 
   resource :bento, controller: :bento, defaults: { format: :json }, only: [:index], as: 'bento', path: '/bento' do

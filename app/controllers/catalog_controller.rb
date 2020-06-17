@@ -6,11 +6,43 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
 
-  # Only get search results from the solr index
   def index
-    return nil if current_search_session.blank?
+    cache_key = nil
+    # No other params presents indicates we are on the homepage
+    if params.keys.eql? %w[controller action]
+      cache_key = "#{params.dig('controller')}/#{params.dig('action')}facet_query"
+    end
 
-    super
+    if cache_key
+      @response = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
+        response = search_service.search_results.first
+        # Nilling out below is necessary in order to avoid a Marshal.dump error of "can't dump an anonymous class" when
+        # attempting to cache the Solr response object.
+        response.blacklight_config = nil
+        response.options = nil
+        response
+      end
+      blacklight_config.facet_fields = blacklight_config.home_facet_fields
+      @response.blacklight_config = blacklight_config
+      @response.options = {
+        document_model: SolrDocument,
+        blacklight_config: blacklight_config
+      }
+    else
+      @response = search_service.search_results.first
+    end
+
+    respond_to do |format|
+      format.html { store_preferred_view }
+      format.rss  { render layout: false }
+      format.atom { render layout: false }
+      format.json do
+        @presenter = Blacklight::JsonPresenter.new(@response,
+                                                   blacklight_config)
+      end
+      additional_response_formats(format)
+      document_export_formats(format)
+    end
   end
 
   rescue_from Blacklight::Exceptions::RecordNotFound do
@@ -114,8 +146,8 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'access_facet', label: 'Access'
-    config.add_facet_field 'format', label: 'Format'
+    config.add_facet_field 'access_facet', label: 'Access', collapse: false
+    config.add_facet_field 'format', label: 'Format', limit: true
     config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: -1, single: true
@@ -127,6 +159,12 @@ class CatalogController < ApplicationController
     config.add_facet_field 'lc_1letter_facet', label: 'Classification', show: false, sort: 'index'
     config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
     config.add_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet]
+
+    config.add_home_facet_field 'access_facet', label: 'Access', collapse: false
+    config.add_home_facet_field 'format', label: 'Format', limit: true, collapse: false
+    config.add_home_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true, collapse: true
+    config.add_home_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z', collapse: true
+    config.add_home_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet], collapse: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
