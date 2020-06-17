@@ -162,7 +162,7 @@ class CatalogController < ApplicationController
 
     config.add_home_facet_field 'access_facet', label: 'Access', collapse: false
     config.add_home_facet_field 'format', label: 'Format', limit: true, collapse: false
-    config.add_home_facet_field 'campus_facet', label: 'Campus', collapse: false, sort: 'index', limit: -1, single: true, collapse: true
+    config.add_home_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true, collapse: true
     config.add_home_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z', collapse: true
     config.add_home_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet], collapse: true
 
