@@ -4,4 +4,9 @@
   @include media-breakpoint-down(sm) {
     display: none;
   }
+
+  a {
+    color: $black;
+    text-decoration: underline;
+  }
 }
