@@ -12,7 +12,7 @@
     <% end -%>
   </ul>
 
-  <div data-etas-oclc="<%= oclc_number document %>"></div>
+  <%= render partial: 'hathi_links', locals: { document: document } %>
   <div class="blacklight-availability">
     <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
   </div>

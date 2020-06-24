@@ -121,4 +121,51 @@ module CatalogHelper
     details.push "catkey: #{document[:id]}"
     safe_join(details, ' | ')
   end
+
+  def hathi_hash(document)
+    ht_struct = document.fetch(:hathitrust_struct, [])&.first
+    return if ht_struct.nil?
+
+    JSON.parse ht_struct
+  end
+
+  def hathi_links(ht_hash)
+    contents = []
+    if hathi_etas_item? ht_hash
+      contents.push content_tag 'p',
+                                t('blackcat.hathitrust.etas_additional_text'),
+                                { class: 'record-view-only' },
+                                false
+    end
+    link = link_to image_pack_tag('media/psulib_blacklight/images/128px-HathiTrust_logo.svg.png',
+                                  alt: 'HathiTrust logo',
+                                  class: 'mr-3 d-none d-md-inline') + hathi_text(ht_hash),
+                   hathi_url(ht_hash)
+    contents.push  content_tag('p', link, nil, false)
+
+    safe_join contents, ''
+  end
+
+  def hathi_text(ht_hash)
+    if ht_hash['access'] == 'allow'
+      t('blackcat.hathitrust.public_domain_text')
+    else
+      t('blackcat.hathitrust.etas_text')
+    end
+  end
+
+  def hathi_url(ht_hash)
+    url = if ht_hash['ht_id'].present?
+            t('blackcat.hathitrust.mono_url') + ht_hash['ht_id']
+          else
+            t('blackcat.hathitrust.multi_url') + ht_hash['ht_bib_key']
+          end
+
+    url += t('blackcat.hathitrust.url_append') if hathi_etas_item?(ht_hash)
+    url
+  end
+
+  def hathi_etas_item?(ht_hash)
+    ht_hash['access'] == 'deny' && Settings&.hathi_etas
+  end
 end

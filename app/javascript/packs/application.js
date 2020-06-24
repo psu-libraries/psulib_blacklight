@@ -9,7 +9,6 @@
 
 import bookCovers from "../book_covers";
 import availability from "../availability";
-import hathiETAS from "../hathi";
 
 require.context('../psulib_blacklight/images/', true);
 
@@ -27,7 +26,6 @@ import 'blacklight_overrides'
 document.addEventListener("turbolinks:load", function() {
     availability.executeAvailability();
     bookCovers.start();
-    hathiETAS();
     Blacklight.doBookmarkToggleBehavior();
     Blacklight.doSearchContextBehavior();
 });
