@@ -132,15 +132,11 @@ module CatalogHelper
                               { class: 'record-view-only', id: 'conveying-meaning-to-assistive-technologies' },
                               false
 
-    if hathi_etas_item? ht_hash
-      contents.push content_tag 'p',
-                                t('blackcat.hathitrust.etas_additional_text'),
-                                { class: 'record-view-only' },
-                                false
-    end
+    contents.push hathi_additional_text ht_hash
+
     link = link_to image_pack_tag('media/psulib_blacklight/images/128px-HathiTrust_logo.svg.png',
                                   alt: 'HathiTrust logo',
-                                  class: 'mr-3 d-none d-md-inline') + hathi_text(ht_hash),
+                                  class: 'mr-3 d-none d-md-inline') + hathi_link_text(ht_hash),
                    hathi_url(ht_hash)
     contents.push  content_tag('p', link, nil, false)
 
@@ -148,12 +144,11 @@ module CatalogHelper
                 { class: 'bs-callout bs-callout-warning' }, false
   end
 
-  def hathi_text(ht_hash)
-    if ht_hash['access'] == 'allow'
-      t('blackcat.hathitrust.public_domain_text')
-    else
-      t('blackcat.hathitrust.etas_text')
-    end
+  def hathi_link_text(ht_hash)
+    text = t('blackcat.hathitrust.public_domain_text') if ht_hash['access'] == 'allow'
+    text = t('blackcat.hathitrust.restricted_access_text') if ht_hash['access'] == 'deny' && !Settings&.hathi_etas
+    text = t('blackcat.hathitrust.etas_text') if hathi_etas_item? ht_hash
+    text
   end
 
   def hathi_url(ht_hash)
@@ -163,8 +158,14 @@ module CatalogHelper
             t('blackcat.hathitrust.multi_url') + ht_hash['ht_bib_key']
           end
 
-    url += t('blackcat.hathitrust.url_append') if hathi_etas_item?(ht_hash)
+    url += t('blackcat.hathitrust.url_append') if hathi_etas_item? ht_hash
     url
+  end
+
+  def hathi_additional_text(ht_hash)
+    return unless hathi_etas_item? ht_hash
+
+    content_tag 'p', t('blackcat.hathitrust.etas_additional_text'), { class: 'record-view-only' }, false
   end
 
   def hathi_etas_item?(ht_hash)
