@@ -134,14 +134,14 @@ module CatalogHelper
     contents.push hathi_additional_text ht_hash
     contents.push hathi_link ht_hash
 
-    content_tag 'div', contents.join(''),{ class: 'bs-callout bs-callout-warning' },false
+    content_tag 'div', contents.join(''), { class: 'bs-callout bs-callout-warning' }, false
   end
 
   def hathi_link(ht_hash)
     link = link_to image_pack_tag('media/psulib_blacklight/images/128px-HathiTrust_logo.svg.png',
-                           alt: 'HathiTrust logo',
-                           class: 'mr-3 d-none d-md-inline') + hathi_link_text(ht_hash),
-            hathi_url(ht_hash)
+                                  alt: 'HathiTrust logo',
+                                  class: 'mr-3 d-none d-md-inline') + hathi_link_text(ht_hash),
+                   hathi_url(ht_hash)
 
     content_tag('p', link, nil, false)
   end
