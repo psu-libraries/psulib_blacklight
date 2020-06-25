@@ -5,14 +5,13 @@
           <span class="
                   <%= 'text-muted' unless field[:sr_only] %>
                   <%= 'sr-only' if field[:sr_only] %>">
-            <%= render_index_field_label document, field: field_name %>
+            <%= render_index_field_label document, field: field_name unless field[:hide_label] %>
           </span>
           <%= doc_presenter.field_value field %>
         </li>
     <% end -%>
   </ul>
 
-  <%= render partial: 'hathi_links', locals: { document: document } %>
   <div class="blacklight-availability">
     <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
   </div>

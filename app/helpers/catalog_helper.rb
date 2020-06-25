@@ -122,15 +122,16 @@ module CatalogHelper
     safe_join(details, ' | ')
   end
 
-  def hathi_hash(document)
-    ht_struct = document.fetch(:hathitrust_struct, [])&.first
-    return if ht_struct.nil?
+  def hathi_link(options)
+    ht_hash = options[:value].map do |hathitrust_struct|
+      JSON.parse(hathitrust_struct)
+    end&.first
 
-    JSON.parse ht_struct
-  end
-
-  def hathi_links(ht_hash)
     contents = []
+    contents.push content_tag 'h5', 'Full Text available online',
+                              { class: 'record-view-only', id: 'conveying-meaning-to-assistive-technologies' },
+                              false
+
     if hathi_etas_item? ht_hash
       contents.push content_tag 'p',
                                 t('blackcat.hathitrust.etas_additional_text'),
@@ -143,7 +144,8 @@ module CatalogHelper
                    hathi_url(ht_hash)
     contents.push  content_tag('p', link, nil, false)
 
-    safe_join contents, ''
+    content_tag 'div', contents.join(''),
+                { class: 'bs-callout bs-callout-warning' }, false
   end
 
   def hathi_text(ht_hash)

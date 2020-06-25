@@ -2,7 +2,9 @@
 <%# default partial to display solr document fields in catalog show view -%>
 <dl>
   <% doc_presenter.fields_to_render.each do |field_name, field| -%>
-    <dt class="blacklight-<%= field_name.parameterize %>-label"><%= render_document_show_field_label document, field: field_name %></dt>
-    <dd class="blacklight-<%= field_name.parameterize %> ml-5"><%= doc_presenter.field_value field %></dd>
+    <% unless field[:hide_label] -%>
+      <dt class="blacklight-<%= field_name.parameterize %>-label"><%= render_document_show_field_label document, field: field_name %></dt>
+    <% end -%>
+      <dd class="blacklight-<%= field_name.parameterize %> ml-5"><%= doc_presenter.field_value field %></dd>
   <% end %>
 </dl>
