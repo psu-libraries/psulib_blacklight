@@ -225,7 +225,7 @@
          isbn_valid_ssm,
          oclc_number_ssim,
          lccn_ssim,
-         hathitrust_struct,
+         hathitrust_struct
        </str>
 
        <!-- list fields to be displayed as facets -->
@@ -292,4 +292,3 @@
   </query>
 
 </config>
-
