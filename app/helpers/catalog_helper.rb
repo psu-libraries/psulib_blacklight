@@ -122,55 +122,28 @@ module CatalogHelper
     safe_join(details, ' | ')
   end
 
-  def hathi_access(options)
-    ht_hash = options[:value].map do |hathitrust_struct|
-      JSON.parse(hathitrust_struct)
-    end&.first
+  def hathi_info(options)
+    hathi_obj = options[:value].first
 
     contents = []
     contents.push content_tag 'h5', 'Full Text available online',
                               { class: 'record-view-only', id: 'conveying-meaning-to-assistive-technologies' },
                               false
-    contents.push hathi_additional_text ht_hash
-    contents.push hathi_link ht_hash
+    contents.push content_tag 'p', hathi_obj.additional_text,
+                              { class: 'record-view-only' },
+                              false
+    contents.push hathi_link hathi_obj.url, hathi_obj.link_text
 
-    content_tag 'div', contents.join(''), { class: 'bs-callout bs-callout-warning' }, false
+    content_tag 'div', contents.join(''),
+                { class: 'bs-callout bs-callout-warning' }, false
   end
 
-  def hathi_link(ht_hash)
+  def hathi_link(url, text)
     link = link_to image_pack_tag('media/psulib_blacklight/images/128px-HathiTrust_logo.svg.png',
                                   alt: 'HathiTrust logo',
-                                  class: 'mr-3 d-none d-md-inline') + hathi_link_text(ht_hash),
-                   hathi_url(ht_hash)
+                                  class: 'mr-3 d-none d-md-inline') + text,
+                   url
 
     content_tag('p', link, nil, false)
-  end
-
-  def hathi_url(ht_hash)
-    url = if ht_hash['ht_id'].present?
-            t('blackcat.hathitrust.mono_url') + ht_hash['ht_id']
-          else
-            t('blackcat.hathitrust.multi_url') + ht_hash['ht_bib_key']
-          end
-
-    url += t('blackcat.hathitrust.url_append') if hathi_etas_item? ht_hash
-    url
-  end
-
-  def hathi_link_text(ht_hash)
-    text = t('blackcat.hathitrust.public_domain_text') if ht_hash['access'] == 'allow'
-    text = t('blackcat.hathitrust.restricted_access_text') if ht_hash['access'] == 'deny' && !Settings&.hathi_etas
-    text = t('blackcat.hathitrust.etas_text') if hathi_etas_item? ht_hash
-    text
-  end
-
-  def hathi_additional_text(ht_hash)
-    return unless hathi_etas_item? ht_hash
-
-    content_tag 'p', t('blackcat.hathitrust.etas_additional_text'), { class: 'record-view-only' }, false
-  end
-
-  def hathi_etas_item?(ht_hash)
-    ht_hash['access'] == 'deny' && Settings&.hathi_etas
   end
 end
