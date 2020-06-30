@@ -52,7 +52,7 @@ module HathiLinks
       I18n.t('blackcat.hathitrust.public_domain_text') if ht_access == 'allow'
       I18n.t('blackcat.hathitrust.restricted_access_text') if ht_access == 'deny' && !Settings&.hathi_etas
 
-      I18n.t('blackcat.hathitrust.etas_text')
+      I18n.t('blackcat.hathitrust.etas_text') if etas_item?
     end
 
     def ht_additional_text
