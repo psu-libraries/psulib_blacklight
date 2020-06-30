@@ -2,6 +2,7 @@
 
 class SolrDocument
   include Blacklight::Solr::Document
+  include HathiLinks
 
   # self.unique_key = 'id'
   field_semantics.merge!(
@@ -36,10 +37,4 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
-
-  def hathi_links
-    return if self['hathitrust_struct'].nil?
-
-    @hathi_links ||= HathiLinks.new(self)
-  end
 end
