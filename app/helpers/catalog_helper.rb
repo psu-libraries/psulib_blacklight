@@ -121,29 +121,4 @@ module CatalogHelper
     details.push "catkey: #{document[:id]}"
     safe_join(details, ' | ')
   end
-
-  def hathi_info(options)
-    hathi_obj = options[:value].first
-
-    contents = []
-    contents.push content_tag 'h5', 'Full Text available online',
-                              { class: 'record-view-only', id: 'conveying-meaning-to-assistive-technologies' },
-                              false
-    contents.push content_tag 'p', hathi_obj.additional_text,
-                              { class: 'record-view-only' },
-                              false
-    contents.push hathi_link hathi_obj.url, hathi_obj.link_text
-
-    content_tag 'div', contents.join(''),
-                { class: 'bs-callout bs-callout-warning' }, false
-  end
-
-  def hathi_link(url, text)
-    link = link_to image_pack_tag('media/psulib_blacklight/images/128px-HathiTrust_logo.svg.png',
-                                  alt: 'HathiTrust logo',
-                                  class: 'mr-3 d-none d-md-inline') + text,
-                   url
-
-    content_tag('p', link, nil, false)
-  end
 end

@@ -49,10 +49,10 @@ module HathiLinks
     end
 
     def ht_link_text
-      I18n.t('blackcat.hathitrust.public_domain_text') if ht_access == 'allow'
-      I18n.t('blackcat.hathitrust.restricted_access_text') if ht_access == 'deny' && !Settings&.hathi_etas
+      return I18n.t('blackcat.hathitrust.public_domain_text') if ht_access == 'allow'
+      return I18n.t('blackcat.hathitrust.restricted_access_text') unless etas_item?
 
-      I18n.t('blackcat.hathitrust.etas_text') if etas_item?
+      I18n.t('blackcat.hathitrust.etas_text')
     end
 
     def ht_additional_text
