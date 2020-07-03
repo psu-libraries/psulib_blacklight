@@ -1,18 +1,20 @@
 <% doc_presenter = index_presenter(document) %>
-  <ul class="document-metadata dl-invert">
-    <% doc_presenter.fields_to_render.each do |field_name, field| -%>
-        <li class="blacklight-<%= field_name.parameterize -%>">
-          <span class="
-                  <%= 'text-muted' unless field[:sr_only] %>
-                  <%= 'sr-only' if field[:sr_only] %>">
-            <%= render_index_field_label document, field: field_name %>
-          </span>
-          <%= doc_presenter.field_value field %>
-        </li>
-    <% end -%>
-  </ul>
 
-  <div data-etas-oclc="<%= oclc_number document %>"></div>
-  <div class="blacklight-availability">
-    <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
-  </div>
+<ul class="document-metadata dl-invert">
+  <% doc_presenter.fields_to_render.each do |field_name, field| -%>
+      <li class="blacklight-<%= field_name.parameterize -%>">
+        <span class="
+                <%= 'text-muted' unless field[:sr_only] %>
+                <%= 'sr-only' if field[:sr_only] %>">
+          <%= render_index_field_label document, field: field_name %>
+        </span>
+        <%= doc_presenter.field_value field %>
+      </li>
+  <% end -%>
+</ul>
+
+<%= render partial: 'hathitrust/hathi_links', locals: { hathi_links: document.hathi_links } if document.hathi_links %>
+
+<div class="blacklight-availability">
+  <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
+</div>

@@ -2,6 +2,7 @@
 
 class SolrDocument
   include Blacklight::Solr::Document
+  include HathiLinks
 
   # self.unique_key = 'id'
   field_semantics.merge!(

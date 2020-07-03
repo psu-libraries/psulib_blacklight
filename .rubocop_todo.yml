@@ -15,7 +15,7 @@ Metrics/BlockLength:
 # Offense count: 1
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
-  Max: 261
+  Max: 263
 
 # Offense count: 3
 # Cop supports --auto-correct.

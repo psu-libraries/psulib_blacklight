@@ -31,5 +31,11 @@
 
 en:
   blackcat:
-    links:
-      hathitrust: 'Check out digital copy through HathiTrust'
+      hathitrust:
+        mono_url: https://hdl.handle.net/2027/
+        multi_url: https://catalog.hathitrust.org/Record/
+        url_append: '?urlappend=%3Bsignon=swle:urn:mace:incommon:psu.edu'
+        public_domain_text: 'Access digital copy through HathiTrust'
+        restricted_access_text: 'Search inside at HathiTrust'
+        etas_text: 'Check out digital copy through HathiTrust'
+        etas_additional_text: 'By special arrangement in response to the COVID-19 pandemic, patrons may access this resource online through the HathiTrust Emergency Temporary Access Service.'
