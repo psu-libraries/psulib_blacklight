@@ -121,4 +121,8 @@ module CatalogHelper
     details.push "catkey: #{document[:id]}"
     safe_join(details, ' | ')
   end
+
+  def get_first_only(options = {})
+    options[:value].first
+  end
 end
