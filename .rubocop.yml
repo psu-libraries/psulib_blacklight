@@ -10,6 +10,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'tmp/**/*'
     - 'vendor/**/*'
+  NewCops: enable
 
 Metrics/BlockLength:
   Exclude:
