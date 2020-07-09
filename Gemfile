@@ -40,7 +40,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
-  gem 'simplecov', require: false
+  gem 'simplecov', '< 0.18', require: false # CodeClimate does not work with .18 or later
   gem 'sqlite3'
   gem 'webdrivers', '~> 4.0'
   gem 'webmock'
