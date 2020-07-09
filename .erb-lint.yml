@@ -21,6 +21,8 @@ linters:
         niftany:
           - niftany_rubocop_ruby.yml
           - niftany_rubocop_rails.yml
+      Rails/ContentTag:
+        Enabled: false
       Layout/InitialIndentation:
         Enabled: false
       Layout/TrailingEmptyLines:
