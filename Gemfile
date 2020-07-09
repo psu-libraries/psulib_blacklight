@@ -37,6 +37,7 @@ group :development, :test do
   gem 'capybara'
   gem 'niftany'
   gem 'pry-byebug'
+  gem 'rubocop', '< 0.87'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
