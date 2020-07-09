@@ -18,7 +18,7 @@ gem 'rsolr', '>= 1.0'
 gem 'sprockets', '< 4.0'
 gem 'webpacker', '~> 4.0'
 
-gem 'blacklight', '~> 7.0'
+gem 'blacklight', '~> 7.5.0'
 gem 'blacklight-marc', '>= 7.0.0.rc1'
 gem 'blacklight_advanced_search', '~> 7.0'
 gem 'blacklight_range_limit', '~> 7.1'
