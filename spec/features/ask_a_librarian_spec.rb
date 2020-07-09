@@ -19,7 +19,8 @@ RSpec.feature 'Ask a librarian', type: :feature do
       page.assert_selector('h1', text: 'MARC View', wait: 10)
       page.driver.go_back
       page.assert_selector('h1',
-                           text: 'Ethical and Social Issues in the Information Age by Joseph Migga Kizza',
+                           text: 'Ethical and Social Issues in the Information Age [electronic resource] / by Joseph M'\
+                                 'igga Kizza',
                            wait: 10)
       expect(page).to have_css('button[class^="libchat"]', count: 1)
     end
