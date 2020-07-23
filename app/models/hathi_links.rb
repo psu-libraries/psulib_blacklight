@@ -11,6 +11,12 @@ module HathiLinks
     }
   end
 
+  def etas_item?
+    return unless has_hathi_links?
+
+    ht_access == 'deny' && Settings&.hathi_etas
+  end
+
   private
 
     def has_hathi_links?
@@ -59,9 +65,5 @@ module HathiLinks
       return nil unless etas_item?
 
       I18n.t('blackcat.hathitrust.etas_additional_text')
-    end
-
-    def etas_item?
-      ht_access == 'deny' && Settings&.hathi_etas
     end
 end
