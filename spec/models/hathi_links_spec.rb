@@ -23,7 +23,8 @@ RSpec.describe HathiLinks do
         expect(hathi_links).to match({
                                        text: 'Access digital copy through HathiTrust',
                                        url: 'https://hdl.handle.net/2027/12345',
-                                       additional_text: nil
+                                       additional_text: nil,
+                                       etas_item: false
                                      })
       end
     end
@@ -35,7 +36,8 @@ RSpec.describe HathiLinks do
         expect(hathi_links).to match({
                                        text: 'Access digital copy through HathiTrust',
                                        url: 'https://catalog.hathitrust.org/Record/12345',
-                                       additional_text: nil
+                                       additional_text: nil,
+                                       etas_item: false
                                      })
       end
     end
@@ -47,7 +49,8 @@ RSpec.describe HathiLinks do
         expect(hathi_links).to match({
                                        text: I18n.t('blackcat.hathitrust.restricted_access_text'),
                                        url: 'https://hdl.handle.net/2027/12345',
-                                       additional_text: nil
+                                       additional_text: nil,
+                                       etas_item: false
                                      })
       end
     end
@@ -65,7 +68,8 @@ RSpec.describe HathiLinks do
         expect(hathi_links).to match({
                                        text: I18n.t('blackcat.hathitrust.public_domain_text'),
                                        url: 'https://hdl.handle.net/2027/12345',
-                                       additional_text: nil
+                                       additional_text: nil,
+                                       etas_item: false
                                      })
       end
     end
@@ -77,7 +81,8 @@ RSpec.describe HathiLinks do
         expect(hathi_links).to match({
                                        text: I18n.t('blackcat.hathitrust.etas_text'),
                                        url: 'https://hdl.handle.net/2027/12345?urlappend=%3Bsignon=swle:urn:mace:incommon:psu.edu',
-                                       additional_text: I18n.t('blackcat.hathitrust.etas_additional_text')
+                                       additional_text: I18n.t('blackcat.hathitrust.etas_additional_text'),
+                                       etas_item: true
                                      })
       end
     end
@@ -89,7 +94,8 @@ RSpec.describe HathiLinks do
         expect(hathi_links).to match({
                                        text: I18n.t('blackcat.hathitrust.etas_text'),
                                        url: 'https://catalog.hathitrust.org/Record/12345?urlappend=%3Bsignon=swle:urn:mace:incommon:psu.edu',
-                                       additional_text: I18n.t('blackcat.hathitrust.etas_additional_text')
+                                       additional_text: I18n.t('blackcat.hathitrust.etas_additional_text'),
+                                       etas_item: true
                                      })
       end
     end
