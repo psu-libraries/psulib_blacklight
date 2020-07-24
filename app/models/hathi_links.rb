@@ -7,7 +7,8 @@ module HathiLinks
     {
       text: ht_link_text,
       url: ht_url,
-      additional_text: ht_additional_text
+      additional_text: ht_additional_text,
+      etas_item: etas_item?
     }
   end
 
