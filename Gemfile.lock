@@ -470,7 +470,6 @@ DEPENDENCIES
   simplecov (< 0.18)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sprockets (< 4.0)
   sqlite3
   webdrivers (~> 4.0)
   webmock

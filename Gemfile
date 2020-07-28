@@ -16,7 +16,6 @@ gem 'lograge'
 gem 'puma', '~> 3.12'
 gem 'rails', '~> 6.0'
 gem 'rsolr', '>= 1.0'
-gem 'sprockets', '< 4.0'
 gem 'webpacker', '~> 4.0'
 
 gem 'blacklight', '~> 7.5.0'
