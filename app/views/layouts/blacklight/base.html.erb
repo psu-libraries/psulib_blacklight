@@ -48,13 +48,13 @@
   <% if @document || @search_context %>
     <div class="seconday-actions row justify-content border-bottom pb-2 mb-2">
       <% if @search_context %>
-        <% if current_search_session %>
+        <% if current_search_session && current_search_session['document_id'] == @document.id %>
           <div id="appliedParams" class="col-auto">
             <%= link_back_to_catalog label: t('blacklight.back_to_search.html'), class: 'btn btn-outline-secondary btn-sm' %>
           </div>
         <% end %>
 
-        <%= render 'previous_next_doc' %>
+        <%= render 'previous_next_doc' if search_session['document_id'] == @document.id %>
       <% end %>
       <% if @document %>
         <%= render 'record_toolbar' %>

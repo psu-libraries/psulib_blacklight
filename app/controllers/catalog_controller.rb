@@ -45,6 +45,21 @@ class CatalogController < ApplicationController
     end
   end
 
+  def track
+    search_session['counter'] = params[:counter]
+    search_session['id'] = params[:search_id]
+    search_session['per_page'] = params[:per_page]
+    search_session['document_id'] = params[:document_id]
+
+    if params[:redirect] && (params[:redirect].starts_with?('/') || params[:redirect] =~ URI::DEFAULT_PARSER.make_regexp)
+      uri = URI.parse(params[:redirect])
+      path = uri.query ? "#{uri.path}?#{uri.query}" : uri.path
+      redirect_to path, status: 303
+    else
+      redirect_to({ action: :show, id: params[:id] }, status: 303)
+    end
+  end
+
   rescue_from Blacklight::Exceptions::RecordNotFound do
     redirect_to '/404'
   end
