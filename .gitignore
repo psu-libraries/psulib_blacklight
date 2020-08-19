@@ -42,5 +42,7 @@ spec/examples.txt
 # testing output
 coverage
 
-# Ignore config gem settings.yml, the application's configuration should not be tracked.
-config/settings.yml
+# Ignore config gem files, the application's configuration should not be tracked.
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
