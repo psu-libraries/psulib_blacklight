@@ -52,8 +52,34 @@ RSpec.feature 'Availability', type: :feature do
 
     it 'that is an online resource and has no holdings to display' do
       visit '/?utf8=✓&search_field=all_fields&q=D-humanos+Arruti%2C+Mariana'
-      expect(page).not_to have_selector('button[data-target="#availability-22091400"]')
+      expect(page).not_to have_selector 'button[data-target="#availability-22091400"]'
       expect(page).not_to have_selector '.availability-22091400'
+    end
+
+    context 'when Hathi ETAS is enabled' do
+      before do
+        Settings.readonly_holds = false
+        Settings.hathi_etas = true
+      end
+
+      it 'does not display \'View Availability\' button for etas items even though there are holdable items' do
+        visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
+        expect(page).not_to have_selector 'button[data-target="#availability-3753687"]'
+        expect(page).not_to have_selector '.availability-3753687'
+      end
+    end
+
+    context 'when Hathi ETAS is disabled' do
+      before do
+        Settings.readonly_holds = false
+        Settings.hathi_etas = false
+      end
+
+      it 'displays \'View Availability\' button for etas items' do
+        visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
+        expect(page).to have_selector 'button[data-target="#availability-3753687"]'
+        expect(page).to have_selector '.availability-3753687'
+      end
     end
   end
 
