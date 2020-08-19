@@ -19,7 +19,7 @@
       <% unless Settings&.readonly_holds %>
         <% unless document.hathi_links && document.hathi_links&.dig(:etas_item) %>
           <div class="hold-button text-right invisible mb-2">
-            <%= link_to 'I Want It', "#{Settings.myaccount_url}/holds/new?catkey=#{id}", class: 'btn btn-primary pr-4 pl-4' %>
+            <%= link_to 'I Want It', "#{Settings.hold_button_url}#{id}", class: 'btn btn-primary pr-4 pl-4' %>
           </div>
         <% end %>
       <% end %>
