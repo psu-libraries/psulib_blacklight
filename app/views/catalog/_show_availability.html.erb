@@ -4,7 +4,7 @@
   <div class="blacklight-availability col">
     <div class="availability" data-keys="<%= id %>">
       <h4>Availability</h4>
-      <% unless Settings&.readonly_holds %>
+      <% unless Settings&.hide_hold_button %>
           <div class="hold-button text-right invisible mb-2">
             <%= link_to 'I Want It', "#{Settings.hold_button_url}#{id}", class: 'btn btn-primary pr-4 pl-4' %>
           </div>
