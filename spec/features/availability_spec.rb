@@ -260,7 +260,7 @@ RSpec.feature 'Availability', type: :feature do
           Settings.hathi_etas = true
         end
 
-        it 'an etas record does not display even with holdable items' do
+        it 'does not display for an etas record even with holdable items' do
           visit '/catalog/3753687'
           expect(page).not_to have_link(
             'I Want It', href: "#{Settings.hold_button_url}3753687"
@@ -269,7 +269,7 @@ RSpec.feature 'Availability', type: :feature do
       end
 
       context 'when Hathi ETAS is disabled' do
-        it 'an etas record displays if there are holdable items' do
+        it 'displays for an etas record if there are holdable items' do
           visit '/catalog/3753687'
           expect(page).to have_link(
             'I Want It', href: "#{Settings.hold_button_url}3753687"
