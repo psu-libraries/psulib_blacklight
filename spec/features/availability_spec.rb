@@ -7,6 +7,9 @@ RSpec.feature 'Availability', type: :feature do
 
   before do
     allow(CatalogController).to receive(:new).and_return(stubbed_controller)
+    Settings.hathi_etas = false
+    Settings.readonly = false
+    Settings.hide_hold_button = false
   end
 
   describe 'User searches for a record', js: true do
@@ -43,7 +46,7 @@ RSpec.feature 'Availability', type: :feature do
     it 'and clicks the \'View Availability\' button to display and hide holdings' do
       visit '/?utf8=✓&search_field=all_fields&q=9781599901091'
       expect(page).to have_selector 'button[data-target="#availability-5112336"]'
-      expect(page).not_to have_selector '.availability-5112336'
+      expect(page).not_to have_selector '#availability-5112336'
       click_button('View Availability')
       expect(page).not_to have_selector '.availability-5112336', wait: 3
       expect(page).to have_content 'PZ8.G3295Su 2008'
@@ -52,12 +55,30 @@ RSpec.feature 'Availability', type: :feature do
 
     it 'that is an online resource and has no holdings to display' do
       visit '/?utf8=✓&search_field=all_fields&q=D-humanos+Arruti%2C+Mariana'
-      expect(page).not_to have_selector('button[data-target="#availability-22091400"]')
-      expect(page).not_to have_selector '.availability-22091400'
+      expect(page).not_to have_selector 'button[data-target="#availability-22091400"]'
+      expect(page).not_to have_selector '#availability-22091400'
+    end
+
+    context 'when Hathi ETAS is enabled' do
+      before do
+        Settings.hathi_etas = true
+      end
+
+      it 'does not display \'View Availability\' button for etas items even though there are holdable items' do
+        visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
+        expect(page).not_to have_selector 'button[data-target="#availability-3753687"]'
+      end
+    end
+
+    context 'when Hathi ETAS is disabled' do
+      it 'displays \'View Availability\' button for etas items' do
+        visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
+        expect(page).to have_selector 'button[data-target="#availability-3753687"]'
+      end
     end
   end
 
-  describe 'User opens the item page for a record' do
+  describe 'User opens the item page for a record', js: true do
     it 'that has holdings to display', js: true do
       visit '/catalog/1839879'
       expect(page).to have_selector 'div[class="availability"][data-keys="1839879"]'
@@ -66,6 +87,28 @@ RSpec.feature 'Availability', type: :feature do
     it 'that is an online resource and has no holdings to display', js: true do
       visit '/catalog/22091400'
       expect(page).not_to have_selector 'div[class="availability"]'
+    end
+
+    context 'when Hathi ETAS is enabled' do
+      before do
+        Settings.hathi_etas = true
+      end
+
+      it 'does not display holdings for etas items even though there are holdable items' do
+        visit '/catalog/3753687'
+        expect(page).not_to have_selector 'div[class="availability"][data-keys="3753687"]'
+      end
+    end
+
+    context 'when Hathi ETAS is disabled' do
+      before do
+        Settings.hathi_etas = false
+      end
+
+      it 'displays holdings for etas items when there are holdable items' do
+        visit '/catalog/3753687'
+        expect(page).to have_selector 'div[class="availability"][data-keys="3753687"]'
+      end
     end
   end
 
@@ -151,7 +194,7 @@ RSpec.feature 'Availability', type: :feature do
   describe 'Hold Button - I want It', js: true do
     context 'when I Want It is in readonly state' do
       before do
-        Settings.readonly_holds = true
+        Settings.hide_hold_button = true
       end
 
       it 'does not display even for a record with holdable items' do
@@ -161,10 +204,6 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     context 'when I Want It is not in readonly state' do
-      before do
-        Settings.readonly_holds = false
-      end
-
       it 'displays when a record has least one holdable item' do
         visit '/catalog/18879591'
         within 'div[class*="hold-button"]' do
@@ -176,19 +215,18 @@ RSpec.feature 'Availability', type: :feature do
 
       it 'does not display when a record has no holdable items' do
         visit '/catalog/107'
-        expect(page).not_to have_link('I Want It')
+        expect(page).not_to have_link 'I Want It'
       end
     end
 
     context 'when Hathi ETAS is enabled' do
       before do
-        Settings.readonly_holds = false
         Settings.hathi_etas = true
       end
 
       it 'does not display for etas items even though there are holdable items' do
         visit '/catalog/3753687'
-        expect(page).not_to have_link('I Want It')
+        expect(page).not_to have_link 'I Want It'
       end
     end
   end
@@ -208,8 +246,8 @@ RSpec.feature 'Availability', type: :feature do
       visit '/catalog/53953'
       bound_holding = '//div[@data-library="UP-ANNEX"]//tr[td//text()[contains(., \'Microfilm E290 reel.1065\')]]'
       within :xpath, bound_holding do
-        expect(page).to have_content('Microfilm, Microfiche, etc.')
-        expect(page).to have_content('Submit request for annexed material')
+        expect(page).to have_content 'Microfilm, Microfiche, etc.'
+        expect(page).to have_content 'Submit request for annexed material'
       end
     end
 

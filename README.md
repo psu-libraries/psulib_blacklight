@@ -64,13 +64,15 @@ Follow the instructions for [How To Use Webpacker](https://github.com/psu-librar
 
 ## "Blackcat Admin" feature
 
-The [config](https://rubygems.org/gems/config) gem provides a means for adding ad-hoc config as needed. The file `config/settings.yml` is not tracked in git. So far 4 settings have been added:
+The [config](https://rubygems.org/gems/config) gem provides a means for adding ad-hoc config as needed. The file `config/settings.local.yml` is not tracked in git. So far 5 settings have been added:
 
-1. modify the announcement bar (thin bar at top)
-1. put the site in "readonly" (no availability data)
-1. put holds in readonly mode by hiding the I Want It button. 
+1. Modify the announcement bar (thin bar at top)
+1. Put the site in "readonly" (no availability data)
+1. Put holds in readonly mode by hiding the I Want It button 
+1. Put the site in HathiTrust ETAS enabled mode (ETAS items do not display availability data)
+1. Modify the hold button url
 
-Here is a sample of what the settings.yml file might look like:
+Here is a sample of what the `settings.yml` file might look like:
 
 ```rb
 # Strings
@@ -80,10 +82,12 @@ announcement:
   message: All University Libraries locations are closed, but we're here to help! See <a href="https://libraries.psu.edu/covid19"> University Libraries COVID-19 (novel coronavirus) Updates and Resources</a> for more information.
   # See https://getbootstrap.com/docs/4.4/utilities/colors/
   html_class: bg-warning
+hold_button_url: https://myaccount01qa.libraries.psu.edu/holds/new?catkey=
 
 # Booleans
 readonly: false
-readonly_holds: true
+hide_hold_button: false
+hathi_etas: false
 ```
 
 If one of the special keys isn't present, there is no ill-effect. It is just not there and the system operates as per usual. If the announcement array isn't present, then the default announcement in the translation file will show.

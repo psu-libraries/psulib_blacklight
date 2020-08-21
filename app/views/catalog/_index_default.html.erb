@@ -16,5 +16,7 @@
 <%= render partial: 'hathitrust/hathi_links', locals: { hathi_links: document.hathi_links } if document.hathi_links %>
 
 <div class="blacklight-availability">
-  <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
+  <% unless document.hathi_links && document.hathi_links&.dig(:etas_item) -%>
+    <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
+  <% end -%>
 </div>

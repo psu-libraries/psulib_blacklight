@@ -16,9 +16,11 @@
     </div>
 
   </div>
-
-  <%= render partial: 'show_availability', locals: { document: @document } if @document && !Settings&.readonly %>
-
+  <% if @document && !Settings&.readonly -%>
+    <% unless @document.hathi_links && @document.hathi_links.dig(:etas_item) -%>
+      <%= render partial: 'show_availability', locals: { document: @document } %>
+    <% end -%>
+  <% end -%>
   <div class="row document-metadata metadata-secondary py-4">
     <div class="col">
       <div id="doc_<%= @document.id.to_s.parameterize %>">
