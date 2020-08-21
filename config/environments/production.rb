@@ -94,10 +94,10 @@ Rails.application.configure do
     params = event.payload[:params].reject { |k| %w(controller action).include?(k) }
     {
       params: params,
-      time: Time.now,
-      host: controller.request.host
+      time: Time.now
     }
   end
+  config.lograge.custom_payload { |controller| { host: controller.request.host } }
   hostname = Socket.gethostname || 'production'
   config.paths['log'] = "log/#{hostname}.log"
 
