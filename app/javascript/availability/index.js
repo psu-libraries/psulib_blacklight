@@ -475,10 +475,10 @@ const availability = {
     },
 
     createILLURL() {
-        let ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/" +
-            "OpenURL?Action=10";
         // Now that the availability data has been rendered, check for ILL options and update links
         $('.availability-holdings [data-type="ill-link"]').each(function () {
+            let ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/" +
+                "OpenURL?Action=10";
             let illLinkObj = $(this);
             const catkey = $(this).data('catkey');
             const callNumber = encodeURIComponent($(this).data('call-number'));
