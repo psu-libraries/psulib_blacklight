@@ -772,8 +772,8 @@
     "REF-HN": "Copy unavailable, request via Interlibrary Loan",
     "SOFTWAREHN": "Copy unavailable, request via Interlibrary Loan",
     "STORAGE-HN": "Copy unavailable, request via Interlibrary Loan",
-    "RESERVE-EG": "Copy unavailable, request via Interlibrary Loan",
-    "RESERVE-EM": "Copy unavailable, request via Interlibrary Loan",
-    "CHECKEDOUT": "Copy unavailable, request via Interlibrary Loan"
+    "RESERVE-EG": "Unavailable for checkout, request pages via ILLiad",
+    "RESERVE-EM": "Unavailable for checkout, request pages via ILLiad",
+    "CHECKEDOUT": "Unavailable for checkout, request via Interlibrary Loan"
   }
 }
