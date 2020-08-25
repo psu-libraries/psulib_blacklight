@@ -1706,23 +1706,23 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
-blacklight-frontend@7.5.0:
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/blacklight-frontend/-/blacklight-frontend-7.5.0.tgz#4fc34aab543b21d25beb16ebbe1c9b7f213b72f2"
-  integrity sha512-MhtQQ4qf8lUCdWFMf9gGIZY1t8TLZED0vak+EZzNk0vj4bT3z0xe9nT7XEaGUQjMOq3bHVBDhnL9mA8XJiEJ6g==
+blacklight-frontend@latest:
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/blacklight-frontend/-/blacklight-frontend-7.7.0.tgz#7f6f5953d1d723480b9977163ac8f4f7a0805e68"
+  integrity sha512-NZKIFmVMd9PcFSrywJBXD7rZG6v/6huokINK93iR881JrYRHzg51xJRMNk6jvTV30jY9gJxhX3rMHG1uSauYBg==
   dependencies:
     bloodhound-js "^1.2.3"
     bootstrap "^4.3.1"
     jquery "^3.4.1"
     typeahead.js "^0.11.1"
 
-"blacklight-marc@https://github.com/projectblacklight/blacklight-marc.git#v7.0.0.rc1":
+"blacklight-marc@https://github.com/projectblacklight/blacklight-marc.git#latest":
   version "0.0.0"
-  resolved "https://github.com/projectblacklight/blacklight-marc.git#582c68255d73e21926234f2ad5bb1ddf37dc6684"
+  resolved "https://github.com/projectblacklight/blacklight-marc.git#8228966ab0d880a4d06c22b86c1766a7ab6d6fea"
 
-"blacklight-range-limit@https://github.com/projectblacklight/blacklight_range_limit.git#v7.0.0":
+"blacklight-range-limit@https://github.com/projectblacklight/blacklight_range_limit.git#latest":
   version "0.0.0"
-  resolved "https://github.com/projectblacklight/blacklight_range_limit.git#74ce87903ac602e1fcdb407fd60b7ba38f09895a"
+  resolved "https://github.com/projectblacklight/blacklight_range_limit.git#81d3c6e575cf22801835bbc5541b58ea8a39a2a5"
 
 block-stream@*:
   version "0.0.9"

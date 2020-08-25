@@ -158,7 +158,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'lc_1letter_facet', label: 'Classification', show: false, sort: 'index'
     config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
-    config.add_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet]
+    config.add_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet], collapsing: true
 
     config.add_home_facet_field 'access_facet', label: 'Access', collapse: false
     config.add_home_facet_field 'format', label: 'Format', limit: true, collapse: false
