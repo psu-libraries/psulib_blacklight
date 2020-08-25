@@ -90,7 +90,7 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     context 'when Hathi ETAS is disabled' do
-      it 'an etas record displays \'View Availability\' button and hold button' do
+      xit 'an etas record displays \'View Availability\' button and hold button' do
         visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
         expect(page).to have_selector 'button[data-target="#availability-3753687"]'
         expect(page).not_to have_selector '#availability-3753687'
@@ -269,7 +269,7 @@ RSpec.feature 'Availability', type: :feature do
       end
 
       context 'when Hathi ETAS is disabled' do
-        it 'displays for an etas record if there are holdable items' do
+        xit 'displays for an etas record if there are holdable items' do
           visit '/catalog/3753687'
           expect(page).to have_link(
             'I Want It', href: "#{Settings.hold_button_url}3753687"
