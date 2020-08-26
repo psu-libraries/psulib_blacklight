@@ -416,10 +416,13 @@ const availability = {
         // Location information presented to the user is different based on a few scenarios
         // First, if it's related to ILL
         if (holding.locationID in availability.illiadLocations) {
+            const linkType = (['RESERVE-EM', 'RESERVE-EG'].includes(holding.locationID)) ? 'reserves-scan' : '' ;
             const illLocation = `<a 
                             data-type="ill-link" 
                             data-catkey="${holding.catkey}" 
                             data-call-number="${holding.callNumber}" 
+                            data-link-type="${linkType}"
+                            data-item-location="${holding.locationID}"
                             href="#"
                         >${spinner}${availability.illiadLocations[holding.locationID]}</a>`;
 
@@ -482,7 +485,8 @@ const availability = {
             let illLinkObj = $(this);
             const catkey = $(this).data('catkey');
             const callNumber = encodeURIComponent($(this).data('call-number'));
-            const linkType = $(this).data('link-type');
+            const linkType = encodeURIComponent($(this).data('link-type'));
+            const itemLocation = encodeURIComponent($(this).data('item-location'));
 
             $.get(`/catalog/${catkey}/raw.json`, function(data) {
                 if (Object.keys(data).length > 0) {
@@ -495,6 +499,9 @@ const availability = {
                     else {
                         const ISBN = data.isbn_ssm ? data.isbn_ssm : "";
                         ILLURL += `&Form=30&isbn=${ISBN}`;
+                    }
+                    if (linkType === "reserves-scan") {
+                        ILLURL += `&Genre=GenericRequestReserves&location=${itemLocation}`;
                     }
                     ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
                     if (author) {
