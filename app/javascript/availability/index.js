@@ -416,12 +416,11 @@ const availability = {
         // Location information presented to the user is different based on a few scenarios
         // First, if it's related to ILL
         if (holding.locationID in availability.illiadLocations) {
-            const linkType = (['RESERVE-EM', 'RESERVE-EG'].includes(holding.locationID)) ? 'reserves-scan' : '' ;
             const illLocation = `<a 
                             data-type="ill-link" 
                             data-catkey="${holding.catkey}" 
                             data-call-number="${holding.callNumber}" 
-                            data-link-type="${linkType}"
+                            data-link-type="${availability.illLinkType(holding.locationID)}"
                             data-item-location="${holding.locationID}"
                             href="#"
                         >${spinner}${availability.illiadLocations[holding.locationID]}</a>`;
@@ -573,6 +572,10 @@ const availability = {
 
     isMovedLocation(location) {
         return availability.movedLocations.includes(location);
+    },
+
+    illLinkType(location) {
+        return (['RESERVE-EM', 'RESERVE-EG'].includes(location)) ? 'reserves-scan' : '' ;
     }
 };
 
