@@ -421,7 +421,7 @@ const availability = {
                             data-catkey="${holding.catkey}" 
                             data-call-number="${holding.callNumber}" 
                             href="#"
-                        >${spinner}Copy unavailable, request via Interlibrary Loan</a>`;
+                        >${spinner}${availability.illiadLocations[holding.locationID]}</a>`;
 
             return illLocation;
         }

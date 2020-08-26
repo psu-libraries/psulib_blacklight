@@ -771,6 +771,7 @@
     "MICROS-HN": "Copy unavailable, request via Interlibrary Loan",
     "REF-HN": "Copy unavailable, request via Interlibrary Loan",
     "SOFTWAREHN": "Copy unavailable, request via Interlibrary Loan",
-    "STORAGE-HN": "Copy unavailable, request via Interlibrary Loan"
+    "STORAGE-HN": "Copy unavailable, request via Interlibrary Loan",
+    "CHECKEDOUT": "Unavailable for checkout, request via Interlibrary Loan"
   }
 }
