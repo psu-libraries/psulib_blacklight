@@ -1,7 +1,7 @@
 dist: xenial
 language: ruby
 rvm:
-  - 2.5.3
+  - 2.6.6
 bundler_args: --without development
 sudo: false
 cache:
