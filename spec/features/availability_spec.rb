@@ -321,6 +321,9 @@ RSpec.feature 'Availability', type: :feature do
         end
       end
 
+      it 'has the correct ILL url if a record has a holding in a CHECKEDOUT location'
+      it 'has the correct ILL url if a record has a holding in a reserves scan location'
+
       it 'doesn\'t display if a record does not have a holding in a ILL location' do
         visit '/catalog/1839879'
         expect(page).not_to have_link 'Copy unavailable, request via Interlibrary Loan'
