@@ -31,9 +31,9 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import 'blacklight_marc';
 
 // Blacklight over-rides
-@import 'header';
-@import 'facets';
-@import 'constraints';
+@import 'blacklight_overrides/header';
+@import 'blacklight_overrides/facets';
+@import 'blacklight_overrides/constraints';
 
 // Local
 @import 'metadata';
