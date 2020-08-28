@@ -56,14 +56,6 @@
   }
 }
 
-.facet-limit-active {
-  @extend .border-success;
-
-  .card-header {
-    @extend .bg-success;
-  }
-}
-
 .facet-values {
   display: table;
   table-layout: fixed;
@@ -71,12 +63,9 @@
   margin-bottom: 0;
 
   li {
-
     display: table-row;
-    .selected {
-      @extend .text-success;
-    }
-
+    font-size: 14px;
+    line-height: 1.4;
   }
 
   .remove {
@@ -92,16 +81,11 @@
 
   @mixin hyphens-auto {
     overflow-wrap: break-word;
-    -webkit-hyphens: auto;
-    -o-hyphens: auto;
     hyphens: auto;
   }
 
   .facet-label {
     display: table-cell;
-    padding-right: 1em;
-    text-indent: -15px;
-    padding-left: 15px;
     padding-bottom: $spacer / 2;
     @include hyphens-auto;
   }
@@ -116,35 +100,33 @@
 
 .facet-extended-list {
   .sort-options {
-    text-align:right;
+    text-align: right;
   }
 
   .prev-next-links {
-    float:left;
+    float: left;
   }
 }
 
 .facet-field-heading {
   @extend .h6;
+  /* This prevents the contained stretch link from covering the panel body */
+  position: relative;
 
   a {
     color: inherit;
   }
 
-  /* This prevents the contained stretch link from covering the panel body */
-  position: relative
 }
 
-/* Sidenav
--------------------------------------------------- */
-
+// Sidenav
 .facet-pagination {
+  @extend .clearfix;
+  
   &.top {
     padding: $modal-inner-padding;
   }
 }
-
-
 
 /* style for pivot facet's nested list */
 
