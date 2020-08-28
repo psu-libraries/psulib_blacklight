@@ -160,11 +160,11 @@ class CatalogController < ApplicationController
     config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
     config.add_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet], collapsing: true
 
-    config.add_home_facet_field 'access_facet', label: 'Access', collapse: false
-    config.add_home_facet_field 'format', label: 'Format', limit: true, collapse: false
-    config.add_home_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true, collapse: true
-    config.add_home_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z', collapse: true
-    config.add_home_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet], collapse: true
+    config.add_home_facet_field 'access_facet', label: 'Access', collapse: false, presenter: Blacklight::FacetFieldPresenter
+    config.add_home_facet_field 'format', label: 'Format', limit: true, collapse: false, presenter: Blacklight::FacetFieldPresenter
+    config.add_home_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true, collapse: true, presenter: Blacklight::FacetFieldPresenter
+    config.add_home_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z', collapse: true, presenter: Blacklight::FacetFieldPresenter
+    config.add_home_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet], collapse: true, collapsing: true, presenter: Blacklight::FacetFieldPresenter
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
