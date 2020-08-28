@@ -773,13 +773,6 @@
     "MISSING": "Copy unavailable, request via Interlibrary Loan",
     "REPAIR": "Copy unavailable, request via Interlibrary Loan",
     "CANCELED": "Copy unavailable, request via Interlibrary Loan",
-    "ATLASES-HN": "Copy unavailable, request via Interlibrary Loan",
-    "CD-HN": "Copy unavailable, request via Interlibrary Loan",
-    "CIRCDESKHN": "Copy unavailable, request via Interlibrary Loan",
-    "MICROS-HN": "Copy unavailable, request via Interlibrary Loan",
-    "REF-HN": "Copy unavailable, request via Interlibrary Loan",
-    "SOFTWAREHN": "Copy unavailable, request via Interlibrary Loan",
-    "STORAGE-HN": "Copy unavailable, request via Interlibrary Loan",
     "RESERVE-EG": "Unavailable for checkout, request a chapter",
     "RESERVE-EM": "Unavailable for checkout, request a chapter",
     "CHECKEDOUT": "Checked out, request through Interlibrary Loan"
