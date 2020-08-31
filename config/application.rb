@@ -26,9 +26,6 @@ module Psulcat
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults '6.0'
 
-    # Should be zeitwerk, but we need to upgrade to Blacklight > 7.9 first. Once we have that we can delete this line.
-    config.autoloader = :classic
-
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
