@@ -575,7 +575,7 @@ const availability = {
     },
 
     illLinkType(location) {
-        return (['RESERVE-EM', 'RESERVE-EG'].includes(location)) ? 'reserves-scan' : '' ;
+        return (['RESERVE-EM', 'RESERVE-EG', 'RESERVE-PM'].includes(location)) ? 'reserves-scan' : '' ;
     }
 };
 

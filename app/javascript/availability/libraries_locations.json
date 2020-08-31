@@ -775,6 +775,7 @@
     "CANCELED": "Copy unavailable, request via Interlibrary Loan",
     "RESERVE-EG": "Unavailable for checkout, request a chapter",
     "RESERVE-EM": "Unavailable for checkout, request a chapter",
+    "RESERVE-PM": "Unavailable for checkout, request a chapter",
     "CHECKEDOUT": "Checked out, request through Interlibrary Loan"
   }
 }
