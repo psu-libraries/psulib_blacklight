@@ -164,7 +164,16 @@ class CatalogController < ApplicationController
     config.add_home_facet_field 'format', label: 'Format', limit: true, collapse: false, presenter: Blacklight::FacetFieldPresenter
     config.add_home_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true, collapse: true, presenter: Blacklight::FacetFieldPresenter
     config.add_home_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z', collapse: true, presenter: Blacklight::FacetFieldPresenter
-    config.add_home_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet], collapse: true, collapsing: true, presenter: Blacklight::FacetFieldPresenter
+    config.add_home_facet_field 'classification_pivot_field',
+                                label: 'Call Number',
+                                pivot: %w[lc_1letter_facet lc_rest_facet],
+                                collapse: true,
+                                collapsing: true,
+                                presenter: Blacklight::FacetFieldPresenter,
+                                icons: {
+                                  show: "\uf0fe", # '<i class="fa fa-plus-square" aria-hidden="true"></i>',
+                                  hide: "\uf146"
+                                }
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
