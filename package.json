@@ -4,7 +4,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.7.2",
     "@rails/webpacker": "^4.2.2",
-    "blacklight-frontend": "latest",
+    "blacklight-frontend": "^7.10.0",
     "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#latest",
     "blacklight-range-limit": "https://github.com/projectblacklight/blacklight_range_limit.git#latest",
     "bootstrap": "4.x",
