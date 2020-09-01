@@ -158,7 +158,14 @@ class CatalogController < ApplicationController
     config.add_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'lc_1letter_facet', label: 'Classification', show: false, sort: 'index'
     config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
-    config.add_facet_field 'classification_pivot_field', label: 'Call Number', pivot: %w[lc_1letter_facet lc_rest_facet], collapsing: true
+    config.add_facet_field 'classification_pivot_field',
+                           label: 'Call Number',
+                           pivot: %w[lc_1letter_facet lc_rest_facet],
+                           collapsing: true,
+                           icons: {
+                             show: "\uf0fe", # same as '<i class="fa fa-plus-square" aria-hidden="true"></i>',
+                             hide: "\uf146"
+                           }
 
     config.add_home_facet_field 'access_facet', label: 'Access', collapse: false, presenter: Blacklight::FacetFieldPresenter
     config.add_home_facet_field 'format', label: 'Format', limit: true, collapse: false, presenter: Blacklight::FacetFieldPresenter
@@ -171,7 +178,7 @@ class CatalogController < ApplicationController
                                 collapsing: true,
                                 presenter: Blacklight::FacetFieldPresenter,
                                 icons: {
-                                  show: "\uf0fe", # '<i class="fa fa-plus-square" aria-hidden="true"></i>',
+                                  show: "\uf0fe", # same as '<i class="fa fa-plus-square" aria-hidden="true"></i>',
                                   hide: "\uf146"
                                 }
 
