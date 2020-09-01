@@ -476,7 +476,7 @@ DEPENDENCIES
   sqlite3
   webdrivers (~> 4.0)
   webmock
-  webpacker (~> 4.0)
+  webpacker
 
 BUNDLED WITH
    2.1.4
