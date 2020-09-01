@@ -31,9 +31,9 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import 'blacklight_marc';
 
 // Blacklight over-rides
-@import 'header';
-@import 'facets';
-@import 'constraints';
+@import 'blacklight_overrides/header';
+@import 'blacklight_overrides/facets';
+@import 'blacklight_overrides/constraints';
 
 // Local
 @import 'metadata';
@@ -42,7 +42,6 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import 'mobile';
 @import 'show_default';
 @import 'psulib_icons';
-@import 'pivot_facets';
 @import 'marc_record_details';
 @import 'availability';
 @import 'secondary_actions';

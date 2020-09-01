@@ -1,5 +1,3 @@
-// scss-lint:disable PlaceholderInExtend
-
 .sidenav {
   .navbar-toggler {
     border-color: $navbar-light-toggler-border-color;
@@ -38,10 +36,16 @@
   }
 }
 
+.facets-header {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+}
+
 .facets-heading {
-  @extend .h5;
+  @extend .h4;
   line-height: inherit;
-  margin: 0;
 }
 
 .facet-limit {
@@ -54,9 +58,9 @@
 
 .facet-values {
   display: table;
-  margin-bottom: 0;
   table-layout: fixed;
   width: 100%;
+  margin-bottom: 0;
 
   li {
     display: table-row;
@@ -70,7 +74,7 @@
     padding-left: $spacer / 2;
 
     &:hover {
-      color: theme-color('danger');
+      color: theme-color("danger");
       text-decoration: none;
     }
   }
@@ -81,17 +85,21 @@
   }
 
   .facet-label {
-    @include hyphens-auto;
     display: table-cell;
     padding-bottom: $spacer / 2;
+    @include hyphens-auto;
   }
 
   .facet-count {
     display: table-cell;
-    text-align: right;
     vertical-align: top;
+    text-align: right;
     width: 5em;
   }
+}
+
+.more_facets {
+  font-size: 14px;
 }
 
 .facet-extended-list {
@@ -106,10 +114,13 @@
 
 .facet-field-heading {
   @extend .h6;
+  /* This prevents the contained stretch link from covering the panel body */
+  position: relative;
 
   a {
     color: inherit;
   }
+
 }
 
 // Sidenav
@@ -121,14 +132,31 @@
   }
 }
 
-// Style for pivot facet's nested list
+/* style for pivot facet's nested list */
+
 .pivot-facet {
   @extend .list-unstyled;
+  @extend .py-1;
+  @extend .px-4;
+}
 
-  ul,
-  .pivot-facet {
-    @extend .list-unstyled;
-    @extend .py-1;
-    @extend .px-3;
+.facet-leaf-node {
+  margin-left: 1rem;
+  padding-right: 1rem;
+  margin-top: -1.5rem;
+}
+
+.facet-toggle-handle {
+  font-family: "Font Awesome 5 Free";
+  font-size: 13px;
+  margin: -10px 0 0 -5px;
+  padding: 0;
+
+  &.collapsed {
+    .show { display: block; }
+    .hide { display: none; }
   }
+
+  .show { display: none; }
+  .hide { display: block; }
 }
