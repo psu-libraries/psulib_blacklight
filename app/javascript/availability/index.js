@@ -595,7 +595,9 @@ const availability = {
     },
 
     isMicroform(holding) {
-        return (['UP-MICRO'].includes(holding.libraryID) && holding.homeLocationID !== 'THESIS-NML' && holding.itemTypeID === 'MICROFORM');
+        return (['UP-MICRO'].includes(holding.libraryID) &&
+            holding.homeLocationID !== 'THESIS-NML' &&
+            holding.itemTypeID === 'MICROFORM');
     },
 
     isIllLink(holding) {
