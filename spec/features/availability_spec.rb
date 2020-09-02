@@ -329,5 +329,9 @@ RSpec.feature 'Availability', type: :feature do
         expect(page).not_to have_link 'Copy unavailable, request via Interlibrary Loan'
       end
     end
+
+    describe 'News & Microforms Scan Request' do
+      it 'display the correct ILL url'
+    end
   end
 end
