@@ -406,7 +406,7 @@ const availability = {
 
     generateCallNumber(holding) {
         // Do not display call number for on loan items
-        return (holding.locationID === 'ILLEND') ? "" : holding.callNumber;
+        return (holding.locationID === "ILLEND") ? "" : holding.callNumber;
     },
 
     generateLocationHTML(holding) {
@@ -415,21 +415,21 @@ const availability = {
 
         // Location information presented to the user is different based on a few scenarios
         // First, if it's related to ILL
-        if (holding.locationID in availability.illiadLocations) {
+        if (availability.isIllLink(holding)) {
             const illLocation = `<a 
                             data-type="ill-link" 
                             data-catkey="${holding.catkey}" 
                             data-call-number="${holding.callNumber}" 
-                            data-link-type="${availability.illLinkType(holding.locationID)}"
+                            data-link-type="${availability.illLinkType(holding)}"
                             data-item-location="${holding.locationID}"
                             href="#"
-                        >${spinner}${availability.illiadLocations[holding.locationID]}</a>`;
+                        >${spinner}${availability.illLinkText(holding)}</a>`;
 
             return illLocation;
         }
 
         // AEON
-        if (['ARKTHESES', 'AH-X-TRANS'].includes(holding.locationID)) {
+        if (availability.isArchivalThesis(holding)) {
             const illiadURL = "https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html";
             const aeonLocationText = availability.mapLocation(availability.allLocations, holding.locationID);
 
@@ -455,7 +455,7 @@ const availability = {
         }
 
         // Special Collections
-        if (['UP-SPECCOL'].includes(holding.libraryID) && !availability.isMovedLocation(holding.homeLocationID)) {
+        if (availability.isArchivalMaterial(holding)) {
             const specialCollectionsText = availability.mapLocation(availability.allLocations, holding.locationID);
 
             const specialCollectionsLocation = `${specialCollectionsText}<br> 
@@ -501,6 +501,9 @@ const availability = {
                     }
                     if (linkType === "reserves-scan") {
                         ILLURL += `&Genre=GenericRequestReserves&location=${itemLocation}`;
+                    }
+                    if (linkType === "news-microform") {
+                        ILLURL += `&Genre=GenericRequestMicroScan&location=${itemLocation}`;
                     }
                     ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
                     if (author) {
@@ -570,12 +573,41 @@ const availability = {
         });
     },
 
-    isMovedLocation(location) {
+    isMoved(location) {
         return availability.movedLocations.includes(location);
     },
 
-    illLinkType(location) {
-        return (['RESERVE-EM', 'RESERVE-EG', 'RESERVE-PM'].includes(location)) ? 'reserves-scan' : '' ;
+    illLinkText(holding) {
+        if (availability.isMicroform(holding)) return "Request Scan - Penn State Users";
+
+        return availability.illiadLocations[holding.locationID];
+    },
+
+    illLinkType(holding) {
+        if (availability.isReserves(holding)) return "reserves-scan";
+        if (availability.isMicroform(holding)) return "news-microform";
+
+        return "request-via-ill";
+    },
+
+    isReserves(holding) {
+        return ['RESERVE-EM', 'RESERVE-EG', 'RESERVE-PM'].includes(holding.locationID);
+    },
+
+    isMicroform(holding) {
+        return (['UP-MICRO'].includes(holding.libraryID) && holding.homeLocationID !== 'THESIS-NML' && holding.itemTypeID === 'MICROFORM');
+    },
+
+    isIllLink(holding) {
+        return (holding.locationID in availability.illiadLocations || availability.isMicroform(holding));
+    },
+
+    isArchivalThesis(holding) {
+        return ['ARKTHESES', 'AH-X-TRANS'].includes(holding.locationID);
+    },
+
+    isArchivalMaterial(holding) {
+        return (['UP-SPECCOL'].includes(holding.libraryID) && !availability.isMoved(holding.homeLocationID));
     }
 };
 
