@@ -502,7 +502,7 @@ const availability = {
                     if (linkType === "reserves-scan") {
                         ILLURL += `&Genre=GenericRequestReserves&location=${itemLocation}`;
                     }
-                    if (linkType === "news-microform") {
+                    if (linkType === "news-microform-scan") {
                         ILLURL += `&Genre=GenericRequestMicroScan&location=${itemLocation}`;
                     }
                     ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
@@ -585,7 +585,7 @@ const availability = {
 
     illLinkType(holding) {
         if (availability.isReserves(holding)) return "reserves-scan";
-        if (availability.isMicroform(holding)) return "news-microform";
+        if (availability.isMicroform(holding)) return "news-microform-scan";
 
         return "request-via-ill";
     },
