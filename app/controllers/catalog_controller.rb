@@ -45,6 +45,12 @@ class CatalogController < ApplicationController
     end
   end
 
+  def track
+    search_session['document_id'] = params[:document_id]
+
+    super
+  end
+
   rescue_from Blacklight::Exceptions::RecordNotFound do
     redirect_to '/404'
   end
