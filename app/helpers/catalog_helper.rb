@@ -13,12 +13,15 @@ module CatalogHelper
         json['bound_title']
       else
         link = link_to json['bound_title'], "/catalog/#{json['bound_catkey']}"
-        bound_format = json['bound_format'].present? ? " (#{json['bound_format']})" : ''
-        "#{json['bound_callnumber']}#{bound_format} bound in " + link
+        "#{json['bound_callnumber']}#{bound_format(json['bound_format'])} bound in " + link
       end
     end
 
     content_tag 'span', contents.join('<br>'), nil, false
+  end
+
+  def bound_format(bound_format)
+    bound_format.present? ? " (#{bound_format})" : ''
   end
 
   SEPARATOR = '—'
