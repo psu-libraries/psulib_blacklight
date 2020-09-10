@@ -13,7 +13,8 @@ module CatalogHelper
         json['bound_title']
       else
         link = link_to json['bound_title'], "/catalog/#{json['bound_catkey']}"
-        "#{json['bound_callnumber']} (#{json['bound_format']}) bound in " + link
+        bound_format = json['bound_format'].present? ? " (#{json['bound_format']})" : ''
+        "#{json['bound_callnumber']}#{bound_format} bound in " + link
       end
     end
 

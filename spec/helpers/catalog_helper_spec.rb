@@ -25,6 +25,19 @@ RSpec.describe CatalogHelper, type: :helper do
         expect(bound_info(bound_info_lite_doc)).to eql '<span>Bound in: The Tale of The Blah Blah Blah</span>'
       end
     end
+
+    context 'when bound format is empty' do
+      let (:field_data) { ['{"bound_catkey": "355035", "bound_title": '\
+        '"The high-caste Hindu woman / With introduction by Rachel L. Bodley", "bound_format": '\
+        '"", "bound_callnumber": "AY67.N5W7 1922-24"}'] }
+
+      it 'does not display empty parentheses' do
+        link_text = '<span>AY67.N5W7 1922-24 bound in <a href="/catalog/355035">The high'\
+                    '-caste Hindu woman / With introduction by Rachel L. Bodley</a></span>'
+        link = bound_info bound_info_doc
+        expect(link).to eql link_text
+      end
+    end
   end
 
   describe '#subjectify' do
