@@ -165,13 +165,13 @@ RSpec.feature 'Availability', type: :feature do
       it 'has a "Request Material" link so it can be requested through Aeon' do
         visit '/catalog/1836205'
         click_button('View More')
-        expect(page).to have_css 'a[data-type="aeon-link"][data-call-number="RBM 2457 box1 AX/SP/10155/11"]'
+        expect(page).to have_css 'a[data-type="aeon-link"][data-call-number="RBM 2457 box19 AX/SP/10156/09"]'
         expect(page).to have_link(
           'Request Material',
           href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber='\
               '1836205&Genre=ARCHIVES&Location=Stored%20offsite.%20Ask%20at%20Special%20'\
-              'Collections%2C%20104%20Paterno&ItemNumber=000076995675&CallNumber='\
-              'RBM%202457%20box1%20AX%2FSP%2F10155%2F11&ItemTitle=Fiona%20Pitt-Kethley%20'\
+              'Collections%2C%20104%20Paterno&ItemNumber=000076996122&CallNumber='\
+              'RBM%202457%20box19%20AX%2FSP%2F10156%2F09&ItemTitle=Fiona%20Pitt-Kethley%20'\
               'literary%20papers&ItemAuthor=Pitt-Kethley%2C%20Fiona%2C%201954-&ItemEdition'\
               '=&ItemPublisher=&ItemPlace=&ItemDate=&ItemInfo1=Unrestricted%20access.&SubLocation='
         )
