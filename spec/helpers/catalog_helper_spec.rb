@@ -4,9 +4,10 @@ require 'rails_helper'
 
 RSpec.describe CatalogHelper, type: :helper do
   describe '#bound_info' do
-    let (:field_data) { ['{"bound_catkey": "355035", "bound_title": '\
-        '"The high-caste Hindu woman / With introduction by Rachel L. Bodley", "bound_format": '\
-        '"Microfilm, Microfiche, etc.", "bound_callnumber": "AY67.N5W7 1922-24"}'] }
+    let (:field_data) { ['{"bound_catkey": "355035", '\
+                          '"bound_title": "The high-caste Hindu woman / With introduction by Rachel L. Bodley",'\
+                          '"bound_format": "Microfilm, Microfiche, etc.", '\
+                          '"bound_callnumber": "AY67.N5W7 1922-24"}'] }
     let (:just_title_data) { ['{"bound_title": "Bound in: The Tale of The Blah Blah Blah"}'] }
     let (:bound_info_doc) { { value: field_data } }
     let (:bound_info_lite_doc) { { value: just_title_data } }
@@ -27,9 +28,10 @@ RSpec.describe CatalogHelper, type: :helper do
     end
 
     context 'when bound format is empty' do
-      let (:field_data) { ['{"bound_catkey": "355035", "bound_title": '\
-        '"The high-caste Hindu woman / With introduction by Rachel L. Bodley", "bound_format": '\
-        '"", "bound_callnumber": "AY67.N5W7 1922-24"}'] }
+      let (:field_data) { ['{"bound_catkey": "355035", '\
+                            '"bound_title": "The high-caste Hindu woman / With introduction by Rachel L. Bodley",'\
+                            '"bound_format": "", '\
+                            '"bound_callnumber": "AY67.N5W7 1922-24"}'] }
 
       it 'does not display empty parentheses' do
         link_text = '<span>AY67.N5W7 1922-24 bound in <a href="/catalog/355035">The high'\
