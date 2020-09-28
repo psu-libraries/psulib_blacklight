@@ -119,6 +119,7 @@
          series_title_tsim^10
          isbn_sim
          issn_sim
+         scan_sim
          toc_ssim
          notes_summary_ssim
          all_text_timv
@@ -206,6 +207,7 @@
          issn_sim
          oclc_number_ssim
          lccn_ssim
+         scan_sim
        </str>
 
        <!-- list fields to be displayed in the search results page -->
