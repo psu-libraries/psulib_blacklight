@@ -30,6 +30,11 @@
   content: fa-content($fa-var-archive);
 }
 
+.blacklight-article .blacklight-format::before,
+.faspsu-article::before {
+  content: fa-content($fa-var-book-open);
+}
+
 .blacklight-audio .blacklight-format::before,
 .faspsu-audio::before {
   content: fa-content($fa-var-volume-up);
