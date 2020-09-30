@@ -24,7 +24,8 @@ namespace :blackcat do
   namespace :traject do
     desc 'Generate fixtures using Traject'
     task create_fixtures: :environment do
-      Rake::Task['blackcat:solr:deindex'].invoke
+      # Note: updates to the sample_psucat.mrc file are produced by Maryam. We can request a new version of the file
+      # with examples that we are seeking and she will produce it and place it on the symphony server.
       traject_path = Rails.root.join('../psulib_traject')
       fixtures = Rails.root.join('spec/fixtures/current_fixtures.json')
       marc_file = Rails.root.join('solr/sample_data/sample_psucat.mrc')
