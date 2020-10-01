@@ -245,6 +245,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'related_title_display_ssm', label: 'Related Titles'
     config.add_show_field 'duration_ssm', label: 'Duration', helper_method: :display_duration
     config.add_show_field 'frequency_ssm', label: 'Publication Frequency'
+    config.add_show_field 'collection_facet', label: 'Collection', link_to_facet: :collection_facet
     config.add_show_field 'finding_aid_note_ssm', label: 'Finding Aid Note'
     config.add_show_field 'provenance_note_ssm', label: 'Provenance'
     config.add_show_field 'dissertation_note_ssm', label: 'Dissertation Note'
@@ -259,10 +260,12 @@ class CatalogController < ApplicationController
     config.add_show_field 'performance_ssm', label: 'Medium of Performance'
     config.add_show_field 'video_file_ssm', label: 'Video File Characteristics'
     config.add_show_field 'scale_graphic_material_note_ssm', label: 'Scale Note for Graphic Material'
+    config.add_show_field 'cartographic_mathematical_data_ssm', label: 'Cartographic Mathematical Data'
     config.add_show_field 'digital_file_ssm', label: 'Digital File Characteristics'
     config.add_show_field 'form_work_ssm', label: 'Form of work'
     config.add_show_field 'audience_notes_ssm', label: 'Audience Notes'
     config.add_show_field 'general_note_ssm', label: 'Note'
+    config.add_show_field 'other_edition_ssm', label: 'Other Edition'
     config.add_show_field 'bibliography_note_ssm', label: 'Bibliography Note'
     config.add_show_field 'with_note_ssm', label: 'With'
     config.add_show_field 'creation_production_credits_ssm', label: 'Creation/Production Credits Note'

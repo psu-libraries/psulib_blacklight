@@ -215,7 +215,7 @@
     <!-- Facets -->
     <field name="access_facet"        type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="all_authors_facet"   type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
-    <field name="format"              type="string" docValues="true" indexed="true" stored="false" multiValued="true"/>
+    <field name="format"              type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="genre_facet"         type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="genre_full_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="language_facet"      type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
@@ -226,6 +226,7 @@
     <field name="campus_facet"        type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="up_library_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="library_facet"       type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="collection_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
 
     <!-- Sorts -->
     <field name="title_sort"          type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
