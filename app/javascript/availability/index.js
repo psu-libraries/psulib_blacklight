@@ -107,7 +107,7 @@ const availability = {
                     const homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
                     const itemID = $(this).children("itemID").text();
                     const itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
-                    const reserveCollectionID =  $(this).children("reserveCollectionID").text().toUpperCase();
+                    const reserveCollectionID =  $(this).children("reserveCollectionID").text();
 
                     allHoldings[titleInfo.catkey].push({
                         catkey: titleInfo.catkey,
@@ -198,7 +198,7 @@ const availability = {
                         const homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
                         const itemID = $(this).children("itemID").text();
                         const itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
-                        const reserveCollectionID =  $(this).children("reserveCollectionID").text().toUpperCase();
+                        const reserveCollectionID =  $(this).children("reserveCollectionID").text();
 
                         $.each(catkeys, function(i, catkey) {
                             if (itemID in boundHoldings[catkey]) {
