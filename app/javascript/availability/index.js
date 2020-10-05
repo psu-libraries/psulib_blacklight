@@ -251,7 +251,7 @@ const availability = {
                     availability.availabilitySnippet(snippetPlaceHolder, structuredHoldings);
 
                     // If holdable, then display the hold button
-                    if (availability.isHoldButton(rawHoldings)) {
+                    if (availability.showHoldButton(rawHoldings)) {
                         holdButton.removeClass("invisible").addClass("visible");
                     }
                 } else {
@@ -616,7 +616,7 @@ const availability = {
         return (['UP-SPECCOL'].includes(holding.libraryID) && !availability.isMoved(holding.homeLocationID));
     },
 
-    isHoldButton(holdings) {
+    showHoldButton(holdings) {
         return holdings[0].holdable === 'true' && !availability.allCourseReserves(holdings);
     },
 

@@ -104,8 +104,8 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     context 'when all items are on course reserves' do
-      xit 'hides the hold button' do
-        visit '/?search_field=all_fields&q=40+short+stories'
+      it 'hides the hold button' do
+        visit '/?search_field=all_fields&q=Employment+law'
         expect(page).to have_selector 'button[data-target="#availability-9186426"]'
         click_button('View Availability')
         expect(page).not_to have_link(
@@ -115,8 +115,8 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     context 'when not all items are on course reserves' do
-      xit 'displays the hold button' do
-        visit '/?search_field=all_fields&q=Employment+law'
+      it 'displays the hold button' do
+        visit '/?search_field=all_fields&q=+40+short+stories+%3A+a+portable+anthology'
         expect(page).to have_selector 'button[data-target="#availability-23783767"]'
         click_button('View Availability')
         expect(page).to have_link(
@@ -300,7 +300,7 @@ RSpec.feature 'Availability', type: :feature do
       end
 
       context 'when all items are on course reserves' do
-        xit 'hides the hold button' do
+        it 'hides the hold button' do
           visit '/catalog/9186426'
           expect(page).not_to have_link(
             'I Want It', href: "#{Settings.hold_button_url}9186426"
@@ -309,7 +309,7 @@ RSpec.feature 'Availability', type: :feature do
       end
 
       context 'when not all items are on course reserves' do
-        xit 'displays the hold button' do
+        it 'displays the hold button' do
           visit '/catalog/23783767'
           expect(page).to have_link(
             'I Want It', href: "#{Settings.hold_button_url}23783767"
@@ -346,7 +346,7 @@ RSpec.feature 'Availability', type: :feature do
       end
 
       context 'when all items are on course reserves' do
-        xit 'hides the hold button' do
+        it 'hides the hold button' do
           visit '/catalog/29252445'
           expect(page).not_to have_link(
             'I Want It', href: "#{Settings.hold_button_url}29252445"
