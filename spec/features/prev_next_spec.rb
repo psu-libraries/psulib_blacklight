@@ -8,13 +8,13 @@ RSpec.feature 'Previous Next Toggle', type: :feature do
       visit root_path
       fill_in 'q', with: ''
       click_button 'search'
-      click_on 'Analytical methods for Kolmogorov equations / Luca Lorenzi, University of Parma, Italy'
-      expect(page).to have_content '← Previous | 5 of 531 | Next →'
+      click_on 'An American marriage / a novel by Tayari Jones'
+      expect(page).to have_content '← Previous | 2 of 554 | Next →'
 
-      # Go to the number 9 result separately
-      visit '/catalog/22083276'
+      # Go to the number 4 result separately
+      visit '/catalog/24053587'
       expect(page).not_to have_selector '.page-links'
-      expect(page).not_to have_content '← Previous | 5 of 531 | Next →'
+      expect(page).not_to have_content '← Previous | 4 of 554 | Next →'
     end
   end
 end
