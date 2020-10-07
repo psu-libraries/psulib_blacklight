@@ -102,6 +102,28 @@ RSpec.feature 'Availability', type: :feature do
         )
       end
     end
+
+    context 'when all items are on course reserves' do
+      it 'hides the hold button' do
+        visit '/?search_field=all_fields&q=Employment+law'
+        expect(page).to have_selector 'button[data-target="#availability-9186426"]'
+        click_button('View Availability')
+        expect(page).not_to have_link(
+          'I Want It', href: "#{Settings.hold_button_url}9186426"
+        )
+      end
+    end
+
+    context 'when not all items are on course reserves' do
+      it 'displays the hold button' do
+        visit '/?search_field=all_fields&q=+40+short+stories+%3A+a+portable+anthology'
+        expect(page).to have_selector 'button[data-target="#availability-23783767"]'
+        click_button('View Availability')
+        expect(page).to have_link(
+          'I Want It', href: "#{Settings.hold_button_url}23783767"
+        )
+      end
+    end
   end
 
   describe 'User opens the item page for a record', js: true do
@@ -276,6 +298,24 @@ RSpec.feature 'Availability', type: :feature do
           )
         end
       end
+
+      context 'when all items are on course reserves' do
+        it 'hides the hold button' do
+          visit '/catalog/9186426'
+          expect(page).not_to have_link(
+            'I Want It', href: "#{Settings.hold_button_url}9186426"
+          )
+        end
+      end
+
+      context 'when not all items are on course reserves' do
+        it 'displays the hold button' do
+          visit '/catalog/23783767'
+          expect(page).to have_link(
+            'I Want It', href: "#{Settings.hold_button_url}23783767"
+          )
+        end
+      end
     end
 
     describe 'Bound Withs:' do
@@ -302,6 +342,15 @@ RSpec.feature 'Availability', type: :feature do
         visit '/catalog/2679972'
         within 'div[data-library="UP-SPECCOL"]' do
           expect(page).to have_xpath './/tr[td//text()[contains(., \'bound in\')]]', count: 3
+        end
+      end
+
+      context 'when all items are on course reserves' do
+        it 'hides the hold button' do
+          visit '/catalog/29252445'
+          expect(page).not_to have_link(
+            'I Want It', href: "#{Settings.hold_button_url}29252445"
+          )
         end
       end
     end

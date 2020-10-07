@@ -107,6 +107,7 @@ const availability = {
                     const homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
                     const itemID = $(this).children("itemID").text();
                     const itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
+                    const reserveCollectionID =  $(this).children("reserveCollectionID").text();
 
                     allHoldings[titleInfo.catkey].push({
                         catkey: titleInfo.catkey,
@@ -117,7 +118,8 @@ const availability = {
                         callNumber: callNumber,
                         itemTypeID: itemTypeID,
                         totalCopiesAvailable: titleInfo.totalCopiesAvailable,
-                        holdable: titleInfo.holdable
+                        holdable: titleInfo.holdable,
+                        reserveCollectionID: reserveCollectionID
                     });
                 });
             }
@@ -196,6 +198,7 @@ const availability = {
                         const homeLocationID = $(this).children("homeLocationID").text().toUpperCase();
                         const itemID = $(this).children("itemID").text();
                         const itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
+                        const reserveCollectionID =  $(this).children("reserveCollectionID").text();
 
                         $.each(catkeys, function(i, catkey) {
                             if (itemID in boundHoldings[catkey]) {
@@ -206,6 +209,7 @@ const availability = {
                                     boundHolding.libraryID = libraryID;
                                     boundHolding.locationID = currentLocationID;
                                     boundHolding.homeLocationID = homeLocationID;
+                                    boundHolding.reserveCollectionID = reserveCollectionID;
 
                                     allHoldings[catkey].push(boundHolding);
 
@@ -247,7 +251,7 @@ const availability = {
                     availability.availabilitySnippet(snippetPlaceHolder, structuredHoldings);
 
                     // If holdable, then display the hold button
-                    if (rawHoldings[0].holdable === 'true') {
+                    if (availability.showHoldButton(rawHoldings)) {
                         holdButton.removeClass("invisible").addClass("visible");
                     }
                 } else {
@@ -610,6 +614,20 @@ const availability = {
 
     isArchivalMaterial(holding) {
         return (['UP-SPECCOL'].includes(holding.libraryID) && !availability.isMoved(holding.homeLocationID));
+    },
+
+    showHoldButton(holdings) {
+        return holdings[0].holdable === 'true' && !availability.allCourseReserves(holdings);
+    },
+
+    allCourseReserves(holdings) {
+        for (const holding of holdings) {
+            if (holding.reserveCollectionID.length === 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 };
 
