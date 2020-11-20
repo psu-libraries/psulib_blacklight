@@ -70,7 +70,7 @@ class CatalogController < ApplicationController
     config.advanced_search[:url_key] ||= 'advanced'
     config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
-      'facet.field' => %w[access_facet format language_facet media_type_facet library_facet lc_1letter_facet],
+      'facet.field' => %w[access_facet format language_facet media_type_facet library_facet location_facet lc_1letter_facet],
       'facet.pivot' => '',
       'facet.limit' => -1,
       'f.language_facet.facet.limit' => -1,
@@ -156,6 +156,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'format', label: 'Format', limit: true
     config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
+    config.add_facet_field 'location_facet', label: 'Location', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: -1, single: true
     config.add_facet_field 'pub_date_itsi', label: 'Publication Year', range: { segments: false }
     config.add_facet_field 'language_facet', label: 'Language', limit: true
