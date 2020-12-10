@@ -30,8 +30,5 @@ module Psulcat
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-
-    # When this is true, the value of the announcement bar is set in `blacklight.announcement.html`
-    config.show_announcement = true
   end
 end
