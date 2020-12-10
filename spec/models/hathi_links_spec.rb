@@ -22,7 +22,7 @@ RSpec.describe HathiLinks do
         hathi_link = SolrDocument.new(document).hathi_links
 
         expect(hathi_link).to match({
-                                      text: 'Access digital copy through HathiTrust',
+                                      text: I18n.t('blackcat.hathitrust.public_domain_text'),
                                       url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
                                       additional_text: nil,
                                       etas_item: false
