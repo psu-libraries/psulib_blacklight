@@ -74,18 +74,5 @@ RSpec.describe HathiLinks do
                                     })
       end
     end
-
-    it 'generates a url to the catalog record with the etas text' do
-      document = { 'oclc_number_ssim': ['12345'],
-                   'ht_access_ss': 'allow' }
-      hathi_link = SolrDocument.new(document).hathi_links
-
-      expect(hathi_link).to match({
-                                    text: I18n.t('blackcat.hathitrust.public_domain_text'),
-                                    url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
-                                    additional_text: nil,
-                                    etas_item: false
-                                  })
-    end
   end
 end
