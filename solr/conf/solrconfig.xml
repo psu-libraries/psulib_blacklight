@@ -227,7 +227,7 @@
          isbn_valid_ssm,
          oclc_number_ssim,
          lccn_ssim,
-         hathitrust_struct
+         ht_access_ss
        </str>
 
        <!-- list fields to be displayed as facets -->

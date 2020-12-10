@@ -2,7 +2,7 @@
 
 module HathiLinks
   def hathi_links
-    return nil unless has_hathi_links?
+    return nil if ht_access.blank?
 
     {
       text: ht_link_text,
@@ -14,39 +14,14 @@ module HathiLinks
 
   private
 
-    def has_hathi_links?
-      @_source['hathitrust_struct'].present?
-    end
-
-    def hathi_links_field
-      @_source['hathitrust_struct']
-    end
-
-    def ht_hash
-      JSON.parse(hathi_links_field&.first)
-    end
-
-    def ht_id
-      ht_hash['ht_id']
-    end
-
-    def ht_bib_key
-      ht_hash['ht_bib_key']
-    end
-
     def ht_access
-      ht_hash['access']
+      @_source['ht_access_ss']
     end
 
     def ht_url
-      url = if ht_id.present?
-              I18n.t('blackcat.hathitrust.mono_url') + ht_id
-            else
-              I18n.t('blackcat.hathitrust.multi_url') + ht_bib_key
-            end
-
-      url += I18n.t('blackcat.hathitrust.url_append') if etas_item?
-      url
+      ocn = @_source['oclc_number_ssim'].first
+      suffix = etas_item? ? I18n.t('blackcat.hathitrust.url_append') : ''
+      "https://catalog.hathitrust.org/api/volumes/oclc/#{ocn}.html#{suffix}"
     end
 
     def ht_link_text

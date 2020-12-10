@@ -17,7 +17,7 @@
 
   </div>
   <% if @document && !Settings&.readonly -%>
-    <% unless @document.hathi_links && @document.hathi_links.dig(:etas_item) && Settings&.hide_etas_holdings -%>
+    <% unless @document.hathi_links && @document.hathi_links[:etas_item] && Settings&.hide_etas_holdings -%>
       <%= render partial: 'show_availability', locals: { document: @document } %>
     <% end -%>
   <% end -%>

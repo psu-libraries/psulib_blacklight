@@ -126,7 +126,7 @@ RSpec.feature 'Availability', type: :feature do
     end
   end
 
-  describe 'User opens the item page for a record', js: true do
+  describe 'User visits catalog record page', js: true do
     it 'that has holdings to display' do
       visit '/catalog/1839879'
       expect(page).to have_selector 'div[class="availability"][data-keys="1839879"]'
@@ -137,17 +137,17 @@ RSpec.feature 'Availability', type: :feature do
       expect(page).not_to have_selector 'div[class="availability"]'
     end
 
-    context 'when Hathi ETAS is enabled' do
+    context 'when HathiTrust ETAS is enabled' do
       before do
         Settings.hathi_etas = true
       end
 
-      it 'an etas record displays holdings' do
+      it 'an ETAS record displays holdings' do
         visit '/catalog/3753687'
         expect(page).to have_selector 'div[class="availability"][data-keys="3753687"]'
       end
 
-      context 'when hide Hathi ETAS holdings is enabled' do
+      context 'when hide HathiTrust ETAS holdings is enabled' do
         before do
           Settings.hide_etas_holdings = true
         end
@@ -159,7 +159,7 @@ RSpec.feature 'Availability', type: :feature do
       end
     end
 
-    context 'when Hathi ETAS is disabled' do
+    context 'when HathiTrust ETAS is disabled' do
       it 'an etas record displays holdings when there are holdable items' do
         visit '/catalog/3753687'
         expect(page).to have_selector 'div[class="availability"][data-keys="3753687"]'
