@@ -21,12 +21,12 @@ development:
 test:
   <<: *default
   database: psulcat_test
-
-production:
-  adapter: mysql2
-  encoding: utf8
-  pool: 5
-  username: <%= Rails.application.credentials.db[:user] %>
-  password: <%= Rails.application.credentials.db[:pw] %>
-  timeout: 5000
-  database: <%= Rails.application.credentials.db[:database] %>
+#
+#production:
+#  adapter: mysql2
+#  encoding: utf8
+#  pool: 5
+#  username: <%= Rails.application.credentials.db[:user] %>
+#  password: <%= Rails.application.credentials.db[:pw] %>
+#  timeout: 5000
+#  database: <%= Rails.application.credentials.db[:database] %>
