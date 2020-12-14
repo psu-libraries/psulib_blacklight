@@ -15,10 +15,12 @@ const availability = {
     movedLocations: [],
 
     sirsiUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
-    'clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true' +
-    '&includeBoundTogether=true',
+              'clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true' +
+              '&includeBoundTogether=true',
     sirsiItemUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
-    'clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true',
+                  'clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true',
+    mapScanUrl: 'https://libraries.psu.edu/about/libraries/donald-w-hamer-center-maps-and-' +
+                'geospatial-information/map-scanning-and-printing',
 
     executeAvailability() {
         availability.loadAvailability();
@@ -302,7 +304,8 @@ const availability = {
                                             <tr>
                                                 <td>${availability.generateCallNumber(holding)}</td>
                                                 <td>${holding.itemType}</td>
-                                                <td>${availability.generateLocationHTML(holding)}</td>
+                                                <td>${availability.generateLocationHTML(holding)}
+                                                    ${availability.appendMapScanLink(holding)}</td>
                                             </tr>
                                         `).join('')}
                                         ${moreHoldings.map(moreHolding => `
@@ -472,12 +475,17 @@ const availability = {
                                             data-item-id="${holding.itemID}" 
                                             data-item-location="${specialCollectionsText}" 
                                             href="#">${spinner}Request Material</a>`;
-
             return specialCollectionsLocation;
         }
 
         // Otherwise use the default translation map for location display, no link
         return availability.mapLocation(availability.allLocations, holding.locationID);
+    },
+
+    appendMapScanLink(holding) {
+        if (availability.isUPSpecialMap(holding)) {
+            return `<br><a target="_blank" href="${availability.mapScanUrl}">Request scan</a>`;
+        }
     },
 
     createILLURL() {
@@ -614,6 +622,10 @@ const availability = {
 
     isArchivalMaterial(holding) {
         return (['UP-SPECCOL'].includes(holding.libraryID) && !availability.isMoved(holding.homeLocationID));
+    },
+
+    isUPSpecialMap(holding) {
+        return ['MAPSPEC'].includes(holding.itemTypeID) && ['UP-MAPS'].includes(holding.libraryID);
     },
 
     showHoldButton(holdings) {

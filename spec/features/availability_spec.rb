@@ -355,6 +355,24 @@ RSpec.feature 'Availability', type: :feature do
       end
     end
 
+    describe 'Request a map scan' do
+      it 'appends a link to request a scan that opens in a new window' do
+        visit '/catalog/25095210'
+        scan_link = find_link 'Request scan'
+
+        expect(scan_link[:target]).to eq '_blank'
+      end
+
+      it 'appends a link to request a scan even when there is an AEON or ILL link already present' do
+        visit '/catalog/24519'
+
+        within('div[data-library="UP-MAPS"]') do
+          expect(page).to have_link 'Copy unavailable, request via Interlibrary Loan'
+          expect(page).to have_link 'Request scan'
+        end
+      end
+    end
+
     describe 'Request via ILL link' do
       it 'displays if a record has a holding in an ILL location' do
         visit '/catalog/5112336'
