@@ -28,7 +28,7 @@ namespace :blackcat do
       # with examples that we are seeking and she will produce it and place it on the symphony server.
       traject_path = Rails.root.join('../psulib_traject')
       fixtures = Rails.root.join('spec/fixtures/current_fixtures.json')
-      marc_file = Rails.root.join('solr/sample_data/sample_psucat.mrc')
+      marc_file = Rails.root.join('solr/sample_data/*.mrc')
       args = "-c lib/traject/psulib_config.rb -w Traject::JsonWriter -o #{fixtures}"
       version = 'RBENV_VERSION=jruby-9.2.11.1'
       Bundler.with_clean_env do
