@@ -5,7 +5,7 @@ name: Test application code
 env:
   RAILS_ENV: test
   CC_TEST_REPORTER_ID: 46686d9a62483c1e5789ec9539ba5539b686e08c6de63095f9c174d2235e78c6
-  RAILS_MASTER_KEY: secrets.RAILS_MASTER_KEY
+  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
 
 on:
   push:
