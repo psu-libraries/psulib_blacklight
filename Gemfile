@@ -11,6 +11,7 @@ gem 'bootsnap', require: false
 gem 'config'
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
+gem 'faraday'
 gem 'high_voltage', '~> 3.1'
 gem 'lograge'
 gem 'puma', '~> 3.12'

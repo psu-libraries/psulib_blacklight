@@ -39,12 +39,17 @@ jobs:
       run: |
         yarn install --pure-lockfile
 
-    - name: Solr setup - Pull down image, run Solr, Create catalog solr collection
-      run: |
-        bundle exec rails db:migrate
-        bundle exec rails docker:pull
-        bundle exec rails docker:run_ci
-        bundle exec rails docker:build
+    - name: Database migration
+      run: bundle exec rails db:migrate
+
+    - name: Solr pull down image
+      run: bundle exec rails docker:pull
+
+    - name: run Solr
+      run: bundle exec rails docker:run_ci
+
+    - name: Create catalog solr collection
+      run: bundle exec rails docker:build
 
     - name: Run tests
       run: bundle exec rake

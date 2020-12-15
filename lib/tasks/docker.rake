@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-BLACKLIGHT_CORE = 'psul_blacklight'
-
 namespace :docker do
   task up: :environment do
     Rake::Task['docker:pull'].invoke
@@ -26,6 +24,15 @@ namespace :docker do
     print `docker exec -it felix \
             post -c #{BLACKLIGHT_CORE} \
                  -d '<delete><query>*:*</query></delete>' -out 'yes'`
+  end
+
+  task init: :environment do
+    solr_manager = PsulibBlacklight::SolrManager.new
+    solr_manager.upload_config unless solr_manager.configset_exists?
+    solr_manager.create_collection unless solr_manager.collection_exists?
+    # we always modify collection. it's call is idempotent, and
+    # will ensure we have the config bound to the collection
+    solr_manager.modify_collection
   end
 
   task up_zk_config: :environment do
