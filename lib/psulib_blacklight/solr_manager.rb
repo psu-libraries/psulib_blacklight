@@ -4,22 +4,30 @@ require 'scholarsphere/solr_config'
 #psul_blacklight
 module PsulibBlacklight
   class SolrManager
-    def self.reset
-      conf = new
-      conf.delete_all_collections
-      conf.delete_all_configsets
-      conf.upload_config
-      conf.create_collection
-    end
 
     attr_reader :config
 
     def initialize(config = SolrConfig.new)
       @config = config
+      upload_config unless configset_exists?
     end
 
-    def configset_exists?
-      config_sets.include?(config.configset_name)
+    def create_collection
+      resp = connection.get(SolrConfig::COLLECTION_PATH,
+                            action: 'CREATE',
+                            name: "#{config.collection_name}_v#{next_collection_version}",
+                            numShards: config.num_shards,
+                            "collection.configName": config.configset_name)
+      check_resp(resp)
+    end
+
+
+    def modify_collection
+      resp = connection.get(SolrConfig::COLLECTION_PATH,
+                            action: 'MODIFYCOLLECTION',
+                            collection: config.collection_name,
+                            "collection.configName": config.configset_name)
+      check_resp(resp)
     end
 
     def delete_configset(set = config.configset_name)
@@ -33,10 +41,6 @@ module PsulibBlacklight
           .map { |set| delete_configset(set) }
     end
 
-    def collection_exists?
-      collections.include?(config.collection_name)
-    end
-
     def delete_collection(collection = config.collection_name)
       resp = connection.get(SolrConfig::COLLECTION_PATH, action: 'DELETE', name: collection)
       check_resp(resp)
@@ -46,40 +50,26 @@ module PsulibBlacklight
       collections.map { |collection| delete_collection(collection) }
     end
 
-    def create_collection
-      resp = connection.get(SolrConfig::COLLECTION_PATH,
-                            action: 'CREATE',
-                            name: config.collection_name,
-                            numShards: config.num_shards,
-                            "collection.configName": config.configset_name)
-      check_resp(resp)
+    def reset
+      delete_all_collections
+      delete_all_configsets
     end
-
-    def modify_collection
-      resp = connection.get(SolrConfig::COLLECTION_PATH,
-                            action: 'MODIFYCOLLECTION',
-                            collection: config.collection_name,
-                            "collection.configName": config.configset_name)
-      check_resp(resp)
-    end
-
-    def upload_config
-      resp = connection.post(SolrConfig::CONFIG_PATH) do |req|
-        req.params = { "action": 'UPLOAD', "name": config.configset_name }
-        req.headers['Content-Type'] = 'octect/stream'
-        req.body = opened_zipped_configset.read
-      end
-
-      check_resp(resp)
-    end
-
-
 
     private
+
+    def next_collection_version
+      return 1 if collections&.grep(config.collection_name).empty?
+
+      (collections.collect { |version| version.scan(/\d/).first.to_i }.flatten.sort.last) + 1
+    end
 
     # Gets a response object, if it's status code is not 200, we emit the body and bail
     def check_resp(resp)
       raise resp.body unless resp.status == 200
+    end
+
+    def configset_exists?
+      config_sets.include?(config.configset_name)
     end
 
     def connection
@@ -114,6 +104,16 @@ module PsulibBlacklight
 
     def opened_zipped_configset
       File.open zipped_configset
+    end
+
+    def upload_config
+      resp = connection.post(SolrConfig::CONFIG_PATH) do |req|
+        req.params = { "action": 'UPLOAD', "name": config.configset_name }
+        req.headers['Content-Type'] = 'octect/stream'
+        req.body = opened_zipped_configset.read
+      end
+
+      check_resp(resp)
     end
   end
 end

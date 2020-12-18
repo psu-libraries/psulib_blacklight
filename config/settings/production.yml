@@ -1,0 +1,4 @@
+solr:
+  num_shards: 3
+  replication_factor: 2
+  max_shards_per_node: 2

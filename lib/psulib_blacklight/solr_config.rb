@@ -25,7 +25,15 @@ module PsulibBlacklight
     end
 
     def num_shards
-      '1'
+      Settings&.solr&.num_shards || 1
+    end
+
+    def replication_factor
+      Settings&.solr&.replication_factor || 1
+    end
+
+    def max_shards_per_node
+      Settings&.solr&.max_shards_per_node || 1
     end
 
     def configset_name

@@ -15,36 +15,21 @@ namespace :docker do
     Rake::Task['docker:ps'].invoke
   end
 
-  task reload: [:start, :up_zk_config] do
-    Rake::Task['docker:down'].invoke
-    Rake::Task['docker:up']
-  end
-
   task clean: :environment do
     print `docker exec -it felix \
             post -c #{BLACKLIGHT_CORE} \
                  -d '<delete><query>*:*</query></delete>' -out 'yes'`
   end
 
-  task init: :environment do
+  # create a new collection with a configset that is up to date.
+  task new_collection: :environment do
     solr_manager = PsulibBlacklight::SolrManager.new
-    solr_manager.upload_config unless solr_manager.configset_exists?
-    solr_manager.create_collection unless solr_manager.collection_exists?
-    # we always modify collection. it's call is idempotent, and
-    # will ensure we have the config bound to the collection
+    solr_manager.create_collection
+  end
+
+  task update_config: :environment do
+    solr_manager = PsulibBlacklight::SolrManager.new
     solr_manager.modify_collection
-  end
-
-  task up_zk_config: :environment do
-    print `docker exec -it --user=solr felix bin/solr zk upconfig -n #{BLACKLIGHT_CORE} -d /myconfig -z localhost:9983`
-  end
-
-  task create_collection: :environment do
-    print `docker exec -it --user=solr felix bin/solr create -c #{BLACKLIGHT_CORE} -d /myconfig`
-  end
-
-  task build: [:up_zk_config] do
-    Rake::Task['docker:create_collection'].invoke
   end
 
   task run: :environment do
