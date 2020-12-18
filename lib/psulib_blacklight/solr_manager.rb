@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'scholarsphere/solr_config'
-#psul_blacklight
+require 'psulib_blacklight/solr_config'
+
 module PsulibBlacklight
   class SolrManager
 
@@ -17,6 +17,8 @@ module PsulibBlacklight
                             action: 'CREATE',
                             name: "#{config.collection_name}_v#{next_collection_version}",
                             numShards: config.num_shards,
+                            replicationFactor: config.replication_factor,
+                            maxShardsPerNode: config.max_shards_per_node,
                             "collection.configName": config.configset_name)
       check_resp(resp)
     end
@@ -58,7 +60,7 @@ module PsulibBlacklight
     private
 
     def next_collection_version
-      return 1 if collections&.grep(config.collection_name).empty?
+      return 1 if collections&.grep(/#{config.collection_name}/).empty?
 
       (collections.collect { |version| version.scan(/\d/).first.to_i }.flatten.sort.last) + 1
     end
@@ -83,20 +85,20 @@ module PsulibBlacklight
     end
 
     def config_sets
-      list = connection.get(SolrConfig::CONFIG_PATH, action: 'LIST')
+      list = connection.get(PsulibBlacklight::SolrConfig::CONFIG_PATH, action: 'LIST')
       JSON.parse(list.body)['configSets']
     end
 
     def collections
-      resp = connection.get(SolrConfig::COLLECTION_PATH, action: 'LIST')
+      resp = connection.get(PsulibBlacklight::SolrConfig::COLLECTION_PATH, action: 'LIST')
       JSON.parse(resp.body)['collections']
     end
 
     def zipped_configset
       tmp = Tempfile.new('configset')
       Zip::File.open(tmp, Zip::File::CREATE) do |zipfile|
-        Dir["#{SOLR_DIR}/**/**"].each do |file|
-          zipfile.add(file.sub("#{SOLR_DIR}/", ''), file)
+        Dir["#{PsulibBlacklight::SolrConfig::SOLR_DIR}/**/**"].each do |file|
+          zipfile.add(file.sub("#{PsulibBlacklight::SolrConfig::SOLR_DIR}/", ''), file)
         end
       end
       tmp
@@ -107,7 +109,7 @@ module PsulibBlacklight
     end
 
     def upload_config
-      resp = connection.post(SolrConfig::CONFIG_PATH) do |req|
+      resp = connection.post(PsulibBlacklight::SolrConfig::CONFIG_PATH) do |req|
         req.params = { "action": 'UPLOAD', "name": config.configset_name }
         req.headers['Content-Type'] = 'octect/stream'
         req.body = opened_zipped_configset.read

@@ -6,10 +6,18 @@ module PsulibBlacklight
   class SolrConfig
     CONFIG_PATH = '/solr/admin/configs'
     COLLECTION_PATH = '/solr/admin/collections'
-    SOLR_DIR = '/solr/conf'
+    SOLR_DIR = 'solr/conf'
 
     def url
       Settings&.solr&.url || 'localhost'
+    end
+
+    def solr_username
+      Settings&.solr&.username
+    end
+
+    def solr_password
+      Settings&.solr&.password
     end
 
     def collection_name

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-namespace :docker do
+require 'psulib_blacklight/solr_manager'
+
+namespace :solr do
   task up: :environment do
     Rake::Task['docker:pull'].invoke
     container_status = `docker inspect felix`
