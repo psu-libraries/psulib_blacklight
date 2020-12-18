@@ -9,7 +9,7 @@ module PsulibBlacklight
     SOLR_DIR = 'solr/conf'
 
     def url
-      Settings&.solr&.url || 'localhost'
+      Settings&.solr&.url || 'http://localhost'
     end
 
     def solr_username
