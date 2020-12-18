@@ -43,13 +43,13 @@ jobs:
       run: bundle exec rails db:migrate
 
     - name: Solr pull down image
-      run: bundle exec rails docker:pull
+      run: bundle exec rails solr:pull
 
     - name: run Solr
-      run: bundle exec rails docker:run_ci
+      run: bundle exec rails solr:run_ci
 
     - name: Create catalog solr collection
-      run: bundle exec rails docker:build
+      run: bundle exec rails solr:new_collection
 
     - name: Run tests
       run: bundle exec rake
