@@ -486,6 +486,8 @@ const availability = {
         if (availability.isUPSpecialMap(holding)) {
             return `<br><a target="_blank" href="${availability.mapScanUrl}">Request scan</a>`;
         }
+
+        return '';
     },
 
     createILLURL() {
