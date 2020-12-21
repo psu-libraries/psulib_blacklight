@@ -15,8 +15,11 @@ on:
 
 jobs:
   test:
-
     runs-on: ubuntu-latest
+
+    services:
+      solr:
+        image: solr
 
     steps:
     - name: Checkout code
@@ -30,6 +33,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
+        bundler-cache: true
         ruby-version: 2.6
 
     - name: Install dependencies
