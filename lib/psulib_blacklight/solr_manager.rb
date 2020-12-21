@@ -85,7 +85,7 @@ module PsulibBlacklight
     end
 
     def config_sets
-      puts connection
+      puts connection.inspect
       list = connection.get(PsulibBlacklight::SolrConfig::CONFIG_PATH, action: 'LIST')
       JSON.parse(list.body)['configSets']
     end
