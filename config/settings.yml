@@ -1,5 +1,5 @@
 hold_button_url: http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=
 matomo_id: 10
 solr:
-  url: 127.0.0.1:8983
+  url: http://127.0.0.1:8983
   collection: psul_catalog
