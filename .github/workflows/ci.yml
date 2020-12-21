@@ -15,11 +15,8 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
 
-    services:
-      solr:
-        image: solr
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -45,12 +42,6 @@ jobs:
 
     - name: Database migration
       run: bundle exec rails db:migrate
-
-    - name: Solr pull down image
-      run: bundle exec rails solr:pull
-
-    - name: run Solr
-      run: bundle exec rails solr:run_ci
 
     - name: Create catalog solr collection
       run: bundle exec rails solr:new_collection

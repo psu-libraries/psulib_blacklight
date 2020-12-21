@@ -26,6 +26,7 @@ namespace :solr do
   # create a new collection with a configset that is up to date.
   task new_collection: :environment do
     solr_manager = PsulibBlacklight::SolrManager.new
+    sleep 100
     solr_manager.create_collection
   end
 
@@ -54,10 +55,7 @@ namespace :solr do
     print `docker run \
             -d=true \
             --name felix \
-            -it \
-            -e SOLR_HEAP=1G \
             -p 8983:8983 \
-            -v "$(pwd)"/solr/conf:/myconfig \
             solr:7.4.0 \
             -DzkRun`
   end
