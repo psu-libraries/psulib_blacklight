@@ -16,6 +16,10 @@ on:
 jobs:
   test:
 
+    services:
+      solr:
+        image: solr
+
     runs-on: ubuntu-latest
 
     steps:
@@ -42,6 +46,12 @@ jobs:
 
     - name: Database migration
       run: bundle exec rails db:migrate
+
+    - name: Solr pull down image
+      run: bundle exec rails docker:pull
+
+    - name: run Solr
+      run: bundle exec rails docker:run_ci
 
     - name: Create catalog solr collection
       run: bundle exec rails solr:new_collection

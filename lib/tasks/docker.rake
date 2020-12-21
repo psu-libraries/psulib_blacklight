@@ -52,12 +52,7 @@ namespace :solr do
   end
 
   task run_ci: :environment do
-    print `docker run \
-            -d=true \
-            --name felix \
-            -p 8983:8983 \
-            solr:7.4.0 \
-            -DzkRun`
+    print `docker run -d -p 8983:8983 solr:7.4.0 -DzkRun`
   end
 
   task pull: :environment do
