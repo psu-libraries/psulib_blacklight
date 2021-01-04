@@ -57,4 +57,4 @@ jobs:
       run: bundle exec rails solr:new_collection
 
     - name: Run tests
-      run: bundle exec rake
+      run: bundle exec rails ci
