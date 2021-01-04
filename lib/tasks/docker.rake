@@ -4,17 +4,17 @@ require 'psulib_blacklight/solr_manager'
 
 namespace :solr do
   task up: :environment do
-    Rake::Task['docker:pull'].invoke
+    Rake::Task['solr:pull'].invoke
     container_status = `docker inspect felix`
     container_status.strip!
 
     if container_status == '[]'
-      Rake::Task['docker:run'].invoke
+      Rake::Task['solr:run'].invoke
     else
-      Rake::Task['docker:start'].invoke
+      Rake::Task['solr:start'].invoke
     end
 
-    Rake::Task['docker:ps'].invoke
+    Rake::Task['solr:ps'].invoke
   end
 
   task clean: :environment do
@@ -25,9 +25,11 @@ namespace :solr do
 
   # create a new collection with a configset that is up to date.
   task new_collection: :environment do
-    sleep 100
+    sleep 50
     solr_manager = PsulibBlacklight::SolrManager.new
+    puts solr_manager.inspect
     solr_manager.create_collection
+    puts HTTP.get 'http://localhost:8983'
   end
 
   task update_config: :environment do

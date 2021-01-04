@@ -21,6 +21,8 @@ module PsulibBlacklight
                             maxShardsPerNode: config.max_shards_per_node,
                             "collection.configName": config.configset_name)
       check_resp(resp)
+      puts 'collections: '
+      puts collections
     end
 
 
@@ -85,7 +87,6 @@ module PsulibBlacklight
     end
 
     def config_sets
-      puts connection.inspect
       list = connection.get(PsulibBlacklight::SolrConfig::CONFIG_PATH, action: 'LIST')
       JSON.parse(list.body)['configSets']
     end
