@@ -54,14 +54,13 @@ module PsulibBlacklight
 
     private
 
-    # Returns a combined MD5 digest for all files in solr config directory
-    def solr_md5
-      digest = []
-      Dir.glob("#{SOLR_DIR}/**/*").each do |f|
-        digest.push(Digest::MD5.hexdigest(File.open(f).read)) if File.file?(f)
+      # Returns a combined MD5 digest for all files in solr config directory
+      def solr_md5
+        digest = []
+        Dir.glob("#{SOLR_DIR}/**/*").each do |f|
+          digest.push(Digest::MD5.hexdigest(File.open(f).read)) if File.file?(f)
+        end
+        Digest::MD5.hexdigest(digest.join(''))
       end
-      Digest::MD5.hexdigest(digest.join(''))
-    end
-
   end
 end
