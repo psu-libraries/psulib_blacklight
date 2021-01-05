@@ -12,17 +12,23 @@ module PsulibBlacklight
       upload_config unless configset_exists?
     end
 
+    def create_alias
+      resp = connection.get(SolrConfig::COLLECTION_PATH,
+                            action: 'CREATEALIAS',
+                            name: config.collection_name,
+                            collections: collection_name_with_version)
+      check_resp(resp)
+    end
+
     def create_collection
       resp = connection.get(SolrConfig::COLLECTION_PATH,
                             action: 'CREATE',
-                            name: "#{config.collection_name}_v#{next_collection_version}",
+                            name: collection_name_with_version,
                             numShards: config.num_shards,
                             replicationFactor: config.replication_factor,
                             maxShardsPerNode: config.max_shards_per_node,
                             "collection.configName": config.configset_name)
       check_resp(resp)
-      puts 'collections: '
-      puts collections
     end
 
 
@@ -60,6 +66,10 @@ module PsulibBlacklight
     end
 
     private
+
+    def collection_name_with_version
+      @collection_name_with_version ||= "#{config.collection_name}_v#{next_collection_version}"
+    end
 
     def next_collection_version
       return 1 if collections&.grep(/#{config.collection_name}/).empty?

@@ -27,9 +27,8 @@ namespace :solr do
   task new_collection: :environment do
     sleep 50
     solr_manager = PsulibBlacklight::SolrManager.new
-    puts solr_manager.inspect
     solr_manager.create_collection
-    puts HTTP.get 'http://localhost:8983'
+    solr_manager.create_alias
   end
 
   task update_config: :environment do

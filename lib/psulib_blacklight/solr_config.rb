@@ -24,6 +24,10 @@ module PsulibBlacklight
       Settings&.solr&.collection || 'blacklight-core'
     end
 
+    def alias_name
+      collection_name
+    end
+
     def config_url
       "#{url}#{CONFIG_PATH}"
     end
