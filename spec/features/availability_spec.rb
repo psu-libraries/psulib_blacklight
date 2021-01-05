@@ -33,9 +33,9 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     it 'that has holdings available in exactly 2 locations' do
-      visit '/?utf8=✓&search_field=all_fields&q=0060125896'
+      visit '/?utf8=✓&search_field=all_fields&q=23783767'
       expect(page).to have_selector '.availability-snippet',
-                                    exact_text: 'Altoona, Pattee Library and Paterno Library Stacks'
+                                    exact_text: 'Hazleton, Mont Alto'
     end
 
     it 'that has holdings available in only 1 location' do
