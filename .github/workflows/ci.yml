@@ -21,6 +21,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Setup CodeClimate
+      run: |
+        curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+        chmod +x ./cc-test-reporter
+        ./cc-test-reporter before-build
+
     - name: Setup Node
       uses: actions/setup-node@v1
       with:
@@ -60,4 +66,11 @@ jobs:
       run: bundle exec rails solr:new_collection
 
     - name: Run tests
-      run: bundle exec rails ci
+      run: |
+        bundle exec niftany
+        bundle exec rails ci
+        yarn lint
+        yarn test
+
+    - name: CodeClimate report to server
+      run: ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
