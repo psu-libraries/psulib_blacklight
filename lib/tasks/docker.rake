@@ -18,14 +18,14 @@ namespace :solr do
   end
 
   task clean: :environment do
+    solr_manager = PsulibBlacklight::SolrManager.new
     print `docker exec -it felix \
-            post -c #{BLACKLIGHT_CORE} \
+            post -c #{solr_manager.config.alias_name} \
                  -d '<delete><query>*:*</query></delete>' -out 'yes'`
   end
 
   # create a new collection with a configset that is up to date.
   task new_collection: :environment do
-    sleep 50
     solr_manager = PsulibBlacklight::SolrManager.new
     solr_manager.create_collection
     solr_manager.create_alias

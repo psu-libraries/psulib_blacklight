@@ -9,7 +9,25 @@ module PsulibBlacklight
 
     def initialize(config = SolrConfig.new)
       @config = config
+      raise 'Cannot find Solr' unless solr_is_up?
       upload_config unless configset_exists?
+    end
+
+    def solr_is_up?
+      time = Time.now
+
+      begin
+        return false if time + 30.seconds < Time.now
+        resp = connection.get('/solr/')
+        if resp.status == 200
+          return true
+        else
+          sleep 1
+        end
+      rescue Faraday::ConnectionFailed
+        sleep 1
+        retry
+      end
     end
 
     def create_alias
