@@ -18,6 +18,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'webmock/rspec'
+require 'support/fake_solr'
 
 # allow connections to localhost, webdrivers
 WebMock.disable_net_connect!(

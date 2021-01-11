@@ -1,0 +1,15 @@
+{
+  "responseHeader": {
+    "status": 0,
+    "QTime": 2777
+  },
+  "success": {
+    "172.17.0.2:8983_solr": {
+      "responseHeader": {
+        "status": 0,
+        "QTime": 1406
+      },
+      "core": "psul_catalog_v2_shard1_replica_n1"
+    }
+  }
+}

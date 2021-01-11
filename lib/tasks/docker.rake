@@ -25,9 +25,13 @@ namespace :solr do
   end
 
   # create a new collection with a configset that is up to date.
-  task new_collection: :environment do
+  task create_collection: :environment do
     solr_manager = PsulibBlacklight::SolrManager.new
     solr_manager.create_collection
+  end
+
+  task create_alias: :environment do
+    solr_manager = PsulibBlacklight::SolrManager.new
     solr_manager.create_alias
   end
 

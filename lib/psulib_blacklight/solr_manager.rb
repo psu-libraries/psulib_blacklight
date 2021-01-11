@@ -4,21 +4,15 @@ require 'psulib_blacklight/solr_config'
 
 module PsulibBlacklight
   class SolrManager
+    ALLOWED_TIME_TO_RESPOND = 30
+
     attr_reader :config
 
     def initialize(config = SolrConfig.new)
       @config = config
-      raise 'Cannot find Solr' unless solr_is_up?
+      raise 'Cannot find Solr' unless solr_up?
 
       upload_config unless configset_exists?
-    end
-
-    def create_alias
-      resp = connection.get(SolrConfig::COLLECTION_PATH,
-                            action: 'CREATEALIAS',
-                            name: config.collection_name,
-                            collections: collection_name_with_version)
-      check_resp(resp)
     end
 
     def create_collection
@@ -29,40 +23,20 @@ module PsulibBlacklight
                             replicationFactor: config.replication_factor,
                             maxShardsPerNode: config.max_shards_per_node,
                             "collection.configName": config.configset_name)
+
       check_resp(resp)
     end
 
-    def modify_collection
+    def create_alias
+      collections_with_prefix = collections.grep /#{config.collection_name}/
+      raise 'There are no collections that can be aliased.' unless collections_with_prefix.any?
+
       resp = connection.get(SolrConfig::COLLECTION_PATH,
-                            action: 'MODIFYCOLLECTION',
-                            collection: config.collection_name,
-                            "collection.configName": config.configset_name)
+                            action: 'CREATEALIAS',
+                            name: config.collection_name,
+                            collections: collections_with_prefix.last)
+
       check_resp(resp)
-    end
-
-    def delete_configset(set = config.configset_name)
-      resp = connection.get(SolrConfig::CONFIG_PATH, action: 'DELETE', name: set)
-      check_resp(resp)
-    end
-
-    def delete_all_configsets
-      config_sets
-        .reject { |set| set == '_default' }
-        .map { |set| delete_configset(set) }
-    end
-
-    def delete_collection(collection = config.collection_name)
-      resp = connection.get(SolrConfig::COLLECTION_PATH, action: 'DELETE', name: collection)
-      check_resp(resp)
-    end
-
-    def delete_all_collections
-      collections.map { |collection| delete_collection(collection) }
-    end
-
-    def reset
-      delete_all_collections
-      delete_all_configsets
     end
 
     private
@@ -80,6 +54,8 @@ module PsulibBlacklight
       # Gets a response object, if it's status code is not 200, we emit the body and bail
       def check_resp(resp)
         raise resp.body unless resp.status == 200
+
+        resp.status
       end
 
       def configset_exists?
@@ -130,18 +106,14 @@ module PsulibBlacklight
         check_resp(resp)
       end
 
-      def solr_is_up?
+      def solr_up?
         time = Time.now
 
         begin
-          return false if time + 30.seconds < Time.now
+          return false if time + ALLOWED_TIME_TO_RESPOND.seconds < Time.now
 
           resp = connection.get('/solr/')
-          if resp.status == 200
-            true
-          else
-            sleep 1
-          end
+          resp.status == 200
         rescue Faraday::ConnectionFailed
           sleep 1
           retry

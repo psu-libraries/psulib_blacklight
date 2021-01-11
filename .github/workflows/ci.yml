@@ -109,7 +109,9 @@ jobs:
       run: bundle exec rails solr:run_ci
 
     - name: Create catalog solr collection
-      run: bundle exec rails solr:new_collection
+      run: |
+        bundle exec rails solr:create_collection
+        bundle exec rails solr:create_alias
 
     - name: Test ruby and application code and send results to CodeClimate
       uses: paambaati/codeclimate-action@v2.7.5
