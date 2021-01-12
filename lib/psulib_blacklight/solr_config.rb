@@ -28,14 +28,6 @@ module PsulibBlacklight
       collection_name
     end
 
-    def config_url
-      "#{url}#{CONFIG_PATH}"
-    end
-
-    def collection_url
-      "#{url}#{COLLECTION_PATH}"
-    end
-
     def num_shards
       Settings&.solr&.num_shards || 1
     end

@@ -13,6 +13,12 @@ class FakeSolr < Sinatra::Base
       json_response 200, 'collections_list.json'
     when 'CREATE'
       json_response 200, 'collections_create.json'
+    when 'CREATEALIAS'
+      json_response 200, 'collections_createalias.json'
+    when 'MODIFYCOLLECTION'
+      json_response 200, 'collections_modifycollection.json'
+    else
+      raise Sinatra::NotFound
     end
   end
 
@@ -22,6 +28,8 @@ class FakeSolr < Sinatra::Base
       json_response 200, 'configset_list.json'
     when 'DELETE'
       json_response 200, 'configset_delete.json'
+    else
+      raise Sinatra::NotFound
     end
   end
 
@@ -29,6 +37,8 @@ class FakeSolr < Sinatra::Base
     case params['action']
     when 'UPLOAD'
       json_response 200, 'configset_upload.json'
+    else
+      raise Sinatra::NotFound
     end
   end
 

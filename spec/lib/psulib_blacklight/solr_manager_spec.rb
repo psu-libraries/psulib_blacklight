@@ -55,11 +55,41 @@ RSpec.describe PsulibBlacklight::SolrManager do
     it 'creates OR updates an alias to the current collection with version name' do
       expect(solr_manager.create_alias).to equal 200
     end
+
+    context 'when there are not collections with prefixes matching our collection name scheme' do
+      before do
+        stub_request(:get, 'http://127.0.0.1:8983/solr/admin/collections?action=LIST')
+          .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "collections":["not_match"]}',
+                     headers: {}).then
+      end
+
+      it 'raises SolrCollectionsNotFoundError' do
+        expect { solr_manager.create_alias }.to raise_error SolrCollectionsNotFoundError
+      end
+    end
   end
 
   describe '#create_collection' do
     it 'creates a collection' do
       expect(solr_manager.create_collection).to equal 200
+    end
+  end
+
+  describe '#modify_collection' do
+    it 'updates the current collection\'s config set to the latest' do
+      expect(solr_manager.modify_collection).to equal 200
+    end
+
+    context 'when there are not collections with prefixes matching our collection name scheme' do
+      before do
+        stub_request(:get, 'http://127.0.0.1:8983/solr/admin/collections?action=LIST')
+          .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "collections":["not_match"]}',
+                     headers: {}).then
+      end
+
+      it 'raises SolrCollectionsNotFoundError' do
+        expect { solr_manager.modify_collection }.to raise_error SolrCollectionsNotFoundError
+      end
     end
   end
 end

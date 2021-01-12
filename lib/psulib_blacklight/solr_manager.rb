@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'psulib_blacklight/solr_config'
+require 'psulib_blacklight/exceptions'
 
 module PsulibBlacklight
   class SolrManager
@@ -28,18 +29,36 @@ module PsulibBlacklight
     end
 
     def create_alias
-      collections_with_prefix = collections.grep /#{config.collection_name}/
-      raise 'There are no collections that can be aliased.' unless collections_with_prefix.any?
+      raise SolrCollectionsNotFoundError unless collections_with_prefix.any?
 
       resp = connection.get(SolrConfig::COLLECTION_PATH,
                             action: 'CREATEALIAS',
-                            name: config.collection_name,
-                            collections: collections_with_prefix.last)
+                            name: config.alias_name,
+                            collections: current_collection)
+
+      check_resp(resp)
+    end
+
+    def modify_collection
+      raise SolrCollectionsNotFoundError unless collections_with_prefix.any?
+
+      resp = connection.get(SolrConfig::COLLECTION_PATH,
+                            action: 'MODIFYCOLLECTION',
+                            collection: current_collection,
+                            "collection.configName": config.configset_name)
 
       check_resp(resp)
     end
 
     private
+
+      def collections_with_prefix
+        collections.grep /#{config.collection_name}/
+      end
+
+      def current_collection
+        collections_with_prefix.last
+      end
 
       def collection_name_with_version
         @collection_name_with_version ||= "#{config.collection_name}_v#{next_collection_version}"
