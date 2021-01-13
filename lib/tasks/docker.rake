@@ -40,6 +40,11 @@ namespace :solr do
     solr_manager.modify_collection
   end
 
+  task last_incremented_collection: :environment do
+    solr_manager = PsulibBlacklight::SolrManager.new
+    puts solr_manager.last_incremented_collection
+  end
+
   task run: :environment do
     trap('SIGINT') do
       print `docker stop felix`

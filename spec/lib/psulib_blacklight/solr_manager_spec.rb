@@ -92,4 +92,10 @@ RSpec.describe PsulibBlacklight::SolrManager do
       end
     end
   end
+
+  describe '#last_incremented_collection' do
+    it 'emits the last incremented collection' do
+      expect(solr_manager.last_incremented_collection).to eq 'psul_catalog_v1'
+    end
+  end
 end

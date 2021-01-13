@@ -34,7 +34,7 @@ module PsulibBlacklight
       resp = connection.get(SolrConfig::COLLECTION_PATH,
                             action: 'CREATEALIAS',
                             name: config.alias_name,
-                            collections: current_collection)
+                            collections: last_incremented_collection)
 
       check_resp(resp)
     end
@@ -44,20 +44,20 @@ module PsulibBlacklight
 
       resp = connection.get(SolrConfig::COLLECTION_PATH,
                             action: 'MODIFYCOLLECTION',
-                            collection: current_collection,
+                            collection: last_incremented_collection,
                             "collection.configName": config.configset_name)
 
       check_resp(resp)
+    end
+
+    def last_incremented_collection
+      collections_with_prefix.last
     end
 
     private
 
       def collections_with_prefix
         collections.grep /#{config.collection_name}/
-      end
-
-      def current_collection
-        collections_with_prefix.last
       end
 
       def collection_name_with_version
