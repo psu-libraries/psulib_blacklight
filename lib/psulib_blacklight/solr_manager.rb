@@ -67,7 +67,7 @@ module PsulibBlacklight
       def next_collection_version
         return 1 if collections&.grep(/#{config.collection_name}/)&.empty?
 
-        collections.map { |version| version.scan(/\d/).first.to_i }.flatten.max + 1
+        collections.map { |version| version.scan(/\d+/).first.to_i }.flatten.max + 1
       end
 
       # Gets a response object, if it's status code is not 200, we emit the body and bail
