@@ -2,6 +2,7 @@
 
 require 'psulib_blacklight/solr_config'
 require 'psulib_blacklight/exceptions'
+require 'zip'
 
 module PsulibBlacklight
   class SolrManager

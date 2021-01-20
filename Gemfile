@@ -16,6 +16,7 @@ gem 'high_voltage', '~> 3.1'
 gem 'lograge'
 gem 'puma', '~> 3.12'
 gem 'rails', '~> 6.0'
+gem 'rubyzip'
 gem 'rsolr', '>= 1.0'
 gem 'webpacker'
 
