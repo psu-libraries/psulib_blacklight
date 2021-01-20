@@ -115,7 +115,7 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     context 'when not all items are on course reserves' do
-      it 'displays the hold button' do
+      xit 'displays the hold button' do
         visit '/?search_field=all_fields&q=+40+short+stories+%3A+a+portable+anthology'
         expect(page).to have_selector 'button[data-target="#availability-23783767"]'
         click_button('View Availability')
@@ -309,7 +309,7 @@ RSpec.feature 'Availability', type: :feature do
       end
 
       context 'when not all items are on course reserves' do
-        it 'displays the hold button' do
+        xit 'displays the hold button' do
           visit '/catalog/23783767'
           expect(page).to have_link(
             'I Want It', href: "#{Settings.hold_button_url}23783767"
