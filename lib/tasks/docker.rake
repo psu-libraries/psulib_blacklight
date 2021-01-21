@@ -1,43 +1,48 @@
 # frozen_string_literal: true
 
-BLACKLIGHT_CORE = 'psul_blacklight'
+require 'psulib_blacklight/solr_manager'
 
-namespace :docker do
+namespace :solr do
   task up: :environment do
-    Rake::Task['docker:pull'].invoke
+    Rake::Task['solr:pull'].invoke
     container_status = `docker inspect felix`
     container_status.strip!
 
     if container_status == '[]'
-      Rake::Task['docker:run'].invoke
+      Rake::Task['solr:run'].invoke
     else
-      Rake::Task['docker:start'].invoke
+      Rake::Task['solr:start'].invoke
     end
 
-    Rake::Task['docker:ps'].invoke
-  end
-
-  task reload: [:start, :up_zk_config] do
-    Rake::Task['docker:down'].invoke
-    Rake::Task['docker:up']
+    Rake::Task['solr:ps'].invoke
   end
 
   task clean: :environment do
+    solr_manager = PsulibBlacklight::SolrManager.new
     print `docker exec -it felix \
-            post -c #{BLACKLIGHT_CORE} \
+            post -c #{solr_manager.config.alias_name} \
                  -d '<delete><query>*:*</query></delete>' -out 'yes'`
   end
 
-  task up_zk_config: :environment do
-    print `docker exec -it --user=solr felix bin/solr zk upconfig -n #{BLACKLIGHT_CORE} -d /myconfig -z localhost:9983`
-  end
-
+  # create a new collection with a configset that is up to date.
   task create_collection: :environment do
-    print `docker exec -it --user=solr felix bin/solr create -c #{BLACKLIGHT_CORE} -d /myconfig`
+    solr_manager = PsulibBlacklight::SolrManager.new
+    solr_manager.create_collection
   end
 
-  task build: [:up_zk_config] do
-    Rake::Task['docker:create_collection'].invoke
+  task create_alias: :environment do
+    solr_manager = PsulibBlacklight::SolrManager.new
+    solr_manager.create_alias
+  end
+
+  task update_config: :environment do
+    solr_manager = PsulibBlacklight::SolrManager.new
+    solr_manager.modify_collection
+  end
+
+  task last_incremented_collection: :environment do
+    solr_manager = PsulibBlacklight::SolrManager.new
+    puts solr_manager.last_incremented_collection
   end
 
   task run: :environment do
@@ -57,15 +62,7 @@ namespace :docker do
   end
 
   task run_ci: :environment do
-    print `docker run \
-            -d=true \
-            --name felix \
-            -it \
-            -e SOLR_HEAP=1G \
-            -p 8983:8983 \
-            -v "$(pwd)"/solr/conf:/myconfig \
-            solr:7.4.0 \
-            -DzkRun`
+    print `docker run -d -p 8983:8983 solr:7.4.0 -DzkRun`
   end
 
   task pull: :environment do

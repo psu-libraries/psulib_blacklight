@@ -11,10 +11,12 @@ gem 'bootsnap', require: false
 gem 'config'
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
+gem 'faraday'
 gem 'high_voltage', '~> 3.1'
 gem 'lograge'
 gem 'puma', '~> 3.12'
 gem 'rails', '~> 6.0'
+gem 'rubyzip'
 gem 'rsolr', '>= 1.0'
 gem 'webpacker'
 
@@ -42,6 +44,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'simplecov', '< 0.18', require: false # CodeClimate does not work with .18 or later
+  gem 'sinatra'
   gem 'sqlite3'
   gem 'webdrivers', '~> 4.0'
   gem 'webmock'

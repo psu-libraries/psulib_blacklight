@@ -1,0 +1,8 @@
+{
+  "responseHeader":{
+    "status":0,
+    "QTime":11},
+  "configSets":["_default",
+    "psul_blacklight",
+    "configset-eae0a4a2696affb9748c2d2b2ac44cdf",
+    "configset-d41d8cd98f00b204e9800998ecf8427e"]}
