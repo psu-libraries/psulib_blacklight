@@ -52,10 +52,14 @@ module PsulibBlacklight
     end
 
     def last_incremented_collection
-      collections_with_prefix.last
+      collections_with_prefix.max_by { |collection| version_number collection }
     end
 
     private
+
+      def version_number(colection_name)
+        colection_name.scan(/\d+/).first.to_i
+      end
 
       def collections_with_prefix
         collections.grep /#{config.collection_name}/
