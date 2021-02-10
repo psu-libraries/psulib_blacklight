@@ -1,35 +1,63 @@
-<h1>Search Tips</h1>
+<h1>Searching the Catalog</h1>
 
-<p>Search the Libraries Catalog to find books, government documents, journals, newspapers, maps, archival collections, music, videos, conference proceedings, and more.</p>
+<p>Search the Libraries Catalog to find books, government documents, journals, newspapers, maps, archival collections, music, videos, conference proceedings, and more. Use the tips below to improve your search strategies.</p>
 
 <p>If you're looking for individual journal or newspaper articles, more ebooks, and ejournals, use <%= link_to 'LionSearch', 'https://psu.summon.serialssolutions.com/' %> or a <%= link_to 'database', 'https://libraries.psu.edu/databases' %> instead. To request books, journal articles, and other materials you can't find in our library systems, use our <%= link_to 'Interlibrary Loan services', 'https://libraries.psu.edu/services/interlibrary-loan-services' %> or <%= link_to 'Ask a Librarian', 'https://libraries.psu.edu/ask/' %> for help.</p>
 
-<h2>Simple Search</h2>
-<p>Use the simple search box at the top of the page to search by keywords in the entire record.</p>
+<h2 id="which-search">Which Search to Use</h2>
+<p>Use the search box at the top of the page for simple searchs. Choose from the drop-down to search by keyword, the title, the author/creator's name, or a subject. Narrow your results using the <a href="#sidebar-facets">sidebar facets</a>.</p>
 
-<p>Change the drop-down to limit your search to words in the title, author/creator name, or subject. Use quotes around exact phrases to get more specific results, e.g. "remote sensing."</p>
+<p>Use the <%= link_to 'Advanced Search', page_path('advanced') %> to create a more complicated query. Advanced search allows you to use additional fields including: identifier, series, publisher, location, language, format/media type, and publication dates.</p>
 
-<h3>Level Up</h3>
+<p>For example, if you only want books about homelessness published after 2000, you could use the following fields:</p>
+<pre>Keyword: homelessness
+Format: Book
+Publication year: 2000 - [leave blank]</pre>
 
-<p>Use "+" before a word to make it required. (Otherwise results matching only some of your search terms may be included). Use "-" before a word to exclude results with that word (e.g. <code>animal cloning -sheep</code> if you are getting too many results specifically about sheep cloning).</p>
+<h2 id="search">Search Tips</h2>
 
-<h3>Sidebar Facets</h3>
+<p>Get even better results by using one or more of the tips in this section to structure your search. You can use these in the search box at the top of each page or in <%= link_to 'Advanced Search', page_path('advanced') %>. They can also be used with each other, as shown in some of the nested search examples which also use Boolean connectors.</p>
+
+<h3>Phrase Search: ""</h3>
+
+<p>Use quotes around exact phrases to get more specific results, e.g. "remote sensing" or "environmental racism".</p>
+
+<h3>Boolean Search: AND, NOT, OR</h3>
+
+<p>Use AND, OR, or NOT to expand or narrow your search.</p>
+<ul>
+<li>AND or <code>+</code> narrows your search: a keyword search for <code>quilt AND Amish</code> finds things which have both words in their record. You can also put a plus sign in front of words you want including. <code>quilt +Amish</code> is the same as <code>quilt AND Amish</code>. There is no space between the + sign and the word.</li>
+<li>OR expands your search: a keyword search for <code>sheep OR goat</code> finds things about sheep, or goats, or both.</li>
+<li>NOT or <code>-</code> narrows your search: a keyword search for <code>quilt NOT Amish</code> finds things about quilts but not about Amish quilts or quilters. You can also put a minus sign in front of the word you don't want included. This is helpful, when you want to search several words and exclude one, for example: <code>quilt design -Amish</code>.</li>
+</ul>
+
+<h3>Wildcard Searching</h3>
+
+<p>Wildcards let you search variations of one or more characters. You can use two wildcard searches in the catalog:</p>
+
+<ul>
+<li>? - use <code>?</code> in a word to replace a single character. For example, <code>Latin?</code> will search for Latino, Latina, and other one-character variants like Latinx, Latin@, or Latine but will not search for "Latin."</li>
+<li>* - use <code>*</code> in a word or at the beginning or end of the word to replace 0 to infinite characters. For example, a search for <code>environment*</code> will return results with environment, environmental, environmentalism, and other words beginning with "environment."</li>
+</ul>
+
+<p>You can combine wildcards, using as many <code>?</code> or <code>*</code> as you need. For example, <code>wom?n*</code> will return results with woman, women, womyn, womxn, women's, womanpower, and similar words.</p>
+
+<h3>Nested Searching: ( )</h3>
+
+<p>Use parentheses to nest searches. For example, <code>(Iraq OR Kuwait) AND oil</code> searches for results with either "Iraq" or "Kuwait," as well as results which have both, and then narrows only to results which also have "oil."</p>
+
+<p>You can nest and combine parenthetical searches. For example, if you wanted to search for resources about Iraq or Kuwait and oil OR about Russia and gas or pipelines, you'd nest parentheses: <code>((Iraq OR Kuwait) AND oil) OR (Russia AND (gas OR pipeline))</code>.</p>
+
+<h2 id="sidebar-facets">Sidebar Facets</h2>
 <p>Narrow your search results using the facets on the left sidebar. Know you're looking for a musical score? Use the Formats facet tab and select Musical Score. You can also narrow results:</p>
 <ul>
-  <li>by whether material is in a library or online</li>
+  <li>by whether the material is in a library or online</li>
   <li>to only one campus or library</li>
   <li>by date</li>
   <li>by the language of the material</li>
   <li>by subject or genre</li>
-  <li>by whether it's on DVD, Blu-Ray, microfilm, vinyl, etc.</li>
-  <li>by how it's classified, e.g. philosophy, botany, etc.</li>
+  <li>by the kind of special media it's on, like: DVD, Blu-Ray, microfilm, vinyl, etc.</li>
+  <li>by the call number where it's found in the library, e.g. philosophy, botany, etc.</li>
 </ul>
 
 <p>Clear facets by unchecking them in the sidebar or at the top of search results. To clear all facets and start over, choose "Start Over" at the top of the page.</p>
-
-<h2>Advanced Search</h2>
-
-<p>You can also use the <%= link_to 'Advanced Search', page_path('advanced') %> to construct a complicated search. For example, if you only want books about homelessness published after 2000, you'd use the following fields:</p>
-<pre>Keyword: homelessness
-Format: book
-Publication year: 2000 - [leave blank]</pre>
