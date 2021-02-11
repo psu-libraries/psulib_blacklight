@@ -53,7 +53,7 @@ Use [Traject](https://github.com/psu-libraries/psulib_traject#build-an-index)
 
 To clean out data that is being preserved explicitly run:
 ```
-bundle exec rails docker:clean
+bundle exec rails solr:clean
 ```
 
 ## Building and Using Javascript
