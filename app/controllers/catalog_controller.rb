@@ -55,6 +55,15 @@ class CatalogController < ApplicationController
     redirect_to '/404'
   end
 
+  def show
+    # https://github.com/psu-libraries/psulib_blacklight/issues/697
+    pattern = /[.,;:!"')\]]$/
+
+    return redirect_to "/catalog/#{params[:id].sub(pattern, '')}" if params[:id].match? pattern
+
+    super
+  end
+
   configure_blacklight do |config|
     # Controls the document actions (also called "tools"), note that blacklight_marc adds refworks and endnote
     config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params, html_class: 'dropdown-item')
