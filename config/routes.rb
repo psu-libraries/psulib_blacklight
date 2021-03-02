@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :sitemap, defaults: { format: :xml }, only: [:index, :show]
 
-  resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
+  resources :solr_documents, id: /\d+[.,;:!"')\]]?/, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns [:exportable, :marc_viewable]
   end
 

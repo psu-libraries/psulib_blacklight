@@ -55,6 +55,12 @@ class CatalogController < ApplicationController
     redirect_to '/404'
   end
 
+  def show
+    return redirect_to action: 'show', id: params[:id].chop  if trailing_punctuation?
+
+    super
+  end
+
   configure_blacklight do |config|
     # Controls the document actions (also called "tools"), note that blacklight_marc adds refworks and endnote
     config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params, html_class: 'dropdown-item')
@@ -422,5 +428,11 @@ class CatalogController < ApplicationController
                        need to view facets past page #{FACET_PAGINATION_THRESHOLD}."
       redirect_to '/404'
     end
+  end
+
+  private
+
+  def trailing_punctuation?
+    params[:id].match(/\d+[.,;:!"')\]]/)
   end
 end
