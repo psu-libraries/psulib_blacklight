@@ -24,7 +24,6 @@ Rails.application.routes.draw do
 
   resources :sitemap, defaults: { format: :xml }, only: [:index, :show]
 
-  # constraint to allow dots in id, also had to add needed format specifically
   resources :solr_documents, id: /\d+[.,;:!"')\]]?/, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns [:exportable, :marc_viewable]
   end
