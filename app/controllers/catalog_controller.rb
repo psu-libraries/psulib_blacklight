@@ -56,10 +56,7 @@ class CatalogController < ApplicationController
   end
 
   def show
-    # https://github.com/psu-libraries/psulib_blacklight/issues/697
-    pattern = /[.,;:!"')\]]$/
-
-    return redirect_to "/catalog/#{params[:id].sub(pattern, '')}" if params[:id].match? pattern
+    return redirect_to action: 'show', id: params[:id].chop  if trailing_punctuation?
 
     super
   end
@@ -431,5 +428,11 @@ class CatalogController < ApplicationController
                        need to view facets past page #{FACET_PAGINATION_THRESHOLD}."
       redirect_to '/404'
     end
+  end
+
+  private
+
+  def trailing_punctuation?
+    params[:id].match(/\d+[.,;:!"')\]]/)
   end
 end
