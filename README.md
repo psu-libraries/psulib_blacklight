@@ -20,7 +20,7 @@ Because we use webpacker, when upgrading the Blacklight gem for this application
 
 Note: we have only developed on Macs thus far.
 
-* Get `homebrew` installed and configured using [these instructions from DSRD until step 12](https://github.com/psu-stewardship/scholarsphere/wiki/How-to-Install-on-a-fresh-Mac)
+* Get `homebrew` installed and configured using [these instructions from scholarsphere until step 12](https://github.com/psu-libraries/scholarsphere-3/wiki/How-to-Install-on-a-fresh-Mac)
 * `ruby` via `rbenv` ([Upgrading Ruby Version Using rbenv](https://github.com/psu-libraries/psulib_blacklight/wiki/Upgrading-Ruby-Version-Using-rbenv))
 * Get docker desktop installed. See https://www.docker.com/products/docker-desktop
 
