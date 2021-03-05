@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :sitemap, defaults: { format: :xml }, only: [:index, :show]
 
-  resources :solr_documents, id: /\d+[.,;:!"')\]]?/, only: [:show], path: '/catalog', controller: 'catalog' do
+  resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
     concerns [:exportable, :marc_viewable]
   end
 
@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   match '/422' => 'errors#not_found', via: :all
   match '/500' => 'errors#internal_server_error', via: :all
 
+  get 'catalog/:id', id: /\d+[.,;:!"')\]]?/, to: 'catalog#show'
   get 'catalog/:id/marc_view', to: 'catalog#librarian_view', as: 'marc_view'
 
   get '/about' => 'high_voltage/pages#show', id: 'about'
