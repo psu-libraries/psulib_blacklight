@@ -56,7 +56,7 @@ class CatalogController < ApplicationController
   end
 
   def show
-    return redirect_to action: 'show', id: delete_trailing_punctuation if trailing_punctuation?
+    return redirect_to action: 'show', id: params[:id].chop if trailing_punctuation?
 
     super
   end
@@ -434,9 +434,5 @@ class CatalogController < ApplicationController
 
     def trailing_punctuation?
       params[:id].match(/\d+[.,;:!"')\]]/)
-    end
-
-    def delete_trailing_punctuation
-      params[:id].gsub(/[.,;:!"')\]]/, '')
     end
 end
