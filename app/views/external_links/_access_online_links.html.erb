@@ -1,0 +1,9 @@
+<div class="bs-callout bs-callout-primary">
+  <h5>Access Online</h5>
+
+  <ul class="external-links-access-online">
+    <% access_online_links.map do |item| %>
+      <li><i class="fas fa-external-link-alt" aria-hidden="true"></i> <a href="<%= item['url'] %>"><%= item['text'] %></a></li>
+    <% end %>
+  </ul>
+</div>
