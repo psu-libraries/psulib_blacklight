@@ -12,3 +12,9 @@ article.document {
     list-style: none;
   }
 }
+
+.documents-list .document .document-thumbnail {
+  float: none;
+  margin-bottom: 1em;
+  padding-left: 0;
+}

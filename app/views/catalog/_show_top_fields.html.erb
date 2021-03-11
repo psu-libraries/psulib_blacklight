@@ -13,4 +13,4 @@
   <% end %>
 </dl>
 
-<%= render partial: 'hathitrust/hathi_links', locals: { hathi_links: document.hathi_links } if document.hathi_links %>
+<%= render partial: 'external_links/all', locals: { document: document } %>
