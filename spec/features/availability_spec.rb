@@ -137,6 +137,12 @@ RSpec.feature 'Availability', type: :feature do
       expect(page).not_to have_selector 'div[class="availability"]'
     end
 
+    xit 'that is an online resource and all copies are on order' do
+      visit '/catalog/33183518'
+      expect(page).to have_selector 'div[class="availability"][data-keys="33183518"]'
+      expect(page).to have_selector 'h5', text: /Being acquired by the library/
+    end
+
     context 'when HathiTrust ETAS is enabled' do
       before do
         Settings.hathi_etas = true
