@@ -51,8 +51,3 @@ en:
     pagination:
       previous: '&larr; Previous'
       next: 'Next &rarr;'
-  support:
-    array:
-      words_connector: "<br>"
-      two_words_connector: "<br>"
-      last_word_connector: "<br>"
