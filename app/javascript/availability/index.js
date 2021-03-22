@@ -50,6 +50,7 @@ const availability = {
         if (titleIDs.length > 0) {
             let allHoldings = [];
             let boundHoldings = [];
+            let isOnlineOnOrderOnly = false;
             const sirsiRequestParams = titleIDs.map(url => '&titleID=' + url).join('');
 
             $.ajax({
@@ -77,6 +78,9 @@ const availability = {
                         if (numberOfBoundwithLinks > 0) {
                             boundHoldings = availability.getBoundHoldings(boundHoldings, titleInfo);
                         }
+
+                        // check to see if the item is only available online AND is in ON-ORDER status
+                        isOnlineOnOrderOnly = availability.getIsOnlineOnOrderOnly(titleInfo);
                     });
 
                     if (Object.keys(boundHoldings).length > 0) {
@@ -85,7 +89,7 @@ const availability = {
                     }
                     else {
                         // Print availability data
-                        availability.availabilityDisplay(allHoldings);
+                        availability.availabilityDisplay(allHoldings, isOnlineOnOrderOnly);
                     }
                 }, function() {
                     availability.displayErrorMsg();
@@ -173,6 +177,33 @@ const availability = {
         return boundHoldings;
     },
 
+    /**
+     * Determines whether the item is available ONLY online and all copies are ON-ORDER
+     */
+    getIsOnlineOnOrderOnly(titleInfo) {
+        let isOnlineOnOrderOnly = true;
+
+        titleInfo.jQueryObj.children('CallInfo').each(function () {
+            const libraryID = $(this).children('libraryID').text();
+
+            if (libraryID.toUpperCase() !== 'ONLINE') {
+                isOnlineOnOrderOnly = false;
+                return false;
+            }
+
+            $(this).children("ItemInfo").each(function () {
+                const currentLocationID = $(this).children("currentLocationID").text().toUpperCase();
+
+                if (currentLocationID !== "ON-ORDER") {
+                    isOnlineOnOrderOnly = false;
+                    return false;
+                }
+            });
+        });
+
+        return isOnlineOnOrderOnly;
+    },
+
     processBoundParents(boundHoldings, allHoldings) {
         const catkeys = Object.keys(boundHoldings);
 
@@ -232,7 +263,7 @@ const availability = {
         });
     },
 
-    availabilityDisplay(allHoldings) {
+    availabilityDisplay(allHoldings, isOnlineOnOrderOnly) {
         $('.availability').each(function () {
             const availabilityHTML = $(this);
             const catkey = availabilityHTML.data("keys");
@@ -256,6 +287,9 @@ const availability = {
                     if (availability.showHoldButton(rawHoldings)) {
                         holdButton.removeClass("invisible").addClass("visible");
                     }
+                } else if (isOnlineOnOrderOnly) {
+                    // only have online copies, but they are in the process of being acquired by the library
+                    holdingsPlaceHolder.html('<h5>Being acquired by the library</h5>');
                 } else {
                     // Document view
                     $('.metadata-availability').remove();
