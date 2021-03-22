@@ -143,6 +143,13 @@ RSpec.feature 'Availability', type: :feature do
       expect(page).to have_selector 'h5', text: /Being acquired by the library/
     end
 
+    xit 'that has an item on course reserve' do
+      visit '/catalog/3500414'
+      expect(page).to have_selector 'div[class="availability"][data-keys="3500414"]'
+      expect(page).to have_selector 'strong', text: /Due back at:/
+      expect(page).to have_content '9:01 AM on 3/4/2019'
+    end
+
     context 'when HathiTrust ETAS is enabled' do
       before do
         Settings.hathi_etas = true

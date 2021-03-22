@@ -114,6 +114,8 @@ const availability = {
                     const itemID = $(this).children("itemID").text();
                     const itemTypeID = $(this).children("itemTypeID").text().toUpperCase();
                     const reserveCollectionID =  $(this).children("reserveCollectionID").text();
+                    const reserveCirculationRule = $(this).children("reserveCirculationRule").text();
+                    const dueDate = $(this).children("dueDate").text();
 
                     allHoldings[titleInfo.catkey].push({
                         catkey: titleInfo.catkey,
@@ -125,7 +127,9 @@ const availability = {
                         itemTypeID: itemTypeID,
                         totalCopiesAvailable: titleInfo.totalCopiesAvailable,
                         holdable: titleInfo.holdable,
-                        reserveCollectionID: reserveCollectionID
+                        reserveCollectionID: reserveCollectionID,
+                        reserveCirculationRule: reserveCirculationRule,
+                        dueDate: dueDate
                     });
                 });
             }
@@ -339,6 +343,7 @@ const availability = {
                                                 <td>${availability.generateCallNumber(holding)}</td>
                                                 <td>${holding.itemType}</td>
                                                 <td>${availability.generateLocationHTML(holding)}
+                                                    ${availability.appendCourseReserveDueDate(holding)}
                                                     ${availability.appendMapScanLink(holding)}</td>
                                             </tr>
                                         `).join('')}
@@ -346,7 +351,8 @@ const availability = {
                                              <tr class="collapse" id="collapseHoldings${uniqueID}">
                                                 <td>${availability.generateCallNumber(moreHolding)}</td>
                                                 <td>${moreHolding.itemType}</td>
-                                                <td>${availability.generateLocationHTML(moreHolding)}</td>
+                                                <td>${availability.generateLocationHTML(moreHolding)}
+                                                    ${availability.appendCourseReserveDueDate(moreHolding)}</td>
                                             </tr>     
                                          `).join('')}
                                         </tbody>
@@ -524,6 +530,27 @@ const availability = {
         return '';
     },
 
+    appendCourseReserveDueDate(holding) {
+        if (availability.isOnCourseReserve(holding)) {
+            const dueDate = new Date(holding.dueDate);
+
+            const day = dueDate.toLocaleDateString('en-us', {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric'
+            });
+
+            const time = dueDate.toLocaleTimeString('en-us', {
+                hour: 'numeric',
+                minute: '2-digit'
+            });
+
+            return `<br><strong>Due back at:</strong> ${time} on ${day}`;
+        }
+
+        return '';
+    },
+
     createILLURL() {
         // Now that the availability data has been rendered, check for ILL options and update links
         $('.availability-holdings [data-type="ill-link"]').each(function () {
@@ -662,6 +689,10 @@ const availability = {
 
     isUPSpecialMap(holding) {
         return ['MAPSPEC'].includes(holding.itemTypeID) && ['UP-MAPS'].includes(holding.libraryID);
+    },
+
+    isOnCourseReserve(holding) {
+        return holding.reserveCirculationRule && holding.dueDate;
     },
 
     showHoldButton(holdings) {
