@@ -50,7 +50,6 @@ const availability = {
         if (titleIDs.length > 0) {
             let allHoldings = [];
             let boundHoldings = [];
-            let isOnlineOnOrderOnly = false;
             const sirsiRequestParams = titleIDs.map(url => '&titleID=' + url).join('');
 
             $.ajax({
@@ -80,7 +79,11 @@ const availability = {
                         }
 
                         // check to see if the item is only available online AND is in ON-ORDER status
-                        isOnlineOnOrderOnly = availability.getIsOnlineOnOrderOnly(titleInfo);
+                        const isOnlineOnOrderOnly = availability.getIsOnlineOnOrderOnly(titleInfo);
+
+                        if (isOnlineOnOrderOnly) {
+                            $(`.availability[data-keys="${catkey}"`).data('isOnlineOnOrderOnly', true);
+                        }
                     });
 
                     if (Object.keys(boundHoldings).length > 0) {
@@ -89,7 +92,7 @@ const availability = {
                     }
                     else {
                         // Print availability data
-                        availability.availabilityDisplay(allHoldings, isOnlineOnOrderOnly);
+                        availability.availabilityDisplay(allHoldings);
                     }
                 }, function() {
                     availability.displayErrorMsg();
@@ -267,10 +270,11 @@ const availability = {
         });
     },
 
-    availabilityDisplay(allHoldings, isOnlineOnOrderOnly) {
+    availabilityDisplay(allHoldings) {
         $('.availability').each(function () {
             const availabilityHTML = $(this);
             const catkey = availabilityHTML.data("keys");
+            const isOnlineOnOrderOnly = availabilityHTML.data('isOnlineOnOrderOnly');
 
             if (catkey in allHoldings) {
                 const rawHoldings = allHoldings[catkey];
@@ -293,7 +297,12 @@ const availability = {
                     }
                 } else if (isOnlineOnOrderOnly) {
                     // only have online copies, but they are in the process of being acquired by the library
-                    holdingsPlaceHolder.html('<h5>Being acquired by the library</h5>');
+                    const beingAcquiredMsg = 'Being acquired by the library';
+
+                    // Document view
+                    holdingsPlaceHolder.html(`<h5>${beingAcquiredMsg}</h5>`);
+                    // Results view
+                    snippetPlaceHolder.parent('.row').html(`<strong>${beingAcquiredMsg}</strong>`);
                 } else {
                     // Document view
                     $('.metadata-availability').remove();
