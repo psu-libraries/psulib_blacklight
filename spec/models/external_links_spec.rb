@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ExternalLinks do
-  describe '#access_online_links' do
+  describe '#psu_digital_collections_links' do
     it 'returns nil for psu_digital_collections_links when there is no PSU data' do
       document = { 'full_links_struct': [
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73013"}',
@@ -33,7 +33,9 @@ RSpec.describe ExternalLinks do
         url: 'https://libraries.psu.edu/collections/test'
       }.with_indifferent_access])
     end
+  end
 
+  describe '#access_online_links' do
     it 'returns nil for access_online_links when there is no external (non-PSU) access online data' do
       document = { 'full_links_struct': [
         '{"text":"digital.libraries.psu.edu","url":"https://digital.libraries.psu.edu/digital/collection/test"}'
