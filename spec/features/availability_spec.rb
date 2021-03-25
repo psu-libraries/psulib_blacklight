@@ -154,6 +154,7 @@ RSpec.feature 'Availability', type: :feature do
       expect(page).to have_selector 'div[class="availability"][data-keys="3500414"]'
       expect(page).to have_selector 'strong', text: /Due back at:/
       expect(page).to have_content '9:01 AM on 3/4/2019'
+      expect(page).to have_content 'Reserve - 24 hour loan w/ 1 renewal'
     end
 
     context 'when HathiTrust ETAS is enabled' do
