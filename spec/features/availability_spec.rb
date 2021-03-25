@@ -60,6 +60,12 @@ RSpec.feature 'Availability', type: :feature do
       expect(page).not_to have_selector '#availability-22091400'
     end
 
+    xit 'that is an online resource and all copies are on order' do
+      visit '/?f[access_facet][]=Online&per_page=10&q=music&search_field=all_fields'
+      expect(page).to have_selector 'div[class="availability"][data-keys="33183518"]'
+      expect(page).to have_selector 'strong', text: /Being acquired by the library/
+    end
+
     context 'when Hathi ETAS is enabled' do
       before do
         Settings.hathi_etas = true
