@@ -5,6 +5,7 @@
 
 import locations from './libraries_locations.json';
 import item_types from './item_types.json';
+import reserve_circulation_rules from './reserve_circulation_rules.json';
 
 const availability = {
     // Load Sirsi locations
@@ -12,6 +13,7 @@ const availability = {
     allLibraries: locations.libraries,
     illiadLocations: locations.request_via_ill,
     allItemTypes: item_types.item_types,
+    reserveCirculationRules: reserve_circulation_rules.reserve_circulation_rules,
     movedLocations: [],
 
     sirsiUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
@@ -545,7 +547,9 @@ const availability = {
                 minute: '2-digit'
             });
 
-            return `<br><strong>Due back at:</strong> ${time} on ${day}`;
+            const circulationRule = availability.reserveCirculationRules[holding.reserveCirculationRule];
+
+            return `<br><strong>Due back at:</strong> ${time} on ${day}<br>${circulationRule}`;
         }
 
         return '';
