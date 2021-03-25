@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AccessOnlineLinks do
+RSpec.describe ExternalLinks do
   describe '#access_online_links' do
     it 'returns nil for psu_digital_collections_links when there is no PSU data' do
       document = { 'full_links_struct': [
