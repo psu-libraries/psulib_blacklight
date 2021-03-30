@@ -1,32 +1,24 @@
 <% doc_presenter = document_presenter(document) %>
 
-<div class="row">
-  <div class="col-sm-3 order-sm-10">
-    <div class="document-thumbnail">
-      <%= render_thumbnail document %>
-    </div>
-  </div>
-
-  <div class="col-sm-9 order-sm-1">
-    <ul class="document-metadata dl-invert">
-      <% doc_presenter.fields_to_render.each do |field_name, field| -%>
-          <li class="blacklight-<%= field_name.parameterize -%>">
+<div class="col-sm-9 order-sm-1">
+  <ul class="document-metadata dl-invert">
+    <% doc_presenter.fields_to_render.each do |field_name, field| -%>
+        <li class="blacklight-<%= field_name.parameterize -%>">
             <span class="
                     <%= 'text-muted' unless field[:sr_only] %>
                     <%= 'sr-only' if field[:sr_only] %>">
               <%= render_index_field_label document, field: field_name %>
             </span>
-            <%= doc_presenter.field_value field %>
-          </li>
-      <% end -%>
-    </ul>
+          <%= doc_presenter.field_value field %>
+      </li>
+    <% end -%>
+  </ul>
 
-    <%= render partial: 'external_links/all', locals: { document: document } %>
+  <%= render partial: 'external_links/all', locals: { document: document } %>
+
+  <div class="blacklight-availability">
+    <% unless document.hathi_links && document.hathi_links[:etas_item] && Settings&.hide_etas_holdings -%>
+        <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
+    <% end -%>
   </div>
-</div>
-
-<div class="blacklight-availability">
-  <% unless document.hathi_links && document.hathi_links[:etas_item] && Settings&.hide_etas_holdings -%>
-    <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
-  <% end -%>
 </div>
