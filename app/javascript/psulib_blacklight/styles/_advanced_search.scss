@@ -1,0 +1,16 @@
+.advanced-search-form {
+  .submit-buttons {
+    margin: 1rem 0;
+  }
+
+  .submit-buttons-top {
+    float: right;
+
+    @media screen and (max-width: breakpoint-max(md)) {
+      display: block;
+      float: none;
+      margin-bottom: 1rem;
+      margin-top: .5rem;
+    }
+  }
+}
