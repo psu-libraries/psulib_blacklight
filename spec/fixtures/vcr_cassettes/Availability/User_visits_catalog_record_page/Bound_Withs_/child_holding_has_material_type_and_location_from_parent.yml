@@ -1,0 +1,51 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=53953
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 07 Apr 2021 18:19:12 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>53953</titleID><TitleAvailabilityInfo><totalCopiesAvailable>5</totalCopiesAvailable><libraryWithAvailableCopies>Special
+        Collections Library (UP)</libraryWithAvailableCopies><libraryWithAvailableCopies>Annex
+        (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>RARE-BOOK</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LCPER</classificationID><callNumber>AP3.M33</callNumber><numberOfCopies>2</numberOfCopies><ItemInfo><itemID>53953-1001</itemID><itemTypeID>PERIODICAL</itemTypeID><currentLocationID>RARE-BOOK</currentLocationID><homeLocationID>RARE-BOOK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo><ItemInfo><itemID>53953-1002</itemID><itemTypeID>PERIODICAL</itemTypeID><currentLocationID>RARE-BOOK</currentLocationID><homeLocationID>RARE-BOOK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>LCPER</classificationID><callNumber>AP3.M33
+        no.1-45, n.s.no.1-45 1710-12</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000067543649</itemID><itemTypeID>MICROFORM</itemTypeID><currentLocationID>CATO-2</currentLocationID><homeLocationID>CATO-2</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>LCPER</classificationID><callNumber>XX(53953.7)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>AUTO</classificationID><callNumber>XX(53953.8)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><numberOfBoundwithLinks>2</numberOfBoundwithLinks><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>Microfilm
+        E290 reel.1065</callNumber><libraryID>UP-ANNEX</libraryID><itemID>000053560735</itemID><linkedTitle><titleID>571994</titleID><title>The
+        Hermit, or, A view of the world, by a person retir''d from it</title><yearOfPublication>1711</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>12284545</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(53953.7)</callNumber><libraryID>UP-ANNEX</libraryID><linkedTitle><titleID>53953</titleID><title>The
+        Medley</title><author>Medley (London, England : 1710)</author><yearOfPublication>1710</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>45695298</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(571998.3)</callNumber><libraryID>UP-ANNEX</libraryID><linkedTitle><titleID>571998</titleID><title>Mercator,
+        or, Commerce retrieved</title><author>Defoe, Daniel, 1661?-1731.</author><yearOfPublication>1713</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>12284555</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(572006.3)</callNumber><libraryID>UP-ANNEX</libraryID><linkedTitle><titleID>572006</titleID><title>Mercurius
+        politicus, or, An antidote to popular missrepresentations</title><author>Drake,
+        James, 1667-1707.</author><yearOfPublication>1705</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>12284522</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>AN502.L66M63</callNumber><libraryID>UP-ANNEX</libraryID><itemID>000063670073</itemID><linkedTitle><titleID>56503</titleID><title>The
+        moderator [microform]</title><author>Moderator (London, England : 1710)</author><yearOfPublication>1710</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>32899739</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(53953.8)</callNumber><libraryID>UP-ANNEX</libraryID><linkedTitle><titleID>53953</titleID><title>The
+        Medley</title><author>Medley (London, England : 1710)</author><yearOfPublication>1710</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>45695298</OCLCControlNumber></linkedTitle></BoundwithLinkInfo></TitleInfo></LookupTitleInfoResponse>'
+  recorded_at: Wed, 07 Apr 2021 18:19:12 GMT
+recorded_with: VCR 6.0.0

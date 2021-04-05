@@ -16,9 +16,6 @@ const availability = {
     reserveCirculationRules: reserve_circulation_rules.reserve_circulation_rules,
     movedLocations: [],
 
-    sirsiUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
-              'clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true' +
-              '&includeBoundTogether=true',
     sirsiItemUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
                   'clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true',
     mapScanUrl: 'https://libraries.psu.edu/about/libraries/donald-w-hamer-center-maps-and-' +
@@ -52,10 +49,10 @@ const availability = {
         if (titleIDs.length > 0) {
             let allHoldings = [];
             let boundHoldings = [];
-            const sirsiRequestParams = titleIDs.map(url => '&titleID=' + url).join('');
+            const sirsiRequestParams = titleIDs.map(url => 'title_ids[]=' + url).join('&');
 
             $.ajax({
-                url: availability.sirsiUrl + sirsiRequestParams
+                url: '/availability/sirsidata/?' + sirsiRequestParams
             }).then(function (response) {
                     $(response).find('TitleInfo').each(function () {
                         const catkey = $(this).children('titleID').text();
@@ -554,12 +551,14 @@ const availability = {
             const day = dueDate.toLocaleDateString('en-us', {
                 year: 'numeric',
                 month: 'numeric',
-                day: 'numeric'
+                day: 'numeric',
+                timeZone: 'America/New_York'
             });
 
             const time = dueDate.toLocaleTimeString('en-us', {
                 hour: 'numeric',
-                minute: '2-digit'
+                minute: '2-digit',
+                timeZone: 'America/New_York'
             });
 
             const circulationRule = availability.reserveCirculationRules[holding.reserveCirculationRule];

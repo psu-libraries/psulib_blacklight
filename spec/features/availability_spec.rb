@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'support/vcr'
 
-RSpec.feature 'Availability', type: :feature do
+RSpec.feature 'Availability', :vcr, type: :feature do
   let (:stubbed_controller) { CatalogController.new }
 
   before do
@@ -60,19 +61,19 @@ RSpec.feature 'Availability', type: :feature do
       expect(page).not_to have_selector '#availability-22091400'
     end
 
-    xit 'that is an online resource and all copies are on order' do
-      visit '/?f[access_facet][]=Online&per_page=10&q=music&search_field=all_fields'
+    it 'that is an online resource and all copies are on order' do
+      visit '/?search_field=all_fields&q=33183518'
       expect(page).to have_selector 'div[class="availability"][data-keys="33183518"]'
       expect(page).to have_selector 'strong', text: /Being acquired by the library/
     end
 
-    xit 'that has a public note' do
+    it 'that has a public note' do
       visit '/?utf8=✓&search_field=all_fields&q=6962697'
       click_button('View Availability')
       expect(page).to have_selector 'i.fa-info-circle[data-toggle="tooltip"][data-original-title="Struwwelpeter"]'
     end
 
-    xit 'that does NOT have a public note' do
+    it 'that does NOT have a public note' do
       visit '/?utf8=✓&search_field=all_fields&q=2422046'
       click_button('View Availability')
       expect(page).not_to have_selector 'i.fa-info-circle[data-toggle="tooltip"]'
@@ -108,7 +109,7 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     context 'when Hathi ETAS is disabled' do
-      xit 'an etas record displays \'View Availability\' button and hold button' do
+      it 'an etas record displays \'View Availability\' button and hold button' do
         visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
         expect(page).to have_selector 'button[data-target="#availability-3753687"]'
         expect(page).not_to have_selector '#availability-3753687'
@@ -133,7 +134,7 @@ RSpec.feature 'Availability', type: :feature do
     end
 
     context 'when not all items are on course reserves' do
-      xit 'displays the hold button' do
+      it 'displays the hold button' do
         visit '/?search_field=all_fields&q=+40+short+stories+%3A+a+portable+anthology'
         expect(page).to have_selector 'button[data-target="#availability-23783767"]'
         click_button('View Availability')
@@ -155,23 +156,23 @@ RSpec.feature 'Availability', type: :feature do
       expect(page).not_to have_selector 'div[class="availability"]'
     end
 
-    xit 'that is an online resource and all copies are on order' do
+    it 'that is an online resource and all copies are on order' do
       visit '/catalog/33183518'
       expect(page).to have_selector 'div[class="availability"][data-keys="33183518"]'
       expect(page).to have_selector 'h5', text: /Being acquired by the library/
     end
 
-    xit 'that has a public note' do
+    it 'that has a public note' do
       visit '/catalog/6962697'
       expect(page).to have_selector 'i.fa-info-circle[data-toggle="tooltip"][data-original-title="Struwwelpeter"]'
     end
 
-    xit 'that does NOT have a public note' do
+    it 'that does NOT have a public note' do
       visit '/?utf8=✓&search_field=all_fields&q=2422046'
       expect(page).not_to have_selector 'i.fa-info-circle[data-toggle="tooltip"]'
     end
 
-    xit 'that has an item on course reserve' do
+    it 'that has an item on course reserve' do
       visit '/catalog/3500414'
       expect(page).to have_selector 'div[class="availability"][data-keys="3500414"]'
       expect(page).to have_selector 'strong', text: /Due back at:/
@@ -302,7 +303,7 @@ RSpec.feature 'Availability', type: :feature do
       end
 
       context 'when I Want It is not in readonly state' do
-        it 'displays when a record has least one holdable item' do
+        it 'displays when a record has at least one holdable item' do
           visit '/catalog/18879591'
           within 'div[class*="hold-button"]' do
             expect(page).to have_link(
@@ -333,7 +334,7 @@ RSpec.feature 'Availability', type: :feature do
       end
 
       context 'when Hathi ETAS is disabled' do
-        xit 'displays for an etas record if there are holdable items' do
+        it 'displays for an etas record if there are holdable items' do
           visit '/catalog/3753687'
           expect(page).to have_link(
             'I Want It', href: "#{Settings.hold_button_url}3753687"
@@ -351,7 +352,7 @@ RSpec.feature 'Availability', type: :feature do
       end
 
       context 'when not all items are on course reserves' do
-        xit 'displays the hold button' do
+        it 'displays the hold button' do
           visit '/catalog/23783767'
           expect(page).to have_link(
             'I Want It', href: "#{Settings.hold_button_url}23783767"

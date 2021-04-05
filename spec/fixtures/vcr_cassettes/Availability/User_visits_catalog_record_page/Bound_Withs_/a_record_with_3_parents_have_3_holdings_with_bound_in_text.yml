@@ -1,0 +1,400 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=2679972
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 07 Apr 2021 18:19:11 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>2679972</titleID><TitleAvailabilityInfo><totalCopiesAvailable>4</totalCopiesAvailable><libraryWithAvailableCopies>Special
+        Collections Library (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>SPC-CATOII</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>HE1031.R43
+        v.20</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000051903985</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>SPC-CATOII</currentLocationID><homeLocationID>SPC-CATOII</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LCPER</classificationID><callNumber>HE2791
+        .P5802 P45 1855</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>XX(2679972.3)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>XX(2679972.4)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><numberOfBoundwithLinks>4</numberOfBoundwithLinks><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>HE1031.R43
+        v.20</callNumber><libraryID>UP-SPECCOL</libraryID><itemID>000051903985</itemID><linkedTitle><titleID>2679972</titleID><title>The
+        charter, acts and supplements relating to the Philadelphia and Trenton Railroad
+        Company</title><author>Philadelphia and Trenton Railroad Company.</author><yearOfPublication>1855</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54450666</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(79172.26)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>79172</titleID><title>Annual
+        report of the managers of the Pennsylvania Institution for the Instruction
+        of the Blind</title><author>Pennsylvania Institution for the Instruction of
+        the Blind.</author><yearOfPublication>1834</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>7772511</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(82383.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>82383</titleID><title>Annual
+        report of the Inspectors of the Philadelphia County Prison, made to the Legislature</title><author>Philadelphia
+        County (Pa.). Prison. Board of Inspectors.</author><yearOfPublication>1848</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>32495336</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(431687.7)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>431687</titleID><title>Report
+        of the Pennsylvania Hospital for the Insane</title><author>Pennsylvania Hospital
+        for the Insane.</author><yearOfPublication>184</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>7997374</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(896760.25)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>896760</titleID><title>School
+        laws of Pennsylvania</title><author>Pennsylvania. Laws, statutes, etc.</author><yearOfPublication>1848</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>35331894</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(1700469.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>1700469</titleID><title>Report
+        of the managers of the Magdalen Society for</title><author>Magdalen Society
+        (Philadelphia, Pa.)</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>57379321</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2574797.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2574797</titleID><title>Report
+        of the Western Penitentiary for the year</title><author>State Penitentiary
+        for the Western District of Pennsylvania.</author><yearOfPublication>1826</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>39206003</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HE5783
+        .N5 L39 1846</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679976</titleID><title>Laws
+        relating to the Camden and Philadelphia Steamboat Ferry Company : passed by
+        the legislatures of the states of New-Jersey and Pennsylvania</title><author>Mickle,
+        Isaac, 1822-1855.</author><yearOfPublication>1846</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E440.5
+        .C73</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679979</titleID><title>Third
+        address to the people of Maryland</title><author>Collins, William H. (William
+        Handy), 1801-1881.</author><yearOfPublication>1861</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>03833958</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>L195
+        .P5 F57 1848</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679981</titleID><title>Rules
+        for the government of the grammar, secondary, and primary schools in the first
+        section of the First School District of Pennsylvania : revised and adopted
+        by the Board of Directors, at a meeting held August 29, 1848</title><author>First
+        School District of Pennsylvania (Philadelphia, Pa.). First Section. Directors
+        of the Public Schools.</author><yearOfPublication>1848</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2679985.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679985</titleID><title>The
+        privilege of the writ of habeas corpus under the Constitution. Second part</title><author>Binney,
+        Horace, 1780-1875.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E458.2
+        .I43 1862</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679986</titleID><title>A
+        letter to a friend in a slave state</title><author>Ingersoll, Charles, 1805-1882.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>18690755</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF5063
+        .Z9 I5</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679988</titleID><title>Personal
+        liberty and martial law : a review of some pamphlets of the day</title><author>Ingersoll,
+        Edward, 1817-1893.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>13520932</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E469
+        .R33</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679990</titleID><title>A
+        review of Mr. Seward''s diplomacy</title><author>Reed, William B. (William
+        Bradford), 1806-1876.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>03864895</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E469
+        .R333 K5 1862</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679993</titleID><title>A
+        new "Sartor resartus" : being a critical analysis of a pamphlet entitled "A
+        review of Mr. Seward''s diplomacy"</title><author>Dr. Syntax, active 19th
+        century.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>09160325</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>J87
+        .M4 1862g</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679994</titleID><title>Correspondence
+        relating to the recruiting of troops for the Department of New England</title><author>Massachusetts.
+        Governor (1861-1866 : Andrew)</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05741629</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2679996.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679996</titleID><title>The
+        conduct of the war : remarks of Hon. William E. Lehman, of Pennsylvania, on
+        the bill to confiscate the property of rebels, delivered in the House of Representatives,
+        April 23, 1862</title><author>Lehman, William E. (William Eckart), 1821-1895.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E453
+        .B63</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2680005</titleID><title>Letter
+        of Hon. Montgomery Blair, postmaster general : to the meeting held at the
+        Cooper Institute, New York, March 6, 1862</title><author>Blair, Montgomery,
+        1813-1883.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>11528881</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>TC425
+        .M6 H8</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2680008</titleID><title>A
+        review of the Report upon the physics and hydraulics of the Mississippi River
+        : upon the protection of the alluvial region against overflow; and upon the
+        deepening of the mouths; based upon surveys and investigations made under
+        Acts of Congress prepared by Capt. A.A. Humphreys and Lieut. H.L. Abbot</title><author>Abbot,
+        Edwin Hale, 1834-1927.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05045538</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KFP590
+        .P3 S73 1861</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2680013</titleID><title>Report
+        of the Committee of the Board of Inspectors of the State Penitentiary of the
+        Eastern District of Pennsylvania on the act of Assembly, approved May 1, 1861,
+        entitled An act relative to prison discipline, November, 1861</title><author>State
+        Penitentiary for the Eastern District of Pennsylvania.</author><yearOfPublication>1861</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HV8708
+        .C66 1862</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2680016</titleID><title>Copies
+        of letters and extracts from officers of prison in several states in relation
+        to shortening sentences for good conduct</title><author>Seaton, W. S.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .J65 S54 1861</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2680021</titleID><title>Ex
+        re. W. Johnson vs. J.S. Halloway, warden, &amp;c. : hab. cor. : reply to relators''
+        argument</title><author>Sheppard, Furman, 1823-1893.</author><yearOfPublication>1861</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54466631</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .J65 J64 1861</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2680024</titleID><title>Commonwealth
+        of Pennsylvania ex relatione William Johnson, vs. John S. Holloway [i.e. Halloway],
+        warden of the Eastern State Penitentiary</title><author>Johnson, William,
+        1840 or 1841-</author><yearOfPublication>1861</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54467337</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2680064.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2680064</titleID><title>Objects
+        of the Institute for Colored Youth : with a list of the officers and students,
+        and the annual report of the Board of Managers, for the year 1861</title><author>Institute
+        for Colored Youth (Philadelphia, Pa.)</author><yearOfPublication>1861</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>L195
+        .P5 F57 1848a</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2680067</titleID><title>By-laws
+        of the Board of Directors of the Public Schools for the First Section of the
+        First School District of Pennsylvania : adopted August 29, 1848</title><author>First
+        School District of Pennsylvania (Philadelphia, Pa.). First Section. Directors
+        of the Public Schools.</author><yearOfPublication>1848</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2680070.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2680070</titleID><title>A
+        digest of the acts of Assembly relative to the First School District of the
+        state of Pennsylvania</title><author>First School District of Pennsylvania
+        (Philadelphia, Pa.)</author><yearOfPublication>1852</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2705403.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2705403</titleID><title>Report
+        of the Topographical Bureau</title><author>United States. Army. Corps of Engineers.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2705424.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2705424</titleID><title>Annual
+        report of the Trustees of the Society for the Advancement of Christianity
+        in Pennsylvania</title><author>Society of the Protestant Episcopal Church
+        for the Advancement of Christianity in Pennsylvania.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>BV4461
+        .J66</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2705687</titleID><title>The
+        ... annual report of the mission in the County Insane Hospital, and other
+        departments of Blockley</title><author>Jones, Edward C. (Edward Conway), 1820-1865.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54994950</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>HE1031.R43
+        v.30</callNumber><libraryID>UP-SPECCOL</libraryID><itemID>000051942007</itemID><linkedTitle><titleID>2729719</titleID><title>Charter
+        and by-laws of the Church of the Holy Trinity, Philadelphia</title><author>Church
+        of the Holy Trinity (Philadelphia, Pa. : Episcopal)</author><yearOfPublication>1861</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>55949969</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>F146
+        .P40</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>376926</titleID><title>An
+        appeal to the citizens of Pennsylvania on behalf of the Historical Society
+        of Pennsylvania</title><author>Historical Society of Pennsylvania.</author><yearOfPublication>1865</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>23188363</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(431687.11)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>431687</titleID><title>Report
+        of the Pennsylvania Hospital for the Insane</title><author>Pennsylvania Hospital
+        for the Insane.</author><yearOfPublication>184</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>7997374</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2592577.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2592577</titleID><title>The
+        Western Saving Fund Society of Philadelphia, et al., against the city of Philadelphia,
+        et al. : in equity</title><author>Western Saving Fund Society of Philadelphia.</author><yearOfPublication>1854</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2605419.4)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2605419</titleID><title>Opinion
+        of Chancellor Green : on final hearing in the case of the Delaware and Raritan
+        Canal and Camden and Amboy Railroad and Transportation Companies v. the Camden
+        and Atlantic Railroad Company, the Raritan and Delaware Bay Railroad Company,
+        and others, delivered February 3d, 1864</title><author>New Jersey. Supreme
+        Court.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>43623950</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2605430.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2605430</titleID><title>Defence
+        of the system of internal improvements, of the state of New Jersey</title><author>Stockton,
+        Robert Field, 1795-1866.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2605432.5)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2605432</titleID><title>In
+        the Supreme Court of Pennsylvania : Philadelphia vs Girard''s heirs : error
+        to Schuylkill, C.P. : opinion of the court</title><author>Pennsylvania. Supreme
+        Court.</author><yearOfPublication>1863</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2617942.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2617942</titleID><title>Speech
+        of Hon. Jos. B. Pugh, of Cecil County : delivered in the Constitutional Convention
+        of Maryland, June 23d, 1864, in favor of the 23d Article of the Declaration
+        of Rights, emancipating slaves and abolishing slavery in Maryland</title><author>Pugh,
+        Joseph B.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2618296.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2618296</titleID><title>Annual
+        report of the Board of Trustees of the Philadelphia Association for the Relief
+        of Disabled Firemen</title><author>Philadelphia Association for the Relief
+        of Disabled Firemen.</author><yearOfPublication>183</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HE2791
+        .P5802 P45 1855</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679972</titleID><title>The
+        charter, acts and supplements relating to the Philadelphia and Trenton Railroad
+        Company</title><author>Philadelphia and Trenton Railroad Company.</author><yearOfPublication>1855</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54450666</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2705687.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2705687</titleID><title>The
+        ... annual report of the mission in the County Insane Hospital, and other
+        departments of Blockley</title><author>Jones, Edward C. (Edward Conway), 1820-1865.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54994950</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2708267.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2708267</titleID><title>Shield''s
+        appeal : reply of appellant to appellee''s argument</title><author>Shields,
+        David, active 1832-1849.</author><yearOfPublication>1849</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>55045520</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>BX8
+        .T48 1860b</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729731</titleID><title>Unity
+        and its restoration : addressed to all Christians who desire to hold the faith
+        in unity of the spirit, and in the bond of peace</title><author>Thompson,
+        Hugh Miller, 1830-1902.</author><yearOfPublication>1860</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E473.6
+        .M122</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729735</titleID><title>Sequel
+        to General M''Call''s report of the Pennsylvania reserves in the Peninsula</title><author>McCall,
+        George A. (George Archibald), 1802-1868.</author><yearOfPublication>1863</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>14103397</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2729752.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729752</titleID><title>Discourse
+        delivered at the Synagogue Rodeph Shalom (Followers of Peace)</title><author>Dropsie,
+        Moses A. (Moses Aaron), 1821-1905.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>10903304</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2729753.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729753</titleID><title>The
+        bankrupt law : speech of Thomas A. Jenckes, of Rhode Island, delivered in
+        the House of Representatives, June 1, 1864</title><author>Jenckes, Thomas
+        A. (Thomas Allen), 1818-1875.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05370320</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2729757.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729757</titleID><title>The
+        practice of justice our only security for the future : remarks of Hon. William
+        D. Kelley, of Pennsylvania, in support of his proposed amendment to the bill
+        "To guaranty to certain states whose governments have been usurped or overthrown,
+        a republican form of government" : delivered in the House of Representatives,
+        January 16, 1865</title><author>Kelley, William D. (William Darrah), 1814-1890.</author><yearOfPublication>1865</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>31789325</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2729764.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729764</titleID><title>New
+        plottings in aid of the rebel doctrine of state sovereignty : Mr. Jay''s second
+        letter on Dawson''s introduction to the Federalist, exposing its falsification
+        of the history of the Constitution; its libels on Duane, Livingston, Jay,
+        and Hamilton; and its relation to recent efforts by traitors at home, and
+        foes abroad, to maintain the rebel doctrine of state sovereignty, for the
+        subversion of the unity of the Republic and the supreme sovereignty of the
+        American people</title><author>Jay, John, 1817-1894.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>TN429
+        .R3</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729768</titleID><title>A
+        statement of the property, condition and resources of the Reciprocity Mining
+        Co. of Canada East : including the statement of the trustees, extracts from
+        official reports and correspondence, affecting the value of its property</title><author>Reciprocity
+        Mining Co. of Canada East.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>14700273</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HV9475
+        .P4 P45 1864</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729769</titleID><title>Some
+        notice of the county prisons and almshouses in Pennsylvania</title><author>Philadelphia
+        Society for Alleviating the Miseries of Public Prisons.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF6495
+        .P69 K44 1864</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729797</titleID><title>An
+        appeal to the United States Commissioner of Internal Revenue, by a licensed
+        job printer from an assessment upon his return for September, 1864, imposed
+        by the Assessor of the First District of Pennsylvania</title><author>Keene,
+        H. E. (Henry E.)</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HB1323
+        .C52 U6547 1864</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729799</titleID><title>To
+        the Select and Common Councils of the City of Philadelphia</title><author>Philadelphia
+        (Pa.). Board of Guardians of the Poor.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>55974124</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>RA982
+        .P5 P476 1864</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729802</titleID><title>Appeal
+        to the public</title><author>Pennsylvania Hospital (Philadelphia, Pa.)</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>F516
+        .Y73</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729805</titleID><title>A
+        visit to the oil regions of West Virginia, Ohio and Pennsylvania : a special
+        report to Forney''s Philadelphia Press, December 5th, 1864</title><author>Young,
+        John Russell, 1840-1899.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>55975100</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HD9539
+        .M44 Q85</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772634</titleID><title>Charter
+        and by-laws : report of the proceedings at the annual meeting of the stockholders
+        held at Philadelphia</title><author>Quicksilver Mining Company.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>11749669</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2772682.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772682</titleID><title>Annual
+        report of the Executive Board of the Union Benevolent Association</title><author>Union
+        Benevolent Association.</author><yearOfPublication>1832</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>38505605</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2772733.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772733</titleID><title>Information
+        for Army meetings</title><author>United States Christian Commission.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05876476</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HV743
+        .P542 C58</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772752</titleID><title>Report
+        of the managers of the Church Home for Children : read to their contributors
+        at the ... annual meeting</title><author>Church Home for Children.</author><yearOfPublication>1857</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>45651449</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>HE1031.R43
+        v.39</callNumber><libraryID>UP-SPECCOL</libraryID><itemID>000051976538</itemID><linkedTitle><titleID>2682017</titleID><title>Speech
+        of Hon. John M. Read, at the regular quarterly meeting of the Joint Board
+        of Directors of the United Delaware and Raritan Canal Company, Camden and
+        Amboy Railroad and Transportation Company, and New Jersey Railroad and Transportation
+        Company : held at Trenton on Thursday, April 20, 1871</title><author>Read,
+        John M. (John Meredith), 1797-1874.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>5467709</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(1090172.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>1090172</titleID><title>Argument
+        of Hon. John M. Read : in favor of the constitutionality of the subscription
+        by the City of Philadelphia, to the capital stock of the Hempfield, and Philadelphia,
+        Easton, and Water Gap railroad companies, delivered before the Supreme Court
+        of Pennsylvania, on Monday, the 25th July, 1853, in the case of Sharpless
+        and others v. the mayor, aldermen and citizens of Philadelphia</title><author>Read,
+        John M. (John Meredith), 1797-1874.</author><yearOfPublication>1853</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>164074164</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2571801.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2571801</titleID><title>Lecture
+        delivered before the alumni of the law department of the University of Pennsylvania</title><author>Read,
+        John M. (John Meredith), 1797-1874.</author><yearOfPublication>1863</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>46327449</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2572463.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2572463</titleID><title>Facts
+        and authorities on the suspension of the privilege of the writ of habeas corpus</title><yearOfPublication>1860</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2612418.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2612418</titleID><title>Isaiah
+        P. Goldey v. the Pennsylvania Railroad Company : certificate from nisi prius
+        taken by the defendant : plaintiff''s paper book</title><author>Goldey, Isaiah
+        P., plaintiff.</author><yearOfPublication>1856</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2618255.7)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2618255</titleID><title>Annual
+        reports of the railroad and canal companies of the state of New Jersey, for
+        the year</title><author>New Jersey. Legislature.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2679972.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679972</titleID><title>The
+        charter, acts and supplements relating to the Philadelphia and Trenton Railroad
+        Company</title><author>Philadelphia and Trenton Railroad Company.</author><yearOfPublication>1855</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54450666</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2741207.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2741207</titleID><title>Opinion
+        of Hon. John M. Read, of the Supreme Court of Pennsylvania, in favor of the
+        constitutionality of the acts of Congress, declaring treasury notes a legal
+        tender in payment of debts : delivered at Harrisburg, on Wednesday, May 24,
+        1865</title><author>Pennsylvania. Supreme Court.</author><yearOfPublication>1865</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>03883350</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2745825.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2745825</titleID><title>Opinion
+        read November term, 1867 : between the Raritan and Delaware Bay Railroad Company
+        and the Camden and Atlantic Railroad Company, appellants, and the Delaware
+        and Raritan Canal and the Camden and Amboy Railroad and Transportation Companies,
+        respondents : on bill, &amp;c</title><author>New Jersey. Court of Errors and
+        Appeals.</author><yearOfPublication>1867</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2745927.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2745927</titleID><title>Opinion
+        of Hon. John M. Read, of the Supreme Court of Pennsylvania in favor of the
+        passenger railway cars running on every day in the week, including Sunday</title><author>Pennsylvania.
+        Supreme Court.</author><yearOfPublication>1867</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>19234605</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2747525.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2747525</titleID><title>Opinion
+        of the Supreme Court of Pennsylvania in the case of the Pennsylvania Railroad
+        Company against Catharine Henderson, upon a writ of error to the Common Pleas
+        of Indiana County : delivered at Harrisburg, on Tuesday, May 15, 1866</title><author>Pennsylvania.
+        Supreme Court.</author><yearOfPublication>1866</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>56402026</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .B29 R39 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750946</titleID><title>To
+        the honorable the judges of the Supreme Court of Pennsylvania, sitting in
+        equity</title><author>Rawle, William Henry, 1823-1889.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KFP458
+        .A34 A2 1870</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750948</titleID><title>An
+        act for the erection of the public buildings</title><author>Pennsylvania.</author><yearOfPublication>1870</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .B29 B83 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750950</titleID><title>In
+        the Supreme Court of Pennsylvania, Eastern District, in equity : Baird et
+        al. vs. Rice et al. : amended bill</title><author>Budd, Geo. D. (George Davis),
+        1843-1874.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .B29 P37 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750951</titleID><title>In
+        the Supreme Court of Pennsylvania, Eastern District, January term, 1871, no.
+        20 : Baird et al. vs. Rice et al. : special injunction affidavit of Robert
+        S. Paschall</title><author>Paschall, Robert S. (Robert Scott), 1821-1894.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .B29 B84 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750953</titleID><title>In
+        the Supreme Court of Pennsylvania, Eastern District, in equity : Baird et
+        al. vs. Rice et al. : sur application for special injunction : argument for
+        plaintiffs</title><author>Budd, Geo. D. (George Davis), 1843-1874.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .B29 I5 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750954</titleID><title>In
+        the Supreme Court of Penna., in equity, January term, 1871, no. 20 : Baird
+        et al. v. Rice et al. : petition of James D. Whetham and others, to be admitted
+        to defend pro interesse suo</title><author>Whetham, James D.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .B29 C65 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750957</titleID><title>In
+        the Supreme Court of Pennsylvania, Eastern District, in equity : Baird et
+        al. v. Rice et al. : sur application for special injunction : paper book and
+        affidavits of defendants</title><author>Collis, Charles H. T. (Charles Henry
+        Tucky), 1838-1902.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .B29 C64 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750958</titleID><title>In
+        the Supreme Court of Penna., Eastern District, in equity : Baird et al. v.
+        Rice et al. : sur application for special injunction</title><author>Collis,
+        Charles H. T. (Charles Henry Tucky), 1838-1902.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KFP411
+        .A545 A5 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2751485</titleID><title>Opinion
+        of Hon. John M. Read, in Baird and others vs. Rice and others : argued before
+        Hon. James Thompson, Chief Justice, at nisi prius, assisted by his brethren,
+        on the 4th, 5th, and 6th January 1871, upon a motion for an injunction to
+        prevent the erection of the public buildings on Penn Square</title><author>Pennsylvania.
+        Supreme Court.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2751651.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2751651</titleID><title>Report
+        of the united Delaware and Raritan Canal Company, Camden and Amboy Railroad
+        and Transportation Company, and New Jersey Railroad and Transportation Company,
+        to the stockholders : and the proceedings at the annual meeting of the stockholders
+        of the Camden and Amboy R.R. and Trans. Co., held at Camden, Wednesday, April
+        28th, 1869</title><author>Delaware and Raritan Canal Company (N.J.)</author><yearOfPublication>1869</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>08479472</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2751662.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2751662</titleID><title>William
+        McCallum v. the Germantown Water Company : in equity, filed January 7, 1867
+        : appeal from the decree of the Court of Common Pleas for the city and county
+        of Philadelphia</title><author>Pennsylvania. Supreme Court.</author><yearOfPublication>1867</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2751690.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2751690</titleID><title>The
+        Philadelphia and Erie Rail Road Company and the Pennsylvania Rail Road Company
+        vs. the Catawissa Rail Road Company and the Western Central Rail Road Company
+        of Pennsylvania, and the Atlantic and Great Western Railway Company of the
+        States of Ohio, New York and Pennsylvania : Andrew Scott vs. the same</title><author>Pennsylvania.
+        Supreme Court.</author><yearOfPublication>1866</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>04187022</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2751732.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2751732</titleID><title>The
+        eastern boundary of New Jersey : a review of a paper on the waters of New
+        Jersey</title><author>Whitehead, William A. (William Adee), 1810-1884.</author><yearOfPublication>1866</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>19650265</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HE2791
+        .U683 U55 1869</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2751737</titleID><title>The
+        United Companies are composed of three New Jersey companies, consolidated
+        by a legislative act, and a Pennsylvania company, a majority of whose stock
+        is owned by the consolidated companies : [statement of commercial and financial
+        conditions of the United New Jersey Railroad and Canal Company by an unidentified
+        member of the Board of Directors]</title><author>United New Jersey Railroad
+        and Canal Company.</author><yearOfPublication>1869</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HE2791
+        .N828 1853a</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2751746</titleID><title>Act
+        of incorporation of the North Pennsylvania Railroad Company, and the supplements
+        thereto : with the general railroad law of Pennsylvania</title><author>North
+        Pennsylvania Railroad Company.</author><yearOfPublication>1853</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>56524669</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2751756.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2751756</titleID><title>Frederick
+        the Great : a lecture delivered on the evening of December 10th, 1872, at
+        the Academy of Music, Philadelphia</title><author>Brewster, Benjamin Harris,
+        1816-1888.</author><yearOfPublication>1872</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>29239705</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>HE1031.R43
+        v.45</callNumber><libraryID>UP-SPECCOL</libraryID><itemID>000051976934</itemID><linkedTitle><titleID>2574797</titleID><title>Report
+        of the Western Penitentiary for the year</title><author>State Penitentiary
+        for the Western District of Pennsylvania.</author><yearOfPublication>1826</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>39206003</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E263
+        .P4 C7</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>1893141</titleID><title>Address
+        delivered before the Historical Society of Pennsylvania : at the celebration
+        of the 170th anniversary of the landing of Penn, on the first constitution
+        and government of the State of Pennsylvania</title><author>Conrad, Robert
+        Taylor, 1810-1858.</author><yearOfPublication>1853</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>3137388</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2572465.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2572465</titleID><title>Letter
+        on the rebellion : to a citizen of Washington, from a citizen of Philadelphia</title><author>Rush,
+        Benjamin, 1811-1877.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>06635124</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2573903.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2573903</titleID><title>Annual
+        statement</title><author>Philadelphia (Pa.). Guardians for the Relief and
+        Employment of the Poor.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>20973005</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2633583.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2633583</titleID><title>Annual
+        report of William J. Mullen, Prison Agent</title><author>Mullen, William James,
+        1805-1882.</author><yearOfPublication>1855</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05326764</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2679972.4)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679972</titleID><title>The
+        charter, acts and supplements relating to the Philadelphia and Trenton Railroad
+        Company</title><author>Philadelphia and Trenton Railroad Company.</author><yearOfPublication>1855</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54450666</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2705170.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2705170</titleID><title>Catalogue
+        of the officers and students of Brown University</title><author>Brown University.</author><yearOfPublication>1804</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>33374255</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2753981.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2753981</titleID><title>Catalogue
+        of the officers and students of the University at Lewisburg</title><author>Bucknell
+        University.</author><yearOfPublication>1852</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>10555512</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HD9549
+        .W96 W96 1847</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771212</titleID><title>Articles
+        of agreement and association of the Wyoming Coal Association</title><author>Wyoming
+        Coal Association.</author><yearOfPublication>1847</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>QA7
+        .L67</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771225</titleID><title>Place
+        of mathematics in university education : inaugural address of Charlton T.
+        Lewis, professor of pure mathematics in Troy University, delivered before
+        the trustees at their annual meeting July 20th, 1859</title><author>Lewis,
+        Charlton T. (Charlton Thomas), 1834-1904.</author><yearOfPublication>1859</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>13476326</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2771231.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771231</titleID><title>The
+        Church''s mission to working-men; or, The Power of Christian fellowship and
+        sympathy : a report to the Board of Missions of the Protestant Episcopal Church
+        in the United States</title><author>Episcopal Church. Committee to Consider
+        the Means Through which the More Neglected Portions of the Community May be
+        Reached by Christian Instruction, Brought to the Saving Knowledge of Christ,
+        and Incorporated into this Church.</author><yearOfPublication>1863</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>07498893</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>F187
+        .B7 V4</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771288</titleID><title>Mason
+        and Dixon''s Line : a history : including an outline of the boundary controversy
+        between Pennsylvania and Virginia</title><author>Veech, James, 1808-1879.</author><yearOfPublication>1857</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>04083299</OCLCControlNumber><url>http://name.umdl.umich.edu/AAV9486</url></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HE2741
+        .S83 1863</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771317</titleID><title>Statement
+        made by the railroad companies owning the lines between Washington and New
+        York to the postmaster general</title><author>New Jersey Railroad and Transportation
+        Company.</author><yearOfPublication>1863</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>Z881
+        .P5348 1862</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771320</titleID><title>Preliminary
+        catalogue of the Parish Library of the Church of the Holy Trinity, Rittenhouse
+        Square, Philadelphia, September 1st, 1862</title><author>Church of the Holy
+        Trinity (Philadelphia, Pa. : Episcopal). Parish Library.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>56772186</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E458.3
+        .B87</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771327</titleID><title>Our
+        mercies of re-occupation : a Thanksgiving sermon, preached at the church of
+        the Holy Trinity, Philadelphia, November 26, 1863</title><author>Brooks, Phillips,
+        1835-1893.</author><yearOfPublication>1863</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05529997</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E600
+        .S6</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771328</titleID><title>The
+        Peterhoff : argument of E. Delafield Smith, United States district attorney,
+        addressed to the United States Court at New York, in the case of the prize
+        steamer Peterhoff, July 10, 1863</title><author>Smith, E. Delafield (Edward
+        Delafield), 1826-1878.</author><yearOfPublication>1863</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05922849</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>JS1513  1848</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771412</titleID><title>The
+        charter of the city of Washington : being the act of incorporation, and the
+        acts supplementary to and amendatory of, and in continuation of the same,
+        passed by the Congress of the United States</title><author>Washington (D.C.)</author><yearOfPublication>1848</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .U5 L67 1862</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771416</titleID><title>The
+        United States of America against the schooner "Crenshaw" and cargo, John Caskie
+        and ano., claimants of certain tobacco, Richard Irvin and others, claimants
+        of certain tobacco stems, appellants : brief on part of these appellants</title><author>Lord,
+        Daniel, 1795-1868.</author><yearOfPublication>1862</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>JC177
+        .A3 1791-1895 v.5 no.5</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771419</titleID><title>Thomas
+        Paine : an address delivered before the Goethean and Diagnothian Societies
+        of Franklin and Marshall College, Lancaster, Pa., July 26, 1859</title><author>Stokes,
+        William A. (William Axton), 1814?-1877.</author><yearOfPublication>1859</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E457.8
+        .G57</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771427</titleID><title>God
+        bless Abraham Lincoln! : a solemn discourse</title><author>Local preacher.</author><yearOfPublication>1860</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>04567923</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E458
+        .L92 vol. 1</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771430</titleID><title>Slavery,
+        plantations and the yeomanry</title><author>Lieber, Francis, 1800-1872.</author><yearOfPublication>1863</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>02335115</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>E458.3
+        .L711</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2771432</titleID><title>No
+        party now but all for our country</title><author>Lieber, Francis, 1800-1872.</author><yearOfPublication>1863</yearOfPublication><edition>Rev.
+        ed.</edition><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05472123</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>BV2570
+        .A1 F6</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772822</titleID><title>The
+        foreign missionary</title><author>Foreign missionary (New York, N.Y. : 1842)</author><yearOfPublication>1842</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>01587463</OCLCControlNumber></linkedTitle></BoundwithLinkInfo></TitleInfo></LookupTitleInfoResponse>'
+  recorded_at: Wed, 07 Apr 2021 18:19:11 GMT
+recorded_with: VCR 6.0.0
