@@ -435,4 +435,11 @@ class CatalogController < ApplicationController
     def trailing_punctuation?
       params[:id].match(/\d+[.,;:!"')\]]/)
     end
+
+    # @note This effectively disables Blacklight's search history feature, which were weren't using. Only the current
+    # search is kept in the session allowing "next" and "previous" links to work; however, any previous searches are
+    # not in the session. While the searches table has to exist, no records will be saved to it.
+    def find_search_session
+      Search.new.tap(&:readonly!)
+    end
 end
