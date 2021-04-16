@@ -22,10 +22,19 @@ Metrics/BlockLength:
   - 'lib/tasks/**/*'
   - 'config/**/*'
 
+Metrics/ClassLength:
+  Exclude:
+  - 'app/controllers/catalog_controller.rb'
+  - 'lib/psulib_blacklight/solr_manager.rb'
+
 Layout/LineLength:
   Exclude:
   # The catalog controller is just one giant block for config.
   - 'app/controllers/catalog_controller.rb'
+
+Lint/MissingSuper:
+  Exclude:
+    - 'app/models/concerns/null_object_pattern.rb'
 
 Rails/ContentTag:
   Enabled: false
