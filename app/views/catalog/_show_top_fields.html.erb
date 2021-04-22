@@ -1,5 +1,5 @@
 <% document = @document %>
-<% doc_presenter = show_presenter(document) %>
+<% doc_presenter = document_presenter(document) %>
 <dl class="row">
   <% blacklight_config.show_fields.each do |field_name, field| -%>
     <% if field.top_field && !document[field_name].nil? %>

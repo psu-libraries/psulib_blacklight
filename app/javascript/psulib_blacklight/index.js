@@ -10,8 +10,8 @@ import 'bootstrap-select/dist/css/bootstrap-select'
 import 'bootstrap-select/dist/js/bootstrap-select'
 
 // Fonts
-import 'typeface-open-sans'
-import 'typeface-roboto-slab'
+import '@fontsource/open-sans'
+import '@fontsource/roboto-slab'
 
 // Blacklight Upstream Javascript
 // Picking and choosing rather than taking all JS from BL

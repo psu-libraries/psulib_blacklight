@@ -10,7 +10,7 @@ class CatalogController < ApplicationController
     cache_key = nil
     # No other params presents indicates we are on the homepage
     if params.keys.eql? %w[controller action]
-      cache_key = "#{params.dig('controller')}/#{params.dig('action')}facet_query"
+      cache_key = "#{params['controller']}/#{params['action']}facet_query"
     end
 
     if cache_key

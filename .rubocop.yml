@@ -20,11 +20,15 @@ Metrics/BlockLength:
   - 'db/**/*'
   - 'spec/**/*'
   - 'lib/tasks/**/*'
+  - 'config/**/*'
 
 Layout/LineLength:
   Exclude:
   # The catalog controller is just one giant block for config.
   - 'app/controllers/catalog_controller.rb'
+
+Rails/ContentTag:
+  Enabled: false
 
 RSpec/MultipleExpectations:
   Exclude:
@@ -35,6 +39,9 @@ RSpec/ExampleLength:
   Exclude:
   # Feature specs are special.
   - 'spec/features/**/*'
+
+RSpec/NestedGroups:
+  Enabled: false
   
 Capybara/FeatureMethods:
   Enabled: false

@@ -2,31 +2,29 @@
   "name": "Psulcat",
   "private": true,
   "dependencies": {
+    "@fontsource/open-sans": "^4.2.2",
+    "@fontsource/roboto-slab": "^4.2.2",
     "@fortawesome/fontawesome-free": "^5.7.2",
-    "@rails/webpacker": "^4.2.2",
+    "@rails/webpacker": "^5.2.1",
     "blacklight-frontend": "^7.10.0",
     "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#latest",
     "blacklight-range-limit": "https://github.com/projectblacklight/blacklight_range_limit.git#latest",
     "bootstrap": "4.x",
     "bootstrap-select": "^1.13.5",
     "caniuse-lite": "^1.0.30000697",
-    "jquery": "3.5.1",
+    "jquery": "3.6.0",
     "popper.js": "^1.14.7",
     "rails-ujs": "^5.2.3",
-    "turbolinks": "^5.2.0",
-    "typeface-open-sans": "^0.0.54",
-    "typeface-roboto-slab": "^0.0.72",
-    "webpack": "^4.29"
+    "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "eslint": "^6.3.0",
-    "eslint-config-standard": "^14.1.0",
+    "eslint": "^7.24.0",
+    "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "jest": "^24.9.0",
-    "webpack-dev-server": "^3.1"
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "jest": "^26.6.3",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
     "test": "jest",

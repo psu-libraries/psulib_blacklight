@@ -4,10 +4,10 @@
 class RecordMailer < ApplicationMailer
   def email_record(documents, details, url_gen_params)
     title = begin
-              documents.first.to_semantic_values[:title].first
-            rescue StandardError
-              I18n.t('blacklight.email.text.default_title')
-            end
+      documents.first.to_semantic_values[:title].first
+    rescue StandardError
+      I18n.t('blacklight.email.text.default_title')
+    end
     subject = I18n.t('blacklight.email.text.subject', count: documents.length, title: title)
 
     @documents      = documents
