@@ -40,6 +40,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  match '/catalog/:id/report_issue' => 'catalog#report_issue', via: [:get, :post], as: 'report_issue_solr_document'
+
   # error pages
   match '/404' => 'errors#not_found', via: :all
   match '/422' => 'errors#not_found', via: :all

@@ -1,0 +1,59 @@
+<%= form_tag url_for(controller: controller_name, action: "report_issue"),
+             data: { blacklight_modal: 'trigger' },
+             id: 'report_issue_form',
+             class: "modal_form",
+             method: :post do %>
+  <div class="modal-body">
+    <%= render '/shared/flash_msg' %>
+
+    <div class="form-group row">
+      <label class="control-label col-sm-3" for="to">
+        <%= t('blackcat.report_issue.form.record_title') %>
+      </label>
+      <div class="col-sm-9">
+        <%= text_field_tag :title, @documents.first['title_display_ssm'], class: 'form-control', :readonly => true %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="control-label col-sm-3" for="to">
+        <%= t('blackcat.report_issue.form.record_number') %>
+      </label>
+      <div class="col-sm-9">
+        <%= text_field_tag :record_number, @documents.first.id, class: 'form-control', :readonly => true %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="control-label col-sm-3" for="message">
+        <%= t('blackcat.report_issue.form.comment') %>
+      </label>
+      <div class="col-sm-9">
+        <%= text_area_tag :comment, params[:comment], class: 'form-control', :required => true %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="control-label col-sm-3" for="to">
+        <%= t('blackcat.report_issue.form.email') %>
+      </label>
+      <div class="col-sm-9">
+        <%= email_field_tag :email, params[:email], class: 'form-control' %>
+      </div>
+    </div>
+
+    <% @documents&.each do |doc| %>
+      <%=hidden_field_tag "id[]", doc.id %>
+    <% end %>
+    <%- if params[:sort] -%>
+      <%= hidden_field_tag "sort", params[:sort] %>
+    <%- end -%>
+    <%- if params[:per_page] -%>
+      <%= hidden_field_tag "per_page", params[:per_page] %>
+    <%- end -%>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary"> <%= t('blacklight.sms.form.submit') %></button>
+  </div>
+<% end %>

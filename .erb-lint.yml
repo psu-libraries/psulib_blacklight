@@ -2,6 +2,7 @@
 exclude:
   - '**/node_modules/**/*'
   - '**/vendor/**/*'
+  - '**/app/views/catalog/_report_issue_form.html.erb'
 linters:
   ClosingErbTagIndent:
     enabled: true
