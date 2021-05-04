@@ -11,6 +11,7 @@ gem 'bootsnap', require: false
 gem 'config'
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
+gem "ddtrace", "~> 0.48.0"
 gem 'faraday'
 gem 'high_voltage', '~> 3.1'
 gem 'lograge'
@@ -52,5 +53,3 @@ end
 group :production, :test do
   gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 end
-
-gem "ddtrace", "~> 0.48.0"
