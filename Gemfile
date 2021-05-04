@@ -9,9 +9,9 @@ end
 
 gem 'bootsnap', require: false
 gem 'config'
+gem 'ddtrace', '~> 0.48.0'
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
-gem "ddtrace", "~> 0.48.0"
 gem 'faraday'
 gem 'high_voltage', '~> 3.1'
 gem 'lograge'
