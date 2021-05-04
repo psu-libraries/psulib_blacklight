@@ -39,3 +39,19 @@ en:
         restricted_access_text: 'Search inside at HathiTrust'
         etas_text: 'Check out digital copy through HathiTrust'
         etas_additional_text: 'By special arrangement in response to the COVID-19 pandemic, patrons may access this resource online through the HathiTrust Emergency Temporary Access Service.'
+      report_issue:
+        form:
+          title: 'Report an Issue'
+          record_title: 'Title'
+          record_number: 'Record Number'
+          comment: 'Comment (required)'
+          email: 'Email Address (optional, if you''d like a reply)'
+        email:
+          subject: 'Penn State University Libraries Catalog - Issue Report'
+          title: 'Title: %{title}'
+          record_number: 'Record Number: %{record_number}'
+          record_url: 'Record URL: https://catalog.libraries.psu.edu/catalog/%{record_number}'
+          comment: 'Comment:'
+          email: 'Email Address: %{email}'
+        errors:
+          comment: 'Please enter a comment'
