@@ -1,7 +1,7 @@
 hold_button_url: http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=
 matomo_id: 10
 datadog:
-  enabled: true
+  enabled: false
   # defaults to Rails.env. override here
   # env: feature-foo
 solr:
