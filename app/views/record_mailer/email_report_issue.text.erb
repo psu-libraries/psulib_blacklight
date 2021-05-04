@@ -1,0 +1,14 @@
+<%= t('blackcat.report_issue.email.subject') %>
+
+<% unless @email.blank? %>
+<%= t('blackcat.report_issue.email.email', email: @email) %>
+
+<% end %>
+<%= t('blackcat.report_issue.email.title', title: @title) %>
+
+<%= t('blackcat.report_issue.email.record_number', record_number: @record_number) %>
+
+<%= t('blackcat.report_issue.email.record_url', record_number: @record_number) %>
+
+<%= t('blackcat.report_issue.email.comment') %>
+<%= @comment %>

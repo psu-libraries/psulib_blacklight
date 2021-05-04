@@ -1,24 +1,30 @@
 <div class="col record-actions ">
-  <div class="float-right" role="group" aria-label="Actions including with nested dropdown">
-    <%= render_show_doc_actions @document do |config, inner| %>
-      <% if (config.key == :citation) %>
-        <%= inner %>
-      <% end %>
-    <% end %>
-
-    <div class="dropdown">
-      <a class="btn btn-info btn-sm dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
-      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-        <%= render_show_doc_actions @document do |config, inner| %>
-          <% if (config.key != :citation) %>
-            <%= inner %>
-          <% end %>
+  <div class="float-right">
+    <div class="d-inline-block mb-1" role="group" aria-label="Actions including with nested dropdown">
+      <%= render_show_doc_actions @document do |config, inner| %>
+        <% if (config.key == :citation) %>
+          <%= inner %>
         <% end %>
+      <% end %>
+
+      <div class="dropdown">
+        <a class="btn btn-info btn-sm dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+          <%= render_show_doc_actions @document do |config, inner| %>
+            <% if (config.key != :citation) %>
+              <%= inner %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="float-right mr-1">
-    <%= render(partial: 'bookmark_control', locals: { document: @document }) %>
+    <div class="d-inline-block mb-1">
+      <%= render(partial: 'bookmark_control', locals: { document: @document }) %>
+    </div>
+
+    <div class="d-inline-block mb-1">
+      <a class="btn btn-sm btn-danger" data-blacklight-modal="trigger" href="<%= request.url %>/report_issue">Report an Issue</a>
+    </div>
   </div>
 </div>
