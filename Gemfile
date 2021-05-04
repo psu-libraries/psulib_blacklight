@@ -52,3 +52,5 @@ end
 group :production, :test do
   gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 end
+
+gem "ddtrace", "~> 0.48.0"
