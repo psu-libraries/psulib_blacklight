@@ -17,6 +17,15 @@ class RecordMailer < ApplicationMailer
     mail(to: details[:to], subject: subject)
   end
 
+  def email_report_issue(title:, record_number:, comment:, email: '')
+    @title = title
+    @record_number = record_number
+    @comment = comment
+    @email = email
+
+    mail(to: Settings.report_issue_email_recipient, subject: t('blackcat.report_issue.email.subject'))
+  end
+
   def sms_record(documents, details, url_gen_params)
     @documents      = documents
     @url_gen_params = url_gen_params
