@@ -1,7 +1,1 @@
-<% if presenter(document).thumbnail.exists? && tn = presenter(document).thumbnail.thumbnail_tag({ alt: '' }, 'aria-hidden': true, tabindex: -1, counter: document_counter_with_offset(document_counter)) %>
-<div class="col-sm-3 order-sm-10">
-  <div class="document-thumbnail">
-    <%= tn %>
-  </div>
-</div>
-<% end %>
+<%# Intentionally left blank - we are overriding the default Blacklight thumbnail rendering -%>
