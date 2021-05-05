@@ -118,6 +118,9 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
+    ddtrace (0.48.0)
+      ffi (~> 1.0)
+      msgpack
     debug_inspector (1.1.0)
     deep_merge (1.2.1)
     deprecation (1.1.0)
@@ -480,6 +483,7 @@ DEPENDENCIES
   byebug
   capybara
   config
+  ddtrace (~> 0.48.0)
   devise (>= 4.6.0)
   devise-guests (~> 0.6)
   faraday
