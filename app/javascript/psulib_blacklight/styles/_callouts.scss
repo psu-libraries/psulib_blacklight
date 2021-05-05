@@ -27,6 +27,12 @@
 .bs-callout-default h4 {
   color: #777;
 }
+.bs-callout-psu {
+  border-left-color: $psu-dark-blue;
+}
+.bs-callout-psu h4 {
+  color: $psu-dark-blue;
+}
 .bs-callout-primary {
   border-left-color: #428bca;
 }

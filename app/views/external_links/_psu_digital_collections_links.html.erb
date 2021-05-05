@@ -1,0 +1,13 @@
+<div class="bs-callout bs-callout-psu">
+  <h5>View in Penn State Digital Collections</h5>
+
+  <%= image_pack_tag('media/psulib_blacklight/images/psu-shield.png',
+                     alt: 'Penn State Shield',
+                     class: 'mr-3') %>
+
+  <ul class="external-links-psu-digital-collections">
+    <% psu_digital_collections_links.map do |item| %>
+      <li><i class="fas fa-external-link-alt" aria-hidden="true"></i> <a href="<%= item['url'] %>"><%= item['text'] %></a></li>
+    <% end %>
+  </ul>
+</div>
