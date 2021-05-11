@@ -16,10 +16,10 @@ const availability = {
     reserveCirculationRules: reserve_circulation_rules.reserve_circulation_rules,
     movedLocations: [],
 
-    sirsiUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
+    sirsiUrl: 'https://cat-stage.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
               'clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true' +
               '&includeBoundTogether=true',
-    sirsiItemUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
+    sirsiItemUrl: 'https://cat-stage.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
                   'clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true',
     mapScanUrl: 'https://libraries.psu.edu/about/libraries/donald-w-hamer-center-maps-and-' +
                 'geospatial-information/map-scanning-and-printing',
