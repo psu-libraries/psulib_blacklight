@@ -6,8 +6,10 @@ RSpec.describe 'external_links/access_online_links', type: :view do
   let(:access_online_fields) {
     [
       {
+        prefix: 'This is a prefix',
         text: 'purl.access.gpo.gov',
-        url: 'http://purl.access.gpo.gov/GPO/LPS73013'
+        url: 'http://purl.access.gpo.gov/GPO/LPS73013',
+        notes: 'This is a note'
       }.with_indifferent_access,
       {
         text: 'purl.access.gpo.gov',
@@ -21,6 +23,7 @@ RSpec.describe 'external_links/access_online_links', type: :view do
 
     expect(rendered).to have_link(href: 'http://purl.access.gpo.gov/GPO/LPS73013')
       .and have_link(href: 'http://purl.access.gpo.gov/GPO/LPS73014')
-      .and include('purl.access.gpo.gov')
+      .and include('This is a prefix')
+      .and include('This is a note')
   end
 end

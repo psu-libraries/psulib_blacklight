@@ -4,13 +4,13 @@ module ExternalLinks
   def psu_digital_collections_links
     return if full_links.blank?
 
-    parsed_links.select { |link| digital_collections_link? link }
+    all_links.select { |link| digital_collections_link? link }
   end
 
   def access_online_links
     return if full_links.blank?
 
-    parsed_links.reject { |link| digital_collections_link? link }
+    all_links.reject { |link| digital_collections_link? link }
   end
 
   private
@@ -23,7 +23,22 @@ module ExternalLinks
       full_links.map { |item| JSON.parse item }
     end
 
+    def all_links
+      parsed_links.each do |link|
+        link['prefix'] = link_prefix link
+        link['notes'] = link_notes link
+      end
+    end
+
     def digital_collections_link?(link)
       link['url'].include? 'libraries.psu.edu'
+    end
+
+    def link_prefix(link)
+      "#{link['prefix'].chomp(':')}: " if link['prefix'].present?
+    end
+
+    def link_notes(link)
+      ", #{link['notes']}" if link['notes'].present?
     end
 end
