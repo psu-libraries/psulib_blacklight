@@ -5,12 +5,20 @@ module ExternalLinks
     return if full_links.blank?
 
     parsed_links.select { |link| digital_collections_link? link }
+      .each do |link|
+      link['prefix'] = link_prefix link
+      link['notes'] = link_notes link
+    end
   end
 
   def access_online_links
     return if full_links.blank?
 
     parsed_links.reject { |link| digital_collections_link? link }
+      .each do |link|
+        link['prefix'] = link_prefix link
+        link['notes'] = link_notes link
+      end
   end
 
   private
@@ -25,5 +33,13 @@ module ExternalLinks
 
     def digital_collections_link?(link)
       link['url'].include? 'libraries.psu.edu'
+    end
+
+    def link_prefix(link)
+      "#{link['prefix'].chomp(':')}: " if link['prefix'].present?
+    end
+
+    def link_notes(link)
+      ", #{link['notes']}" if link['notes'].present?
     end
 end
