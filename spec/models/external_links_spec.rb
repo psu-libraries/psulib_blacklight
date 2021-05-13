@@ -4,10 +4,11 @@ require 'rails_helper'
 
 RSpec.describe ExternalLinks do
   describe '#psu_digital_collections_links' do
-    it 'returns nil for psu_digital_collections_links when there is no PSU data' do
+    it 'returns nil for psu_digital_collections_links when there is no PSU Digital Collections data' do
       document = { 'full_links_struct': [
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73013"}',
-        '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73014"}'
+        '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73014"}',
+        '{"text":"resources.libraries.psu.edu","url":"http://resources.libraries.psu.edu/findingaids/2789.htm"}'
       ] }
 
       psu_digital_collections_links = SolrDocument.new(document).psu_digital_collections_links
@@ -15,12 +16,13 @@ RSpec.describe ExternalLinks do
       expect(psu_digital_collections_links).not_to be_present
     end
 
-    it 'returns a list of psu_digital_collections_links when there is PSU data' do
+    it 'returns a list of psu_digital_collections_links when there is PSU Digital Collections data' do
       document = { 'full_links_struct': [
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73013"}',
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73014"}',
         '{"text":"digital.libraries.psu.edu","url":"https://digital.libraries.psu.edu/digital/collection/test"}',
-        '{"text":"libraries.psu.edu/collections","url":"https://libraries.psu.edu/collections/test"}'
+        '{"text":"libraries.psu.edu/collections","url":"https://libraries.psu.edu/collections/test"}',
+        '{"text":"collection1.libraries.psu.edu","url":"https://collection1.libraries.psu.edu/test"}'
       ] }
 
       psu_digital_collections_links = SolrDocument.new(document).psu_digital_collections_links
@@ -34,6 +36,11 @@ RSpec.describe ExternalLinks do
         prefix: nil,
         text: 'libraries.psu.edu/collections',
         url: 'https://libraries.psu.edu/collections/test',
+        notes: nil
+      }.with_indifferent_access, {
+        prefix: nil,
+        text: 'collection1.libraries.psu.edu',
+        url: 'https://collection1.libraries.psu.edu/test',
         notes: nil
       }.with_indifferent_access])
     end
