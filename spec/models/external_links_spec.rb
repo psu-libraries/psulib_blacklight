@@ -68,6 +68,37 @@ RSpec.describe ExternalLinks do
     end
   end
 
+  it 'can trim the trailing colon from the prefix and notes if present' do
+    document = { 'full_links_struct': [
+      '{
+        "prefix":"Prefix:",
+        "text":"digital.libraries.psu.edu",
+        "url":"https://digital.libraries.psu.edu/digital/collection/test",
+        "notes":"Note:"
+      }',
+      '{
+        "prefix":"Prefix",
+        "text":"digital.libraries.psu.edu",
+        "url":"https://digital.libraries.psu.edu/digital/collection/test",
+        "notes":"Note"
+      }'
+    ] }
+
+    psu_digital_collections_links = SolrDocument.new(document).psu_digital_collections_links
+
+    expect(psu_digital_collections_links).to match([{
+      prefix: 'Prefix: ',
+      text: 'digital.libraries.psu.edu',
+      url: 'https://digital.libraries.psu.edu/digital/collection/test',
+      notes: ', Note'
+    }.with_indifferent_access, {
+      prefix: 'Prefix: ',
+      text: 'digital.libraries.psu.edu',
+      url: 'https://digital.libraries.psu.edu/digital/collection/test',
+      notes: ', Note'
+    }.with_indifferent_access])
+  end
+
   describe '#access_online_links' do
     it 'returns nil for access_online_links when there is no external (non-PSU) access online data' do
       document = { 'full_links_struct': [
