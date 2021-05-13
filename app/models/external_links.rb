@@ -31,7 +31,13 @@ module ExternalLinks
     end
 
     def digital_collections_link?(link)
-      link['url'].include? 'libraries.psu.edu'
+      matching_urls = [
+        'digital.libraries.psu.edu',
+        'libraries.psu.edu/collections',
+        /collection.+\.libraries\.psu\.edu/
+      ]
+
+      link['url'].match? Regexp.union(matching_urls)
     end
 
     def link_prefix(link)
