@@ -39,6 +39,6 @@ module ExternalLinks
     end
 
     def link_notes(link)
-      ", #{link['notes']}" if link['notes'].present?
+      ", #{link['notes'].chomp(':')}" if link['notes'].present?
     end
 end
