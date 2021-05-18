@@ -44,6 +44,14 @@ Note: we have only developed on Macs thus far.
     bundle exec foreman start -f Procfile.dev
     ```
     
+1. Redis is used to manage search sessions. By default, it's set to local host on the default port. If you need to
+   change this, you can update `settings.yml`. Otherwise, ensure that redis is running locally. You can install redis
+   via homebrew:
+    ```
+    brew install redis
+    brew services start redis
+    ```
+
     Note: on a Mac you may be asked by the OS if you want to allow incoming connections to Ruby. Because this is a local dev instance, you can choose to deny incoming connections. This configuration can be found in the Security & Privacy section of the Systems Preferences. 
 
 ## Indexing
