@@ -100,7 +100,7 @@ RSpec.describe Search, type: :model, redis: true do
 
     it 'saves the key/value pair to Redis as a json string with an expiration time' do
       expect(redis_connection.get(search.id)).to eq(params.to_json)
-      expect(redis_connection.ttl(search.id)).to be >= 86_400
+      expect(redis_connection.ttl(search.id)).to be >= Settings.redis.sessions.ttl
     end
   end
 
