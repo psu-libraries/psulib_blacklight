@@ -187,6 +187,8 @@ class CatalogController < ApplicationController
                              show: "\uf0fe", # same as '<i class="fa fa-plus-square" aria-hidden="true"></i>',
                              hide: "\uf146"
                            }
+    config.add_facet_field 'all_authors_facet', show: false
+    config.add_facet_field 'subject_facet', show: false
 
     config.add_home_facet_field 'access_facet', label: 'Access', collapse: false, presenter: Blacklight::FacetFieldPresenter
     config.add_home_facet_field 'format', label: 'Format', limit: true, collapse: false, presenter: Blacklight::FacetFieldPresenter
