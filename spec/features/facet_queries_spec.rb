@@ -13,11 +13,11 @@ RSpec.feature 'Facet Queries', type: :feature do
   end
 
   it 'Subject Facet' do
-    visit '/?f[subject_facet][]=Federal+aid+to+housing%E2%80%94United+States'
+    visit '/?f[subject_facet][]=Islamic+decorative+arts%E2%80%94Turkey'
     expect(page).to have_selector '.filter-name',
                                   exact_text: 'Subject Facet'
     expect(page).to have_selector '.filter-value',
-                                  exact_text: 'Federal aid to housing—United States'
-    expect(page).to have_selector 'article[data-document-id="3500414"]'
+                                  exact_text: 'Islamic decorative arts—Turkey'
+    expect(page).to have_selector 'article[data-document-id="21322677"]'
   end
 end
