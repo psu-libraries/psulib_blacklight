@@ -1,8 +1,1 @@
-<% if query_has_constraints? %>
-  <div id="appliedParams" class="clearfix constraints-container">
-    <h2 class="sr-only"><%= t('blacklight.search.search_constraints_header') %></h2>
-
-    <span class="constraints-label sr-only"><%= t('blacklight.search.filters.title') %></span>
-    <%= render_constraints(params) %>
-  </div>
-<% end %>
+<%= render(PsulConstraintsComponent.new(search_state: convert_to_search_state(controller.params != params ? params : search_state))) %>
