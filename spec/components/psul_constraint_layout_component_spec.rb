@@ -13,13 +13,12 @@ RSpec.describe PsulConstraintLayoutComponent, type: :component do
     end
 
     it 'renders label and value' do
-      expect(rendered).to have_selector('span.applied-filter.constraint') do |s|
-        expect(s).to have_css('span.constraint-value')
-        expect(s).not_to have_css('a.constraint-value')
-        expect(s).not_to have_css('span.btn.btn-outline-secondary.constraint-value')
-        expect(s).to have_selector 'span.filter-name', text: 'my label'
-        expect(s).to have_selector 'span.filter-value', text: 'my value'
-      end
+      expect(rendered).to have_selector('span.applied-filter.constraint')
+      expect(rendered).to have_css('span.constraint-value')
+      expect(rendered).not_to have_css('a.constraint-value')
+      expect(rendered).not_to have_css('span.btn.btn-outline-secondary.constraint-value')
+      expect(rendered).to have_selector 'span.filter-name', text: 'my label'
+      expect(rendered).to have_selector 'span.filter-value', text: 'my value'
     end
 
     it 'not a button group' do
