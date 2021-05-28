@@ -19,6 +19,7 @@ require 'rspec/its'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'webmock/rspec'
+require 'view_component/test_helpers'
 
 # allow connections to localhost, webdrivers
 WebMock.disable_net_connect!(
@@ -74,6 +75,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include Capybara::RSpecMatchers, type: :component
 end
 
 # Capybara
