@@ -39,6 +39,10 @@ en:
         restricted_access_text: 'Search inside at HathiTrust'
         etas_text: 'Check out digital copy through HathiTrust'
         etas_additional_text: 'By special arrangement in response to the COVID-19 pandemic, patrons may access this resource online through the HathiTrust Emergency Temporary Access Service.'
+      facet_tooltips:
+        access_facet:
+          free_to_read: 'These materials don''t require a Penn State login'
+          online: 'These materials may require a Penn State login'
       report_issue:
         form:
           title: 'Report an Issue'
