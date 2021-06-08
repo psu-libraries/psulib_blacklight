@@ -129,3 +129,8 @@
 .faspsu-other::before {
   content: fa-content($fa-var-scroll);
 }
+
+.blacklight-microfilm-microfiche .blacklight-format::before,
+.faspsu-microfilm-microfiche::before {
+  content: fa-content($fa-var-film);
+}
