@@ -55,4 +55,9 @@ module FacetsHelper
     pivot.each { |field| in_params = true if params[:f] && params[:f][field] }
     in_params
   end
+
+  def facet_item_component_class(facet_config)
+    default_component = facet_config.pivot ? Blacklight::FacetItemPivotComponent : PsulFacetItemComponent
+    facet_config.fetch(:item_component, default_component)
+  end
 end
