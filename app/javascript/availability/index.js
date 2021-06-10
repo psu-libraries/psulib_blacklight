@@ -121,6 +121,7 @@ const availability = {
                     const reserveCollectionID =  $(this).children("reserveCollectionID").text();
                     const reserveCirculationRule = $(this).children("reserveCirculationRule").text();
                     const dueDate = $(this).children("dueDate").text();
+                    const publicNote = $(this).children("publicNote").text();
 
                     allHoldings[titleInfo.catkey].push({
                         catkey: titleInfo.catkey,
@@ -134,7 +135,8 @@ const availability = {
                         holdable: titleInfo.holdable,
                         reserveCollectionID: reserveCollectionID,
                         reserveCirculationRule: reserveCirculationRule,
-                        dueDate: dueDate
+                        dueDate: dueDate,
+                        publicNote: publicNote
                     });
                 });
             }
@@ -323,6 +325,9 @@ const availability = {
         // Check for ILL and Aeon options and update links
         availability.createILLURL();
         availability.createAeonURL();
+
+        // initialize tooltips
+        $('i.fas.fa-info-circle[data-toggle="tooltip"]').tooltip();
     },
 
     printAvailabilityData(availabilityData) {
@@ -351,7 +356,8 @@ const availability = {
                                     <tbody>
                                         ${holdings.map(holding => `
                                             <tr>
-                                                <td>${availability.generateCallNumber(holding)}</td>
+                                                <td>${availability.generateCallNumber(holding)}
+                                                    ${availability.appendPublicNoteTooltip(holding)}</td>
                                                 <td>${holding.itemType}</td>
                                                 <td>${availability.generateLocationHTML(holding)}
                                                     ${availability.appendCourseReserveDueDate(holding)}
@@ -559,6 +565,18 @@ const availability = {
             const circulationRule = availability.reserveCirculationRules[holding.reserveCirculationRule];
 
             return `<br><strong>Due back at:</strong> ${time} on ${day}<br>${circulationRule}`;
+        }
+
+        return '';
+    },
+
+    appendPublicNoteTooltip(holding) {
+        if (holding.publicNote) {
+            return `<i 
+                        class="fas fa-info-circle" 
+                        data-toggle="tooltip" 
+                        data-placement="right" 
+                        title="${holding.publicNote}"></i>`;
         }
 
         return '';

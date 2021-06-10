@@ -66,6 +66,18 @@ RSpec.feature 'Availability', type: :feature do
       expect(page).to have_selector 'strong', text: /Being acquired by the library/
     end
 
+    xit 'that has a public note' do
+      visit '/?utf8=✓&search_field=all_fields&q=6962697'
+      click_button('View Availability')
+      expect(page).to have_selector 'i.fa-info-circle[data-toggle="tooltip"][data-original-title="Struwwelpeter"]'
+    end
+
+    xit 'that does NOT have a public note' do
+      visit '/?utf8=✓&search_field=all_fields&q=2422046'
+      click_button('View Availability')
+      expect(page).not_to have_selector 'i.fa-info-circle[data-toggle="tooltip"]'
+    end
+
     context 'when Hathi ETAS is enabled' do
       before do
         Settings.hathi_etas = true
@@ -147,6 +159,16 @@ RSpec.feature 'Availability', type: :feature do
       visit '/catalog/33183518'
       expect(page).to have_selector 'div[class="availability"][data-keys="33183518"]'
       expect(page).to have_selector 'h5', text: /Being acquired by the library/
+    end
+
+    xit 'that has a public note' do
+      visit '/catalog/6962697'
+      expect(page).to have_selector 'i.fa-info-circle[data-toggle="tooltip"][data-original-title="Struwwelpeter"]'
+    end
+
+    xit 'that does NOT have a public note' do
+      visit '/?utf8=✓&search_field=all_fields&q=2422046'
+      expect(page).not_to have_selector 'i.fa-info-circle[data-toggle="tooltip"]'
     end
 
     xit 'that has an item on course reserve' do
