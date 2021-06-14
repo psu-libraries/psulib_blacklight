@@ -34,6 +34,7 @@ module ExternalLinks
       matching_urls = [
         'digital.libraries.psu.edu',
         'libraries.psu.edu/collections',
+        'libraries.psu.edu/about/collections',
         /collection.+\.libraries\.psu\.edu/
       ]
 
