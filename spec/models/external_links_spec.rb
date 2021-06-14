@@ -22,6 +22,8 @@ RSpec.describe ExternalLinks do
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73014"}',
         '{"text":"digital.libraries.psu.edu","url":"https://digital.libraries.psu.edu/digital/collection/test"}',
         '{"text":"libraries.psu.edu/collections","url":"https://libraries.psu.edu/collections/test"}',
+        '{"text":"libraries.psu.edu/about/collections","url":"https://libraries.psu.edu/about/collections/x"}',
+        '{"text":"libraries.psu.edu/test/collections","url":"https://libraries.psu.edu/test/collections/x"}',
         '{"text":"collection1.libraries.psu.edu","url":"https://collection1.libraries.psu.edu/test"}'
       ] }
 
@@ -36,6 +38,11 @@ RSpec.describe ExternalLinks do
         prefix: nil,
         text: 'libraries.psu.edu/collections',
         url: 'https://libraries.psu.edu/collections/test',
+        notes: nil
+      }.with_indifferent_access, {
+        prefix: nil,
+        text: 'libraries.psu.edu/about/collections',
+        url: 'https://libraries.psu.edu/about/collections/x',
         notes: nil
       }.with_indifferent_access, {
         prefix: nil,
