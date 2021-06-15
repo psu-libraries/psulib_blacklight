@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=123730
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 07 Apr 2021 18:19:19 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>123730</titleID><TitleAvailabilityInfo><totalCopiesAvailable>2</totalCopiesAvailable><libraryWithAvailableCopies>Special
+        Collections Library (UP)</libraryWithAvailableCopies><libraryWithAvailableCopies>Annex
+        (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>SPC-CATOII</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>QL696.G27M94
+        1968</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000007848988</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>SPC-CATOII</currentLocationID><homeLocationID>SPC-CATOII</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{Duplicate
+        - Do Not Annex per CSAG 5/10/2016}</staffNote></ItemInfo></CallInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>ASIS</classificationID><callNumber>Thesis
+        1968mMyers,JE</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000052322808</itemID><itemTypeID>THESIS-M</itemTypeID><currentLocationID>AH-X-TRANS</currentLocationID><homeLocationID>AH-X-TRANS</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{Archival}</staffNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Wed, 07 Apr 2021 18:19:19 GMT
+recorded_with: VCR 6.0.0

@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=1836205
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 07 Apr 2021 18:19:10 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>1836205</titleID><TitleAvailabilityInfo><totalCopiesAvailable>24</totalCopiesAvailable><libraryWithAvailableCopies>Special
+        Collections Library (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>SPC-SCIPRK</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box24 AX/SP/10014/04</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>100140403</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box23 GST/F/2/S01</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076995781</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-PATRNO</currentLocationID><homeLocationID>SPC-PATRNO</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box22 GST/F/2/S01</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076995774</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-PATRNO</currentLocationID><homeLocationID>SPC-PATRNO</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box21 GST/F/2/S01</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076995767</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-PATRNO</currentLocationID><homeLocationID>SPC-PATRNO</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box20 GST/F/1/S07</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076995668</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-PATRNO</currentLocationID><homeLocationID>SPC-PATRNO</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box19 AX/SP/10156/09</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996122</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box18 AX/SP/10156/08</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996108</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box17 AX/SP/10156/08</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996115</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box16 AX/SP/10156/08</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996252</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box15 AX/SP/10156/08</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996245</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box14 AX/SP/10156/08</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996092</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box13 AX/SP/10156/08</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996238</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box12 AX/SP/10156/07</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996221</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box11 AX/SP/10156/07</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996214</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box10 AX/SP/10156/07</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996085</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box09 AX/SP/10156/07</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996207</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box08 AX/SP/10156/07</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996191</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box07 AX/SP/10156/07</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996184</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box06 AX/SP/10155/11</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076996177</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box05 AX/SP/10155/11</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076995712</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box04 AX/SP/10155/11</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076995699</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box03 AX/SP/10155/11</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076995705</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box02 AX/SP/10155/11</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076995682</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>ASIS</classificationID><callNumber>RBM
+        2457 box01 AX/SP/10155/11</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000076995675</itemID><itemTypeID>ARCHIVES</itemTypeID><currentLocationID>SPC-SCIPRK</currentLocationID><homeLocationID>SPC-SCIPRK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Wed, 07 Apr 2021 18:19:10 GMT
+recorded_with: VCR 6.0.0

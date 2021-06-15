@@ -1,0 +1,50 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=1839879
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Fri, 09 Apr 2021 14:37:20 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>1839879</titleID><TitleAvailabilityInfo><totalCopiesAvailable>6</totalCopiesAvailable><libraryWithAvailableCopies>Penn
+        State Abington</libraryWithAvailableCopies><libraryWithAvailableCopies>Penn
+        State Hazleton</libraryWithAvailableCopies><libraryWithAvailableCopies>Penn
+        State New Kensington</libraryWithAvailableCopies><libraryWithAvailableCopies>Special
+        Collections Library (UP)</libraryWithAvailableCopies><libraryWithAvailableCopies>Pattee
+        Library and Paterno Library Stacks (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>STACKS-AA</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ABINGTON</libraryID><classificationID>LC</classificationID><callNumber>BP223.Z8L5798
+        1990</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000053652829</itemID><itemTypeID>BOOKFLOAT</itemTypeID><currentLocationID>STACKS-AA</currentLocationID><homeLocationID>STACKS-AA</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>HAZLETON</libraryID><classificationID>LC</classificationID><callNumber>BP223.Z8L5798
+        1990</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000023439955</itemID><itemTypeID>BOOKFLOAT</itemTypeID><currentLocationID>STACKS-WS</currentLocationID><homeLocationID>STACKS-WS</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>NEWKEN</libraryID><classificationID>LC</classificationID><callNumber>BP223.Z8L5798
+        1990</callNumber><numberOfCopies>2</numberOfCopies><ItemInfo><itemID>000079903363</itemID><itemTypeID>BOOKFLOAT</itemTypeID><currentLocationID>STACKS-NK</currentLocationID><homeLocationID>STACKS-NK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo><ItemInfo><itemID>000021037269</itemID><itemTypeID>BOOKFLOAT</itemTypeID><currentLocationID>STACKS-MK</currentLocationID><homeLocationID>STACKS-MK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>BP223.Z8L5798
+        1990</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000072086919</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>BLOCKSON</currentLocationID><homeLocationID>BLOCKSON</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LC</classificationID><callNumber>BP223.Z8L5798
+        1990</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000058404171</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>PATTEE-BA</currentLocationID><homeLocationID>PATTEE-BA</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Fri, 09 Apr 2021 14:37:20 GMT
+recorded_with: VCR 6.0.0

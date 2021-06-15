@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=6962697
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Mon, 14 Jun 2021 15:14:26 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>6962697</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Special
+        Collections Library (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ALLISON-SH</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>PT2362.H45S813
+        1910z</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000070203608</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>ALLISON-SH</currentLocationID><homeLocationID>ALLISON-SH</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><publicNote>Struwwelpeter</publicNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Mon, 14 Jun 2021 15:14:26 GMT
+recorded_with: VCR 6.0.0

@@ -1,0 +1,42 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=21841438
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 07 Apr 2021 18:18:57 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>21841438</titleID><TitleAvailabilityInfo><totalCopiesAvailable>0</totalCopiesAvailable><totalResvCopiesAvailable>0</totalResvCopiesAvailable><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LC</classificationID><callNumber>M1500.F654
+        op.50 2017 v.1</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000063820454</itemID><itemTypeID>SCORE</itemTypeID><currentLocationID>BINDERY</currentLocationID><homeLocationID>PATTEE-1A</homeLocationID><chargeable>false</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LC</classificationID><callNumber>M1500.F654
+        op.50 2017 v.2</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000077937506</itemID><itemTypeID>SCORE</itemTypeID><currentLocationID>BINDERY</currentLocationID><homeLocationID>PATTEE-1A</homeLocationID><chargeable>false</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Wed, 07 Apr 2021 18:18:58 GMT
+recorded_with: VCR 6.0.0

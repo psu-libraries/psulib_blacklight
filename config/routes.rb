@@ -42,6 +42,10 @@ Rails.application.routes.draw do
 
   match '/catalog/:id/report_issue' => 'catalog#report_issue', via: [:get, :post], as: 'report_issue_solr_document'
 
+  namespace :availability do
+    get '/sirsidata', to: 'availability#sirsi_data'
+  end
+
   # error pages
   match '/404' => 'errors#not_found', via: :all
   match '/422' => 'errors#not_found', via: :all

@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=33183518
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Fri, 09 Apr 2021 14:32:19 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>33183561</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ONLINE</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>ASIS</classificationID><callNumber>Electronic
+        Resource</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>33183561-1001</itemID><itemTypeID>ONLINE</itemTypeID><currentLocationID>ON-ORDER</currentLocationID><homeLocationID>ONLINE</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo><TitleInfo><titleID>3199220</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ONLINE</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>ASIS</classificationID><callNumber>Electronic
+        resource</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>3199220-1001</itemID><itemTypeID>AUDIO</itemTypeID><currentLocationID>ON-ORDER</currentLocationID><homeLocationID>ONLINE</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{20060315
+        Naxos Music Library}</staffNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo><TitleInfo><titleID>3696252</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ONLINE</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>ASIS</classificationID><callNumber>Electronic
+        resource</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>3696252-1001</itemID><itemTypeID>AUDIO</itemTypeID><currentLocationID>ON-ORDER</currentLocationID><homeLocationID>ONLINE</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{20070110
+        Naxos Music Library 2}</staffNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo><TitleInfo><titleID>3199219</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ONLINE</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>ASIS</classificationID><callNumber>Electronic
+        resource</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>3199219-1001</itemID><itemTypeID>AUDIO</itemTypeID><currentLocationID>ON-ORDER</currentLocationID><homeLocationID>ONLINE</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{20060315
+        Naxos Music Library}</staffNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo><TitleInfo><titleID>3201012</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ONLINE</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>ASIS</classificationID><callNumber>Electronic
+        resource</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>3201012-1001</itemID><itemTypeID>AUDIO</itemTypeID><currentLocationID>ON-ORDER</currentLocationID><homeLocationID>ONLINE</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{20060315
+        Naxos Music Library}</staffNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo><TitleInfo><titleID>14993654</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ONLINE</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>ASIS</classificationID><callNumber>Electronic
+        resource</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>14993654-1001</itemID><itemTypeID>AUDIO</itemTypeID><currentLocationID>ON-ORDER</currentLocationID><homeLocationID>ONLINE</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{20150504
+        Naxos Music Library Update May2015}</staffNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo><TitleInfo><titleID>13217672</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ONLINE</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>ASIS</classificationID><callNumber>Electronic
+        resource</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>13217672-1001</itemID><itemTypeID>AUDIO</itemTypeID><currentLocationID>ON-ORDER</currentLocationID><homeLocationID>ONLINE</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{20141006
+        Naxos Music Library Update October2014}</staffNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo><TitleInfo><titleID>13217692</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ONLINE</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>ASIS</classificationID><callNumber>Electronic
+        resource</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>13217692-1001</itemID><itemTypeID>AUDIO</itemTypeID><currentLocationID>ON-ORDER</currentLocationID><homeLocationID>ONLINE</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{20141006
+        Naxos Music Library Update October2014}</staffNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo><TitleInfo><titleID>3696293</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ONLINE</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>ASIS</classificationID><callNumber>Electronic
+        resource</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>3696293-1001</itemID><itemTypeID>AUDIO</itemTypeID><currentLocationID>ON-ORDER</currentLocationID><homeLocationID>ONLINE</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{20070110
+        Naxos Music Library 2}</staffNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo><TitleInfo><titleID>33183518</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ONLINE</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>ASIS</classificationID><callNumber>Electronic
+        Resource</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>33183518-1001</itemID><itemTypeID>ONLINE</itemTypeID><currentLocationID>ON-ORDER</currentLocationID><homeLocationID>ONLINE</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Fri, 09 Apr 2021 14:32:19 GMT
+recorded_with: VCR 6.0.0

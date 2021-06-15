@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=3500414
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Fri, 09 Apr 2021 14:32:34 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>3500414</titleID><TitleAvailabilityInfo><totalCopiesAvailable>2</totalCopiesAvailable><libraryWithAvailableCopies>Penn State Erie</libraryWithAvailableCopies><libraryWithAvailableCopies>Penn State Wilkes-Barre</libraryWithAvailableCopies><totalResvCopiesAvailable>2</totalResvCopiesAvailable><libraryWithAvailableResvCopies>Penn State Abington</libraryWithAvailableResvCopies><libraryWithAvailableResvCopies>Penn State Brandywine</libraryWithAvailableResvCopies><locationOfFirstAvailableItem>STACKS-WS</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>ABINGTON</libraryID><classificationID>LC</classificationID><callNumber>GN346.S86 2012</callNumber><numberOfCopies>2</numberOfCopies><ItemInfo><itemID>000075221997</itemID><itemTypeID>BOOKFLOAT</itemTypeID><currentLocationID>MISSING</currentLocationID><homeLocationID>STACKS-AB</homeLocationID><chargeable>false</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{GOBI}</staffNote></ItemInfo><ItemInfo><itemID>000080300380</itemID><itemTypeID>BOOKFLOAT</itemTypeID><currentLocationID>RESERVE-AB</currentLocationID><homeLocationID>STACKS-FE</homeLocationID><chargeable>true</chargeable><reserveCollectionID>RESERVE-AB</reserveCollectionID><reserveCirculationRule>RES-2HOUR</reserveCirculationRule><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>BEHREND</libraryID><classificationID>LC</classificationID><callNumber>GN346.S86 2012</callNumber><numberOfCopies>2</numberOfCopies><ItemInfo><itemID>000080334989</itemID><itemTypeID>BOOKFLOAT</itemTypeID><currentLocationID>CHECKEDOUT</currentLocationID><homeLocationID>STACKS-BD</homeLocationID><dueDate>2019-12-19T00:00:00.842-05:00</dueDate><chargeable>false</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo><ItemInfo><itemID>000078113480</itemID><itemTypeID>BOOKFLOAT</itemTypeID><currentLocationID>STACKS-WS</currentLocationID><homeLocationID>STACKS-WS</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>BRANDYWINE</libraryID><classificationID>LC</classificationID><callNumber>GN346.S86 2012</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000078616066</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>RESERVE-WS</currentLocationID><homeLocationID>STACKS-DE</homeLocationID><chargeable>true</chargeable><reserveCollectionID>RESERVE-WS</reserveCollectionID><reserveCirculationRule>RES-2HOUR</reserveCirculationRule><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>WILKESBAR</libraryID><classificationID>LC</classificationID><callNumber>GN346.S86 2012</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000078223486</itemID><itemTypeID>REF-ITEM</itemTypeID><currentLocationID>REFRES-WB</currentLocationID><homeLocationID>REFRES-WB</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LC</classificationID><callNumber>GN346.S86 2012</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000072646960</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>CHECKEDOUT</currentLocationID><homeLocationID>PATERNO-2</homeLocationID><dueDate>2019-03-04T09:01:00.842-05:00</dueDate><chargeable>false</chargeable><reserveCollectionID>RESERVE-PA</reserveCollectionID><reserveCirculationRule>RES-2HRRNW</reserveCirculationRule><fixedTimeBooking>false</fixedTimeBooking><staffNote>{GOBI}</staffNote></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Fri, 09 Apr 2021 14:32:35 GMT
+recorded_with: VCR 6.0.0
