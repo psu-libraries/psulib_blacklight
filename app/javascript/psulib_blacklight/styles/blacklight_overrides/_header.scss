@@ -7,6 +7,11 @@
   a {
     display: inline-block;
     max-width: 50%;
+    vertical-align: middle;
+
+    img {
+      max-height: 50px;
+    }
   }
  }
 
