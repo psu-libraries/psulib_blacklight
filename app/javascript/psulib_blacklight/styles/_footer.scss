@@ -31,6 +31,10 @@ footer {
   &__logo {
     @include make-col-ready();
     @include make-col(6);
+
+    img {
+      max-height: 40px;
+    }
   }
 
   &__boiler {
