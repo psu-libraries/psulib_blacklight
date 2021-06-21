@@ -1,12 +1,28 @@
 development:
   adapter: solr
-  url: <%= "#{Settings.solr.url}/solr/#{Settings.solr.collection}" %>
+  <% if Settings.solr.password %>
+  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.username}:#{Settings.solr.password}@#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
+  <% else %>
+  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
+  <% end %>
 qa:
   adapter: solr
-  url: <%= "#{Settings.solr.url}/solr/#{Settings.solr.collection}" %>
+  <% if Settings.solr.password %>
+  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.username}:#{Settings.solr.password}@#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
+  <% else %>
+  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
+  <% end %>
 test: &test
   adapter: solr
-  url: <%= "#{Settings.solr.url}/solr/#{Settings.solr.collection}" %>
+  <% if Settings.solr.password %>
+  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.username}:#{Settings.solr.password}@#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
+  <% else %>
+  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
+  <% end %>
 production:
   adapter: solr
-  url: <%= "#{Settings.solr.url}/solr/#{Settings.solr.collection}" %>
+  <% if Settings.solr.password %>
+  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.username}:#{Settings.solr.password}@#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
+  <% else %>
+  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
+  <% end %>

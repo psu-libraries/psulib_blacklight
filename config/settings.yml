@@ -12,5 +12,10 @@ redis:
 report_issue_email_recipient: test@test.com
 search_history_window: 50
 solr:
-  url: http://127.0.0.1:8983
+  protocol: "http"
+  host: "127.0.0.1"
+  port: 8983
+  # username:
+  # password: 
+  # url: http://127.0.0.1:8983
   collection: psul_catalog

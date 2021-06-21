@@ -1,0 +1,50 @@
+version: '3.5'
+x-web_env: &web_env
+  environment:
+      CI: "true"
+      SETTINGS__solr__host: solr
+      SETTINGS__solr__collection: 'psul_catalog'
+      SETTINGS__redis__sessions__uri: "redis://redis:6379/3"
+services:
+  redis:
+    image: redis:6.0.6-alpine3.12
+    volumes:
+      - redis-data:/data
+    ports:
+    - "6379:6379"
+  web:
+    tty: true
+    stdin_open: true
+    <<: *web_env
+    depends_on: 
+      - redis
+      - solr
+    command: 
+      - /app/bin/startup
+    build: 
+      context: . 
+      target: dev
+    volumes:
+    - bundle-data:/app/vendor/bundle
+    - node-data:/app/node_modules
+    - type: bind
+      source: ./
+      target: /app/
+    ports:
+      - "3000:3000"
+  solr:
+    image: solr:7.4.0-slim
+    restart: always
+    volumes:
+    - solr-data:/var/solr
+    ports:
+    - ${SOLR_PORT:-8983}:8983
+    command: [
+      "solr-foreground",
+      "-DzkRun"
+    ]
+volumes:
+  redis-data:
+  bundle-data:
+  node-data:
+  solr-data:
