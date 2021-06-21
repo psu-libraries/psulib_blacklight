@@ -1,0 +1,25 @@
+#!/bin/bash
+set -e
+if [ -f /vault/secrets/config ]; then 
+  echo "found vault config.. sourcing.."
+  . /vault/secrets/config
+fi
+
+if [ "${RAILS_ENV:-development}" != "production" ]; then
+  bundle check || bundle
+fi
+
+rm -f tmp/pids/server.pid
+
+echo "migrating database"
+
+bundle exec rails db:migrate
+
+echo "initalizing solr"
+bundle exec rake solr:initialize_collection
+bundle exec rake solr:update_config
+bundle exec rake solr:create_alias
+
+echo "starting rails"
+
+bundle exec rails s -b '0.0.0.0'
