@@ -24,6 +24,11 @@ namespace :solr do
                  -d '<delete><query>*:*</query></delete>' -out 'yes'`
   end
 
+  task initialize_collection: :environment do
+    solr_manager = PsulibBlacklight::SolrManager.new
+    solr_manager.initialize_collection
+  end
+
   # create a new collection with a configset that is up to date.
   task create_collection: :environment do
     solr_manager = PsulibBlacklight::SolrManager.new
