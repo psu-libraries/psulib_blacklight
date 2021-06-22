@@ -54,6 +54,39 @@ Note: we have only developed on Macs thus far.
 
     Note: on a Mac you may be asked by the OS if you want to allow incoming connections to Ruby. Because this is a local dev instance, you can choose to deny incoming connections. This configuration can be found in the Security & Privacy section of the Systems Preferences. 
 
+## Docker-compose 
+
+Start up the application with all it's dependencies 
+```
+docker-compose up --build -d
+```
+
+Initialize database, solr
+```
+docker-compose exec web bundle exec db:migrate
+docker-compose exec web bundle exec solr:initialize_collection
+```
+
+Run Tests
+```
+bundle exec web bundle exec rspec
+```
+
+Go Home for the day
+```
+docker-compose down
+```
+
+Clean up all the volumes (start over from scratch)
+```
+docker-compose down -v 
+```
+
+Logs (follow)
+```
+docker-compose logs -f web
+```
+
 ## Indexing
 
 Use [Traject](https://github.com/psu-libraries/psulib_traject#build-an-index)
