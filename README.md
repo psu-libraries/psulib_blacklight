@@ -65,11 +65,13 @@ Initialize database, solr
 ```
 docker-compose exec web bundle exec db:migrate
 docker-compose exec web bundle exec solr:initialize_collection
+docker-compose exec web bundle exec rake solr:update_config
+docker-compose exec web bundle exec rake solr:create_alias
 ```
 
 Run Tests
 ```
-bundle exec web bundle exec rspec
+docker-compose exec -e RAILS_ENV=test web  bundle exec rake ci
 ```
 
 Go Home for the day
