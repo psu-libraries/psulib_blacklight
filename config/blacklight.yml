@@ -1,28 +1,12 @@
 development:
   adapter: solr
-  <% if Settings.solr.password %>
-  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.username}:#{Settings.solr.password}@#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
-  <% else %>
-  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
-  <% end %>
+  url: <%= "#{PsulibBlacklight::SolrConfig.new.query_url}" %>
 qa:
   adapter: solr
-  <% if Settings.solr.password %>
-  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.username}:#{Settings.solr.password}@#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
-  <% else %>
-  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
-  <% end %>
+  url: <%= "#{PsulibBlacklight::SolrConfig.new.query_url}" %>
 test: &test
   adapter: solr
-  <% if Settings.solr.password %>
-  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.username}:#{Settings.solr.password}@#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
-  <% else %>
-  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
-  <% end %>
+  url: <%= "#{PsulibBlacklight::SolrConfig.new.query_url}" %>
 production:
   adapter: solr
-  <% if Settings.solr.password %>
-  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.username}:#{Settings.solr.password}@#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
-  <% else %>
-  url: <%= "#{Settings.solr.protocol}://#{Settings.solr.host}:#{Settings.solr.port}/solr/#{Settings.solr.collection}" %>
-  <% end %>
+  url: <%= "#{PsulibBlacklight::SolrConfig.new.query_url}" %>

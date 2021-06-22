@@ -12,6 +12,12 @@ module PsulibBlacklight
       "#{Settings.solr.protocol}://#{Settings.solr.host}:#{Settings.solr.port}"
     end
 
+    def query_url
+      query_url = "#{url}/solr/#{collection_name}"
+      query_url.gsub!(/:\/\//, "://#{solr_username}:#{solr_password}@") if solr_username && solr_password
+      query_url
+    end
+
     def solr_username
       Settings&.solr&.username
     end
