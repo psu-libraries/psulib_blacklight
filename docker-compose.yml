@@ -31,7 +31,7 @@ services:
       source: ./
       target: /app/
     ports:
-      - "3000:3000"
+      - "#{APP_PORT:-3000}:3000"
   solr:
     image: solr:7.4.0-slim
     restart: always
