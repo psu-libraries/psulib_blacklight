@@ -15,17 +15,25 @@ RSpec.describe PsulibBlacklight::SolrManager do
   end
 
   describe '#initialize_collection' do
-    context 'when collection does not exist' do 
-      let(:spy_solr_manager) { instance_spy(described_class) }
-
-      before do 
+    context 'when collection does not exist' do
+      before do
         stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LIST")
           .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "collections":[""]}')
       end
 
-      it 'does does add a new collection' do 
-        solr_manager.initialize_collection
-        expect(spy_solr_manager.initialize_collection).to have_received(:create_collection)
+      it 'does does add a new collection' do
+        expect(solr_manager.initialize_collection).to equal(200)
+      end
+    end
+
+    context 'when collection does exist' do
+      before do
+        stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LIST")
+          .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "collections":["psul_catalog_v1"]}')
+      end
+
+      it 'does not add a new collection' do
+        expect(solr_manager.initialize_collection).to equal(nil)
       end
     end
   end
