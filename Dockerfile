@@ -4,9 +4,7 @@ ARG UID=2000
 USER root
 RUN apt-get update && \
    apt-get install --no-install-recommends -y \
-   sqlite3 \
    default-libmysqlclient-dev \
-   libsqlite3-dev \
    shared-mime-info && \
    rm -rf /var/lib/apt/lists*
 
@@ -18,7 +16,7 @@ USER app
 COPY Gemfile Gemfile.lock /app/
 RUN gem install bundler:2.1.4
 RUN bundle config set path 'vendor/bundle'
-RUN bundle install --deployment && \
+RUN bundle install --deployment --without development test && \
   rm -rf /app/.bundle/cache && \
   rm -rf /app/vendor/bundle/ruby/*/cache
 
@@ -62,6 +60,8 @@ RUN apt-get update && apt-get install -y x11vnc \
     xvfb \
     fluxbox \
     wget \
+    sqlite3 \
+    libsqlite3-dev \
     libnss3 \
     wmctrl \
     google-chrome-stable
@@ -70,6 +70,6 @@ USER app
 
 RUN bundle config set path 'vendor/bundle'
 
-RUN bundle
+RUN bundle install --with development test
 
 CMD ["sleep", "99999999"]
