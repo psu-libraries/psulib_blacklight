@@ -25,8 +25,9 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
+  host: <%= ENV.fetch("MYSQL_HOST", "127.0.0.1") %>
   pool: 5
-  username: <%= Rails.application.credentials.db[:user] %>
-  password: <%= Rails.application.credentials.db[:pw] %>
+  username: <%= ENV.fetch("MYSQL_USER") {  Rails.application.credentials.db[:user] } %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD") { Rails.application.credentials.db[:pw] } %>
   timeout: 5000
-  database: <%= Rails.application.credentials.db[:database] %>
+  database: <%= ENV.fetch("MYSQL_DATABASE") { Rails.application.credentials.db[:database] } %>

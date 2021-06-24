@@ -23,6 +23,8 @@ Bundler.require(*Rails.groups)
 
 module Psulcat
   class Application < Rails::Application
+    require 'psulib_blacklight/solr_config'
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 

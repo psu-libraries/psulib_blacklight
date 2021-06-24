@@ -24,7 +24,7 @@ require 'view_component/test_helpers'
 # allow connections to localhost, webdrivers
 WebMock.disable_net_connect!(
   allow_localhost: true,
-  allow: 'chromedriver.storage.googleapis.com'
+  allow: ['chromedriver.storage.googleapis.com', 'solr']
 )
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -80,7 +80,17 @@ RSpec.configure do |config|
   config.include Capybara::RSpecMatchers, type: :component
 end
 
+Capybara.register_driver :chrome_headless do |app|
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    options: Selenium::WebDriver::Chrome::Options.new(
+      args: %w[no-sandbox headless disable-gpu]
+    )
+  )
+end
+
 # Capybara
 Capybara.configure do |config|
-  config.javascript_driver = :selenium_chrome_headless # This is slower
+  config.javascript_driver = :chrome_headless # This is slower
 end

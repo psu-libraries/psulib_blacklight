@@ -10,14 +10,39 @@ RSpec.describe PsulibBlacklight::SolrManager do
   let(:config_obj) { PsulibBlacklight::SolrConfig.new }
 
   before do
-    stub_request(:any, /127.0.0.1:8983/).to_rack(FakeSolr)
+    stub_request(:any, /:8983/).to_rack(FakeSolr)
     stub_const('PsulibBlacklight::SolrManager::ALLOWED_TIME_TO_RESPOND', 1)
+  end
+
+  describe '#initialize_collection' do
+    context 'when collection does not exist' do
+      before do
+        stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LIST")
+          .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "collections":[""]}')
+      end
+
+      it 'does add a new collection' do
+        expect(solr_manager.initialize_collection).to equal(200)
+      end
+    end
+
+    context 'when collection does exist' do
+      before do
+        stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LIST")
+          .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11},
+                    "collections":["psul_catalog_v1"]}')
+      end
+
+      it 'does not add a new collection' do
+        expect(solr_manager.initialize_collection).to equal(nil)
+      end
+    end
   end
 
   describe '#initialize' do
     context 'when solr does not respond for the allowed time to wait' do
       before do
-        stub_request(:get, 'http://127.0.0.1:8983/solr/').to_raise(Faraday::ConnectionFailed)
+        stub_request(:get, "#{config_obj.url}/solr/").to_raise(Faraday::ConnectionFailed)
       end
 
       it 'raises an exception' do
@@ -27,7 +52,7 @@ RSpec.describe PsulibBlacklight::SolrManager do
 
     context 'when solr is up and the current configset is not present in solr' do
       before do
-        stub_request(:get, 'http://127.0.0.1:8983/solr/admin/configs?action=LIST')
+        stub_request(:get, "#{config_obj.url}/solr/admin/configs?action=LIST")
           .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "configSets":["_default"]}',
                      headers: {}).then
           .to_return({ body: File.read('spec/fixtures/solr/configset_list.json') })
@@ -58,7 +83,7 @@ RSpec.describe PsulibBlacklight::SolrManager do
 
     context 'when there are not collections with prefixes matching our collection name scheme' do
       before do
-        stub_request(:get, 'http://127.0.0.1:8983/solr/admin/collections?action=LIST')
+        stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LIST")
           .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "collections":["not_match"]}',
                      headers: {}).then
       end
@@ -82,7 +107,7 @@ RSpec.describe PsulibBlacklight::SolrManager do
 
     context 'when there are not collections with prefixes matching our collection name scheme' do
       before do
-        stub_request(:get, 'http://127.0.0.1:8983/solr/admin/collections?action=LIST')
+        stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LIST")
           .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "collections":["not_match"]}',
                      headers: {}).then
       end

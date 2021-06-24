@@ -1,12 +1,12 @@
 development:
   adapter: solr
-  url: <%= "#{Settings.solr.url}/solr/#{Settings.solr.collection}" %>
+  url: <%= "#{PsulibBlacklight::SolrConfig.new.query_url}" %>
 qa:
   adapter: solr
-  url: <%= "#{Settings.solr.url}/solr/#{Settings.solr.collection}" %>
+  url: <%= "#{PsulibBlacklight::SolrConfig.new.query_url}" %>
 test: &test
   adapter: solr
-  url: <%= "#{Settings.solr.url}/solr/#{Settings.solr.collection}" %>
+  url: <%= "#{PsulibBlacklight::SolrConfig.new.query_url}" %>
 production:
   adapter: solr
-  url: <%= "#{Settings.solr.url}/solr/#{Settings.solr.collection}" %>
+  url: <%= "#{PsulibBlacklight::SolrConfig.new.query_url}" %>

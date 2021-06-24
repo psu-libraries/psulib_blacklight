@@ -1,0 +1,143 @@
+version: 2.1
+
+orbs:
+  docker: circleci/docker@1.5.0
+
+jobs:
+  release:
+    docker:
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.0.6
+    environment:
+      REGISTRY_HOST: harbor.k8s.libraries.psu.edu
+      REGISTRY_REPO: library/psulib_blacklight
+      DOCKER_USERNAME: 'robot$circleci'
+      GITHUB_USER: 'psu-stewardship-bot'
+      CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
+    steps:
+      - add_ssh_keys
+      - run:
+          name: "Release"
+          command: |
+            /usr/local/bin/tag-image
+            ssh-keyscan github.com > ~/.ssh/known_hosts
+            git clone $CONFIG_REPO
+            cd catalog-config
+            /usr/local/bin/pr-release clusters/prod/manifests/psulib_blacklight/prod.yaml
+
+  publish:
+    docker:
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.0.6
+        user: root
+    steps:
+      - setup_remote_docker:
+          version: 20.10.6
+          docker_layer_caching: true
+      - checkout
+      - docker/check:
+          registry: harbor.k8s.libraries.psu.edu
+      - docker/build:
+          image: library/psulib_blacklight
+          registry: harbor.k8s.libraries.psu.edu
+          extra_build_args: "--target production"
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: library/psulib_blacklight
+          registry: harbor.k8s.libraries.psu.edu
+      - run:
+          command: |
+            echo "Digest is: $(</tmp/digest.txt)"
+  deploy:
+    docker:
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.0.6
+    environment:
+      CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
+    steps:
+      - add_ssh_keys
+      - run:
+          name: "Updating Config Repo"
+          command: |
+            ssh-keyscan github.com > ~/.ssh/known_hosts
+            git clone $CONFIG_REPO
+            cd catalog-config
+            ./bin/generate_app
+  test:
+    docker:
+      - image: circleci/ruby:2.6.5-buster-node-browsers
+      - image: redis:5.0.7
+      - image: solr:7.4.0-slim
+        command: [
+          "solr-foreground",
+          "-DzkRun"
+        ]
+    environment:
+      RAILS_ENV: test
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+          - bundle-{{ checksum "Gemfile.lock" }}
+    - restore_cache:
+        keys:
+          - yarn-{{ checksum "yarn.lock" }}
+    - run:
+        name: "Bundle"
+        command: |
+          gem install bundler
+          bundle check --path vendor/bundle || bundle install --deployment
+    - run:
+        name: "Yarn"
+        command: |
+          yarn install --cache-folder ~/.cache/yarn --frozen-lockfile
+    - run:
+        name: "Wait for Redis"
+        command: dockerize -wait tcp://localhost:6379 -timeout 1m
+    - run:
+        name: "Wait for Solr"
+        command: dockerize -wait tcp://localhost:8983 -timeout 2m
+    - save_cache:
+        paths:
+          - vendor/bundle
+        key: bundle-{{ checksum "Gemfile.lock" }} 
+    - save_cache:
+        key: yarn-{{ checksum "yarn.lock" }}
+        paths:
+          - ~/.cache/yarn
+    - run:
+        name: "Lint"
+        command: |
+          bundle exec niftany
+          yarn lint
+    - run:
+        name: "Test"
+        command: |
+          ./bin/ci-rspec
+
+workflows:
+  version: 2
+  blacklight:
+    jobs:
+      - release:
+          name: "Release"
+          filters:
+            tags:
+              only:
+                - /^v\d+.\d+.\d+.*/
+            branches:
+              ignore:
+                - /.*/
+      - test
+      - publish:
+          filters:
+            branches:
+              only:
+                - main
+                - /preview\/.*/
+      - deploy:
+          requires:
+            - test
+            - publish
+          filters:
+            branches:
+              only:
+                - main
+                - /preview\/.*/

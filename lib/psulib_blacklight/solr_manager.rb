@@ -55,6 +55,15 @@ module PsulibBlacklight
       collections_with_prefix.max_by { |collection| version_number collection }
     end
 
+    def initialize_collection
+      if next_collection_version == 1
+        puts "creating collection #{next_collection_version}"
+        create_collection
+      else
+        puts 'collection exists skipping.'
+      end
+    end
+
     private
 
       def version_number(colection_name)
