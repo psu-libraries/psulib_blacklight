@@ -21,7 +21,7 @@ RSpec.describe PsulibBlacklight::SolrManager do
           .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "collections":[""]}')
       end
 
-      it 'does does add a new collection' do
+      it 'does add a new collection' do
         expect(solr_manager.initialize_collection).to equal(200)
       end
     end
