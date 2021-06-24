@@ -14,7 +14,7 @@ RUN chown -R app /app
 USER app
 
 COPY Gemfile Gemfile.lock /app/
-RUN gem install bundler:2.1.4
+RUN gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
 RUN bundle config set path 'vendor/bundle'
 RUN bundle install --deployment --without development test && \
   rm -rf /app/.bundle/cache && \
