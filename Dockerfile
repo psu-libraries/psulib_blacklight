@@ -5,7 +5,6 @@ USER root
 RUN apt-get update && \
    apt-get install --no-install-recommends -y \
    sqlite3 \
-   vim \
    default-libmysqlclient-dev \
    libsqlite3-dev \
    shared-mime-info && \
@@ -34,13 +33,6 @@ CMD ["/app/bin/startup"]
 
 # Final Target
 FROM base as production
-
-# Clean up Bundle
-# RUN bundle config set path 'vendor/bundle'
-# RUN bundle install --without development test && \
-#   bundle clean && \
-#   rm -rf /app/.bundle/cache && \
-#   rm -rf /app/vendor/bundle/ruby/*/cache
 
 USER app
 
