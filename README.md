@@ -64,7 +64,7 @@ docker-compose up --build -d
 Initialize database, solr
 ```
 docker-compose exec web bundle exec rails db:migrate
-docker-compose exec web bundle exec solr:initialize_collection
+docker-compose exec web bundle exec rake solr:initialize_collection
 docker-compose exec web bundle exec rake solr:update_config
 docker-compose exec web bundle exec rake solr:create_alias
 ```
