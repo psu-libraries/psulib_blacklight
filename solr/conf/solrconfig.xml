@@ -27,12 +27,12 @@
   <indexConfig>
     <!-- native is the default, but let's be safe -->
     <lockType>${solr.lock.type:native}</lockType>
-    
-    <!-- in-memory buffer of 200MB per shard. If it fills up, 
+
+    <!-- in-memory buffer of 200MB per shard. If it fills up,
      a hard commit is done, but the transaction log isn't cleared up,
      so we still have to rely on the hard commit policy -->
     <ramBufferSizeMB>200</ramBufferSizeMB>
-  </indexConfig>  
+  </indexConfig>
 
   <updateHandler class="solr.DirectUpdateHandler2">
 
@@ -103,8 +103,10 @@
          title_245ab_tsim^25000
          title_addl_unstem_search^5000
          title_addl_tsim^2500
-         title_related_unstem_search^1500
-         title_related_tsim^1250
+         series_title_unstem_search^500
+         series_title_tsim^200
+         title_related_unstem_search^150
+         title_related_tsim^125
          subject_topic_unstem_search^1000
          subject_unstem_search^750
          subject_topic_facet_sim^625
@@ -115,12 +117,10 @@
          author_addl_tsim^50
          subject_addl_unstem_search^250
          subject_addl_tsim^50
-         series_title_unstem_search^25
-         series_title_tsim^10
          isbn_sim
          issn_sim
          scan_sim
-         toc_ssim
+         toc_ssim^200
          notes_summary_ssim
          all_text_timv
        </str>
@@ -129,8 +129,10 @@
          title_245ab_tsim^250000
          title_addl_unstem_search^50000
          title_addl_tsim^25000
-         title_related_unstem_search^15000
-         title_related_tsim^12500
+         series_title_unstem_search^20000
+         series_title_tsim^10000
+         title_related_unstem_search^1500
+         title_related_tsim^1250
          subject_topic_unstem_search^10000
          subject_unstem_search^7500
          subject_topic_facet_sim^6250
@@ -141,9 +143,7 @@
          author_addl_tsim^500
          subject_addl_unstem_search^2500
          subject_addl_tsim^500
-         series_title_unstem_search^250
-         series_title_tsim^100
-         toc_ssim^50
+         toc_ssim^7000
          notes_summary_ssim^50
          all_text_timv^10
        </str>
