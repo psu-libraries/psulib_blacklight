@@ -38,7 +38,11 @@ en:
         public_domain_text: 'Access digital copy through HathiTrust'
         restricted_access_text: 'Search inside at HathiTrust'
         etas_text: 'Check out digital copy through HathiTrust'
-        etas_additional_text: 'By special arrangement in response to the COVID-19 pandemic, patrons may access this resource online through the HathiTrust Emergency Temporary Access Service.'
+        etas_additional_text: >
+          Digital access to this item through the HathiTrust Emergency Temporary Access Service will
+          conclude on July 9, 2021. Requests for most library materials will be possible through
+          "I Want It." On-shelf access will resume as libraries fully re-open over the summer. We will
+          retain digital access to public domain materials in HathiTrust.
       facet_tooltips:
         access_facet:
           free_to_read: 'These materials don''t require a Penn State login'
