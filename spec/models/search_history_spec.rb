@@ -61,7 +61,7 @@ RSpec.describe SearchHistory, type: :model, redis: true do
   end
 
   describe '#add' do
-    let(:history) { described_class.new }
+    let(:history) { described_class.new(id: session_id) }
 
     context 'when the number of searches is below the limit' do
       it 'adds the search id and sets the expiration value' do

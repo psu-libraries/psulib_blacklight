@@ -4,10 +4,7 @@ require 'rails_helper'
 require 'support/vcr'
 
 RSpec.feature 'Availability', :vcr, type: :feature do
-  let (:stubbed_controller) { CatalogController.new }
-
   before do
-    allow(CatalogController).to receive(:new).and_return(stubbed_controller)
     Settings.hathi_etas = false
     Settings.readonly = false
     Settings.hide_hold_button = false
