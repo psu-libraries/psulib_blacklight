@@ -2,10 +2,10 @@
   "name": "Psulcat",
   "private": true,
   "dependencies": {
-    "@fontsource/open-sans": "^4.2.2",
-    "@fontsource/roboto-slab": "^4.2.2",
+    "@fontsource/open-sans": "^4.5.0",
+    "@fontsource/roboto-slab": "^4.5.0",
     "@fortawesome/fontawesome-free": "^5.7.2",
-    "@rails/webpacker": "^5.2.1",
+    "@rails/webpacker": "^5.4.0",
     "blacklight-frontend": "^7.10.0",
     "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#latest",
     "blacklight-range-limit": "https://github.com/projectblacklight/blacklight_range_limit.git#latest",
@@ -14,7 +14,7 @@
     "caniuse-lite": "^1.0.30000697",
     "jquery": "3.6.0",
     "popper.js": "^1.14.7",
-    "rails-ujs": "^5.2.3",
+    "rails-ujs": "^5.2.6",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
