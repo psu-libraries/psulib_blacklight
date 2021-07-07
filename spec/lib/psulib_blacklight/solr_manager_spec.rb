@@ -10,7 +10,7 @@ RSpec.describe PsulibBlacklight::SolrManager do
   let(:config_obj) { PsulibBlacklight::SolrConfig.new }
 
   before do
-    stub_request(:any, /:8983/).to_rack(FakeSolr)
+    stub_request(:any, /:#{Settings.solr.port}/).to_rack(FakeSolr)
     stub_const('PsulibBlacklight::SolrManager::ALLOWED_TIME_TO_RESPOND', 1)
   end
 

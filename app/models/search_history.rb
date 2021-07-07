@@ -26,7 +26,7 @@ class SearchHistory
   attr_reader :id
 
   # @param id [String]
-  def initialize(id: id)
+  def initialize(id:)
     @id = generate_id(id)
   end
 
