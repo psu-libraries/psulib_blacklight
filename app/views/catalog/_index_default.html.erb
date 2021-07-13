@@ -24,7 +24,11 @@
       <% end -%>
     </ul>
 
-    <%= render partial: 'external_links/all', locals: { document: document } %>
+    <%= render partial: 'external_links/all',
+               locals: {
+                 document: document,
+                 show_hathi_links: document.hathi_links && document.hathi_links[:etas_item]
+               } %>
   </div>
 </div>
 
