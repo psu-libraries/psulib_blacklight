@@ -6,6 +6,9 @@
 import locations from './libraries_locations.json';
 import item_types from './item_types.json';
 import reserve_circulation_rules from './reserve_circulation_rules.json';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Availability from './components/availability.jsx';
 
 const availability = {
     // Load Sirsi locations
@@ -289,7 +292,12 @@ const availability = {
                     availabilityButton.removeClass("invisible").addClass("visible");
                     const holdings = availability.groupByLibrary(rawHoldings);
                     const structuredHoldings = availability.availabilityDataStructurer(holdings);
-                    holdingsPlaceHolder.html(availability.printAvailabilityData(structuredHoldings));
+
+                    ReactDOM.render(
+                        React.createElement(Availability, { data: structuredHoldings}),
+                        holdingsPlaceHolder[0]
+                    );
+                    
                     availability.availabilitySnippet(snippetPlaceHolder, structuredHoldings);
 
                     // If holdable, then display the hold button
@@ -325,69 +333,6 @@ const availability = {
 
         // initialize tooltips
         $('i.fas.fa-info-circle[data-toggle="tooltip"]').tooltip();
-    },
-
-    printAvailabilityData(availabilityData) {
-        let markupForHoldings = '';
-
-        availabilityData.forEach(function(element, index) {
-            const holdings = element.holdings;
-            const catkey = holdings[0].catkey;
-            const uniqueID = catkey + index;
-            const moreHoldings = holdings.length > 4 ? holdings.splice(4,holdings.length) : [];
-
-            markupForHoldings += `
-                            <div data-library="${element.summary.libraryID}">
-                                <h5>${element.summary.library} (${element.summary.countAtLibrary} 
-                                    ${element.summary.pluralize})</h5>
-                                <table id="holdings-${uniqueID}" class="table table-sm">
-                                    <caption class="sr-only">Listing where to find this item in our
-                                                             buildings.</caption>
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th>Call number</th>
-                                            <th>Material</th>
-                                            <th>Location</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        ${holdings.map(holding => `
-                                            <tr>
-                                                <td>${availability.generateCallNumber(holding)}
-                                                    ${availability.appendPublicNoteTooltip(holding)}</td>
-                                                <td>${holding.itemType}</td>
-                                                <td>${availability.generateLocationHTML(holding)}
-                                                    ${availability.appendCourseReserveDueDate(holding)}
-                                                    ${availability.appendMapScanLink(holding)}</td>
-                                            </tr>
-                                        `).join('')}
-                                        ${moreHoldings.map(moreHolding => `
-                                             <tr class="collapse" id="collapseHoldings${uniqueID}">
-                                                <td>${availability.generateCallNumber(moreHolding)}
-                                                    ${availability.appendPublicNoteTooltip(moreHolding)}</td>
-                                                <td>${moreHolding.itemType}</td>
-                                                <td>${availability.generateLocationHTML(moreHolding)}
-                                                    ${availability.appendCourseReserveDueDate(moreHolding)}
-                                                    ${availability.appendMapScanLink(moreHolding)}</td>
-                                            </tr>     
-                                         `).join('')}
-                                        </tbody>
-                                    </table>
-                              `;
-            if (moreHoldings.length > 0) {
-                markupForHoldings += `<button class="btn btn-primary toggle-more" 
-                                    data-type="view-more-holdings" 
-                                    data-target="#collapseHoldings${uniqueID}" 
-                                    data-toggle="collapse" role="button" 
-                                    aria-expanded="false" 
-                                    aria-controls="collapseHoldings${uniqueID}">View More
-                                   </button>`;
-            }
-
-            markupForHoldings += '</div>';
-        });
-
-        return markupForHoldings;
     },
 
     librariesText(holdingData) {
@@ -465,122 +410,6 @@ const availability = {
 
             return accumulator;
         }, {});
-    },
-
-    generateCallNumber(holding) {
-        // Do not display call number for on loan items
-        return (holding.locationID === "ILLEND") ? "" : holding.callNumber;
-    },
-
-    generateLocationHTML(holding) {
-        const spinner = '<span class="spinner-border spinner-border-sm" ' +
-            '                role="status" aria-hidden="true"></span>';
-
-        // Location information presented to the user is different based on a few scenarios
-        // First, if it's related to ILL
-        if (availability.isIllLink(holding)) {
-            const illLocation = `<a 
-                            data-type="ill-link" 
-                            data-catkey="${holding.catkey}" 
-                            data-call-number="${holding.callNumber}" 
-                            data-link-type="${availability.illLinkType(holding)}"
-                            data-item-location="${holding.locationID}"
-                            href="#"
-                        >${spinner}${availability.illLinkText(holding)}</a>`;
-
-            return illLocation;
-        }
-
-        // AEON
-        if (availability.isArchivalThesis(holding)) {
-            const illiadURL = "https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html";
-            const aeonLocationText = availability.mapLocation(availability.allLocations, holding.locationID);
-
-            const aeonLocation = `<a 
-                                data-type="ill-link" 
-                                data-catkey="${holding.catkey}" 
-                                data-call-number="${holding.callNumber}" 
-                                data-link-type="archival-thesis" 
-                                data-item-type="${holding.itemTypeID}" 
-                                href="#">${spinner}Request Scan - Penn State Users</a><br>
-                            <a href="${illiadURL}">Request Scan - Guest</a><br>
-                            <a 
-                                data-type="aeon-link" 
-                                data-catkey="${holding.catkey}"
-                                data-call-number="${holding.callNumber}"
-                                data-link-type="archival-thesis"
-                                data-item-type="${holding.itemTypeID}"
-                                data-item-id="${holding.itemID}"
-                                data-item-location="${aeonLocationText}"
-                                href="#">${spinner}View in Special Collections</a>`;
-
-            return aeonLocation;
-        }
-
-        // Special Collections
-        if (availability.isArchivalMaterial(holding)) {
-            const specialCollectionsText = availability.mapLocation(availability.allLocations, holding.locationID);
-
-            const specialCollectionsLocation = `${specialCollectionsText}<br> 
-                                        <a 
-                                            data-type="aeon-link" 
-                                            data-catkey="${holding.catkey}" 
-                                            data-call-number="${holding.callNumber}" 
-                                            data-link-type="archival-material" 
-                                            data-item-type="${holding.itemTypeID}" 
-                                            data-item-id="${holding.itemID}" 
-                                            data-item-location="${specialCollectionsText}" 
-                                            href="#">${spinner}Request Material</a>`;
-            return specialCollectionsLocation;
-        }
-
-        // Otherwise use the default translation map for location display, no link
-        return availability.mapLocation(availability.allLocations, holding.locationID);
-    },
-
-    appendMapScanLink(holding) {
-        if (availability.isUPSpecialMap(holding)) {
-            return `<br><a target="_blank" href="${availability.mapScanUrl}">Request scan</a>`;
-        }
-
-        return '';
-    },
-
-    appendCourseReserveDueDate(holding) {
-        if (availability.isOnCourseReserve(holding)) {
-            const dueDate = new Date(holding.dueDate);
-
-            const day = dueDate.toLocaleDateString('en-us', {
-                year: 'numeric',
-                month: 'numeric',
-                day: 'numeric',
-                timeZone: 'America/New_York'
-            });
-
-            const time = dueDate.toLocaleTimeString('en-us', {
-                hour: 'numeric',
-                minute: '2-digit',
-                timeZone: 'America/New_York'
-            });
-
-            const circulationRule = availability.reserveCirculationRules[holding.reserveCirculationRule];
-
-            return `<br><strong>Due back at:</strong> ${time} on ${day}<br>${circulationRule}`;
-        }
-
-        return '';
-    },
-
-    appendPublicNoteTooltip(holding) {
-        if (holding.publicNote) {
-            return `<i 
-                        class="fas fa-info-circle" 
-                        data-toggle="tooltip" 
-                        data-placement="right" 
-                        title="${holding.publicNote}"></i>`;
-        }
-
-        return '';
     },
 
     createILLURL() {
@@ -665,10 +494,6 @@ const availability = {
                 aeonLinkObj.attr('href', aeonURL);
             });
         });
-    },
-
-    mapLocation(locations, locationID) {
-        return (locationID in locations) ? locations[locationID] : "";
     },
 
     displayErrorMsg() {
