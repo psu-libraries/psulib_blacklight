@@ -36,6 +36,10 @@ Lint/MissingSuper:
   Exclude:
     - 'app/models/concerns/null_object_pattern.rb'
 
+Performance/MethodObjectAsBlock:
+  Exclude:
+
+
 Rails/ContentTag:
   Enabled: false
 
@@ -53,4 +57,7 @@ RSpec/NestedGroups:
   Enabled: false
   
 Capybara/FeatureMethods:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
   Enabled: false

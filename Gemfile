@@ -14,6 +14,7 @@ gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
 gem 'faraday'
 gem 'high_voltage', '~> 3.1'
+gem 'lcsort', '~> 0.9'
 gem 'lograge'
 gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0.3'
@@ -40,6 +41,7 @@ end
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara'
+  gem 'faker'
   gem 'niftany', '~> 0.9'
   gem 'pry-byebug'
   gem 'rails-controller-testing'

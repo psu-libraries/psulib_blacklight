@@ -38,4 +38,8 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  def call_number
+    @_source['call_number_ssm'].first
+  end
 end

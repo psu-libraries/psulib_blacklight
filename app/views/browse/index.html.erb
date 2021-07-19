@@ -1,0 +1,30 @@
+
+<h1>Call Number Browse</h1>
+
+<h2><%= @shelf_list.list.first.call_number %> to <%= @shelf_list.list.last.call_number %></h2>
+
+<ul class="list-group">
+  <li class="list-group-item list-group-item-secondary">
+    <% if @shelf_list.previous %>
+      <%= link_to "Previous Shelf (ends with #{@shelf_list.previous.call_number})",
+                  browse_path(ending: @shelf_list.previous.call_number, length: params[:length]) %>
+    <% else %>
+      ||||||||
+    <% end %>
+  </li>
+
+  <% @shelf_list.list.map do |doc| %>
+    <li class="<%= doc.nearby? ? 'list-group-item active' : 'list-group-item' %>">
+      <%= doc.call_number %>
+    </li>
+  <% end %>
+
+  <li class="list-group-item list-group-item-secondary">
+    <% if @shelf_list.next %>
+      <%= link_to "Next Shelf (starts with #{@shelf_list.next.call_number})",
+                  browse_path(starting: @shelf_list.next.call_number, length: params[:length]) %>
+    <% else %>
+      ||||||||
+    <% end %>
+  </li>
+</ul>

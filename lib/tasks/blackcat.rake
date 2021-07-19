@@ -1,23 +1,38 @@
 # frozen_string_literal: true
 
-require 'rsolr'
-require 'json'
+require Rails.root.join('spec/support/catalog_factory.rb')
+require Rails.root.join('spec/support/record_factory.rb')
+require Rails.root.join('spec/support/catalog_cleaner.rb')
 
 namespace :blackcat do
   namespace :solr do
     desc 'Posts fixtures to Solr'
     task index: :environment do
-      solr = RSolr.connect url: Blacklight.connection_config[:url]
-      docs = File.open('spec/fixtures/current_fixtures.json').each_line.map { |l| JSON.parse(l) }
-      solr.add docs
-      solr.update data: '<commit/>', headers: { 'Content-Type' => 'text/xml' }
+      CatalogFactory.load_defaults
     end
 
     desc 'Delete fixtures from Solr'
     task deindex: :environment do
-      solr = RSolr.connect url: Blacklight.connection_config[:url]
-      solr.update data: '<delete><query>*:*</query></delete>', headers: { 'Content-Type' => 'text/xml' }
-      solr.update data: '<commit/>', headers: { 'Content-Type' => 'text/xml' }
+      CatalogCleaner.clean_solr
+    end
+
+    desc 'Add call number fixtures'
+    task call_numbers: :environment do
+      CatalogFactory.load_call_numbers
+    end
+
+    desc 'Add call numbers from file'
+    task call_file: :environment do
+      fixture = Rails.root.join('tmp/ba-bf.json')
+
+      Blacklight.default_index.connection.delete_by_query('*:*')
+      JSON.parse(fixture.read).dig('response', 'docs').map do |doc|
+        doc.delete('score')
+        doc['forward_lc_shelfkey'] = ShelfList.generate_forward_shelfkey(doc['call_number_ssm'].first)
+        doc['reverse_lc_shelfkey'] = ShelfList.generate_reverse_shelfkey(doc['call_number_ssm'].first)
+        Blacklight.default_index.connection.add(doc)
+      end
+      Blacklight.default_index.connection.commit
     end
   end
 
