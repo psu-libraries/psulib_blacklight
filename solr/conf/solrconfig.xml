@@ -212,22 +212,23 @@
 
        <!-- list fields to be displayed in the search results page -->
        <str name="fl">
+         author_corp_display_ssm,
+         author_meeting_display_ssm,
+         author_person_display_ssm,
+         call_number_ssm,
+         edition_display_ssm,
+         format,
+         full_links_struct,
+         ht_access_ss
          id,
+         isbn_valid_ssm,
+         lccn_ssim,
+         oclc_number_ssim,
+         overall_imprint_display_ssm,
+         publication_display_ssm,
          score,
          title_display_ssm,
          title_latin_display_ssm,
-         author_person_display_ssm,
-         author_corp_display_ssm,
-         author_meeting_display_ssm,
-         format,
-         overall_imprint_display_ssm,
-         publication_display_ssm,
-         edition_display_ssm,
-         full_links_struct,
-         isbn_valid_ssm,
-         oclc_number_ssim,
-         lccn_ssim,
-         ht_access_ss
        </str>
 
        <!-- list fields to be displayed as facets -->
