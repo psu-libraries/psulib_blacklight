@@ -363,10 +363,12 @@ const availability = {
                                         `).join('')}
                                         ${moreHoldings.map(moreHolding => `
                                              <tr class="collapse" id="collapseHoldings${uniqueID}">
-                                                <td>${availability.generateCallNumber(moreHolding)}</td>
+                                                <td>${availability.generateCallNumber(moreHolding)}
+                                                    ${availability.appendPublicNoteTooltip(moreHolding)}</td>
                                                 <td>${moreHolding.itemType}</td>
                                                 <td>${availability.generateLocationHTML(moreHolding)}
-                                                    ${availability.appendCourseReserveDueDate(moreHolding)}</td>
+                                                    ${availability.appendCourseReserveDueDate(moreHolding)}
+                                                    ${availability.appendMapScanLink(moreHolding)}</td>
                                             </tr>     
                                          `).join('')}
                                         </tbody>
