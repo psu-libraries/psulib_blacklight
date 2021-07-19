@@ -411,6 +411,18 @@ RSpec.feature 'Availability', :vcr, type: :feature do
           expect(page).to have_link 'Request scan'
         end
       end
+
+      it 'appends links to request map scans for a record with many holdings' do
+        visit '/catalog/25095210'
+        within 'div[data-library="UP-MAPS"]' do
+          expect(page).to have_xpath './/tbody/tr[td//text()[contains(., \'Request scan\')]]', count: 4
+          click_button('View More')
+          sleep 1 # let collapse animation finish and wait for it to re-collapse
+          expect(page).to have_xpath './/tbody/tr[td//text()[contains(., \'Request scan\')]]', count: 50
+          click_button('View Less')
+          expect(page).to have_xpath './/tbody/tr[td//text()[contains(., \'Request scan\')]]', count: 4
+        end
+      end
     end
 
     describe 'Request via ILL link' do
