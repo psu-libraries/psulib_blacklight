@@ -16,8 +16,8 @@ const availability = {
     reserveCirculationRules: reserve_circulation_rules.reserve_circulation_rules,
     movedLocations: [],
 
-    sirsiItemUrl: 'https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?' +
-                  'clientID=BCPAC&includeAvailabilityInfo=true&includeItemInfo=true',
+    sirsiUrl: '/availability/sirsi-data/?',
+    sirsiItemUrl: '/availability/sirsi-item-data/?',
     mapScanUrl: 'https://libraries.psu.edu/about/libraries/donald-w-hamer-center-maps-and-' +
                 'geospatial-information/map-scanning-and-printing',
 
@@ -52,7 +52,7 @@ const availability = {
             const sirsiRequestParams = titleIDs.map(url => 'title_ids[]=' + url).join('&');
 
             $.ajax({
-                url: '/availability/sirsidata/?' + sirsiRequestParams
+                url: availability.sirsiUrl + sirsiRequestParams
             }).then(function (response) {
                     $(response).find('TitleInfo').each(function () {
                         const catkey = $(this).children('titleID').text();
@@ -220,7 +220,7 @@ const availability = {
             itemIDs.push(Object.keys(boundHoldings[catkey]));
         });
         itemIDs = $.map(itemIDs, function(value){ return value; });
-        const sirsiBoundRequestParams = itemIDs.map(url => '&itemID=' + url).join('');
+        const sirsiBoundRequestParams = itemIDs.map(url => 'item_ids[]=' + url).join('&');
 
         $.ajax({
             url: availability.sirsiItemUrl + sirsiBoundRequestParams

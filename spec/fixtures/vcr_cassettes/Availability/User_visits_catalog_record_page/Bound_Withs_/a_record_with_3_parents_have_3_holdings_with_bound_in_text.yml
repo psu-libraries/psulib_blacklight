@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=2679972
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=2679972
     body:
       encoding: US-ASCII
       string: ''
@@ -29,7 +29,7 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Date:
-      - Wed, 07 Apr 2021 18:19:11 GMT
+      - Tue, 20 Jul 2021 16:45:56 GMT
       Server:
       - SirsiDynix IlsWS
     body:
@@ -48,12 +48,7 @@ http_interactions:
         report of the Inspectors of the Philadelphia County Prison, made to the Legislature</title><author>Philadelphia
         County (Pa.). Prison. Board of Inspectors.</author><yearOfPublication>1848</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>32495336</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(431687.7)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>431687</titleID><title>Report
         of the Pennsylvania Hospital for the Insane</title><author>Pennsylvania Hospital
-        for the Insane.</author><yearOfPublication>184</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>7997374</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(896760.25)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>896760</titleID><title>School
-        laws of Pennsylvania</title><author>Pennsylvania. Laws, statutes, etc.</author><yearOfPublication>1848</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>35331894</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(1700469.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>1700469</titleID><title>Report
-        of the managers of the Magdalen Society for</title><author>Magdalen Society
-        (Philadelphia, Pa.)</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>57379321</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2574797.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2574797</titleID><title>Report
-        of the Western Penitentiary for the year</title><author>State Penitentiary
-        for the Western District of Pennsylvania.</author><yearOfPublication>1826</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>39206003</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HE5783
+        for the Insane.</author><yearOfPublication>184</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>7997374</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HE5783
         .N5 L39 1846</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2679976</titleID><title>Laws
         relating to the Camden and Philadelphia Steamboat Ferry Company : passed by
         the legislatures of the states of New-Jersey and Pennsylvania</title><author>Mickle,
@@ -122,14 +117,19 @@ http_interactions:
         of the Public Schools.</author><yearOfPublication>1848</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2680070.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2680070</titleID><title>A
         digest of the acts of Assembly relative to the First School District of the
         state of Pennsylvania</title><author>First School District of Pennsylvania
-        (Philadelphia, Pa.)</author><yearOfPublication>1852</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2705403.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2705403</titleID><title>Report
+        (Philadelphia, Pa.)</author><yearOfPublication>1852</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>BV4461
+        .J66</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2705687</titleID><title>The
+        ... annual report of the mission in the County Insane Hospital, and other
+        departments of Blockley</title><author>Jones, Edward C. (Edward Conway), 1820-1865.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54994950</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(896760.25)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>896760</titleID><title>School
+        laws of Pennsylvania</title><author>Pennsylvania. Laws, statutes, etc.</author><yearOfPublication>1848</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>35331894</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(1700469.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>1700469</titleID><title>Report
+        of the managers of the Magdalen Society for</title><author>Magdalen Society
+        (Philadelphia, Pa.)</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>57379321</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2574797.3)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2574797</titleID><title>Report
+        of the Western Penitentiary for the year</title><author>State Penitentiary
+        for the Western District of Pennsylvania.</author><yearOfPublication>1826</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>39206003</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2705403.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2705403</titleID><title>Report
         of the Topographical Bureau</title><author>United States. Army. Corps of Engineers.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2705424.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2705424</titleID><title>Annual
         report of the Trustees of the Society for the Advancement of Christianity
         in Pennsylvania</title><author>Society of the Protestant Episcopal Church
-        for the Advancement of Christianity in Pennsylvania.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>BV4461
-        .J66</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2705687</titleID><title>The
-        ... annual report of the mission in the County Insane Hospital, and other
-        departments of Blockley</title><author>Jones, Edward C. (Edward Conway), 1820-1865.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54994950</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>HE1031.R43
+        for the Advancement of Christianity in Pennsylvania.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>HE1031.R43
         v.30</callNumber><libraryID>UP-SPECCOL</libraryID><itemID>000051942007</itemID><linkedTitle><titleID>2729719</titleID><title>Charter
         and by-laws of the Church of the Holy Trinity, Philadelphia</title><author>Church
         of the Holy Trinity (Philadelphia, Pa. : Episcopal)</author><yearOfPublication>1861</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>55949969</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>F146
@@ -209,16 +209,16 @@ http_interactions:
         .Y73</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729805</titleID><title>A
         visit to the oil regions of West Virginia, Ohio and Pennsylvania : a special
         report to Forney''s Philadelphia Press, December 5th, 1864</title><author>Young,
-        John Russell, 1840-1899.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>55975100</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HD9539
+        John Russell, 1840-1899.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>55975100</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HV743
+        .P542 C58</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772752</titleID><title>Report
+        of the managers of the Church Home for Children : read to their contributors
+        at the ... annual meeting</title><author>Church Home for Children.</author><yearOfPublication>1857</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>45651449</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HD9539
         .M44 Q85</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772634</titleID><title>Charter
         and by-laws : report of the proceedings at the annual meeting of the stockholders
         held at Philadelphia</title><author>Quicksilver Mining Company.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>11749669</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2772682.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772682</titleID><title>Annual
         report of the Executive Board of the Union Benevolent Association</title><author>Union
         Benevolent Association.</author><yearOfPublication>1832</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>38505605</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2772733.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772733</titleID><title>Information
-        for Army meetings</title><author>United States Christian Commission.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05876476</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>HV743
-        .P542 C58</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772752</titleID><title>Report
-        of the managers of the Church Home for Children : read to their contributors
-        at the ... annual meeting</title><author>Church Home for Children.</author><yearOfPublication>1857</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>45651449</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>HE1031.R43
+        for Army meetings</title><author>United States Christian Commission.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05876476</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>HE1031.R43
         v.39</callNumber><libraryID>UP-SPECCOL</libraryID><itemID>000051976538</itemID><linkedTitle><titleID>2682017</titleID><title>Speech
         of Hon. John M. Read, at the regular quarterly meeting of the Joint Board
         of Directors of the United Delaware and Raritan Canal Company, Camden and
@@ -244,7 +244,10 @@ http_interactions:
         of Hon. John M. Read, of the Supreme Court of Pennsylvania, in favor of the
         constitutionality of the acts of Congress, declaring treasury notes a legal
         tender in payment of debts : delivered at Harrisburg, on Wednesday, May 24,
-        1865</title><author>Pennsylvania. Supreme Court.</author><yearOfPublication>1865</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>03883350</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2745825.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2745825</titleID><title>Opinion
+        1865</title><author>Pennsylvania. Supreme Court.</author><yearOfPublication>1865</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>03883350</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
+        .B29 R39 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750946</titleID><title>To
+        the honorable the judges of the Supreme Court of Pennsylvania, sitting in
+        equity</title><author>Rawle, William Henry, 1823-1889.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2745825.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2745825</titleID><title>Opinion
         read November term, 1867 : between the Raritan and Delaware Bay Railroad Company
         and the Camden and Atlantic Railroad Company, appellants, and the Delaware
         and Raritan Canal and the Camden and Amboy Railroad and Transportation Companies,
@@ -256,10 +259,7 @@ http_interactions:
         of the Supreme Court of Pennsylvania in the case of the Pennsylvania Railroad
         Company against Catharine Henderson, upon a writ of error to the Common Pleas
         of Indiana County : delivered at Harrisburg, on Tuesday, May 15, 1866</title><author>Pennsylvania.
-        Supreme Court.</author><yearOfPublication>1866</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>56402026</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
-        .B29 R39 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750946</titleID><title>To
-        the honorable the judges of the Supreme Court of Pennsylvania, sitting in
-        equity</title><author>Rawle, William Henry, 1823-1889.</author><yearOfPublication>1871</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KFP458
+        Supreme Court.</author><yearOfPublication>1866</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>56402026</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KFP458
         .A34 A2 1870</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750948</titleID><title>An
         act for the erection of the public buildings</title><author>Pennsylvania.</author><yearOfPublication>1870</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>KF228
         .B29 B83 1871</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2750950</titleID><title>In
@@ -396,5 +396,49 @@ http_interactions:
         ed.</edition><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05472123</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>BV2570
         .A1 F6</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772822</titleID><title>The
         foreign missionary</title><author>Foreign missionary (New York, N.Y. : 1842)</author><yearOfPublication>1842</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>01587463</OCLCControlNumber></linkedTitle></BoundwithLinkInfo></TitleInfo></LookupTitleInfoResponse>'
-  recorded_at: Wed, 07 Apr 2021 18:19:11 GMT
+  recorded_at: Tue, 20 Jul 2021 16:45:56 GMT
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true&itemID=000051976934
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Tue, 20 Jul 2021 16:45:56 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>2729719</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Special
+        Collections Library (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>SPC-CATOII</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>HE1031.R43
+        v.30</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000051942007</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>SPC-CATOII</currentLocationID><homeLocationID>SPC-CATOII</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo></TitleInfo><TitleInfo><titleID>2682017</titleID><TitleAvailabilityInfo><totalCopiesAvailable>2</totalCopiesAvailable><libraryWithAvailableCopies>Special
+        Collections Library (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>SPC-CATOII</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>HE1031.R43
+        v.39</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000051976538</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>SPC-CATOII</currentLocationID><homeLocationID>SPC-CATOII</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>XX(2682017.1)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo></TitleInfo><TitleInfo><titleID>2574797</titleID><TitleAvailabilityInfo><totalCopiesAvailable>9</totalCopiesAvailable><libraryWithAvailableCopies>Special
+        Collections Library (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>SPC-CATOII</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>HE1031.R43
+        v.37</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000051946586</itemID><itemTypeID>SERIAL</itemTypeID><currentLocationID>SPC-CATOII</currentLocationID><homeLocationID>SPC-CATOII</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>HE1031.R43
+        v.45</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000051976934</itemID><itemTypeID>SERIAL</itemTypeID><currentLocationID>SPC-CATOII</currentLocationID><homeLocationID>SPC-CATOII</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.1)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.2)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.3)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.4)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.7)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.8)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.9)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Tue, 20 Jul 2021 16:45:57 GMT
 recorded_with: VCR 6.0.0

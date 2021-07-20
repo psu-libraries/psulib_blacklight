@@ -1,5 +1,5 @@
 hold_button_url: http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=
-sirsi_url: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeItemInfo=true&includeBoundTogether=true&titleID=
+sirsi_url: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true
 matomo_id: 10
 datadog:
   enabled: false

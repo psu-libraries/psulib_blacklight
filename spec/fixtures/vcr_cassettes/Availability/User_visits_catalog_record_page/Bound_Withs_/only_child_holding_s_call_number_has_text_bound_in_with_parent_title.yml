@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=BCCAT&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=53953
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=53953
     body:
       encoding: US-ASCII
       string: ''
@@ -29,7 +29,7 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Date:
-      - Wed, 07 Apr 2021 18:19:12 GMT
+      - Tue, 20 Jul 2021 16:45:56 GMT
       Server:
       - SirsiDynix IlsWS
     body:
@@ -47,5 +47,45 @@ http_interactions:
         James, 1667-1707.</author><yearOfPublication>1705</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>12284522</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>AN502.L66M63</callNumber><libraryID>UP-ANNEX</libraryID><itemID>000063670073</itemID><linkedTitle><titleID>56503</titleID><title>The
         moderator [microform]</title><author>Moderator (London, England : 1710)</author><yearOfPublication>1710</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>32899739</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(53953.8)</callNumber><libraryID>UP-ANNEX</libraryID><linkedTitle><titleID>53953</titleID><title>The
         Medley</title><author>Medley (London, England : 1710)</author><yearOfPublication>1710</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>45695298</OCLCControlNumber></linkedTitle></BoundwithLinkInfo></TitleInfo></LookupTitleInfoResponse>'
-  recorded_at: Wed, 07 Apr 2021 18:19:13 GMT
+  recorded_at: Tue, 20 Jul 2021 16:45:57 GMT
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true&itemID=000063670073
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Tue, 20 Jul 2021 16:45:58 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>571994</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Annex
+        (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>CATO-PARK</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>ASIS</classificationID><callNumber>Microfilm
+        E290 reel.1065</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000053560735</itemID><itemTypeID>MICROFORM</itemTypeID><currentLocationID>CATO-PARK</currentLocationID><homeLocationID>CATO-PARK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo></TitleInfo><TitleInfo><titleID>56503</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Annex
+        (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>CATO-2</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>LCPER</classificationID><callNumber>AN502.L66M63</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000063670073</itemID><itemTypeID>MICROFORM</itemTypeID><currentLocationID>CATO-2</currentLocationID><homeLocationID>CATO-2</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Tue, 20 Jul 2021 16:45:57 GMT
 recorded_with: VCR 6.0.0
