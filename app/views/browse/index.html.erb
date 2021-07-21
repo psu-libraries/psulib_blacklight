@@ -1,0 +1,9 @@
+
+<%= params.inspect %>
+
+<ul>
+<% @documents.map do |doc| %>
+  <li><%= doc.call_number %></li>
+<% end %>
+
+</ul>

@@ -3,11 +3,6 @@
 # @abstact Creates a fake marc-like Solr record
 
 class RecordFactory
-  ALPHA = ('A'..'Z').to_a
-  ARABC = ('0'..'9').to_a
-
-  CHAR_MAP = ALPHA.zip(ALPHA.reverse).to_h.merge(ARABC.zip(ARABC.reverse).to_h)
-
   def initialize
     record
   end
@@ -19,8 +14,8 @@ class RecordFactory
       title_display_ssm: Faker::Lorem.sentence,
       publication_display_ssm: Faker::Company.name,
       call_number_ssm: call_number,
-      forward_shelf_key_sim: shelf_key,
-      reverse_shelf_key_sim: reverse_shelf_key,
+      forward_shelfkey_sim: call_number,
+      reverse_shelfkey_sim: reverse_shelf_key,
       format: formats.sample
     }
   end
@@ -32,7 +27,7 @@ class RecordFactory
     end
 
     def call_number
-      @call_number ||= lc_call_number
+      @call_number ||= Faker::Alphanumeric.alphanumeric(number: 10).upcase
     end
 
     def formats
@@ -69,13 +64,14 @@ class RecordFactory
     end
 
     def shelf_key
-      Lcsort.normalize(call_number)
+      Lcsort.normalize(call_number) || call_number
     end
 
     def reverse_shelf_key
-      shelf_key
+      call_number
         .chars
-        .map { |char| CHAR_MAP.fetch(char, char) }
+        .map { |char| ShelfList::CHAR_MAP.fetch(char, char) }
+        .append('~')
         .join
     end
 end

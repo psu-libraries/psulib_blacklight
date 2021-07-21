@@ -3,45 +3,66 @@
 # @abstract Returns a set of Solr documents for a given call number query.
 
 class ShelfList
-  def self.call(call_number:)
-    new(call_number).documents
+  FORWARD_CHARS = ('0'..'9').to_a + ('A'..'Z').to_a
+  CHAR_MAP = FORWARD_CHARS.zip(FORWARD_CHARS.reverse).to_h
+
+  def self.call(args)
+    new(args).documents
   end
 
-  attr_reader :query
+  def self.reverse_shelf_key(key)
+    key
+      .chars
+      .map { |char| CHAR_MAP.fetch(char, char) }
+      .append('~')
+      .join
+  end
 
-  def initialize(query)
+  def self.normalize(call_number)
+    Lcsort.normalize(call_number) || call_number
+  end
+
+  attr_reader :query, :forward_limit, :reverse_limit
+
+  def initialize(query:, forward_limit: 10, reverse_limit: 10)
     @query = query
+    @reverse_limit = reverse_limit
+    @forward_limit = forward_limit
   end
 
   def documents
-    forward_documents = forward.map { |key| document_query(field: 'forward_shelf_key_sim', value: key) }
-    reverse_documents = reverse.map { |key| document_query(field: 'reverse_shelf_key_sim', value: key) }
-
-    (reverse_documents.reverse + forward_documents).flatten
+    {
+      after: forward.map { |key| document_query(field: 'forward_shelfkey_sim', value: key) }.flatten,
+      before: reverse.map { |key| document_query(field: 'reverse_shelfkey_sim', value: key) }.flatten
+    }
   end
 
   def forward
-    terms_query(field: 'forward_shelf_key_sim')
+    terms_query(field: 'forward_shelfkey_sim', limit: forward_limit)
       .each_slice(2)
       .map(&:first)
   end
 
   def reverse
-    terms_query(field: 'reverse_shelf_key_sim', value: reverse_query)
+    terms_query(field: 'reverse_shelfkey_sim', value: self.class.reverse_shelf_key(query), limit: reverse_limit)
       .each_slice(2)
       .map(&:first)
   end
 
-  def reverse_query
-    RecordFactory::CHAR_MAP.fetch(query, query)
-  end
+  def terms_query(field:, limit:, value: nil)
+    return [] if limit.zero?
 
-  def terms_query(field:, value: nil)
-    value ||= query
     Blacklight
       .default_index
       .connection
-      .get('terms', params: { 'terms' => true, 'terms.fl' => field, 'terms.lower' => value })
+      .get('terms',
+           params: {
+             'terms' => true,
+             'terms.lower.incl' => true,
+             'terms.fl' => field,
+             'terms.lower' => (value || query),
+             'terms.limit' => limit
+           })
       .dig('terms', field) || []
   end
 
