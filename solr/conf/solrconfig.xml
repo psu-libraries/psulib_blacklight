@@ -99,7 +99,9 @@
        -->
        <str name="qf">
          id
+         title_unstem_search^150000
          title_245ab_unstem_search^100000
+         title_tsim^50000
          title_245ab_tsim^25000
          title_addl_unstem_search^5000
          title_addl_tsim^2500
@@ -125,7 +127,9 @@
          all_text_timv
        </str>
        <str name="pf">
-         title_245ab_unstem_search^1000000
+         title_unstem_search^1000000
+         title_245ab_unstem_search^750000
+         title_tsim^300000
          title_245ab_tsim^250000
          title_addl_unstem_search^50000
          title_addl_tsim^25000
