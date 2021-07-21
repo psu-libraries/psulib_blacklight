@@ -501,7 +501,7 @@ DEPENDENCIES
   niftany (~> 0.9)
   pry-byebug
   puma (~> 4.3)
-  rails (~> 6.0.3)
+  rails (~> 6.0.4)
   rails-controller-testing
   redis (~> 4.2)
   rsolr (>= 1.0)
@@ -521,4 +521,4 @@ DEPENDENCIES
   webpacker
 
 BUNDLED WITH
-   2.2.22
+   2.2.24
