@@ -10,24 +10,24 @@ class ShelfList
     new(args).documents
   end
 
-  def self.reverse_shelf_key(key)
-    key
+  def self.reverse_shelfkey(key)
+    forward_shelfkey(key)
       .chars
       .map { |char| CHAR_MAP.fetch(char, char) }
       .append('~')
       .join
   end
 
-  def self.normalize(call_number)
+  def self.forward_shelfkey(call_number)
     Lcsort.normalize(call_number) || call_number
   end
 
   attr_reader :query, :forward_limit, :reverse_limit
 
-  def initialize(query:, forward_limit: 10, reverse_limit: 10)
+  def initialize(query:, forward_limit:, reverse_limit:)
     @query = query
-    @reverse_limit = reverse_limit
-    @forward_limit = forward_limit
+    @reverse_limit = (reverse_limit || 10).to_i
+    @forward_limit = (forward_limit || 10).to_i
   end
 
   def documents
@@ -44,7 +44,7 @@ class ShelfList
   end
 
   def reverse
-    terms_query(field: 'reverse_shelfkey_sim', value: self.class.reverse_shelf_key(query), limit: reverse_limit)
+    terms_query(field: 'reverse_shelfkey_sim', value: self.class.reverse_shelfkey(query), limit: reverse_limit)
       .each_slice(2)
       .map(&:first)
   end

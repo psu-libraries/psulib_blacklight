@@ -14,8 +14,8 @@ class RecordFactory
       title_display_ssm: Faker::Lorem.sentence,
       publication_display_ssm: Faker::Company.name,
       call_number_ssm: call_number,
-      forward_shelfkey_sim: call_number,
-      reverse_shelfkey_sim: reverse_shelf_key,
+      forward_shelfkey_sim: forward_shelfkey,
+      reverse_shelfkey_sim: reverse_shelfkey,
       format: formats.sample
     }
   end
@@ -27,7 +27,7 @@ class RecordFactory
     end
 
     def call_number
-      @call_number ||= Faker::Alphanumeric.alphanumeric(number: 10).upcase
+      @call_number ||= lc_call_number
     end
 
     def formats
@@ -63,15 +63,11 @@ class RecordFactory
       Faker::Date.between(from: '1800-01-01', to: Date.today).year
     end
 
-    def shelf_key
-      Lcsort.normalize(call_number) || call_number
+    def forward_shelfkey
+      ShelfList.forward_shelfkey(call_number)
     end
 
-    def reverse_shelf_key
-      call_number
-        .chars
-        .map { |char| ShelfList::CHAR_MAP.fetch(char, char) }
-        .append('~')
-        .join
+    def reverse_shelfkey
+      ShelfList.reverse_shelfkey(call_number)
     end
 end

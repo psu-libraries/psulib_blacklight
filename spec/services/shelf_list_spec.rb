@@ -15,14 +15,14 @@ RSpec.describe ShelfList do
     Blacklight.default_index.connection.commit
   end
 
-  # after(:all) do
-  #   Blacklight.default_index.connection.delete_by_query('*:*')
-  #
-  #   docs = File.open('spec/fixtures/current_fixtures.json').each_line.map { |l| JSON.parse(l) }
-  #   Blacklight.default_index.connection.add(docs)
-  #
-  #   Blacklight.default_index.connection.commit
-  # end
+  after(:all) do
+    Blacklight.default_index.connection.delete_by_query('*:*')
+
+    docs = File.open('spec/fixtures/current_fixtures.json').each_line.map { |l| JSON.parse(l) }
+    Blacklight.default_index.connection.add(docs)
+
+    Blacklight.default_index.connection.commit
+  end
 
   let(:natural_sort) do
     Blacklight
@@ -32,7 +32,7 @@ RSpec.describe ShelfList do
       .dig('response', 'docs')
       .map { |doc| doc['call_number_ssm'] }
       .flatten
-      .sort
+      .sort { |first, second| described_class.forward_shelfkey(first) <=> described_class.forward_shelfkey(second) }
   end
 
   # @note This is more of a "sanity check" to verify that the sort order of both our forward and reverse shelf keys
@@ -76,14 +76,16 @@ RSpec.describe ShelfList do
 
         next if combined_set.empty?
 
-        # Check to see if our combined backward + forward results exist in the same order as a listing of all the
-        # call numbers.
+        # Check to see if our combined backward + forward results exist in the same order as a listing of all the call
+        # numbers.
+        # rubocop:disable Performance/MethodObjectAsBlock
         if natural_sort.each_cons(combined_set.length).any?(&combined_set.method(:==))
           puts "    Passed: #{params.inspect}"
         else
           puts "    FAILED: #{params.inspect}"
           failed = true
         end
+        # rubocop:enable Performance/MethodObjectAsBlock
       end
 
       expect(failed).to be(false)
