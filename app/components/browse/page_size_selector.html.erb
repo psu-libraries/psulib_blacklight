@@ -1,0 +1,25 @@
+<div class="dropdown">
+  <button
+    class="btn btn-outline-secondary dropdown-toggle"
+    type="button"
+    id="page-size-btn"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false">
+    <%= params[:length] || 10 %> per page
+  </button>
+  <div class="dropdown-menu" aria-labelledby="page-size-btn">
+    <%= link_to '10',
+                link_path(10),
+                class: 'dropdown-item' %>
+    <%= link_to '20',
+                link_path(20),
+                class: 'dropdown-item' %>
+    <%= link_to '50',
+                link_path(50),
+                class: 'dropdown-item' %>
+    <%= link_to '100',
+                link_path(100),
+                class: 'dropdown-item' %>
+  </div>
+</div>

@@ -223,6 +223,7 @@
          id,
          isbn_valid_ssm,
          lccn_ssim,
+         library_facet,
          oclc_number_ssim,
          overall_imprint_display_ssm,
          publication_display_ssm,

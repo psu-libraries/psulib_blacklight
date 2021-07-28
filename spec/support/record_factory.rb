@@ -16,7 +16,8 @@ class RecordFactory
       call_number_ssm: call_number,
       forward_lc_shelfkey: forward_shelfkey,
       reverse_lc_shelfkey: reverse_shelfkey,
-      format: formats.sample
+      format: formats.sample,
+      library_facet: libraries.sample
     }
   end
 
@@ -39,6 +40,14 @@ class RecordFactory
         Video
         Musical Score
       )
+    end
+
+    def libraries
+      [
+        'Annex',
+        'Maps and Geospatial Information',
+        'Pattee Library and Paterno Library Stacks'
+      ]
     end
 
     # @return String

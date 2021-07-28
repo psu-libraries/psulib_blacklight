@@ -1,0 +1,13 @@
+<% if prev_item %>
+  <%= link_to 'Previous',
+              browse_path(ending: prev_item.call_number, length: length),
+              class: 'btn btn-primary',
+              title: "(ends with #{prev_item.call_number})" %>
+<% end %>
+
+<% if next_item %>
+  <%= link_to 'Next',
+              browse_path(starting: next_item.call_number, length: length),
+              class: 'btn btn-primary',
+              title: "(starts with #{next_item.call_number})" %>
+<% end %>
