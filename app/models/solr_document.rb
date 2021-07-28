@@ -38,4 +38,12 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  def location_display
+    locations = @_source['library_facet']
+
+    return nil if locations.blank?
+
+    locations.length > 3 ? 'Multiple Locations' : locations.join(' / ')
+  end
 end
