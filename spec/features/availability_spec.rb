@@ -33,7 +33,7 @@ RSpec.feature 'Availability', :vcr, type: :feature do
     it 'that has holdings available in exactly 2 locations' do
       visit '/?utf8=✓&search_field=all_fields&q=23783767'
       expect(page).to have_selector '.availability-snippet',
-                                    exact_text: 'Hazleton, Mont Alto'
+                                    exact_text: 'Penn State Hazleton, Penn State Mont Alto'
     end
 
     it 'that has holdings available in only 1 location' do
@@ -248,7 +248,7 @@ RSpec.feature 'Availability', :vcr, type: :feature do
           'Request Material',
           href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=107&'\
               'Genre=BOOK&Location=Rare%20Books%20%26%20Mss%2C%201st%20Floor%20Paterno%2C%2'\
-              '0American%20Lit.%20Coll.&ItemNumber=000021534850&CallNumber=AP2.O354%201870%'\
+              '0American%20Lit.%20Collection&ItemNumber=000021534850&CallNumber=AP2.O354%201870%'\
               '2F71&ItemTitle=The%20Christmas%20locket&ItemAuthor=&ItemEdition=&ItemPublish'\
               'er=Roberts%20brothers&ItemPlace=Boston&ItemDate=1870-&ItemInfo1=&SubLocation'\
               '=Christmas%3B%20Nathaniel%20Hawthorne'
@@ -374,7 +374,7 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         bound_holding = '//div[@data-library="UP-ANNEX"]//tr[td//text()[contains(., \'Microfilm E290 reel.1065\')]]'
         within :xpath, bound_holding do
           expect(page).to have_content 'Microfilm, Microfiche, etc.'
-          expect(page).to have_content 'Submit request for annexed material'
+          expect(page).to have_content 'Use I Want It to request annexed material'
         end
       end
 
