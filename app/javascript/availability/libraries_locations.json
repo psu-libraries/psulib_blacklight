@@ -773,7 +773,7 @@
     "YORK": "Penn State York"
   },
   "request_via_ill": {
-    "BINDERY-DN": "Copy unavailable, request via Interlibrary Loan".
+    "BINDERY-DN": "Copy unavailable, request via Interlibrary Loan",
     "BINDERY-HY": "Copy unavailable, request via Interlibrary Loan",
     "BINDERY": "Copy unavailable, request via Interlibrary Loan",
     "BINDPRP-DN": "Copy unavailable, request via Interlibrary Loan",
