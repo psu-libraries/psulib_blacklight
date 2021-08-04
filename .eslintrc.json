@@ -6,7 +6,8 @@
         "jquery": true
     },
     "extends": [
-        "eslint:recommended"
+        "eslint:recommended",
+        "plugin:react/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -19,5 +20,10 @@
     },
     "rules": {
         "max-len": ["error", { "code": 120 }]
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }
