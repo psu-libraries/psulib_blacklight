@@ -62,10 +62,8 @@ module PsulibBlacklight
         @update_config ||= modify_collection
         create_alias
       else
-        puts 'collection exists skipping.'
         @update_config ||= modify_collection
-        # Return nil to indicate we didn't create a collection
-        nil
+        puts 'collection exists skipping.'
       end
     end
 
