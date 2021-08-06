@@ -18,7 +18,11 @@ RSpec.describe PsulibBlacklight::SolrManager do
     context 'when collection does not exist' do
       before do
         stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LIST")
-          .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "collections":[""]}')
+          .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}, "collections":[""]}').then
+          .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11},
+                    "collections":["psul_catalog_v1"]}')
+        stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=MODIFY")
+          .to_return(status: 200)
       end
 
       it 'does add a new collection' do

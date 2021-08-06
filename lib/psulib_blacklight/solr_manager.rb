@@ -59,7 +59,10 @@ module PsulibBlacklight
       if next_collection_version == 1
         puts "creating collection #{next_collection_version}"
         create_collection
+        @update_config ||= modify_collection
+        create_alias
       else
+        @update_config ||= modify_collection
         puts 'collection exists skipping.'
       end
     end
