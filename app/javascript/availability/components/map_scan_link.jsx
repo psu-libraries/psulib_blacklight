@@ -1,17 +1,20 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import availability from '../index.js';
 
 const MapScanLink = ({holding}) => {
-    if (availability.isUPSpecialMap(holding)) {
-        return (
-            <div>
-                <a target="_blank" rel="noreferrer" href={availability.mapScanUrl}>Request scan</a>
-            </div>
-        );
+    const isUPSpecialMap = () => {
+        return ['MAPSPEC'].includes(holding.itemTypeID) && ['UP-MAPS'].includes(holding.libraryID);
+    };
+
+    if (!isUPSpecialMap()) {
+        return null;
     }
 
-    return null;
+    return (
+        <div>
+            <a target="_blank" rel="noreferrer" href={availability.mapScanUrl}>Request scan</a>
+        </div>
+    );
 };
 
 // eslint-react: defines valid prop types passed to this component

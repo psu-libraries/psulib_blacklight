@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import PublicNote from './public_note.jsx';
 import LocationInfo from './location_info.jsx';
