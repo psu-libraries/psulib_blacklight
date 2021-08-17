@@ -54,3 +54,6 @@ RSpec/NestedGroups:
   
 Capybara/FeatureMethods:
   Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false

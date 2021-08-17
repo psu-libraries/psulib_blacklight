@@ -1,23 +1,18 @@
 # frozen_string_literal: true
 
-require 'rsolr'
-require 'json'
+require Rails.root.join('spec/support/catalog_factory.rb')
+require Rails.root.join('spec/support/catalog_cleaner.rb')
 
 namespace :blackcat do
   namespace :solr do
     desc 'Posts fixtures to Solr'
     task index: :environment do
-      solr = RSolr.connect url: Blacklight.connection_config[:url]
-      docs = File.open('spec/fixtures/current_fixtures.json').each_line.map { |l| JSON.parse(l) }
-      solr.add docs
-      solr.update data: '<commit/>', headers: { 'Content-Type' => 'text/xml' }
+      CatalogFactory.load_defaults
     end
 
     desc 'Delete fixtures from Solr'
     task deindex: :environment do
-      solr = RSolr.connect url: Blacklight.connection_config[:url]
-      solr.update data: '<delete><query>*:*</query></delete>', headers: { 'Content-Type' => 'text/xml' }
-      solr.update data: '<commit/>', headers: { 'Content-Type' => 'text/xml' }
+      CatalogCleaner.clean_solr
     end
   end
 
