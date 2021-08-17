@@ -212,22 +212,23 @@
 
        <!-- list fields to be displayed in the search results page -->
        <str name="fl">
+         author_corp_display_ssm,
+         author_meeting_display_ssm,
+         author_person_display_ssm,
+         call_number_lc_ssm,
+         edition_display_ssm,
+         format,
+         full_links_struct,
+         ht_access_ss
          id,
+         isbn_valid_ssm,
+         lccn_ssim,
+         oclc_number_ssim,
+         overall_imprint_display_ssm,
+         publication_display_ssm,
          score,
          title_display_ssm,
          title_latin_display_ssm,
-         author_person_display_ssm,
-         author_corp_display_ssm,
-         author_meeting_display_ssm,
-         format,
-         overall_imprint_display_ssm,
-         publication_display_ssm,
-         edition_display_ssm,
-         full_links_struct,
-         isbn_valid_ssm,
-         oclc_number_ssim,
-         lccn_ssim,
-         ht_access_ss
        </str>
 
        <!-- list fields to be displayed as facets -->
@@ -255,6 +256,30 @@
         bound_with_title_ssm: [json]</str>
       <str name="rows">1</str>
       <str name="q">{!term f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
+    </lst>
+  </requestHandler>
+
+  <!-- requests a set of documents for building a virtual shelf for call number browsing -->
+  <requestHandler name="shelf" class="solr.SearchHandler" >
+    <lst name="defaults">
+      <str name="echoParams">explicit</str>
+      <str name="fl">
+        call_number_lc_ssm
+        keymap_struct
+        author_person_display_ssm
+        edition_display_ssm
+        format
+        id
+        library_facet
+        overall_imprint_display_ssm
+        publication_display_ssm
+        title_display_ssm
+      </str>
+      <str name="defType">lucene</str>
+
+      <!-- It's possible that there would be more items present than the maximum set here because a given shelf key
+           can occur in more than one item. -->
+      <str name="rows">100</str>
     </lst>
   </requestHandler>
 
