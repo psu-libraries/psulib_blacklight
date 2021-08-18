@@ -244,10 +244,10 @@ class CatalogController < ApplicationController
     config.add_show_field 'serials_continues_in_part_display_ssim', label: 'Continues in Part', helper_method: :title_links
     config.add_show_field 'serials_continued_in_part_by_display_ssim', label: 'Continued in Part By', helper_method: :title_links
     config.add_show_field 'serials_formed_from_display_ssim', label: 'Formed From', helper_method: :title_links
-    config.add_show_field 'serials_absorbs_display_ssim', label: 'Asborbs', helper_method: :title_links
-    config.add_show_field 'serials_absorbed_by_display_ssim', label: 'Asborbed By', helper_method: :title_links
-    config.add_show_field 'serials_absorbs_in_part_display_ssim', label: 'Asborbs in Part', helper_method: :title_links
-    config.add_show_field 'serials_absorbed_in_part_by_display_ssim', label: 'Asborbed in Part By', helper_method: :title_links
+    config.add_show_field 'serials_absorbs_display_ssim', label: 'Absorbs', helper_method: :title_links
+    config.add_show_field 'serials_absorbed_by_display_ssim', label: 'Absorbed By', helper_method: :title_links
+    config.add_show_field 'serials_absorbs_in_part_display_ssim', label: 'Absorbs in Part', helper_method: :title_links
+    config.add_show_field 'serials_absorbed_in_part_by_display_ssim', label: 'Absorbed in Part By', helper_method: :title_links
     config.add_show_field 'serials_separated_from_display_ssim', label: 'Separated From', helper_method: :title_links
     config.add_show_field 'serials_split_into_display_ssim', label: 'Split Into', helper_method: :title_links
     config.add_show_field 'serials_merged_to_form_display_ssim', label: 'Merged to Form', helper_method: :title_links
