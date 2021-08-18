@@ -64,4 +64,36 @@ RSpec.describe ShelfItem do
       it { is_expected.to be_nearby }
     end
   end
+
+  describe ShelfItem::DecoratedDocument do
+    it 'extends SimpleDelegator' do
+      expect(described_class).to be < SimpleDelegator
+    end
+
+    describe 'location_display' do
+      it 'shows the correct text for a single location' do
+        doc = described_class.new(SolrDocument.new({ 'library_facet': ['Library 1'] }))
+
+        expect(doc.location_display).to eq 'Library 1'
+      end
+
+      it 'shows the correct text for 3 locations' do
+        doc = described_class.new(SolrDocument.new({ 'library_facet': ['Lib 1', 'Lib 2', 'Lib 3'] }))
+
+        expect(doc.location_display).to eq 'Lib 1 / Lib 2 / Lib 3'
+      end
+
+      it 'shows the correct text for 4 locations' do
+        doc = described_class.new(SolrDocument.new({ 'library_facet': ['1', '2', '3', '4'] }))
+
+        expect(doc.location_display).to eq 'Multiple Locations'
+      end
+
+      it 'returns nil if no library_facet is set' do
+        doc = described_class.new(SolrDocument.new({}))
+
+        expect(doc.location_display).to be_nil
+      end
+    end
+  end
 end

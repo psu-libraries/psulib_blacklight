@@ -30,7 +30,17 @@ class ShelfItem
   end
 
   def add(document)
-    @documents << SolrDocument.new(document)
+    @documents << DecoratedDocument.new(SolrDocument.new(document))
+  end
+
+  class DecoratedDocument < SimpleDelegator
+    def location_display
+      locations = self['library_facet']
+
+      return nil if locations.blank?
+
+      locations.length > 3 ? 'Multiple Locations' : locations.join(' / ')
+    end
   end
 
   private
