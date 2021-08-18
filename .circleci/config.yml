@@ -6,7 +6,7 @@ orbs:
 jobs:
   release:
     docker:
-      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.0.6
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:$CI_UTILS_IMAGE_TAG
     environment:
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       REGISTRY_REPO: library/psulib_blacklight
@@ -26,7 +26,7 @@ jobs:
 
   publish:
     docker:
-      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.0.6
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:$CI_UTILS_IMAGE_TAG
         user: root
     steps:
       - setup_remote_docker:
@@ -48,7 +48,7 @@ jobs:
             echo "Digest is: $(</tmp/digest.txt)"
   deploy:
     docker:
-      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v1.0.6
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:$CI_UTILS_IMAGE_TAG
     environment:
       CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
     steps:
@@ -117,6 +117,8 @@ workflows:
   blacklight:
     jobs:
       - release:
+          context:
+            - org-global
           name: "Release"
           filters:
             tags:
@@ -127,12 +129,16 @@ workflows:
                 - /.*/
       - test
       - publish:
+          context: 
+            - org-global
           filters:
             branches:
               only:
                 - main
                 - /preview\/.*/
       - deploy:
+          context: 
+            - org-global
           requires:
             - test
             - publish
