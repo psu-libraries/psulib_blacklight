@@ -1,0 +1,9 @@
+<h1>Browse by Subject</h1>
+
+<%= render Browse::PrefixSelector.new %>
+
+<% if @subject_list.empty? %>
+  <%= render 'empty' %>
+<% else %>
+  <%= render 'subjects', subject_list: @subject_list %>
+<% end %>
