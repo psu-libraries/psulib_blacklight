@@ -5,8 +5,11 @@ class CatalogController < ApplicationController
   include BlacklightRangeLimit::ControllerOverride
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
-  include ::ReportIssue
+  include Browse
+  include ReportIssue
   include SearchContext
+
+  before_action :redirect_browse
 
   def index
     cache_key = nil
@@ -398,6 +401,11 @@ class CatalogController < ApplicationController
     config.add_search_field('publisher') do |field|
       field.include_in_simple_select = false
       field.solr_parameters = { qf: 'publisher_manufacturer_tsim' }
+    end
+
+    config.add_search_field('browse_cn') do |field|
+      field.include_in_advanced_search = false
+      field.label = 'Browse by Call Number'
     end
     # config.add_search_field('Publisher')
     # config.add_search_field('Publication date')

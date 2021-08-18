@@ -12,4 +12,12 @@ RSpec.describe 'Catalog', type: :request do
       expect(response).to have_http_status(:success)
     end
   end
+
+  describe 'Browse Search Redirects' do
+    it 'browse_cn redirects to browse UI' do
+      get '/?search_field=browse_cn&q=ABC'
+
+      expect(response).to redirect_to '/browse/?nearby=ABC'
+    end
+  end
 end
