@@ -10,6 +10,7 @@ RSpec.describe Holdings do
         'edition_display_ssm',
         'format',
         'id',
+        'library_facet',
         'overall_imprint_display_ssm',
         'publication_display_ssm',
         'title_display_ssm'
