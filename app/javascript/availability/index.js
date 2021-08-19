@@ -15,6 +15,7 @@ const availability = {
     allLocations: locations.locations,
     allLibraries: locations.libraries,
     illiadLocations: locations.request_via_ill,
+    reservesScanLocations: locations.reserves_scan,
     allItemTypes: item_types.item_types,
     reserveCirculationRules: reserve_circulation_rules.reserve_circulation_rules,
     movedLocations: [],
@@ -523,7 +524,7 @@ const availability = {
     },
 
     isReserves(holding) {
-        return ['RESERVE-EM', 'RESERVE-EG', 'RESERVE-PM'].includes(holding.locationID);
+        return availability.reservesScanLocations.includes(holding.locationID);
     },
 
     isMicroform(holding) {
