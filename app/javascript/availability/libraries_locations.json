@@ -773,5 +773,7 @@
     "REPAIR": "Copy unavailable, request via Interlibrary Loan",
     "CANCELED": "Copy unavailable, request via Interlibrary Loan",
     "CHECKEDOUT": "Checked out, request through Interlibrary Loan"
-  }
+  },
+  "reserves_scan": [
+  ]
 }
