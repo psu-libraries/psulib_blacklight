@@ -34,6 +34,7 @@ Layout/LineLength:
 
 Lint/MissingSuper:
   Exclude:
+    - 'app/components/browse/*'
     - 'app/models/concerns/null_object_pattern.rb'
 
 Rails/ContentTag:
@@ -53,4 +54,7 @@ RSpec/NestedGroups:
   Enabled: false
   
 Capybara/FeatureMethods:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
   Enabled: false

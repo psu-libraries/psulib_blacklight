@@ -4,6 +4,11 @@ class CatalogCleaner
   def self.clean_redis
     Redis.new(url: Settings.redis.sessions.uri).flushdb
   end
+
+  def self.clean_solr
+    Blacklight.default_index.connection.delete_by_query('*:*')
+    Blacklight.default_index.connection.commit
+  end
 end
 
 RSpec.configure do |config|
