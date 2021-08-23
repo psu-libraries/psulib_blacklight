@@ -34,22 +34,27 @@ group :development do
   gem 'foreman', '~> 0.63.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console'
 end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara'
   gem 'niftany', '~> 0.9'
   gem 'pry-byebug'
+  gem 'sinatra'
+  gem 'sqlite3'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'launchy'
   gem 'rails-controller-testing'
   gem 'rspec-its'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'simplecov', '< 0.18', require: false # CodeClimate does not work with .18 or later
-  gem 'sinatra'
-  gem 'sqlite3'
   gem 'vcr'
   gem 'webdrivers', '~> 4.0'
   gem 'webmock'
