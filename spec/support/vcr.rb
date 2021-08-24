@@ -3,7 +3,7 @@
 require 'vcr'
 
 VCR.configure do |c|
-  vcr_mode = ENV['VCR_MODE'] =~ /rec/i ? :all : :once
+  vcr_mode = /rec/i.match?(ENV['VCR_MODE']) ? :all : :once
 
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   c.hook_into :webmock
