@@ -13,4 +13,19 @@ class ApplicationController < ActionController::Base
   ActionController::Parameters.permit_all_parameters = true
 
   helper_method :blackcat_config
+
+  before_action do
+    authorize_profiler
+  end
+
+  private
+
+    # @note The Matomo ID is used to capture statistics from our production instance. This is very unlikely to change.
+    # We can use this method to limit profiling to only dev and preview instances until we can implement a way to limit
+    # it to particular users and UMGs.
+    def authorize_profiler
+      return if Settings.matomo_id.to_i == 7
+
+      Rack::MiniProfiler.authorize_request
+    end
 end

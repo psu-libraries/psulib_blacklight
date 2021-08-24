@@ -195,6 +195,7 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
+    flamegraph (0.9.5)
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
@@ -254,6 +255,7 @@ GEM
     marc-fastxmlwriter (1.0.0)
       marc (~> 1.0)
     marcel (1.0.1)
+    memory_profiler (1.0.0)
     method_source (1.0.0)
     mini_mime (1.1.0)
     mini_portile2 (2.5.3)
@@ -292,6 +294,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
+    rack-mini-profiler (2.3.2)
+      rack (>= 1.2.0)
     rack-protection (2.1.0)
       rack
     rack-proxy (0.6.5)
@@ -425,6 +429,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    stackprof (0.2.17)
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -494,15 +499,18 @@ DEPENDENCIES
   devise (>= 4.6.0)
   devise-guests (~> 0.6)
   faraday
+  flamegraph
   foreman (~> 0.63.0)
   high_voltage (~> 3.1)
   lcsort (~> 0.9)
   listen (>= 3.0.5, < 3.2)
   lograge
+  memory_profiler
   mysql2 (>= 0.4.4, < 0.6.0)
   niftany (~> 0.9)
   pry-byebug
   puma (~> 4.3)
+  rack-mini-profiler
   rails (~> 6.0.4)
   rails-controller-testing
   redis (~> 4.2)
@@ -516,6 +524,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
+  stackprof
   vcr
   web-console
   webdrivers (~> 4.0)
