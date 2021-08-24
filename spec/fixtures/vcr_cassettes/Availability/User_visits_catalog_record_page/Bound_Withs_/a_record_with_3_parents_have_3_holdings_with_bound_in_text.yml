@@ -29,7 +29,7 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Date:
-      - Tue, 20 Jul 2021 16:45:56 GMT
+      - Mon, 23 Aug 2021 21:03:13 GMT
       Server:
       - SirsiDynix IlsWS
     body:
@@ -163,7 +163,10 @@ http_interactions:
         ... annual report of the mission in the County Insane Hospital, and other
         departments of Blockley</title><author>Jones, Edward C. (Edward Conway), 1820-1865.</author><yearOfPublication>18</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>54994950</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2708267.2)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2708267</titleID><title>Shield''s
         appeal : reply of appellant to appellee''s argument</title><author>Shields,
-        David, active 1832-1849.</author><yearOfPublication>1849</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>55045520</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>BX8
+        David, active 1832-1849.</author><yearOfPublication>1849</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>55045520</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2729753.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729753</titleID><title>The
+        bankrupt law : speech of Thomas A. Jenckes, of Rhode Island, delivered in
+        the House of Representatives, June 1, 1864</title><author>Jenckes, Thomas
+        A. (Thomas Allen), 1818-1875.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05370320</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>BX8
         .T48 1860b</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729731</titleID><title>Unity
         and its restoration : addressed to all Christians who desire to hold the faith
         in unity of the spirit, and in the bond of peace</title><author>Thompson,
@@ -172,10 +175,7 @@ http_interactions:
         to General M''Call''s report of the Pennsylvania reserves in the Peninsula</title><author>McCall,
         George A. (George Archibald), 1802-1868.</author><yearOfPublication>1863</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>14103397</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2729752.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729752</titleID><title>Discourse
         delivered at the Synagogue Rodeph Shalom (Followers of Peace)</title><author>Dropsie,
-        Moses A. (Moses Aaron), 1821-1905.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>10903304</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2729753.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729753</titleID><title>The
-        bankrupt law : speech of Thomas A. Jenckes, of Rhode Island, delivered in
-        the House of Representatives, June 1, 1864</title><author>Jenckes, Thomas
-        A. (Thomas Allen), 1818-1875.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05370320</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2729757.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729757</titleID><title>The
+        Moses A. (Moses Aaron), 1821-1905.</author><yearOfPublication>1864</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>10903304</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>XX(2729757.1)</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2729757</titleID><title>The
         practice of justice our only security for the future : remarks of Hon. William
         D. Kelley, of Pennsylvania, in support of his proposed amendment to the bill
         "To guaranty to certain states whose governments have been usurped or overthrown,
@@ -396,7 +396,7 @@ http_interactions:
         ed.</edition><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>05472123</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>BV2570
         .A1 F6</callNumber><libraryID>UP-SPECCOL</libraryID><linkedTitle><titleID>2772822</titleID><title>The
         foreign missionary</title><author>Foreign missionary (New York, N.Y. : 1842)</author><yearOfPublication>1842</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC></UPC><OCLCControlNumber>01587463</OCLCControlNumber></linkedTitle></BoundwithLinkInfo></TitleInfo></LookupTitleInfoResponse>'
-  recorded_at: Tue, 20 Jul 2021 16:45:56 GMT
+  recorded_at: Mon, 23 Aug 2021 21:03:13 GMT
 - request:
     method: get
     uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true&itemID=000051976934
@@ -426,7 +426,7 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Date:
-      - Tue, 20 Jul 2021 16:45:56 GMT
+      - Mon, 23 Aug 2021 21:03:13 GMT
       Server:
       - SirsiDynix IlsWS
     body:
@@ -440,5 +440,5 @@ http_interactions:
         Collections Library (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>SPC-CATOII</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>HE1031.R43
         v.37</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000051946586</itemID><itemTypeID>SERIAL</itemTypeID><currentLocationID>SPC-CATOII</currentLocationID><homeLocationID>SPC-CATOII</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>HE1031.R43
         v.45</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000051976934</itemID><itemTypeID>SERIAL</itemTypeID><currentLocationID>SPC-CATOII</currentLocationID><homeLocationID>SPC-CATOII</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.1)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.2)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.3)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.4)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.7)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.8)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.9)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo></TitleInfo></LookupTitleInfoResponse>
-  recorded_at: Tue, 20 Jul 2021 16:45:57 GMT
+  recorded_at: Mon, 23 Aug 2021 21:03:13 GMT
 recorded_with: VCR 6.0.0

@@ -29,15 +29,14 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Date:
-      - Wed, 07 Apr 2021 18:19:10 GMT
+      - Mon, 23 Aug 2021 21:03:27 GMT
       Server:
       - SirsiDynix IlsWS
     body:
       encoding: ASCII-8BIT
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
-        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>5112336</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Pattee
-        Library and Paterno Library Stacks (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>JUVENIL-ED</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>HARRISBURG</libraryID><classificationID>LC</classificationID><callNumber>PZ8.G3295Su
-        2008</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000067841677</itemID><itemTypeID>JUVENILEBK</itemTypeID><currentLocationID>DEPTCHARGE</currentLocationID><homeLocationID>JUVENILEHB</homeLocationID><dueDate>2020-05-07T00:00:00.078-04:00</dueDate><chargeable>false</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{GOBI}</staffNote></ItemInfo></CallInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LC</classificationID><callNumber>Fiction
-        G4672sun 2008</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000065925379</itemID><itemTypeID>JUVENILEBK</itemTypeID><currentLocationID>JUVENIL-ED</currentLocationID><homeLocationID>JUVENIL-ED</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
-  recorded_at: Wed, 07 Apr 2021 18:19:10 GMT
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>5112336</titleID><TitleAvailabilityInfo><totalCopiesAvailable>0</totalCopiesAvailable><totalResvCopiesAvailable>0</totalResvCopiesAvailable><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>HARRISBURG</libraryID><classificationID>LC</classificationID><callNumber>PZ8.G3295Su
+        2008</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000067841677</itemID><itemTypeID>JUVENILEBK</itemTypeID><currentLocationID>DEPTCHARGE</currentLocationID><homeLocationID>JUVENILEHB</homeLocationID><dueDate>2020-05-07T00:00:00.565-04:00</dueDate><chargeable>false</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{GOBI}</staffNote></ItemInfo></CallInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LC</classificationID><callNumber>Fiction
+        G4672sun 2008</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000065925379</itemID><itemTypeID>JUVENILEBK</itemTypeID><currentLocationID>ONHOLD-PA</currentLocationID><homeLocationID>JUVENIL-ED</homeLocationID><chargeable>true</chargeable><numberOfHolds>1</numberOfHolds><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Mon, 23 Aug 2021 21:03:27 GMT
 recorded_with: VCR 6.0.0
