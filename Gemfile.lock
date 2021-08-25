@@ -191,7 +191,7 @@ GEM
     faraday-excon (1.1.0)
     faraday-net_http (1.0.1)
     faraday-net_http_persistent (1.1.0)
-    ffi (1.15.0)
+    ffi (1.15.3)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
@@ -237,10 +237,9 @@ GEM
       addressable (~> 2.7)
     lcsort (0.9.1)
     library_stdnums (1.6.0)
-    listen (3.1.5)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-      ruby_dep (~> 1.2)
+    listen (3.7.0)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     lograge (0.11.2)
       actionpack (>= 4)
       activesupport (>= 4)
@@ -336,7 +335,7 @@ GEM
       thor (>= 0.20.3, < 2.0)
     rainbow (3.0.0)
     rake (13.0.4)
-    rb-fsevent (0.10.4)
+    rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.2.5)
@@ -393,7 +392,6 @@ GEM
       rubocop-ast (>= 0.7.1)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.4)
-    ruby_dep (1.5.0)
     rubyzip (2.3.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -508,7 +506,7 @@ DEPENDENCIES
   high_voltage (~> 3.1)
   launchy
   lcsort (~> 0.9)
-  listen (>= 3.0.5, < 3.2)
+  listen
   lograge
   memory_profiler
   mysql2 (>= 0.4.4, < 0.6.0)
@@ -528,7 +526,7 @@ DEPENDENCIES
   sinatra
   spring
   spring-commands-rspec
-  spring-watcher-listen (~> 2.0.0)
+  spring-watcher-listen
   sqlite3
   stackprof
   vcr

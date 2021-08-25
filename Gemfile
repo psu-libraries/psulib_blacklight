@@ -36,10 +36,10 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'foreman', '~> 0.63.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
   gem 'web-console'
 end
 
