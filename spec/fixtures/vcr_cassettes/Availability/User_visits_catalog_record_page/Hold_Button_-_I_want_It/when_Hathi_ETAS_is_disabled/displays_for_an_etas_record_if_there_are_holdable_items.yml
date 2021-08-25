@@ -29,7 +29,7 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Date:
-      - Fri, 09 Apr 2021 14:32:54 GMT
+      - Mon, 23 Aug 2021 21:03:07 GMT
       Server:
       - SirsiDynix IlsWS
     body:
@@ -37,8 +37,8 @@ http_interactions:
       string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
         xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>3753687</titleID><TitleAvailabilityInfo><totalCopiesAvailable>2</totalCopiesAvailable><libraryWithAvailableCopies>Pattee
         Library and Paterno Library Stacks (UP)</libraryWithAvailableCopies><libraryWithAvailableCopies>Annex
-        (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>HATHIETAS</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LC</classificationID><callNumber>PN4885.Y5C5
-        1946</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000060369666</itemID><itemTypeID>HATHIETAS</itemTypeID><currentLocationID>HATHIETAS</currentLocationID><homeLocationID>HATHIETAS</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>LC</classificationID><callNumber>PN4885.Y5C5
-        1946</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000061609839</itemID><itemTypeID>HATHIETAS</itemTypeID><currentLocationID>HATHIETAS</currentLocationID><homeLocationID>HATHIETAS</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
-  recorded_at: Fri, 09 Apr 2021 14:32:55 GMT
+        (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>PATTEE-2A</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LC</classificationID><callNumber>PN4885.Y5C5
+        1946</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000060369666</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>PATTEE-2A</currentLocationID><homeLocationID>PATTEE-2A</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>LC</classificationID><callNumber>PN4885.Y5C5
+        1946</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000061609839</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>CATO-2</currentLocationID><homeLocationID>CATO-2</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Mon, 23 Aug 2021 21:03:07 GMT
 recorded_with: VCR 6.0.0
