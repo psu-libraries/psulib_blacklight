@@ -68,18 +68,11 @@ RSpec.describe ShelfList do
 
     # These tests should work regardless of any changes to our fixture data. Because they aren't tied directly to the
     # fixture data, they use an unorthodox testing strategy. We compare what the shelf list is creating based on the
-    # term component query coming out of Solr. The easiest way to do that is compare the service's own internal term
-    # query that it's making with the final output it's generating from that query. So in order to do that, we call the
-    # private #term_query method in the service and use that for comparison.
+    # term component query coming out of Solr. The easiest way to do that is compare the term query with the final
+    # output generated from that query.
     #
     # If these tests are breaking, it is likely a problem with the service or with Solr.
     context 'when testing with randomized queries' do
-      def term_query(query:, limit:, field:)
-        described_class
-          .new(query: nil, forward_limit: nil, reverse_limit: nil)
-          .send(:terms_query, field: field, limit: limit, value: query)
-      end
-
       it 'returns a set of before and after items matching the original term query' do
         100.times do
           query = ShelfKey::FORWARD_CHARS.sample
@@ -91,13 +84,9 @@ RSpec.describe ShelfList do
 
           list = described_class.call(query: query, forward_limit: forward_limit, reverse_limit: reverse_limit)
 
-          forward_keys = term_query(query: query, limit: forward_limit, field: 'forward_lc_shelfkey')
-            .each_slice(2)
-            .map(&:first)
+          forward_keys = TermsQuery.call(query: query, limit: forward_limit, field: 'forward_lc_shelfkey')
 
-          reverse_keys = term_query(query: reverse_query, limit: reverse_limit, field: 'reverse_lc_shelfkey')
-            .each_slice(2)
-            .map(&:first)
+          reverse_keys = TermsQuery.call(query: reverse_query, limit: reverse_limit, field: 'reverse_lc_shelfkey')
 
           forward_call_numbers = list[:after].flatten.map(&:call_number)
           forward_sample = forward_call_numbers.uniq.map do |call_number|

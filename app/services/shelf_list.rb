@@ -38,19 +38,19 @@ class ShelfList
   private
 
     def forward_keys
-      @forward_keys ||= terms_query(field: forward_shelfkey, limit: forward_limit)
-        .each_slice(2)
-        .map(&:first)
+      @forward_keys ||= TermsQuery.call(
+        field: forward_shelfkey,
+        limit: forward_limit,
+        query: query
+      )
     end
 
     def reverse_keys
-      @reverse_keys ||= terms_query(
+      @reverse_keys ||= TermsQuery.call(
         field: reverse_shelfkey,
-        value: ShelfKey.reverse(query),
-        limit: reverse_limit
+        limit: reverse_limit,
+        query: ShelfKey.reverse(query)
       )
-        .each_slice(2)
-        .map(&:first)
     end
 
     # @return Array<ShelfItem>
@@ -66,25 +66,6 @@ class ShelfList
       keys.map do |key|
         holdings.find(key)
       end
-    end
-
-    # @note The first Solr query used to get a listing of forward or reverse shelf keys for a given term query.
-    def terms_query(field:, limit:, value: nil)
-      return [] if limit.zero?
-
-      Blacklight
-        .default_index
-        .connection
-        .get('terms',
-             params: {
-               'terms' => true,
-               'terms.lower.incl' => true,
-               'terms.fl' => field,
-               'terms.lower' => (value || query),
-               'terms.limit' => limit,
-               'terms.sort' => 'index'
-             })
-        .dig('terms', field) || []
     end
 
     # @note This is the second Solr query, performed after we've retrieved a listing of forward or reverse shelf keys.
