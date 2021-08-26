@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import HoldingDetails from './holding_details.jsx';
 import ViewMoreButton from './view_more_button.jsx';

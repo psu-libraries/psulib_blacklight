@@ -9,6 +9,7 @@ import reserve_circulation_rules from './reserve_circulation_rules.json';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Availability from './components/availability.jsx';
+import Snippet from './components/snippet.jsx';
 
 const availability = {
     // Load Sirsi locations
@@ -295,11 +296,16 @@ const availability = {
                     const structuredHoldings = availability.availabilityDataStructurer(holdings);
 
                     ReactDOM.render(
-                        React.createElement(Availability, { data: structuredHoldings}),
+                        React.createElement(Availability, { data: structuredHoldings }),
                         holdingsPlaceHolder[0]
                     );
-                    
-                    availability.availabilitySnippet(snippetPlaceHolder, structuredHoldings);
+
+                    if (snippetPlaceHolder && snippetPlaceHolder.length  === 1) {
+                        ReactDOM.render(
+                            React.createElement(Snippet, { data: structuredHoldings }),
+                            snippetPlaceHolder[0]
+                        );
+                    }
 
                     // If holdable, then display the hold button
                     if (availability.showHoldButton(rawHoldings)) {
@@ -328,40 +334,8 @@ const availability = {
             }
         });
 
-        // Check for ILL and Aeon options and update links
-        availability.createILLURL();
-        availability.createAeonURL();
-
         // initialize tooltips
         $('i.fas.fa-info-circle[data-toggle="tooltip"]').tooltip();
-    },
-
-    librariesText(holdingData) {
-        let libraries = [];
-
-        for (let index in holdingData) {
-            if (holdingData[index].summary.library === 'ON-ORDER') {
-                libraries.push('')
-            } else {
-                libraries.push(holdingData[index].summary.library);
-            }
-        }
-
-        return libraries.join(', ');
-    },
-
-    availabilitySnippet(snippetPlaceHolder, holdingData) {
-        let snippet = "";
-        const totalCopiesAvailable = holdingData[0].holdings[0].totalCopiesAvailable;
-
-        if (totalCopiesAvailable > 0) {
-            snippet = holdingData.length > 2 ? 'Multiple Locations' : availability.librariesText(holdingData);
-        }
-        else {
-            // No available copies, do not display a snippet
-            snippet = '';
-        }
-        snippetPlaceHolder.html(snippet);
     },
 
     availabilityDataStructurer(holdingMetadata) {
@@ -413,90 +387,6 @@ const availability = {
         }, {});
     },
 
-    createILLURL() {
-        // Now that the availability data has been rendered, check for ILL options and update links
-        $('.availability-holdings [data-type="ill-link"]').each(function () {
-            let ILLURL = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/" +
-                "OpenURL?Action=10";
-            let illLinkObj = $(this);
-            const catkey = $(this).data('catkey');
-            const callNumber = encodeURIComponent($(this).data('call-number'));
-            const linkType = encodeURIComponent($(this).data('link-type'));
-            const itemLocation = encodeURIComponent($(this).data('item-location'));
-
-            $.get(`/catalog/${catkey}/raw.json`, function(data) {
-                if (Object.keys(data).length > 0) {
-                    const title = encodeURIComponent(data.title_245ab_tsim);
-                    const author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
-                    const pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
-                    if (linkType === "archival-thesis") {
-                        ILLURL += "&Form=20&Genre=GenericRequestThesisDigitization";
-                    }
-                    else {
-                        const ISBN = data.isbn_ssm ? data.isbn_ssm : "";
-                        ILLURL += `&Form=30&isbn=${ISBN}`;
-                    }
-                    if (linkType === "reserves-scan") {
-                        ILLURL += `&Genre=GenericRequestReserves&location=${itemLocation}`;
-                    }
-                    if (linkType === "news-microform-scan") {
-                        ILLURL += `&Genre=GenericRequestMicroScan&location=${itemLocation}`;
-                    }
-                    ILLURL += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
-                    if (author) {
-                        ILLURL += `&aulast=${author}`;
-                    }
-                    if (pubDate) {
-                        ILLURL += `&date=${pubDate}`;
-                    }
-                }
-            }).done(function () {
-                let spinner = illLinkObj.find('span');
-                spinner.remove();
-                illLinkObj.attr('href', ILLURL);
-            });
-        });
-    },
-
-    createAeonURL() {
-        // Now that the availability data has been rendered, check for Aeon options and update links
-        $('.availability-holdings [data-type="aeon-link"]').each(function () {
-            let aeonLinkObj = $(this);
-            const catkey = $(this).data('catkey');
-            const callNumber = encodeURIComponent($(this).data('call-number'));
-            const itemLocation = encodeURIComponent($(this).data('item-location'));
-            const itemID = encodeURIComponent($(this).data('item-id'));
-            const itemTypeID = $(this).data('item-type');
-            const genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
-            let aeonURL = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30` +
-                `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
-                `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
-
-            $.get(`/catalog/${catkey}/raw.json`, function(data) {
-                if (Object.keys(data).length > 0) {
-                    const title = encodeURIComponent(data.title_245ab_tsim);
-                    const author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
-                    const publisher = encodeURIComponent(data.publisher_name_ssm ? data.publisher_name_ssm : "");
-                    const pubDate = encodeURIComponent(data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "");
-                    const pubPlace = encodeURIComponent(data.publication_place_ssm ? data.publication_place_ssm : "");
-                    const edition = encodeURIComponent(data.edition_display_ssm ? data.edition_display_ssm : "");
-                    const restrictions = encodeURIComponent(
-                        data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : ""
-                    );
-                    const subLocation = encodeURIComponent(data.sublocation_ssm ? data.sublocation_ssm.join("; ") : "");
-                    aeonURL += `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=` +
-                        `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}` +
-                        `&SubLocation=${subLocation}`;
-
-                }
-            }).done(function () {
-                let spinner = aeonLinkObj.find('span');
-                spinner.remove();
-                aeonLinkObj.attr('href', aeonURL);
-            });
-        });
-    },
-
     displayErrorMsg() {
         // Display the error message
         $('.availability').each(function () {
@@ -508,19 +398,6 @@ const availability = {
 
     isMoved(location) {
         return availability.movedLocations.includes(location);
-    },
-
-    illLinkText(holding) {
-        if (availability.isMicroform(holding)) return "Request Scan - Penn State Users";
-
-        return availability.illiadLocations[holding.locationID];
-    },
-
-    illLinkType(holding) {
-        if (availability.isReserves(holding)) return "reserves-scan";
-        if (availability.isMicroform(holding)) return "news-microform-scan";
-
-        return "request-via-ill";
     },
 
     isReserves(holding) {
@@ -543,14 +420,6 @@ const availability = {
 
     isArchivalMaterial(holding) {
         return (['UP-SPECCOL'].includes(holding.libraryID) && !availability.isMoved(holding.homeLocationID));
-    },
-
-    isUPSpecialMap(holding) {
-        return ['MAPSPEC'].includes(holding.itemTypeID) && ['UP-MAPS'].includes(holding.libraryID);
-    },
-
-    isOnCourseReserve(holding) {
-        return holding.reserveCirculationRule && holding.dueDate;
     },
 
     showHoldButton(holdings) {

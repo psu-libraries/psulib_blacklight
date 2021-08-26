@@ -1,11 +1,7 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import availability from '../index.js';
-
-const Spinner = () => (
-    <span className="spinner-border spinner-border-sm" 
-          role="status" aria-hidden="true"></span>
-);
+import IllLink from './ill_link.jsx';
+import AeonLink from './aeon_link.jsx';
 
 const LocationInfo = ({holding}) => {
     const mapLocation = (locationID) => {
@@ -16,18 +12,8 @@ const LocationInfo = ({holding}) => {
     // First, if it's related to ILL
     if (availability.isIllLink(holding)) {
         return (
-            <a 
-                data-type="ill-link" 
-                data-catkey={holding.catkey}
-                data-call-number={holding.callNumber} 
-                data-link-type={availability.illLinkType(holding)}
-                data-item-location={holding.locationID}
-                href="#"
-            >
-                <Spinner />
-                {availability.illLinkText(holding)}
-            </a>
-        )
+            <IllLink holding={holding} />
+        );
     }
 
     // AEON
@@ -35,55 +21,38 @@ const LocationInfo = ({holding}) => {
         const illiadURL = "https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html";
         const aeonLocationText = mapLocation(holding.locationID);
 
-        return (<>
-            <a 
-                data-type="ill-link" 
-                data-catkey={holding.catkey}
-                data-call-number={holding.callNumber}
-                data-link-type="archival-thesis" 
-                data-item-type={holding.itemTypeID}
-                href="#">
-                    <Spinner />
-                    Request Scan - Penn State Users
-            </a><br />
+        return (
+            <>
+                <IllLink holding={holding} />
 
-            <a href={illiadURL}>Request Scan - Guest</a><br />
+                <br />
 
-            <a 
-                data-type="aeon-link" 
-                data-catkey={holding.catkey}
-                data-call-number={holding.callNumber}
-                data-link-type="archival-thesis"
-                data-item-type={holding.itemTypeID}
-                data-item-id={holding.itemID}
-                data-item-location={aeonLocationText}
-                href="#">
-                    <Spinner />
-                    View in Special Collections
-            </a>
-        </>)
+                <a href={illiadURL}>Request Scan - Guest</a><br />
+
+                <AeonLink
+                    holding={holding}
+                    locationText={aeonLocationText}
+                />
+            </>
+        )
     }
 
     // Special Collections
     if (availability.isArchivalMaterial(holding)) {
         const specialCollectionsText = mapLocation(holding.locationID);
 
-        return (<>
-            {specialCollectionsText}<br /> 
+        return (
+            <>
+                {specialCollectionsText}
 
-            <a 
-                data-type="aeon-link" 
-                data-catkey={holding.catkey}
-                data-call-number={holding.callNumber}
-                data-link-type="archival-material"
-                data-item-type={holding.itemTypeID}
-                data-item-id={holding.itemID}
-                data-item-location={specialCollectionsText}
-                href="#">
-                    <Spinner />
-                    Request Material
-            </a>
-        </>);
+                <br /> 
+
+                <AeonLink
+                    holding={holding}
+                    locationText={specialCollectionsText}
+                />
+            </>
+        );
     }
 
     // Otherwise use the default translation map for location display, no link
