@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   concern :marc_viewable, Blacklight::Marc::Routes::MarcViewable.new
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
 
+  authenticate :user do
+    get '/login', to: 'application#login', as: :login
+  end
+
   # mounts
   mount Blacklight::Engine => '/'
   mount BlacklightAdvancedSearch::Engine => '/'

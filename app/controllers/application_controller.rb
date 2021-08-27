@@ -14,17 +14,21 @@ class ApplicationController < ActionController::Base
 
   helper_method :blackcat_config
 
+  def login
+    fullpath = request.env.fetch('ORIGINAL_FULLPATH', '/')
+    session[:redirect_url] ||= fullpath == '/login' ? '/' : fullpath
+    session[:groups] = request.env.fetch(Settings.groups_header, '').split(',')
+    redirect_to current_user ? session[:redirect_url] : '/login'
+  end
+
   before_action do
     authorize_profiler
   end
 
   private
 
-    # @note The Matomo ID is used to capture statistics from our production instance. This is very unlikely to change.
-    # We can use this method to limit profiling to only dev and preview instances until we can implement a way to limit
-    # it to particular users and UMGs.
     def authorize_profiler
-      return if Settings.matomo_id.to_i == 7
+      return unless request.session.fetch(:groups, []).include?(Settings.admin_group)
 
       Rack::MiniProfiler.authorize_request
     end

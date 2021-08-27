@@ -1,6 +1,9 @@
 hold_button_url: http://cat.libraries.psu.edu/cgi-bin/catredirpg?C=
 sirsi_url: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true
 matomo_id: 10
+user_header: HTTP_X_AUTH_REQUEST_EMAIL
+groups_header: HTTP_X_AUTH_REQUEST_GROUPS
+admin_group: umg-up.ul-dev-team
 datadog:
   enabled: false
   # defaults to Rails.env. override here
