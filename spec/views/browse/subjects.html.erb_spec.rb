@@ -2,9 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe 'browse/index', type: :view do
+RSpec.describe 'browse/subjects', type: :view do
   before do
-    assign(:shelf_list, instance_spy(ShelfListPresenter, list: []))
+    controller.params = {}
+    assign(:subject_list, instance_spy(SubjectList, entries: []))
     render
   end
 

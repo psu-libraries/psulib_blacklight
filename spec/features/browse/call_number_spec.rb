@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Browse', type: :feature do
+RSpec.feature 'Call Number Browse', type: :feature do
   context 'when the user is not searching for a particular call number' do
     specify do
       visit '/browse'

@@ -1,0 +1,24 @@
+<%= render Browse::Controls.new(
+      navigator: Browse::SubjectNavigation.new(list: subject_list)
+    ) %>
+
+<table class="table table-striped my-3">
+  <thead>
+    <tr>
+      <th scope="col">Subject Heading</th>
+      <th scope="col">Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% subject_list.entries.map do |item| %>
+      <tr>
+        <td><%= link_to item.value, search_catalog_path('f[subject_facet][]' => item.value) %></td>
+        <td><%= item.hits %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render Browse::Controls.new(
+      navigator: Browse::SubjectNavigation.new(list: subject_list)
+    ) %>

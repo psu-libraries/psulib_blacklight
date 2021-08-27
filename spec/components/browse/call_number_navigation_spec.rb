@@ -2,11 +2,11 @@
 
 require 'rails_helper'
 
-RSpec.describe Browse::PageNavigation, type: :component do
-  let(:node) { render_inline(described_class.new(prev_item: prev_item,
-                                                 next_item: next_item,
-                                                 length: length)) }
-  let(:length) { 20 }
+RSpec.describe Browse::CallNumberNavigation, type: :component do
+  let(:node) { render_inline(described_class.new(list: mock_list)) }
+  let(:mock_list) { instance_spy('ShelfListPresenter', previous_item: prev_item, next_item: next_item) }
+
+  before { controller.params = { length: 20 } }
 
   context 'when the shelf list has no previous page' do
     let(:next_item) { ShelfItem.new(call_number: 'CALL1', key: 'KEY1') }
