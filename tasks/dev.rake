@@ -1,21 +1,6 @@
 # frozen_string_literal: true
 
-require Rails.root.join('spec/support/catalog_factory.rb')
-require Rails.root.join('spec/support/catalog_cleaner.rb')
-
-namespace :blackcat do
-  namespace :solr do
-    desc 'Posts fixtures to Solr'
-    task index: :environment do
-      CatalogFactory.load_defaults
-    end
-
-    desc 'Delete fixtures from Solr'
-    task deindex: :environment do
-      CatalogCleaner.clean_solr
-    end
-  end
-
+namespace :dev do
   namespace :traject do
     desc 'Generate fixtures using Traject'
     task create_fixtures: :environment do
