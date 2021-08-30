@@ -49,9 +49,9 @@ class SubjectList
                'facet.sort' => 'index',
                'facet.limit' => length + 1,
                'facet.offset' => (page - 1) * length,
-               'facet.field' => 'subject_facet',
+               'facet.field' => 'subject_browse_facet',
                'facet.prefix' => prefix
              })
-        .dig('facet_counts', 'facet_fields', 'subject_facet')
+        .dig('facet_counts', 'facet_fields', 'subject_browse_facet')
     end
 end

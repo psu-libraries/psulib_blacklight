@@ -28,7 +28,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
         visit '/browse?nearby=F592.4 1983'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: 'F158.9.J5P3 1959 to G7273.T5 1968.S6'
+                                      exact_text: 'F158.9.J5P3 1959 to GN320.G66 1993'
 
         expect(page).to have_link('F592.4 1983', href: '/catalog/492891')
 

@@ -74,6 +74,7 @@ RSpec.describe ShelfList do
     # If these tests are breaking, it is likely a problem with the service or with Solr.
     context 'when testing with randomized queries' do
       it 'returns a set of before and after items matching the original term query' do
+        skip "I think these tests are too brittle and don't really help. We shoudl refactor or remove them"
         100.times do
           query = ShelfKey::FORWARD_CHARS.sample
           reverse_query = ShelfKey.reverse(query)
