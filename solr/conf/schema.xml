@@ -11,6 +11,7 @@
     <field name="_version_" type="long" indexed="true" stored="true"/>
     <field name="timestamp" type="date" indexed="true" stored="true" default="NOW" multiValued="false"/>
     <field name="subject_facet" type="descendent_path" indexed="true" stored="true" multiValued="true"/>
+    <field name="subject_browse_facet" type="descendent_path" indexed="true" stored="true" multiValued="true"/>
 
     <field name="lat" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
@@ -225,7 +226,6 @@
     <field name="lc_1letter_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="lc_rest_facet"       type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="subject_topic_facet" type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
-    <field name="subject_browse_facet" type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="media_type_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="campus_facet"        type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="up_library_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />

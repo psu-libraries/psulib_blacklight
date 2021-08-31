@@ -13,9 +13,9 @@ RSpec.describe SubjectList do
     it { is_expected.not_to be_last_page }
 
     specify do
-      expect(list.entries.first.value).to eq('Acetaldehyde—Germany')
+      expect(list.entries.first.value).to eq('Acetaldehyde')
       expect(list.entries.first.hits).to eq(1)
-      expect(list.entries.last.value).to eq('African Americans—Southern States')
+      expect(list.entries.last.value).to eq('African American women lawyers')
       expect(list.entries.last.hits).to eq(1)
       expect(list.entries.count).to eq(10)
     end
@@ -27,10 +27,10 @@ RSpec.describe SubjectList do
     it { is_expected.not_to be_last_page }
 
     specify do
-      expect(list.entries.first.value).to eq('Aggada')
+      expect(list.entries.first.value).to eq('African American women lawyers—Illinois')
       expect(list.entries.first.hits).to eq(1)
-      expect(list.entries.last.value).to eq('Analog-to-digital converters—Standards')
-      expect(list.entries.last.hits).to eq(1)
+      expect(list.entries.last.value).to eq('Aggada')
+      expect(list.entries.last.hits).to eq(2)
       expect(list.entries.count).to eq(10)
     end
   end
@@ -41,27 +41,27 @@ RSpec.describe SubjectList do
     it { is_expected.not_to be_last_page }
 
     specify do
-      expect(list.entries[0].value).to eq('Acetaldehyde—Germany')
+      expect(list.entries[0].value).to eq('Acetaldehyde')
       expect(list.entries[0].hits).to eq(1)
-      expect(list.entries[9].value).to eq('African Americans—Southern States')
+      expect(list.entries[9].value).to eq('African American women lawyers')
       expect(list.entries[9].hits).to eq(1)
-      expect(list.entries[10].value).to eq('Aggada')
+      expect(list.entries[10].value).to eq('African American women lawyers—Illinois')
       expect(list.entries[10].hits).to eq(1)
-      expect(list.entries[19].value).to eq('Analog-to-digital converters—Standards')
-      expect(list.entries[19].hits).to eq(1)
+      expect(list.entries[19].value).to eq('Aggada')
+      expect(list.entries[19].hits).to eq(2)
       expect(list.entries.count).to eq(20)
     end
   end
 
   context 'when this is the last page' do
-    subject(:list) { described_class.new(page: 15, length: 50) }
+    subject(:list) { described_class.new(page: 26, length: 50) }
 
     it { is_expected.to be_last_page }
 
     specify do
-      expect(list.entries.first.value).to eq('Women in war—Juvenile fiction')
+      expect(list.entries.first.value).to eq('Women—Fiction')
       expect(list.entries.first.hits).to eq(1)
-      expect(list.entries.count).to eq(37)
+      expect(list.entries.count).to eq(50)
     end
   end
 
@@ -71,9 +71,9 @@ RSpec.describe SubjectList do
     it { is_expected.not_to be_last_page }
 
     specify do
-      expect(list.entries.first.value).to eq('Magic—Fiction')
+      expect(list.entries.first.value).to eq('Magic')
       expect(list.entries.first.hits).to eq(1)
-      expect(list.entries.last.value).to eq('Married people—Drama')
+      expect(list.entries.last.value).to eq('Man-woman relationships—Senegal—Dakar')
       expect(list.entries.last.hits).to eq(1)
       expect(list.entries.count).to eq(10)
     end
