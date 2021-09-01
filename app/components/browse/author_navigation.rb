@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
 module Browse
-  class SubjectNavigation < Navigator
+  class AuthorNavigation < Navigator
     delegate :page, :length, to: :list
 
     def previous_path
-      browse_subjects_path(
+      browse_authors_path(
         merge_params(page: page - 1, length: length)
       )
     end
 
     def next_path
-      browse_subjects_path(
+      browse_authors_path(
         merge_params(page: page + 1, length: length)
       )
     end
