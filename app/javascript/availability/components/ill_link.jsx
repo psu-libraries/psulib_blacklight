@@ -19,7 +19,7 @@ const IllLink = ({holding}) => {
         const linkType = encodeURIComponent(illLinkType());
         const itemLocation = encodeURIComponent(holding.locationID);
 
-        $.get(`/catalog/${catkey}/raw.json`, function(data) {
+        $.get(`/catalog/${catkey}/raw.json`).then((data) => {
             if (Object.keys(data).length > 0) {
                 const title = encodeURIComponent(data.title_245ab_tsim);
                 const author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");

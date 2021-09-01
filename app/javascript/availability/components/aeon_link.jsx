@@ -22,7 +22,7 @@ const AeonLink = ({holding, locationText}) => {
             `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
             `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
 
-        $.get(`/catalog/${catkey}/raw.json`, function(data) {
+        $.get(`/catalog/${catkey}/raw.json`).then((data) => {
             if (Object.keys(data).length > 0) {
                 const title = encodeURIComponent(data.title_245ab_tsim);
                 const author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
