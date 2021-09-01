@@ -25,6 +25,15 @@ module Browse
         )
       end
 
+      def authors_path(length)
+        browse_authors_path(
+          merge_params(
+            page: params[:page],
+            length: length
+          )
+        )
+      end
+
       def subjects_path(length)
         browse_subjects_path(
           merge_params(

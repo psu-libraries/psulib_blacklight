@@ -9,7 +9,15 @@ class BrowseController < ApplicationController
     @subject_list = SubjectList.new(subject_params)
   end
 
+  def authors
+    @author_list = AuthorList.new(author_params)
+  end
+
   private
+
+    def author_params
+      params.permit(:length, :page, :prefix)
+    end
 
     def shelf_list_params
       params.permit(:starting, :ending, :length, :nearby)
