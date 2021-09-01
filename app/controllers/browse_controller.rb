@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class BrowseController < ApplicationController
+  before_action :normalize_parameters
+
   def index
     @shelf_list = ShelfListPresenter.new(shelf_list_params)
   end
@@ -10,6 +12,10 @@ class BrowseController < ApplicationController
   end
 
   private
+
+    def normalize_parameters
+      params[:prefix].try(:capitalize!)
+    end
 
     def shelf_list_params
       params.permit(:starting, :ending, :length, :nearby)

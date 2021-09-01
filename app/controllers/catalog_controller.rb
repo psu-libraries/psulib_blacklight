@@ -403,12 +403,18 @@ class CatalogController < ApplicationController
       field.solr_parameters = { qf: 'publisher_manufacturer_tsim' }
     end
 
-    config.add_search_field('browse_cn') do |field|
-      field.include_in_advanced_search = false
-      field.label = 'Browse by Call Number'
+    # @todo Temporarily restricts this to non-production hosts
+    unless Settings.matomo_id.to_i == 7
+      config.add_search_field('browse_cn') do |field|
+        field.include_in_advanced_search = false
+        field.label = 'Browse by Call Number'
+      end
     end
-    # config.add_search_field('Publisher')
-    # config.add_search_field('Publication date')
+
+    config.add_search_field('browse_subjects') do |field|
+      field.include_in_advanced_search = false
+      field.label = 'Browse by Subject'
+    end
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and

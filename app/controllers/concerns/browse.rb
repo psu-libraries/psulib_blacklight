@@ -4,8 +4,19 @@ module Browse
   extend ActiveSupport::Concern
 
   def redirect_browse
-    if params[:q] && params[:search_field] == 'browse_cn'
-      redirect_to "/browse/?nearby=#{CGI.escape params[:q]}"
+    return if params[:q].blank?
+
+    case params[:search_field]
+    when 'browse_cn'
+      redirect_to browse_path(nearby: search_params)
+    when 'browse_subjects'
+      redirect_to browse_subjects_path(prefix: search_params)
     end
   end
+
+  private
+
+    def search_params
+      CGI.escape(params[:q])
+    end
 end
