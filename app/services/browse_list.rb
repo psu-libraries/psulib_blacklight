@@ -1,19 +1,20 @@
 # frozen_string_literal: true
 
-# @abstract Interface to the author facet in Solr. Allows us to generate paginated lists of authors and the
-# number of times they occur.
+# @abstract Interface to facet fields in Solr. Allows us to generate paginated lists of facet terms and the number of
+# times they occur.
 
-class AuthorList
+class BrowseList
   Entry = Struct.new(:value, :hits)
 
-  attr_reader :length, :page, :prefix
+  attr_reader :length, :page, :prefix, :field
 
   delegate :empty?, to: :entries
 
-  def initialize(params = {})
-    @page = params.fetch(:page, 1).to_i
-    @length = params.fetch(:length, 10).to_i
-    @prefix = params[:prefix]
+  def initialize(field:, page: 1, length: 10, prefix: nil)
+    @field = field
+    @page = page.to_i
+    @length = length.to_i
+    @prefix = prefix
   end
 
   def entries
@@ -49,9 +50,9 @@ class AuthorList
                'facet.sort' => 'index',
                'facet.limit' => length + 1,
                'facet.offset' => (page - 1) * length,
-               'facet.field' => 'all_authors_facet',
+               'facet.field' => field,
                'facet.prefix' => prefix
              })
-        .dig('facet_counts', 'facet_fields', 'all_authors_facet')
+        .dig('facet_counts', 'facet_fields', field)
     end
 end

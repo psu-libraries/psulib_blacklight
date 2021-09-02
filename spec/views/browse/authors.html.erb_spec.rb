@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'browse/authors', type: :view do
   before do
     controller.params = { action: 'authors' }
-    assign(:author_list, instance_spy(AuthorList, entries: []))
+    assign(:author_list, instance_spy(BrowseList, entries: []))
     render
   end
 
