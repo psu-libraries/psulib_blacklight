@@ -24,7 +24,6 @@ module Browse
 
     private
 
-<<<<<<< HEAD
       def action
         @action ||= params.fetch(:action) { raise KeyError, 'params must include :action' }
       end
@@ -45,8 +44,6 @@ module Browse
         browse_subjects_path(params)
       end
 
-=======
->>>>>>> 65ec8f0 (Refactor components (#860))
       def merge_params(opts = {})
         params.slice(:length).merge(opts)
       end
