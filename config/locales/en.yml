@@ -31,35 +31,39 @@
 
 en:
   blackcat:
-      hathitrust:
-        mono_url: https://hdl.handle.net/2027/
-        multi_url: https://catalog.hathitrust.org/Record/
-        url_append: '?urlappend=%3B&signon=swle:urn:mace:incommon:psu.edu'
-        public_domain_text: 'Access digital copy through HathiTrust'
-        restricted_access_text: 'Search inside at HathiTrust'
-        etas_text: 'Check out digital copy through HathiTrust'
-        etas_additional_text: >
-          Digital access to this item through the HathiTrust Emergency Temporary Access Service will
-          conclude on July 9, 2021. Requests for most library materials will be possible through
-          "I Want It." On-shelf access will resume as libraries fully re-open over the summer. We will
-          retain digital access to public domain materials in HathiTrust.
-      facet_tooltips:
-        access_facet:
-          free_to_read: 'These materials don''t require a Penn State login'
-          online: 'These materials may require a Penn State login'
-      report_issue:
-        form:
-          title: 'Report an Issue'
-          record_title: 'Title'
-          record_number: 'Record Number'
-          comment: 'Comment (required)'
-          email: 'Email Address (optional, if you''d like a reply)'
-        email:
-          subject: 'Penn State University Libraries Catalog - Issue Report'
-          title: 'Title: %{title}'
-          record_number: 'Record Number: %{record_number}'
-          record_url: 'Record URL: https://catalog.libraries.psu.edu/catalog/%{record_number}'
-          comment: 'Comment:'
-          email: 'Email Address: %{email}'
-        errors:
-          comment: 'Please enter a comment'
+    hathitrust:
+      mono_url: https://hdl.handle.net/2027/
+      multi_url: https://catalog.hathitrust.org/Record/
+      url_append: '?urlappend=%3B&signon=swle:urn:mace:incommon:psu.edu'
+      public_domain_text: 'Access digital copy through HathiTrust'
+      restricted_access_text: 'Search inside at HathiTrust'
+      etas_text: 'Check out digital copy through HathiTrust'
+      etas_additional_text: >
+        Digital access to this item through the HathiTrust Emergency Temporary Access Service will
+        conclude on July 9, 2021. Requests for most library materials will be possible through
+        "I Want It." On-shelf access will resume as libraries fully re-open over the summer. We will
+        retain digital access to public domain materials in HathiTrust.
+    facet_tooltips:
+      access_facet:
+        free_to_read: 'These materials don''t require a Penn State login'
+        online: 'These materials may require a Penn State login'
+    report_issue:
+      form:
+        title: 'Report an Issue'
+        record_title: 'Title'
+        record_number: 'Record Number'
+        comment: 'Comment (required)'
+        email: 'Email Address (optional, if you''d like a reply)'
+      email:
+        subject: 'Penn State University Libraries Catalog - Issue Report'
+        title: 'Title: %{title}'
+        record_number: 'Record Number: %{record_number}'
+        record_url: 'Record URL: https://catalog.libraries.psu.edu/catalog/%{record_number}'
+        comment: 'Comment:'
+        email: 'Email Address: %{email}'
+      errors:
+        comment: 'Please enter a comment'
+  browse:
+    prefix_selector:
+      all: 'All'
+      label: 'Starts with:'
