@@ -1,19 +1,17 @@
 # frozen_string_literal: true
 
 module Browse
-  class SubjectNavigation < Navigator
+  class FacetNavigation < Navigator
+    include Paths
+
     delegate :page, :length, to: :list
 
     def previous_path
-      browse_subjects_path(
-        merge_params(page: page - 1, length: length)
-      )
+      browse_path(merge_params(page: page - 1, length: length))
     end
 
     def next_path
-      browse_subjects_path(
-        merge_params(page: page + 1, length: length)
-      )
+      browse_path(merge_params(page: page + 1, length: length))
     end
 
     private

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'browse/subjects', type: :view do
   before do
     controller.params = { action: 'subjects' }
-    assign(:subject_list, instance_spy(SubjectList, entries: []))
+    assign(:subject_list, instance_spy(BrowseList, entries: []))
     render
   end
 

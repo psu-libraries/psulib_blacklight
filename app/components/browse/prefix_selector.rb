@@ -2,20 +2,18 @@
 
 module Browse
   class PrefixSelector < ViewComponent::Base
+    include Paths
+
     def prefix
       params[:prefix]
     end
 
     def clear_prefix_path
-      raise ArgumentError, "no path defined for '#{action}'" unless respond_to?("#{action}_path", true)
-
-      send("#{action}_path", merge_params)
+      browse_path(merge_params)
     end
 
     def prefix_path(letter)
-      raise ArgumentError, "no path defined for '#{action}'" unless respond_to?("#{action}_path", true)
-
-      send("#{action}_path", merge_params(prefix: letter))
+      browse_path(merge_params(prefix: letter))
     end
 
     def form_url
@@ -26,6 +24,7 @@ module Browse
 
     private
 
+<<<<<<< HEAD
       def action
         @action ||= params.fetch(:action) { raise KeyError, 'params must include :action' }
       end
@@ -46,6 +45,8 @@ module Browse
         browse_subjects_path(params)
       end
 
+=======
+>>>>>>> 65ec8f0 (Refactor components (#860))
       def merge_params(opts = {})
         params.slice(:length).merge(opts)
       end

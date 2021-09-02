@@ -20,7 +20,7 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
     specify do
       expect {
         node
-      }.to raise_error(ArgumentError, "no path defined for 'bogus'")
+      }.to raise_error(NoMethodError, starting_with("undefined method `browse_bogus_path'"))
     end
   end
 
