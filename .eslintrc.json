@@ -20,6 +20,7 @@
     },
     "rules": {
         "max-len": ["error", { "code": 120 }],
+        "react/jsx-no-target-blank": "off",
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off"
     },

@@ -5,6 +5,7 @@ import availability from '../../../../app/javascript/availability';
 
 const baseUrl = 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/' +
                 'OpenURL?Action=10';
+const holdingData = {locationID: 'BINDERY', callNumber: '123'};
 
 const testLink = async (getByRole, container, label, href) => {
   expect(getByRole('link')).toHaveAttribute('href', '#');
@@ -33,7 +34,7 @@ describe('when all fields are present', () => {
 
   test('renders an ILL link', async () => {
     const {getByRole, container} = render(
-      <IllLink holding={{locationID: 'BINDERY', callNumber: '123'}} />
+      <IllLink holding={holdingData} />
     );
 
     const href = baseUrl + '&Form=30&isbn=1234' + moreParams;
@@ -50,7 +51,7 @@ describe('when all fields are present', () => {
     availability.reservesScanLocations = ['BINDERY'];
   
     const {getByRole, container} = render(
-      <IllLink holding={{locationID: 'BINDERY', callNumber: '123'}} />
+      <IllLink holding={holdingData} />
     );
 
     const href = baseUrl + 
@@ -70,7 +71,7 @@ describe('when all fields are present', () => {
   
   test('renders a microform link', async () => {
     const {getByRole, container} = render(
-      <IllLink holding={{locationID: 'BINDERY', callNumber: '123', libraryID: 'UP-MICRO', itemTypeID: 'MICROFORM'}} />
+      <IllLink holding={{...holdingData, libraryID: 'UP-MICRO', itemTypeID: 'MICROFORM'}} />
     );
 
     const href = baseUrl +
@@ -88,7 +89,7 @@ describe('when all fields are present', () => {
   
   test('renders an archival thesis link', async () => {
     const {getByRole, container} = render(
-      <IllLink holding={{locationID: 'ARKTHESES', callNumber: '123'}} />
+      <IllLink holding={{...holdingData, locationID: 'ARKTHESES'}} />
     );
 
     const href = baseUrl +
@@ -114,7 +115,7 @@ test('renders a link with no author info', async () => {
   });
 
   const {getByRole, container} = render(
-    <IllLink holding={{locationID: 'BINDERY', callNumber: '123'}} />
+    <IllLink holding={holdingData} />
   );
 
   const href = baseUrl +
@@ -139,7 +140,7 @@ test('renders a link with no publication date', async () => {
   });
 
   const {getByRole, container} = render(
-    <IllLink holding={{locationID: 'BINDERY', callNumber: '123'}} />
+    <IllLink holding={holdingData} />
   );
 
   const href = baseUrl +
@@ -164,7 +165,7 @@ test('renders a link with no ISBN', async () => {
   });
 
   const {getByRole, container} = render(
-    <IllLink holding={{locationID: 'BINDERY', callNumber: '123'}} />
+    <IllLink holding={holdingData} />
   );
 
   const href = baseUrl +
@@ -179,4 +180,40 @@ test('renders a link with no ISBN', async () => {
   );
 });
 
-test.todo('renders a link when the response comes back with no data');
+test('renders a basic ILL link the response comes back with no data', async () => {
+  $.get = jest.fn().mockImplementation(() => {
+    return Promise.resolve({});
+  });
+
+  const {getByRole, container} = render(
+    <IllLink holding={holdingData} />
+  );
+
+  await testLink(
+    getByRole,
+    container,
+    'Use ILLiad to request this item',
+    'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/'
+  );
+
+  expect(getByRole('link')).toHaveAttribute('target', '_blank');
+});
+
+test('renders a basic ILL link if the AJAX request fails', async () => {
+  $.get = jest.fn().mockImplementation(() => {
+    return Promise.reject();
+  });
+
+  const {getByRole, container} = render(
+    <IllLink holding={holdingData} />
+  );
+
+  await testLink(
+    getByRole,
+    container,
+    'Use ILLiad to request this item',
+    'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/'
+  );
+
+  expect(getByRole('link')).toHaveAttribute('target', '_blank');
+});

@@ -4,8 +4,9 @@ import availability from '../index.js';
 import Spinner from './spinner.jsx';
 
 const AeonLink = ({holding, locationText}) => {
-    const [url, setUrl] = useState('#');
+    const [hasData, setHasData] = useState(false);
     const [showSpinner, setShowSpinner] = useState(true);
+    const [url, setUrl] = useState('#');
 
     useEffect(() => {
         createAeonUrl();
@@ -18,12 +19,16 @@ const AeonLink = ({holding, locationText}) => {
         const itemID = encodeURIComponent(holding.itemID);
         const itemTypeID = holding.itemTypeID;
         const genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
-        let aeonUrl = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30` +
-            `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
-            `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
+        let aeonUrl = "https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll";
 
         $.get(`/catalog/${catkey}/raw.json`).then((data) => {
             if (Object.keys(data).length > 0) {
+                setHasData(true);
+
+                aeonUrl = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30` +
+                    `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
+                    `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
+
                 const title = encodeURIComponent(data.title_245ab_tsim);
                 const author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
                 const publisher = encodeURIComponent(data.publisher_name_ssm ? data.publisher_name_ssm : "");
@@ -41,15 +46,26 @@ const AeonLink = ({holding, locationText}) => {
 
             setShowSpinner(false);
             setUrl(aeonUrl);
+        }).catch(() => {
+            setShowSpinner(false);
+            setUrl(aeonUrl);
         });
     };
 
     const label = () => {
+        if (!hasData) {
+            return "Use Aeon to request this item";
+        }
+
         return availability.isArchivalThesis(holding) ? 'View in Special Collections' : 'Request Material';
     };
 
+    const linkTarget = () => {
+        return hasData ? null : "_blank";
+    };
+
     return (
-        <a href={url}>
+        <a href={url} target={linkTarget()}>
             <Spinner isVisible={showSpinner} />
 
             {label()}

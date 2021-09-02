@@ -4,16 +4,16 @@ import availability from '../index.js';
 import Spinner from './spinner.jsx';
 
 const IllLink = ({holding}) => {
-    const [url, setUrl] = useState('#');
+    const [hasData, setHasData] = useState(false);
     const [showSpinner, setShowSpinner] = useState(true);
+    const [url, setUrl] = useState('#');
 
     useEffect(() => {
         createIllUrl();
     }, []);
 
     const createIllUrl = () => {
-        let illUrl = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/" +
-            "OpenURL?Action=10";
+        let illUrl = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/";
         const catkey = holding.catkey;
         const callNumber = encodeURIComponent(holding.callNumber);
         const linkType = encodeURIComponent(illLinkType());
@@ -21,9 +21,13 @@ const IllLink = ({holding}) => {
 
         $.get(`/catalog/${catkey}/raw.json`).then((data) => {
             if (Object.keys(data).length > 0) {
+                setHasData(true);
+
                 const title = encodeURIComponent(data.title_245ab_tsim);
                 const author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
                 const pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
+
+                illUrl += "upm/illiad.dll/OpenURL?Action=10";
                 if (linkType === "archival-thesis") {
                     illUrl += "&Form=20&Genre=GenericRequestThesisDigitization";
                 }
@@ -48,6 +52,9 @@ const IllLink = ({holding}) => {
 
             setShowSpinner(false);
             setUrl(illUrl);
+        }).catch(() => {
+            setShowSpinner(false);
+            setUrl(illUrl);
         });
     };
 
@@ -60,6 +67,10 @@ const IllLink = ({holding}) => {
     };
 
     const label = () => {
+        if (!hasData) {
+            return "Use ILLiad to request this item";
+        }
+
         if (availability.isMicroform(holding) || availability.isArchivalThesis(holding)) {
             return "Request Scan - Penn State Users";
         }
@@ -67,8 +78,12 @@ const IllLink = ({holding}) => {
         return availability.illiadLocations[holding.locationID];
     };
 
+    const linkTarget = () => {
+        return hasData ? null : "_blank";
+    };
+
     return (
-        <a href={url}>
+        <a href={url} target={linkTarget()}>
             <Spinner isVisible={showSpinner} />
 
             {label()}
