@@ -409,11 +409,16 @@ class CatalogController < ApplicationController
         field.include_in_advanced_search = false
         field.label = 'Browse by Call Number'
       end
-    end
 
-    config.add_search_field('browse_subjects') do |field|
-      field.include_in_advanced_search = false
-      field.label = 'Browse by Subject'
+      config.add_search_field('browse_authors') do |field|
+        field.include_in_advanced_search = false
+        field.label = 'Browse by Author'
+      end
+
+      config.add_search_field('browse_subjects') do |field|
+        field.include_in_advanced_search = false
+        field.label = 'Browse by Subject'
+      end
     end
 
     # "sort results by" select (pulldown)

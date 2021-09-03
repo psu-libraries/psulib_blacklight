@@ -21,10 +21,6 @@ class BrowseController < ApplicationController
       params[:prefix].try(:capitalize!)
     end
 
-    def author_params
-      params.permit(:length, :page, :prefix)
-    end
-
     def author_list_params
       params
         .permit(:length, :page, :prefix)

@@ -9,6 +9,14 @@ module Browse::Paths
     end
   end
 
+  def browse_url
+    if action == 'index'
+      super(args)
+    else
+      send("browse_#{action}_url")
+    end
+  end
+
   private
 
     def action
