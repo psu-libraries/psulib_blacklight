@@ -28,18 +28,20 @@ describe('when all fields are present', () => {
     '&SubLocation=sublocation%201%3B%20sublocation%202';
 
   beforeEach(() => {
-    $.get = jest.fn().mockImplementation(() => {
+    global.fetch = jest.fn(() => {
       return Promise.resolve({
-        title_245ab_tsim: 'book title',
-        author_tsim: 'author name',
-        pub_date_illiad_ssm: 2021,
-        isbn_ssm: '1234',
-        edition_display_ssm: '1',
-        publisher_name_ssm: 'publisher name',
-        publication_place_ssm: 'pub place',
-        restrictions_access_note_ssm: 'restrictions',
-        sublocation_ssm: ['sublocation 1', 'sublocation 2']
-      });
+        json: () => Promise.resolve({
+          title_245ab_tsim: 'book title',
+          author_tsim: 'author name',
+          pub_date_illiad_ssm: 2021,
+          isbn_ssm: '1234',
+          edition_display_ssm: '1',
+          publisher_name_ssm: 'publisher name',
+          publication_place_ssm: 'pub place',
+          restrictions_access_note_ssm: 'restrictions',
+          sublocation_ssm: ['sublocation 1', 'sublocation 2']
+        })
+      })
     });
   });
 
@@ -82,11 +84,13 @@ describe('when all fields are present', () => {
 });
 
 test('renders an Aeon link with some fields missing', async () => {
-  $.get = jest.fn().mockImplementation(() => {
+  global.fetch = jest.fn(() => {
     return Promise.resolve({
-      title_245ab_tsim: 'book title',
-      isbn_ssm: '1234',
-    });
+      json: () => Promise.resolve({
+        title_245ab_tsim: 'book title',
+        isbn_ssm: '1234',
+      })
+    })
   });
 
   const {getByRole, container} = render(
@@ -108,8 +112,10 @@ test('renders an Aeon link with some fields missing', async () => {
 });
 
 test('renders a basic Aeon link if the response comes back with no data', async () => {
-  $.get = jest.fn().mockImplementation(() => {
-    return Promise.resolve({});
+  global.fetch = jest.fn(() => {
+    return Promise.resolve({
+      json: () => Promise.resolve({})
+    })
   });
 
   const {getByRole, container} = render(
@@ -127,8 +133,8 @@ test('renders a basic Aeon link if the response comes back with no data', async 
 });
 
 test('renders a basic Aeon link if the AJAX request fails', async () => {
-  $.get = jest.fn().mockImplementation(() => {
-    return Promise.reject();
+  global.fetch = jest.fn(() => {
+    return Promise.reject()
   });
 
   const {getByRole, container} = render(

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import availability from '../index.js';
-import Spinner from './spinner.jsx';
+import SpinnerLink from './spinner_link.jsx';
 
 const IllLink = ({holding}) => {
     const [hasData, setHasData] = useState(false);
@@ -12,6 +12,10 @@ const IllLink = ({holding}) => {
         createIllUrl();
     }, []);
 
+    const fetchJson = (url) => {
+        return fetch(url).then((response) => response.json());
+    };
+
     const createIllUrl = () => {
         let illUrl = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/";
         const catkey = holding.catkey;
@@ -19,7 +23,7 @@ const IllLink = ({holding}) => {
         const linkType = encodeURIComponent(illLinkType());
         const itemLocation = encodeURIComponent(holding.locationID);
 
-        $.get(`/catalog/${catkey}/raw.json`).then((data) => {
+        fetchJson(`/catalog/${catkey}/raw.json`).then((data) => {
             if (Object.keys(data).length > 0) {
                 setHasData(true);
 
@@ -49,10 +53,7 @@ const IllLink = ({holding}) => {
                     illUrl += `&date=${pubDate}`;
                 }
             }
-
-            setShowSpinner(false);
-            setUrl(illUrl);
-        }).catch(() => {
+        }).catch(() => {}).finally(() => {
             setShowSpinner(false);
             setUrl(illUrl);
         });
@@ -83,11 +84,12 @@ const IllLink = ({holding}) => {
     };
 
     return (
-        <a href={url} target={linkTarget()}>
-            <Spinner isVisible={showSpinner} />
-
-            {label()}
-        </a>
+        <SpinnerLink
+            label={label()}
+            linkTarget={linkTarget()}
+            showSpinner={showSpinner}
+            url={url}
+        />
     );
 };
 

@@ -22,12 +22,14 @@ describe('when all fields are present', () => {
                      '&aulast=author%20name&date=2021';
 
   beforeEach(() => {
-    $.get = jest.fn().mockImplementation(() => {
+    global.fetch = jest.fn(() => {
       return Promise.resolve({
-        title_245ab_tsim: 'book title',
-        author_tsim: 'author name',
-        pub_date_illiad_ssm: 2021,
-        isbn_ssm: '1234'
+        json: () => Promise.resolve({
+          title_245ab_tsim: 'book title',
+          author_tsim: 'author name',
+          pub_date_illiad_ssm: 2021,
+          isbn_ssm: '1234'
+        })
       });
     });
   });
@@ -106,12 +108,14 @@ describe('when all fields are present', () => {
 });
 
 test('renders a link with no author info', async () => {
-  $.get = jest.fn().mockImplementation(() => {
+  global.fetch = jest.fn(() => {
     return Promise.resolve({
-      title_245ab_tsim: 'book title',
-      pub_date_illiad_ssm: 2021,
-      isbn_ssm: '1234'
-    });
+      json: () => Promise.resolve({
+        title_245ab_tsim: 'book title',
+        pub_date_illiad_ssm: 2021,
+        isbn_ssm: '1234'
+      })
+    })
   });
 
   const {getByRole, container} = render(
@@ -131,12 +135,14 @@ test('renders a link with no author info', async () => {
 });
 
 test('renders a link with no publication date', async () => {
-  $.get = jest.fn().mockImplementation(() => {
+  global.fetch = jest.fn(() => {
     return Promise.resolve({
-      title_245ab_tsim: 'book title',
-      author_tsim: 'author name',
-      isbn_ssm: '1234'
-    });
+      json: () => Promise.resolve({
+        title_245ab_tsim: 'book title',
+        author_tsim: 'author name',
+        isbn_ssm: '1234'
+      })
+    })
   });
 
   const {getByRole, container} = render(
@@ -156,12 +162,14 @@ test('renders a link with no publication date', async () => {
 });
 
 test('renders a link with no ISBN', async () => {
-  $.get = jest.fn().mockImplementation(() => {
+  global.fetch = jest.fn(() => {
     return Promise.resolve({
-      title_245ab_tsim: 'book title',
-      author_tsim: 'author name',
-      pub_date_illiad_ssm: 2021
-    });
+      json: () => Promise.resolve({
+        title_245ab_tsim: 'book title',
+        author_tsim: 'author name',
+        pub_date_illiad_ssm: 2021
+      })
+    })
   });
 
   const {getByRole, container} = render(
@@ -181,8 +189,10 @@ test('renders a link with no ISBN', async () => {
 });
 
 test('renders a basic ILL link the response comes back with no data', async () => {
-  $.get = jest.fn().mockImplementation(() => {
-    return Promise.resolve({});
+  global.fetch = jest.fn(() => {
+    return Promise.resolve({
+      json: () => Promise.resolve({})
+    })
   });
 
   const {getByRole, container} = render(
@@ -200,8 +210,8 @@ test('renders a basic ILL link the response comes back with no data', async () =
 });
 
 test('renders a basic ILL link if the AJAX request fails', async () => {
-  $.get = jest.fn().mockImplementation(() => {
-    return Promise.reject();
+  global.fetch = jest.fn(() => {
+    return Promise.reject()
   });
 
   const {getByRole, container} = render(

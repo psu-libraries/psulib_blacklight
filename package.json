@@ -45,9 +45,6 @@
     "moduleDirectories": [
       "node_modules",
       "app/javascript"
-    ],
-    "setupFiles": [
-      "<rootDir>/spec/javascript/setup-jest.js"
     ]
   }
 }

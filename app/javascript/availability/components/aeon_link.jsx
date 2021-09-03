@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import availability from '../index.js';
-import Spinner from './spinner.jsx';
+import SpinnerLink from './spinner_link.jsx';
 
 const AeonLink = ({holding, locationText}) => {
     const [hasData, setHasData] = useState(false);
@@ -12,6 +12,10 @@ const AeonLink = ({holding, locationText}) => {
         createAeonUrl();
     }, []);
 
+    const fetchJson = (url) => {
+        return fetch(url).then((response) => response.json());
+    };
+
     const createAeonUrl = () => {
         const catkey = holding.catkey;
         const callNumber = encodeURIComponent(holding.callNumber);
@@ -21,7 +25,7 @@ const AeonLink = ({holding, locationText}) => {
         const genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
         let aeonUrl = "https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll";
 
-        $.get(`/catalog/${catkey}/raw.json`).then((data) => {
+        fetchJson(`/catalog/${catkey}/raw.json`).then((data) => {
             if (Object.keys(data).length > 0) {
                 setHasData(true);
 
@@ -43,10 +47,7 @@ const AeonLink = ({holding, locationText}) => {
                     `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}` +
                     `&SubLocation=${subLocation}`;
             }
-
-            setShowSpinner(false);
-            setUrl(aeonUrl);
-        }).catch(() => {
+        }).catch(() => {}).finally(() => {
             setShowSpinner(false);
             setUrl(aeonUrl);
         });
@@ -65,11 +66,12 @@ const AeonLink = ({holding, locationText}) => {
     };
 
     return (
-        <a href={url} target={linkTarget()}>
-            <Spinner isVisible={showSpinner} />
-
-            {label()}
-        </a>
+        <SpinnerLink
+            label={label()}
+            linkTarget={linkTarget()}
+            showSpinner={showSpinner}
+            url={url}
+        />
     );
 };
 
