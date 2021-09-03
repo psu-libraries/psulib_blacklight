@@ -24,6 +24,14 @@ RSpec.describe 'Catalog', type: :request do
     end
   end
 
+  describe 'browse authors redirect' do
+    it 'redirects to the author browse path' do
+      get '/?search_field=browse_authors&q=ABC'
+
+      expect(response).to redirect_to '/browse/authors?prefix=ABC'
+    end
+  end
+
   describe 'browse subjects redirect' do
     it 'redirects to the subject browse path' do
       get '/?search_field=browse_subjects&q=ABC'

@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe 'browse/subjects', type: :view do
+RSpec.describe 'browse/authors', type: :view do
   before do
-    controller.params = { action: 'subjects' }
-    assign(:subject_list, instance_spy(BrowseList, entries: []))
+    controller.params = { action: 'authors' }
+    assign(:author_list, instance_spy(BrowseList, entries: []))
     render
   end
 

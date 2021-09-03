@@ -2,20 +2,18 @@
 
 module Browse
   class PrefixSelector < ViewComponent::Base
+    include Paths
+
     def prefix
       params[:prefix]
     end
 
     def clear_prefix_path
-      browse_subjects_path(merge_params)
+      browse_path(merge_params)
     end
 
     def prefix_path(letter)
-      browse_subjects_path(merge_params(prefix: letter))
-    end
-
-    def form_url
-      browse_subjects_url
+      browse_path(merge_params(prefix: letter))
     end
 
     private

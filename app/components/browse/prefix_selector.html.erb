@@ -16,10 +16,12 @@
   </div>
 
   <div class="col-3">
-    <%= form_tag form_url, method: :get, id: 'browse-form', role: 'browse' do %>
+    <%= form_tag browse_url, method: :get, id: 'browse-form', role: 'browse' do %>
       <label for="prefix" class="sr-only"><%= t('.label') %></label>
       <div class="input-group">
-        <span class="input-group-prepend input-group-text"><%= t('.label') %></span>
+        <span class="input-group-prepend">
+          <span class="input-group-text"><%= t('.label') %></span>
+        </span>
         <%= text_field_tag :prefix,
                            prefix,
                            class: 'form-control',
