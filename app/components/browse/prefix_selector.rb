@@ -4,8 +4,10 @@ module Browse
   class PrefixSelector < ViewComponent::Base
     include Paths
 
-    def prefix
-      params[:prefix]
+    attr_reader :prefix
+
+    def initialize(prefix:)
+      @prefix = prefix
     end
 
     def clear_prefix_path

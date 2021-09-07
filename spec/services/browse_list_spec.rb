@@ -17,7 +17,7 @@ RSpec.describe BrowseList do
   end
 
   let(:facet_results) do
-    ['term1', 1, 'term2', 3, 'term3', 5]
+    ['term1', 1, 'TERM2', 3, 'term3', 5]
   end
 
   before do
@@ -51,7 +51,7 @@ RSpec.describe BrowseList do
         )
         expect(entries).to contain_exactly(
           described_class::Entry.new('term1', 1),
-          described_class::Entry.new('term2', 3),
+          described_class::Entry.new('TERM2', 3),
           described_class::Entry.new('term3', 5)
         )
       end
@@ -63,7 +63,7 @@ RSpec.describe BrowseList do
           field: 'browsing_facet',
           page: 2,
           length: 20,
-          prefix: 'T'
+          prefix: 'tE'
         ).entries
 
         expect(mock_connection).to have_received(:get).with(
@@ -74,7 +74,7 @@ RSpec.describe BrowseList do
               'facet.field' => 'browsing_facet',
               'facet.limit' => 21,
               'facet.offset' => 20,
-              'facet.prefix' => 'T',
+              'facet.prefix' => 'TE',
               'facet.sort' => 'index',
               'rows' => '0'
             }
@@ -83,7 +83,7 @@ RSpec.describe BrowseList do
 
         expect(entries).to contain_exactly(
           described_class::Entry.new('term1', 1),
-          described_class::Entry.new('term2', 3),
+          described_class::Entry.new('TERM2', 3),
           described_class::Entry.new('term3', 5)
         )
       end
