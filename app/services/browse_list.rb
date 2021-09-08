@@ -14,7 +14,7 @@ class BrowseList
     @field = field
     @page = page.to_i
     @length = length.to_i
-    @prefix = prefix
+    @prefix = normalize_prefix(prefix)
   end
 
   def entries
@@ -54,5 +54,13 @@ class BrowseList
                'facet.prefix' => prefix
              })
         .dig('facet_counts', 'facet_fields', field)
+    end
+
+    def normalize_prefix(prefix)
+      return if prefix.blank?
+
+      normalized_prefix = prefix.dup
+      normalized_prefix[0] = normalized_prefix[0].upcase
+      normalized_prefix
     end
 end

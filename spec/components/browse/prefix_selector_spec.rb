@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Browse::PrefixSelector, type: :component do
-  let(:node) { render_inline(described_class.new) }
+  let(:node) { render_inline(described_class.new(prefix: nil)) }
 
   context 'when no action can be determined' do
     specify do
@@ -37,7 +37,9 @@ RSpec.describe Browse::PrefixSelector, type: :component do
   end
 
   context 'with a specified prefix' do
-    before { controller.params = { action: 'subjects', prefix: 'E' } }
+    let(:node) { render_inline(described_class.new(prefix: 'E')) }
+
+    before { controller.params = { action: 'subjects' } }
 
     it 'renders the selector as active' do
       expect(node.css('li.active').count).to eq(1)
