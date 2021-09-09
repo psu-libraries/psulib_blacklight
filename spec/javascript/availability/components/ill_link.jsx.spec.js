@@ -5,6 +5,7 @@ import availability from '../../../../app/javascript/availability';
 
 const baseUrl = 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/' +
                 'OpenURL?Action=10';
+const holdingData = {locationID: 'BINDERY', callNumber: '123'};
 
 const testLink = async (getByRole, container, label, href) => {
   expect(getByRole('link')).toHaveAttribute('href', '#');
@@ -21,19 +22,21 @@ describe('when all fields are present', () => {
                      '&aulast=author%20name&date=2021';
 
   beforeEach(() => {
-    $.get = jest.fn().mockImplementation(() => {
+    global.fetch = jest.fn(() => {
       return Promise.resolve({
-        title_245ab_tsim: 'book title',
-        author_tsim: 'author name',
-        pub_date_illiad_ssm: 2021,
-        isbn_ssm: '1234'
+        json: () => Promise.resolve({
+          title_245ab_tsim: 'book title',
+          author_tsim: 'author name',
+          pub_date_illiad_ssm: 2021,
+          isbn_ssm: '1234'
+        })
       });
     });
   });
 
   test('renders an ILL link', async () => {
     const {getByRole, container} = render(
-      <IllLink holding={{locationID: 'BINDERY', callNumber: '123'}} />
+      <IllLink holding={holdingData} />
     );
 
     const href = baseUrl + '&Form=30&isbn=1234' + moreParams;
@@ -50,7 +53,7 @@ describe('when all fields are present', () => {
     availability.reservesScanLocations = ['BINDERY'];
   
     const {getByRole, container} = render(
-      <IllLink holding={{locationID: 'BINDERY', callNumber: '123'}} />
+      <IllLink holding={holdingData} />
     );
 
     const href = baseUrl + 
@@ -70,7 +73,7 @@ describe('when all fields are present', () => {
   
   test('renders a microform link', async () => {
     const {getByRole, container} = render(
-      <IllLink holding={{locationID: 'BINDERY', callNumber: '123', libraryID: 'UP-MICRO', itemTypeID: 'MICROFORM'}} />
+      <IllLink holding={{...holdingData, libraryID: 'UP-MICRO', itemTypeID: 'MICROFORM'}} />
     );
 
     const href = baseUrl +
@@ -88,7 +91,7 @@ describe('when all fields are present', () => {
   
   test('renders an archival thesis link', async () => {
     const {getByRole, container} = render(
-      <IllLink holding={{locationID: 'ARKTHESES', callNumber: '123'}} />
+      <IllLink holding={{...holdingData, locationID: 'ARKTHESES'}} />
     );
 
     const href = baseUrl +
@@ -105,16 +108,18 @@ describe('when all fields are present', () => {
 });
 
 test('renders a link with no author info', async () => {
-  $.get = jest.fn().mockImplementation(() => {
+  global.fetch = jest.fn(() => {
     return Promise.resolve({
-      title_245ab_tsim: 'book title',
-      pub_date_illiad_ssm: 2021,
-      isbn_ssm: '1234'
-    });
+      json: () => Promise.resolve({
+        title_245ab_tsim: 'book title',
+        pub_date_illiad_ssm: 2021,
+        isbn_ssm: '1234'
+      })
+    })
   });
 
   const {getByRole, container} = render(
-    <IllLink holding={{locationID: 'BINDERY', callNumber: '123'}} />
+    <IllLink holding={holdingData} />
   );
 
   const href = baseUrl +
@@ -130,16 +135,18 @@ test('renders a link with no author info', async () => {
 });
 
 test('renders a link with no publication date', async () => {
-  $.get = jest.fn().mockImplementation(() => {
+  global.fetch = jest.fn(() => {
     return Promise.resolve({
-      title_245ab_tsim: 'book title',
-      author_tsim: 'author name',
-      isbn_ssm: '1234'
-    });
+      json: () => Promise.resolve({
+        title_245ab_tsim: 'book title',
+        author_tsim: 'author name',
+        isbn_ssm: '1234'
+      })
+    })
   });
 
   const {getByRole, container} = render(
-    <IllLink holding={{locationID: 'BINDERY', callNumber: '123'}} />
+    <IllLink holding={holdingData} />
   );
 
   const href = baseUrl +
@@ -155,16 +162,18 @@ test('renders a link with no publication date', async () => {
 });
 
 test('renders a link with no ISBN', async () => {
-  $.get = jest.fn().mockImplementation(() => {
+  global.fetch = jest.fn(() => {
     return Promise.resolve({
-      title_245ab_tsim: 'book title',
-      author_tsim: 'author name',
-      pub_date_illiad_ssm: 2021
-    });
+      json: () => Promise.resolve({
+        title_245ab_tsim: 'book title',
+        author_tsim: 'author name',
+        pub_date_illiad_ssm: 2021
+      })
+    })
   });
 
   const {getByRole, container} = render(
-    <IllLink holding={{locationID: 'BINDERY', callNumber: '123'}} />
+    <IllLink holding={holdingData} />
   );
 
   const href = baseUrl +
@@ -179,4 +188,42 @@ test('renders a link with no ISBN', async () => {
   );
 });
 
-test.todo('renders a link when the response comes back with no data');
+test('renders a basic ILL link the response comes back with no data', async () => {
+  global.fetch = jest.fn(() => {
+    return Promise.resolve({
+      json: () => Promise.resolve({})
+    })
+  });
+
+  const {getByRole, container} = render(
+    <IllLink holding={holdingData} />
+  );
+
+  await testLink(
+    getByRole,
+    container,
+    'Use ILLiad to request this item',
+    'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/'
+  );
+
+  expect(getByRole('link')).toHaveAttribute('target', '_blank');
+});
+
+test('renders a basic ILL link if the AJAX request fails', async () => {
+  global.fetch = jest.fn(() => {
+    return Promise.reject()
+  });
+
+  const {getByRole, container} = render(
+    <IllLink holding={holdingData} />
+  );
+
+  await testLink(
+    getByRole,
+    container,
+    'Use ILLiad to request this item',
+    'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/'
+  );
+
+  expect(getByRole('link')).toHaveAttribute('target', '_blank');
+});

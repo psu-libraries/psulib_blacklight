@@ -1,15 +1,20 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import availability from '../index.js';
-import Spinner from './spinner.jsx';
+import SpinnerLink from './spinner_link.jsx';
 
 const AeonLink = ({holding, locationText}) => {
-    const [url, setUrl] = useState('#');
+    const [hasData, setHasData] = useState(false);
     const [showSpinner, setShowSpinner] = useState(true);
+    const [url, setUrl] = useState('#');
 
     useEffect(() => {
         createAeonUrl();
     }, []);
+
+    const fetchJson = (url) => {
+        return fetch(url).then((response) => response.json());
+    };
 
     const createAeonUrl = () => {
         const catkey = holding.catkey;
@@ -18,12 +23,16 @@ const AeonLink = ({holding, locationText}) => {
         const itemID = encodeURIComponent(holding.itemID);
         const itemTypeID = holding.itemTypeID;
         const genre = itemTypeID === "ARCHIVES" ? "ARCHIVES" : "BOOK";
-        let aeonUrl = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30` +
-            `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
-            `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
+        let aeonUrl = "https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll";
 
-        $.get(`/catalog/${catkey}/raw.json`).then((data) => {
+        fetchJson(`/catalog/${catkey}/raw.json`).then((data) => {
             if (Object.keys(data).length > 0) {
+                setHasData(true);
+
+                aeonUrl = `https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30` +
+                    `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
+                    `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
+
                 const title = encodeURIComponent(data.title_245ab_tsim);
                 const author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
                 const publisher = encodeURIComponent(data.publisher_name_ssm ? data.publisher_name_ssm : "");
@@ -38,22 +47,31 @@ const AeonLink = ({holding, locationText}) => {
                     `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}` +
                     `&SubLocation=${subLocation}`;
             }
-
+        }).catch(() => {}).finally(() => {
             setShowSpinner(false);
             setUrl(aeonUrl);
         });
     };
 
     const label = () => {
+        if (!hasData) {
+            return "Use Aeon to request this item";
+        }
+
         return availability.isArchivalThesis(holding) ? 'View in Special Collections' : 'Request Material';
     };
 
-    return (
-        <a href={url}>
-            <Spinner isVisible={showSpinner} />
+    const linkTarget = () => {
+        return hasData ? null : "_blank";
+    };
 
-            {label()}
-        </a>
+    return (
+        <SpinnerLink
+            label={label()}
+            linkTarget={linkTarget()}
+            showSpinner={showSpinner}
+            url={url}
+        />
     );
 };
 

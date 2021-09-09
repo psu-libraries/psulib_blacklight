@@ -1,29 +1,37 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import availability from '../index.js';
-import Spinner from './spinner.jsx';
+import SpinnerLink from './spinner_link.jsx';
 
 const IllLink = ({holding}) => {
-    const [url, setUrl] = useState('#');
+    const [hasData, setHasData] = useState(false);
     const [showSpinner, setShowSpinner] = useState(true);
+    const [url, setUrl] = useState('#');
 
     useEffect(() => {
         createIllUrl();
     }, []);
 
+    const fetchJson = (url) => {
+        return fetch(url).then((response) => response.json());
+    };
+
     const createIllUrl = () => {
-        let illUrl = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/" +
-            "OpenURL?Action=10";
+        let illUrl = "https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/";
         const catkey = holding.catkey;
         const callNumber = encodeURIComponent(holding.callNumber);
         const linkType = encodeURIComponent(illLinkType());
         const itemLocation = encodeURIComponent(holding.locationID);
 
-        $.get(`/catalog/${catkey}/raw.json`).then((data) => {
+        fetchJson(`/catalog/${catkey}/raw.json`).then((data) => {
             if (Object.keys(data).length > 0) {
+                setHasData(true);
+
                 const title = encodeURIComponent(data.title_245ab_tsim);
                 const author = encodeURIComponent(data.author_tsim ? data.author_tsim : "");
                 const pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : "";
+
+                illUrl += "upm/illiad.dll/OpenURL?Action=10";
                 if (linkType === "archival-thesis") {
                     illUrl += "&Form=20&Genre=GenericRequestThesisDigitization";
                 }
@@ -45,7 +53,7 @@ const IllLink = ({holding}) => {
                     illUrl += `&date=${pubDate}`;
                 }
             }
-
+        }).catch(() => {}).finally(() => {
             setShowSpinner(false);
             setUrl(illUrl);
         });
@@ -60,6 +68,10 @@ const IllLink = ({holding}) => {
     };
 
     const label = () => {
+        if (!hasData) {
+            return "Use ILLiad to request this item";
+        }
+
         if (availability.isMicroform(holding) || availability.isArchivalThesis(holding)) {
             return "Request Scan - Penn State Users";
         }
@@ -67,12 +79,17 @@ const IllLink = ({holding}) => {
         return availability.illiadLocations[holding.locationID];
     };
 
-    return (
-        <a href={url}>
-            <Spinner isVisible={showSpinner} />
+    const linkTarget = () => {
+        return hasData ? null : "_blank";
+    };
 
-            {label()}
-        </a>
+    return (
+        <SpinnerLink
+            label={label()}
+            linkTarget={linkTarget()}
+            showSpinner={showSpinner}
+            url={url}
+        />
     );
 };
 
