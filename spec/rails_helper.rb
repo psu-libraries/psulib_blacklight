@@ -6,6 +6,8 @@ SimpleCov.start 'rails' do
   add_filter 'app/jobs'
 
   add_group 'Components', 'app/components'
+  add_group 'Presenters', 'app/presenters'
+  add_group 'Services', 'app/services'
 end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
