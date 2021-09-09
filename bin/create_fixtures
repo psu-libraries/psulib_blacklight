@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd ../psulib_traject
+bundle exec traject \
+  -c config/traject.rb \
+  -w Traject::JsonWriter \
+  -o ../psulib_blacklight/spec/fixtures/current_fixtures.json \
+  ../psulib_blacklight/solr/sample_data/*.mrc

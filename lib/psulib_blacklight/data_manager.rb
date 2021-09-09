@@ -17,5 +17,14 @@ module PsulibBlacklight
       Blacklight.default_index.connection.add(docs)
       Blacklight.default_index.connection.commit
     end
+
+    # @note We'd usually use a gem like DatabaseCleaner to do this, but since our database usage is so small, this
+    # seems like a simpler approach. These are SQLite commands only.
+    def self.clean_database
+      ['users', 'bookmarks'].map do |table_name|
+        ActiveRecord::Base.connection.execute("DELETE FROM #{table_name}")
+      end
+      ActiveRecord::Base.connection.execute('VACUUM')
+    end
   end
 end
