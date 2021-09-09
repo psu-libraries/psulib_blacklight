@@ -179,6 +179,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'genre_full_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'lc_1letter_facet', label: 'Classification', show: false, sort: 'index'
     config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
