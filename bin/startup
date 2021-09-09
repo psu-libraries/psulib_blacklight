@@ -18,6 +18,11 @@ bundle exec rails db:migrate
 echo "initalizing solr"
 bundle exec rake solr:initialize_collection
 
+if [ "${LOAD_FIXTURES:-false}" == "true" ]; then
+  echo "Loading Fixtures"
+  bundle exec rake solr:load_fixtures
+fi
+
 echo "starting rails"
 
 bundle exec rails s -b '0.0.0.0'
