@@ -138,7 +138,6 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dot-properties (0.1.3)
-    dotenv (2.7.6)
     dry-configurable (0.12.1)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.5, >= 0.5.0)
@@ -196,9 +195,6 @@ GEM
       ffi (>= 1.0.0)
       rake
     flamegraph (0.9.5)
-    foreman (0.63.0)
-      dotenv (>= 0.7)
-      thor (>= 0.13.6)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashdiff (1.0.1)
@@ -405,6 +401,8 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    shoulda-matchers (5.0.0)
+      activesupport (>= 5.2.0)
     simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
@@ -502,7 +500,6 @@ DEPENDENCIES
   devise-guests (~> 0.6)
   faraday
   flamegraph
-  foreman (~> 0.63.0)
   high_voltage (~> 3.1)
   launchy
   lcsort (~> 0.9)
@@ -522,6 +519,7 @@ DEPENDENCIES
   rspec-rails
   rubyzip
   selenium-webdriver
+  shoulda-matchers
   simplecov (< 0.18)
   sinatra
   spring

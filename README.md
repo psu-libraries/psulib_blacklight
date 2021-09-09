@@ -6,108 +6,25 @@ The Penn State University Libraries' catalog. Built on Blacklight, using Traject
 
 | Software |  Version |
 |----------|------|
-| `ruby`    |  2.6.6 <br> (_ruby 2.6.6p146 (2020-03-31 revision 67876) [x86_64-darwin18]_) |
-| `rails`   |  6.0.3 |
+| `ruby`    |  2.7.3 |
+| `rails`   |  6.0.4 |
 | `solr`   |  7.4.0 |
 
 ## When upgrading Blacklight
 
-Because we use webpacker, when upgrading the Blacklight gem for this application, we should also update `package.json` to the same version as the installed gem so as to keep these things in step from Blacklight.
+Because we use webpacker, when upgrading the Blacklight gem for this application, we should also update `package.json`
+to the same version as the installed gem so as to keep these things in step from Blacklight.
 
-# Development 
+## Development
 
-## For Macs
-
-Note: we have only developed on Macs thus far.
-
-* Get `homebrew` installed and configured using [these instructions from scholarsphere until step 12](https://github.com/psu-libraries/scholarsphere-3/wiki/How-to-Install-on-a-fresh-Mac)
-* `ruby` via `rbenv` ([Upgrading Ruby Version Using rbenv](https://github.com/psu-libraries/psulib_blacklight/wiki/Upgrading-Ruby-Version-Using-rbenv))
-* Get docker desktop installed. See https://www.docker.com/products/docker-desktop
-
-## Development Setup
-1.  [Make sure you have ssh keys established on your machine](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#generating-a-new-ssh-key)
-1.  Make sure you have docker desktop running
-1.  Clone the application and install:
-    ``` 
-    git clone git@github.com:psu-libraries/psulib_blacklight.git
-    cd psulib_blacklight
-    bundle install --without production test
-    ```
-
-1.  Create the database and run the migrations
-    ```
-    bundle exec rake db:create db:migrate
-    ```
-
-1.  Start the application (showing `foreman` method, but just look at `Procfile.dev` to see what that is running if you'd rather some other method like `tmux`)
-    ```
-    bundle exec foreman start -f Procfile.dev
-    ```
-    
-1. Redis is used to manage search sessions. By default, it's set to local host on the default port. If you need to
-   change this, you can update `settings.yml`. Otherwise, ensure that redis is running locally. You can install redis
-   via homebrew:
-    ```
-    brew install redis
-    brew services start redis
-    ```
-
-    Note: on a Mac you may be asked by the OS if you want to allow incoming connections to Ruby. Because this is a local dev instance, you can choose to deny incoming connections. This configuration can be found in the Security & Privacy section of the Systems Preferences. 
-
-## Docker-compose 
-
-Start up the application with all it's dependencies 
-```
-docker-compose up --build -d
-```
-
-Initialize database, solr
-```
-docker-compose exec web bundle exec rails db:migrate
-docker-compose exec web bundle exec rake solr:initialize_collection
-docker-compose exec web bundle exec rake solr:update_config
-docker-compose exec web bundle exec rake solr:create_alias
-```
-
-Run Tests
-```
-docker-compose exec -e RAILS_ENV=test web  bundle exec rake ci
-```
-
-Go Home for the day
-```
-docker-compose down
-```
-
-Clean up all the volumes (start over from scratch)
-```
-docker-compose down -v 
-```
-
-Logs (follow)
-```
-docker-compose logs -f web
-```
-
-## Indexing
-
-Use [Traject](https://github.com/psu-libraries/psulib_traject#build-an-index)
-
-
-To clean out data that is being preserved explicitly run:
-```
-bundle exec rails solr:clean
-```
-
-## Building and Using Javascript
-
-Follow the instructions for [How To Use Webpacker](https://github.com/psu-libraries/psulib_blacklight/wiki/How-To-Use-Webpacker) to compile javascript assets.
+See [Development Setup](https://github.com/psu-libraries/psulib_blacklight/wiki/Development-Setup)
 
 # Application notes
 
 ## "Blackcat Admin" feature
 
-The [config](https://rubygems.org/gems/config) gem provides a means for adding ad-hoc config as needed. The file `config/settings.local.yml` is not tracked in git. So far 5 settings have been added:
+The [config](https://rubygems.org/gems/config) gem provides a means for adding ad-hoc config as needed. The file
+`config/settings.local.yml` is not tracked in git. So far 5 settings have been added:
 
 1. Modify the announcement bar (thin bar at top)
 1. Put the site in "readonly" (no availability data)
@@ -133,4 +50,5 @@ hide_hold_button: false
 hathi_etas: false
 ```
 
-If one of the special keys isn't present, there is no ill-effect. It is just not there and the system operates as per usual. If the announcement array isn't present, then the default announcement in the translation file will show.
+If one of the special keys isn't present, there is no ill-effect. It is just not there and the system operates as per
+usual. If the announcement array isn't present, then the default announcement in the translation file will show.

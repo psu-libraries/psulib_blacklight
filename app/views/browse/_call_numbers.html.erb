@@ -1,0 +1,40 @@
+<h2 class="h4"><%= shelf_list.list.first.call_number %> to <%= shelf_list.list.last.call_number %></h2>
+
+<%= render Browse::Controls.new(
+      navigator: Browse::CallNumberNavigation.new(list: shelf_list)
+    ) %>
+
+<table class="table table-striped my-3">
+  <thead>
+    <tr>
+      <th scope="col">Call Number</th>
+      <th scope="col">Title</th>
+      <th scope="col">Location</th>
+      <th scope="col">Publication Info</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% shelf_list.list.map do |shelf_item| %>
+      <% if shelf_item.nearby? && !shelf_item.match? %>
+        <tr class="table-primary">
+          <td colspan="4"><%= shelf_item.call_number %></td>
+        </tr>
+      <% else %>
+        <% shelf_item.documents.map do |doc| %>
+          <tr class="<%= shelf_item.nearby? ? 'table-primary' : '' %>">
+            <td>
+              <a href="/catalog/<%= doc[:id] %>"><%= shelf_item.call_number %></a>
+            </td>
+            <td><%= doc[:title_display_ssm]&.join(' / ') %></td>
+            <td><%= doc.location_display %></td>
+            <td><%= doc[:publication_display_ssm]&.join(' / ') %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render Browse::Controls.new(
+      navigator: Browse::CallNumberNavigation.new(list: shelf_list)
+    ) %>

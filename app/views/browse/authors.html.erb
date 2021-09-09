@@ -1,0 +1,9 @@
+<h1>Browse by Author</h1>
+
+<%= render Browse::PrefixSelector.new(prefix: @author_list.prefix) %>
+
+<% if @author_list.empty? %>
+  <%= render 'empty' %>
+<% else %>
+  <%= render 'authors', author_list: @author_list %>
+<% end %>

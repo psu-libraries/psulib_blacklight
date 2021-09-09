@@ -1,0 +1,33 @@
+<div class="row my-3">
+
+  <div class="col-9">
+    <nav class="alpha-filter">
+      <ol class="pagination pagination-sm mb-0">
+        <li class="page-item <%= 'active' if prefix.blank? %>">
+          <%= link_to t('.all'), clear_prefix_path, class: 'page-link' %>
+        </li>
+        <% ('A'..'Z').to_a.each do |letter| %>
+          <li class="page-item <%= 'active' if prefix == letter %>">
+            <%= link_to letter, prefix_path(letter), class: 'page-link' %>
+          </li>
+        <% end %>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="col-3">
+    <%= form_tag browse_url, method: :get, id: 'browse-form', role: 'browse' do %>
+      <label for="prefix" class="sr-only"><%= t('.label') %></label>
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <span class="input-group-text"><%= t('.label') %></span>
+        </span>
+        <%= text_field_tag :prefix,
+                           prefix,
+                           class: 'form-control',
+                           id: 'prefix',
+                           size: 5 %>
+      </div>
+    <% end %>
+  </div>
+</div>

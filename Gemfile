@@ -35,7 +35,6 @@ gem 'blacklight_range_limit'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'foreman', '~> 0.63.0'
   gem 'listen'
   gem 'spring'
   gem 'spring-commands-rspec'
@@ -58,6 +57,7 @@ group :test do
   gem 'rspec-its'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
   gem 'simplecov', '< 0.18', require: false # CodeClimate does not work with .18 or later
   gem 'vcr'
   gem 'webdrivers', '~> 4.0'

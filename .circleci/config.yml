@@ -108,7 +108,11 @@ jobs:
           bundle exec niftany
           yarn lint
     - run:
-        name: "Test"
+        name: "Jest"
+        command: |
+          yarn test
+    - run:
+        name: "RSpec"
         command: |
           ./bin/ci-rspec
 

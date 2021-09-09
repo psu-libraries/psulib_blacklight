@@ -3,7 +3,8 @@
         "browser": true,
         "es6": true,
         "jest": true,
-        "jquery": true
+        "jquery": true,
+        "node": true
     },
     "extends": [
         "eslint:recommended",
@@ -20,6 +21,7 @@
     },
     "rules": {
         "max-len": ["error", { "code": 120 }],
+        "react/jsx-no-target-blank": "off",
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off"
     },

@@ -2,12 +2,36 @@
 
 class BrowseController < ApplicationController
   def index
-    @shelf_list = ShelfListPresenter.new(presenter_params)
+    @shelf_list = ShelfListPresenter.new(shelf_list_params)
+  end
+
+  def subjects
+    @subject_list = BrowseList.new(subject_list_params)
+  end
+
+  def authors
+    @author_list = BrowseList.new(author_list_params)
   end
 
   private
 
-    def presenter_params
+    def author_list_params
+      params
+        .permit(:length, :page, :prefix)
+        .to_hash
+        .merge(field: 'all_authors_facet')
+        .symbolize_keys
+    end
+
+    def shelf_list_params
       params.permit(:starting, :ending, :length, :nearby)
+    end
+
+    def subject_list_params
+      params
+        .permit(:length, :page, :prefix)
+        .to_hash
+        .merge(field: 'subject_browse_facet')
+        .symbolize_keys
     end
 end

@@ -1,16 +1,19 @@
 # frozen_string_literal: true
 
-class Browse::PageSizeSelector < ViewComponent::Base
-  attr_reader :params
+module Browse
+  class PageSizeSelector < ViewComponent::Base
+    include Paths
 
-  def initialize(params:)
-    @params = params
-  end
+    def link_path(length)
+      browse_path(merge_params(length: length))
+    end
 
-  def link_path(length)
-    browse_path(length: length,
-                starting: params[:starting],
-                ending: params[:ending],
-                nearby: params[:nearby])
+    private
+
+      def merge_params(opts)
+        params
+          .slice(:prefix, :page, :starting, :ending, :nearby)
+          .merge(opts)
+      end
   end
 end

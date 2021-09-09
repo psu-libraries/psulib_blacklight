@@ -1,0 +1,13 @@
+<% if previous? %>
+  <%= link_to 'Previous',
+              previous_path,
+              class: 'btn btn-primary',
+              title: previous_title %>
+<% end %>
+
+<% if next? %>
+  <%= link_to 'Next',
+              next_path,
+              class: 'btn btn-primary',
+              title: next_title %>
+<% end %>

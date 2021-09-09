@@ -14,4 +14,28 @@ RSpec.describe BrowseController, type: :controller do
       expect(assigns(:shelf_list)).to be_a(ShelfListPresenter)
     end
   end
+
+  describe 'GET #subjects' do
+    subject { response }
+
+    before { get :subjects }
+
+    it { is_expected.to be_successful }
+
+    it 'builds a subject list' do
+      expect(assigns(:subject_list)).to be_a(BrowseList)
+    end
+  end
+
+  describe 'GET #authors' do
+    subject { response }
+
+    before { get :authors }
+
+    it { is_expected.to be_successful }
+
+    it 'builds a author list' do
+      expect(assigns(:author_list)).to be_a(BrowseList)
+    end
+  end
 end

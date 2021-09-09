@@ -11,6 +11,8 @@ class ShelfListPresenter
 
   attr_reader :starting, :ending, :nearby
 
+  delegate :empty?, to: :list
+
   def initialize(params = {})
     @starting = params[:starting]
     @ending = params[:ending]
@@ -36,13 +38,13 @@ class ShelfListPresenter
     end
   end
 
-  def next
+  def next_item
     return if last?
 
     shelf_items.last
   end
 
-  def previous
+  def previous_item
     return if first?
 
     shelf_items.first
