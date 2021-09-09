@@ -41,7 +41,8 @@ class ShelfList
       @forward_keys ||= TermsQuery.call(
         field: forward_shelfkey,
         limit: forward_limit,
-        query: query
+        query: query,
+        include_lower: 'false'
       )
     end
 

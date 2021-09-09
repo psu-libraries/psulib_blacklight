@@ -15,17 +15,17 @@ RSpec.describe ShelfList do
         )
       end
 
-      it 'returns the book and the next four books that appear after it' do
+      it 'returns the next five books that appear after it, but not the book itself' do
         expect(list[:after].map(&:call_number)).to contain_exactly(
-          'G5761.F7 1963.G7',
           'G7273.T5 1968.S6',
           'G8961.C5 1931.D3',
           'GN320.G66 1993',
-          'GV979.S9B43 2005 DVD'
+          'GV979.S9B43 2005 DVD',
+          'GV1643.M36 no.2 1531'
         )
       end
 
-      it 'returns the book and the previous four books that appear before it in reverse order' do
+      it 'returns the book itself and the previous four books that appear before it in reverse order' do
         expect(list[:before].map(&:call_number)).to contain_exactly(
           'G125.M7665 1885',
           'G3803.W3J3 1956.N4',
