@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 class TermsQuery
-  def self.call(field:, limit:, query:)
-    new(field, limit, query).terms
+  def self.call(field:, limit:, query:, include_lower: 'true')
+    new(field, limit, query, include_lower).terms
   end
 
   attr_reader :field, :limit, :query
 
-  def initialize(field, limit, query)
+  def initialize(field, limit, query, include_lower)
     @field = field
     @limit = limit
     @query = query
+    @include_lower = include_lower
   end
 
   # @return [Array<String>]
@@ -30,7 +31,7 @@ class TermsQuery
       .get('terms',
            params: {
              'terms' => true,
-             'terms.lower.incl' => true,
+             'terms.lower.incl' => include_lower?,
              'terms.fl' => field,
              'terms.lower' => query,
              'terms.limit' => limit,
@@ -38,4 +39,10 @@ class TermsQuery
            })
       .dig('terms', field) || []
   end
+
+  private
+
+    def include_lower?
+      @include_lower != 'false'
+    end
 end
