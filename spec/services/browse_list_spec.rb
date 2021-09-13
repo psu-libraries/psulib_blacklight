@@ -63,7 +63,7 @@ RSpec.describe BrowseList do
           field: 'browsing_facet',
           page: 2,
           length: 20,
-          prefix: 'tE'
+          prefix: 'tE--rM--*'
         ).entries
 
         expect(mock_connection).to have_received(:get).with(
@@ -74,7 +74,7 @@ RSpec.describe BrowseList do
               'facet.field' => 'browsing_facet',
               'facet.limit' => 21,
               'facet.offset' => 20,
-              'facet.prefix' => 'TE',
+              'facet.prefix' => 'TE—rM—',
               'facet.sort' => 'index',
               'rows' => '0'
             }
