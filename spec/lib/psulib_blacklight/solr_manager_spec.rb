@@ -67,6 +67,19 @@ RSpec.describe PsulibBlacklight::SolrManager do
       end
     end
 
+    context 'when solr is up and no configset exists in solr' do
+      before do
+        stub_request(:get, "#{config_obj.url}/solr/admin/configs?action=LIST")
+          .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11}}',
+                     headers: {}).then
+          .to_return({ body: File.read('spec/fixtures/solr/configset_list.json') })
+      end
+
+      it 'attempts to upload configset' do
+        expect(solr_manager.send(:config_sets)).to include('configset-eae0a4a2696affb9748c2d2b2ac44cdf')
+      end
+    end
+
     context 'when solr is up and the current configset is present in solr' do
       let(:spy_solr_manager) { instance_spy(described_class) }
 
