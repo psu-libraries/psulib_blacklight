@@ -60,7 +60,9 @@ class BrowseList
       return if prefix.blank?
 
       normalized_prefix = prefix.dup
-      normalized_prefix[0] = normalized_prefix[0].upcase
-      normalized_prefix
+
+      normalized_prefix[0] = normalized_prefix[0].upcase # uppercase the first character
+      normalized_prefix.gsub!(/--/, '—') # replace 2 normal dashes with em dash
+      normalized_prefix.chomp('*') # remove trailing * (wildcard chars)
     end
 end
