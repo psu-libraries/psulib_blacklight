@@ -110,7 +110,7 @@ module PsulibBlacklight
 
       def config_sets
         list = connection.get(PsulibBlacklight::SolrConfig::CONFIG_PATH, action: 'LIST')
-        JSON.parse(list.body)['configSets']
+        JSON.parse(list.body).fetch('configSets', [])
       end
 
       def collections
