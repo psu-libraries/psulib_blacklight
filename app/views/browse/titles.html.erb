@@ -1,0 +1,9 @@
+<h1>Browse by Title</h1>
+
+<%= render Browse::PrefixSelector.new(prefix: @title_list.prefix) %>
+
+<% if @title_list.empty? %>
+  <%= render 'empty' %>
+<% else %>
+  <%= render 'titles', title_list: @title_list %>
+<% end %>

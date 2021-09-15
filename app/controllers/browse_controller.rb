@@ -5,12 +5,16 @@ class BrowseController < ApplicationController
     @shelf_list = ShelfListPresenter.new(shelf_list_params)
   end
 
+  def authors
+    @author_list = BrowseList.new(author_list_params)
+  end
+
   def subjects
     @subject_list = BrowseList.new(subject_list_params)
   end
 
-  def authors
-    @author_list = BrowseList.new(author_list_params)
+  def titles
+    @title_list = BrowseList.new(title_list_params)
   end
 
   private
@@ -32,6 +36,14 @@ class BrowseController < ApplicationController
         .permit(:length, :page, :prefix)
         .to_hash
         .merge(field: 'subject_browse_facet')
+        .symbolize_keys
+    end
+
+    def title_list_params
+      params
+        .permit(:length, :page, :prefix)
+        .to_hash
+        .merge(field: 'title_sort')
         .symbolize_keys
     end
 end

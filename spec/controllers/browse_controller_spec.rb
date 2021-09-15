@@ -15,6 +15,18 @@ RSpec.describe BrowseController, type: :controller do
     end
   end
 
+  describe 'GET #authors' do
+    subject { response }
+
+    before { get :authors }
+
+    it { is_expected.to be_successful }
+
+    it 'builds a author list' do
+      expect(assigns(:author_list)).to be_a(BrowseList)
+    end
+  end
+
   describe 'GET #subjects' do
     subject { response }
 
@@ -27,15 +39,15 @@ RSpec.describe BrowseController, type: :controller do
     end
   end
 
-  describe 'GET #authors' do
+  describe 'GET #titles' do
     subject { response }
 
-    before { get :authors }
+    before { get :titles }
 
     it { is_expected.to be_successful }
 
-    it 'builds a author list' do
-      expect(assigns(:author_list)).to be_a(BrowseList)
+    it 'builds a title list' do
+      expect(assigns(:title_list)).to be_a(BrowseList)
     end
   end
 end
