@@ -26,17 +26,17 @@ RSpec.describe 'Catalog', type: :request do
 
   describe 'browse authors redirect' do
     it 'redirects to the author browse path' do
-      get '/?search_field=browse_authors&q=ABC'
+      get '/?search_field=browse_authors&q=Abbott, Deborah'
 
-      expect(response).to redirect_to '/browse/authors?prefix=ABC'
+      expect(response).to redirect_to '/browse/authors?prefix=Abbott%2C+Deborah'
     end
   end
 
   describe 'browse subjects redirect' do
     it 'redirects to the subject browse path' do
-      get '/?search_field=browse_subjects&q=ABC'
+      get '/?search_field=browse_subjects&q=African Americans--'
 
-      expect(response).to redirect_to '/browse/subjects?prefix=ABC'
+      expect(response).to redirect_to '/browse/subjects?prefix=African+Americans--'
     end
   end
 end

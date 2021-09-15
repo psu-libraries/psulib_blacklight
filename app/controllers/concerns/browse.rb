@@ -8,17 +8,13 @@ module Browse
 
     case params[:search_field]
     when 'browse_cn'
-      redirect_to browse_path(nearby: search_params)
+      redirect_to browse_path(nearby: params[:q])
     when 'browse_authors'
-      redirect_to browse_authors_path(prefix: search_params)
+      redirect_to browse_authors_path(prefix: params[:q])
     when 'browse_subjects'
-      redirect_to browse_subjects_path(prefix: search_params)
+      redirect_to browse_subjects_path(prefix: params[:q])
+    when 'browse_titles'
+      redirect_to browse_titles_path(prefix: params[:q])
     end
   end
-
-  private
-
-    def search_params
-      CGI.escape(params[:q])
-    end
 end
