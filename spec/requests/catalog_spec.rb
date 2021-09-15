@@ -39,4 +39,12 @@ RSpec.describe 'Catalog', type: :request do
       expect(response).to redirect_to '/browse/subjects?prefix=African+Americans--'
     end
   end
+
+  describe 'browse titles redirect' do
+    it 'redirects to the title browse path' do
+      get '/?search_field=browse_titles&q=American'
+
+      expect(response).to redirect_to '/browse/titles?prefix=American'
+    end
+  end
 end

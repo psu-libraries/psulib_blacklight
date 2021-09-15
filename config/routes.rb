@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   get '/browse', controller: :browse, action: :index
   get '/browse/authors', controller: :browse, action: :authors
   get '/browse/subjects', controller: :browse, action: :subjects
+  get 'browse/titles', controller: :browse, action: :titles
 
   namespace :availability do
     get '/sirsi-data', to: 'availability#sirsi_data'

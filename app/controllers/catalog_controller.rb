@@ -453,6 +453,11 @@ class CatalogController < ApplicationController
         field.include_in_advanced_search = false
         field.label = 'Browse by Subject'
       end
+
+      config.add_search_field('browse_titles') do |field|
+        field.include_in_advanced_search = false
+        field.label = 'Browse by Title'
+      end
     end
 
     # "sort results by" select (pulldown)
