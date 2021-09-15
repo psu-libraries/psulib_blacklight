@@ -15,24 +15,24 @@ RSpec.feature 'Subject Browse', type: :feature do
       end
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('Adolescent psychiatry—Periodicals')
+        expect(page).to have_link('Adolescent psychiatry—Periodicals', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(10)') do
-        expect(page).to have_link('Airplane crash survival—Drama')
+        expect(page).to have_link('Airplane crash survival—Drama', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       first(:link, 'Next').click
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('American fiction—African American authors')
+        expect(page).to have_link('American fiction—African American authors', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(10)') do
-        expect(page).to have_link('Australian literature—Periodicals')
+        expect(page).to have_link('Australian literature—Periodicals', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
     end
@@ -50,24 +50,24 @@ RSpec.feature 'Subject Browse', type: :feature do
       end
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('Authors, Russian—20th century—Biography')
+        expect(page).to have_link('Authors, Russian—20th century—Biography', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(10)') do
-        expect(page).to have_link('Baseball cards—Juvenile fiction')
+        expect(page).to have_link('Baseball cards—Juvenile fiction', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       first(:link, 'Previous').click
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('American fiction—African American authors')
+        expect(page).to have_link('American fiction—African American authors', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(10)') do
-        expect(page).to have_link('Australian literature—Periodicals')
+        expect(page).to have_link('Australian literature—Periodicals', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
     end
