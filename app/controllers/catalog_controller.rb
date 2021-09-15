@@ -169,20 +169,18 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
+    #
+    # Facets that only appear in search results
+    #
     config.add_facet_field 'access_facet', label: 'Access', collapse: false
     config.add_facet_field 'format', label: 'Format', limit: true
     config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true
-    config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
-    config.add_facet_field 'location_facet', label: 'Location', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: -1, single: true
-    config.add_facet_field 'pub_date_itsi', label: 'Publication Year', range: { segments: false }
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_full_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'lc_1letter_facet', label: 'Classification', show: false, sort: 'index'
-    config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
     config.add_facet_field 'classification_pivot_field',
                            label: 'Call Number',
                            pivot: %w[lc_1letter_facet lc_rest_facet],
@@ -191,13 +189,48 @@ class CatalogController < ApplicationController
                              show: "\uf0fe", # same as '<i class="fa fa-plus-square" aria-hidden="true"></i>',
                              hide: "\uf146"
                            }
-    config.add_facet_field 'all_authors_facet', show: false
-    config.add_facet_field 'subject_facet', show: false
 
-    config.add_home_facet_field 'access_facet', label: 'Access', collapse: false, presenter: Blacklight::FacetFieldPresenter
-    config.add_home_facet_field 'format', label: 'Format', limit: true, collapse: false, presenter: Blacklight::FacetFieldPresenter
-    config.add_home_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true, collapse: true, presenter: Blacklight::FacetFieldPresenter
-    config.add_home_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z', collapse: true, presenter: Blacklight::FacetFieldPresenter
+    #
+    # Facets that are configured but are not in the solr response
+    #
+    config.add_facet_field 'all_authors_facet', show: false
+    config.add_facet_field 'lc_1letter_facet', label: 'Classification', show: false, sort: 'index'
+    config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
+    config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
+    config.add_facet_field 'location_facet', label: 'Location', sort: 'index', show: false, limit: -1, single: true # just advanced search
+    config.add_facet_field 'pub_date_itsi', label: 'Publication Year', range: { segments: false }
+    config.add_facet_field 'subject_facet', show: false
+    config.add_facet_field 'subject_browse_facet', show: false, limit: 0
+
+    #
+    # Facets that only appear on the home page
+    #
+    config.add_home_facet_field 'access_facet',
+                                label: 'Access',
+                                collapse: false,
+                                presenter: Blacklight::FacetFieldPresenter
+
+    config.add_home_facet_field 'format',
+                                label: 'Format',
+                                limit: true,
+                                collapse: false,
+                                presenter: Blacklight::FacetFieldPresenter
+
+    config.add_home_facet_field 'campus_facet',
+                                label: 'Campus',
+                                sort: 'index',
+                                limit: -1,
+                                single: true,
+                                collapse: true,
+                                presenter: Blacklight::FacetFieldPresenter
+
+    config.add_home_facet_field 'media_type_facet',
+                                label: 'Media Type',
+                                limit: 20,
+                                index_range: 'A'..'Z',
+                                collapse: true,
+                                presenter: Blacklight::FacetFieldPresenter
+
     config.add_home_facet_field 'classification_pivot_field',
                                 label: 'Call Number',
                                 pivot: %w[lc_1letter_facet lc_rest_facet],
