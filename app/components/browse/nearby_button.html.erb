@@ -1,0 +1,26 @@
+<% if call_numbers.length == 1 %>
+  <a class="btn btn-outline-primary mb-2" href="<%= browse_path(nearby: call_numbers.first) %>">
+    <i class="fas fa-book" aria-hidden="true"></i>
+    Browse Nearby on Shelf
+  </a>
+<% else %>
+  <span class="dropdown">
+    <button
+      class="btn btn-outline-primary dropdown-toggle mb-2"
+      type="button"
+      id="browse-nearby-btn"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false">
+      <i class="fas fa-book" aria-hidden="true"></i>
+      Browse Nearby on Shelf
+    </button>
+    <div class="dropdown-menu" aria-labelledby="browse-nearby-btn">
+      <% call_numbers.each do |call_number| %>
+        <a href="<%= browse_path(nearby: call_number) %>" class="dropdown-item">
+          <%= call_number %>
+        </a>
+      <% end %>
+    </div>
+  </span>
+<% end %>

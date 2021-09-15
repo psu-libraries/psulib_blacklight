@@ -309,7 +309,7 @@ const availability = {
 
                     // If holdable, then display the hold button
                     if (availability.showHoldButton(rawHoldings)) {
-                        holdButton.removeClass("invisible").addClass("visible");
+                        holdButton.removeClass("d-none").addClass("d-md-inline");
                     }
                 } else if (isOnlineOnOrderOnly) {
                     // only have online copies, but they are in the process of being acquired by the library
