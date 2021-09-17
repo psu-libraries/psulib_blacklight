@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BrowseController < ApplicationController
-  def index
+  def call_numbers
     @shelf_list = ShelfListPresenter.new(shelf_list_params)
   end
 

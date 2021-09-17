@@ -1,5 +1,5 @@
 <% if call_numbers.length == 1 %>
-  <a class="btn btn-outline-primary mb-2" href="<%= browse_path(nearby: call_numbers.first) %>">
+  <a class="btn btn-outline-primary mb-2" href="<%= call_number_browse_path(nearby: call_numbers.first) %>">
     <i class="fas fa-book" aria-hidden="true"></i>
     Browse Nearby on Shelf
   </a>
@@ -17,7 +17,7 @@
     </button>
     <div class="dropdown-menu" aria-labelledby="browse-nearby-btn">
       <% call_numbers.each do |call_number| %>
-        <a href="<%= browse_path(nearby: call_number) %>" class="dropdown-item">
+        <a href="<%= call_number_browse_path(nearby: call_number) %>" class="dropdown-item">
           <%= call_number %>
         </a>
       <% end %>

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.feature 'Subject Browse', type: :feature do
   context 'when starting at the beginning' do
     specify do
-      visit browse_subjects_path
+      visit subject_browse_path
 
       expect(page).to have_selector('h1', text: 'Browse by Subject')
 
@@ -40,7 +40,7 @@ RSpec.feature 'Subject Browse', type: :feature do
 
   context 'when starting on a specific page' do
     specify do
-      visit browse_subjects_path(page: '3')
+      visit subject_browse_path(page: '3')
 
       expect(page).to have_selector('h1', text: 'Browse by Subject')
 
@@ -75,7 +75,7 @@ RSpec.feature 'Subject Browse', type: :feature do
 
   context 'when viewing records with multiple facet headings' do
     specify do
-      visit browse_subjects_path(prefix: 'Q')
+      visit subject_browse_path(prefix: 'Q')
 
       expect(page).to have_selector('td', text: /^Quilting—Pennsylvania—Cumberland County—History—18th century$/)
       expect(page).to have_selector('td', text: /^Quilting—Pennsylvania—Cumberland County—History—19th century$/)

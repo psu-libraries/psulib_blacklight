@@ -6,7 +6,7 @@ RSpec.describe Browse::CallNumberNavigation, type: :component do
   let(:node) { render_inline(described_class.new(list: mock_list)) }
   let(:mock_list) { instance_spy('ShelfListPresenter', previous_item: prev_item, next_item: next_item) }
 
-  before { controller.params = { length: 20 } }
+  before { controller.params = { length: 20, action: 'call_numbers' } }
 
   context 'when the shelf list has no previous page' do
     let(:next_item) { ShelfItem.new(call_number: 'CALL1', key: 'KEY1') }
@@ -14,7 +14,7 @@ RSpec.describe Browse::CallNumberNavigation, type: :component do
 
     specify do
       expect(node).not_to have_link('Previous')
-      expect(node).to have_link('Next', href: '/browse?length=20&starting=KEY1')
+      expect(node).to have_link('Next', href: '/browse/call_numbers?length=20&starting=KEY1')
     end
   end
 
@@ -23,7 +23,7 @@ RSpec.describe Browse::CallNumberNavigation, type: :component do
     let(:next_item) { nil }
 
     specify do
-      expect(node).to have_link('Previous', href: '/browse?ending=KEY2&length=20')
+      expect(node).to have_link('Previous', href: '/browse/call_numbers?ending=KEY2&length=20')
       expect(node).not_to have_link('Next')
     end
   end
@@ -33,8 +33,8 @@ RSpec.describe Browse::CallNumberNavigation, type: :component do
     let(:next_item) { ShelfItem.new(call_number: 'CALL2', key: 'KEY2') }
 
     specify do
-      expect(node).to have_link('Previous', href: '/browse?ending=KEY1&length=20')
-      expect(node).to have_link('Next', href: '/browse?length=20&starting=KEY2')
+      expect(node).to have_link('Previous', href: '/browse/call_numbers?ending=KEY1&length=20')
+      expect(node).to have_link('Next', href: '/browse/call_numbers?length=20&starting=KEY2')
     end
   end
 

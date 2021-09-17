@@ -20,12 +20,12 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
     specify do
       expect {
         node
-      }.to raise_error(NoMethodError, starting_with("undefined method `browse_bogus_path'"))
+      }.to raise_error(NoMethodError, starting_with("undefined method `bogu_browse_path'"))
     end
   end
 
   describe 'call number page selectors' do
-    before { controller.params = { nearby: 'abc', action: 'index' } }
+    before { controller.params = { nearby: 'abc', action: 'call_numbers' } }
 
     context 'when the length param is not provided' do
       specify do
@@ -34,7 +34,7 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
     end
 
     context 'when the length param is explicitly provided' do
-      before { controller.params = { length: 50, action: 'index' } }
+      before { controller.params = { length: 50, action: 'call_numbers' } }
 
       specify do
         expect(button.text).to include('50 per page')
@@ -42,9 +42,9 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
     end
 
     it 'shows the correct page size options with correct links' do
-      expect(node).to have_link('10', href: '/browse?length=10&nearby=abc')
-      expect(node).to have_link('20', href: '/browse?length=20&nearby=abc')
-      expect(node).to have_link('50', href: '/browse?length=50&nearby=abc')
+      expect(node).to have_link('10', href: '/browse/call_numbers?length=10&nearby=abc')
+      expect(node).to have_link('20', href: '/browse/call_numbers?length=20&nearby=abc')
+      expect(node).to have_link('50', href: '/browse/call_numbers?length=50&nearby=abc')
     end
   end
 

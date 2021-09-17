@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe BrowseController, type: :controller do
-  describe 'GET #index' do
+  describe 'GET #call_numbers' do
     subject { response }
 
-    before { get :index }
+    before { get :call_numbers }
 
     it { is_expected.to be_successful }
 

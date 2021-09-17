@@ -2,19 +2,11 @@
 
 module Browse::Paths
   def browse_path(args)
-    if action == 'index'
-      super(args)
-    else
-      send("browse_#{action}_path", args)
-    end
+    send("#{action.singularize}_browse_path", args)
   end
 
   def browse_url
-    if action == 'index'
-      super(args)
-    else
-      send("browse_#{action}_url")
-    end
+    send("#{action.singularize}_browse_url")
   end
 
   private
