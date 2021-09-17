@@ -8,8 +8,9 @@ class ShelfListPresenter
   MIN = 3
   MAX = 100
   DEFAULT = 10
+  DEWEY_SHELF_PREFIX = 'AAA'
 
-  attr_reader :starting, :ending, :nearby
+  attr_reader :starting, :ending, :nearby, :classification
 
   delegate :empty?, to: :list
 
@@ -18,6 +19,7 @@ class ShelfListPresenter
     @ending = params[:ending]
     @nearby = params[:nearby]
     @length = params.fetch(:length, DEFAULT).to_i
+    @classification = params[:classification]
   end
 
   def length
@@ -56,8 +58,16 @@ class ShelfListPresenter
       (before_items + after_items)
     end
 
+    def shelvit_key
+      if classification == 'dewey' && nearby.present?
+        DEWEY_SHELF_PREFIX + nearby
+      else
+        nearby
+      end
+    end
+
     def shelf_key
-      @shelf_key ||= Shelvit.normalize(nearby) || nearby
+      @shelf_key ||= Shelvit.normalize(shelvit_key) || nearby
     end
 
     # @return [Array<ShelfItem>]
@@ -74,7 +84,9 @@ class ShelfListPresenter
       if before_list.last.key == shelf_key
         before_list.last.match = true
       else
-        before_list << ShelfItem.new(label: "You're looking for: #{nearby}", call_number: 'None', key: nil)
+        before_list << ShelfItem.new(label: "You're looking for: #{nearby}",
+                                     call_number: 'None',
+                                     key: nil)
         before_list.shift
       end
 
@@ -115,6 +127,7 @@ class ShelfListPresenter
       else
         { query: '0', forward_limit: length + 1, reverse_limit: 0 }
       end
+        .merge!(classification: classification)
     end
 
     def first?

@@ -99,7 +99,7 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         end
 
         it "an etas record does not display 'View Availability' button even though there are holdable items" do
-          pending "This record doesn't seem to be ETAS anymore, so availability is showing when it shouldn't"
+          skip "This record doesn't seem to be ETAS anymore, so availability is showing when it shouldn't"
           visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
           expect(page).not_to have_selector 'button[data-target="#availability-3753687"]'
         end
@@ -194,7 +194,7 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         end
 
         it 'an etas record does not display holdings even though there are holdable items' do
-          pending "This record doesn't seem to be ETAS anymore, so availability is showing when it shouldn't"
+          skip "This record doesn't seem to be ETAS anymore, so availability is showing when it shouldn't"
           visit '/catalog/3753687'
           expect(page).not_to have_selector 'div[class="availability"][data-keys="3753687"]'
         end

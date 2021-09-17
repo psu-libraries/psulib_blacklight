@@ -220,6 +220,7 @@
          author_meeting_display_ssm,
          author_person_display_ssm,
          call_number_lc_ssm,
+         call_number_dewey_ssm,
          edition_display_ssm,
          format,
          full_links_struct,
@@ -269,6 +270,7 @@
       <str name="echoParams">explicit</str>
       <str name="fl">
         call_number_lc_ssm
+        call_number_dewey_ssm
         keymap_struct
         author_person_display_ssm
         edition_display_ssm

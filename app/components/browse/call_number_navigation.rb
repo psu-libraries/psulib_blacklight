@@ -7,11 +7,11 @@ module Browse
     delegate :next_item, :previous_item, to: :list
 
     def previous_path
-      browse_path(ending: previous_item.key, length: length)
+      browse_path(ending: previous_item.key, length: length, classification: classification)
     end
 
     def next_path
-      browse_path(starting: next_item.key, length: length)
+      browse_path(starting: next_item.key, length: length, classification: classification)
     end
 
     def next_title
@@ -32,6 +32,10 @@ module Browse
 
     def length
       params[:length]
+    end
+
+    def classification
+      params[:classification]
     end
   end
 end
