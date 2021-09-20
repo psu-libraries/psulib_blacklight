@@ -2,6 +2,8 @@
 
 module Browse
   class CallNumberNavigation < Navigator
+    include Paths
+
     delegate :next_item, :previous_item, to: :list
 
     def previous_path

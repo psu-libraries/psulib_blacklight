@@ -10,7 +10,7 @@ RSpec.describe Browse::NearbyButton, type: :component do
 
     it 'renders a simple button' do
       expect(node).not_to have_selector('button[data-toggle=dropdown]')
-      expect(node).to have_link('Browse Nearby on Shelf', href: '/browse?nearby=ABC')
+      expect(node).to have_link('Browse Nearby on Shelf', href: '/browse/call_numbers?nearby=ABC')
     end
   end
 
@@ -19,8 +19,8 @@ RSpec.describe Browse::NearbyButton, type: :component do
 
     it 'renders a dropdown button with multiple options' do
       expect(node).to have_selector('button[data-toggle=dropdown]')
-      expect(node).to have_link('ABC', href: '/browse?nearby=ABC')
-      expect(node).to have_link('DEF', href: '/browse?nearby=DEF')
+      expect(node).to have_link('ABC', href: '/browse/call_numbers?nearby=ABC')
+      expect(node).to have_link('DEF', href: '/browse/call_numbers?nearby=DEF')
     end
   end
 end

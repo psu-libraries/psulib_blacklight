@@ -8,13 +8,13 @@ module Browse
 
     case params[:search_field]
     when 'browse_cn'
-      redirect_to browse_path(nearby: params[:q])
+      redirect_to call_number_browse_path(nearby: params[:q])
     when 'browse_authors'
-      redirect_to browse_authors_path(prefix: params[:q])
+      redirect_to author_browse_path(prefix: params[:q])
     when 'browse_subjects'
-      redirect_to browse_subjects_path(prefix: params[:q])
+      redirect_to subject_browse_path(prefix: params[:q])
     when 'browse_titles'
-      redirect_to browse_titles_path(prefix: params[:q])
+      redirect_to title_browse_path(prefix: params[:q])
     end
   end
 end

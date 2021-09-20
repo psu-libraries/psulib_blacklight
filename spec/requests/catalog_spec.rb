@@ -19,7 +19,7 @@ RSpec.describe 'Catalog', type: :request do
       Settings.matomo_id = 7
       get '/?search_field=browse_cn&q=ABC'
 
-      expect(response).to redirect_to '/browse?nearby=ABC'
+      expect(response).to redirect_to '/browse/call_numbers?nearby=ABC'
       Settings.matomo_id = current
     end
   end

@@ -42,10 +42,12 @@ Rails.application.routes.draw do
 
   match '/catalog/:id/report_issue' => 'catalog#report_issue', via: [:get, :post], as: 'report_issue_solr_document'
 
-  get '/browse', controller: :browse, action: :index
-  get '/browse/authors', controller: :browse, action: :authors
-  get '/browse/subjects', controller: :browse, action: :subjects
-  get 'browse/titles', controller: :browse, action: :titles
+  resource :browse, controller: :browse, only: [] do
+    get 'call_numbers', as: 'call_number'
+    get 'authors', as: 'author'
+    get 'subjects', as: 'subject'
+    get 'titles', as: 'title'
+  end
 
   namespace :availability do
     get '/sirsi-data', to: 'availability#sirsi_data'

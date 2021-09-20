@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'browse/index', type: :view do
+RSpec.describe 'browse/call_numbers', type: :view do
   before do
     assign(:shelf_list, instance_spy(ShelfListPresenter, list: []))
     render

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.feature 'Call Number Browse', type: :feature do
   context 'when the user is not searching for a particular call number' do
     specify do
-      visit '/browse'
+      visit call_number_browse_path
 
       expect(page).to have_selector 'h2.h4',
                                     exact_text: 'AN502.L66M63 to AP50.U5 1981-82'
@@ -25,7 +25,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
   context 'when the user is searching for a particular call number' do
     context 'when there is an exact match' do
       specify do
-        visit '/browse?nearby=F592.4 1983'
+        visit '/browse/call_numbers?nearby=F592.4 1983'
 
         expect(page).to have_selector 'h2.h4',
                                       exact_text: 'F158.9.J5P3 1959 to GN320.G66 1993'
@@ -46,7 +46,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
 
     context 'when there is not an exact match' do
       specify do
-        visit '/browse?nearby=LOL'
+        visit '/browse/call_numbers?nearby=LOL'
 
         expect(page).to have_selector 'h2.h4',
                                       exact_text: 'LC1421.M83 1801 v.1-2 to M450.Y56A6 2013 CD'
