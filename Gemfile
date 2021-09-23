@@ -24,6 +24,7 @@ gem 'rails', '~> 6.0.4'
 gem 'redis', '~> 4.2'
 gem 'rsolr', '>= 1.0'
 gem 'rubyzip'
+gem 'shelvit'
 gem 'stackprof'
 gem 'webpacker'
 

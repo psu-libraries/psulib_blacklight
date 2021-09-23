@@ -28,7 +28,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?nearby=F592.4 1983'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: 'F158.9.J5P3 1959 to GN320.G66 1993'
+                                      exact_text: 'F158.9.J5P3 1959 to G8961.C5 1931.D3'
 
         expect(page).to have_link('F592.4 1983', href: '/catalog/492891')
 
@@ -52,7 +52,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
                                       exact_text: 'LC1421.M83 1801 v.1-2 to M450.Y56A6 2013 CD'
 
         expect(page).to have_selector 'tr.table-primary:nth-child(2) td',
-                                      exact_text: 'None'
+                                      exact_text: 'You\'re looking for: LOL'
       end
     end
   end

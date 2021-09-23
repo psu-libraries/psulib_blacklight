@@ -401,6 +401,8 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    shelvit (0.1.1)
+      lcsort (~> 0.9)
     shoulda-matchers (5.0.0)
       activesupport (>= 5.2.0)
     simplecov (0.17.1)
@@ -519,6 +521,7 @@ DEPENDENCIES
   rspec-rails
   rubyzip
   selenium-webdriver
+  shelvit
   shoulda-matchers
   simplecov (< 0.18)
   sinatra
