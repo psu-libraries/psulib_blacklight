@@ -56,6 +56,10 @@ class ShelfListPresenter
       (before_items + after_items)
     end
 
+    def shelf_key
+      @shelf_key ||= Shelvit.normalize(nearby) || nearby
+    end
+
     # @return [Array<ShelfItem>]
     # @note The items coming before a particular call number are determined using a reverse shelf key, which means the
     # items are returned in a "reverse" order. To create a natural reading list, we need to reverse the reversed list
@@ -65,9 +69,9 @@ class ShelfListPresenter
     def before_items
       before_list = shelf_list[:before].reverse
 
-      return before_list if nearby.blank?
+      return before_list if shelf_key.blank?
 
-      if before_list.last.call_number == nearby
+      if before_list.last.key == shelf_key
         before_list.last.match = true
       else
         before_list << ShelfItem.new(label: "You're looking for: #{nearby}", call_number: 'None', key: nil)
@@ -106,8 +110,8 @@ class ShelfListPresenter
         { query: starting, forward_limit: length, reverse_limit: 2 }
       elsif ending.present?
         { query: ending, forward_limit: 1, reverse_limit: length + 1 }
-      elsif nearby.present?
-        { query: nearby, forward_limit: (length - MIN) + 2, reverse_limit: MIN }
+      elsif shelf_key.present?
+        { query: shelf_key, forward_limit: (length - MIN) + 2, reverse_limit: MIN }
       else
         { query: '0', forward_limit: length + 1, reverse_limit: 0 }
       end

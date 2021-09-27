@@ -17,7 +17,7 @@
     <% shelf_list.list.map do |shelf_item| %>
       <% if shelf_item.nearby? && !shelf_item.match? %>
         <tr class="table-primary">
-          <td colspan="4"><%= shelf_item.call_number %></td>
+          <td colspan="4"><%= shelf_item.label %></td>
         </tr>
       <% else %>
         <% shelf_item.documents.map do |doc| %>
