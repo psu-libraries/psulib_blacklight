@@ -12,7 +12,7 @@ module Browse
 
       def merge_params(opts)
         params
-          .slice(:prefix, :page, :starting, :ending, :nearby)
+          .slice(:prefix, :page, :starting, :ending, :nearby, :classification)
           .merge(opts)
       end
   end
