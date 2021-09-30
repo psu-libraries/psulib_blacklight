@@ -129,4 +129,41 @@ module CatalogHelper
   def get_first_only(options = {})
     options[:value].first
   end
+
+  # Returns suitable argument to options_for_select method, to create
+  # an html select based on #search_field_list with labels for search
+  # bar only. Skips search_fields marked :include_in_simple_select => false
+  def search_bar_select
+    blacklight_config.search_fields.map do |_key, field_def|
+      if should_render_field?(field_def)
+        [
+          field_def.dropdown_label ||
+            field_def.label, field_def.key, { 'data-placeholder' => placeholder_text(field_def) }
+        ]
+      end
+    end.compact
+  end
+
+  def placeholder_text(field_def)
+    if field_def.respond_to?(:placeholder_text)
+      field_def.placeholder_text
+    else
+      t('blacklight.search.form.search.placeholder')
+    end
+  end
+
+  def search_bar_field
+    case params[:action]
+    when 'call_numbers'
+      'browse_cn'
+    when 'authors'
+      'browse_authors'
+    when 'subjects'
+      'browse_subjects'
+    when 'titles'
+      'browse_titles'
+    else
+      params[:search_field]
+    end
+  end
 end

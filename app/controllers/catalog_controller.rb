@@ -442,16 +442,19 @@ class CatalogController < ApplicationController
       config.add_search_field('browse_cn') do |field|
         field.include_in_advanced_search = false
         field.label = 'Browse by Call Number'
+        field.placeholder_text = 'e.g. NK 9112 .A28'
       end
 
       config.add_search_field('browse_authors') do |field|
         field.include_in_advanced_search = false
         field.label = 'Browse by Author'
+        field.placeholder_text = 'e.g. Hurston, Zora'
       end
 
       config.add_search_field('browse_subjects') do |field|
         field.include_in_advanced_search = false
         field.label = 'Browse by Subject'
+        field.placeholder_text = 'e.g. Microbiology'
       end
 
       config.add_search_field('browse_titles') do |field|
