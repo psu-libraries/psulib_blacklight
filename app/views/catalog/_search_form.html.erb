@@ -7,7 +7,7 @@
     <div class="input-group">
       <% if search_fields.length > 1 %>
         <%= select_tag(:search_field,
-                       options_for_select(search_fields, h(params[:search_field])),
+                       options_for_select(search_bar_select, search_bar_field),
                        title: t('blacklight.search.form.search_field.title'),
                        id: 'search_field',
                        class: 'custom-select search-field') %>
