@@ -154,10 +154,13 @@ module CatalogHelper
 
   def search_bar_field
     case params[:action]
-    when 'browse_lc'
-      'browse_lc'
-    when 'browse_dewey'
-      'browse_dewey'
+    when 'call_numbers'
+      case params[:classification]
+      when 'lc'
+        'browse_lc'
+      when 'dewey'
+        'browse_dewey'
+      end
     when 'authors'
       'browse_authors'
     when 'subjects'
