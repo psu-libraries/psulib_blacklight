@@ -13,13 +13,24 @@ RSpec.describe 'Catalog', type: :request do
     end
   end
 
-  describe 'browse call number redirects' do
-    it 'browse_cn redirects to browse UI' do
+  describe 'browse lc call number redirects' do
+    it 'browse_lc redirects to browse by LC UI' do
       current = Settings.matomo_id
       Settings.matomo_id = 7
-      get '/?search_field=browse_cn&q=ABC'
+      get '/?search_field=browse_lc&q=ABC'
 
-      expect(response).to redirect_to '/browse/call_numbers?nearby=ABC'
+      expect(response).to redirect_to '/browse/call_numbers?classification=lc&nearby=ABC'
+      Settings.matomo_id = current
+    end
+  end
+
+  describe 'browse dewey call number redirects' do
+    it 'browse_dewey redirects to browse by DEWEY UI' do
+      current = Settings.matomo_id
+      Settings.matomo_id = 7
+      get '/?search_field=browse_dewey&q=ABC'
+
+      expect(response).to redirect_to '/browse/call_numbers?classification=dewey&nearby=ABC'
       Settings.matomo_id = current
     end
   end

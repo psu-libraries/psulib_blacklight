@@ -6,12 +6,28 @@ RSpec.describe BrowseController, type: :controller do
   describe 'GET #call_numbers' do
     subject { response }
 
-    before { get :call_numbers }
+    before { get :call_numbers, params: { classification: classification } }
 
-    it { is_expected.to be_successful }
+    context 'when Browse by LC Call Number' do
+      let(:classification) { 'lc' }
 
-    it 'builds a shelf list' do
-      expect(assigns(:shelf_list)).to be_a(ShelfListPresenter)
+      it { is_expected.to be_successful }
+
+      it 'builds an lc shelf list' do
+        expect(assigns(:shelf_list)).to be_a(ShelfListPresenter)
+        expect(assigns(:shelf_list).classification).to eq 'lc'
+      end
+    end
+
+    context 'when Browse by DEWEY Call Number' do
+      let(:classification) { 'dewey' }
+
+      it { is_expected.to be_successful }
+
+      it 'builds a dewey shelf list' do
+        expect(assigns(:shelf_list)).to be_a(ShelfListPresenter)
+        expect(assigns(:shelf_list).classification).to eq 'dewey'
+      end
     end
   end
 

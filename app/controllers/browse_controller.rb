@@ -28,7 +28,11 @@ class BrowseController < ApplicationController
     end
 
     def shelf_list_params
-      params.permit(:starting, :ending, :length, :nearby)
+      params
+        .permit(:starting, :ending, :length, :nearby, :classification)
+        .to_hash
+        .delete_if { |param, value| param == 'classification' && %w(LC DEWEY).exclude?(value.upcase) }
+        .symbolize_keys
     end
 
     def subject_list_params

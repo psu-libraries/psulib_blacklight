@@ -12,20 +12,18 @@ class ShelfList
     new(args).build
   end
 
-  attr_reader :query, :forward_limit, :reverse_limit, :forward_shelfkey, :reverse_shelfkey
+  attr_reader :query, :forward_limit, :reverse_limit, :classification
 
   def initialize(
     query:,
     forward_limit:,
     reverse_limit:,
-    forward_shelfkey: 'forward_lc_shelfkey',
-    reverse_shelfkey: 'reverse_lc_shelfkey'
+    classification:
   )
     @query = query
     @reverse_limit = (reverse_limit || 10).to_i
     @forward_limit = (forward_limit || 10).to_i
-    @forward_shelfkey = forward_shelfkey
-    @reverse_shelfkey = reverse_shelfkey
+    @classification = classification
   end
 
   def build
@@ -33,6 +31,14 @@ class ShelfList
       after: shelf_items(keys: forward_keys, shelfkey: forward_shelfkey, direction: 'forward'),
       before: shelf_items(keys: reverse_keys, shelfkey: reverse_shelfkey, direction: 'reverse')
     }
+  end
+
+  def forward_shelfkey
+    "forward_#{classification}_shelfkey"
+  end
+
+  def reverse_shelfkey
+    "reverse_#{classification}_shelfkey"
   end
 
   private

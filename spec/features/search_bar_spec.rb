@@ -10,10 +10,16 @@ RSpec.feature 'Search Bar', type: :feature do
       expect(page).to have_selector('#q[placeholder="Search..."]')
     end
 
-    it 'shows call number browse info when browsing by call number' do
-      visit '/browse/call_numbers?nearby=LOL'
-      expect(page).to have_select('search_field', selected: 'Browse by Call Number')
+    it 'shows lc call number browse info when browsing by call number' do
+      visit '/browse/call_numbers?nearby=LOL&classification=lc'
+      expect(page).to have_select('search_field', selected: 'Browse by LC Call Number')
       expect(page).to have_selector('#q[placeholder="e.g. NK 9112 .A28"]')
+    end
+
+    it 'shows dewey call number browse info when browsing by call number' do
+      visit '/browse/call_numbers?nearby=LOL&classification=dewey'
+      expect(page).to have_select('search_field', selected: 'Browse by Dewey Call Number')
+      expect(page).to have_selector('#q[placeholder="e.g. 332.094K634f"]')
     end
 
     it 'shows author browse info when browsing by author' do
@@ -40,9 +46,13 @@ RSpec.feature 'Search Bar', type: :feature do
 
     expect(page).to have_selector('#q[placeholder="Search..."]')
 
-    select 'Browse by Call Number', from: 'search_field'
-    expect(page).to have_select('search_field', selected: 'Browse by Call Number')
+    select 'Browse by LC Call Number', from: 'search_field'
+    expect(page).to have_select('search_field', selected: 'Browse by LC Call Number')
     expect(page).to have_selector('#q[placeholder="e.g. NK 9112 .A28"]')
+
+    select 'Browse by Dewey Call Number', from: 'search_field'
+    expect(page).to have_select('search_field', selected: 'Browse by Dewey Call Number')
+    expect(page).to have_selector('#q[placeholder="e.g. 332.094K634f"]')
 
     select 'Browse by Author', from: 'search_field'
     expect(page).to have_select('search_field', selected: 'Browse by Author')

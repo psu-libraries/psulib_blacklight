@@ -3,6 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ShelfListPresenter, type: :model do
+  let(:classification) { 'lc' }
   let(:first) { ShelfItem.new(call_number: 'first', key: 'first') }
   let(:previous_shelf) { ShelfItem.new(call_number: 'previous_shelf', key: 'previous_shelf') }
   let(:first_book) { ShelfItem.new(call_number: 'first_book', key: 'first_book') }
@@ -40,11 +41,11 @@ RSpec.describe ShelfListPresenter, type: :model do
   end
 
   context 'when starting at the first' do
-    let(:shelf) { described_class.new(length: 3) }
+    let(:shelf) { described_class.new(length: 3, classification: classification) }
 
     before do
       allow(ShelfList).to receive(:call)
-        .with({ query: '0', reverse_limit: 0, forward_limit: 4 })
+        .with({ query: '0', reverse_limit: 0, forward_limit: 4, classification: classification })
         .and_return(
           {
             before: [],
@@ -61,11 +62,11 @@ RSpec.describe ShelfListPresenter, type: :model do
   end
 
   context 'when browsing forward with exact matches' do
-    let(:shelf) { described_class.new(length: 3, starting: :first_book) }
+    let(:shelf) { described_class.new(length: 3, starting: :first_book, classification: classification) }
 
     before do
       allow(ShelfList).to receive(:call)
-        .with({ query: :first_book, reverse_limit: 2, forward_limit: 3 })
+        .with({ query: :first_book, reverse_limit: 2, forward_limit: 3, classification: classification })
         .and_return(
           {
             before: [first_book, previous_shelf],
@@ -82,11 +83,11 @@ RSpec.describe ShelfListPresenter, type: :model do
   end
 
   context 'when browsing forward to the end' do
-    let(:shelf) { described_class.new(length: 3, starting: :first_book) }
+    let(:shelf) { described_class.new(length: 3, starting: :first_book, classification: classification) }
 
     before do
       allow(ShelfList).to receive(:call)
-        .with({ query: :first_book, reverse_limit: 2, forward_limit: 3 })
+        .with({ query: :first_book, reverse_limit: 2, forward_limit: 3, classification: classification })
         .and_return(
           {
             before: [first_book, previous_shelf],
@@ -103,11 +104,11 @@ RSpec.describe ShelfListPresenter, type: :model do
   end
 
   context 'when browsing backward with exact matches' do
-    let(:shelf) { described_class.new(length: 3, ending: :last_book) }
+    let(:shelf) { described_class.new(length: 3, ending: :last_book, classification: classification) }
 
     before do
       allow(ShelfList).to receive(:call)
-        .with({ query: :last_book, reverse_limit: 4, forward_limit: 1 })
+        .with({ query: :last_book, reverse_limit: 4, forward_limit: 1, classification: classification })
         .and_return(
           {
             before: [last_book, middle_book, first_book, previous_shelf],
@@ -124,11 +125,11 @@ RSpec.describe ShelfListPresenter, type: :model do
   end
 
   context 'when browsing backward to the end' do
-    let(:shelf) { described_class.new(length: 3, ending: :last_book) }
+    let(:shelf) { described_class.new(length: 3, ending: :last_book, classification: classification) }
 
     before do
       allow(ShelfList).to receive(:call)
-        .with({ query: :last_book, reverse_limit: 4, forward_limit: 1 })
+        .with({ query: :last_book, reverse_limit: 4, forward_limit: 1, classification: classification })
         .and_return(
           {
             before: [last_book, middle_book, first],
@@ -145,11 +146,11 @@ RSpec.describe ShelfListPresenter, type: :model do
   end
 
   context 'when browsing nearby with an exact match' do
-    let(:shelf) { described_class.new(length: 3, nearby: 'middle_book') }
+    let(:shelf) { described_class.new(length: 3, nearby: 'middle_book', classification: classification) }
 
     before do
       allow(ShelfList).to receive(:call)
-        .with({ query: 'middle_book', reverse_limit: 3, forward_limit: 2 })
+        .with({ query: 'middle_book', reverse_limit: 3, forward_limit: 2, classification: classification })
         .and_return(
           {
             before: [middle_book, first_book, previous_shelf],
@@ -167,12 +168,12 @@ RSpec.describe ShelfListPresenter, type: :model do
     end
   end
 
-  context 'when browsing nearby with an non-matching query' do
-    let(:shelf) { described_class.new(length: 3, nearby: 'unknown') }
+  context 'when browsing nearby with a non-matching query' do
+    let(:shelf) { described_class.new(length: 3, nearby: 'unknown', classification: classification) }
 
     before do
       allow(ShelfList).to receive(:call)
-        .with({ query: 'unknown', reverse_limit: 3, forward_limit: 2 })
+        .with({ query: 'unknown', reverse_limit: 3, forward_limit: 2, classification: classification })
         .and_return(
           {
             before: [first_book, previous_shelf, last_book],

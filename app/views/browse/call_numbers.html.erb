@@ -1,7 +1,11 @@
-<h1>Browse by Call Number</h1>
-
-<% if @shelf_list.empty? %>
-  <%= render 'empty' %>
+<% if @shelf_list.classification.nil? %>
+    <%= render 'empty' %>
 <% else %>
-  <%= render 'call_numbers', shelf_list: @shelf_list %>
+  <h1>Browse by <%= @shelf_list.classification.upcase %> Call Number</h1>
+
+  <% if @shelf_list.empty? %>
+    <%= render 'empty' %>
+  <% else %>
+    <%= render 'call_numbers', shelf_list: @shelf_list %>
+  <% end %>
 <% end %>
