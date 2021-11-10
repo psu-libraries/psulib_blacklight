@@ -10,7 +10,6 @@ jobs:
     environment:
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       REGISTRY_REPO: library/psulib_blacklight
-      DOCKER_USERNAME: 'robot$circleci'
       GITHUB_USER: 'psu-stewardship-bot'
       CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
     steps:
