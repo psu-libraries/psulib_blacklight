@@ -3,7 +3,7 @@
 <%= render Browse::PrefixSelector.new(prefix: @subject_list.prefix) %>
 
 <% if @subject_list.empty? %>
-  <%= render 'empty' %>
+  <%= render 'empty_subjects' %>
 <% else %>
   <%= render 'subjects', subject_list: @subject_list %>
 <% end %>
