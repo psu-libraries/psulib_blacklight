@@ -29,7 +29,7 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
 
     context 'when the length param is not provided' do
       specify do
-        expect(button.text).to include('10 per page')
+        expect(button.text).to include('20 per page')
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
 
     context 'when the length param is not provided' do
       specify do
-        expect(button.text).to include('10 per page')
+        expect(button.text).to include('20 per page')
       end
     end
 
