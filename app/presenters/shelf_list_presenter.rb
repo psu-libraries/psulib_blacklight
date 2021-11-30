@@ -7,7 +7,7 @@
 class ShelfListPresenter
   MIN = 3
   MAX = 100
-  DEFAULT = 10
+  DEFAULT = 20
   DEWEY_SHELF_PREFIX = 'AAA'
 
   attr_reader :starting, :ending, :nearby, :classification

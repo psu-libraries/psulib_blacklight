@@ -10,7 +10,7 @@ class BrowseList
 
   delegate :empty?, to: :entries
 
-  def initialize(field:, page: 1, length: 10, prefix: nil)
+  def initialize(field:, page: 1, length: 20, prefix: nil)
     @field = field
     @page = page.to_i
     @length = length.to_i

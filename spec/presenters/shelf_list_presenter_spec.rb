@@ -18,7 +18,7 @@ RSpec.describe ShelfListPresenter, type: :model do
 
   describe '#length' do
     context 'with defaults' do
-      its(:length) { is_expected.to eq(10) }
+      its(:length) { is_expected.to eq(20) }
     end
 
     context 'when overriding' do
