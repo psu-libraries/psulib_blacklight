@@ -41,7 +41,7 @@ RSpec.describe BrowseList do
             params: {
               'facet' => 'true',
               'facet.field' => 'browsing_facet',
-              'facet.limit' => 11,
+              'facet.limit' => 21,
               'facet.offset' => 0,
               'facet.prefix' => nil,
               'facet.sort' => 'index',
@@ -62,7 +62,7 @@ RSpec.describe BrowseList do
         entries = described_class.new(
           field: 'browsing_facet',
           page: 2,
-          length: 20,
+          length: 50,
           prefix: 'tE--rM--*'
         ).entries
 
@@ -72,8 +72,8 @@ RSpec.describe BrowseList do
             params: {
               'facet' => 'true',
               'facet.field' => 'browsing_facet',
-              'facet.limit' => 21,
-              'facet.offset' => 20,
+              'facet.limit' => 51,
+              'facet.offset' => 50,
               'facet.prefix' => 'TE—rM—',
               'facet.sort' => 'index',
               'rows' => '0'

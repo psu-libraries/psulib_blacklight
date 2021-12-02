@@ -9,7 +9,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?classification=lc'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: 'AN502.L66M63 to AP50.U5 1985-86'
+                                      exact_text: 'AN502.L66M63 to B832.C66 2002'
 
         expect(page).not_to have_selector '.table-primary'
 
@@ -29,7 +29,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
           visit '/browse/call_numbers?nearby=F127.A2M9 1869&classification=lc'
 
           expect(page).to have_selector 'h2.h4',
-                                        exact_text: 'E909.O24A3 2018 to G5761.F7 1963.G7'
+                                        exact_text: 'E909.O24A3 2018 to HD4909.H5 1948'
 
           expect(page).to have_link('F127.A2M9 1869', href: '/catalog/213578')
 
@@ -50,7 +50,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
           visit '/browse/call_numbers?nearby=LOL&classification=lc'
 
           expect(page).to have_selector 'h2.h4',
-                                        exact_text: 'LC1421.M83 1801 v.1-2 to M450.Y56A6 2013 CD'
+                                        exact_text: 'LC1421.M83 1801 v.1-2 to M1600.C87S6 1998 CD'
 
           expect(page).to have_selector 'tr.table-primary:nth-child(2) td',
                                         exact_text: 'You\'re looking for: LOL'
@@ -65,7 +65,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?classification=dewey'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: '001B289h to 331.21H529t 1964'
+                                      exact_text: '001B289h to 929.4F719s 1958'
 
         expect(page).not_to have_selector '.table-primary'
 
@@ -85,7 +85,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
           visit '/browse/call_numbers?nearby=301.154G854c&classification=dewey'
 
           expect(page).to have_selector 'h2.h4',
-                                        exact_text: '294.516B14b Zs to 378.242P68b'
+                                        exact_text: '294.516B14b Zs to 977.3Il6c v.11'
 
           expect(page).to have_link('301.154G854c', href: '/catalog/1373276')
 
