@@ -276,6 +276,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'restrictions_access_note_ssm', label: 'Restrictions on Access'
     config.add_show_field 'toc_ssim', label: 'Contents'
     config.add_show_field 'notes_summary_ssim', label: 'Summary'
+    config.add_show_field 'report_numbers_ssim', label: 'Report Numbers'
     config.add_show_field 'serials_continues_display_ssim', label: 'Continues', helper_method: :title_links
     config.add_show_field 'serials_continued_by_display_ssim', label: 'Continued By', helper_method: :title_links
     config.add_show_field 'serials_continues_in_part_display_ssim', label: 'Continues in Part', helper_method: :title_links
@@ -421,7 +422,7 @@ class CatalogController < ApplicationController
 
     config.add_search_field('identifiers') do |field|
       field.include_in_simple_select = false
-      field.label = 'Identifiers (ISBN, ISSN, OCLC, LCCN)'
+      field.label = 'Identifiers (ISBN, ISSN, OCLC, LCCN, Report Numbers)'
       field.solr_parameters = {
         qf: '$number_qf'
       }
