@@ -45,10 +45,17 @@ const availability = {
      */
     loadAvailability() {
         let titleIDs = [];
+        let summaryHoldings = {};
 
         // Get the catkeys
         $('.availability').each(function () {
-            titleIDs.push($(this).attr("data-keys"));
+            const titleID = $(this).attr("data-keys");
+            titleIDs.push(titleID);
+
+            const summaryHoldingsData = $(this).attr("data-summary-holdings");
+            if (summaryHoldingsData) {
+                summaryHoldings[titleID] = JSON.parse(summaryHoldingsData);
+            }
         });
 
         if (titleIDs.length > 0) {
@@ -92,11 +99,11 @@ const availability = {
 
                     if (Object.keys(boundHoldings).length > 0) {
                         // Get bound with parents and print availability data
-                        availability.processBoundParents(boundHoldings, allHoldings);
+                        availability.processBoundParents(boundHoldings, allHoldings, summaryHoldings);
                     }
                     else {
                         // Print availability data
-                        availability.availabilityDisplay(allHoldings);
+                        availability.availabilityDisplay(allHoldings, summaryHoldings);
                     }
                 }, function() {
                     availability.displayErrorMsg();
@@ -217,7 +224,7 @@ const availability = {
         return isOnlineOnOrderOnly;
     },
 
-    processBoundParents(boundHoldings, allHoldings) {
+    processBoundParents(boundHoldings, allHoldings, summaryHoldings) {
         const catkeys = Object.keys(boundHoldings);
 
         let itemIDs = [];
@@ -270,13 +277,13 @@ const availability = {
             });
 
             // Print availability data
-            availability.availabilityDisplay(allHoldings);
+            availability.availabilityDisplay(allHoldings, summaryHoldings);
         }, function () {
             availability.displayErrorMsg();
         });
     },
 
-    availabilityDisplay(allHoldings) {
+    availabilityDisplay(allHoldings, summaryHoldings) {
         $('.availability').each(function () {
             const availabilityHTML = $(this);
             const catkey = availabilityHTML.data("keys");
@@ -296,7 +303,11 @@ const availability = {
                     const structuredHoldings = availability.availabilityDataStructurer(holdings);
 
                     ReactDOM.render(
-                        React.createElement(Availability, { data: structuredHoldings }),
+                        React.createElement(Availability,
+                        {
+                            structuredHoldings: structuredHoldings,
+                            summaryHoldings: summaryHoldings? summaryHoldings[catkey]: null
+                        }),
                         holdingsPlaceHolder[0]
                     );
 

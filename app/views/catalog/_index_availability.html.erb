@@ -1,6 +1,6 @@
 <% document ||= @document
    id = document[:id] %>
-<div class="availability" data-keys="<%= id %>">
+<div class="availability" data-keys="<%= id %>" data-summary-holdings="<%= document[:summary_holdings_struct]&.first %>">
   <div class="row">
     <div class="availability-button col-md-auto pr-0 invisible">
       <p>

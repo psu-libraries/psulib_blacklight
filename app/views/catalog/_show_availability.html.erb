@@ -2,7 +2,7 @@
    id = document[:id] %>
 <div class="row document-metadata metadata-availability py-4">
   <div class="blacklight-availability col">
-    <div class="availability" data-keys="<%= id %>">
+    <div class="availability" data-keys="<%= id %>" data-summary-holdings="<%= document[:summary_holdings_struct]&.first %>">
       <h4>Availability</h4>
       <div class="text-right">
         <%= render Browse::NearbyButton.new(call_numbers: document[:call_number_lc_ssm]) %>

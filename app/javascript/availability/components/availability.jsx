@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types';
 import HoldingDetails from './holding_details.jsx';
+import SummaryHoldings from './summary_holdings.jsx';
 import ViewMoreButton from './view_more_button.jsx';
 
-const Availability = ({data}) => { return (
+const Availability = ({structuredHoldings, summaryHoldings}) => { return (
     <>
-        { data.map((element, index) => {
+        { structuredHoldings.map((element, index) => {
             const holdings = element.holdings;
             const catkey = holdings[0].catkey;
             const uniqueID = catkey + index;
             const moreHoldings = holdings.length > 4 ? holdings.splice(4, holdings.length) : [];
+            const librarySummaryHoldings = summaryHoldings ? summaryHoldings[element.summary.libraryID] : null;
 
             return (
                 <div key={index} data-library={element.summary.libraryID}>
@@ -24,6 +26,8 @@ const Availability = ({data}) => { return (
                             </tr>
                         </thead>
                         <tbody>
+                            <SummaryHoldings summaryHoldings={librarySummaryHoldings} />
+
                             { holdings.map((holding, index) => (
                                 <tr key={index}>
                                     <HoldingDetails holding={holding} />
@@ -49,7 +53,8 @@ const Availability = ({data}) => { return (
 
 // eslint-react: defines valid prop types passed to this component
 Availability.propTypes = {
-    data: PropTypes.array
+    structuredHoldings: PropTypes.array,
+    summaryHoldings: PropTypes.object
 };
 
 export default Availability;
