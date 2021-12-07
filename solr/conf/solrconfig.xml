@@ -212,6 +212,7 @@
          oclc_number_ssim
          lccn_ssim
          scan_sim
+         report_numbers_ssim
        </str>
 
        <!-- list fields to be displayed in the search results page -->
