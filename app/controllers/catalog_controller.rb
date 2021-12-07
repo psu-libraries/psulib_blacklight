@@ -179,7 +179,6 @@ class CatalogController < ApplicationController
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'genre_full_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'classification_pivot_field',
                            label: 'Call Number',
@@ -194,13 +193,14 @@ class CatalogController < ApplicationController
     # Facets that are configured but are not in the solr response
     #
     config.add_facet_field 'all_authors_facet', show: false
+    config.add_facet_field 'genre_full_facet', show: false, limit: 0
     config.add_facet_field 'lc_1letter_facet', label: 'Classification', show: false, sort: 'index'
     config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'location_facet', label: 'Location', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'pub_date_itsi', label: 'Publication Year', range: { segments: false }
-    config.add_facet_field 'subject_facet', show: false
     config.add_facet_field 'subject_browse_facet', show: false, limit: 0
+    config.add_facet_field 'subject_facet', show: false
 
     #
     # Facets that only appear on the home page
