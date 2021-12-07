@@ -98,9 +98,9 @@ RSpec.describe ShelfList do
 
         it 'returns the thing itself and the previous four things that appear before it in reverse order' do
           expect(list[:before].map(&:call_number)).to contain_exactly(
-            '136.53M582a',
             '136.53M582a Guidebook',
             '136.53M582a Readings',
+            '170M366l 1844',
             '294.516B14b Zs',
             '301.154G854c'
           )
@@ -121,9 +121,9 @@ RSpec.describe ShelfList do
           expect(list[:after].map(&:call_number)).to contain_exactly(
             '333.91In8r',
             '333.91Inl v.1-3 no.2 Dec.1951-Feb.1953',
+            '338.5Un33b',
             '378.242P68b',
-            '547.05J826',
-            '581.96F669'
+            '506Ak1308s'
           )
         end
 

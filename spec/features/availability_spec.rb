@@ -76,6 +76,12 @@ RSpec.feature 'Availability', :vcr, type: :feature do
       expect(page).not_to have_selector 'i.fa-info-circle[data-toggle="tooltip"]'
     end
 
+    it 'that has summary holdings information' do
+      visit '/?utf8=✓&search_field=all_fields&q=1793712'
+      click_button('View Availability')
+      expect(page).to have_selector 'tr.table-primary h6', text: 'Stacks - General Collection: Holdings Summary'
+    end
+
     context 'when Hathi ETAS is enabled' do
       before do
         Settings.hathi_etas = true
@@ -178,6 +184,11 @@ RSpec.feature 'Availability', :vcr, type: :feature do
       expect(page).to have_content 'Reserve - 24 hour loan w/ 1 renewal'
     end
 
+    it 'that has summary holdings information' do
+      visit '/catalog/1793712'
+      expect(page).to have_selector 'tr.table-primary h6', text: 'Stacks - General Collection: Holdings Summary'
+    end
+
     context 'when HathiTrust ETAS is enabled' do
       before do
         Settings.hathi_etas = true
@@ -214,13 +225,13 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         within 'div[data-library="UP-PAT"]' do
           expect(page).to have_selector 'button', text: /View More/
           expect(page).not_to have_selector 'button', text: /View Less/
-          expect(page).to have_xpath './/tbody/tr', count: 4
+          expect(page).to have_xpath './/tbody/tr', count: 5
           click_button('View More')
           sleep 1 # let collapse animation finish and wait for it to re-collapse
-          expect(page).to have_xpath './/tbody/tr', count: 76
+          expect(page).to have_xpath './/tbody/tr', count: 77
           expect(page).to have_selector 'button', text: /View Less/
           click_button('View Less')
-          expect(page).to have_xpath './/tbody/tr', count: 4
+          expect(page).to have_xpath './/tbody/tr', count: 5
         end
       end
     end

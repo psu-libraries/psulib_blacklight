@@ -233,6 +233,7 @@
          overall_imprint_display_ssm,
          publication_display_ssm,
          score,
+         summary_holdings_struct,
          title_display_ssm,
          title_latin_display_ssm,
        </str>
