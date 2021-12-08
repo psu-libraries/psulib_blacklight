@@ -15,24 +15,24 @@ RSpec.feature 'Subject Browse', type: :feature do
       end
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('Adolescent psychiatry—Periodicals', href: /subject_browse_facet/)
+        expect(page).to have_link('Adirondack Mountains (N.Y.)', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Artists\' books—United States', href: /subject_browse_facet/)
+        expect(page).to have_link('Animals—Treatment—Fiction', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       first(:link, 'Next').click
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('Arts—Periodicals', href: /subject_browse_facet/)
+        expect(page).to have_link('Archaeology—History', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Blessing and cursing—Fiction', href: /subject_browse_facet/)
+        expect(page).to have_link('Bangladesh—Drama', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
     end
@@ -50,24 +50,24 @@ RSpec.feature 'Subject Browse', type: :feature do
       end
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('Blind—Education—Pennsylvania—Periodicals', href: /subject_browse_facet/)
+        expect(page).to have_link('Banks and banking—Congresses', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Cats—Juvenile fiction', href: /subject_browse_facet/)
+        expect(page).to have_link('Blind—Education—Pennsylvania—Periodicals', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       first(:link, 'Previous').click
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('Arts—Periodicals', href: /subject_browse_facet/)
+        expect(page).to have_link('Archaeology—History', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Blessing and cursing—Fiction', href: /subject_browse_facet/)
+        expect(page).to have_link('Bangladesh—Drama', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
     end
