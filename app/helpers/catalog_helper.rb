@@ -68,6 +68,11 @@ module CatalogHelper
     content_tag 'ul', result.join(''), nil, false
   end
 
+  # Given a list of items, displays each item on its own line
+  def newline_format(options = {})
+    content_tag 'span', options[:value].join('<br>'), nil, false
+  end
+
   # Turns NNNNNN into HH:MM:SS, attached to duration_ssm
   def display_duration(options = {})
     options[:value]&.map { |v| v.scan(/([0-9]{2})/).join(':') }

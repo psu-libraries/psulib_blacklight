@@ -70,6 +70,15 @@ RSpec.describe CatalogHelper, type: :helper do
     end
   end
 
+  describe '#newline_format' do
+    let (:note_doc) { { value: ['Note 1', 'Note 2'] } }
+
+    it 'displays the notes separated by line breaks' do
+      notes = newline_format note_doc
+      expect(notes).to eq '<span>Note 1<br>Note 2</span>'
+    end
+  end
+
   describe '#display_duration' do
     let (:field_data) { { value: ['221850'] } }
 

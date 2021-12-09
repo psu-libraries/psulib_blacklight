@@ -265,17 +265,17 @@ class CatalogController < ApplicationController
     config.add_show_field 'author_meeting_display_ssm', label: 'Conference Author', link_to_facet: :all_authors_facet, top_field: true, if: false
     config.add_show_field 'uniform_title_display_ssm', label: 'Uniform Title', top_field: true, if: false
     config.add_show_field 'additional_title_display_ssm', label: 'Additional Titles', top_field: true, if: false
-    config.add_show_field 'overall_imprint_display_ssm', label: 'Published', top_field: true, if: false
-    config.add_show_field 'copyright_display_ssm', label: 'Copyright Date', top_field: true, if: false
-    config.add_show_field 'edition_display_ssm', label: 'Edition', top_field: true, if: false
-    config.add_show_field 'phys_desc_ssm', label: 'Physical Description', top_field: true, if: false
+    config.add_show_field 'overall_imprint_display_ssm', label: 'Published', top_field: true, if: false, helper_method: :newline_format
+    config.add_show_field 'copyright_display_ssm', label: 'Copyright Date', top_field: true, if: false, helper_method: :newline_format
+    config.add_show_field 'edition_display_ssm', label: 'Edition', top_field: true, if: false, helper_method: :newline_format
+    config.add_show_field 'phys_desc_ssm', label: 'Physical Description', top_field: true, if: false, helper_method: :newline_format
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet, top_field: true, if: false
-    config.add_show_field 'series_title_display_ssm', label: 'Series'
+    config.add_show_field 'series_title_display_ssm', label: 'Series', helper_method: :newline_format
     config.add_show_field 'language_ssim', label: 'Language'
-    config.add_show_field 'language_note_ssm', label: 'Language Note'
-    config.add_show_field 'restrictions_access_note_ssm', label: 'Restrictions on Access'
+    config.add_show_field 'language_note_ssm', label: 'Language Note', helper_method: :newline_format
+    config.add_show_field 'restrictions_access_note_ssm', label: 'Restrictions on Access', helper_method: :newline_format
     config.add_show_field 'toc_ssim', label: 'Contents'
-    config.add_show_field 'notes_summary_ssim', label: 'Summary'
+    config.add_show_field 'notes_summary_ssim', label: 'Summary', helper_method: :newline_format
     config.add_show_field 'report_numbers_ssim', label: 'Report Numbers'
     config.add_show_field 'serials_continues_display_ssim', label: 'Continues', helper_method: :title_links
     config.add_show_field 'serials_continued_by_display_ssim', label: 'Continued By', helper_method: :title_links
@@ -290,75 +290,75 @@ class CatalogController < ApplicationController
     config.add_show_field 'serials_split_into_display_ssim', label: 'Split Into', helper_method: :title_links
     config.add_show_field 'serials_merged_to_form_display_ssim', label: 'Merged to Form', helper_method: :title_links
     config.add_show_field 'serials_changed_back_to_display_ssim', label: 'Changed Back To', helper_method: :title_links
-    config.add_show_field 'dates_of_pub_ssim', label: 'Dates of Publication and/or Sequential Designation'
+    config.add_show_field 'dates_of_pub_ssim', label: 'Dates of Publication and/or Sequential Designation', helper_method: :newline_format
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
     config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
-    config.add_show_field 'isbn_ssm', label: 'ISBN'
-    config.add_show_field 'issn_ssm', label: 'ISSN'
-    config.add_show_field 'related_title_display_ssm', label: 'Related Titles'
+    config.add_show_field 'isbn_ssm', label: 'ISBN', helper_method: :newline_format
+    config.add_show_field 'issn_ssm', label: 'ISSN', helper_method: :newline_format
+    config.add_show_field 'related_title_display_ssm', label: 'Related Titles', helper_method: :newline_format
     config.add_show_field 'duration_ssm', label: 'Duration', helper_method: :display_duration
-    config.add_show_field 'frequency_ssm', label: 'Publication Frequency'
-    config.add_show_field 'collection_facet', label: 'Collection', link_to_facet: :collection_facet
-    config.add_show_field 'finding_aid_note_ssm', label: 'Finding Aid Note'
-    config.add_show_field 'provenance_note_ssm', label: 'Provenance'
-    config.add_show_field 'dissertation_note_ssm', label: 'Dissertation Note'
-    config.add_show_field 'audience_ssm', label: 'Audience'
-    config.add_show_field 'reading_grade_ssm', label: 'Reading Grade'
-    config.add_show_field 'interest_age_ssm', label: 'Interest Age'
-    config.add_show_field 'interest_grade_ssm', label: 'Interest Grade'
-    config.add_show_field 'sound_ssm', label: 'Sound Characteristics'
-    config.add_show_field 'music_numerical_ssm', label: 'Musical Work Number'
-    config.add_show_field 'music_format_ssm', label: 'Format of Notated Music'
-    config.add_show_field 'music_key_ssm', label: 'Musical key'
-    config.add_show_field 'performance_ssm', label: 'Medium of Performance'
-    config.add_show_field 'video_file_ssm', label: 'Video File Characteristics'
-    config.add_show_field 'scale_graphic_material_note_ssm', label: 'Scale Note for Graphic Material'
-    config.add_show_field 'cartographic_mathematical_data_ssm', label: 'Cartographic Mathematical Data'
-    config.add_show_field 'digital_file_ssm', label: 'Digital File Characteristics'
-    config.add_show_field 'form_work_ssm', label: 'Form of work'
-    config.add_show_field 'audience_notes_ssm', label: 'Audience Notes'
-    config.add_show_field 'general_note_ssm', label: 'Note'
-    config.add_show_field 'other_edition_ssm', label: 'Other Edition'
-    config.add_show_field 'bibliography_note_ssm', label: 'Bibliography Note'
-    config.add_show_field 'with_note_ssm', label: 'With'
-    config.add_show_field 'creation_production_credits_ssm', label: 'Creation/Production Credits Note'
-    config.add_show_field 'citation_references_note_ssm', label: 'Citation/References Note'
-    config.add_show_field 'participant_performer_ssm', label: 'Participant/Performer Note'
-    config.add_show_field 'type_report_period_note_ssm', label: 'Type of Report and Period Covered Note'
-    config.add_show_field 'special_numbering_ssm', label: 'Special Numbering'
-    config.add_show_field 'file_data_type_ssm', label: 'Type of File/Data'
-    config.add_show_field 'date_place_event_note_ssm', label: 'Data/Place of Event'
-    config.add_show_field 'geographic_coverage_ssm', label: 'Geographic Coverage'
-    config.add_show_field 'preferred_citation_ssm', label: 'Preferred Citation'
-    config.add_show_field 'supplement_ssm', label: 'Supplement Note'
-    config.add_show_field 'other_forms_ssm', label: 'Other Forms'
-    config.add_show_field 'reproduction_note_ssm', label: 'Reproduction Note'
-    config.add_show_field 'original_version_note_ssm', label: 'Original Version'
-    config.add_show_field 'originals_loc_ssm', label: 'Location of Originals'
-    config.add_show_field 'dup_loc_ssm', label: 'Location of Duplicates'
-    config.add_show_field 'funding_information_ssm', label: 'Funding Information'
-    config.add_show_field 'technical_details_ssm', label: 'Technical Details'
-    config.add_show_field 'terms_use_reproduction_ssm', label: 'Terms of Use and Reproduction'
-    config.add_show_field 'source_aquisition_ssm', label: 'Source of Acquisition'
-    config.add_show_field 'related_materials_ssm', label: 'Related Materials'
-    config.add_show_field 'copyright_status_ssm', label: 'Copyright Note'
-    config.add_show_field 'associated_materials_ssm', label: 'Associated Materials'
-    config.add_show_field 'administrative_history_note_ssm', label: 'Administrative History'
-    config.add_show_field 'biographical_sketch_note_ssm', label: 'Biographical Note'
-    config.add_show_field 'former_title_ssm', label: 'Title Varies'
-    config.add_show_field 'issuing_ssm', label: 'Issuing Body'
-    config.add_show_field 'index_note_ssm', label: 'Index Note'
-    config.add_show_field 'documentation_info_note_ssm', label: 'Documentation Information'
-    config.add_show_field 'version_copy_id_note_ssm', label: 'Version/Copy ID'
-    config.add_show_field 'methodology_ssm', label: 'Methodology Note'
-    config.add_show_field 'complexity_ssm', label: 'Complexity Note'
-    config.add_show_field 'action_note_ssm', label: 'Action Note'
-    config.add_show_field 'exhibitions_ssm', label: 'Exhibitions'
-    config.add_show_field 'awards_ssm', label: 'Awards'
+    config.add_show_field 'frequency_ssm', label: 'Publication Frequency', helper_method: :newline_format
+    config.add_show_field 'collection_facet', label: 'Collection', link_to_facet: :collection_facet, helper_method: :newline_format
+    config.add_show_field 'finding_aid_note_ssm', label: 'Finding Aid Note', helper_method: :newline_format
+    config.add_show_field 'provenance_note_ssm', label: 'Provenance', helper_method: :newline_format
+    config.add_show_field 'dissertation_note_ssm', label: 'Dissertation Note', helper_method: :newline_format
+    config.add_show_field 'audience_ssm', label: 'Audience', helper_method: :newline_format
+    config.add_show_field 'reading_grade_ssm', label: 'Reading Grade', helper_method: :newline_format
+    config.add_show_field 'interest_age_ssm', label: 'Interest Age', helper_method: :newline_format
+    config.add_show_field 'interest_grade_ssm', label: 'Interest Grade', helper_method: :newline_format
+    config.add_show_field 'sound_ssm', label: 'Sound Characteristics', helper_method: :newline_format
+    config.add_show_field 'music_numerical_ssm', label: 'Musical Work Number', helper_method: :newline_format
+    config.add_show_field 'music_format_ssm', label: 'Format of Notated Music', helper_method: :newline_format
+    config.add_show_field 'music_key_ssm', label: 'Musical key', helper_method: :newline_format
+    config.add_show_field 'performance_ssm', label: 'Medium of Performance', helper_method: :newline_format
+    config.add_show_field 'video_file_ssm', label: 'Video File Characteristics', helper_method: :newline_format
+    config.add_show_field 'scale_graphic_material_note_ssm', label: 'Scale Note for Graphic Material', helper_method: :newline_format
+    config.add_show_field 'cartographic_mathematical_data_ssm', label: 'Cartographic Mathematical Data', helper_method: :newline_format
+    config.add_show_field 'digital_file_ssm', label: 'Digital File Characteristics', helper_method: :newline_format
+    config.add_show_field 'form_work_ssm', label: 'Form of work', helper_method: :newline_format
+    config.add_show_field 'audience_notes_ssm', label: 'Audience Notes', helper_method: :newline_format
+    config.add_show_field 'general_note_ssm', label: 'Note', helper_method: :newline_format
+    config.add_show_field 'other_edition_ssm', label: 'Other Edition', helper_method: :newline_format
+    config.add_show_field 'bibliography_note_ssm', label: 'Bibliography Note', helper_method: :newline_format
+    config.add_show_field 'with_note_ssm', label: 'With', helper_method: :newline_format
+    config.add_show_field 'creation_production_credits_ssm', label: 'Creation/Production Credits Note', helper_method: :newline_format
+    config.add_show_field 'citation_references_note_ssm', label: 'Citation/References Note', helper_method: :newline_format
+    config.add_show_field 'participant_performer_ssm', label: 'Participant/Performer Note', helper_method: :newline_format
+    config.add_show_field 'type_report_period_note_ssm', label: 'Type of Report and Period Covered Note', helper_method: :newline_format
+    config.add_show_field 'special_numbering_ssm', label: 'Special Numbering', helper_method: :newline_format
+    config.add_show_field 'file_data_type_ssm', label: 'Type of File/Data', helper_method: :newline_format
+    config.add_show_field 'date_place_event_note_ssm', label: 'Data/Place of Event', helper_method: :newline_format
+    config.add_show_field 'geographic_coverage_ssm', label: 'Geographic Coverage', helper_method: :newline_format
+    config.add_show_field 'preferred_citation_ssm', label: 'Preferred Citation', helper_method: :newline_format
+    config.add_show_field 'supplement_ssm', label: 'Supplement Note', helper_method: :newline_format
+    config.add_show_field 'other_forms_ssm', label: 'Other Forms', helper_method: :newline_format
+    config.add_show_field 'reproduction_note_ssm', label: 'Reproduction Note', helper_method: :newline_format
+    config.add_show_field 'original_version_note_ssm', label: 'Original Version', helper_method: :newline_format
+    config.add_show_field 'originals_loc_ssm', label: 'Location of Originals', helper_method: :newline_format
+    config.add_show_field 'dup_loc_ssm', label: 'Location of Duplicates', helper_method: :newline_format
+    config.add_show_field 'funding_information_ssm', label: 'Funding Information', helper_method: :newline_format
+    config.add_show_field 'technical_details_ssm', label: 'Technical Details', helper_method: :newline_format
+    config.add_show_field 'terms_use_reproduction_ssm', label: 'Terms of Use and Reproduction', helper_method: :newline_format
+    config.add_show_field 'source_aquisition_ssm', label: 'Source of Acquisition', helper_method: :newline_format
+    config.add_show_field 'related_materials_ssm', label: 'Related Materials', helper_method: :newline_format
+    config.add_show_field 'copyright_status_ssm', label: 'Copyright Note', helper_method: :newline_format
+    config.add_show_field 'associated_materials_ssm', label: 'Associated Materials', helper_method: :newline_format
+    config.add_show_field 'administrative_history_note_ssm', label: 'Administrative History', helper_method: :newline_format
+    config.add_show_field 'biographical_sketch_note_ssm', label: 'Biographical Note', helper_method: :newline_format
+    config.add_show_field 'former_title_ssm', label: 'Title Varies', helper_method: :newline_format
+    config.add_show_field 'issuing_ssm', label: 'Issuing Body', helper_method: :newline_format
+    config.add_show_field 'index_note_ssm', label: 'Index Note', helper_method: :newline_format
+    config.add_show_field 'documentation_info_note_ssm', label: 'Documentation Information', helper_method: :newline_format
+    config.add_show_field 'version_copy_id_note_ssm', label: 'Version/Copy ID', helper_method: :newline_format
+    config.add_show_field 'methodology_ssm', label: 'Methodology Note', helper_method: :newline_format
+    config.add_show_field 'complexity_ssm', label: 'Complexity Note', helper_method: :newline_format
+    config.add_show_field 'action_note_ssm', label: 'Action Note', helper_method: :newline_format
+    config.add_show_field 'exhibitions_ssm', label: 'Exhibitions', helper_method: :newline_format
+    config.add_show_field 'awards_ssm', label: 'Awards', helper_method: :newline_format
     config.add_show_field 'bound_with_struct', label: 'Binding notes', helper_method: :bound_info
-    config.add_show_field 'indexed_by_note_ssm', label: 'Indexed By'
-    config.add_show_field 'selectively_indexed_by_note_ssm', label: 'Selectively Indexed By'
-    config.add_show_field 'references_note_ssm', label: 'Reviewed/Cited In'
+    config.add_show_field 'indexed_by_note_ssm', label: 'Indexed By', helper_method: :newline_format
+    config.add_show_field 'selectively_indexed_by_note_ssm', label: 'Selectively Indexed By', helper_method: :newline_format
+    config.add_show_field 'references_note_ssm', label: 'Reviewed/Cited In', helper_method: :newline_format
 
     # Order not yet specified
     config.add_show_field 'partial_links_struct', label: 'Access Online', helper_method: :generic_link
