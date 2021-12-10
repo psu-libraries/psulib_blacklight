@@ -276,7 +276,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'restrictions_access_note_ssm', label: 'Restrictions on Access', helper_method: :newline_format
     config.add_show_field 'toc_ssim', label: 'Contents'
     config.add_show_field 'notes_summary_ssim', label: 'Summary', helper_method: :newline_format
-    config.add_show_field 'report_numbers_ssim', label: 'Report Numbers'
+    config.add_show_field 'report_numbers_ssim', label: 'Report Numbers', helper_method: :newline_format
     config.add_show_field 'serials_continues_display_ssim', label: 'Continues', helper_method: :title_links
     config.add_show_field 'serials_continued_by_display_ssim', label: 'Continued By', helper_method: :title_links
     config.add_show_field 'serials_continues_in_part_display_ssim', label: 'Continues in Part', helper_method: :title_links
