@@ -385,7 +385,7 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         bound_holding = '//div[@data-library="UP-ANNEX"]//tr[td//text()[contains(., \'Microfilm E290 reel.1065\')]]'
         within :xpath, bound_holding do
           expect(page).to have_content 'Microfilm, Microfiche, etc.'
-          expect(page).to have_content 'Use I Want It to request annexed material'
+          expect(page).to have_content 'Annexed Material'
         end
       end
 
