@@ -20,10 +20,22 @@
         "sourceType": "module"
     },
     "rules": {
+        "consistent-return": "off",
+        "guard-for-in": "off",
+        "import/no-cycle": "off",
         "max-len": ["error", { "code": 120 }],
+        "no-alert": "off",
+        "no-param-reassign": "off",
+        "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
+        "no-use-before-define": "off",
+        "react/forbid-prop-types": "off",
+        "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],
+        "react/jsx-filename-extension": "off",
         "react/jsx-no-target-blank": "off",
         "react/jsx-uses-react": "off",
-        "react/react-in-jsx-scope": "off"
+        "react/no-array-index-key": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/require-default-props": "off"
     },
     "settings": {
         "react": {

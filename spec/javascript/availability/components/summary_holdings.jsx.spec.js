@@ -1,11 +1,11 @@
-import {render} from '@testing-library/react';
-import '@testing-library/jest-dom'
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import SummaryHoldings from '../../../../app/javascript/availability/components/summary_holdings';
 
 describe('when no summary holdings data is provided', () => {
   test('does not render the component', () => {
-    const {container} = render(
-      <SummaryHoldings summaryHoldings={null} />
+    const { container } = render(
+      <SummaryHoldings summaryHoldings={null} />,
     );
 
     expect(container).toBeEmptyDOMElement();
@@ -17,25 +17,23 @@ describe('when all summary holdings arrays are populated', () => {
     const data = {
       'PATTEE-3': [
         {
-          'call_number': 'PR9400 .M43',
-          'summary': [
-            'v.67:no.3(2008)-To Date.'
+          call_number: 'PR9400 .M43',
+          summary: [
+            'v.67:no.3(2008)-To Date.',
           ],
-          'supplement': [
-            'supplemental info'
+          supplement: [
+            'supplemental info',
           ],
-          'index': [
-            'index info'
-          ]
-        }
-      ]
+          index: [
+            'index info',
+          ],
+        },
+      ],
     };
 
-    const {getAllByRole} = render(
-      <SummaryHoldings summaryHoldings={data} />, {
-        container: document.body.appendChild(document.createElement('tbody'))
-      }
-    );
+    const { getAllByRole } = render(<SummaryHoldings summaryHoldings={data} />, {
+      container: document.body.appendChild(document.createElement('tbody')),
+    });
 
     const items = getAllByRole('listitem');
     expect(items.length).toBe(5);
@@ -56,21 +54,19 @@ describe('when some summary holdings data is not present', () => {
     const data = {
       'PATTEE-3': [
         {
-          'call_number': 'PR9400 .M43',
-          'summary': [
-            'v.67:no.3(2008)-To Date.'
+          call_number: 'PR9400 .M43',
+          summary: [
+            'v.67:no.3(2008)-To Date.',
           ],
-          'supplement': [],
-          'index': []
-        }
-      ]
+          supplement: [],
+          index: [],
+        },
+      ],
     };
 
-    const {getAllByRole} = render(
-      <SummaryHoldings summaryHoldings={data} />, {
-        container: document.body.appendChild(document.createElement('tbody'))
-      }
-    );
+    const { getAllByRole } = render(<SummaryHoldings summaryHoldings={data} />, {
+      container: document.body.appendChild(document.createElement('tbody')),
+    });
 
     const items = getAllByRole('listitem');
     expect(items.length).toBe(1);
