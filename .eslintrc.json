@@ -7,13 +7,13 @@
         "node": true
     },
     "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "airbnb"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
-        "Blacklight": "writeable"
+        "Blacklight": "writable"
     },
     "parserOptions": {
         "ecmaVersion": 2018,
