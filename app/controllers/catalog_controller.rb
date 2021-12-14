@@ -361,8 +361,8 @@ class CatalogController < ApplicationController
     config.add_show_field 'references_note_ssm', label: 'Reviewed/Cited In', helper_method: :newline_format
 
     # Order not yet specified
-    config.add_show_field 'partial_links_struct', label: 'Access Online', helper_method: :generic_link
-    config.add_show_field 'suppl_links_struct', label: 'View More Online', helper_method: :generic_link
+    config.add_show_field 'partial_links_struct', label: 'Online Version', helper_method: :generic_link
+    config.add_show_field 'suppl_links_struct', label: 'Related Resources', helper_method: :generic_link
     # config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
     # config.add_show_field 'id', label: 'Catkey'
 
