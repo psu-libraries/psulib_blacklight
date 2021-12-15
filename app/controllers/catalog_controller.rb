@@ -359,6 +359,8 @@ class CatalogController < ApplicationController
     config.add_show_field 'indexed_by_note_ssm', label: 'Indexed By', helper_method: :newline_format
     config.add_show_field 'selectively_indexed_by_note_ssm', label: 'Selectively Indexed By', helper_method: :newline_format
     config.add_show_field 'references_note_ssm', label: 'Reviewed/Cited In', helper_method: :newline_format
+    config.add_show_field 'dedication_ssim', label: 'Dedication', helper_method: :newline_format
+    config.add_show_field 'endowment_note_display_ssm', label: 'Endowment Note', helper_method: :newline_format
 
     # Order not yet specified
     config.add_show_field 'partial_links_struct', label: 'Access Online', helper_method: :generic_link
