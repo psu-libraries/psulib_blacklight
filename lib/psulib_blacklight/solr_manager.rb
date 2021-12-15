@@ -67,6 +67,20 @@ module PsulibBlacklight
       end
     end
 
+    def delete_collection(collection_name)
+      unless collections.include?(collection_name)
+        puts 'Collection Not found in solr. The following Collections are in solr:'
+        puts collections
+        return
+      end
+
+      resp = connection.post(PsulibBlacklight::SolrConfig::COLLECTION_PATH) do |req|
+        req.params = { "action": 'DELETE', "name": collection_name }
+      end
+
+      check_resp(resp)
+    end
+
     private
 
       def version_number(colection_name)
