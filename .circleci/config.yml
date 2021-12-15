@@ -79,6 +79,11 @@ jobs:
         keys:
           - yarn-{{ checksum "yarn.lock" }}
     - run:
+        name: "Update Node.js and npm"
+        command: |
+          curl -sSL "https://nodejs.org/dist/v12.22.7/node-v12.22.7-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v12.22.7-linux-x64/bin/node
+          curl https://npmjs.com/install.sh | sudo bash
+    - run:
         name: "Bundle"
         command: |
           gem install bundler
