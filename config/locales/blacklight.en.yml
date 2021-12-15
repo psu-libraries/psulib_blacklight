@@ -5,7 +5,7 @@ en:
     application_short_name: 'Catalog'
     announcement:
       message:
-        html: 'Welcome to the new Penn State Libraries Catalog. <a href="/about">Learn more</a> about the project, <a href="https://pennstate.qualtrics.com/jfe/form/SV_3KtRWLNhl2DC1RH">submit feedback</a> on your experience, or switch to <a href="https://cat.libraries.psu.edu">classic Cat</a>.'
+        html: 'Welcome to the new Penn State Libraries Catalog!'
       icon: 'fa-bullhorn'
       html_class: 'bg-light'
     back_to_search:
