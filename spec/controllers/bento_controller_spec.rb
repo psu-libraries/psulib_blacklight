@@ -33,7 +33,7 @@ RSpec.describe BentoController, type: :controller do
       end
 
       it 'has a meta key with metadata containing total count of results' do
-        expect(json_response['meta']&.dig('pages', 'total_count')).to be(8)
+        expect(json_response['meta']&.dig('pages', 'total_count')).to be(7)
       end
 
       it 'has a data key with 3 results' do
