@@ -22,6 +22,7 @@
     "rules": {
         "consistent-return": "off",
         "guard-for-in": "off",
+        "import/order": ["error", { "groups": ["builtin", "external", "parent", "sibling", "index"] }],
         "import/no-cycle": "off",
         "max-len": ["error", { "code": 120 }],
         "no-alert": "off",
