@@ -8,7 +8,7 @@ require 'net/http'
 namespace :traject do
   # We only run this task in kubernetes. Hide it if the WEBHOOK_URL is not set
   if ENV['TRAJECT_WEBHOOK_URL']
-    desc 'Creates a new collection, the fires off traject job to index into that collection'
+    desc 'Creates a new collection, then fires off traject job to index into that collection'
     task :iterate_and_import, [:path] => [:environment] do |_task, args|
       path = args['path'] || 'full_extracts'
       traject_webhook_url = ENV['TRAJECT_WEBHOOK_URL'] || raise('TRAJECT_WEBHOOK_URL is missing')
@@ -25,7 +25,7 @@ namespace :traject do
       end
 
       puts "Webhook repsonded with Status: #{res.code} #{res.message}"
-      puts "When Traject is done, don't forget to process dailies and flip the collection"
+      puts "When Traject is done, don't forget to process hourlies and flip the collection"
     end
 
     desc 'Clear Hourlies'
@@ -38,7 +38,7 @@ namespace :traject do
       res = Net::HTTP.start(uri.hostname, uri.port) do |http|
         http.request(req)
       end
-      puts "Webhook repsonded with Status: #{res.code} #{res.message}"
+      puts "Webhook responded with Status: #{res.code} #{res.message}"
     end
 
     desc 'Run Hourlies'
@@ -53,7 +53,7 @@ namespace :traject do
       res = Net::HTTP.start(uri.hostname, uri.port) do |http|
         http.request(req)
       end
-      puts "Webhook repsonded with Status: #{res.code} #{res.message}"
+      puts "Webhook responded with Status: #{res.code} #{res.message}"
     end
 
   end
