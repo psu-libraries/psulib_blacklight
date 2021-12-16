@@ -42,4 +42,11 @@ namespace :solr do
   task last_incremented_collection: :environment do
     puts solr_manager.last_incremented_collection
   end
+
+  desc 'Delete a collection from solr'
+  task :delete_collection, [:collection] => [:environment] do |_task, args|
+    raise 'Collection parameter required' unless args['collection']
+
+    solr_manager.delete_collection(args['collection'])
+  end
 end

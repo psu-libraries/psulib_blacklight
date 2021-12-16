@@ -117,6 +117,37 @@ RSpec.describe PsulibBlacklight::SolrManager do
     end
   end
 
+  describe '#delete_collection' do
+    context 'when there is a collection to delete' do
+      before do
+        stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LIST")
+          .to_return(status: 200,
+                     body: '{"responseHeader":{"status":0, "QTime":11}, "collections":["psulib_blacklight_v2"]}',
+                     headers: {}).then
+        stub_request(:post, "#{config_obj.url}/solr/admin/collections?action=DELETE").with(
+          query: { "name": 'psulib_blacklight_v2' }
+        )
+      end
+
+      it 'deletes the collection' do
+        expect(solr_manager.delete_collection('psulib_blacklight_v2')).to equal 200
+      end
+    end
+
+    context 'when there is no collection to delete' do
+      before do
+        stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LIST")
+          .to_return(status: 200,
+                     body: '{"responseHeader":{"status":0, "QTime":11}, "collections":["psulib_blacklight_v2"]}',
+                     headers: {}).then
+      end
+
+      it 'does not delete any collection' do
+        expect(solr_manager.delete_collection('foo')).to eq nil
+      end
+    end
+  end
+
   describe '#modify_collection' do
     it 'updates the current collection\'s config set to the latest' do
       expect(solr_manager.modify_collection).to equal 200
