@@ -11,7 +11,7 @@ namespace :traject do
     desc 'Creates a new collection, then fires off traject job to index into that collection'
     task :iterate_and_import, [:path] => [:environment] do |_task, args|
       path = args['path'] || 'full_extracts'
-      traject_webhook_url = ENV['TRAJECT_WEBHOOK_URL'] || raise('TRAJECT_WEBHOOK_URL is missing')
+      traject_webhook_url = ENV['TRAJECT_WEBHOOK_URL'] 
       uri = URI("http://#{traject_webhook_url}/traject")
       solr_manager.create_collection
       collection = solr_manager.last_incremented_collection
