@@ -13,9 +13,9 @@ import availability from '../availability';
 import bookCovers from '../book_covers';
 import search from '../search';
 
-import 'psulib_blacklight';
-import 'psulib_blacklight_range_limit';
-import 'blacklight_overrides';
+import '../psulib_blacklight';
+import '../psulib_blacklight_range_limit';
+import '../blacklight_overrides';
 
 require.context('../psulib_blacklight/images/', true);
 document.addEventListener('DOMContentLoaded', () => {

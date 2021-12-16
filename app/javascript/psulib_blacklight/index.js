@@ -1,12 +1,12 @@
 // Load in all the PSU Libraries Blacklight core customizations
 import './images';
-import './styles';
+import './styles/index.scss';
 import './javascripts';
 
 // Vendor
 import 'popper.js/dist/umd/popper';
 import 'bootstrap/dist/js/bootstrap';
-import 'bootstrap-select/dist/css/bootstrap-select';
+import 'bootstrap-select/dist/css/bootstrap-select.min.css';
 import 'bootstrap-select/dist/js/bootstrap-select';
 
 // Fonts
