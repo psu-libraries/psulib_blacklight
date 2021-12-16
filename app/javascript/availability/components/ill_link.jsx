@@ -12,48 +12,57 @@ const IllLink = ({ holding }) => {
     createIllUrl();
   }, []);
 
-  const fetchJson = (jsonUrl) => fetch(jsonUrl).then((response) => response.json());
+  const fetchJson = (jsonUrl) =>
+    fetch(jsonUrl).then((response) => response.json());
 
   const createIllUrl = () => {
-    let illUrl = 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/';
+    let illUrl =
+      'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/';
     const { catkey } = holding;
     const callNumber = encodeURIComponent(holding.callNumber);
     const linkType = encodeURIComponent(illLinkType());
     const itemLocation = encodeURIComponent(holding.locationID);
 
-    fetchJson(`/catalog/${catkey}/raw.json`).then((data) => {
-      if (Object.keys(data).length > 0) {
-        setHasData(true);
+    fetchJson(`/catalog/${catkey}/raw.json`)
+      .then((data) => {
+        if (Object.keys(data).length > 0) {
+          setHasData(true);
 
-        const title = encodeURIComponent(data.title_245ab_tsim);
-        const author = encodeURIComponent(data.author_tsim ? data.author_tsim : '');
-        const pubDate = data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : '';
+          const title = encodeURIComponent(data.title_245ab_tsim);
+          const author = encodeURIComponent(
+            data.author_tsim ? data.author_tsim : ''
+          );
+          const pubDate = data.pub_date_illiad_ssm
+            ? data.pub_date_illiad_ssm
+            : '';
 
-        illUrl += 'upm/illiad.dll/OpenURL?Action=10';
-        if (linkType === 'archival-thesis') {
-          illUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
-        } else {
-          const ISBN = data.isbn_ssm ? data.isbn_ssm : '';
-          illUrl += `&Form=30&isbn=${ISBN}`;
+          illUrl += 'upm/illiad.dll/OpenURL?Action=10';
+          if (linkType === 'archival-thesis') {
+            illUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
+          } else {
+            const ISBN = data.isbn_ssm ? data.isbn_ssm : '';
+            illUrl += `&Form=30&isbn=${ISBN}`;
+          }
+          if (linkType === 'reserves-scan') {
+            illUrl += `&Genre=GenericRequestReserves&location=${itemLocation}`;
+          }
+          if (linkType === 'news-microform-scan') {
+            illUrl += `&Genre=GenericRequestMicroScan&location=${itemLocation}`;
+          }
+          illUrl += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
+          if (author) {
+            illUrl += `&aulast=${author}`;
+          }
+          if (pubDate) {
+            illUrl += `&date=${pubDate}`;
+          }
         }
-        if (linkType === 'reserves-scan') {
-          illUrl += `&Genre=GenericRequestReserves&location=${itemLocation}`;
-        }
-        if (linkType === 'news-microform-scan') {
-          illUrl += `&Genre=GenericRequestMicroScan&location=${itemLocation}`;
-        }
-        illUrl += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
-        if (author) {
-          illUrl += `&aulast=${author}`;
-        }
-        if (pubDate) {
-          illUrl += `&date=${pubDate}`;
-        }
-      }
-    }).catch(() => {}).finally(() => {
-      setShowSpinner(false);
-      setUrl(illUrl);
-    });
+      })
+      .catch(() => {})
+      .finally(() => {
+        setShowSpinner(false);
+        setUrl(illUrl);
+      });
   };
 
   const illLinkType = () => {
@@ -69,7 +78,10 @@ const IllLink = ({ holding }) => {
       return 'Use ILLiad to request this item';
     }
 
-    if (availability.isMicroform(holding) || availability.isArchivalThesis(holding)) {
+    if (
+      availability.isMicroform(holding) ||
+      availability.isArchivalThesis(holding)
+    ) {
       return 'Request Scan - Penn State Users';
     }
 

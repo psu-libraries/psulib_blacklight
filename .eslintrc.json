@@ -8,7 +8,8 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        "prettier"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -19,6 +20,9 @@
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
+    "plugins": [
+        "prettier"
+    ],
     "rules": {
         "consistent-return": "off",
         "guard-for-in": "off",
@@ -29,6 +33,7 @@
         "no-param-reassign": "off",
         "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
         "no-use-before-define": "off",
+        "prettier/prettier": ["error", { "singleQuote": true }],
         "react/forbid-prop-types": "off",
         "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],
         "react/jsx-filename-extension": "off",

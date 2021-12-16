@@ -30,17 +30,17 @@ const bookCovers = {
   },
 
   xhrGoogle(url) {
-    $.ajax(
-      {
-        url,
-        dataType: 'jsonp',
-        jsonp: 'callback',
-      },
-    ).done((response) => {
-      bookCovers.parseXhrGoogleResponse(response, $);
-    }).fail((jqXHR, textStatus) => {
-      console.log(jqXHR, textStatus, 'bookCovers');
-    });
+    $.ajax({
+      url,
+      dataType: 'jsonp',
+      jsonp: 'callback',
+    })
+      .done((response) => {
+        bookCovers.parseXhrGoogleResponse(response, $);
+      })
+      .fail((jqXHR, textStatus) => {
+        console.log(jqXHR, textStatus, 'bookCovers');
+      });
   },
 
   parseXhrGoogleResponse(response, $) {
@@ -52,8 +52,9 @@ const bookCovers = {
         const identifier = responseItem.bib_key.split(':')[1];
         // instead of zoom of 5
         const thumbUrlZoom1 = `${responseItem.thumbnail_url.slice(0, -1)}1`;
-        $(`[data-${type.toLowerCase()}*="${identifier}"]`)
-          .replaceWith(`<img class="img-fluid" src="${thumbUrlZoom1}">`);
+        $(`[data-${type.toLowerCase()}*="${identifier}"]`).replaceWith(
+          `<img class="img-fluid" src="${thumbUrlZoom1}">`
+        );
       }
     }
   },

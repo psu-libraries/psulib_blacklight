@@ -4,9 +4,7 @@ import SummaryHoldings from '../../../../app/javascript/availability/components/
 
 describe('when no summary holdings data is provided', () => {
   test('does not render the component', () => {
-    const { container } = render(
-      <SummaryHoldings summaryHoldings={null} />,
-    );
+    const { container } = render(<SummaryHoldings summaryHoldings={null} />);
 
     expect(container).toBeEmptyDOMElement();
   });
@@ -18,22 +16,19 @@ describe('when all summary holdings arrays are populated', () => {
       'PATTEE-3': [
         {
           call_number: 'PR9400 .M43',
-          summary: [
-            'v.67:no.3(2008)-To Date.',
-          ],
-          supplement: [
-            'supplemental info',
-          ],
-          index: [
-            'index info',
-          ],
+          summary: ['v.67:no.3(2008)-To Date.'],
+          supplement: ['supplemental info'],
+          index: ['index info'],
         },
       ],
     };
 
-    const { getAllByRole } = render(<SummaryHoldings summaryHoldings={data} />, {
-      container: document.body.appendChild(document.createElement('tbody')),
-    });
+    const { getAllByRole } = render(
+      <SummaryHoldings summaryHoldings={data} />,
+      {
+        container: document.body.appendChild(document.createElement('tbody')),
+      }
+    );
 
     const items = getAllByRole('listitem');
     expect(items.length).toBe(5);
@@ -43,7 +38,9 @@ describe('when all summary holdings arrays are populated', () => {
 
     const headings = getAllByRole('heading', { level: 6 });
     expect(headings.length).toBe(3);
-    expect(headings[0]).toHaveTextContent('Pattee - Stacks 3: Holdings Summary');
+    expect(headings[0]).toHaveTextContent(
+      'Pattee - Stacks 3: Holdings Summary'
+    );
     expect(headings[1]).toHaveTextContent('Indexes');
     expect(headings[2]).toHaveTextContent('Supplements');
   });
@@ -55,18 +52,19 @@ describe('when some summary holdings data is not present', () => {
       'PATTEE-3': [
         {
           call_number: 'PR9400 .M43',
-          summary: [
-            'v.67:no.3(2008)-To Date.',
-          ],
+          summary: ['v.67:no.3(2008)-To Date.'],
           supplement: [],
           index: [],
         },
       ],
     };
 
-    const { getAllByRole } = render(<SummaryHoldings summaryHoldings={data} />, {
-      container: document.body.appendChild(document.createElement('tbody')),
-    });
+    const { getAllByRole } = render(
+      <SummaryHoldings summaryHoldings={data} />,
+      {
+        container: document.body.appendChild(document.createElement('tbody')),
+      }
+    );
 
     const items = getAllByRole('listitem');
     expect(items.length).toBe(1);
@@ -74,6 +72,8 @@ describe('when some summary holdings data is not present', () => {
 
     const headings = getAllByRole('heading', { level: 6 });
     expect(headings.length).toBe(1);
-    expect(headings[0]).toHaveTextContent('Pattee - Stacks 3: Holdings Summary');
+    expect(headings[0]).toHaveTextContent(
+      'Pattee - Stacks 3: Holdings Summary'
+    );
   });
 });

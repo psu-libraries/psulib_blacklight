@@ -6,6 +6,6 @@ $(document).ready(() => {
     },
     function () {
       $(this).prevAll().removeClass('field-hierarchy');
-    },
+    }
   );
 });

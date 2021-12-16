@@ -4,21 +4,21 @@ import IllLink from './ill_link';
 import AeonLink from './aeon_link';
 
 const LocationInfo = ({ holding }) => {
-  const mapLocation = (locationID) => (
-    (locationID in availability.allLocations) ? availability.allLocations[locationID] : ''
-  );
+  const mapLocation = (locationID) =>
+    locationID in availability.allLocations
+      ? availability.allLocations[locationID]
+      : '';
 
   // Location information presented to the user is different based on a few scenarios
   // First, if it's related to ILL
   if (availability.isIllLink(holding)) {
-    return (
-      <IllLink holding={holding} />
-    );
+    return <IllLink holding={holding} />;
   }
 
   // AEON
   if (availability.isArchivalThesis(holding)) {
-    const illiadURL = 'https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html';
+    const illiadURL =
+      'https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html';
     const aeonLocationText = mapLocation(holding.locationID);
 
     return (
@@ -31,10 +31,7 @@ const LocationInfo = ({ holding }) => {
 
         <br />
 
-        <AeonLink
-          holding={holding}
-          locationText={aeonLocationText}
-        />
+        <AeonLink holding={holding} locationText={aeonLocationText} />
       </>
     );
   }
@@ -49,10 +46,7 @@ const LocationInfo = ({ holding }) => {
 
         <br />
 
-        <AeonLink
-          holding={holding}
-          locationText={specialCollectionsText}
-        />
+        <AeonLink holding={holding} locationText={specialCollectionsText} />
       </>
     );
   }

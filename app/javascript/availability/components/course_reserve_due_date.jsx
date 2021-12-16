@@ -2,7 +2,8 @@ import PropTypes from 'prop-types';
 import availability from '../index';
 
 const CourseReserveDueDate = ({ holding }) => {
-  const isOnCourseReserve = () => holding.reserveCirculationRule && holding.dueDate;
+  const isOnCourseReserve = () =>
+    holding.reserveCirculationRule && holding.dueDate;
 
   if (!isOnCourseReserve()) {
     return null;
@@ -23,7 +24,8 @@ const CourseReserveDueDate = ({ holding }) => {
     timeZone: 'America/New_York',
   });
 
-  const circulationRule = availability.reserveCirculationRules[holding.reserveCirculationRule];
+  const circulationRule =
+    availability.reserveCirculationRules[holding.reserveCirculationRule];
 
   return (
     <div>

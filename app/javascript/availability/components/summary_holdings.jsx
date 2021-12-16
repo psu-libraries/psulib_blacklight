@@ -15,25 +15,22 @@ const SummaryHoldings = ({ summaryHoldings }) => {
   return (
     <tr className="table-primary">
       <td colSpan="3">
-        { Object.keys(summaryHoldings).map((locationID) => {
+        {Object.keys(summaryHoldings).map((locationID) => {
           const locationName = availability.allLocations[locationID];
           const locationData = summaryHoldings[locationID][0];
 
           return (
             <React.Fragment key={locationID}>
-              <h6>
-                {locationName}
-                : Holdings Summary
-              </h6>
+              <h6>{locationName}: Holdings Summary</h6>
 
               <ul style={listStyle}>
-                { /* Summaries */ }
-                { locationData.summary.map((summary, i) => (
+                {/* Summaries */}
+                {locationData.summary.map((summary, i) => (
                   <li key={`summary${i}`}>{summary}</li>
-                )) }
+                ))}
 
-                { /* Indexes */ }
-                { (locationData.index.length > 0) && (
+                {/* Indexes */}
+                {locationData.index.length > 0 && (
                   <li>
                     <h6 className="mt-2">
                       <span className="sr-only">{locationName}</span>
@@ -41,15 +38,15 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                     </h6>
 
                     <ul style={listStyle}>
-                      { locationData.index.map((index, i) => (
+                      {locationData.index.map((index, i) => (
                         <li key={`index${i}`}>{index}</li>
-                      )) }
+                      ))}
                     </ul>
                   </li>
-                ) }
+                )}
 
-                { /* Supplements */ }
-                { (locationData.supplement.length > 0) && (
+                {/* Supplements */}
+                {locationData.supplement.length > 0 && (
                   <li>
                     <h6 className="mt-2">
                       <span className="sr-only">{locationName}</span>
@@ -57,12 +54,12 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                     </h6>
 
                     <ul style={listStyle}>
-                      { locationData.supplement.map((supplement, i) => (
+                      {locationData.supplement.map((supplement, i) => (
                         <li key={`supplement${i}`}>{supplement}</li>
-                      )) }
+                      ))}
                     </ul>
                   </li>
-                ) }
+                )}
               </ul>
             </React.Fragment>
           );

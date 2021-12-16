@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import Spinner from './spinner';
 
-const SpinnerLink = ({
-  label, linkTarget, showSpinner, url,
-}) => (
+const SpinnerLink = ({ label, linkTarget, showSpinner, url }) => (
   <a href={url} target={linkTarget}>
     <Spinner isVisible={showSpinner} />
 

@@ -46,7 +46,7 @@
       const uniqueId = form.attr('data-doc-id') || Math.random();
       // if form is currently using method delete to change state,
       // then checkbox is currently checked
-      let checked = (form.find('input[name=_method][value=delete]').length !== 0);
+      let checked = form.find('input[name=_method][value=delete]').length !== 0;
 
       const checkbox = $('<input type="checkbox">')
         .addClass(options.cssClass)
@@ -55,8 +55,7 @@
         .addClass(options.cssClass)
         .attr('for', `${options.cssClass}_${uniqueId}`)
         .attr('title', form.attr('title') || '');
-      const span = $('<span>')
-        .addClass('btn btn-info btn-sm'); // The only piece that was changed
+      const span = $('<span>').addClass('btn btn-info btn-sm'); // The only piece that was changed
       label.append(checkbox);
       label.append(' ');
       label.append(span);
@@ -128,4 +127,4 @@
     },
     success() {}, // callback
   };
-}(jQuery));
+})(jQuery);
