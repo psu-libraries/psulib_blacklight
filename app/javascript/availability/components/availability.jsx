@@ -15,13 +15,7 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
       return (
         <div key={index} data-library={element.summary.libraryID}>
           <h5>
-            {element.summary.library}
-            {' '}
-            (
-            {element.summary.countAtLibrary}
-            {' '}
-            {element.summary.pluralize}
-            )
+            {`${element.summary.library} (${element.summary.countAtLibrary} ${element.summary.pluralize})`}
           </h5>
 
           <table id={`holdings-${uniqueID}`} className="table table-sm">

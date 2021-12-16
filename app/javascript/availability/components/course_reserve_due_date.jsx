@@ -28,12 +28,7 @@ const CourseReserveDueDate = ({ holding }) => {
   return (
     <div>
       <strong>Due back at:</strong>
-      {' '}
-      {time}
-      {' '}
-      on
-      {' '}
-      {day}
+      {` ${time} on ${day}`}
       <br />
       {circulationRule}
     </div>

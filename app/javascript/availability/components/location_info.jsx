@@ -28,6 +28,7 @@ const LocationInfo = ({ holding }) => {
         <br />
 
         <a href={illiadURL}>Request Scan - Guest</a>
+
         <br />
 
         <AeonLink

@@ -54,10 +54,8 @@ describe('when all fields are present', () => {
       <IllLink holding={holdingData} />,
     );
 
-    const href = `${baseUrl
-    }&Form=30&isbn=1234`
-      + `&Genre=GenericRequestReserves&location=BINDERY${// reserves scan params
-        moreParams}`;
+    const reservesScanParams = '&Form=30&isbn=1234&Genre=GenericRequestReserves&location=BINDERY';
+    const href = baseUrl + reservesScanParams + moreParams;
 
     await testLink(
       getByRole,
@@ -74,10 +72,8 @@ describe('when all fields are present', () => {
       <IllLink holding={{ ...holdingData, libraryID: 'UP-MICRO', itemTypeID: 'MICROFORM' }} />,
     );
 
-    const href = `${baseUrl
-    }&Form=30&isbn=1234`
-      + `&Genre=GenericRequestMicroScan&location=BINDERY${// microform params
-        moreParams}`;
+    const microformParams = '&Form=30&isbn=1234&Genre=GenericRequestMicroScan&location=BINDERY';
+    const href = baseUrl + microformParams + moreParams;
 
     await testLink(
       getByRole,
@@ -92,9 +88,8 @@ describe('when all fields are present', () => {
       <IllLink holding={{ ...holdingData, locationID: 'ARKTHESES' }} />,
     );
 
-    const href = `${baseUrl
-    }&Form=20&Genre=GenericRequestThesisDigitization${// archival thesis params
-      moreParams}`;
+    const archivalThesisParams = '&Form=20&Genre=GenericRequestThesisDigitization';
+    const href = baseUrl + archivalThesisParams + moreParams;
 
     await testLink(
       getByRole,
@@ -118,8 +113,7 @@ test('renders a link with no author info', async () => {
     <IllLink holding={holdingData} />,
   );
 
-  const href = `${baseUrl
-  }&Form=30&isbn=1234&title=book%20title&callno=123`
+  const href = `${baseUrl}&Form=30&isbn=1234&title=book%20title&callno=123`
     + '&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu&date=2021';
 
   await testLink(
@@ -143,8 +137,7 @@ test('renders a link with no publication date', async () => {
     <IllLink holding={holdingData} />,
   );
 
-  const href = `${baseUrl
-  }&Form=30&isbn=1234&title=book%20title&callno=123`
+  const href = `${baseUrl}&Form=30&isbn=1234&title=book%20title&callno=123`
     + '&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu&aulast=author%20name';
 
   await testLink(
@@ -168,8 +161,7 @@ test('renders a link with no ISBN', async () => {
     <IllLink holding={holdingData} />,
   );
 
-  const href = `${baseUrl
-  }&Form=30&isbn=&title=book%20title&callno=123`
+  const href = `${baseUrl}&Form=30&isbn=&title=book%20title&callno=123`
     + '&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu&aulast=author%20name&date=2021';
 
   await testLink(

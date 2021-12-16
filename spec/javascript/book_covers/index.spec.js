@@ -4,11 +4,11 @@ describe('bookCovers', () => {
   it('can parse and format bibkeys', () => {
     // Mocking html expected from Ruby code - code that is tested by rspec at catalog_helper.spec.rb
     document.body.innerHTML = '<span class="fas fa-responsive-sizing faspsu-proceeding-congress" '
-           + '    data-isbn="[&quot;3801210022&quot;]" '
-           + '    data-oclc="[&quot;8151989&quot;]" '
-           + '    data-lccn="[&quot;62022109&quot;]" '
-           + '    data-type="bibkeys">'
-           + '</span>';
+                            + '    data-isbn="[&quot;3801210022&quot;]" '
+                            + '    data-oclc="[&quot;8151989&quot;]" '
+                            + '    data-lccn="[&quot;62022109&quot;]" '
+                            + '    data-type="bibkeys">'
+                            + '</span>';
 
     expect(bookCovers.getBibkeys()).toMatch('OCLC:8151989,ISBN:3801210022,LCCN:62022109');
   });

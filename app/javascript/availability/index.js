@@ -24,7 +24,7 @@ const availability = {
   sirsiUrl: '/availability/sirsi-data/?',
   sirsiItemUrl: '/availability/sirsi-item-data/?',
   mapScanUrl: 'https://libraries.psu.edu/about/libraries/donald-w-hamer-center-maps-and-'
-                + 'geospatial-information/map-scanning-and-printing',
+              + 'geospatial-information/map-scanning-and-printing',
 
   executeAvailability() {
     availability.loadAvailability();
@@ -167,8 +167,7 @@ const availability = {
           const linkedTitle = $(this).children('title').text();
           const author = $(this).children('author').text();
           const yearOfPublication = $(this).children('yearOfPublication').text();
-          const boundinStatement = `${callNumber} bound in ${linkedTitle} ${author
-          } ${yearOfPublication}`;
+          const boundinStatement = `${callNumber} bound in ${linkedTitle} ${author} ${yearOfPublication}`;
 
           boundHoldings[titleInfo.catkey][linkedItemID].push({
             catkey: titleInfo.catkey,
@@ -399,7 +398,7 @@ const availability = {
     $('.availability').each(function () {
       $(this).addClass('availability-error alert alert-light');
       $(this).html('Please check back shortly for item availability or '
-                + '<a href="https://libraries.psu.edu/ask">ask a librarian</a> for assistance.');
+                  + '<a href="https://libraries.psu.edu/ask">ask a librarian</a> for assistance.');
     });
   },
 
