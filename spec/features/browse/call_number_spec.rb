@@ -9,7 +9,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?classification=lc'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: 'AN502.L66M63 to AZ221.B3'
+                                      exact_text: 'AN502.L66M63 to B832.C66 2002'
 
         expect(page).not_to have_selector '.table-primary'
 
@@ -65,7 +65,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?classification=dewey'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: '001B289h to 581.96F669'
+                                      exact_text: '001B289h to 929.4F719s 1958'
 
         expect(page).not_to have_selector '.table-primary'
 
