@@ -1,0 +1,9 @@
+<div class="bs-callout bs-callout-primary">
+  <h5><%= heading %></h5>
+
+  <ul class="external-links-access-online">
+    <% links.map do |item| %>
+        <%= render ExternalLinks::LinkComponent.new(item) %>
+    <% end %>
+  </ul>
+</div>

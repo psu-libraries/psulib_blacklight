@@ -35,6 +35,7 @@ Layout/LineLength:
 Lint/MissingSuper:
   Exclude:
     - 'app/components/browse/*'
+    - 'app/components/external_links/*'
     - 'app/models/concerns/null_object_pattern.rb'
 
 Rails/ContentTag:
