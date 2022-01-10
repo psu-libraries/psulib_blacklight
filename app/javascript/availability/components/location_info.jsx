@@ -1,67 +1,63 @@
 import PropTypes from 'prop-types';
-import availability from '../index.js';
-import IllLink from './ill_link.jsx';
-import AeonLink from './aeon_link.jsx';
+import availability from '../index';
+import IllLink from './ill_link';
+import AeonLink from './aeon_link';
 
-const LocationInfo = ({holding}) => {
-    const mapLocation = (locationID) => {
-        return (locationID in availability.allLocations) ? availability.allLocations[locationID] : "";
-    }
+const LocationInfo = ({ holding }) => {
+  const mapLocation = (locationID) =>
+    locationID in availability.allLocations
+      ? availability.allLocations[locationID]
+      : '';
 
-    // Location information presented to the user is different based on a few scenarios
-    // First, if it's related to ILL
-    if (availability.isIllLink(holding)) {
-        return (
-            <IllLink holding={holding} />
-        );
-    }
+  // Location information presented to the user is different based on a few scenarios
+  // First, if it's related to ILL
+  if (availability.isIllLink(holding)) {
+    return <IllLink holding={holding} />;
+  }
 
-    // AEON
-    if (availability.isArchivalThesis(holding)) {
-        const illiadURL = "https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html";
-        const aeonLocationText = mapLocation(holding.locationID);
+  // AEON
+  if (availability.isArchivalThesis(holding)) {
+    const illiadURL =
+      'https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html';
+    const aeonLocationText = mapLocation(holding.locationID);
 
-        return (
-            <>
-                <IllLink holding={holding} />
+    return (
+      <>
+        <IllLink holding={holding} />
 
-                <br />
+        <br />
 
-                <a href={illiadURL}>Request Scan - Guest</a><br />
+        <a href={illiadURL}>Request Scan - Guest</a>
 
-                <AeonLink
-                    holding={holding}
-                    locationText={aeonLocationText}
-                />
-            </>
-        )
-    }
+        <br />
 
-    // Special Collections
-    if (availability.isArchivalMaterial(holding)) {
-        const specialCollectionsText = mapLocation(holding.locationID);
+        <AeonLink holding={holding} locationText={aeonLocationText} />
+      </>
+    );
+  }
 
-        return (
-            <>
-                {specialCollectionsText}
+  // Special Collections
+  if (availability.isArchivalMaterial(holding)) {
+    const specialCollectionsText = mapLocation(holding.locationID);
 
-                <br /> 
+    return (
+      <>
+        {specialCollectionsText}
 
-                <AeonLink
-                    holding={holding}
-                    locationText={specialCollectionsText}
-                />
-            </>
-        );
-    }
+        <br />
 
-    // Otherwise use the default translation map for location display, no link
-    return mapLocation(holding.locationID);
+        <AeonLink holding={holding} locationText={specialCollectionsText} />
+      </>
+    );
+  }
+
+  // Otherwise use the default translation map for location display, no link
+  return mapLocation(holding.locationID);
 };
 
 // eslint-react: defines valid prop types passed to this component
 LocationInfo.propTypes = {
-    holding: PropTypes.object
+  holding: PropTypes.object,
 };
 
 export default LocationInfo;

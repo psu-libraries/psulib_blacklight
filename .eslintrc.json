@@ -7,23 +7,41 @@
         "node": true
     },
     "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "airbnb",
+        "prettier"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
-        "Blacklight": "writeable"
+        "Blacklight": "writable"
     },
     "parserOptions": {
         "ecmaVersion": 2018,
         "sourceType": "module"
     },
+    "plugins": [
+        "prettier"
+    ],
     "rules": {
+        "consistent-return": "off",
+        "guard-for-in": "off",
+        "import/order": ["error", { "groups": ["builtin", "external", "parent", "sibling", "index"] }],
+        "import/no-cycle": "off",
         "max-len": ["error", { "code": 120 }],
+        "no-alert": "off",
+        "no-param-reassign": "off",
+        "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
+        "no-use-before-define": "off",
+        "prettier/prettier": ["error", { "singleQuote": true }],
+        "react/forbid-prop-types": "off",
+        "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],
+        "react/jsx-filename-extension": "off",
         "react/jsx-no-target-blank": "off",
         "react/jsx-uses-react": "off",
-        "react/react-in-jsx-scope": "off"
+        "react/no-array-index-key": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/require-default-props": "off"
     },
     "settings": {
         "react": {
