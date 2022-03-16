@@ -61,8 +61,8 @@ module CatalogHelper
     result = []
     options[:value].each do |subject|
       lnk = link_to(subject,
-                                "/?search_field=subject&q=#{CGI.escape subject}",
-                                class: 'search-subject', title: "Search: #{subject}")
+                    "/?search_field=subject&q=#{CGI.escape subject}",
+                    class: 'search-subject', title: "Search: #{subject}")
       result << content_tag('li', lnk, nil, false)
     end
     content_tag 'ul', result.join(''), nil, false

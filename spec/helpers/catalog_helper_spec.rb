@@ -59,6 +59,24 @@ RSpec.describe CatalogHelper, type: :helper do
     end
   end
 
+  describe '#other_subjectify' do
+    let (:field_data) { ['Power Amplifiers',
+                         'Research',
+                         'Fluid Mechanics and Thermodynamics'] }
+    let (:other_subjects_doc) { { value: field_data } }
+
+    it 'provides links to general subject search based on the given other subjects' do
+      full_subject = other_subjectify other_subjects_doc
+      expect(full_subject).to eq('<ul><li><a class="search-subject" title="Search: Power Amplifiers"'\
+                                 ' href="/?search_field=subject&amp;q=Power+Amplifiers">Power Amplifiers'\
+                                 '</a></li><li><a class="search-subject" title="Search: Research"'\
+                                 ' href="/?search_field=subject&amp;q=Research">Research</a></li><li>'\
+                                 '<a class="search-subject" title="Search: Fluid Mechanics and Thermodynamics"'\
+                                 ' href="/?search_field=subject&amp;q=Fluid+Mechanics+and+Thermodynamics">'\
+                                 'Fluid Mechanics and Thermodynamics</a></li></ul>')
+    end
+  end
+
   describe '#genre_links' do
     let (:field_data) { ['Film adaptations', 'Feature Films'] }
     let (:genre_doc) { { value: field_data } }
