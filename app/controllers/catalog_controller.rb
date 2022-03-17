@@ -292,6 +292,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'serials_changed_back_to_display_ssim', label: 'Changed Back To', helper_method: :title_links
     config.add_show_field 'dates_of_pub_ssim', label: 'Dates of Publication and/or Sequential Designation', helper_method: :newline_format
     config.add_show_field 'subject_display_ssm', label: 'Subject(s)', helper_method: :subjectify
+    config.add_show_field 'subject_other_display_ssm', label: 'Other Subject(s)', helper_method: :other_subjectify
     config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
     config.add_show_field 'isbn_ssm', label: 'ISBN', helper_method: :newline_format
     config.add_show_field 'issn_ssm', label: 'ISSN', helper_method: :newline_format

@@ -56,6 +56,18 @@ module CatalogHelper
     content_tag 'ul', result.join(''), nil, false
   end
 
+  # Links to general subject search for other subjects
+  def other_subjectify(options = {})
+    result = []
+    options[:value].each do |subject|
+      lnk = link_to(subject,
+                    "/?search_field=subject&q=#{CGI.escape subject}",
+                    class: 'search-subject', title: "Search: #{subject}")
+      result << content_tag('li', lnk, nil, false)
+    end
+    content_tag 'ul', result.join(''), nil, false
+  end
+
   # Makes a link to genre full facet
   def genre_links(options = {})
     result = []
