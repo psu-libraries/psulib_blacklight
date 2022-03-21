@@ -19,6 +19,9 @@
     <field name="all_text_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true"
            termPositions="true" termOffsets="true"/>
 
+    <field name="all_text_teimv" type="text_en" stored="false" indexed="true" multiValued="true" termVectors="true"
+           termPositions="true" termOffsets="true"/>
+
 
     <!-- NOTE:  not all possible Solr field types are represented in the dynamic fields -->
 
@@ -243,6 +246,11 @@
       destination field is to use the dynamic field syntax.
       copyField also supports a maxChars to copy setting.  -->
 
+  <copyField source="*_tsim" dest="all_text_teimv" maxChars="3000"/>
+  <copyField source="*_tesim" dest="all_text_teimv" maxChars="3000"/>
+  <copyField source="*_ssim" dest="all_text_teimv" maxChars="3000"/>
+  <copyField source="*_si" dest="all_text_teimv" maxChars="3000"/>
+
   <copyField source="*_tsim" dest="all_text_timv" maxChars="3000"/>
   <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/>
   <copyField source="*_ssim" dest="all_text_timv" maxChars="3000"/>
@@ -322,7 +330,6 @@
         <tokenizer class="solr.ICUTokenizerFactory"/>
         <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
         <filter class="solr.TrimFilterFactory"/>
-        <filter class="solr.PorterStemFilterFactory"/>
       </analyzer>
     </fieldType>
 
