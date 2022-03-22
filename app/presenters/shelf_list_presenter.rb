@@ -81,13 +81,13 @@ class ShelfListPresenter
 
       return before_list if shelf_key.blank?
 
-      if before_list.last.key == shelf_key
+      if before_list&.last&.key == shelf_key
         before_list.last.match = true
       else
         before_list << ShelfItem.new(label: "You're looking for: #{nearby}",
                                      call_number: 'None',
                                      key: nil)
-        before_list.shift
+        before_list.shift if before_list.count > 1
       end
 
       before_list.last.nearby = true
