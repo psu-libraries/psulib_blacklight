@@ -125,7 +125,6 @@
          toc_ssim^200
          notes_summary_ssim
          all_text_timv
-         all_text_teimv
        </str>
        <str name="pf">
          title_unstem_search^1000000
@@ -151,7 +150,6 @@
          toc_ssim^200
          notes_summary_ssim^50
          all_text_timv^10
-         all_text_teimv^10
        </str>
        <str name="author_qf">
          author_unstem_search^200
