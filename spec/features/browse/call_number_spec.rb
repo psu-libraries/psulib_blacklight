@@ -14,11 +14,11 @@ RSpec.feature 'Call Number Browse', type: :feature do
         expect(page).not_to have_selector '.table-primary'
 
         expect(page).to have_link('AP2.O354', href: '/catalog/107')
-        expect(page).to have_selector 'tr:nth-child(4) td:nth-child(2)',
+        expect(page).to have_selector 'tr:nth-child(5) td:nth-child(2)',
                                       exact_text: 'The Christmas locket'
-        expect(page).to have_selector 'tr:nth-child(4) td:nth-child(3)',
+        expect(page).to have_selector 'tr:nth-child(5) td:nth-child(3)',
                                       exact_text: 'Special Collections Library'
-        expect(page).to have_selector 'tr:nth-child(4) td:nth-child(4)',
+        expect(page).to have_selector 'tr:nth-child(5) td:nth-child(4)',
                                       exact_text: 'Boston : Roberts brothers, 1870-'
       end
     end
@@ -29,7 +29,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
           visit '/browse/call_numbers?nearby=F127.A2M9 1869&classification=lc'
 
           expect(page).to have_selector 'h2.h4',
-                                        exact_text: 'E909.O24A3 2018 to HD4909.H5 1948'
+                                        exact_text: 'E909.O24A3 2018 to HD1761.F37'
 
           expect(page).to have_link('F127.A2M9 1869', href: '/catalog/213578')
 

@@ -20,9 +20,11 @@ RSpec.describe ShelfList do
           )
         end
 
-        it 'returns the next five books that appear after it, but not the book itself' do
+        it 'returns the thing itself and the next five books that appear after it' do
           expect(list[:after].map(&:call_number)).to contain_exactly(
-            'G7273.T5 1968.S6',
+            # TODO: How to handle records with multiple call numbers of the same type.
+            # 'G7273.T5 1968.S6', 'JS4012.L7G7' belongs to the same record
+            'G7273.T5 1968.S6', 'JS4012.L7G7',
             'G8961.C5 1931.D3',
             'GN320.G66 1993',
             'GV979.S9B43 2005 DVD',
@@ -30,13 +32,13 @@ RSpec.describe ShelfList do
           )
         end
 
-        it 'returns the book itself and the previous four books that appear before it in reverse order' do
+        it 'returns the previous four books that appear before it in reverse order, but not the thing itself' do
           expect(list[:before].map(&:call_number)).to contain_exactly(
+            'F2230.1.F6L413 1973',
             'G125.M7665 1885',
             'G3803.W3J3 1956.N4',
             'G3823.D3P2 1988.P4',
-            'G4831.P2 1950.G4',
-            'GV1643.M36 no.2 1531'
+            'G4831.P2 1950.G4'
           )
         end
       end
@@ -63,11 +65,11 @@ RSpec.describe ShelfList do
 
         it 'returns the the previous five books that appear before it in reverse order' do
           expect(list[:before].map(&:call_number)).to contain_exactly(
-            'L16.D8',
-            'LB1574.H638 1998 Level 2',
-            'LB1574.H638 1998 Level 3',
-            'LB1580.I75A63 2002',
-            'LC1421.M83 1801 v.1-2'
+            'M2000.S151S3 1998 CD',
+            'M2000.S56M57 2009 CD',
+            'M2000.T244C5 1986 CD',
+            'M2000.U55I25 2000 CD',
+            'M2000.Z33Z3 1997 CD'
           )
         end
       end
@@ -86,20 +88,20 @@ RSpec.describe ShelfList do
           )
         end
 
-        it 'returns the next five things that appear after it, but not the thing itself' do
+        it 'returns the thing itself and the next five things that appear after it' do
           expect(list[:after].map(&:call_number)).to contain_exactly(
+            '301.154G854c',
             '329.942L113za 1949',
             '331.21H529t 1957',
             '331.21H529t 1964',
-            '332.1M58p',
-            '332.7P384'
+            '332.1M58p'
           )
         end
 
-        it 'returns the thing itself and the previous four things that appear before it in reverse order' do
+        it 'returns the previous four things that appear before it in reverse order, but not the thing itself' do
           expect(list[:before].map(&:call_number)).to contain_exactly(
-            '136.53M582a Guidebook',
-            '136.53M582a Readings',
+            '111.85M35b',
+            '136.53M582a', '136.53M582a Guidebook', '136.53M582a Readings',
             '170M366l 1844',
             '294.516B14b Zs',
             '301.154G854c'
@@ -129,11 +131,11 @@ RSpec.describe ShelfList do
 
         it 'returns the the previous five things that appear before it in reverse order' do
           expect(list[:before].map(&:call_number)).to contain_exactly(
+            '329.942L113za 1949',
+            '331.21H529t 1957',
             '331.21H529t 1964',
             '332.1M58p',
-            '332.7P384',
-            '333.91In8r',
-            '333.91Inl v.1-3 no.2 Dec.1951-Feb.1953'
+            '332.7P384'
           )
         end
       end

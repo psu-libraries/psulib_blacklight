@@ -77,26 +77,53 @@ class ShelfListPresenter
     # exact match for that item, mark it accordingly. Otherwise, insert a placeholder shelf item that indicates where
     # the item would appear if it existed.
     def before_items
-      before_list = shelf_list[:before].reverse
+      list = before_list
 
-      return before_list if shelf_key.blank?
+      return list if shelf_key.blank?
 
-      if before_list&.last&.key == shelf_key
-        before_list.last.match = true
+      if match?
+        match_item list
       else
-        before_list << ShelfItem.new(label: "You're looking for: #{nearby}",
-                                     call_number: 'None',
-                                     key: nil)
-        before_list.shift if before_list.count > 1
+        nearby_item list
       end
-
-      before_list.last.nearby = true
-      before_list
     end
 
     # @return [Array<ShelfItem>]
     def after_items
-      shelf_list[:after]
+      shelf_list[:after].reject do |shelf_item|
+        before_items.map(&:key).include? shelf_item.key
+      end
+    end
+
+    def match?
+      before_list
+        &.map(&:key)
+        &.include?(shelf_key)
+    end
+
+    def match_item(list)
+      list.select do |shelf_item|
+        if shelf_item.key == shelf_key
+          shelf_item.match = true
+          shelf_item.nearby = true if before_list.count.positive?
+        end
+      end
+
+      list
+    end
+
+    def nearby_item(list)
+      list << ShelfItem.new(label: "You're looking for: #{nearby}",
+                            call_number: 'None',
+                            key: nil)
+      list.shift if list.count > 1
+      list.last.nearby = true if list.count.positive?
+
+      list
+    end
+
+    def before_list
+      shelf_list[:before].reverse
     end
 
     def shelf_list

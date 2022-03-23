@@ -38,9 +38,9 @@ class Holdings
   # @param documents [Array<SolrDocument, Hash>] Solr documents or hash objects from a query
   # @param direction [String] The direction in which we're looking, either 'forward' or 'reverse'
   # @note Direction is used so that we don't add every shelf key to the items hash.
-  def initialize(documents:, direction:)
+  def initialize(documents)
     @items = {}
-    build_item_list(documents, direction)
+    build_item_list(documents)
   end
 
   # @return [ShelfItem]
@@ -54,13 +54,13 @@ class Holdings
 
     # @note Builds a up a set of shelf items for every shelf key in the document set. If multiple documents exist for a
     # given key, the additional documents are added to the item's document list.
-    def build_item_list(documents, direction)
+    def build_item_list(documents)
       documents.map do |document|
         JSON.parse(document.fetch('keymap_struct', ['[]']).first).map do |keymap|
-          key = keymap.fetch("#{direction}_key")
+          key = keymap.fetch('forward_key')
           items[key] ||= ShelfItem.new(
             call_number: keymap['call_number'],
-            key: keymap['forward_key']
+            key: key
           )
           items[key].add(document.slice(*METADATA_FIELDS))
         end

@@ -20,10 +20,7 @@ RSpec.describe Holdings do
 
   context 'when a shelf key occurs only once in the document set' do
     let(:holdings) do
-      described_class.new(
-        documents: [document1, document2, document3],
-        direction: 'forward'
-      )
+      described_class.new([document1, document2, document3])
     end
 
     let(:document1) do
@@ -60,10 +57,7 @@ RSpec.describe Holdings do
 
   context 'when a shelf key occurs twice in the document set' do
     let(:holdings) do
-      described_class.new(
-        documents: [document1, document2, document3],
-        direction: 'forward'
-      )
+      described_class.new([document1, document2, document3])
     end
 
     let(:document1) do
@@ -100,10 +94,7 @@ RSpec.describe Holdings do
 
   context 'when there is no keymap struct' do
     subject do
-      described_class.new(
-        documents: [{ 'id' => '1', 'title_display_ssm' => 'No Call Number' }],
-        direction: 'forward'
-      )
+      described_class.new([{ 'id' => '1', 'title_display_ssm' => 'No Call Number' }])
     end
 
     its(:items) { is_expected.to be_empty }

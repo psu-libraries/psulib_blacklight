@@ -216,7 +216,7 @@
     <dynamicField name="*_struct" type="string" stored="true" indexed="false" multiValued="true" omitNorms="true"/>
 
     <!-- Shelf keys: Multi-valued fields that need to be sorted alphanumerically -->
-    <dynamicField name="*_shelfkey" type="string" stored="true" indexed="true" multiValued="true"/>
+    <dynamicField name="*_shelfkey" type="string" stored="true" indexed="true" multiValued="true" docValues="true"/>
 
     <!-- docValues -->
     <!-- Facets -->

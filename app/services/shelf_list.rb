@@ -28,67 +28,48 @@ class ShelfList
 
   def build
     {
-      after: shelf_items(keys: forward_keys, shelfkey: forward_shelfkey, direction: 'forward'),
-      before: shelf_items(keys: reverse_keys, shelfkey: reverse_shelfkey, direction: 'reverse')
+      after: shelf_items(forward_docs),
+      before: shelf_items(reverse_docs)
     }
   end
 
-  def forward_shelfkey
+  def shelfkey
     "forward_#{classification}_shelfkey"
-  end
-
-  def reverse_shelfkey
-    "reverse_#{classification}_shelfkey"
   end
 
   private
 
-    def forward_keys
-      @forward_keys ||= TermsQuery.call(
-        field: forward_shelfkey,
+    def forward_docs
+      @forward_docs ||= ShelfQuery.call(
+        field: shelfkey,
         limit: forward_limit,
-        query: query,
-        include_lower: 'false'
+        query: query
       )
     end
 
-    def reverse_keys
-      @reverse_keys ||= TermsQuery.call(
-        field: reverse_shelfkey,
+    def reverse_docs
+      @reverse_docs ||= ShelfQuery.call(
+        field: shelfkey,
         limit: reverse_limit,
-        query: ShelfKey.reverse(query)
+        query: query,
+        include_lower: true
       )
     end
 
     # @return Array<ShelfItem>
-    # @note Uses a Holdings object to build a set of shelf item objects from #document_query. A set of documents is
-    # retrieved from Solr for a given set of shelf keys. The keys are already in the proper order, we just need a
-    # complete document for each one. Using Holdings, we construct a hash of every shelf key and its document from
-    # #document_query.  There can be multiple documents per key, if the same call number is present in multiple items.
-    def shelf_items(keys:, shelfkey:, direction:)
-      return [] if keys.empty?
+    # @note Uses a Holdings object to build a set of shelf item objects. The documents are already in the proper order.
+    # Using Holdings, we construct a hash of every shelf key and its document.
+    # There can be multiple documents per key, if the same call number is present in multiple items.
+    def shelf_items(documents)
+      return [] if documents.empty?
 
-      documents = document_query(field: shelfkey, values: keys)
-      holdings = Holdings.new(documents: documents, direction: direction)
+      keys = documents.map do |document|
+        document.fetch(shelfkey).sort
+      end.flatten
+
+      holdings = Holdings.new(documents)
       keys.map do |key|
         holdings.find(key)
       end
-    end
-
-    # @note This is the second Solr query, performed after we've retrieved a listing of forward or reverse shelf keys.
-    # Using a specific 'shelf' search handler, we retrieve all the documents for a given set of shelf keys, with a
-    # pre-defined set of fields. Note that the max rows is set in the handler, so it is theoretically possible to NOT
-    # get all of the records back for a given shelf key. But this seems unlikely as the shelf key would need to occur in
-    # more documents than the max set in the handler.
-    def document_query(field:, values:)
-      Blacklight
-        .default_index
-        .connection
-        .get('select',
-             params: {
-               'q' => "#{field}:(#{values.join(' ')})",
-               'qt' => 'shelf'
-             })
-        .dig('response', 'docs')
     end
 end
