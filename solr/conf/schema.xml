@@ -65,6 +65,10 @@
     <dynamicField name="*_tesimv" type="text_en" stored="true" indexed="true" multiValued="true" termVectors="true"
                   termPositions="true" termOffsets="true"/>
 
+    <!-- Chinese, Japanese, Korean text (_tcjk...) -->
+
+    <dynamicField name="*_tcjksim" type="text_cjk" stored="true" indexed="true" multiValued="true"/>
+
     <!-- string (_s...) -->
 
     <dynamicField name="*_si" type="string" stored="false" indexed="true" multiValued="false"/>
@@ -269,6 +273,20 @@
   <copyField source="language_facet" dest="language_ssim"/>
   <copyField source="subject_topic_facet" dest="subject_topic_facet_sim"/>
 
+  <!-- Chinese, Japanese, Korean fields -->
+  <copyField source="title_tsim" dest="title_tcjksim"/>
+  <copyField source="title_245ab_tsim" dest="title_245ab_tcjksim"/>
+  <copyField source="title_addl_tsim" dest="title_addl_tcjksim"/>
+  <copyField source="title_added_entry_tsim" dest="title_added_entry_tcjksim"/>
+  <copyField source="title_related_tsim" dest="title_related_tcjksim"/>
+  <copyField source="series_title_tsim" dest="series_title_tcjksim"/>
+  <copyField source="author_tsim" dest="author_tcjksim"/>
+  <copyField source="author_addl_tsim" dest="author_addl_tcjksim"/>
+  <copyField source="subject_tsim" dest="subject_tcjksim"/>
+  <copyField source="subject_addl_tsim" dest="subject_addl_tcjksim"/>
+  <copyField source="notes_summary_ssim" dest="notes_summary_tcjksim"/>
+  <copyField source="toc_ssim" dest="toc_tcjksim"/>
+
   <types>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
     <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
@@ -426,6 +444,18 @@
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.KeywordTokenizerFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <charFilter class="solr.ICUNormalizer2CharFilterFactory" name="nfkc"/> <!-- no case folding initially -->
+        <charFilter class="solr.MappingCharFilterFactory" mapping="mapping-cjkMarcCompatibility.txt"/>
+        <tokenizer class="solr.ICUTokenizerFactory" />
+        <filter class="solr.ICUTransformFilterFactory" id="Traditional-Simplified"/>
+        <filter class="solr.ICUTransformFilterFactory" id="Katakana-Hiragana" />
+        <filter class="solr.CJKWidthFilterFactory"/>
+        <filter class="solr.ICUFoldingFilterFactory"/>
       </analyzer>
     </fieldType>
 

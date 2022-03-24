@@ -102,106 +102,142 @@
          title_unstem_search^150000
          title_245ab_unstem_search^100000
          title_tsim^50000
+         title_tcjksim^50000
          title_245ab_tsim^25000
+         title_245ab_tcjksim^25000
          title_addl_unstem_search^5000
          title_addl_tsim^2500
+         title_addl_tcjksim^2500
          series_title_unstem_search^500
          series_title_tsim^200
+         series_title_tcjksim^200
          title_related_unstem_search^150
          title_related_tsim^125
+         title_related_tcjksim^125
          subject_topic_unstem_search^1000
          subject_unstem_search^750
          subject_topic_facet_sim^625
          subject_tsim^500
+         subject_tcjksim^500
          author_unstem_search^250
          author_addl_unstem_search^250
          author_tsim^100
+         author_tcjksim^100
          author_addl_tsim^50
+         author_addl_tcjksim^50
          subject_addl_unstem_search^250
          subject_addl_tsim^50
+         subject_addl_tcjksim^50
          isbn_sim
          issn_sim
          scan_sim
          toc_ssim^200
+         toc_tcjksim^200
          notes_summary_ssim
+         notes_summary_tcjksim
          all_text_timv
        </str>
        <str name="pf">
          title_unstem_search^1000000
          title_245ab_unstem_search^750000
          title_tsim^300000
+         title_tcjksim^300000
          title_245ab_tsim^250000
+         title_245ab_tcjksim^750000
          title_addl_unstem_search^50000
          title_addl_tsim^25000
+         title_addl_tcjksim^25000
          series_title_unstem_search^20000
          series_title_tsim^10000
+         series_title_tcjksim^10000
          title_related_unstem_search^1500
          title_related_tsim^1250
+         title_related_tcjksim^1250
          subject_topic_unstem_search^10000
          subject_unstem_search^7500
          subject_topic_facet_sim^6250
          subject_tsim^5000
+         subject_tcjksim^5000
          author_unstem_search^2500
          author_addl_unstem_search^2500
          author_tsim^1000
+         author_tcjksim^1000
          author_addl_tsim^500
+         author_addl_tcjksim^500
          subject_addl_unstem_search^2500
          subject_addl_tsim^500
+         subject_addl_tcjksim^500
          toc_ssim^200
+         toc_tcjksim^200
          notes_summary_ssim^50
+         notes_summary_tcjksim^50
          all_text_timv^10
        </str>
        <str name="author_qf">
          author_unstem_search^200
          author_addl_unstem_search^50
          author_tsim^20
+         author_tcjksim^20
          author_addl_tsim
+         author_addl_tcjksim
        </str>
        <str name="author_pf">
          author_unstem_search^2000
          author_addl_unstem_search^500
          author_tsim^200
+         author_tcjksim^200
          author_addl_tsim^10
+         author_addl_tcjksim^10
        </str>
        <str name="title_qf">
          title_unstem_search^75000
          title_245ab_unstem_search^50000
          title_addl_unstem_search^10000
          title_tsim^7500
+         title_tcjksim^7500
          title_245ab_tsim^5000
          title_addl_tsim^100
+         title_addl_tcjksim^100
          title_added_entry_unstem_search^50
          title_added_entry_tsim^10
          series_title_unstem_search^5
          series_title_tsim
+         series_title_tcjksim
        </str>
        <str name="title_pf">
          title_unstem_search^750000
          title_245ab_unstem_search^500000
          title_addl_unstem_search^100000
          title_tsim^75000
+         title_tcjksim^7500
          title_245ab_tsim^50000
          title_addl_tsim^1000
+         title_addl_tcjksim^1000
          title_added_entry_unstem_search^500
          title_added_entry_tsim^100
          series_title_unstem_search^50
          series_title_tsim^10
+         series_title_tcjksim^10
        </str>
        <str name="subject_qf">
          subject_topic_unstem_search^200
          subject_unstem_search^125
          subject_topic_facet_sim^100
          subject_tsim^50
+         subject_tcjksim^50
          subject_addl_unstem_search^10
          subject_addl_tsim
+         subject_addl_tcjksim
        </str>
        <str name="subject_pf">
          subject_topic_unstem_search^2000
          subject_unstem_search^1250
          subject_tsim^1000
+         subject_tcjksim^1000
          subject_topic_facet_sim^500
          subject_addl_unstem_search^100
          subject_addl_tsim^10
+         subject_addl_tcjksim^10
        </str>
 
        <!-- for advanced search number text box -->
