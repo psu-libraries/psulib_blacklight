@@ -1,9 +1,18 @@
 <div class="bs-callout bs-callout-primary">
   <h5><%= heading %></h5>
 
-  <ul class="external-links-access-online">
-    <% links.map do |item| %>
+  <ul class="external-links">
+    <% preview_links.map do |item| %>
         <%= render ExternalLinks::LinkComponent.new(item) %>
     <% end %>
+    <% if render_view_more? %>
+      <span class="collapse" id="<%= data_target %>">
+        <% view_more_links.map do |item| %>
+            <%= render ExternalLinks::LinkComponent.new(item) %>
+        <% end %>
+      </span>
+    <% end %>
   </ul>
+
+  <%= render ExternalLinks::ViewMoreButtonComponent.new(links: view_more_links, target: data_target) %>
 </div>
