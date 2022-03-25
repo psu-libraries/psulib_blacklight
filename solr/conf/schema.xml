@@ -457,7 +457,6 @@
         <charFilter class="solr.MappingCharFilterFactory" mapping="mapping-cjkMarcCompatibility.txt"/>
         <tokenizer class="solr.ICUTokenizerFactory" />
         <filter class="solr.CJKWidthFilterFactory"/>
-        <filter class="solr.CJKFoldingFilterFactory"/>
         <filter class="solr.ICUTransformFilterFactory" id="Traditional-Simplified"/>
         <filter class="solr.ICUTransformFilterFactory" id="Katakana-Hiragana" />
         <filter class="solr.ICUFoldingFilterFactory"/>
