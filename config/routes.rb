@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # mounts
   mount Blacklight::Engine => '/'
   mount BlacklightAdvancedSearch::Engine => '/'
+  mount OkComputer::Engine, at: '/health'
 
   # resource and resources
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do

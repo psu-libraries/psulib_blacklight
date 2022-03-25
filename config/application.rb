@@ -23,6 +23,7 @@ Bundler.require(*Rails.groups)
 
 module Psulcat
   class Application < Rails::Application
+    require 'healthchecks'
     require 'psulib_blacklight/solr_config'
 
     # Initialize configuration defaults for originally generated Rails version.
