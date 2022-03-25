@@ -447,15 +447,22 @@
       </analyzer>
     </fieldType>
 
-    <fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="100">
+    <fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="10000" autoGeneratePhraseQueries="false">
       <analyzer>
-        <charFilter class="solr.ICUNormalizer2CharFilterFactory" name="nfkc"/> <!-- no case folding initially -->
+        <!-- remove spaces among hangul and han chars if there is at least one hangul char -->
+        <!-- a korean char guaranteed at the start of the pattern:  pattern="(\p{Hangul}\p{Han}*)\s+(?=[\p{Hangul}\p{Han}])" -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([\p{InHangul_Jamo}\p{InHangul_Compatibility_Jamo}\p{InHangul_Syllables}][\p{InBopomofo}\p{InBopomofo_Extended}\p{InCJK_Compatibility}\p{InCJK_Compatibility_Forms}\p{InCJK_Compatibility_Ideographs}\p{InCJK_Compatibility_Ideographs_Supplement}\p{InCJK_Radicals_Supplement}\p{InCJK_Symbols_And_Punctuation}\p{InCJK_Unified_Ideographs}\p{InCJK_Unified_Ideographs_Extension_A}\p{InCJK_Unified_Ideographs_Extension_B}\p{InKangxi_Radicals}\p{InHalfwidth_And_Fullwidth_Forms}\p{InIdeographic_Description_Characters}]*)\s+(?=[\p{InHangul_Jamo}\p{InHangul_Compatibility_Jamo}\p{InHangul_Syllables}\p{InBopomofo}\p{InBopomofo_Extended}\p{InCJK_Compatibility}\p{InCJK_Compatibility_Forms}\p{InCJK_Compatibility_Ideographs}\p{InCJK_Compatibility_Ideographs_Supplement}\p{InCJK_Radicals_Supplement}\p{InCJK_Symbols_And_Punctuation}\p{InCJK_Unified_Ideographs}\p{InCJK_Unified_Ideographs_Extension_A}\p{InCJK_Unified_Ideographs_Extension_B}\p{InKangxi_Radicals}\p{InHalfwidth_And_Fullwidth_Forms}\p{InIdeographic_Description_Characters}])" replacement="$1"/>
+        <!-- a korean char guaranteed at the end of the pattern:    pattern="([\p{Hangul}\p{Han}])\s+(?=[\p{Han}\s]*\p{Hangul})" -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([\p{InHangul_Jamo}\p{InHangul_Compatibility_Jamo}\p{InHangul_Syllables}\p{InBopomofo}\p{InBopomofo_Extended}\p{InCJK_Compatibility}\p{InCJK_Compatibility_Forms}\p{InCJK_Compatibility_Ideographs}\p{InCJK_Compatibility_Ideographs_Supplement}\p{InCJK_Radicals_Supplement}\p{InCJK_Symbols_And_Punctuation}\p{InCJK_Unified_Ideographs}\p{InCJK_Unified_Ideographs_Extension_A}\p{InCJK_Unified_Ideographs_Extension_B}\p{InKangxi_Radicals}\p{InHalfwidth_And_Fullwidth_Forms}\p{InIdeographic_Description_Characters}])\s+(?=[\p{InBopomofo}\p{InBopomofo_Extended}\p{InCJK_Compatibility}\p{InCJK_Compatibility_Forms}\p{InCJK_Compatibility_Ideographs}\p{InCJK_Compatibility_Ideographs_Supplement}\p{InCJK_Radicals_Supplement}\p{InCJK_Symbols_And_Punctuation}\p{InCJK_Unified_Ideographs}\p{InCJK_Unified_Ideographs_Extension_A}\p{InCJK_Unified_Ideographs_Extension_B}\p{InKangxi_Radicals}\p{InHalfwidth_And_Fullwidth_Forms}\p{InIdeographic_Description_Characters}\s]*[\p{InHangul_Jamo}\p{InHangul_Compatibility_Jamo}\p{InHangul_Syllables}])" replacement="$1"/>
         <charFilter class="solr.MappingCharFilterFactory" mapping="mapping-cjkMarcCompatibility.txt"/>
         <tokenizer class="solr.ICUTokenizerFactory" />
+        <filter class="solr.CJKWidthFilterFactory"/>
+        <filter class="solr.CJKFoldingFilterFactory"/>
         <filter class="solr.ICUTransformFilterFactory" id="Traditional-Simplified"/>
         <filter class="solr.ICUTransformFilterFactory" id="Katakana-Hiragana" />
-        <filter class="solr.CJKWidthFilterFactory"/>
         <filter class="solr.ICUFoldingFilterFactory"/>
+        <filter class="solr.CJKBigramFilterFactory"
+                han="true" hiragana="true" katakana="true" hangul="true" outputUnigrams="true"/>
       </analyzer>
     </fieldType>
 
