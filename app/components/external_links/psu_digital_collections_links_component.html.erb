@@ -6,8 +6,8 @@
                      class: 'mr-3') %>
 
   <ul class="external-links-psu-digital-collections">
-    <% psu_digital_collections_links.map do |item| %>
-      <li><i class="fas fa-external-link-alt" aria-hidden="true"></i> <%= item['prefix'] %><a href="<%= item['url'] %>"><%= item['text'] %></a><%= item['notes'] %></li>
+    <% links.map do |item| %>
+        <%= render ExternalLinks::LinkComponent.new(item) %>
     <% end %>
   </ul>
 </div>
