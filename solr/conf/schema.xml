@@ -16,7 +16,7 @@
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
 
     <!-- you must define copyField source and dest fields explicity or schemaBrowser doesn't work -->
-    <field name="all_text_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true"
+    <field name="all_text_timv" type="text_en" stored="false" indexed="true" multiValued="true" termVectors="true"
            termPositions="true" termOffsets="true"/>
 
 
