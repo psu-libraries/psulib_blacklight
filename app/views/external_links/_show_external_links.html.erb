@@ -1,0 +1,9 @@
+<%= render ExternalLinks::PsuDigitalCollectionsLinksComponent.new links: document.psu_digital_collections_links %>
+<%= render ExternalLinks::BaseLinksComponent.new links: document.access_online_links,
+                                                 heading: 'Access Online' %>
+<%= render ExternalLinks::BaseLinksComponent.new links: document.online_version_links,
+                                                 heading: 'Online Version' %>
+<%= render ExternalLinks::BaseLinksComponent.new links: document.related_resources_links,
+                                                 heading: 'Related Resources' %>
+<%= render ExternalLinks::HathiLinksComponent.new(links: document.hathi_links, heading: nil,
+                                                  show_links: show_hathi_links) %>

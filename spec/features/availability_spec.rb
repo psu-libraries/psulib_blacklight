@@ -227,7 +227,6 @@ RSpec.feature 'Availability', :vcr, type: :feature do
           expect(page).not_to have_selector 'button', text: /View Less/
           expect(page).to have_xpath './/tbody/tr', count: 5
           click_button('View More')
-          sleep 1 # let collapse animation finish and wait for it to re-collapse
           expect(page).to have_xpath './/tbody/tr', count: 77
           expect(page).to have_selector 'button', text: /View Less/
           click_button('View Less')
@@ -428,7 +427,6 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         within 'div[data-library="UP-MAPS"]' do
           expect(page).to have_xpath './/tbody/tr[td//text()[contains(., \'Request scan\')]]', count: 4
           click_button('View More')
-          sleep 1 # let collapse animation finish and wait for it to re-collapse
           expect(page).to have_xpath './/tbody/tr[td//text()[contains(., \'Request scan\')]]', count: 50
           click_button('View Less')
           expect(page).to have_xpath './/tbody/tr[td//text()[contains(., \'Request scan\')]]', count: 4

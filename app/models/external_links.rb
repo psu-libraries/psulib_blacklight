@@ -13,21 +13,43 @@ module ExternalLinks
     all_links.reject { |link| digital_collections_link? link }
   end
 
+  def online_version_links
+    return if partial_links.blank?
+
+    parsed_links(partial_links)
+  end
+
+  def related_resources_links
+    return if suppl_links.blank?
+
+    parsed_links(suppl_links)
+  end
+
   private
 
     def full_links
       @_source['full_links_struct']
     end
 
-    def parsed_links
-      full_links.map { |item| JSON.parse item }
+    def partial_links
+      @_source['partial_links_struct']
+    end
+
+    def suppl_links
+      @_source['suppl_links_struct']
+    end
+
+    def parsed_links(links)
+      links
+        .map { |item| JSON.parse item }
+        .each do |link|
+          link['prefix'] = link_prefix link
+          link['notes'] = link_notes link
+        end
     end
 
     def all_links
-      parsed_links.each do |link|
-        link['prefix'] = link_prefix link
-        link['notes'] = link_notes link
-      end
+      parsed_links(full_links)
     end
 
     def digital_collections_link?(link)

@@ -1,0 +1,13 @@
+<div class="bs-callout bs-callout-psu">
+  <h5>View in Penn State Digital Collections</h5>
+
+  <%= image_pack_tag('media/psulib_blacklight/images/psu-shield.png',
+                     alt: 'Penn State Shield',
+                     class: 'mr-3') %>
+
+  <ul class="external-links-psu-digital-collections">
+    <% links.map do |item| %>
+        <%= render ExternalLinks::LinkComponent.new(item) %>
+    <% end %>
+  </ul>
+</div>

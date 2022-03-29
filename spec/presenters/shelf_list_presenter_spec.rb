@@ -171,23 +171,46 @@ RSpec.describe ShelfListPresenter, type: :model do
   context 'when browsing nearby with a non-matching query' do
     let(:shelf) { described_class.new(length: 3, nearby: 'unknown', classification: classification) }
 
-    before do
-      allow(ShelfList).to receive(:call)
-        .with({ query: 'unknown', reverse_limit: 3, forward_limit: 2, classification: classification })
-        .and_return(
-          {
-            before: [first_book, previous_shelf, last_book],
-            after: [last_book, next_shelf]
-          }
-        )
+    context 'when starting at the first' do
+      before do
+        allow(ShelfList).to receive(:call)
+          .with({ query: 'unknown', reverse_limit: 3, forward_limit: 2, classification: classification })
+          .and_return(
+            {
+              before: [],
+              after: [first, middle_book, last_book, next_shelf]
+            }
+          )
+      end
+
+      specify do
+        expect(shelf.list.map(&:call_number)).to eq(['None', 'first', 'middle_book'])
+        expect(shelf.next_item.call_number).to eq('next_shelf')
+        expect(shelf.previous_item).to be_nil
+        expect(shelf.list[0]).to be_nearby
+        expect(shelf.list[1]).not_to be_match
+      end
     end
 
-    specify do
-      expect(shelf.list.map(&:call_number)).to eq(['first_book', 'None', 'last_book'])
-      expect(shelf.next_item.call_number).to eq('next_shelf')
-      expect(shelf.previous_item.call_number).to eq('previous_shelf')
-      expect(shelf.list[1]).to be_nearby
-      expect(shelf.list[1]).not_to be_match
+    context 'when not starting at the first' do
+      before do
+        allow(ShelfList).to receive(:call)
+          .with({ query: 'unknown', reverse_limit: 3, forward_limit: 2, classification: classification })
+          .and_return(
+            {
+              before: [first_book, previous_shelf, last_book],
+              after: [last_book, next_shelf]
+            }
+          )
+      end
+
+      specify do
+        expect(shelf.list.map(&:call_number)).to eq(['first_book', 'None', 'last_book'])
+        expect(shelf.next_item.call_number).to eq('next_shelf')
+        expect(shelf.previous_item.call_number).to eq('previous_shelf')
+        expect(shelf.list[1]).to be_nearby
+        expect(shelf.list[1]).not_to be_match
+      end
     end
   end
 end

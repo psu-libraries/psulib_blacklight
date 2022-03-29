@@ -83,7 +83,7 @@ class CatalogController < ApplicationController
     config.advanced_search[:url_key] ||= 'advanced'
     config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
-      'facet.field' => %w[access_facet format language_facet media_type_facet library_facet location_facet lc_1letter_facet],
+      'facet.field' => %w[access_facet format language_facet media_type_facet thesis_dept_facet library_facet location_facet lc_1letter_facet],
       'facet.pivot' => '',
       'facet.limit' => -1,
       'f.language_facet.facet.limit' => -1,
@@ -188,6 +188,7 @@ class CatalogController < ApplicationController
                              show: "\uf0fe", # same as '<i class="fa fa-plus-square" aria-hidden="true"></i>',
                              hide: "\uf146"
                            }
+    config.add_facet_field 'thesis_dept_facet', label: 'Thesis Department', limit: true
 
     #
     # Facets that are configured but are not in the solr response
@@ -270,6 +271,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'edition_display_ssm', label: 'Edition', top_field: true, if: false, helper_method: :newline_format
     config.add_show_field 'phys_desc_ssm', label: 'Physical Description', top_field: true, if: false, helper_method: :newline_format
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet, top_field: true, if: false
+    config.add_show_field 'thesis_dept_facet', label: 'Thesis Department', link_to_facet: :thesis_dept_facet, top_field: true, if: false
     config.add_show_field 'series_title_display_ssm', label: 'Series', helper_method: :newline_format
     config.add_show_field 'language_ssim', label: 'Language'
     config.add_show_field 'language_note_ssm', label: 'Language Note', helper_method: :newline_format
@@ -364,8 +366,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'endowment_note_display_ssm', label: 'Endowment Note', helper_method: :newline_format
 
     # Order not yet specified
-    config.add_show_field 'partial_links_struct', label: 'Online Version', helper_method: :generic_link
-    config.add_show_field 'suppl_links_struct', label: 'Related Resources', helper_method: :generic_link
     # config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
     # config.add_show_field 'id', label: 'Catkey'
 

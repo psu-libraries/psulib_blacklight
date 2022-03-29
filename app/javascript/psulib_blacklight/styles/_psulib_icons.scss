@@ -50,6 +50,11 @@
   content: fa-content($fa-var-book-open);
 }
 
+.blacklight-equipment .blacklight-format::before,
+.faspsu-equipment::before {
+  content: fa-content($fa-var-luggage-cart);
+}
+
 .blacklight-games-toys .blacklight-format::before,
 .faspsu-games-toys::before {
   content: fa-content($fa-var-chess);
