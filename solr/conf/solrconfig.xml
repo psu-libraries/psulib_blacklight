@@ -251,6 +251,7 @@
        <str name="facet.field">media_type_facet</str>
        <str name="facet.field">pub_date_itsi</str>
        <str name="facet.field">subject_topic_facet</str>
+       <str name="facet.field">thesis_dept_facet</str>
        <str name="facet.field">up_library_facet</str>
      </lst>
   </requestHandler>

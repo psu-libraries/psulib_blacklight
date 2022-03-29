@@ -231,6 +231,7 @@
     <field name="media_type_facet"     type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="subject_browse_facet" type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="subject_topic_facet"  type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="thesis_dept_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="up_library_facet"     type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
 
     <!-- Sorts -->
