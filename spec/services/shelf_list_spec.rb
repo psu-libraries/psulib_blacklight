@@ -119,7 +119,7 @@ RSpec.describe ShelfList do
 
         it 'returns the next five things that appear after it' do
           expect(list[:after].map(&:call_number)).to contain_exactly(
-     '333.91In8r',
+            '333.91In8r',
             '333.91Inl v.1-3 no.2 Dec.1951-Feb.1953',
             '338.5Un33b',
             '378.242P68b',
