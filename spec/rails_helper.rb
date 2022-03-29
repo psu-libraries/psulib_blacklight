@@ -97,3 +97,6 @@ end
 Capybara.configure do |config|
   config.javascript_driver = :chrome_headless # This is slower
 end
+
+# Disable CSS animations which slows down tests
+Capybara.disable_animation = true
