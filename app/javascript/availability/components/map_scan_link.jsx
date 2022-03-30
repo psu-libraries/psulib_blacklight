@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import availability from '../index';
 
 const MapScanLink = ({ holding }) => {
-  const isUPSpecialMap = () =>
-    ['MAPSPEC'].includes(holding.itemTypeID) &&
+  const isUPMap = () =>
+    ['MAP', 'MAPSPEC'].includes(holding.itemTypeID) &&
     ['UP-MAPS'].includes(holding.libraryID);
 
-  if (!isUPSpecialMap()) {
+  if (!isUPMap()) {
     return null;
   }
 
