@@ -1,9 +1,0 @@
-<% psu_digital_collections_links = document.psu_digital_collections_links
-   access_online_links = document.access_online_links
-   hathi_links = document.hathi_links %>
-
-<%= render partial: 'external_links/psu_digital_collections_links', locals: { psu_digital_collections_links: psu_digital_collections_links } if psu_digital_collections_links.present? %>
-
-<%= render partial: 'external_links/access_online_links', locals: { access_online_links: access_online_links } if access_online_links.present? %>
-
-<%= render partial: 'external_links/hathi_links', locals: { hathi_links: hathi_links } if hathi_links && show_hathi_links %>

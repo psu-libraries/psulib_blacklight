@@ -274,6 +274,7 @@ GEM
     nokogiri (1.13.3)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
+    okcomputer (1.18.4)
     orm_adapter (0.5.0)
     ostruct (0.3.3)
     parallel (1.20.1)
@@ -510,6 +511,7 @@ DEPENDENCIES
   memory_profiler
   mysql2 (>= 0.4.4, < 0.6.0)
   niftany (~> 0.9)
+  okcomputer (~> 1.18)
   pry-byebug
   puma (~> 4.3)
   rack-mini-profiler

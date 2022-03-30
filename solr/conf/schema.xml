@@ -16,7 +16,7 @@
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
 
     <!-- you must define copyField source and dest fields explicity or schemaBrowser doesn't work -->
-    <field name="all_text_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true"
+    <field name="all_text_timv" type="text_en" stored="false" indexed="true" multiValued="true" termVectors="true"
            termPositions="true" termOffsets="true"/>
 
 
@@ -64,6 +64,10 @@
                   termPositions="true" termOffsets="true"/>
     <dynamicField name="*_tesimv" type="text_en" stored="true" indexed="true" multiValued="true" termVectors="true"
                   termPositions="true" termOffsets="true"/>
+
+    <!-- Chinese, Japanese, Korean text (cjk_...) -->
+
+    <dynamicField name="cjk_*" type="text_cjk" stored="true" indexed="true" multiValued="true" />
 
     <!-- string (_s...) -->
 
@@ -231,6 +235,7 @@
     <field name="media_type_facet"     type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="subject_browse_facet" type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="subject_topic_facet"  type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="thesis_dept_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="up_library_facet"     type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
 
     <!-- Sorts -->
@@ -268,6 +273,20 @@
   <copyField source="genre_tsim" dest="genre_unstem_search"/>
   <copyField source="language_facet" dest="language_ssim"/>
   <copyField source="subject_topic_facet" dest="subject_topic_facet_sim"/>
+
+  <!-- Chinese, Japanese, Korean fields -->
+  <copyField source="title_tsim" dest="cjk_title_search"/>
+  <copyField source="title_245ab_tsim" dest="cjk_title_245ab_search"/>
+  <copyField source="title_addl_tsim" dest="cjk_title_addl_search"/>
+  <copyField source="title_added_entry_tsim" dest="cjk_title_added_entry_search"/>
+  <copyField source="title_related_tsim" dest="cjk_title_related_search"/>
+  <copyField source="series_title_tsim" dest="cjk_series_title_search"/>
+  <copyField source="author_tsim" dest="cjk_author_search"/>
+  <copyField source="author_addl_tsim" dest="cjk_author_addl_search"/>
+  <copyField source="subject_tsim" dest="cjk_subject_search"/>
+  <copyField source="subject_addl_tsim" dest="cjk_subject_addl_search"/>
+  <copyField source="notes_summary_ssim" dest="cjk_notes_summary_search"/>
+  <copyField source="toc_ssim" dest="cjk_toc_search"/>
 
   <types>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
@@ -426,6 +445,24 @@
       </analyzer>
       <analyzer type="query">
         <tokenizer class="solr.KeywordTokenizerFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="text_cjk" class="solr.TextField" positionIncrementGap="10000" autoGeneratePhraseQueries="false">
+      <analyzer>
+        <!-- remove spaces among hangul and han chars if there is at least one hangul char -->
+        <!-- a korean char guaranteed at the start of the pattern:  pattern="(\p{Hangul}\p{Han}*)\s+(?=[\p{Hangul}\p{Han}])" -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([\p{InHangul_Jamo}\p{InHangul_Compatibility_Jamo}\p{InHangul_Syllables}][\p{InBopomofo}\p{InBopomofo_Extended}\p{InCJK_Compatibility}\p{InCJK_Compatibility_Forms}\p{InCJK_Compatibility_Ideographs}\p{InCJK_Compatibility_Ideographs_Supplement}\p{InCJK_Radicals_Supplement}\p{InCJK_Symbols_And_Punctuation}\p{InCJK_Unified_Ideographs}\p{InCJK_Unified_Ideographs_Extension_A}\p{InCJK_Unified_Ideographs_Extension_B}\p{InKangxi_Radicals}\p{InHalfwidth_And_Fullwidth_Forms}\p{InIdeographic_Description_Characters}]*)\s+(?=[\p{InHangul_Jamo}\p{InHangul_Compatibility_Jamo}\p{InHangul_Syllables}\p{InBopomofo}\p{InBopomofo_Extended}\p{InCJK_Compatibility}\p{InCJK_Compatibility_Forms}\p{InCJK_Compatibility_Ideographs}\p{InCJK_Compatibility_Ideographs_Supplement}\p{InCJK_Radicals_Supplement}\p{InCJK_Symbols_And_Punctuation}\p{InCJK_Unified_Ideographs}\p{InCJK_Unified_Ideographs_Extension_A}\p{InCJK_Unified_Ideographs_Extension_B}\p{InKangxi_Radicals}\p{InHalfwidth_And_Fullwidth_Forms}\p{InIdeographic_Description_Characters}])" replacement="$1"/>
+        <!-- a korean char guaranteed at the end of the pattern:    pattern="([\p{Hangul}\p{Han}])\s+(?=[\p{Han}\s]*\p{Hangul})" -->
+        <charFilter class="solr.PatternReplaceCharFilterFactory" pattern="([\p{InHangul_Jamo}\p{InHangul_Compatibility_Jamo}\p{InHangul_Syllables}\p{InBopomofo}\p{InBopomofo_Extended}\p{InCJK_Compatibility}\p{InCJK_Compatibility_Forms}\p{InCJK_Compatibility_Ideographs}\p{InCJK_Compatibility_Ideographs_Supplement}\p{InCJK_Radicals_Supplement}\p{InCJK_Symbols_And_Punctuation}\p{InCJK_Unified_Ideographs}\p{InCJK_Unified_Ideographs_Extension_A}\p{InCJK_Unified_Ideographs_Extension_B}\p{InKangxi_Radicals}\p{InHalfwidth_And_Fullwidth_Forms}\p{InIdeographic_Description_Characters}])\s+(?=[\p{InBopomofo}\p{InBopomofo_Extended}\p{InCJK_Compatibility}\p{InCJK_Compatibility_Forms}\p{InCJK_Compatibility_Ideographs}\p{InCJK_Compatibility_Ideographs_Supplement}\p{InCJK_Radicals_Supplement}\p{InCJK_Symbols_And_Punctuation}\p{InCJK_Unified_Ideographs}\p{InCJK_Unified_Ideographs_Extension_A}\p{InCJK_Unified_Ideographs_Extension_B}\p{InKangxi_Radicals}\p{InHalfwidth_And_Fullwidth_Forms}\p{InIdeographic_Description_Characters}\s]*[\p{InHangul_Jamo}\p{InHangul_Compatibility_Jamo}\p{InHangul_Syllables}])" replacement="$1"/>
+        <charFilter class="solr.MappingCharFilterFactory" mapping="mapping-cjkMarcCompatibility.txt"/>
+        <tokenizer class="solr.ICUTokenizerFactory" />
+        <filter class="solr.CJKWidthFilterFactory"/>
+        <filter class="solr.ICUTransformFilterFactory" id="Traditional-Simplified"/>
+        <filter class="solr.ICUTransformFilterFactory" id="Katakana-Hiragana" />
+        <filter class="solr.ICUFoldingFilterFactory"/>
+        <filter class="solr.CJKBigramFilterFactory"
+                han="true" hiragana="true" katakana="true" hangul="true" outputUnigrams="true"/>
       </analyzer>
     </fieldType>
 

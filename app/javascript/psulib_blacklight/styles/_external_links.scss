@@ -1,4 +1,4 @@
-.external-links-access-online {
+.external-links {
   list-style-type: none;
   padding-left: 0;
 }
@@ -7,4 +7,12 @@
   display: inline-block;
   list-style-type: none;
   padding-left: 0;
+}
+
+.btn.toggle-external-links.collapsed::before {
+  content: 'View More';
+}
+
+.btn.toggle-external-links::before {
+  content: 'View Less';
 }
