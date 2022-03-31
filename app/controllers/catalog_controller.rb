@@ -88,6 +88,7 @@ class CatalogController < ApplicationController
       'facet.limit' => -1,
       'f.language_facet.facet.limit' => -1,
       'f.format.facet.limit' => -1,
+      'f.thesis_dept_facet.facet.limit' => -1,
       'facet.sort' => 'index'
     }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
