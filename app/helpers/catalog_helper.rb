@@ -68,6 +68,18 @@ module CatalogHelper
     content_tag 'ul', result.join(''), nil, false
   end
 
+  # Links to series search for series
+  def series_links(options = {})
+    result = []
+    options[:value].each do |series|
+      lnk = link_to(series,
+                    "/?search_field=series&q=#{CGI.escape series}",
+                    class: 'search-series', title: "Search: #{series}")
+      result << content_tag('li', lnk, nil, false)
+    end
+    content_tag 'ul', result.join(''), nil, false
+  end
+
   # Makes a link to genre full facet
   def genre_links(options = {})
     result = []
