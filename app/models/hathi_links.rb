@@ -2,13 +2,12 @@
 
 module HathiLinks
   def hathi_links
-    return nil if ht_access.blank?
+    return nil unless oclc_number.present?
 
     {
       text: ht_link_text,
       url: ht_url,
-      additional_text: ht_additional_text,
-      etas_item: etas_item?
+      hathitrust: hathitrust?
     }
   end
 
@@ -19,25 +18,22 @@ module HathiLinks
     end
 
     def ht_url
-      ocn = @_source['oclc_number_ssim'].first
-      suffix = etas_item? ? I18n.t('blackcat.hathitrust.url_append') : ''
-      "https://catalog.hathitrust.org/api/volumes/oclc/#{ocn}.html#{suffix}"
+      return "https://catalog.hathitrust.org/api/volumes/oclc/#{oclc_number}.html" if hathitrust?
+
+      "https://google.com/books?vid=OCLC#{oclc_number}"
     end
 
     def ht_link_text
-      return I18n.t('blackcat.hathitrust.public_domain_text') if ht_access == 'allow'
-      return I18n.t('blackcat.hathitrust.restricted_access_text') unless etas_item?
+      return I18n.t('blackcat.hathitrust.public_domain_text') if hathitrust?
 
-      I18n.t('blackcat.hathitrust.etas_text')
+      I18n.t('blackcat.hathitrust.alt_hathi_text')
     end
 
-    def ht_additional_text
-      return nil unless etas_item?
-
-      I18n.t('blackcat.hathitrust.etas_additional_text')
+    def hathitrust?
+      ht_access == 'allow'
     end
 
-    def etas_item?
-      ht_access == 'deny' && Settings&.hathi_etas
+    def oclc_number
+      @_source['oclc_number_ssim']&.first
     end
 end
