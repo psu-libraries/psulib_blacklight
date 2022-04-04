@@ -27,23 +27,6 @@ const availability = {
     'https://libraries.psu.edu/about/libraries/donald-w-hamer-center-maps-and-' +
     'geospatial-information/map-scanning-and-printing',
 
-  executeAvailability() {
-    availability.loadAvailability();
-
-    $('.availability').on(
-      'click',
-      '[data-type=view-more-holdings]',
-      function () {
-        $(this).toggleClass('toggle-more');
-        if ($(this).hasClass('toggle-more')) {
-          $(this).text('View More');
-        } else {
-          $(this).text('View Less');
-        }
-      }
-    );
-  },
-
   /**
    * Load real time holdings and availability info from Sirsi Web Services
    */

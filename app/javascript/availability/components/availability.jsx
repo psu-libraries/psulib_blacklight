@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Fragment, useState } from 'react';
 import HoldingDetails from './holding_details';
 import SummaryHoldings from './summary_holdings';
 import ViewMoreButton from './view_more_button';
@@ -6,19 +7,38 @@ import ViewMoreButton from './view_more_button';
 const Availability = ({ structuredHoldings, summaryHoldings }) => (
   <>
     {structuredHoldings.map((element, index) => {
-      const { holdings } = element;
+      const initialVisibleCount = 4;
+      const pageSize = 100;
+      const { holdings, summary } = element;
       const { catkey } = holdings[0];
       const uniqueID = catkey + index;
-      const moreHoldings =
-        holdings.length > 4 ? holdings.splice(4, holdings.length) : [];
       const librarySummaryHoldings = summaryHoldings
-        ? summaryHoldings[element.summary.libraryID]
+        ? summaryHoldings[summary.libraryID]
         : null;
 
+      const [visibleHoldings, setVisibleHoldings] = useState(
+        holdings.slice(0, initialVisibleCount)
+      );
+      const [moreHoldings, setMoreHoldings] = useState(
+        holdings.length > initialVisibleCount
+          ? holdings.slice(initialVisibleCount)
+          : []
+      );
+      const [a11yIndex, setA11yIndex] = useState(0);
+
+      const viewMore = () => {
+        setA11yIndex(visibleHoldings.length);
+        setVisibleHoldings([
+          ...visibleHoldings,
+          ...moreHoldings.slice(0, pageSize),
+        ]);
+        setMoreHoldings(moreHoldings.slice(pageSize));
+      };
+
       return (
-        <div key={index} data-library={element.summary.libraryID}>
+        <div key={index} data-library={summary.libraryID}>
           <h5>
-            {`${element.summary.library} (${element.summary.countAtLibrary} ${element.summary.pluralize})`}
+            {`${summary.library} (${summary.countAtLibrary} ${summary.pluralize})`}
           </h5>
 
           <table id={`holdings-${uniqueID}`} className="table table-sm">
@@ -35,25 +55,37 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
             <tbody>
               <SummaryHoldings summaryHoldings={librarySummaryHoldings} />
 
-              {holdings.map((holding, holdingIndex) => (
-                <tr key={holdingIndex}>
-                  <HoldingDetails holding={holding} />
-                </tr>
-              ))}
-
-              {moreHoldings.map((holding, holdingIndex) => (
-                <tr
-                  key={holdingIndex}
-                  className="collapse"
-                  id={`collapseHoldings${uniqueID}`}
-                >
-                  <HoldingDetails holding={holding} />
-                </tr>
+              {visibleHoldings.map((holding, holdingIndex) => (
+                <Fragment key={holdingIndex}>
+                  {a11yIndex > 0 && holdingIndex === a11yIndex && (
+                    <tr className="sr-only">
+                      <td
+                        tabIndex={-1}
+                        ref={(el) => {
+                          if (el) {
+                            el.focus();
+                          }
+                        }}
+                      >
+                        More Holdings
+                      </td>
+                    </tr>
+                  )}
+                  <tr>
+                    <HoldingDetails holding={holding} />
+                  </tr>
+                </Fragment>
               ))}
             </tbody>
           </table>
 
-          {moreHoldings.length > 0 && <ViewMoreButton uniqueID={uniqueID} />}
+          {moreHoldings.length > 0 && (
+            <ViewMoreButton
+              onClick={() => {
+                viewMore();
+              }}
+            />
+          )}
         </div>
       );
     })}
