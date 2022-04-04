@@ -27,7 +27,7 @@ production:
   encoding: utf8
   host: <%= ENV.fetch("MYSQL_HOST", "127.0.0.1") %>
   pool: 5
-  username: <%= ENV.fetch("MYSQL_USER") {  Rails.application.credentials.db[:user] } %>
-  password: <%= ENV.fetch("MYSQL_PASSWORD") { Rails.application.credentials.db[:pw] } %>
+  username: <%= ENV.fetch("MYSQL_USER") {  "psulib_blacklight" } %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD") { "psulib_blacklight" } %>
   timeout: 5000
-  database: <%= ENV.fetch("MYSQL_DATABASE") { Rails.application.credentials.db[:database] } %>
+  database: <%= ENV.fetch("MYSQL_DATABASE") { "psulib_blacklight" } %>
