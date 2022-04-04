@@ -4,74 +4,56 @@ require 'rails_helper'
 
 RSpec.describe HathiLinks do
   describe '#hathi_links' do
-    it 'returns nil when there is no Hathi data' do
-      document = { 'oclc_number_ssim': ['12345'] }
-      hathi_link = SolrDocument.new(document).hathi_links
-
-      expect(hathi_link).not_to be_present
-    end
-
-    context 'when hathi etas is disabled' do
-      before do
-        Settings.hathi_etas = false
-      end
-
-      it 'generates a url with the public domain text when the record access is "allow' do
-        document = { 'oclc_number_ssim': ['12345'],
-                     'ht_access_ss': 'allow' }
+    context 'when no OCLC number is present' do
+      it 'returns nil' do
+        document = { 'oclc_number_ssim': nil }
         hathi_link = SolrDocument.new(document).hathi_links
 
-        expect(hathi_link).to match({
-                                      text: I18n.t('blackcat.hathitrust.public_domain_text'),
-                                      url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
-                                      additional_text: nil,
-                                      etas_item: false
-                                    })
-      end
-
-      it 'generates a url with the restricted items text when the record access is "deny"' do
-        document = { 'oclc_number_ssim': ['12345'],
-                     'ht_access_ss': 'deny' }
-        hathi_link = SolrDocument.new(document).hathi_links
-
-        expect(hathi_link).to match({
-                                      text: I18n.t('blackcat.hathitrust.restricted_access_text'),
-                                      url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
-                                      additional_text: nil,
-                                      etas_item: false
-                                    })
+        expect(hathi_link).not_to be_present
       end
     end
 
-    context 'when hathi etas is enabled' do
-      before do
-        Settings.hathi_etas = true
+    context 'when OCLC number is present' do
+      context 'when the record access is "allow"' do
+        it 'generates a url to hathitrust' do
+          document = { 'oclc_number_ssim': ['12345'],
+                       'ht_access_ss': 'allow' }
+          hathi_link = SolrDocument.new(document).hathi_links
+
+          expect(hathi_link).to match({
+                                        text: I18n.t('blackcat.hathitrust.public_domain_text'),
+                                        url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
+                                        hathitrust: true
+                                      })
+        end
       end
 
-      it 'generates a url with the public domain text' do
-        document = { 'oclc_number_ssim': ['12345'],
-                     'ht_access_ss': 'allow' }
-        hathi_link = SolrDocument.new(document).hathi_links
+      context 'when the record access is "deny"' do
+        it 'generates a url to google books' do
+          document = { 'oclc_number_ssim': ['12345'],
+                       'ht_access_ss': 'deny' }
+          hathi_link = SolrDocument.new(document).hathi_links
 
-        expect(hathi_link).to match({
-                                      text: I18n.t('blackcat.hathitrust.public_domain_text'),
-                                      url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
-                                      additional_text: nil,
-                                      etas_item: false
-                                    })
+          expect(hathi_link).to match({
+                                        text: I18n.t('blackcat.hathitrust.alt_hathi_text'),
+                                        url: 'https://google.com/books?vid=OCLC12345',
+                                        hathitrust: false
+                                      })
+        end
       end
 
-      it 'generates a url to the checkout page or scan view with the etas text' do
-        document = { 'oclc_number_ssim': ['12345'],
-                     'ht_access_ss': 'deny' }
-        hathi_link = SolrDocument.new(document).hathi_links
+      context 'when the record access is not present' do
+        it 'generates a url to google books' do
+          document = { 'oclc_number_ssim': ['12345'],
+                       'ht_access_ss': nil }
+          hathi_link = SolrDocument.new(document).hathi_links
 
-        expect(hathi_link).to match({
-                                      text: I18n.t('blackcat.hathitrust.etas_text'),
-                                      url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html?urlappend=%3B&signon=swle:urn:mace:incommon:psu.edu',
-                                      additional_text: I18n.t('blackcat.hathitrust.etas_additional_text'),
-                                      etas_item: true
-                                    })
+          expect(hathi_link).to match({
+                                        text: I18n.t('blackcat.hathitrust.alt_hathi_text'),
+                                        url: 'https://google.com/books?vid=OCLC12345',
+                                        hathitrust: false
+                                      })
+        end
       end
     end
   end

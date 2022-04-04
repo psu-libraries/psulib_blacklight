@@ -2,7 +2,7 @@
 
 module HathiLinks
   def hathi_links
-    return nil unless oclc_number.present?
+    return nil if oclc_number.blank?
 
     {
       text: ht_link_text,
