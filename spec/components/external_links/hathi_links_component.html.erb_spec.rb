@@ -68,7 +68,7 @@ RSpec.describe ExternalLinks::HathiLinksComponent, type: :component do
     let(:hathi_links) { nil }
 
     it 'renders nothing' do
-      expect(rendered.to_s).to eq ""
+      expect(rendered.to_s).to eq ''
     end
   end
 end
