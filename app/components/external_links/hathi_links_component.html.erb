@@ -1,9 +1,9 @@
 <% if links.dig(:open_ht_access) || links.dig(:etas_item) -%>
   <div class="bs-callout bs-callout-warning">
-    <% if links.dig(:etas_item) %>
+    <% if links.dig(:etas_item) -%>
       <h5 class="record-view-only" id="conveying-meaning-to-assistive-technologies">Full Text available online</h5>
     <% end %>
-    <% if links[:additional_text] %>
+    <% if links[:additional_text] -%>
       <p class="record-view-only"><%= links[:additional_text] %></p>
     <% end %>
     <p>
