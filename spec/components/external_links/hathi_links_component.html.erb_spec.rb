@@ -49,18 +49,16 @@ RSpec.describe ExternalLinks::HathiLinksComponent, type: :component do
   context 'when hathi_links is neither open_ht_access nor an etas_item' do
     let(:hathi_links) {
       {
-        text: I18n.t('blackcat.hathitrust.restricted_access_text'),
-        url: 'https://google.com/books?vid=OCLC12345',
+        text: nil,
+        url: 'https://catalog.hathitrust.org/Record/12345',
         additional_text: nil,
         etas_item: false,
         open_ht_access: false
       }
     }
 
-    it 'renders a google books logo linked to google books record with correct text' do
-      expect(rendered).to have_link(href: 'https://google.com/books?vid=OCLC12345')
-      expect(rendered).to have_css("img[src*='google_books_logo']")
-      expect(rendered).to have_text(I18n.t('blackcat.hathitrust.restricted_access_text'))
+    it 'renders nothing' do
+      expect(rendered.to_s).to eq ''
     end
   end
 

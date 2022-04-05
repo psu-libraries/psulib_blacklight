@@ -22,16 +22,14 @@ module HathiLinks
     def ht_url
       ocn = @_source['oclc_number_ssim'].first
       suffix = etas_item? ? I18n.t('blackcat.hathitrust.url_append') : ''
-      return "https://catalog.hathitrust.org/api/volumes/oclc/#{ocn}.html#{suffix}" if open_ht_access? || etas_item?
-
-      "https://google.com/books?vid=OCLC#{ocn}"
+      "https://catalog.hathitrust.org/api/volumes/oclc/#{ocn}.html#{suffix}"
     end
 
     def ht_link_text
       return I18n.t('blackcat.hathitrust.public_domain_text') if open_ht_access?
-      return I18n.t('blackcat.hathitrust.restricted_access_text') unless etas_item?
+      return I18n.t('blackcat.hathitrust.etas_text') if etas_item?
 
-      I18n.t('blackcat.hathitrust.etas_text')
+      nil
     end
 
     def ht_additional_text

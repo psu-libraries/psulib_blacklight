@@ -36,7 +36,6 @@ en:
       multi_url: https://catalog.hathitrust.org/Record/
       url_append: '?urlappend=%3B&signon=swle:urn:mace:incommon:psu.edu'
       public_domain_text: 'Access digital copy through HathiTrust'
-      restricted_access_text: 'Check Google Books for a digital copy'
       etas_text: 'Check out digital copy through HathiTrust'
       etas_additional_text: >
         Digital access to this item through the HathiTrust Emergency Temporary Access Service will

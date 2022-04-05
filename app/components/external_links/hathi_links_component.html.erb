@@ -12,12 +12,4 @@
                                  class: 'mr-3 d-none d-md-inline') + links[:text], links[:url]) %>
     </p>
   </div>
-<% elsif links.present? %>
-  <div class="bs-callout bs-callout-info">
-    <p>
-      <%= link_to(image_pack_tag('media/psulib_blacklight/images/google_books_logo.png',
-                                 alt: 'Google Books logo',
-                                 class: 'mr-3 d-none d-md-inline') + links[:text], links[:url]) %>
-    </p>
-  </div>
 <% end %>

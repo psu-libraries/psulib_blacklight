@@ -30,14 +30,14 @@ RSpec.describe HathiLinks do
                                     })
       end
 
-      it 'generates a url to google books with the restricted items text when the record access is "deny"' do
+      it 'generates a url without text when the record access is "deny"' do
         document = { 'oclc_number_ssim': ['12345'],
                      'ht_access_ss': 'deny' }
         hathi_link = SolrDocument.new(document).hathi_links
 
         expect(hathi_link).to match({
-                                      text: I18n.t('blackcat.hathitrust.restricted_access_text'),
-                                      url: 'https://google.com/books?vid=OCLC12345',
+                                      text: nil,
+                                      url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
                                       additional_text: nil,
                                       etas_item: false,
                                       open_ht_access: false
