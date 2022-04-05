@@ -115,8 +115,56 @@ RSpec.describe CatalogHelper, type: :helper do
     context 'when there is a single url and text pair' do
       it 'assembles all the link correctly' do
         link = generic_link link_doc
-        expect(link).to eql '<span><a href="http://usacac.army.mil/CAC2/MilitaryReview/mrpast2.asp">usacac.arm'\
-                            'y.mil</a></span>'
+        expect(link).to eql '<span><a href="http://usacac.army.mil/CAC2/MilitaryReview/mrpast2.asp">'\
+                            'usacac.army.mil</a></span>'
+      end
+    end
+  end
+
+  describe '#series_links' do
+    let (:series_data) { ['Lecture Notes in Electrical Engineering, 1876-1100 ; 554'] }
+    let (:series_title_strict_data) { ['Lecture Notes in Electrical Engineering'] }
+
+    context 'when there is a series value and a strict version of the series title' do
+      let (:link_doc) { { value: series_data, document: { series_title_strict_tsim: series_title_strict_data } } }
+
+      it 'assembles the link correctly' do
+        link = series_links link_doc
+        expect(link).to eql '<ul><li><a class="search-series" title="Search: Lecture Notes in Electrical '\
+                                     'Engineering" '\
+                                     'href="/?search_field=series&amp;q=Lecture+Notes+in+Electrical+Engineering">'\
+                                     'Lecture Notes in Electrical Engineering, 1876-1100 ; 554</a></li></ul>'
+      end
+    end
+
+    context 'when there is a series value but no strict version of the series title' do
+      let (:link_doc) { { value: series_data, document: {} } }
+
+      it 'assembles the link correctly' do
+        link = series_links link_doc
+        link_expect = '<ul><li><a class="search-series" title="Search: Lecture Notes in Electrical Engineering, 1876-1'\
+                      '100 ; 554" href="/?search_field=series&amp;q=Lecture+Notes+in+Electrical+Engineering%2C+1876-11'\
+                      '00+%3B+554">Lecture Notes in Electrical Engineering, 1876-1100 ; 554</a></li></ul>'
+        expect(link).to eql link_expect
+      end
+    end
+
+    context 'when there are multiple series values and strict versions of the series title' do
+      let (:link_doc) { { value: series_data, document: { series_title_strict_tsim: series_title_strict_data } } }
+
+      before do
+        series_data << 'Series Title 2, 1999, abc123'
+        series_title_strict_data << 'Series Title 2'
+      end
+
+      it 'assembles the link correctly' do
+        link = series_links link_doc
+        link_expect = '<ul><li><a class="search-series" title="Search: Lecture Notes in Electrical Engineering"'\
+                      ' href="/?search_field=series&amp;q=Lecture+Notes+in+Electrical+Engineering">'\
+                      'Lecture Notes in Electrical Engineering, 1876-1100 ; 554</a></li><li><a class="search-series"'\
+                      ' title="Search: Series Title 2" href="/?search_field=series&amp;q=Series+Title+2">Series '\
+                      'Title 2, 1999, abc123</a></li></ul>'
+        expect(link).to eql link_expect
       end
     end
   end

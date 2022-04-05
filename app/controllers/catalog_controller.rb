@@ -273,7 +273,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'phys_desc_ssm', label: 'Physical Description', top_field: true, if: false, helper_method: :newline_format
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet, top_field: true, if: false
     config.add_show_field 'thesis_dept_facet', label: 'Thesis Department', link_to_facet: :thesis_dept_facet, top_field: true, if: false
-    config.add_show_field 'series_title_display_ssm', label: 'Series', helper_method: :newline_format
+    config.add_show_field 'series_title_display_ssm', label: 'Series', helper_method: :series_links
     config.add_show_field 'language_ssim', label: 'Language'
     config.add_show_field 'language_note_ssm', label: 'Language Note', helper_method: :newline_format
     config.add_show_field 'restrictions_access_note_ssm', label: 'Restrictions on Access', helper_method: :newline_format
