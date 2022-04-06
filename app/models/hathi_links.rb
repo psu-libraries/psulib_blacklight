@@ -43,6 +43,6 @@ module HathiLinks
     end
 
     def open_ht_access?
-      @_source['ht_access_ss'] == 'allow'
+      ht_access == 'allow'
     end
 end
