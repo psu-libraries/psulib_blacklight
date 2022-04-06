@@ -12,7 +12,7 @@ RSpec.describe ApplicationController do
       sign_in user
     end
 
-    it 'sets a the group' do
+    it 'sets the group' do
       get :login
       expect(session[:groups]).to include(Settings.admin_group)
     end
