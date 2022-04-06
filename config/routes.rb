@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   mount BlacklightAdvancedSearch::Engine => '/'
   mount OkComputer::Engine, at: '/health'
 
+  authenticate :user do
+    get '/login', to: 'application#login', as: :login
+  end
+
   # resource and resources
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns [:searchable, :range_searchable]
