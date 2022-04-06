@@ -8,7 +8,8 @@ module HathiLinks
       text: ht_link_text,
       url: ht_url,
       additional_text: ht_additional_text,
-      etas_item: etas_item?
+      etas_item: etas_item?,
+      open_ht_access: open_ht_access?
     }
   end
 
@@ -25,10 +26,10 @@ module HathiLinks
     end
 
     def ht_link_text
-      return I18n.t('blackcat.hathitrust.public_domain_text') if ht_access == 'allow'
-      return I18n.t('blackcat.hathitrust.restricted_access_text') unless etas_item?
+      return I18n.t('blackcat.hathitrust.public_domain_text') if open_ht_access?
+      return I18n.t('blackcat.hathitrust.etas_text') if etas_item?
 
-      I18n.t('blackcat.hathitrust.etas_text')
+      nil
     end
 
     def ht_additional_text
@@ -39,5 +40,9 @@ module HathiLinks
 
     def etas_item?
       ht_access == 'deny' && Settings&.hathi_etas
+    end
+
+    def open_ht_access?
+      ht_access == 'allow'
     end
 end

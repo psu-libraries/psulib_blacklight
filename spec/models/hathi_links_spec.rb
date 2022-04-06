@@ -25,20 +25,22 @@ RSpec.describe HathiLinks do
                                       text: I18n.t('blackcat.hathitrust.public_domain_text'),
                                       url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
                                       additional_text: nil,
-                                      etas_item: false
+                                      etas_item: false,
+                                      open_ht_access: true
                                     })
       end
 
-      it 'generates a url with the restricted items text when the record access is "deny"' do
+      it 'generates a url without text when the record access is "deny"' do
         document = { 'oclc_number_ssim': ['12345'],
                      'ht_access_ss': 'deny' }
         hathi_link = SolrDocument.new(document).hathi_links
 
         expect(hathi_link).to match({
-                                      text: I18n.t('blackcat.hathitrust.restricted_access_text'),
+                                      text: nil,
                                       url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
                                       additional_text: nil,
-                                      etas_item: false
+                                      etas_item: false,
+                                      open_ht_access: false
                                     })
       end
     end
@@ -57,7 +59,8 @@ RSpec.describe HathiLinks do
                                       text: I18n.t('blackcat.hathitrust.public_domain_text'),
                                       url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
                                       additional_text: nil,
-                                      etas_item: false
+                                      etas_item: false,
+                                      open_ht_access: true
                                     })
       end
 
@@ -70,7 +73,8 @@ RSpec.describe HathiLinks do
                                       text: I18n.t('blackcat.hathitrust.etas_text'),
                                       url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html?urlappend=%3B&signon=swle:urn:mace:incommon:psu.edu',
                                       additional_text: I18n.t('blackcat.hathitrust.etas_additional_text'),
-                                      etas_item: true
+                                      etas_item: true,
+                                      open_ht_access: false
                                     })
       end
     end
