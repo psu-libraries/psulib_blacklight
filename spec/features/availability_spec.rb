@@ -257,8 +257,8 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         expect(page).to have_link(
           'Request Material',
           href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=107&'\
-              'Genre=BOOK&Location=Rare%20Books%20%26%20Mss%2C%201st%20Floor%20Paterno%2C%2'\
-              '0American%20Lit.%20Collection&ItemNumber=000021534850&CallNumber=AP2.O354%201870%'\
+              'Genre=BOOK&Location=Rare%20Books%20%26%20Manuscripts%2C%201st%20Floor%20Paterno%2C%2'\
+              '0American%20Literature%20Collection&ItemNumber=000021534850&CallNumber=AP2.O354%201870%'\
               '2F71&ItemTitle=The%20Christmas%20locket&ItemAuthor=&ItemEdition=&ItemPublish'\
               'er=Roberts%20brothers&ItemPlace=Boston&ItemDate=1870-&ItemInfo1=&SubLocation'\
               '=Christmas%3B%20Nathaniel%20Hawthorne'
