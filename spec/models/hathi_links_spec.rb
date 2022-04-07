@@ -22,7 +22,7 @@ RSpec.describe HathiLinks do
         hathi_link = SolrDocument.new(document).hathi_links
 
         expect(hathi_link).to match({
-                                      text: I18n.t('blackcat.hathitrust.public_domain_text'),
+                                      text: I18n.t!('blackcat.hathitrust.public_domain_text'),
                                       url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
                                       additional_text: nil,
                                       etas_item: false,
@@ -56,7 +56,7 @@ RSpec.describe HathiLinks do
         hathi_link = SolrDocument.new(document).hathi_links
 
         expect(hathi_link).to match({
-                                      text: I18n.t('blackcat.hathitrust.public_domain_text'),
+                                      text: I18n.t!('blackcat.hathitrust.public_domain_text'),
                                       url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html',
                                       additional_text: nil,
                                       etas_item: false,
@@ -70,9 +70,9 @@ RSpec.describe HathiLinks do
         hathi_link = SolrDocument.new(document).hathi_links
 
         expect(hathi_link).to match({
-                                      text: I18n.t('blackcat.hathitrust.etas_text'),
+                                      text: I18n.t!('blackcat.hathitrust.etas_text'),
                                       url: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html?urlappend=%3B&signon=swle:urn:mace:incommon:psu.edu',
-                                      additional_text: I18n.t('blackcat.hathitrust.etas_additional_text'),
+                                      additional_text: I18n.t!('blackcat.hathitrust.etas_additional_text'),
                                       etas_item: true,
                                       open_ht_access: false
                                     })

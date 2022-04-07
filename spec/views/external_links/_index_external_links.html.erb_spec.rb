@@ -90,7 +90,7 @@ RSpec.describe 'external_links/index_external_links', type: :view do
 
       expect(rendered).to have_link(href: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html')
         .and have_css("img[src*='HathiTrust_logo']")
-        .and include(I18n.t('blackcat.hathitrust.public_domain_text'))
+        .and include(I18n.t!('blackcat.hathitrust.public_domain_text'))
     end
 
     it 'does not render Hathi links when show_hathi_links is false' do
@@ -98,7 +98,7 @@ RSpec.describe 'external_links/index_external_links', type: :view do
 
       expect(rendered).not_to have_link(href: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html')
       expect(rendered).not_to have_css("img[src*='HathiTrust_logo']")
-      expect(rendered).not_to include(I18n.t('blackcat.hathitrust.public_domain_text'))
+      expect(rendered).not_to include(I18n.t!('blackcat.hathitrust.public_domain_text'))
     end
   end
 end
