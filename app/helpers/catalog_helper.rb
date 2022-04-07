@@ -24,36 +24,9 @@ module CatalogHelper
     bound_format.present? ? " (#{bound_format})" : ''
   end
 
-  SEPARATOR = '—'
-  QUERYSEP = '—'
   # Links to subject facet for the hierarchical subjects
   def subjectify(options = {})
-    result = []
-    all_subjects = []
-    sub_array = []
-    options[:value].each_with_index do |subject, i|
-      spl_sub = subject.split(QUERYSEP)
-      sub_array << []
-      subject_accum = ''
-      spl_sub.each_with_index do |subsubject, j|
-        spl_sub[j] = subject_accum + subsubject
-        subject_accum = spl_sub[j] + QUERYSEP
-        sub_array[i] << spl_sub[j]
-      end
-      all_subjects[i] = subject.split(QUERYSEP)
-    end
-    options[:value].each_with_index do |_subject, i|
-      lnk = ''
-      lnk_accum = ''
-      all_subjects[i].each_with_index do |subsubject, j|
-        lnk = lnk_accum + link_to(subsubject,
-                                  "/?f[subject_facet][]=#{CGI.escape sub_array[i][j]}",
-                                  class: 'search-subject', title: "Search: #{sub_array[i][j]}")
-        lnk_accum = lnk + content_tag(:span, SEPARATOR, class: 'subject-level')
-      end
-      result << content_tag('li', lnk, nil, false)
-    end
-    content_tag 'ul', result.join(''), nil, false
+    SubjectifyService.new(options[:value]).content
   end
 
   # Links to general subject search for other subjects
