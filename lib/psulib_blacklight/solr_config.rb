@@ -14,7 +14,9 @@ module PsulibBlacklight
 
     def query_url
       query_url = "#{url}/solr/#{collection_name}"
-      return query_url.gsub(/:\/\//, "://#{solr_username}:#{solr_password}@") if solr_username && solr_password
+      if solr_username && solr_password
+        return query_url.gsub(/:\/\//, "://#{solr_username}:#{CGI.escape(solr_password)}@")
+      end
 
       query_url
     end

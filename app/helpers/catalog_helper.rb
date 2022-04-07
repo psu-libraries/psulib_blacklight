@@ -100,6 +100,19 @@ module CatalogHelper
     content_tag 'span', contents.join('<br>'), nil, false
   end
 
+  # Links to series search for series
+  def series_links(options = {})
+    strict_titles = options[:document][:series_title_strict_tsim] || []
+    result = []
+    options[:value].zip(strict_titles).each do |series, strict_title|
+      lnk = link_to(series,
+                    "/?search_field=series&q=#{CGI.escape(strict_title || series)}",
+                    class: 'search-series', title: "Search: #{strict_title || series}")
+      result << content_tag('li', lnk, nil, false)
+    end
+    content_tag 'ul', result.join(''), nil, false
+  end
+
   # To render format icon on search results as the default thumbnail for now
   def render_thumbnail(document, _options = {})
     isbn_values = document.fetch(:isbn_valid_ssm, [])

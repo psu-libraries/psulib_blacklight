@@ -1,13 +1,15 @@
-<div class="bs-callout bs-callout-warning">
-  <% if links.dig(:etas_item) -%>
-    <h5 class="record-view-only" id="conveying-meaning-to-assistive-technologies">Full Text available online</h5>
-  <% end %>
-  <% if links[:additional_text] -%>
-    <p class="record-view-only"><%= links[:additional_text] %></p>
-  <% end %>
-  <p>
-    <%= link_to(image_pack_tag('media/psulib_blacklight/images/128px-HathiTrust_logo.svg.png',
-                               alt: 'HathiTrust logo',
-                               class: 'mr-3 d-none d-md-inline') + links[:text], links[:url]) %>
-  </p>
-</div>
+<% if links.dig(:open_ht_access) || links.dig(:etas_item) -%>
+  <div class="bs-callout bs-callout-warning">
+    <% if links.dig(:etas_item) -%>
+      <h5 class="record-view-only" id="conveying-meaning-to-assistive-technologies">Full Text available online</h5>
+    <% end %>
+    <% if links[:additional_text] -%>
+      <p class="record-view-only"><%= links[:additional_text] %></p>
+    <% end %>
+    <p>
+      <%= link_to(image_pack_tag('media/psulib_blacklight/images/128px-HathiTrust_logo.svg.png',
+                                 alt: 'HathiTrust logo',
+                                 class: 'mr-3 d-none d-md-inline') + links[:text], links[:url]) %>
+    </p>
+  </div>
+<% end %>

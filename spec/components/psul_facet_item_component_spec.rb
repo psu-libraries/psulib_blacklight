@@ -24,7 +24,7 @@ RSpec.describe PsulFacetItemComponent, type: :component do
       specify do
         expect(link).to be_nil
         expect(selected_span.text).to eq('Online')
-        expect(selected_span.attributes['title'].value).to eq(I18n.t('blackcat.facet_tooltips.access_facet.online'))
+        expect(selected_span.attributes['title'].value).to eq(I18n.t!('blackcat.facet_tooltips.access_facet.online'))
       end
     end
 
@@ -44,7 +44,7 @@ RSpec.describe PsulFacetItemComponent, type: :component do
       specify do
         expect(selected_span).to be_nil
         expect(link.text).to eq('Online')
-        expect(link.attributes['title'].value).to eq(I18n.t('blackcat.facet_tooltips.access_facet.online'))
+        expect(link.attributes['title'].value).to eq(I18n.t!('blackcat.facet_tooltips.access_facet.online'))
       end
     end
   end

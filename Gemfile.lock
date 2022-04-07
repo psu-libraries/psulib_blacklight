@@ -343,9 +343,9 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
-    rsolr (2.3.0)
+    rsolr (2.5.0)
       builder (>= 2.1.2)
-      faraday (>= 0.9.0)
+      faraday (>= 0.9, < 3, != 2.0.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -518,7 +518,7 @@ DEPENDENCIES
   rails (~> 6.0.4)
   rails-controller-testing
   redis (~> 4.2)
-  rsolr (>= 1.0)
+  rsolr (>= 2.5)
   rspec-its
   rspec-rails
   rubyzip
