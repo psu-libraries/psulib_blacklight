@@ -24,7 +24,6 @@ module CatalogHelper
     bound_format.present? ? " (#{bound_format})" : ''
   end
 
-
   # Links to subject facet for the hierarchical subjects
   def subjectify(options = {})
     SubjectifyService.new(options[:value]).content
