@@ -8,6 +8,8 @@ module Devise
         http_user = remote_user(request.headers)
         return fail! if http_user.blank?
 
+        session.delete(:guest_user_id)
+
         user = User.find_or_create_by(email: http_user)
         success!(user)
       end
