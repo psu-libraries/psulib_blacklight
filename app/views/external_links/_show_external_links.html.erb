@@ -7,3 +7,4 @@
                                                  heading: 'Related Resources' %>
 <%= render ExternalLinks::HathiLinksComponent.new(links: document.hathi_links, heading: nil,
                                                   show_links: show_hathi_links) %>
+<%= render partial: 'google_preview', locals: { document: document } %>

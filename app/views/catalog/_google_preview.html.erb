@@ -1,0 +1,27 @@
+<a id="google-preview"
+   style="display:none;"><%= image_pack_tag('media/psulib_blacklight/images/gbs_preview_button1.gif',
+                                            alt: 'Google Books Preview Link') %>
+</a>
+
+<script>
+    // Function to process GBS info and update the dom.
+    function ProcessGBSBookInfo(booksInfo) {
+        for (oclc in booksInfo) {
+            var element = document.getElementById('google-preview');
+            var bookInfo = booksInfo[oclc];
+            if (bookInfo) {
+                element.href = bookInfo.preview_url;
+                if (bookInfo.preview == "full") {
+                    element.innerHTML = element.innerHTML + "Full View in Google Books";
+                    element.style.display = '';
+                } else if (bookInfo.preview == "partial") {
+                    element.innerHTML = element.innerHTML + "Preview in Google Books";
+                    element.style.display = '';
+                }
+            }
+        }
+    }
+</script>
+
+<script src="//books.google.com/books?jscmd=viewapi&bibkeys=OCLC:<%= document["oclc_number_ssim"]&.first&.to_s %>&callback=ProcessGBSBookInfo">
+</script>
