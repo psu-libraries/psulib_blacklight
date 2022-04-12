@@ -2,7 +2,6 @@
 
 module ExternalLinks
   class GooglePreviewLinkComponent < ViewComponent::Base
-
     def initialize(document)
       @document = document
     end
