@@ -23,23 +23,12 @@
 class Holdings
   attr_reader :items
 
-  # Solr fields pulled from the record for later use
-  METADATA_FIELDS = %w(
-    author_person_display_ssm
-    edition_display_ssm
-    format
-    id
-    library_facet
-    overall_imprint_display_ssm
-    publication_display_ssm
-    title_display_ssm
-  ).freeze
-
   # @param documents [Array<SolrDocument, Hash>] Solr documents or hash objects from a query
   # @param direction [String] The direction in which we're looking, either 'forward' or 'reverse'
   # @note Direction is used so that we don't add every shelf key to the items hash.
-  def initialize(documents)
+  def initialize(documents, shelfkey_field)
     @items = {}
+    @shelfkey_field = shelfkey_field
     build_item_list(documents)
   end
 
@@ -56,14 +45,19 @@ class Holdings
     # given key, the additional documents are added to the item's document list.
     def build_item_list(documents)
       documents.map do |document|
-        JSON.parse(document.fetch('keymap_struct', ['[]']).first).map do |keymap|
+        keymap(document).map do |keymap|
           key = keymap.fetch('forward_key')
           items[key] ||= ShelfItem.new(
             call_number: keymap['call_number'],
-            key: key
+            key: key,
+            key_field: @shelfkey_field
           )
-          items[key].add(document.slice(*METADATA_FIELDS))
+          items[key].add(document)
         end
       end
+    end
+
+    def keymap(document)
+      JSON.parse(document.fetch('keymap_struct', ['[]']).first)
     end
 end

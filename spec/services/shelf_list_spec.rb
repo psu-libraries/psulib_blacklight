@@ -22,9 +22,7 @@ RSpec.describe ShelfList do
 
         it 'returns the thing itself and the next five books that appear after it' do
           expect(list[:after].map(&:call_number)).to contain_exactly(
-            # TODO: How to handle records with multiple call numbers of the same type.
-            # 'G7273.T5 1968.S6', 'JS4012.L7G7' belongs to the same record
-            'G7273.T5 1968.S6', 'JS4012.L7G7',
+            'G7273.T5 1968.S6',
             'G8961.C5 1931.D3',
             'GN320.G66 1993',
             'GV979.S9B43 2005 DVD',
@@ -101,7 +99,7 @@ RSpec.describe ShelfList do
         it 'returns the previous four things that appear before it in reverse order, but not the thing itself' do
           expect(list[:before].map(&:call_number)).to contain_exactly(
             '111.85M35b',
-            '136.53M582a', '136.53M582a Guidebook', '136.53M582a Readings',
+            '136.53M582a',
             '170M366l 1844',
             '294.516B14b Zs',
             '301.154G854c'

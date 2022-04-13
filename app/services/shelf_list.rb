@@ -33,7 +33,7 @@ class ShelfList
     }
   end
 
-  def shelfkey
+  def shelfkey_field
     "forward_#{classification}_shelfkey"
   end
 
@@ -41,7 +41,7 @@ class ShelfList
 
     def forward_docs
       @forward_docs ||= ShelfQuery.call(
-        field: shelfkey,
+        field: shelfkey_field,
         limit: forward_limit,
         query: query
       )
@@ -49,7 +49,7 @@ class ShelfList
 
     def reverse_docs
       @reverse_docs ||= ShelfQuery.call(
-        field: shelfkey,
+        field: shelfkey_field,
         limit: reverse_limit,
         query: query,
         include_lower: true
@@ -64,12 +64,21 @@ class ShelfList
       return [] if documents.empty?
 
       keys = documents.map do |document|
-        document.fetch(shelfkey).sort
-      end.flatten
+        closest_shelfkey(document.fetch(shelfkey_field))
+      end
 
-      holdings = Holdings.new(documents)
+      holdings = Holdings.new(documents, shelfkey_field)
       keys.map do |key|
         holdings.find(key)
       end
+    end
+
+    def closest_shelfkey(keys)
+      return keys.first if keys.length == 1
+
+      keys
+        .index_with { |key| DidYouMean::Levenshtein.distance(key, query) }
+        .min_by { |_key, distance| distance }
+        .first
     end
 end

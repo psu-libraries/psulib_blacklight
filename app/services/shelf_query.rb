@@ -29,6 +29,7 @@ class ShelfQuery
            params: {
              'q' => '*:*',
              'fq' => filter_query,
+             'qt' => 'shelf',
              'sort' => sort,
              'rows' => limit
            })

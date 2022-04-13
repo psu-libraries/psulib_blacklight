@@ -9,16 +9,16 @@ RSpec.feature 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?classification=lc'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: 'AN502.L66M63 to AZ221.B3'
+                                      exact_text: 'AP3.M33 to BM516.B5134 1948'
 
         expect(page).not_to have_selector '.table-primary'
 
         expect(page).to have_link('AP2.O354', href: '/catalog/107')
-        expect(page).to have_selector 'tr:nth-child(5) td:nth-child(2)',
+        expect(page).to have_selector 'tr:nth-child(4) td:nth-child(2)',
                                       exact_text: 'The Christmas locket'
-        expect(page).to have_selector 'tr:nth-child(5) td:nth-child(3)',
+        expect(page).to have_selector 'tr:nth-child(4) td:nth-child(3)',
                                       exact_text: 'Special Collections Library'
-        expect(page).to have_selector 'tr:nth-child(5) td:nth-child(4)',
+        expect(page).to have_selector 'tr:nth-child(4) td:nth-child(4)',
                                       exact_text: 'Boston : Roberts brothers, 1870-'
       end
     end
@@ -29,7 +29,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
           visit '/browse/call_numbers?nearby=F127.A2M9 1869&classification=lc'
 
           expect(page).to have_selector 'h2.h4',
-                                        exact_text: 'E909.O24A3 2018 to HD1761.F37'
+                                        exact_text: 'E909.O24A3 2018 to HD4909.H5 1948'
 
           expect(page).to have_link('F127.A2M9 1869', href: '/catalog/213578')
 
@@ -50,7 +50,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
           visit '/browse/call_numbers?nearby=LOL&classification=lc'
 
           expect(page).to have_selector 'h2.h4',
-                                        exact_text: 'LC1421.M83 1801 v.1-2 to M1600.C87S6 1998 CD'
+                                        exact_text: 'LC1421.M83 1801 v.1-2 to M1600.H133B45 1998 CD'
 
           expect(page).to have_selector 'tr.table-primary:nth-child(2) td',
                                         exact_text: 'You\'re looking for: LOL'
@@ -65,7 +65,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?classification=dewey'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: '001B289h to 581.96F669'
+                                      exact_text: '001B289h to 660.6So1r'
 
         expect(page).not_to have_selector '.table-primary'
 

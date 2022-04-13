@@ -246,10 +246,6 @@
          author_person_display_ssm,
          call_number_lc_ssm,
          call_number_dewey_ssm,
-         keymap_struct,
-         forward_lc_shelfkey,
-         forward_dewey_shelfkey,
-         library_facet,
          edition_display_ssm,
          format,
          full_links_struct,
@@ -307,6 +303,8 @@
         edition_display_ssm
         format
         id
+        forward_lc_shelfkey,
+        forward_dewey_shelfkey,
         library_facet
         overall_imprint_display_ssm
         publication_display_ssm

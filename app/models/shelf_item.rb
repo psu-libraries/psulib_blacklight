@@ -8,13 +8,14 @@ class ShelfItem
   attr_reader :call_number, :documents, :key
   attr_accessor :match, :nearby
 
-  def initialize(call_number:, key:, label: nil, nearby: false)
+  def initialize(call_number:, key:, label: nil, nearby: false, key_field: nil)
     @call_number = call_number
     @key = key
     @documents = []
     @label = label
     @match = false
     @nearby = nearby
+    @key_field = key_field
   end
 
   def label
@@ -27,6 +28,17 @@ class ShelfItem
 
   def nearby?
     @nearby
+  end
+
+  def more_call_numbers
+    all_shelfkeys
+      .reject! { |shelfkey| shelfkey == key }
+
+    return if all_shelfkeys.empty?
+
+    keymap
+      .select { |cn| all_shelfkeys.include?(cn['forward_key']) }
+      .map { |cn| cn['call_number'] }
   end
 
   def add(document)
@@ -44,6 +56,14 @@ class ShelfItem
   end
 
   private
+
+    def keymap
+      JSON.parse(documents.first.fetch('keymap_struct', ['[]']).first)
+    end
+
+    def all_shelfkeys
+      documents.first.fetch(@key_field)
+    end
 
     def default_label
       return 'Unknown' if documents.empty?
