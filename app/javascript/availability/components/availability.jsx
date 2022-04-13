@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Fragment, useState } from 'react';
+import A11yRow from './a11y_row';
 import HoldingDetails from './holding_details';
 import SummaryHoldings from './summary_holdings';
 import ViewMoreButton from './view_more_button';
@@ -24,10 +25,15 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
           ? holdings.slice(initialVisibleCount)
           : []
       );
-      const [a11yIndex, setA11yIndex] = useState(0);
+      const [lastA11yIndex, setLastA11yIndex] = useState(0);
+
+      const showA11yRow = (holdingIndex) =>
+        holdings.length > initialVisibleCount &&
+        (holdingIndex === 0 ||
+          (holdingIndex - initialVisibleCount) % pageSize === 0);
 
       const viewMore = () => {
-        setA11yIndex(visibleHoldings.length);
+        setLastA11yIndex(visibleHoldings.length);
         setVisibleHoldings([
           ...visibleHoldings,
           ...moreHoldings.slice(0, pageSize),
@@ -57,19 +63,15 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
 
               {visibleHoldings.map((holding, holdingIndex) => (
                 <Fragment key={holdingIndex}>
-                  {a11yIndex > 0 && holdingIndex === a11yIndex && (
-                    <tr className="sr-only">
-                      <td
-                        tabIndex={-1}
-                        ref={(el) => {
-                          if (el) {
-                            el.focus();
-                          }
-                        }}
-                      >
-                        More Holdings
-                      </td>
-                    </tr>
+                  {showA11yRow(holdingIndex) && (
+                    <A11yRow
+                      lastA11yIndex={lastA11yIndex}
+                      holdingIndex={holdingIndex}
+                      initialVisibleCount={initialVisibleCount}
+                      pageSize={pageSize}
+                      uniqueID={uniqueID}
+                      visibleHoldingsCount={visibleHoldings.length}
+                    />
                   )}
                   <tr>
                     <HoldingDetails holding={holding} />

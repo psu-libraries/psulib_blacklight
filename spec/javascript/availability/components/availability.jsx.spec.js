@@ -7,20 +7,21 @@ describe('when the record has less than 5 holdings', () => {
     {
       summary: {},
       holdings: [
-        { catkey: 1, callNumber: 'CallNum1' },
-        { catkey: 2, callNumber: 'CallNum2' },
-        { catkey: 3, callNumber: 'CallNum3' },
-        { catkey: 4, callNumber: 'CallNum4' },
+        { catkey: '1', callNumber: 'CallNum1' },
+        { catkey: '2', callNumber: 'CallNum2' },
+        { catkey: '3', callNumber: 'CallNum3' },
+        { catkey: '4', callNumber: 'CallNum4' },
       ],
     },
   ];
 
-  test('does not show the view more button', () => {
-    const { queryByRole } = render(
+  test('does not show the view more button or accessibility controls', () => {
+    const { queryByRole, queryByText } = render(
       <Availability structuredHoldings={structuredHoldings} />
     );
 
     expect(queryByRole('button')).toBeNull();
+    expect(queryByText('Holdings 1 - 4')).toBeNull();
   });
 });
 
@@ -29,37 +30,45 @@ describe('when the record has 5 or more holdings', () => {
     {
       summary: {},
       holdings: [
-        { catkey: 1, callNumber: 'CallNum1' },
-        { catkey: 2, callNumber: 'CallNum2' },
-        { catkey: 3, callNumber: 'CallNum3' },
-        { catkey: 4, callNumber: 'CallNum4' },
-        { catkey: 5, callNumber: 'CallNum5' },
+        { catkey: '1', callNumber: 'CallNum1' },
+        { catkey: '2', callNumber: 'CallNum2' },
+        { catkey: '3', callNumber: 'CallNum3' },
+        { catkey: '4', callNumber: 'CallNum4' },
+        { catkey: '5', callNumber: 'CallNum5' },
       ],
     },
   ];
 
-  test('shows the view more button', () => {
-    const { getByRole } = render(
+  test('shows the view more button and accessibility controls', () => {
+    const { getByRole, queryByText } = render(
       <Availability structuredHoldings={structuredHoldings} />
     );
 
     expect(getByRole('button')).toHaveTextContent('View More');
+    expect(queryByText('Holdings 1 - 4')).toBeInTheDocument();
   });
 
-  test('expands the visible holdings + hides the View More button when it is clicked', () => {
-    const { getByRole, getByText, queryByText, queryByRole, queryAllByRole } =
-      render(<Availability structuredHoldings={structuredHoldings} />);
+  describe('when the view more button is clicked', () => {
+    test('expands visible holdings + updates a11y elements', () => {
+      const { getByRole, getAllByRole, queryByText, queryAllByRole } = render(
+        <Availability structuredHoldings={structuredHoldings} />
+      );
 
-    expect(queryAllByRole('row')).toHaveLength(5);
-    expect(queryByText('More Holdings')).toBeNull();
-    expect(queryByText('CallNum5')).toBeNull();
+      expect(queryAllByRole('row')).toHaveLength(6);
+      expect(queryByText('Holdings 5 - 5')).toBeNull();
+      expect(queryByText('CallNum5')).toBeNull();
 
-    fireEvent.click(getByRole('button'));
+      fireEvent.click(getByRole('button'));
 
-    expect(queryByRole('button')).toBeNull();
-    expect(queryAllByRole('row')).toHaveLength(7);
-    expect(getByText('More Holdings')).toBeInTheDocument();
-    expect(getByText('CallNum5')).toBeInTheDocument();
+      expect(queryAllByRole('row')).toHaveLength(8);
+      expect(queryByText('Holdings 5 - 5')).toBeInTheDocument();
+      expect(queryByText('CallNum5')).toBeInTheDocument();
+
+      const buttons = getAllByRole('button');
+      expect(buttons).toHaveLength(2);
+      expect(buttons[0]).toHaveTextContent('Next');
+      expect(buttons[1]).toHaveTextContent('Previous');
+    });
   });
 });
 
