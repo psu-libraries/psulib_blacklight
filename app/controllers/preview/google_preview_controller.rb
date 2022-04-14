@@ -23,7 +23,7 @@ module Preview
       end
 
       def search_item
-        params["search_item"]
+        params['search_item']
       end
   end
 end
