@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+require 'support/vcr'
+
+RSpec.feature 'Google Preview Link', :vcr, type: :feature, js: true do
+  before do
+    allow_any_instance_of(ExternalLinks::GooglePreviewLinkComponent).to receive(:search_item).and_return 'LCCN:12345'
+  end
+
+  context 'when no preview exists in Google Books' do
+    it 'does not display preview link' do
+      visit 'catalog/3500414'
+      expect(page).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
+                          .and have_css("div[data='LCCN:12345']", visible: :hidden)
+    end
+  end
+
+  context 'when a preview exists in Google Books' do
+
+  end
+
+  context 'when the full text exists in Google Books' do
+
+  end
+
+end

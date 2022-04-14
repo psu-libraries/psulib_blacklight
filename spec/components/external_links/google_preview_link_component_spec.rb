@@ -12,7 +12,7 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
 
     it 'renders a hidden link with the LCCN search term and LCCN attached in the data attr' do
       expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("a[data='LCCN:13579']", visible: :hidden)
+        .and have_css("div[data='LCCN:13579']", visible: :hidden)
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
 
     it 'renders a hidden link with the OCLC search term and OCLC attached in the data attr' do
       expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("a[data='OCLC:24680']", visible: :hidden)
+        .and have_css("div[data='OCLC:24680']", visible: :hidden)
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
 
     it 'renders a hidden link with the ISBN search term and ISBN attached in the data attr' do
       expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("a[data='ISBN:92746']", visible: :hidden)
+        .and have_css("div[data='ISBN:92746']", visible: :hidden)
     end
   end
 end
