@@ -12,29 +12,29 @@ RSpec.feature 'Google Preview Link', :vcr, type: :feature, js: true do
     it 'does not display preview link' do
       visit 'catalog/3500414'
       expect(page).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-                          .and have_css("div[data='LCCN:12345']", visible: :hidden)
+        .and have_css("div[data='LCCN:12345']", visible: :hidden)
     end
   end
 
   context 'when a preview exists in Google Books' do
     it 'does display preview link with preview message' do
       visit 'catalog/3500414'
-      expect(page).to have_css("img[src*='gbs_preview_button1']", visible: true)
-                          .and have_css("div[id='google-preview']", visible: true)
-                          .and have_css("a[href*='https://books.google.com/books?id=iDuSDwAAQBAJ']",
-                                        visible: true)
-                          .and have_content('Preview in Google Books')
+      expect(page).to have_css("img[src*='gbs_preview_button1']", visible: :visible)
+        .and have_css("div[id='google-preview']", visible: :visible)
+        .and have_css("a[href*='https://books.google.com/books?id=iDuSDwAAQBAJ']",
+                      visible: :visible)
+        .and have_content('Preview in Google Books')
     end
   end
 
   context 'when the full text exists in Google Books' do
     it 'does display preview link with full view message' do
       visit 'catalog/3500414'
-      expect(page).to have_css("img[src*='gbs_preview_button1']", visible: true)
-                          .and have_css("div[id='google-preview']", visible: true)
-                          .and have_css("a[href*='https://books.google.com/books?id=iDuSDwAAQBAJ']",
-                                        visible: true)
-                          .and have_content('Full View in Google Books')
+      expect(page).to have_css("img[src*='gbs_preview_button1']", visible: :visible)
+        .and have_css("div[id='google-preview']", visible: :visible)
+        .and have_css("a[href*='https://books.google.com/books?id=iDuSDwAAQBAJ']",
+                      visible: :visible)
+        .and have_content('Full View in Google Books')
     end
   end
 
@@ -42,7 +42,7 @@ RSpec.feature 'Google Preview Link', :vcr, type: :feature, js: true do
     it 'does not display preview link' do
       visit 'catalog/3500414'
       expect(page).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-                          .and have_css("div[data='LCCN:12345']", visible: :hidden)
+        .and have_css("div[data='LCCN:12345']", visible: :hidden)
     end
   end
 end

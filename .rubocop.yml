@@ -59,3 +59,11 @@ Capybara/FeatureMethods:
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
+
+RSpec/AnyInstance:
+  Exclude:
+  - 'spec/features/google_preview_link_spec.rb'
+
+RSpec/RepeatedExampleGroupBody:
+  Exclude:
+  - 'spec/features/google_preview_link_spec.rb'
