@@ -88,4 +88,60 @@ http_interactions:
         E290 reel.1065</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000053560735</itemID><itemTypeID>MICROFORM</itemTypeID><currentLocationID>CATO-PARK</currentLocationID><homeLocationID>CATO-PARK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo></TitleInfo><TitleInfo><titleID>56503</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Annex
         (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>CATO-2</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>LCPER</classificationID><callNumber>AN502.L66M63</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000063670073</itemID><itemTypeID>MICROFORM</itemTypeID><currentLocationID>CATO-2</currentLocationID><homeLocationID>CATO-2</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo></TitleInfo></LookupTitleInfoResponse>
   recorded_at: Tue, 20 Jul 2021 16:45:58 GMT
+- request:
+    method: get
+    uri: https://books.google.com/books?bibkeys=OCLC:45695298&jscmd=viewapi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - books.google.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 15 Apr 2022 15:06:43 GMT
+      Expires:
+      - Fri, 15 Apr 2022 15:06:43 GMT
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      P3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      - policyref="http://www.google.com/googlebooks/p3p.xml", CP="DSP NON ADM DEV
+        OUR BUS NAV COM INT STA"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=604800
+      Content-Type:
+      - application/javascript; charset=ISO-8859-1
+      X-Content-Type-Options:
+      - nosniff
+      Content-Disposition:
+      - attachment; filename="f.txt"
+      Server:
+      - OFE/0.1
+      Set-Cookie:
+      - NID=511=RJ37jYReM_sJKrEk1pJlVHgUUCbge0nBtg8cCmLTaao9OoUDRU5cHBEUyNc8nP_1XkSOpE2vSjA8MSTYoMfnyt1ijlaVBp0g6knvolo5UnHFI4uI1qVuM63CvzqiPkzOLGZ1ZwA2fC8CN9PKJr8a8myyvrqRJmhyo30D7Bud0E0;
+        expires=Sat, 15-Oct-2022 15:06:43 GMT; path=/; domain=.google.com; HttpOnly
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: var _GBSBookInfo = {};
+  recorded_at: Fri, 15 Apr 2022 15:06:43 GMT
 recorded_with: VCR 6.0.0
