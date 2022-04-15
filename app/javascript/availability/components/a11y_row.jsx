@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import A11yNavButton from './a11y_nav_button';
 
 /**
  * Provides screen reader users of the Availability feature the ability to navigate through
@@ -61,17 +62,6 @@ const A11yRow = ({
     }
   };
 
-  /**
-   * Changes focus to the `A11yRow` specified by the index parameter.
-   * Allows screen reader users to page through the results in the holdings table.
-   * Called when a Previous/Next button is clicked.
-   * @param idx - The index of the `A11yRow` component to be focused.
-   */
-  const updateA11yFocus = (idx) => {
-    const el = document.getElementById(`a11y-${uniqueID}-${idx}`);
-    el.focus();
-  };
-
   return (
     <tr className="sr-only">
       <td
@@ -83,27 +73,17 @@ const A11yRow = ({
       >
         {holdingsPageHeading(holdingIndex)}
 
-        {prevA11yIndex(holdingIndex) !== null && (
-          <button
-            type="button"
-            onClick={() => {
-              updateA11yFocus(prevA11yIndex(holdingIndex));
-            }}
-          >
-            Previous
-          </button>
-        )}
+        <A11yNavButton
+          index={prevA11yIndex(holdingIndex)}
+          label="Previous"
+          uniqueID={uniqueID}
+        />
 
-        {nextA11yIndex(holdingIndex) !== null && (
-          <button
-            type="button"
-            onClick={() => {
-              updateA11yFocus(nextA11yIndex(holdingIndex));
-            }}
-          >
-            Next
-          </button>
-        )}
+        <A11yNavButton
+          index={nextA11yIndex(holdingIndex)}
+          label="Next"
+          uniqueID={uniqueID}
+        />
       </td>
     </tr>
   );
