@@ -441,4 +441,60 @@ http_interactions:
         v.37</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000051946586</itemID><itemTypeID>SERIAL</itemTypeID><currentLocationID>SPC-CATOII</currentLocationID><homeLocationID>SPC-CATOII</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>HE1031.R43
         v.45</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000051976934</itemID><itemTypeID>SERIAL</itemTypeID><currentLocationID>SPC-CATOII</currentLocationID><homeLocationID>SPC-CATOII</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.1)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.2)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.3)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.4)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.7)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.8)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>AUTO</classificationID><callNumber>XX(2574797.9)</callNumber><numberOfCopies>0</numberOfCopies></CallInfo></TitleInfo></LookupTitleInfoResponse>
   recorded_at: Mon, 23 Aug 2021 21:03:13 GMT
+- request:
+    method: get
+    uri: https://books.google.com/books?bibkeys=OCLC:54450666&jscmd=viewapi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - books.google.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 15 Apr 2022 15:06:38 GMT
+      Expires:
+      - Fri, 15 Apr 2022 15:06:38 GMT
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      P3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      - policyref="http://www.google.com/googlebooks/p3p.xml", CP="DSP NON ADM DEV
+        OUR BUS NAV COM INT STA"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=604800
+      Content-Type:
+      - application/javascript; charset=ISO-8859-1
+      X-Content-Type-Options:
+      - nosniff
+      Content-Disposition:
+      - attachment; filename="f.txt"
+      Server:
+      - OFE/0.1
+      Set-Cookie:
+      - NID=511=aWQNkmjevXtC4SwGsC3nqBRMjKl07ZFPDrbS4wkR4oahj6rVPThv0AcUaykQOXLH9i-XN99NhlUD2WOfBlPBJR9CCTB-ChRkiTe92PO6kyWxwxzrue9n1FK0Pe0u8SOGQPsGgMffOhkqcr71cWO8bdNJBUvADvmHh6PQZTWKS5g;
+        expires=Sat, 15-Oct-2022 15:06:38 GMT; path=/; domain=.google.com; HttpOnly
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: var _GBSBookInfo = {"OCLC:54450666":{"bib_key":"OCLC:54450666","info_url":"https://books.google.com/books?id=bXb_GgAACAAJ\u0026source=gbs_ViewAPI","preview_url":"https://books.google.com/books?id=bXb_GgAACAAJ\u0026source=gbs_ViewAPI","preview":"noview","embeddable":false,"can_download_pdf":false,"can_download_epub":false,"is_pdf_drm_enabled":false,"is_epub_drm_enabled":false}};
+  recorded_at: Fri, 15 Apr 2022 15:06:38 GMT
 recorded_with: VCR 6.0.0

@@ -41,4 +41,60 @@ http_interactions:
         1946</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000060369666</itemID><itemTypeID>HATHIETAS</itemTypeID><currentLocationID>HATHIETAS</currentLocationID><homeLocationID>HATHIETAS</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>LC</classificationID><callNumber>PN4885.Y5C5
         1946</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000061609839</itemID><itemTypeID>HATHIETAS</itemTypeID><currentLocationID>HATHIETAS</currentLocationID><homeLocationID>HATHIETAS</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
   recorded_at: Mon, 12 Apr 2021 14:28:26 GMT
+- request:
+    method: get
+    uri: https://books.google.com/books?bibkeys=LCCN:47021093&jscmd=viewapi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+        - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+        - "*/*"
+      User-Agent:
+        - Ruby
+      Host:
+        - books.google.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+        - Fri, 15 Apr 2022 15:06:24 GMT
+      Expires:
+        - Fri, 15 Apr 2022 15:06:24 GMT
+      Cache-Control:
+        - private, must-revalidate, max-age=0
+      P3p:
+        - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+        - policyref="http://www.google.com/googlebooks/p3p.xml", CP="DSP NON ADM DEV
+          OUR BUS NAV COM INT STA"
+      X-Frame-Options:
+        - SAMEORIGIN
+      X-Xss-Protection:
+        - 1; mode=block
+      Strict-Transport-Security:
+        - max-age=604800
+      Content-Type:
+        - application/javascript; charset=ISO-8859-1
+      X-Content-Type-Options:
+        - nosniff
+      Content-Disposition:
+        - attachment; filename="f.txt"
+      Server:
+        - OFE/0.1
+      Set-Cookie:
+        - NID=511=sW7LSwhspG-QvV0VLA3DJvFvgqrruwnTnijfdmt63ET2SKQFTXZiC05QlAPd2ZfQ3J1NvqTFAIDqoqXOvKxIuaTAZCS9JnF_opfZN3TDrybdkIC4VeqmtN9Su_DoMyMTzwZvLOdaVb1Qyj5y53nAFagYI8F_djODl2l48UROA4c;
+          expires=Sat, 15-Oct-2022 15:06:24 GMT; path=/; domain=.google.com; HttpOnly
+      Alt-Svc:
+        - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+          ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Transfer-Encoding:
+        - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: var _GBSBookInfo = {"OCLC:704364916":{"bib_key":"OCLC:704364916","info_url":"https://books.google.com/books?id=avAOAAAAQAAJ\u0026source=gbs_ViewAPI","preview_url":"https://books.google.com/books?id=avAOAAAAQAAJ\u0026source=gbs_ViewAPI","thumbnail_url":"https://books.google.com/books/content?id=avAOAAAAQAAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5","preview":"noview","embeddable":false,"can_download_pdf":false,"can_download_epub":false,"is_pdf_drm_enabled":false,"is_epub_drm_enabled":false}};
+  recorded_at: Fri, 15 Apr 2022 15:06:24 GMT
 recorded_with: VCR 6.0.0

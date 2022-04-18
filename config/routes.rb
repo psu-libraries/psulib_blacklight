@@ -59,6 +59,10 @@ Rails.application.routes.draw do
     get '/sirsi-item-data', to: 'availability#sirsi_item_data'
   end
 
+  namespace :preview do
+    get '/google-preview-data', to: 'google_preview#data'
+  end
+
   # error pages
   match '/404' => 'errors#not_found', via: :all
   match '/422' => 'errors#not_found', via: :all
