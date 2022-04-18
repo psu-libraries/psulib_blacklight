@@ -33,4 +33,13 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
         .and have_css("div[data='ISBN:92746']", visible: :hidden)
     end
   end
+
+  context 'when document has no LCCN, OCLC or ISBN' do
+    let(:document) { {} }
+
+    it 'renders a hidden link with no attached search term data' do
+      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
+        .and have_css("div[data='']", visible: :hidden)
+    end
+  end
 end

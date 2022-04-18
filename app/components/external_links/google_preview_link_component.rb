@@ -11,7 +11,9 @@ module ExternalLinks
 
       return "OCLC:#{oclc}" if oclc.present?
 
-      "ISBN:#{isbn}" if isbn.present?
+      return "ISBN:#{isbn}" if isbn.present?
+
+      nil
     end
 
     private
