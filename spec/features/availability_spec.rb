@@ -225,12 +225,10 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         within 'div[data-library="UP-PAT"]' do
           expect(page).to have_selector 'button', text: /View More/
           expect(page).not_to have_selector 'button', text: /View Less/
-          expect(page).to have_xpath './/tbody/tr', count: 5
+          expect(page).to have_xpath './/tbody/tr', count: 6
           click_button('View More')
-          expect(page).to have_xpath './/tbody/tr', count: 77
-          expect(page).to have_selector 'button', text: /View Less/
-          click_button('View Less')
-          expect(page).to have_xpath './/tbody/tr', count: 5
+          expect(page).to have_xpath './/tbody/tr', count: 79
+          expect(page).not_to have_selector 'button', text: /View More/
         end
       end
     end
@@ -428,8 +426,7 @@ RSpec.feature 'Availability', :vcr, type: :feature do
           expect(page).to have_xpath './/tbody/tr[td//text()[contains(., \'Request scan\')]]', count: 4
           click_button('View More')
           expect(page).to have_xpath './/tbody/tr[td//text()[contains(., \'Request scan\')]]', count: 50
-          click_button('View Less')
-          expect(page).to have_xpath './/tbody/tr[td//text()[contains(., \'Request scan\')]]', count: 4
+          expect(page).not_to have_selector 'button', text: /View More/
         end
       end
     end

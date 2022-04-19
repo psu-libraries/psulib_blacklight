@@ -1,22 +1,14 @@
 import PropTypes from 'prop-types';
 
-const ViewMoreButton = ({ uniqueID }) => (
-  <button
-    className="btn btn-primary toggle-more"
-    type="button"
-    data-type="view-more-holdings"
-    data-target={`#collapseHoldings${uniqueID}`}
-    data-toggle="collapse"
-    aria-expanded="false"
-    aria-controls={`#collapseHoldings${uniqueID}`}
-  >
+const ViewMoreButton = ({ onClick }) => (
+  <button className="btn btn-primary mb-3" type="button" onClick={onClick}>
     View More
   </button>
 );
 
 // eslint-react: defines valid prop types passed to this component
 ViewMoreButton.propTypes = {
-  uniqueID: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default ViewMoreButton;

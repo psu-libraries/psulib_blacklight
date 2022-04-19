@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('turbolinks:load', () => {
-  availability.executeAvailability();
+  availability.loadAvailability();
   bookCovers.start();
   search.autoPlaceholder();
   Blacklight.doBookmarkToggleBehavior();
