@@ -48,7 +48,7 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
 
     it 'renders a hidden link with no attached search term data' do
       expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-                              .and have_css("div[data-search-item='']", visible: :hidden)
+        .and have_css("div[data-search-item='']", visible: :hidden)
     end
   end
 
@@ -57,7 +57,7 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
 
     it 'renders a hidden link with no attached search term data' do
       expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-                              .and have_css("div[data-search-item='']", visible: :hidden)
+        .and have_css("div[data-search-item='']", visible: :hidden)
     end
   end
 end
