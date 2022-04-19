@@ -7,7 +7,7 @@ $(document).ready(() => {
   const { googlePreviewUrl, searchItem } = urlComponents;
   const googlePreviewUrlQuery = `${googlePreviewUrl}/?search_item=${searchItem}`;
 
-  if (element) {
+  if (searchItem) {
     $.ajax({
       url: googlePreviewUrlQuery,
       success(response) {
