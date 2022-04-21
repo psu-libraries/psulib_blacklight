@@ -99,16 +99,15 @@ describe('when the record has summary holdings', () => {
       },
     };
 
-    const { getAllByRole } = render(
+    const { getByText } = render(
       <Availability
         structuredHoldings={structuredHoldings}
         summaryHoldings={summaryHoldings}
       />
     );
 
-    const headings = getAllByRole('heading', { level: 6 });
-    expect(headings[0]).toHaveTextContent(
-      'Pattee - Stacks 3: Holdings Summary'
-    );
+    expect(
+      getByText('Pattee - Stacks 3: Holdings Summary')
+    ).toBeInTheDocument();
   });
 });

@@ -23,7 +23,7 @@ describe('when all summary holdings arrays are populated', () => {
       ],
     };
 
-    const { getAllByRole } = render(
+    const { getAllByRole, getByText } = render(
       <SummaryHoldings summaryHoldings={data} />,
       {
         container: document.body.appendChild(document.createElement('tbody')),
@@ -36,13 +36,11 @@ describe('when all summary holdings arrays are populated', () => {
     expect(items[2]).toHaveTextContent('index info');
     expect(items[4]).toHaveTextContent('supplemental info');
 
-    const headings = getAllByRole('heading', { level: 6 });
-    expect(headings.length).toBe(3);
-    expect(headings[0]).toHaveTextContent(
-      'Pattee - Stacks 3: Holdings Summary'
-    );
-    expect(headings[1]).toHaveTextContent('Indexes');
-    expect(headings[2]).toHaveTextContent('Supplements');
+    expect(
+      getByText('Pattee - Stacks 3: Holdings Summary')
+    ).toBeInTheDocument();
+    expect(getByText('Indexes')).toBeInTheDocument();
+    expect(getByText('Supplements')).toBeInTheDocument();
   });
 });
 
@@ -59,7 +57,7 @@ describe('when some summary holdings data is not present', () => {
       ],
     };
 
-    const { getAllByRole } = render(
+    const { getAllByRole, getByText, queryByText } = render(
       <SummaryHoldings summaryHoldings={data} />,
       {
         container: document.body.appendChild(document.createElement('tbody')),
@@ -70,10 +68,10 @@ describe('when some summary holdings data is not present', () => {
     expect(items.length).toBe(1);
     expect(items[0]).toHaveTextContent('v.67:no.3(2008)-To Date.');
 
-    const headings = getAllByRole('heading', { level: 6 });
-    expect(headings.length).toBe(1);
-    expect(headings[0]).toHaveTextContent(
-      'Pattee - Stacks 3: Holdings Summary'
-    );
+    expect(
+      getByText('Pattee - Stacks 3: Holdings Summary')
+    ).toBeInTheDocument();
+    expect(queryByText('Indexes')).toBeNull();
+    expect(queryByText('Supplements')).toBeNull();
   });
 });
