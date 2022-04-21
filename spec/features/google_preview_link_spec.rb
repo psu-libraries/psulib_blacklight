@@ -23,7 +23,7 @@ RSpec.feature 'Google Preview Link', :vcr, type: :feature, js: true do
         .and have_css("div[id='google-preview']", visible: :visible)
         .and have_css("a[href*='https://books.google.com/books?id=iDuSDwAAQBAJ']",
                       visible: :visible)
-        .and have_content('Preview in Google Books')
+        .and have_content('Search inside at Google Books')
     end
   end
 
@@ -34,7 +34,7 @@ RSpec.feature 'Google Preview Link', :vcr, type: :feature, js: true do
         .and have_css("div[id='google-preview']", visible: :visible)
         .and have_css("a[href*='https://books.google.com/books?id=iDuSDwAAQBAJ']",
                       visible: :visible)
-        .and have_content('Full View in Google Books')
+        .and have_content('Read online at Google Books')
     end
   end
 
@@ -53,7 +53,7 @@ RSpec.feature 'Google Preview Link', :vcr, type: :feature, js: true do
         .and have_css("div[id='google-preview']", visible: :visible)
         .and have_css("a[href*='https://books.google.com/books?id=iDuSDwAAQBAJ']",
                       visible: :visible)
-        .and have_content('Preview in Google Books')
+        .and have_content('Search inside at Google Books')
     end
   end
 end
