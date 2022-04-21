@@ -7,7 +7,7 @@ $(document).ready(() => {
   const { googlePreviewUrl, searchItem } = urlComponents;
   const googlePreviewUrlQuery = `${googlePreviewUrl}/?search_item=${searchItem}`;
 
-  if (element) {
+  if (searchItem) {
     $.ajax({
       url: googlePreviewUrlQuery,
       success(response) {
@@ -27,10 +27,10 @@ $(document).ready(() => {
   let setPreviewButton = function (bookInfo) {
     element.firstElementChild.href = bookInfo.preview_url;
     if (bookInfo.preview === 'full') {
-      element.firstElementChild.innerHTML += 'Full View in Google Books';
+      element.firstElementChild.innerHTML += 'Read online at Google Books';
       element.style.display = '';
     } else if (bookInfo.preview === 'partial') {
-      element.firstElementChild.innerHTML += 'Preview in Google Books';
+      element.firstElementChild.innerHTML += 'Search inside at Google Books';
       element.style.display = '';
     }
   };
