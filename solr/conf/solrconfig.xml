@@ -110,15 +110,12 @@
          cjk_title_addl_search^2500
          series_title_unstem_search^500
          series_title_tsim^200
-         cjk_series_title_search^200
          title_related_unstem_search^150
          title_related_tsim^125
-         cjk_title_related_search^125
          subject_topic_unstem_search^1000
          subject_unstem_search^750
          subject_topic_facet_sim^625
          subject_tsim^500
-         cjk_subject_search^500
          author_unstem_search^250
          author_addl_unstem_search^250
          author_tsim^100
@@ -127,14 +124,11 @@
          cjk_author_addl_search^50
          subject_addl_unstem_search^250
          subject_addl_tsim^50
-         cjk_subject_addl_search^50
          isbn_sim
          issn_sim
          scan_sim
          toc_ssim^200
-         cjk_toc_search^200
          notes_summary_ssim
-         cjk_notes_summary_search
          all_text_timv
        </str>
        <str name="pf">
@@ -149,15 +143,12 @@
          cjk_title_addl_search^25000
          series_title_unstem_search^20000
          series_title_tsim^10000
-         cjk_series_title_search^10000
          title_related_unstem_search^1500
          title_related_tsim^1250
-         cjk_title_related_search^1250
          subject_topic_unstem_search^10000
          subject_unstem_search^7500
          subject_topic_facet_sim^6250
          subject_tsim^5000
-         cjk_subject_search^5000
          author_unstem_search^2500
          author_addl_unstem_search^2500
          author_tsim^1000
@@ -166,11 +157,8 @@
          cjk_author_addl_search^500
          subject_addl_unstem_search^2500
          subject_addl_tsim^500
-         cjk_subject_addl_search^500
          toc_ssim^200
-         cjk_toc_search^200
          notes_summary_ssim^50
-         cjk_notes_summary_search^50
          all_text_timv^10
        </str>
        <str name="author_qf">
@@ -201,10 +189,8 @@
          cjk_title_addl_search^100
          title_added_entry_unstem_search^50
          title_added_entry_tsim^10
-         cjk_title_added_entry_search^10
          series_title_unstem_search^5
          series_title_tsim
-         cjk_series_title_search
        </str>
        <str name="title_pf">
          title_unstem_search^750000
@@ -218,30 +204,24 @@
          cjk_title_addl_search^1000
          title_added_entry_unstem_search^500
          title_added_entry_tsim^100
-         cjk_title_added_entry_search^100
          series_title_unstem_search^50
          series_title_tsim^10
-         cjk_series_title_search^10
        </str>
        <str name="subject_qf">
          subject_topic_unstem_search^200
          subject_unstem_search^125
          subject_topic_facet_sim^100
          subject_tsim^50
-         cjk_subject_search^50
          subject_addl_unstem_search^10
          subject_addl_tsim
-         cjk_subject_addl_search
        </str>
        <str name="subject_pf">
          subject_topic_unstem_search^2000
          subject_unstem_search^1250
          subject_tsim^1000
-         cjk_subject_search^1000
          subject_topic_facet_sim^500
          subject_addl_unstem_search^100
          subject_addl_tsim^10
-         cjk_subject_addl_search^10
        </str>
 
        <!-- for advanced search number text box -->
