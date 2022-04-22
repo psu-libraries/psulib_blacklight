@@ -79,7 +79,7 @@ RSpec.feature 'Availability', :vcr, type: :feature do
     it 'that has summary holdings information' do
       visit '/?utf8=✓&search_field=all_fields&q=1793712'
       click_button('View Availability')
-      expect(page).to have_selector 'tr.table-primary h6', text: 'Stacks - General Collection: Holdings Summary'
+      expect(page).to have_selector 'tr.table-primary .h6', text: 'Stacks - General Collection: Holdings Summary'
     end
 
     context 'when Hathi ETAS is enabled' do
@@ -186,7 +186,7 @@ RSpec.feature 'Availability', :vcr, type: :feature do
 
     it 'that has summary holdings information' do
       visit '/catalog/1793712'
-      expect(page).to have_selector 'tr.table-primary h6', text: 'Stacks - General Collection: Holdings Summary'
+      expect(page).to have_selector 'tr.table-primary .h6', text: 'Stacks - General Collection: Holdings Summary'
     end
 
     context 'when HathiTrust ETAS is enabled' do

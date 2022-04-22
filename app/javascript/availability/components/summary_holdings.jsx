@@ -21,7 +21,7 @@ const SummaryHoldings = ({ summaryHoldings }) => {
 
           return (
             <React.Fragment key={locationID}>
-              <h6>{locationName}: Holdings Summary</h6>
+              <div className="h6">{locationName}: Holdings Summary</div>
 
               <ul style={listStyle}>
                 {/* Summaries */}
@@ -32,10 +32,10 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                 {/* Indexes */}
                 {locationData.index.length > 0 && (
                   <li>
-                    <h6 className="mt-2">
+                    <div className="h6 mt-2">
                       <span className="sr-only">{locationName}</span>
                       Indexes
-                    </h6>
+                    </div>
 
                     <ul style={listStyle}>
                       {locationData.index.map((index, i) => (
@@ -48,10 +48,10 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                 {/* Supplements */}
                 {locationData.supplement.length > 0 && (
                   <li>
-                    <h6 className="mt-2">
+                    <div className="h6 mt-2">
                       <span className="sr-only">{locationName}</span>
                       Supplements
-                    </h6>
+                    </div>
 
                     <ul style={listStyle}>
                       {locationData.supplement.map((supplement, i) => (
