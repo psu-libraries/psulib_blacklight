@@ -45,7 +45,7 @@ RSpec.describe ShelfListPresenter, type: :model do
 
     before do
       allow(ShelfList).to receive(:call)
-        .with({ query: '0', reverse_limit: 0, forward_limit: 4, classification: classification })
+        .with({ query: 'A', reverse_limit: 0, forward_limit: 4, classification: classification })
         .and_return(
           {
             before: [],

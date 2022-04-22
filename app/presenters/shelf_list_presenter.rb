@@ -58,7 +58,7 @@ class ShelfListPresenter
       (before_items + after_items)
     end
 
-    def shelvit_key
+    def shelvit_nearby
       if classification == 'dewey' && nearby.present?
         DEWEY_SHELF_PREFIX + nearby
       else
@@ -67,15 +67,13 @@ class ShelfListPresenter
     end
 
     def shelf_key
-      @shelf_key ||= Shelvit.normalize(shelvit_key) || nearby
+      @shelf_key ||= Shelvit.normalize(shelvit_nearby) || nearby
     end
 
     # @return [Array<ShelfItem>]
-    # @note The items coming before a particular call number are determined using a reverse shelf key, which means the
-    # items are returned in a "reverse" order. To create a natural reading list, we need to reverse the reversed list
-    # before adding it to our virtual shelf. If we're looking for something nearby on the shelf, and our query is an
-    # exact match for that item, mark it accordingly. Otherwise, insert a placeholder shelf item that indicates where
-    # the item would appear if it existed.
+    # @note If we're looking for something nearby on the shelf, and our query is an exact match
+    # for that item, mark it accordingly. Otherwise, insert a placeholder shelf item that indicates
+    # where the item would appear if it existed.
     def before_items
       list = before_list
 
@@ -143,18 +141,29 @@ class ShelfListPresenter
     #    Returns a set of shelf items such that the item we're looking for occurs *third* on the shelf. This is
     #    basically padding the results based on our minimum shelf length.
     # 4) Starting from the very beginning:
-    #    Return only the items after the given key. A '0' query starts at the very beginning of the list.
+    #    Return only the items after the given key. A '' query starts at the very beginning of the list.
     def shelf_list_params
       if starting.present?
         { query: starting, forward_limit: length, reverse_limit: 2 }
       elsif ending.present?
         { query: ending, forward_limit: 1, reverse_limit: length + 1 }
       elsif shelf_key.present?
-        { query: shelf_key, forward_limit: (length - MIN) + 2, reverse_limit: MIN }
+        { query: CGI.escape(shelf_key), forward_limit: (length - MIN) + 2, reverse_limit: MIN }
       else
-        { query: '0', forward_limit: length + 1, reverse_limit: 0 }
+        { query: empty_search_query, forward_limit: length + 1, reverse_limit: 0 }
       end
         .merge!(classification: classification)
+    end
+
+    def empty_search_query
+      case classification
+      when 'lc'
+        'A'
+      when 'dewey'
+        "#{DEWEY_SHELF_PREFIX}0"
+      else
+        '0'
+      end
     end
 
     def first?

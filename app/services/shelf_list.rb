@@ -45,6 +45,23 @@ class ShelfList
         limit: forward_limit,
         query: query
       )
+
+      # Try to get more documents with the last document's shelfkey
+      # if there aren't enough documents returned
+      if @forward_docs.empty? || @forward_docs.length < forward_limit
+        @forward_docs += ShelfQuery.call(
+          field: shelfkey_field,
+          limit: forward_limit,
+          query: forward_query,
+          include_more: true
+        )
+
+        @forward_docs.uniq! do |doc|
+          [doc['id'], doc[shelfkey_field.to_s]]
+        end
+      end
+
+      @forward_docs || []
     end
 
     def reverse_docs
@@ -54,6 +71,24 @@ class ShelfList
         query: query,
         include_lower: true
       )
+
+      # Try to get more documents with the first document's shelfkey
+      # if there aren't enough documents returned
+      if @reverse_docs.empty? || @reverse_docs.length < reverse_limit
+        @reverse_docs += ShelfQuery.call(
+          field: shelfkey_field,
+          limit: reverse_limit,
+          query: reverse_query,
+          include_lower: true,
+          include_more: true
+        )
+
+        @reverse_docs.uniq! do |doc|
+          [doc['id'], doc[shelfkey_field.to_s]]
+        end
+      end
+
+      @reverse_docs || []
     end
 
     # @return Array<ShelfItem>
@@ -80,5 +115,21 @@ class ShelfList
         .index_with { |key| DidYouMean::Levenshtein.distance(key, query) }
         .min_by { |_key, distance| distance }
         .first
+    end
+
+    def forward_query
+      if @forward_docs.empty?
+        query
+      else
+        @forward_docs.last[shelfkey_field].first
+      end
+    end
+
+    def reverse_query
+      if @reverse_docs.empty?
+        query
+      else
+        @reverse_docs.first[shelfkey_field].first
+      end
     end
 end
