@@ -230,6 +230,7 @@
          isbn_sim
          issn_sim
          oclc_number_ssim
+         deprecated_oclcs_tsim
          lccn_ssim
          scan_sim
          report_numbers_ssim
