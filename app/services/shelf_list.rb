@@ -40,20 +40,28 @@ class ShelfList
   private
 
     def forward_docs
-      @forward_docs ||= ShelfQuery.call(
+      params = ShelfParams.new(
         field: shelfkey_field,
-        limit: forward_limit,
         query: query
+      )
+
+      @forward_docs ||= ShelfQuery.call(
+        limit: forward_limit,
+        params: params
       )
 
       # Try to get more documents with the last document's shelfkey
       # if there aren't enough documents returned
       if @forward_docs.empty? || @forward_docs.length < forward_limit
-        @forward_docs += ShelfQuery.call(
+        params = ShelfParams.new(
           field: shelfkey_field,
-          limit: forward_limit,
           query: forward_query,
           include_more: true
+        )
+
+        @forward_docs += ShelfQuery.call(
+          limit: forward_limit,
+          params: params
         )
 
         @forward_docs.uniq! do |doc|
@@ -65,22 +73,30 @@ class ShelfList
     end
 
     def reverse_docs
-      @reverse_docs ||= ShelfQuery.call(
+      params = ShelfParams.new(
         field: shelfkey_field,
-        limit: reverse_limit,
         query: query,
         include_lower: true
+      )
+
+      @reverse_docs ||= ShelfQuery.call(
+        limit: reverse_limit,
+        params: params
       )
 
       # Try to get more documents with the first document's shelfkey
       # if there aren't enough documents returned
       if @reverse_docs.empty? || @reverse_docs.length < reverse_limit
-        @reverse_docs += ShelfQuery.call(
+        params = ShelfParams.new(
           field: shelfkey_field,
-          limit: reverse_limit,
           query: reverse_query,
           include_lower: true,
           include_more: true
+        )
+
+        @reverse_docs += ShelfQuery.call(
+          limit: reverse_limit,
+          params: params
         )
 
         @reverse_docs.uniq! do |doc|
