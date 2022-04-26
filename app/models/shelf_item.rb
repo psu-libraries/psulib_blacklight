@@ -37,7 +37,7 @@ class ShelfItem
     return if all_shelfkeys.empty?
 
     keymap
-      .select { |cn| all_shelfkeys.include?(cn['forward_key']) }
+      .select { |cn| all_shelfkeys.include?(cn['key']) }
       .map { |cn| cn['call_number'] }
   end
 

@@ -34,7 +34,7 @@ class ShelfList
   end
 
   def shelfkey_field
-    "forward_#{classification}_shelfkey"
+    "#{classification}_shelfkey"
   end
 
   private

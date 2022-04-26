@@ -303,8 +303,8 @@
         edition_display_ssm
         format
         id
-        forward_lc_shelfkey,
-        forward_dewey_shelfkey,
+        lc_shelfkey,
+        dewey_shelfkey,
         library_facet
         overall_imprint_display_ssm
         publication_display_ssm

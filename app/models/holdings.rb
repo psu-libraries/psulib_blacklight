@@ -46,7 +46,7 @@ class Holdings
     def build_item_list(documents)
       documents.map do |document|
         keymap(document).map do |keymap|
-          key = keymap.fetch('forward_key')
+          key = keymap.fetch('key')
           items[key] ||= ShelfItem.new(
             call_number: keymap['call_number'],
             key: key,

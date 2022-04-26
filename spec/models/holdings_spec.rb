@@ -13,8 +13,8 @@ RSpec.describe Holdings do
     let(:document1) do
       {
         'id' => '1',
-        'shelfkey' => ['forward_key_1'],
-        'keymap_struct' => [[{ forward_key: 'forward_key_1', call_number: 'Solr Doc 1' }].to_json],
+        'shelfkey' => ['key_1'],
+        'keymap_struct' => [[{ key: 'key_1', call_number: 'Solr Doc 1' }].to_json],
         'title_display_ssm' => 'Title 1'
       }
     end
@@ -22,8 +22,8 @@ RSpec.describe Holdings do
     let(:document2) do
       {
         'id' => '2',
-        'shelfkey' => ['forward_key_2'],
-        'keymap_struct' => [[{ forward_key: 'forward_key_2', call_number: 'Solr Doc 2' }].to_json],
+        'shelfkey' => ['key_2'],
+        'keymap_struct' => [[{ key: 'key_2', call_number: 'Solr Doc 2' }].to_json],
         'title_display_ssm' => 'Title 2'
       }
     end
@@ -31,16 +31,16 @@ RSpec.describe Holdings do
     let(:document3) do
       {
         'id' => '3',
-        'shelfkey' => ['forward_key_3', 'forward_key_4'],
-        'keymap_struct' => [[{ forward_key: 'forward_key_3', call_number: 'Solr Doc 3' },
-                             { forward_key: 'forward_key_4', call_number: 'Solr Doc 4' }].to_json],
+        'shelfkey' => ['key_3', 'key_4'],
+        'keymap_struct' => [[{ key: 'key_3', call_number: 'Solr Doc 3' },
+                             { key: 'key_4', call_number: 'Solr Doc 4' }].to_json],
         'title_display_ssm' => 'Title 3'
       }
     end
 
     specify do
       expect(holdings.items.length).to eq(4)
-      item = holdings.find('forward_key_1')
+      item = holdings.find('key_1')
       expect(item.call_number).to eq('Solr Doc 1')
       expect(item.documents.map { |document| document['title_display_ssm'] }).to contain_exactly('Title 1')
     end
@@ -54,8 +54,8 @@ RSpec.describe Holdings do
     let(:document1) do
       {
         'id' => '1',
-        'shelfkey' => ['forward_key_1'],
-        'keymap_struct' => [[{ forward_key: 'forward_key_1', call_number: 'Solr Doc 1' }].to_json],
+        'shelfkey' => ['key_1'],
+        'keymap_struct' => [[{ key: 'key_1', call_number: 'Solr Doc 1' }].to_json],
         'title_display_ssm' => 'Title 1'
       }
     end
@@ -63,8 +63,8 @@ RSpec.describe Holdings do
     let(:document2) do
       {
         'id' => '2',
-        'shelfkey' => ['forward_key_1'],
-        'keymap_struct' => [[{ forward_key: 'forward_key_1', call_number: 'Solr Doc 1' }].to_json],
+        'shelfkey' => ['key_1'],
+        'keymap_struct' => [[{ key: 'key_1', call_number: 'Solr Doc 1' }].to_json],
         'title_display_ssm' => 'Title 2'
       }
     end
@@ -72,16 +72,16 @@ RSpec.describe Holdings do
     let(:document3) do
       {
         'id' => '3',
-        'shelfkey' => ['forward_key_3', 'forward_key_4'],
-        'keymap_struct' => [[{ forward_key: 'forward_key_3', call_number: 'Solr Doc 3' },
-                             { forward_key: 'forward_key_4', call_number: 'Solr Doc 4' }].to_json],
+        'shelfkey' => ['key_3', 'key_4'],
+        'keymap_struct' => [[{ key: 'key_3', call_number: 'Solr Doc 3' },
+                             { key: 'key_4', call_number: 'Solr Doc 4' }].to_json],
         'title_display_ssm' => 'Title 3'
       }
     end
 
     specify do
       expect(holdings.items.length).to eq(3)
-      item = holdings.find('forward_key_1')
+      item = holdings.find('key_1')
       expect(item.call_number).to eq('Solr Doc 1')
       expect(item.documents.map { |document| document['title_display_ssm'] }).to contain_exactly('Title 1', 'Title 2')
     end

@@ -26,7 +26,7 @@ RSpec.describe ShelfQuery do
           },
           'response' => {
             'docs' => {
-              'forward_lc_shelfkey' => [
+              'lc_shelfkey' => [
                 'AN.0502.L66.M63',
                 'AP.0002.A8',
                 'AP.0002.N6763',
@@ -45,7 +45,7 @@ RSpec.describe ShelfQuery do
     end
 
     it 'does stuff' do
-      expect(docs[:forward_lc_shelfkey]).to contain_exactly(
+      expect(docs[:lc_shelfkey]).to contain_exactly(
         'AN.0502.L66.M63',
         'AP.0002.A8',
         'AP.0002.N6763',
@@ -72,7 +72,7 @@ RSpec.describe ShelfQuery do
           },
           'response' => {
             'docs' => {
-              'forward_lc_shelfkey' => [
+              'lc_shelfkey' => [
                 'AC.0001.A4',
                 'AC.0001.B75--NO00010002NO00061782',
                 'AC.0001.E8',
@@ -90,7 +90,7 @@ RSpec.describe ShelfQuery do
       )
     end
 
-    it { expect(docs[:forward_lc_shelfkey]).to contain_exactly(
+    it { expect(docs[:lc_shelfkey]).to contain_exactly(
       'AC.0001.A4',
       'AC.0001.B75--NO00010002NO00061782',
       'AC.0001.E8',
