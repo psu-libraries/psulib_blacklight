@@ -116,7 +116,7 @@ class ShelfList
 
       keys = documents.map do |document|
         closest_shelfkey(document.fetch(shelfkey_field))
-      end
+      end.uniq
 
       holdings = Holdings.new(documents, shelfkey_field)
       keys.map do |key|
