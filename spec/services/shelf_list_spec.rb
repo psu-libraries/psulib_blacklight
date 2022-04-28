@@ -102,7 +102,7 @@ RSpec.describe ShelfList do
           expect(list[:before].map(&:call_number)).to contain_exactly(
             '001B289h',
             '111.85M35b',
-            '136.53M582a',
+            '136.53M582a Readings',
             '294.516B14b Zs',
             '301.154G854c'
           )

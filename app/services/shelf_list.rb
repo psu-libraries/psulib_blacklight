@@ -128,7 +128,7 @@ class ShelfList
       return keys.first if keys.length == 1
 
       keys
-        .index_with { |key| DidYouMean::Levenshtein.distance(key, query) }
+        .index_with { |key| DidYouMean::Levenshtein.distance(key[0..7], query[0..7]) }
         .min_by { |_key, distance| distance }
         .first
     end
