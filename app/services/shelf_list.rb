@@ -28,8 +28,8 @@ class ShelfList
 
   def build
     {
-      after: shelf_items(forward_docs),
-      before: shelf_items(reverse_docs)
+      after: shelf_items(documents: forward_docs, direction: 'forward'),
+      before: shelf_items(documents: reverse_docs, direction: 'reverse')
     }
   end
 
@@ -111,11 +111,12 @@ class ShelfList
     # @note Uses a Holdings object to build a set of shelf item objects. The documents are already in the proper order.
     # Using Holdings, we construct a hash of every shelf key and its document.
     # There can be multiple documents per key, if the same call number is present in multiple items.
-    def shelf_items(documents)
+    def shelf_items(documents:, direction:)
       return [] if documents.empty?
 
+      # If a record has multiple callnumbers, get the most relevant/closest key to the query
       keys = documents.map do |document|
-        closest_shelfkey(document.fetch(shelfkey_field))
+        closest_shelfkey(keys: document.fetch(shelfkey_field), direction: direction)
       end.uniq
 
       holdings = Holdings.new(documents, shelfkey_field)
@@ -124,20 +125,49 @@ class ShelfList
       end
     end
 
-    def closest_shelfkey(keys)
+    def closest_shelfkey(keys:, direction:)
       return keys.first if keys.length == 1
 
+      # exact match
+      return query if keys.include?(query)
+
+      # When there are multiple keys matching the first char with query's first char,
+      # prefers the closest distance key
+      # When there are no keys matching the initials, select the key whose first char is
+      # closest to the query's first char
+      initial_matched_closest_key(keys) || closest_key(keys, direction)
+    end
+
+    def closest_key(keys, direction)
+      query_initial = query[first_char_pos]
+
       keys
-        .index_with { |key| DidYouMean::Levenshtein.distance(key[0..7], query[0..7]) }
+        .select do |key|
+        key_initial = key[first_char_pos]
+        direction == 'forward' ? key_initial > query_initial : query_initial > key_initial
+      end
+        .index_with { |key| (query_initial.ord - key[first_char_pos].ord).abs }
         .min_by { |_key, distance| distance }
         .first
+    end
+
+    def initial_matched_closest_key(keys)
+      keys
+        .select { |key| key[first_char_pos] == query[first_char_pos] }
+        &.index_with { |key| DidYouMean::Levenshtein.distance(key, query) }
+        &.min_by { |_key, distance| distance }
+        &.first
+    end
+
+    def first_char_pos
+      classification == 'dewey' ? 3 : 0
     end
 
     def forward_query
       if @forward_docs.empty?
         query
       else
-        @forward_docs.last[shelfkey_field].first
+        closest_shelfkey(keys: @forward_docs.last[shelfkey_field], direction: 'forward')
       end
     end
 
@@ -145,7 +175,7 @@ class ShelfList
       if @reverse_docs.empty?
         query
       else
-        @reverse_docs.first[shelfkey_field].first
+        closest_shelfkey(keys: @reverse_docs.first[shelfkey_field], direction: 'reverse')
       end
     end
 end

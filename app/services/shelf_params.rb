@@ -7,7 +7,7 @@ class ShelfParams
 
   def initialize(field:, query:, include_lower: false, include_more: false)
     @field = field
-    @query = query
+    @query = query.upcase
     @include_lower = include_lower
     @include_more = include_more
   end
@@ -41,34 +41,34 @@ class ShelfParams
     end
 
     def range_limit_lower
-      query[char_pos].tr(low_limit_tr, up_limit_tr)
+      query[first_char_pos].tr(low_limit_tr, up_limit_tr)
     end
 
     def range_limit_higher
-      query[char_pos].tr(up_limit_tr, low_limit_tr)
+      query[first_char_pos].tr(up_limit_tr, low_limit_tr)
     end
 
     def dewey?
       field.include?('dewey') && query.starts_with?(DEWEY_SHELF_PREFIX)
     end
 
-    def char_pos
+    def first_char_pos
       dewey? ? 3 : 0
     end
 
     def low_limit_tr
       if @include_more
-        'e-zE-Z5-9'
+        dewey? ? '5-9' : 'E-Z'
       else
-        'c-zC-Z3-9'
+        dewey? ? '3-9' : 'C-Z'
       end
     end
 
     def up_limit_tr
       if @include_more
-        'a-xA-X0-5'
+        dewey? ? '0-5' : 'A-V'
       else
-        'a-xA-X0-7'
+        dewey? ? '0-7' : 'A-X'
       end
     end
 
