@@ -1,6 +1,8 @@
 hold_button_url: https://myaccount.qa.k8s.libraries.psu.edu/holds/new?catkey=
 sirsi_url: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true
 matomo_id: 10
+mysql:
+  host: 127.0.0.1
 datadog:
   enabled: false
   # defaults to Rails.env. override here
