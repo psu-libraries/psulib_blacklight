@@ -1,5 +1,5 @@
 <div class="btn-group" role="group" aria-label="Call Numbers for <%= id %>">
-  <a href="/catalog/<%= id %>"><%= call_number %></a>
+  <a href="<%= solr_document_path(id: id) %>"><%= call_number %></a>
   <%= render Browse::CallNumberToggle.new(list: list, id: id) %>
 </div>
 <%= render Browse::CallNumberToggleList.new(list: list, id: id) %>

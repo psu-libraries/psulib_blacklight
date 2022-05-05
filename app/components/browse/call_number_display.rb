@@ -11,7 +11,7 @@ module Browse
     end
 
     def render?
-      call_number.present?
+      call_number.present? && id.present?
     end
   end
 end

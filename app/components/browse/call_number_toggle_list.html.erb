@@ -1,5 +1,5 @@
 <div class="collapse" id="<%= target %>">
   <% list.map do |cn| %>
-      <a href="/catalog/<%= id %>"><%= cn %></a><br>
+      <a href="<%= solr_document_path(id: id) %>"><%= cn %></a><br>
   <% end %>
 </div>

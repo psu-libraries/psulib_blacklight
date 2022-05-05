@@ -10,7 +10,7 @@ module Browse
     end
 
     def render?
-      list.present?
+      list.present? && id.present?
     end
 
     def target
