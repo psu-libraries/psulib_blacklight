@@ -33,11 +33,14 @@ class ShelfParams
                  range_limit_higher
                end
 
-      return '*' if result == query[0]
+      # If range limit translates to the same value as the query's initial char
+      # this means we are searching the edges of the limits for example LC query
+      # with letter "Z", so we can use "*" to return the rest the documents.
+      return '*' if result == query[first_char_pos]
 
       result.insert(0, DEWEY_SHELF_PREFIX) if dewey?
 
-      escape_ws(result)
+      result
     end
 
     def range_limit_lower
