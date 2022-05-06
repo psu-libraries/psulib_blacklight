@@ -7,7 +7,7 @@ class ShelfParams
 
   def initialize(field:, query:, include_lower: false, include_more: false)
     @field = field
-    @query = query.upcase
+    @query = query
     @include_lower = include_lower
     @include_more = include_more
   end

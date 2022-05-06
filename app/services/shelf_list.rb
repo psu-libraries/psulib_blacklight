@@ -20,7 +20,7 @@ class ShelfList
     reverse_limit:,
     classification:
   )
-    @query = query
+    @query = query.upcase
     @reverse_limit = (reverse_limit || 10).to_i
     @forward_limit = (forward_limit || 10).to_i
     @classification = classification
