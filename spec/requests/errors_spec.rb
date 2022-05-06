@@ -3,6 +3,18 @@
 require 'rails_helper'
 
 RSpec.describe 'Errors', type: :request do
+  describe 'not found text' do
+    before(:all) { get '/Copernicus.txt' }
+
+    it 'has http status 404' do
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it 'returns text response' do
+      expect(response.body).to eq('not found')
+    end
+  end
+
   describe 'not found' do
     before (:all) { get '/404' }
 
