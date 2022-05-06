@@ -14,29 +14,25 @@ class ShelfParams
 
   def filter_query
     if include_lower
-      "#{field}:[#{range_limit} TO #{escape_ws(query)}]"
+      "#{field}:[#{range_limit} TO #{escaped_query}]"
     else
-      "#{field}:[#{escape_ws(query)} TO #{range_limit}]"
+      "#{field}:[#{escaped_query} TO #{range_limit}]"
     end
   end
 
   def sort
-    "stringdiff(#{field}, #{escape_ws(query)}, #{include_lower}) asc"
+    "stringdiff(#{field}, #{escaped_query}, #{include_lower}) asc"
   end
 
   private
 
     def range_limit
-      result = if include_lower
-                 range_limit_lower
-               else
-                 range_limit_higher
-               end
+      result = include_lower ? range_limit_lower : range_limit_higher
 
       # If range limit translates to the same value as the query's initial char
       # this means we are searching the edges of the limits for example LC query
       # with letter "Z", so we can use "*" to return the rest the documents.
-      return '*' if result == query[first_char_pos]
+      return '*' if result == query[first_char_idx]
 
       result.insert(0, DEWEY_SHELF_PREFIX) if dewey?
 
@@ -44,18 +40,20 @@ class ShelfParams
     end
 
     def range_limit_lower
-      query[first_char_pos].tr(low_limit_tr, up_limit_tr)
+      query[first_char_idx].tr(low_limit_tr, up_limit_tr)
     end
 
     def range_limit_higher
-      query[first_char_pos].tr(up_limit_tr, low_limit_tr)
+      query[first_char_idx].tr(up_limit_tr, low_limit_tr)
     end
 
     def dewey?
       field.include?('dewey') && query.starts_with?(DEWEY_SHELF_PREFIX)
     end
 
-    def first_char_pos
+    # If we are using dewey, the actual first character of the user's query
+    # is at index 3 since we prepend AAA to the user-entered query
+    def first_char_idx
       dewey? ? 3 : 0
     end
 
@@ -75,7 +73,8 @@ class ShelfParams
       end
     end
 
-    def escape_ws(query)
+    # If the query has any whitespace in it, we need to wrap it in escaped quotes so that Solr doesn't get confused
+    def escaped_query
       /\s/.match?(query) ? "\"#{query}\"" : query
     end
 end
