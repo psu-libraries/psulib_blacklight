@@ -44,6 +44,7 @@
     "SCORESPEC": "Music Score for Use in Library Only",
     "EQUIP24FEE": "Equipment - 24 hour loan with fees",
     "HATHIETAS": "HathiTrust Emergency Temporary Access",
-    "PERIODSPEC": "Bound Journal, ask at service desk for 24 hour loan"
+    "PERIODSPEC": "Bound Journal, ask at service desk for 24 hour loan",
+    "LIMITED": "Item available for limited 4 week loan"
   }
 }
