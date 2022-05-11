@@ -16,12 +16,7 @@ const A11yNavButton = ({ index, label, uniqueID }) => {
   }
 
   return (
-    <button
-      type="button"
-      onClick={() => {
-        updateA11yFocus();
-      }}
-    >
+    <button type="button" onClick={updateA11yFocus}>
       {label}
     </button>
   );
