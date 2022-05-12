@@ -176,12 +176,12 @@ class ShelfListPresenter
 
     def query_to_last_page
       case classification
-        when 'lc'
-          'Z'
-        when 'dewey'
-          "#{DEWEY_SHELF_PREFIX}9"
-        else
-          '0'
+      when 'lc'
+        'Z'
+      when 'dewey'
+        "#{DEWEY_SHELF_PREFIX}9"
+      else
+        '0'
       end
     end
 
