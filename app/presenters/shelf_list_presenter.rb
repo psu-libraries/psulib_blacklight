@@ -33,7 +33,7 @@ class ShelfListPresenter
   end
 
   def list
-    if first?
+    if first? || nearby_first?(shelf_items)
       shelf_items.slice(0, length)
     else
       shelf_items.slice(1, length)
@@ -49,7 +49,11 @@ class ShelfListPresenter
   def previous_item
     return if first?
 
-    shelf_items.first
+    if nearby_first?(shelf_items)
+      shelf_items.second
+    else
+      shelf_items.first
+    end
   end
 
   private
@@ -118,6 +122,10 @@ class ShelfListPresenter
       list.last.nearby = true if list.count.positive?
 
       list
+    end
+
+    def nearby_first?(list)
+      list.first.call_number == 'None'
     end
 
     def before_list
