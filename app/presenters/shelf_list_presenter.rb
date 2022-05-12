@@ -158,12 +158,12 @@ class ShelfListPresenter
       elsif shelf_key.present?
         { query: CGI.escape(shelf_key), forward_limit: (length - MIN) + 2, reverse_limit: MIN }
       else
-        { query: empty_search_query, forward_limit: length + 1, reverse_limit: 0 }
+        { query: query_to_first_page, forward_limit: length + 1, reverse_limit: 0 }
       end
         .merge!(classification: classification)
     end
 
-    def empty_search_query
+    def query_to_first_page
       case classification
       when 'lc'
         'A'
@@ -174,15 +174,34 @@ class ShelfListPresenter
       end
     end
 
-    def first?
-      if ending.present?
-        shelf_list[:before].length <= length
-      else
-        shelf_list[:before].empty?
+    def query_to_last_page
+      case classification
+        when 'lc'
+          'Z'
+        when 'dewey'
+          "#{DEWEY_SHELF_PREFIX}9"
+        else
+          '0'
       end
     end
 
+    def first_page?
+      before_list.first.key.first.upcase == query_to_first_page
+    end
+
+    def last_page?
+      shelf_list[:after].first.key.first.upcase == query_to_last_page
+    end
+
+    def first?
+      return true if shelf_list[:before].empty?
+
+      ending.present? && first_page? && shelf_list[:before].length <= length
+    end
+
     def last?
-      starting.present? && shelf_list[:after].length < length
+      return true if shelf_list[:after].empty?
+
+      starting.present? && last_page? && shelf_list[:after].length <= length
     end
 end

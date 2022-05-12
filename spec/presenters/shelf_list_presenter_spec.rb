@@ -4,13 +4,13 @@ require 'rails_helper'
 
 RSpec.describe ShelfListPresenter, type: :model do
   let(:classification) { 'lc' }
-  let(:first) { ShelfItem.new(call_number: 'first', key: 'first') }
+  let(:first) { ShelfItem.new(call_number: 'first', key: 'A.first') }
   let(:previous_shelf) { ShelfItem.new(call_number: 'previous_shelf', key: 'previous_shelf') }
   let(:first_book) { ShelfItem.new(call_number: 'first_book', key: 'first_book') }
   let(:middle_book) { ShelfItem.new(call_number: 'middle_book', key: 'middle_book') }
   let(:last_book) { ShelfItem.new(call_number: 'last_book', key: 'last_book') }
   let(:next_shelf) { ShelfItem.new(call_number: 'next_shelf', key: 'next_shelf') }
-  let(:last) { ShelfItem.new(call_number: 'last', key: 'last') }
+  let(:last) { ShelfItem.new(call_number: 'last', key: 'Z.last') }
 
   describe '#empty?' do
     it { is_expected.to delegate_method(:empty?).to :list }
@@ -98,7 +98,7 @@ RSpec.describe ShelfListPresenter, type: :model do
 
     specify do
       expect(shelf.list.map(&:call_number)).to eq(['first_book', 'middle_book', 'last'])
-      expect(shelf.next_item).to be_nil
+      expect(shelf.next_item.call_number).to eq('last')
       expect(shelf.previous_item.call_number).to eq('previous_shelf')
     end
   end
