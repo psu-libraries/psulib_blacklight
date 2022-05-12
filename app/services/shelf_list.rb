@@ -52,7 +52,7 @@ class ShelfList
 
       # Try to get more documents with the last document's shelfkey
       # if there aren't enough documents returned
-      if @forward_docs.empty? || @forward_docs.length < forward_limit
+      if @forward_docs.empty? || @forward_docs.length <= forward_limit
         params = ShelfParams.new(
           field: shelfkey_field,
           query: forward_query,
@@ -86,7 +86,7 @@ class ShelfList
 
       # Try to get more documents with the first document's shelfkey
       # if there aren't enough documents returned
-      if @reverse_docs.empty? || @reverse_docs.length < reverse_limit
+      if @reverse_docs.empty? || @reverse_docs.length <= reverse_limit
         params = ShelfParams.new(
           field: shelfkey_field,
           query: reverse_query,
