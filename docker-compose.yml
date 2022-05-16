@@ -33,7 +33,7 @@ services:
     ports:
       - "${APP_PORT:-3000}:3000"
   solr:
-    image: solr:7.4.0-slim
+    image: harbor.k8s.libraries.psu.edu/library/solr:7.7.3
     restart: always
     volumes:
     - solr-data:/var/solr

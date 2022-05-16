@@ -3,6 +3,9 @@
   <!--for Sematext Monitoring-->
   <jmx />
 
+  <valueSourceParser name="stringdiff"
+    class="edu.psu.solr.plugin.bookcodesort.StringDiffValueSourceParser" />
+
   <!-- NOTE: various comments and unused configuration possibilities have been purged
        from this file.  Please refer to http://wiki.apache.org/solr/SolrConfigXml,
        as well as the default solrconfig file included with Solr -->
@@ -300,6 +303,8 @@
         edition_display_ssm
         format
         id
+        lc_shelfkey,
+        dewey_shelfkey,
         library_facet
         overall_imprint_display_ssm
         publication_display_ssm

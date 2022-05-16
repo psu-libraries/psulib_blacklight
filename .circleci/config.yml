@@ -63,7 +63,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.6.5-buster-node-browsers
       - image: redis:5.0.7
-      - image: solr:7.4.0-slim
+      - image: harbor.k8s.libraries.psu.edu/library/solr:7.7.3
         command: [
           "solr-foreground",
           "-DzkRun"

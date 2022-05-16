@@ -23,7 +23,11 @@
         <% shelf_item.documents.map do |doc| %>
           <tr class="<%= shelf_item.nearby? ? 'table-primary' : '' %>">
             <td>
-              <a href="/catalog/<%= doc[:id] %>"><%= shelf_item.call_number %></a>
+              <%= render Browse::CallNumberDisplay.new(
+                    call_number: shelf_item.call_number,
+                    list: shelf_item.more_call_numbers,
+                    id: doc[:id]
+                  ) %>
             </td>
             <td><%= doc[:title_display_ssm]&.join(' / ') %></td>
             <td><%= doc.location_display %></td>

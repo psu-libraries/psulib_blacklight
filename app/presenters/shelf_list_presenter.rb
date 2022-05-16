@@ -33,7 +33,7 @@ class ShelfListPresenter
   end
 
   def list
-    if first?
+    if first? || nearby_first?(shelf_items)
       shelf_items.slice(0, length)
     else
       shelf_items.slice(1, length)
@@ -49,7 +49,11 @@ class ShelfListPresenter
   def previous_item
     return if first?
 
-    shelf_items.first
+    if nearby_first?(shelf_items)
+      shelf_items.second
+    else
+      shelf_items.first
+    end
   end
 
   private
@@ -58,7 +62,7 @@ class ShelfListPresenter
       (before_items + after_items)
     end
 
-    def shelvit_key
+    def shelvit_nearby
       if classification == 'dewey' && nearby.present?
         DEWEY_SHELF_PREFIX + nearby
       else
@@ -67,36 +71,65 @@ class ShelfListPresenter
     end
 
     def shelf_key
-      @shelf_key ||= Shelvit.normalize(shelvit_key) || nearby
+      @shelf_key ||= Shelvit.normalize(shelvit_nearby) || nearby
     end
 
     # @return [Array<ShelfItem>]
-    # @note The items coming before a particular call number are determined using a reverse shelf key, which means the
-    # items are returned in a "reverse" order. To create a natural reading list, we need to reverse the reversed list
-    # before adding it to our virtual shelf. If we're looking for something nearby on the shelf, and our query is an
-    # exact match for that item, mark it accordingly. Otherwise, insert a placeholder shelf item that indicates where
-    # the item would appear if it existed.
+    # @note If we're looking for something nearby on the shelf, and our query is an exact match
+    # for that item, mark it accordingly. Otherwise, insert a placeholder shelf item that indicates
+    # where the item would appear if it existed.
     def before_items
-      before_list = shelf_list[:before].reverse
+      list = before_list
 
-      return before_list if shelf_key.blank?
+      return list if shelf_key.blank?
 
-      if before_list&.last&.key == shelf_key
-        before_list.last.match = true
+      if match?
+        match_item list
       else
-        before_list << ShelfItem.new(label: "You're looking for: #{nearby}",
-                                     call_number: 'None',
-                                     key: nil)
-        before_list.shift if before_list.count > 1
+        nearby_item list
       end
-
-      before_list.last.nearby = true
-      before_list
     end
 
     # @return [Array<ShelfItem>]
     def after_items
-      shelf_list[:after]
+      shelf_list[:after].reject do |shelf_item|
+        before_items.map(&:key).include? shelf_item.key
+      end
+    end
+
+    def match?
+      before_list
+        &.map(&:key)
+        &.include?(shelf_key)
+    end
+
+    def match_item(list)
+      list.select do |shelf_item|
+        if shelf_item.key == shelf_key
+          shelf_item.match = true
+          shelf_item.nearby = true if before_list.count.positive?
+        end
+      end
+
+      list
+    end
+
+    def nearby_item(list)
+      list << ShelfItem.new(label: "You're looking for: #{nearby}",
+                            call_number: 'None',
+                            key: nil)
+      list.shift if list.count > 1
+      list.last.nearby = true if list.count.positive?
+
+      list
+    end
+
+    def nearby_first?(list)
+      list.first.call_number == 'None'
+    end
+
+    def before_list
+      shelf_list[:before].reverse
     end
 
     def shelf_list
@@ -116,29 +149,59 @@ class ShelfListPresenter
     #    Returns a set of shelf items such that the item we're looking for occurs *third* on the shelf. This is
     #    basically padding the results based on our minimum shelf length.
     # 4) Starting from the very beginning:
-    #    Return only the items after the given key. A '0' query starts at the very beginning of the list.
+    #    Return only the items after the given key. A '' query starts at the very beginning of the list.
     def shelf_list_params
       if starting.present?
         { query: starting, forward_limit: length, reverse_limit: 2 }
       elsif ending.present?
         { query: ending, forward_limit: 1, reverse_limit: length + 1 }
       elsif shelf_key.present?
-        { query: shelf_key, forward_limit: (length - MIN) + 2, reverse_limit: MIN }
+        { query: CGI.escape(shelf_key), forward_limit: (length - MIN) + 2, reverse_limit: MIN }
       else
-        { query: '0', forward_limit: length + 1, reverse_limit: 0 }
+        { query: query_to_first_page, forward_limit: length + 1, reverse_limit: 0 }
       end
         .merge!(classification: classification)
     end
 
-    def first?
-      if ending.present?
-        shelf_list[:before].length <= length
+    def query_to_first_page
+      case classification
+      when 'lc'
+        'A'
+      when 'dewey'
+        "#{DEWEY_SHELF_PREFIX}0"
       else
-        shelf_list[:before].empty?
+        '0'
       end
     end
 
+    def query_to_last_page
+      case classification
+      when 'lc'
+        'Z'
+      when 'dewey'
+        "#{DEWEY_SHELF_PREFIX}9"
+      else
+        '0'
+      end
+    end
+
+    def first_page?
+      before_list.first.key.first.upcase == query_to_first_page
+    end
+
+    def last_page?
+      shelf_list[:after].first.key.first.upcase == query_to_last_page
+    end
+
+    def first?
+      return true if shelf_list[:before].empty?
+
+      ending.present? && first_page? && shelf_list[:before].length <= length
+    end
+
     def last?
-      starting.present? && shelf_list[:after].length < length
+      return true if shelf_list[:after].empty?
+
+      starting.present? && last_page? && shelf_list[:after].length <= length
     end
 end
