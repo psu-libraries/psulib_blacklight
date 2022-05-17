@@ -98,7 +98,7 @@ RSpec.describe ShelfListPresenter, type: :model do
 
     specify do
       expect(shelf.list.map(&:call_number)).to eq(['first_book', 'middle_book', 'last'])
-      expect(shelf.next_item.call_number).to eq('last')
+      expect(shelf.next_item).to be_nil
       expect(shelf.previous_item.call_number).to eq('previous_shelf')
     end
   end
@@ -178,13 +178,13 @@ RSpec.describe ShelfListPresenter, type: :model do
           .and_return(
             {
               before: [],
-              after: [first, middle_book, last_book, next_shelf]
+              after: [first, last_book, next_shelf]
             }
           )
       end
 
       specify do
-        expect(shelf.list.map(&:call_number)).to eq(['None', 'first', 'middle_book'])
+        expect(shelf.list.map(&:call_number)).to eq(['None', 'first', 'last_book'])
         expect(shelf.next_item.call_number).to eq('next_shelf')
         expect(shelf.previous_item).to be_nil
         expect(shelf.list[0]).to be_nearby

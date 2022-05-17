@@ -43,7 +43,11 @@ class ShelfListPresenter
   def next_item
     return if last?
 
-    shelf_items.last
+    if first? || nearby_first?(shelf_items)
+      shelf_items[length]
+    else
+      shelf_items[length + 1] || list.last
+    end
   end
 
   def previous_item
@@ -190,7 +194,7 @@ class ShelfListPresenter
     end
 
     def last_page?
-      shelf_list[:after].first.key.first.upcase == query_to_last_page
+      shelf_list[:after].last.key.first.upcase == query_to_last_page
     end
 
     def first?
