@@ -7,9 +7,7 @@ const Snippet = ({ data }) => {
     const libraries = [];
 
     data.forEach((d) => {
-      if (d.summary.library === 'ON-ORDER') {
-        libraries.push('');
-      } else {
+      if (d.summary.library !== 'ON-ORDER') {
         libraries.push(d.summary.library);
       }
     });

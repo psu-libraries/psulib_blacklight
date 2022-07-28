@@ -81,13 +81,7 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
             </tbody>
           </table>
 
-          {moreHoldings.length > 0 && (
-            <ViewMoreButton
-              onClick={() => {
-                viewMore();
-              }}
-            />
-          )}
+          {moreHoldings.length > 0 && <ViewMoreButton onClick={viewMore} />}
         </div>
       );
     })}
