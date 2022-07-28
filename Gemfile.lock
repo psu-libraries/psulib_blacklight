@@ -447,7 +447,7 @@ GEM
       nokogiri (~> 1.9)
       slop (~> 4.0)
       yell
-    tzinfo (1.2.9)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
