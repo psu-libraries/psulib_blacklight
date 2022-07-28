@@ -271,7 +271,7 @@ GEM
       rubocop-rspec (~> 1.3)
       scss_lint (~> 0.55)
     nio4r (2.5.8)
-    nokogiri (1.13.4)
+    nokogiri (1.13.8)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     okcomputer (1.18.4)
