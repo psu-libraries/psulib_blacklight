@@ -446,12 +446,6 @@ class CatalogController < ApplicationController
       field.placeholder_text = 'e.g. NK 9112 .A28'
     end
 
-    config.add_search_field('browse_dewey') do |field|
-      field.include_in_advanced_search = false
-      field.label = 'Browse by Dewey Call Number'
-      field.placeholder_text = 'e.g. 332.094K634f'
-    end
-
     config.add_search_field('browse_authors') do |field|
       field.include_in_advanced_search = false
       field.label = 'Browse by Author'
@@ -466,6 +460,12 @@ class CatalogController < ApplicationController
 
     # @todo Temporarily restricts this to non-production hosts
     unless Settings.matomo_id.to_i == 7
+      config.add_search_field('browse_dewey') do |field|
+        field.include_in_advanced_search = false
+        field.label = 'Browse by Dewey Call Number'
+        field.placeholder_text = 'e.g. 332.094K634f'
+      end
+
       config.add_search_field('browse_titles') do |field|
         field.include_in_advanced_search = false
         field.label = 'Browse by Title'
