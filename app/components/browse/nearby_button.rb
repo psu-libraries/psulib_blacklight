@@ -9,9 +9,6 @@ module Browse
     end
 
     def render?
-      # TODO: browse nearby button disabled on production
-      return false if Settings.matomo_id.to_i == 7
-
       call_numbers.present?
     end
   end
