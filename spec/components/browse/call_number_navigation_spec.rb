@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Browse::CallNumberNavigation, type: :component do
   let(:node) { render_inline(described_class.new(list: mock_list)) }
-  let(:mock_list) { instance_spy('ShelfListPresenter', previous_item: prev_item, next_item: next_item) }
+  let(:mock_list) { instance_spy(ShelfListPresenter, previous_item: prev_item, next_item: next_item) }
 
   before { controller.params = { length: 20, action: 'call_numbers', classification: classification } }
 

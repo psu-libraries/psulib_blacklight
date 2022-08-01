@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'support/vcr'
 
-RSpec.feature 'Google Preview Link', :vcr, type: :feature, js: true do
+RSpec.describe 'Google Preview Link', :vcr, type: :feature, js: true do
   before do
     allow_any_instance_of(ExternalLinks::GooglePreviewLinkComponent).to receive(:search_item).and_return 'LCCN:12345'
   end

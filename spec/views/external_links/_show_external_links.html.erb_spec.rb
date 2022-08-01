@@ -6,8 +6,8 @@ RSpec.describe 'external_links/show_external_links', type: :view do
   context 'when PSU Digital Collectionslinks present' do
     let(:document) { SolrDocument.new(
       {
-        'full_links_struct': ['{"prefix":"This is a prefix","text":"digital.libraries.psu.edu",'\
-                              '"url":"http://digital.libraries.psu.edu","notes":"This is a note"}']
+        full_links_struct: ['{"prefix":"This is a prefix","text":"digital.libraries.psu.edu",' \
+                            '"url":"http://digital.libraries.psu.edu","notes":"This is a note"}']
       }
     )}
 
@@ -23,10 +23,10 @@ RSpec.describe 'external_links/show_external_links', type: :view do
   context 'when Access Online links present' do
     let(:document) { SolrDocument.new(
       {
-        'full_links_struct': ['{"prefix":"Pt.1, text version:","text":"purl.access.gpo.gov",'\
-                              '"url":"http://purl.access.gpo.gov/GPO/LPS73013","notes":"This is a note"}',
-                              '{"prefix":"Pt.1, PDF version:","text":"purl.access.gpo.gov",'\
-                              '"url":"http://purl.access.gpo.gov/GPO/LPS73014","notes":""}']
+        full_links_struct: ['{"prefix":"Pt.1, text version:","text":"purl.access.gpo.gov",' \
+                            '"url":"http://purl.access.gpo.gov/GPO/LPS73013","notes":"This is a note"}',
+                            '{"prefix":"Pt.1, PDF version:","text":"purl.access.gpo.gov",' \
+                            '"url":"http://purl.access.gpo.gov/GPO/LPS73014","notes":""}']
       }
     )}
 
@@ -44,10 +44,10 @@ RSpec.describe 'external_links/show_external_links', type: :view do
   context 'when Online Version links present' do
     let(:document) { SolrDocument.new(
       {
-        'partial_links_struct': ['{"prefix":"Pt.1, text version:","text":"purl.access.gpo.gov",'\
-                                 '"url":"http://purl.access.gpo.gov/GPO/LPS73013","notes":"This is a note"}',
-                                 '{"prefix":"Pt.1, PDF version:","text":"purl.access.gpo.gov",'\
-                                 '"url":"http://purl.access.gpo.gov/GPO/LPS73014","notes":""}']
+        partial_links_struct: ['{"prefix":"Pt.1, text version:","text":"purl.access.gpo.gov",' \
+                               '"url":"http://purl.access.gpo.gov/GPO/LPS73013","notes":"This is a note"}',
+                               '{"prefix":"Pt.1, PDF version:","text":"purl.access.gpo.gov",' \
+                               '"url":"http://purl.access.gpo.gov/GPO/LPS73014","notes":""}']
       }
     )}
 
@@ -65,8 +65,8 @@ RSpec.describe 'external_links/show_external_links', type: :view do
   context 'when Related Resources links present' do
     let(:document) { SolrDocument.new(
       {
-        'suppl_links_struct': ['{"prefix":"This is a prefix:","text":"related.resource",'\
-                               '"url":"http://related.resource","notes":"This is a note"}']
+        suppl_links_struct: ['{"prefix":"This is a prefix:","text":"related.resource",' \
+                             '"url":"http://related.resource","notes":"This is a note"}']
       }
     )}
 
@@ -81,8 +81,8 @@ RSpec.describe 'external_links/show_external_links', type: :view do
   context 'when Hathi links present' do
     let(:document) { SolrDocument.new(
       {
-        'oclc_number_ssim': ['12345'],
-        'ht_access_ss': 'allow'
+        oclc_number_ssim: ['12345'],
+        ht_access_ss: 'allow'
       }
     )}
 

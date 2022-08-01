@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Facet Queries', type: :feature do
+RSpec.describe 'Facet Queries', type: :feature do
   it 'All Authors Facet' do
     visit '/?f%5Ball_authors_facet%5D%5B%5D=Chanukoff%2C+L.%2C+1892-1958'
     expect(page).to have_selector '.filter-name',

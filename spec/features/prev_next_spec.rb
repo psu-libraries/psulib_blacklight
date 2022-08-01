@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Previous Next Toggle', type: :feature do
+RSpec.describe 'Previous Next Toggle', type: :feature do
   describe 'Previous next links toggle', js: true do
     it 'does not display stale previous and next links for direct item views' do
       visit root_path

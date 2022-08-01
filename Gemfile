@@ -46,7 +46,7 @@ end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'niftany', '~> 0.9'
+  gem 'niftany', '~> 0.10'
   gem 'pry-byebug'
   gem 'sinatra'
   gem 'sqlite3'

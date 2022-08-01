@@ -3,8 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe BrowseList do
-  let(:mock_index) { instance_spy('Blacklight::Solr::Repository', connection: mock_connection) }
-  let(:mock_connection) { instance_spy('RSolr::Client') }
+  let(:mock_index) { instance_spy(Blacklight::Solr::Repository, connection: mock_connection) }
+  let(:mock_connection) { instance_spy(RSolr::Client) }
 
   let(:response) do
     {

@@ -1,1 +1,1 @@
-<%= render(PsulConstraintsComponent.new(search_state: convert_to_search_state(controller.params != params ? params : search_state))) %>
+<%= render(PsulConstraintsComponent.new(search_state: convert_to_search_state(controller.params == params ? search_state : params))) %>

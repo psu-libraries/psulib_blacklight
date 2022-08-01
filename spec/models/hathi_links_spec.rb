@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe HathiLinks do
   describe '#hathi_links' do
     it 'returns nil when there is no Hathi data' do
-      document = { 'oclc_number_ssim': ['12345'] }
+      document = { oclc_number_ssim: ['12345'] }
       hathi_link = SolrDocument.new(document).hathi_links
 
       expect(hathi_link).not_to be_present
@@ -17,8 +17,8 @@ RSpec.describe HathiLinks do
       end
 
       it 'generates a url with the public domain text when the record access is "allow' do
-        document = { 'oclc_number_ssim': ['12345'],
-                     'ht_access_ss': 'allow' }
+        document = { oclc_number_ssim: ['12345'],
+                     ht_access_ss: 'allow' }
         hathi_link = SolrDocument.new(document).hathi_links
 
         expect(hathi_link).to match({
@@ -31,8 +31,8 @@ RSpec.describe HathiLinks do
       end
 
       it 'generates a url without text when the record access is "deny"' do
-        document = { 'oclc_number_ssim': ['12345'],
-                     'ht_access_ss': 'deny' }
+        document = { oclc_number_ssim: ['12345'],
+                     ht_access_ss: 'deny' }
         hathi_link = SolrDocument.new(document).hathi_links
 
         expect(hathi_link).to match({
@@ -51,8 +51,8 @@ RSpec.describe HathiLinks do
       end
 
       it 'generates a url with the public domain text' do
-        document = { 'oclc_number_ssim': ['12345'],
-                     'ht_access_ss': 'allow' }
+        document = { oclc_number_ssim: ['12345'],
+                     ht_access_ss: 'allow' }
         hathi_link = SolrDocument.new(document).hathi_links
 
         expect(hathi_link).to match({
@@ -65,8 +65,8 @@ RSpec.describe HathiLinks do
       end
 
       it 'generates a url to the checkout page or scan view with the etas text' do
-        document = { 'oclc_number_ssim': ['12345'],
-                     'ht_access_ss': 'deny' }
+        document = { oclc_number_ssim: ['12345'],
+                     ht_access_ss: 'deny' }
         hathi_link = SolrDocument.new(document).hathi_links
 
         expect(hathi_link).to match({

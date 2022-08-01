@@ -125,7 +125,7 @@ RSpec.describe PsulibBlacklight::SolrManager do
                      body: '{"responseHeader":{"status":0, "QTime":11}, "collections":["psulib_blacklight_v2"]}',
                      headers: {}).then
         stub_request(:post, "#{config_obj.url}/solr/admin/collections?action=DELETE").with(
-          query: { "name": 'psulib_blacklight_v2' }
+          query: { name: 'psulib_blacklight_v2' }
         )
       end
 
@@ -143,7 +143,7 @@ RSpec.describe PsulibBlacklight::SolrManager do
       end
 
       it 'does not delete any collection' do
-        expect(solr_manager.delete_collection('foo')).to eq nil
+        expect(solr_manager.delete_collection('foo')).to be_nil
       end
     end
   end

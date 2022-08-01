@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Call Number Browse', type: :feature do
+RSpec.describe 'Call Number Browse', type: :feature do
   context 'when Browse by LC Call Numbers' do
     context 'when the user is not searching for a particular call number' do
       specify do
@@ -34,7 +34,7 @@ RSpec.feature 'Call Number Browse', type: :feature do
           expect(page).to have_link('F127.A2M9 1869', href: '/catalog/213578')
 
           expect(page).to have_selector 'tr.table-primary:nth-child(2) td:nth-child(2)',
-                                        exact_text: 'Adventures in the wilderness, or, Camp life in '\
+                                        exact_text: 'Adventures in the wilderness, or, Camp life in ' \
                                                     'the Adirondacks / By William H.H. Murray ...'
 
           expect(page).to have_selector 'tr.table-primary:nth-child(2) td:nth-child(3)',

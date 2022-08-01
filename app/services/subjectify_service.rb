@@ -14,7 +14,7 @@ class SubjectifyService
 
   def content
     generate_li_content
-    helpers.content_tag 'ul', li_content.join(''), nil, false
+    helpers.content_tag 'ul', li_content.join, nil, false
   end
 
   private
