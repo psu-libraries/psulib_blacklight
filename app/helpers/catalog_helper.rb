@@ -38,7 +38,7 @@ module CatalogHelper
                     class: 'search-subject', title: "Search: #{subject}")
       result << content_tag('li', lnk, nil, false)
     end
-    content_tag 'ul', result.join(''), nil, false
+    content_tag 'ul', result.join, nil, false
   end
 
   # Makes a link to genre full facet
@@ -50,7 +50,7 @@ module CatalogHelper
       result << content_tag('li', link, nil, false)
     end
 
-    content_tag 'ul', result.join(''), nil, false
+    content_tag 'ul', result.join, nil, false
   end
 
   # Given a list of items, displays each item on its own line
@@ -83,7 +83,7 @@ module CatalogHelper
                     class: 'search-series', title: "Search: #{strict_title || series}")
       result << content_tag('li', lnk, nil, false)
     end
-    content_tag 'ul', result.join(''), nil, false
+    content_tag 'ul', result.join, nil, false
   end
 
   # To render format icon on search results as the default thumbnail for now
@@ -116,7 +116,7 @@ module CatalogHelper
       content_tag('li', link, nil, false)
     end
 
-    content_tag 'ul', result.join(''), nil, false
+    content_tag 'ul', result.join, nil, false
   end
 
   def marc_record_details(document)

@@ -12,7 +12,7 @@ module FacetsHelper
   end
 
   def facet_value_id(display_facet)
-    if display_facet.respond_to?('value')
+    if display_facet.respond_to?(:value)
       "id=#{display_facet.field.parameterize}-#{display_facet.value.parameterize}"
     else
       ''

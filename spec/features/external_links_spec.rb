@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'External Links', type: :feature do
+RSpec.describe 'External Links', type: :feature do
   context 'when user searches for a record' do
     context 'when record has no external links' do
       it 'does not display any links' do

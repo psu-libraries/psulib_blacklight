@@ -23,7 +23,7 @@ RSpec.describe Browse::CallNumberToggleList, type: :component do
     end
 
     it 'does not render the component' do
-      expect(instance.render?).to eq false
+      expect(instance.render?).to be false
     end
   end
 
@@ -33,7 +33,7 @@ RSpec.describe Browse::CallNumberToggleList, type: :component do
     end
 
     it 'does not render the component' do
-      expect(instance.render?).to eq false
+      expect(instance.render?).to be false
     end
   end
 end

@@ -24,7 +24,7 @@ module PsulibBlacklight
                             numShards: config.num_shards,
                             replicationFactor: config.replication_factor,
                             maxShardsPerNode: config.max_shards_per_node,
-                            "collection.configName": config.configset_name)
+                            'collection.configName': config.configset_name)
 
       check_resp(resp)
     end
@@ -46,7 +46,7 @@ module PsulibBlacklight
       resp = connection.get(SolrConfig::COLLECTION_PATH,
                             action: 'MODIFYCOLLECTION',
                             collection: last_incremented_collection,
-                            "collection.configName": config.configset_name)
+                            'collection.configName': config.configset_name)
 
       check_resp(resp)
     end
@@ -75,7 +75,7 @@ module PsulibBlacklight
       end
 
       resp = connection.post(PsulibBlacklight::SolrConfig::COLLECTION_PATH) do |req|
-        req.params = { "action": 'DELETE', "name": collection_name }
+        req.params = { action: 'DELETE', name: collection_name }
       end
 
       check_resp(resp)
@@ -148,7 +148,7 @@ module PsulibBlacklight
 
       def upload_config
         resp = connection.post(PsulibBlacklight::SolrConfig::CONFIG_PATH) do |req|
-          req.params = { "action": 'UPLOAD', "name": config.configset_name }
+          req.params = { action: 'UPLOAD', name: config.configset_name }
           req.headers['Content-Type'] = 'octect/stream'
           req.body = opened_zipped_configset.read
         end

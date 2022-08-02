@@ -5,8 +5,8 @@ require 'rails_helper'
 RSpec.describe ShelfQuery do
   subject(:docs) { described_class.call(limit: 5, params: mock_params) }
 
-  let(:mock_index) { instance_spy('Blacklight::Solr::Repository', connection: mock_connection) }
-  let(:mock_connection) { instance_spy('RSolr::Client') }
+  let(:mock_index) { instance_spy(Blacklight::Solr::Repository, connection: mock_connection) }
+  let(:mock_connection) { instance_spy(RSolr::Client) }
   let(:mock_params) { instance_spy(ShelfParams) }
 
   before do

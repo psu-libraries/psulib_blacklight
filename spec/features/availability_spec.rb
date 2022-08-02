@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'support/vcr'
 
-RSpec.feature 'Availability', :vcr, type: :feature do
+RSpec.describe 'Availability', :vcr, type: :feature do
   before do
     Settings.hathi_etas = false
     Settings.readonly = false
@@ -239,12 +239,12 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         click_button('View More')
         expect(page).to have_link(
           'Request Material',
-          href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber='\
-              '1836205&Genre=ARCHIVES&Location=Stored%20offsite.%20Ask%20at%20Special%20'\
-              'Collections%2C%20104%20Paterno&ItemNumber=000076996122&CallNumber='\
-              'RBM%202457%20box19%20AX%2FSP%2F10156%2F09&ItemTitle=Fiona%20Pitt-Kethley%20'\
-              'literary%20papers&ItemAuthor=Pitt-Kethley%2C%20Fiona%2C%201954-&ItemEdition'\
-              '=&ItemPublisher=&ItemPlace=&ItemDate=&ItemInfo1=Unrestricted%20access.&SubLocation='
+          href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=' \
+                '1836205&Genre=ARCHIVES&Location=Stored%20offsite.%20Ask%20at%20Special%20' \
+                'Collections%2C%20104%20Paterno&ItemNumber=000076996122&CallNumber=' \
+                'RBM%202457%20box19%20AX%2FSP%2F10156%2F09&ItemTitle=Fiona%20Pitt-Kethley%20' \
+                'literary%20papers&ItemAuthor=Pitt-Kethley%2C%20Fiona%2C%201954-&ItemEdition' \
+                '=&ItemPublisher=&ItemPlace=&ItemDate=&ItemInfo1=Unrestricted%20access.&SubLocation='
         )
       end
 
@@ -254,12 +254,12 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         # in the AEON request form.
         expect(page).to have_link(
           'Request Material',
-          href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=107&'\
-              'Genre=BOOK&Location=Rare%20Books%20%26%20Manuscripts%2C%201st%20Floor%20Paterno%2C%2'\
-              '0American%20Literature%20Collection&ItemNumber=000021534850&CallNumber=AP2.O354%201870%'\
-              '2F71&ItemTitle=The%20Christmas%20locket&ItemAuthor=&ItemEdition=&ItemPublish'\
-              'er=Roberts%20brothers&ItemPlace=Boston&ItemDate=1870-&ItemInfo1=&SubLocation'\
-              '=Christmas%3B%20Nathaniel%20Hawthorne'
+          href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=107&' \
+                'Genre=BOOK&Location=Rare%20Books%20%26%20Manuscripts%2C%201st%20Floor%20Paterno%2C%2' \
+                '0American%20Literature%20Collection&ItemNumber=000021534850&CallNumber=AP2.O354%201870%' \
+                '2F71&ItemTitle=The%20Christmas%20locket&ItemAuthor=&ItemEdition=&ItemPublish' \
+                'er=Roberts%20brothers&ItemPlace=Boston&ItemDate=1870-&ItemInfo1=&SubLocation' \
+                '=Christmas%3B%20Nathaniel%20Hawthorne'
         )
       end
     end
@@ -270,11 +270,11 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         within 'div[data-library="UP-ANNEX"]' do
           expect(page).to have_link(
             'Request Scan - Penn State Users',
-            href: 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/'\
-'OpenURL?Action=10&Form=20&Genre=GenericRequestThesisDigitization&title=Ecology'\
-'%20of%20the%20wild-trapped%20and%20transplanted%20ring-necked%20pheasant%20near'\
-'%20Centre%20Hall%2C%20Pennsylvania&callno=Thesis%201968mMyers%2CJE&rfr_id=info'\
-'%3Asid%2Fcatalog.libraries.psu.edu&aulast=Myers%2C%20James%20E.&date=1968'
+            href: 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/' \
+                  'OpenURL?Action=10&Form=20&Genre=GenericRequestThesisDigitization&title=Ecology' \
+                  '%20of%20the%20wild-trapped%20and%20transplanted%20ring-necked%20pheasant%20near' \
+                  '%20Centre%20Hall%2C%20Pennsylvania&callno=Thesis%201968mMyers%2CJE&rfr_id=info' \
+                  '%3Asid%2Fcatalog.libraries.psu.edu&aulast=Myers%2C%20James%20E.&date=1968'
           )
           expect(page).to have_link(
             'Request Scan - Guest',
@@ -282,12 +282,12 @@ RSpec.feature 'Availability', :vcr, type: :feature do
           )
           expect(page).to have_link(
             'View in Special Collections',
-            href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=123730&'\
-'Genre=BOOK&Location=Archival%20Thesis&ItemNumber=000052322808&CallNumber=Thesis%'\
-'201968mMyers%2CJE&ItemTitle=Ecology%20of%20the%20wild-trapped%20and%20transplant'\
-'ed%20ring-necked%20pheasant%20near%20Centre%20Hall%2C%20Pennsylvania&ItemAuthor=My'\
-'ers%2C%20James%20E.&ItemEdition=&ItemPublisher=publisher%20not%20identified&ItemPla'\
-'ce=Place%20of%20publication%20not%20identified&ItemDate=1968&ItemInfo1=&SubLocation='
+            href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=123730&' \
+                  'Genre=BOOK&Location=Archival%20Thesis&ItemNumber=000052322808&CallNumber=Thesis%' \
+                  '201968mMyers%2CJE&ItemTitle=Ecology%20of%20the%20wild-trapped%20and%20transplant' \
+                  'ed%20ring-necked%20pheasant%20near%20Centre%20Hall%2C%20Pennsylvania&ItemAuthor=My' \
+                  'ers%2C%20James%20E.&ItemEdition=&ItemPublisher=publisher%20not%20identified&ItemPla' \
+                  'ce=Place%20of%20publication%20not%20identified&ItemDate=1968&ItemInfo1=&SubLocation='
           )
         end
       end
@@ -371,8 +371,8 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         visit '/catalog/53953'
         within 'div[data-library="UP-ANNEX"]' do
           expect(page).to have_selector 'td',
-                                        exact_text: 'Microfilm E290 reel.1065 bound in The Hermit, or, A view of '\
-                                            'the world, by a person retir\'d from it 1711'
+                                        exact_text: 'Microfilm E290 reel.1065 bound in The Hermit, or, A view of ' \
+                                                    'the world, by a person retir\'d from it 1711'
           expect(page).to have_selector 'td', exact_text: 'AP3.M33 no.1-45, n.s.no.1-45 1710-12'
         end
       end
@@ -437,11 +437,11 @@ RSpec.feature 'Availability', :vcr, type: :feature do
         within 'div[data-library="HARRISBURG"]' do
           expect(page).to have_link(
             'Copy unavailable, request via Interlibrary Loan',
-            href: 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/'\
-'OpenURL?Action=10&Form=30&isbn=9781599901091 (hardcover),1599901099 (hardcover)'\
-'&title=Sun%20and%20moon%2C%20ice%20and%20snow&callno=PZ8.G3295Su%202008&rfr_id='\
-'info%3Asid%2Fcatalog.libraries.psu.edu&aulast=George%2C%20Jessica%20Day%2C%201976'\
-'-&date=2008'
+            href: 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/' \
+                  'OpenURL?Action=10&Form=30&isbn=9781599901091 (hardcover),1599901099 (hardcover)' \
+                  '&title=Sun%20and%20moon%2C%20ice%20and%20snow&callno=PZ8.G3295Su%202008&rfr_id=' \
+                  'info%3Asid%2Fcatalog.libraries.psu.edu&aulast=George%2C%20Jessica%20Day%2C%201976' \
+                  '-&date=2008'
           )
         end
       end

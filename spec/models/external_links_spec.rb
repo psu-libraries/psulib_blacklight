@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ExternalLinks do
   describe '#psu_digital_collections_links' do
     it 'returns nil for psu_digital_collections_links when there is no PSU Digital Collections data' do
-      document = { 'full_links_struct': [
+      document = { full_links_struct: [
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73013"}',
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73014"}',
         '{"text":"resources.libraries.psu.edu","url":"http://resources.libraries.psu.edu/findingaids/2789.htm"}'
@@ -17,7 +17,7 @@ RSpec.describe ExternalLinks do
     end
 
     it 'returns a list of psu_digital_collections_links when there is PSU Digital Collections data' do
-      document = { 'full_links_struct': [
+      document = { full_links_struct: [
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73013"}',
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73014"}',
         '{"text":"digital.libraries.psu.edu","url":"https://digital.libraries.psu.edu/digital/collection/test"}',
@@ -53,7 +53,7 @@ RSpec.describe ExternalLinks do
     end
 
     it 'returns a link with prefix and notes' do
-      document = { 'full_links_struct': [
+      document = { full_links_struct: [
         '{"prefix":"This is a prefix","text":"digital.libraries.psu.edu",
           "url":"https://digital.libraries.psu.edu/digital/collection/test","notes":"This is a note"}',
         '{"text":"libraries.psu.edu/collections","url":"https://libraries.psu.edu/collections/test"}'
@@ -76,7 +76,7 @@ RSpec.describe ExternalLinks do
   end
 
   it 'can trim the trailing colon from the prefix and notes if present' do
-    document = { 'full_links_struct': [
+    document = { full_links_struct: [
       '{
         "prefix":"Prefix:",
         "text":"digital.libraries.psu.edu",
@@ -108,7 +108,7 @@ RSpec.describe ExternalLinks do
 
   describe '#access_online_links' do
     it 'returns nil for access_online_links when there is no external (non-PSU) access online data' do
-      document = { 'full_links_struct': [
+      document = { full_links_struct: [
         '{"text":"digital.libraries.psu.edu","url":"https://digital.libraries.psu.edu/digital/collection/test"}'
       ] }
       access_online_links = SolrDocument.new(document).access_online_links
@@ -117,7 +117,7 @@ RSpec.describe ExternalLinks do
     end
 
     it 'returns a list of access_online_links when there is external (non-PSU) data' do
-      document = { 'full_links_struct': [
+      document = { full_links_struct: [
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73013"}',
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73014"}',
         '{"text":"digital.libraries.psu.edu","url":"https://digital.libraries.psu.edu/digital/collection/test"}',
@@ -140,7 +140,7 @@ RSpec.describe ExternalLinks do
     end
 
     it 'returns a link with prefix and notes' do
-      document = { 'full_links_struct': [
+      document = { full_links_struct: [
         '{"prefix":"this is a prefix:","text":"purl.access.gpo.gov",
           "url":"http://purl.access.gpo.gov/GPO/LPS73013","notes":"this is a note"}',
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73014"}'

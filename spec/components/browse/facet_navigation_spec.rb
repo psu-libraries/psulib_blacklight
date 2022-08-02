@@ -8,7 +8,7 @@ RSpec.describe Browse::FacetNavigation, type: :component do
   let(:entry) { BrowseList::Entry.new('field-heading', '3') }
 
   describe 'the first page' do
-    let(:browse_list) { instance_spy('BrowseList', page: 1, length: 10, entries: [entry]) }
+    let(:browse_list) { instance_spy(BrowseList, page: 1, length: 10, entries: [entry]) }
 
     before do
       allow(browse_list).to receive(:last_page?).and_return(false)
@@ -30,7 +30,7 @@ RSpec.describe Browse::FacetNavigation, type: :component do
   end
 
   describe 'the last page' do
-    let(:browse_list) { instance_spy('BrowseList', page: 5, length: 10, entries: [entry]) }
+    let(:browse_list) { instance_spy(BrowseList, page: 5, length: 10, entries: [entry]) }
 
     context 'when browsing authors' do
       before { controller.params = { action: 'authors' } }
@@ -48,7 +48,7 @@ RSpec.describe Browse::FacetNavigation, type: :component do
   end
 
   describe 'the middle' do
-    let(:browse_list) { instance_spy('BrowseList', page: 3, length: 10, entries: [entry]) }
+    let(:browse_list) { instance_spy(BrowseList, page: 3, length: 10, entries: [entry]) }
 
     before do
       allow(browse_list).to receive(:last_page?).and_return(false)

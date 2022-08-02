@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Subject Browse', type: :feature do
+RSpec.describe 'Subject Browse', type: :feature do
   context 'when starting at the beginning' do
     specify do
       visit subject_browse_path

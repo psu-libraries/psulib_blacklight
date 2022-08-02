@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Search Bar', type: :feature do
+RSpec.describe 'Search Bar', type: :feature do
   describe 'selected search box field', js: true do
     it 'shows normal placeholder info when doing a keyword search' do
       visit '/?search_field=all_fields&q='

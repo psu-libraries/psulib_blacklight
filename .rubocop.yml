@@ -1,3 +1,5 @@
+require: rubocop-rspec
+
 inherit_from: .rubocop_todo.yml
 
 inherit_gem:
@@ -55,8 +57,8 @@ RSpec/ExampleLength:
 
 RSpec/NestedGroups:
   Enabled: false
-  
-Capybara/FeatureMethods:
+
+RSpec/Capybara/FeatureMethods:
   Enabled: false
 
 RSpec/MultipleMemoizedHelpers:
