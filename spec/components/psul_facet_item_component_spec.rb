@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PsulFacetItemComponent, type: :component do
-  let(:rendered) { render_inline(described_class.new(psul_facet_item: facet_item)) }
+  let(:rendered) { render_inline(described_class.new(facet_item: facet_item)) }
   let(:selected_span) { rendered.css('span.selected').first }
   let(:link) { rendered.css('a.facet-select').first }
 
