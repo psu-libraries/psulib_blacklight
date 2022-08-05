@@ -29,7 +29,7 @@ gem 'shelvit'
 gem 'stackprof'
 gem 'webpacker'
 
-gem 'blacklight', '~> 7.25'
+gem 'blacklight', '7.25.0'
 gem 'blacklight_advanced_search', '~> 7.0'
 gem 'blacklight-marc', '~> 7.0'
 gem 'blacklight_range_limit'

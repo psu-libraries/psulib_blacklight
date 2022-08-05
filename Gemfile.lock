@@ -79,10 +79,9 @@ GEM
     bindex (0.8.1)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
-    blacklight (7.29.0)
+    blacklight (7.25.0)
       deprecation
       globalid
-      hashdiff
       i18n (>= 1.7.0)
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
@@ -515,7 +514,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  blacklight (~> 7.25)
+  blacklight (= 7.25.0)
   blacklight-marc (~> 7.0)
   blacklight_advanced_search (~> 7.0)
   blacklight_range_limit

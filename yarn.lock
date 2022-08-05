@@ -2471,7 +2471,7 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
-blacklight-frontend@^7.25.0:
+blacklight-frontend@7.25.0:
   version "7.25.0"
   resolved "https://registry.yarnpkg.com/blacklight-frontend/-/blacklight-frontend-7.25.0.tgz#7fb02429bae283107ae65b2863d45fa3eb164104"
   integrity sha512-zY6+H6VJZfgiGGfhjtCsahTEWUUH2vhBcUm0fYnFYy2Ah8XSbguCMGgVVkIOlcMpW/BLwuSCesoVIKnP3H1tpg==
