@@ -85,6 +85,20 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # Adds lograge and parametrizes log name. Capture parameters other than `controller` and `action` in lograge. ALso
+  # captures timestamp.
+  config.lograge.enabled = true
+  config.lograge.custom_options = lambda do |event|
+    params = event.payload[:params].reject { |k| %w(controller action).include?(k) }
+    {
+      params: params,
+      time: Time.now
+    }
+  end
+  config.lograge.custom_payload { |controller| { host: controller.request.host } }
+  hostname = Socket.gethostname || 'production'
+  config.paths['log'] = "log/#{hostname}.log"
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
