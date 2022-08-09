@@ -28,8 +28,8 @@ class SolrDocument
   # The following shows how to setup this blacklight document to display marc documents
   extension_parameters[:marc_source_field] = :marc_display_ss
   extension_parameters[:marc_format_type] = :marcxml
-  use_extension(Blacklight::Solr::Document::Marc) do |document|
-    document.key?(:marc_display_ss)
+  use_extension(Blacklight::Marc::DocumentExtension) do |document|
+    document.key?(SolrDocument.extension_parameters[:marc_source_field])
   end
 
   # DublinCore uses the semantic field mappings below to assemble an OAI-compliant Dublin Core document
