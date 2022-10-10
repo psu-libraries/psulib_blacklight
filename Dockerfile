@@ -1,4 +1,4 @@
-FROM harbor.k8s.libraries.psu.edu/library/ruby-2.7.3-node-16:20220926 as base
+FROM harbor.k8s.libraries.psu.edu/library/ruby-2.7.3-node-16:20221010 as base
 ARG UID=2000
 
 USER root
