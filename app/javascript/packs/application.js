@@ -16,7 +16,7 @@ import '../psulib_blacklight_range_limit';
 import '../blacklight_overrides';
 
 require.context('../psulib_blacklight/images/', true);
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   availability.loadAvailability();
   bookCovers.start();
   search.autoPlaceholder();
