@@ -18,7 +18,7 @@ import '../psulib_blacklight_range_limit';
 import '../blacklight_overrides';
 
 require.context('../psulib_blacklight/images/', true);
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener('DOMContentLoaded', () => {
     Rails.start();
     Turbolinks.start();
 });
