@@ -19,8 +19,8 @@ import '../blacklight_overrides';
 
 require.context('../psulib_blacklight/images/', true);
 document.addEventListener('DOMContentLoaded', () => {
-    Rails.start();
-    Turbolinks.start();
+  Rails.start();
+  Turbolinks.start();
 });
 
 document.addEventListener('turbolinks:load', () => {
