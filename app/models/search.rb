@@ -9,7 +9,7 @@ class Search
 
   class << self
     def create(**args)
-      new(args).save
+      new(**args).save
     rescue StandardError => e
       Rails.logger.error("Redis is down! Searches will not be kept in session: #{e.message}")
       NullSearch.new
