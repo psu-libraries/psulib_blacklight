@@ -9,7 +9,7 @@ class ShelfList
   # @return [Hash]
   # @note Returns a hash of after and before list items.
   def self.call(args)
-    new(args).build
+    new(**args).build
   end
 
   attr_reader :query, :forward_limit, :reverse_limit, :classification
