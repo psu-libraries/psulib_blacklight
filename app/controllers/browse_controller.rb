@@ -6,15 +6,15 @@ class BrowseController < ApplicationController
   end
 
   def authors
-    @author_list = BrowseList.new(author_list_params)
+    @author_list = BrowseList.new(**author_list_params)
   end
 
   def subjects
-    @subject_list = BrowseList.new(subject_list_params)
+    @subject_list = BrowseList.new(**subject_list_params)
   end
 
   def titles
-    @title_list = BrowseList.new(title_list_params)
+    @title_list = BrowseList.new(**title_list_params)
   end
 
   private
