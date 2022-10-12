@@ -61,7 +61,7 @@ jobs:
             ./bin/generate_app
   test:
     docker:
-      - image: circleci/ruby:2.7.3-buster-node-browsers
+      - image: circleci/ruby:3.1.2-buster-node-browsers
       - image: redis:5.0.7
       - image: harbor.k8s.libraries.psu.edu/library/solr:7.7.3
         command: [
