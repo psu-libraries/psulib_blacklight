@@ -409,6 +409,10 @@ class CatalogController < ApplicationController
         qf: '${author_qf}',
         pf: '${author_pf}'
       }
+      field.solr_adv_parameters = {
+        qf: '$author_qf',
+        pf: '$author_pf'
+      }
     end
 
     # Specifying a :qt only to show it's possible, and so our internal automated
@@ -419,6 +423,10 @@ class CatalogController < ApplicationController
       field.solr_parameters = {
         qf: '${subject_qf}',
         pf: '${subject_pf}'
+      }
+      field.solr_adv_parameters = {
+        qf: '$subject_qf',
+        pf: '$subject_pf'
       }
     end
 
