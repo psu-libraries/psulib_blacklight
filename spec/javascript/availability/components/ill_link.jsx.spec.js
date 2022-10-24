@@ -33,7 +33,7 @@ describe('when all fields are present', () => {
             title_245ab_tsim: 'book title',
             author_tsim: 'author name',
             pub_date_illiad_ssm: 2021,
-            isbn_valid_ssm: '1234',
+            isbn_valid_ssm: ['1234'],
           }),
       })
     );
