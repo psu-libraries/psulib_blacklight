@@ -24,16 +24,15 @@ Lint/EmptyFile:
   Exclude:
     - 'spec/helpers/blacklight_helper_spec.rb'
 
-# Offense count: 1
+# Offense count: 2
 Lint/NoReturnInBeginEndBlocks:
   Exclude:
     - 'app/services/browse_list.rb'
 
-# Offense count: 2
+# Offense count: 1
 # Configuration parameters: MinSize.
 Performance/CollectionLiteralInLoop:
   Exclude:
-    - 'app/controllers/concerns/search_context.rb'
     - 'config/environments/production.rb'
 
 # Offense count: 25
