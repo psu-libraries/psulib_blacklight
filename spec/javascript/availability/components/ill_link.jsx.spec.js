@@ -171,6 +171,7 @@ test('renders a link with no ISBN', async () => {
         Promise.resolve({
           title_245ab_tsim: 'book title',
           author_tsim: 'author name',
+          isbn_valid_ssm: [],
           pub_date_illiad_ssm: 2021,
         }),
     })
