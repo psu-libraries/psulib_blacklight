@@ -8,30 +8,22 @@ x-web_env: &web_env
       POSTGRES_PASSWORD: catalog
       SETTINGS__solr__host: solr
       SETTINGS__solr__collection: 'psul_catalog'
-      SETTINGS__redis__sessions__uri: "redis://redis:6379/3"
 services:
   db:
     environment:
       POSTGRES_PASSWORD: catalog
       POSTGRES_USER: catalog
       POSTGRES_DB: catalog
-    image: postgres:11.8
+    image: postgres:14
     ports:
     - "5432:5432"
     volumes:
     - db-data:/var/lib/postgresql/data
-  redis:
-    image: redis:6.0.6-alpine3.12
-    volumes:
-      - redis-data:/data
-    ports:
-    - "6379:6379"
   web:
     tty: true
     stdin_open: true
     <<: *web_env
     depends_on: 
-      - redis
       - solr
     command: 
       - /app/bin/startup
@@ -58,8 +50,7 @@ services:
       "-DzkRun"
     ]
 volumes:
-  redis-data:
-  db-data:
   bundle-data:
+  db-data:
   node-data:
   solr-data:

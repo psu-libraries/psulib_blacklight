@@ -15,10 +15,6 @@ datadog:
 user_header: HTTP_X_AUTH_REQUEST_EMAIL
 groups_header: HTTP_X_AUTH_REQUEST_GROUPS
 admin_group: umg-up.ul-dev-team
-redis:
-  sessions:
-    uri: redis://127.0.0.1:6379/3
-    ttl: 86400 # 24-hours in seconds
 report_issue_email_recipient: test@test.com
 solr:
   protocol: "http"

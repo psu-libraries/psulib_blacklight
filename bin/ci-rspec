@@ -9,6 +9,7 @@ REPORTER_BIN="cc-test-reporter"
 
 echo "initalizing solr"
 bundle exec rake solr:create_collection
+bundle exec rake db:migrate
 bundle exec rake solr:update_config
 bundle exec rake solr:create_alias
 bundle exec rake solr:load_fixtures

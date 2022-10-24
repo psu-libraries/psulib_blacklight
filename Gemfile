@@ -19,11 +19,11 @@ gem 'lcsort', '~> 0.9'
 gem 'lograge'
 gem 'memory_profiler'
 gem 'okcomputer', '~> 1.18'
+gem 'pg'
 gem 'puma', '~> 4.3'
 gem 'rack-mini-profiler'
 gem 'rails', '~> 6.0.4'
 gem 'rsolr', '>= 2.5'
-gem 'pg'
 gem 'rubyzip'
 gem 'shelvit'
 gem 'stackprof'
@@ -56,6 +56,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rails-controller-testing'
+  gem 'rspec-its'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
@@ -63,8 +64,4 @@ group :test do
   gem 'vcr'
   gem 'webdrivers', '~> 4.0'
   gem 'webmock'
-end
-
-group :production, :test do
-  gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 end
