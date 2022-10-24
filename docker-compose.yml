@@ -2,10 +2,24 @@ version: '3.5'
 x-web_env: &web_env
   environment:
       CI: "true"
+      POSTGRES_DB: catalog
+      POSTGRES_HOST: db
+      POSTGRES_USER: catalog
+      POSTGRES_PASSWORD: catalog
       SETTINGS__solr__host: solr
       SETTINGS__solr__collection: 'psul_catalog'
       SETTINGS__redis__sessions__uri: "redis://redis:6379/3"
 services:
+  db:
+    environment:
+      POSTGRES_PASSWORD: catalog
+      POSTGRES_USER: catalog
+      POSTGRES_DB: catalog
+    image: postgres:11.8
+    ports:
+    - "5432:5432"
+    volumes:
+    - db-data:/var/lib/postgresql/data
   redis:
     image: redis:6.0.6-alpine3.12
     volumes:
@@ -45,6 +59,7 @@ services:
     ]
 volumes:
   redis-data:
+  db-data:
   bundle-data:
   node-data:
   solr-data:

@@ -281,6 +281,7 @@ GEM
     parser (3.1.2.0)
       ast (~> 2.4.1)
     parslet (2.0.0)
+    pg (1.4.4)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -512,6 +513,7 @@ DEPENDENCIES
   mysql2 (>= 0.4.4, < 0.6.0)
   niftany (~> 0.10)
   okcomputer (~> 1.18)
+  pg
   pry-byebug
   puma (~> 4.3)
   rack-mini-profiler
