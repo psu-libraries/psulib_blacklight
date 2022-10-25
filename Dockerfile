@@ -4,6 +4,7 @@ ARG UID=2000
 USER root
 RUN apt-get update && \
    apt-get install --no-install-recommends -y \
+   default-libmysqlclient-dev \
    shared-mime-info && \
    rm -rf /var/lib/apt/lists*
 
@@ -37,6 +38,10 @@ COPY --chown=app . /app
 
 RUN RAILS_ENV=production \
   SECRET_KEY_BASE=rails_bogus_key \
+  MYSQL_USER=mysql \
+  MYSQL_PASSWORD=mysql \
+  MYSQL_HOST=mysql \
+  MYSQL_DATABASE=mysql \
   bundle exec rails assets:precompile && \
   rm -rf /app/.cache/ && \
   rm -rf /app/node_modules/.cache/ && \
@@ -55,6 +60,8 @@ RUN apt-get update && apt-get install -y x11vnc \
     xvfb \
     fluxbox \
     wget \
+    sqlite3 \
+    libsqlite3-dev \
     libnss3 \
     wmctrl \
     google-chrome-stable
