@@ -7,6 +7,8 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
+import Rails from 'rails-ujs';
+import Turbolinks from 'turbolinks';
 import availability from '../availability';
 import bookCovers from '../book_covers';
 import search from '../search';
@@ -17,6 +19,11 @@ import '../blacklight_overrides';
 
 require.context('../psulib_blacklight/images/', true);
 document.addEventListener('DOMContentLoaded', () => {
+  Rails.start();
+  Turbolinks.start();
+});
+
+document.addEventListener('turbolinks:load', () => {
   availability.loadAvailability();
   bookCovers.start();
   search.autoPlaceholder();

@@ -406,8 +406,12 @@ class CatalogController < ApplicationController
     config.add_search_field('author') do |field|
       field.label = 'Author/Creator'
       field.solr_parameters = {
-        qf: "'${author_qf}'",
-        pf: "'${author_pf}'"
+        qf: '${author_qf}',
+        pf: '${author_pf}'
+      }
+      field.solr_adv_parameters = {
+        qf: '$author_qf',
+        pf: '$author_pf'
       }
     end
 
@@ -417,8 +421,12 @@ class CatalogController < ApplicationController
     config.add_search_field('subject') do |field|
       field.qt = 'search'
       field.solr_parameters = {
-        qf: "'${subject_qf}'",
-        pf: "'${subject_pf}'"
+        qf: '${subject_qf}',
+        pf: '${subject_pf}'
+      }
+      field.solr_adv_parameters = {
+        qf: '$subject_qf',
+        pf: '$subject_pf'
       }
     end
 
