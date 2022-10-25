@@ -29,7 +29,7 @@ RSpec.describe BentoController, type: :controller do
       end
 
       it 'has a continue search link' do
-        expect(json_response['continueSearch']).to include('http://test.host/catalog?q=green&utf8=%E2%9C%93')
+        expect(json_response['continueSearch']).to include('http://test.host/catalog?q=green')
       end
 
       it 'has a meta key with metadata containing total count of results' do

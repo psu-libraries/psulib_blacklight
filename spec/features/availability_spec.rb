@@ -438,7 +438,7 @@ RSpec.describe 'Availability', :vcr, type: :feature do
           expect(page).to have_link(
             'Copy unavailable, request via Interlibrary Loan',
             href: 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/' \
-                  'OpenURL?Action=10&Form=30&isbn=9781599901091 (hardcover),1599901099 (hardcover)' \
+                  'OpenURL?Action=10&Form=30&isbn=9781599901091' \
                   '&title=Sun%20and%20moon%2C%20ice%20and%20snow&callno=PZ8.G3295Su%202008&rfr_id=' \
                   'info%3Asid%2Fcatalog.libraries.psu.edu&aulast=George%2C%20Jessica%20Day%2C%201976' \
                   '-&date=2008'

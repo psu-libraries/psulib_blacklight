@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class PsulFacetItemComponent < Blacklight::FacetItemComponent
-  def initialize(psul_facet_item:, wrapping_element: 'li', suppress_link: false)
-    super(facet_item: psul_facet_item, wrapping_element: wrapping_element, suppress_link: suppress_link)
+  def initialize(facet_item:, wrapping_element: 'li', suppress_link: false)
+    super(facet_item: facet_item, wrapping_element: wrapping_element, suppress_link: suppress_link)
   end
 
   ##

@@ -40,7 +40,7 @@ const IllLink = ({ holding }) => {
           if (linkType === 'archival-thesis') {
             illUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
           } else {
-            const ISBN = data.isbn_ssm ? data.isbn_ssm : '';
+            const ISBN = data.isbn_valid_ssm[0] ? data.isbn_valid_ssm[0] : '';
             illUrl += `&Form=30&isbn=${ISBN}`;
           }
           if (linkType === 'reserves-scan') {
