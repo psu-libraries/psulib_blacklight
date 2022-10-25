@@ -33,7 +33,7 @@ describe('when all fields are present', () => {
             title_245ab_tsim: 'book title',
             author_tsim: 'author name',
             pub_date_illiad_ssm: 2021,
-            isbn_ssm: '1234',
+            isbn_valid_ssm: ['1234'],
           }),
       })
     );
@@ -119,7 +119,7 @@ test('renders a link with no author info', async () => {
         Promise.resolve({
           title_245ab_tsim: 'book title',
           pub_date_illiad_ssm: 2021,
-          isbn_ssm: '1234',
+          isbn_valid_ssm: ['1234'],
         }),
     })
   );
@@ -145,7 +145,7 @@ test('renders a link with no publication date', async () => {
         Promise.resolve({
           title_245ab_tsim: 'book title',
           author_tsim: 'author name',
-          isbn_ssm: '1234',
+          isbn_valid_ssm: ['1234'],
         }),
     })
   );
@@ -171,6 +171,7 @@ test('renders a link with no ISBN', async () => {
         Promise.resolve({
           title_245ab_tsim: 'book title',
           author_tsim: 'author name',
+          isbn_valid_ssm: [],
           pub_date_illiad_ssm: 2021,
         }),
     })
