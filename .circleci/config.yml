@@ -63,6 +63,11 @@ jobs:
   test:
     docker:
       - image: cimg/ruby:3.1.2-browsers
+      - image: postgres:14
+        environment:
+          POSTGRES_USER: catalog
+          POSTGRES_PASSWORD: catalog
+          POSTGRES_DB: catalog
       - image: harbor.k8s.libraries.psu.edu/library/solr:7.7.3
         command: [
           "solr-foreground",
