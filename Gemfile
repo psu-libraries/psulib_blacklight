@@ -52,7 +52,6 @@ group :development, :test do
   gem 'niftany', '~> 0.10'
   gem 'pry-byebug'
   gem 'sinatra'
-  gem 'sqlite3'
 end
 
 group :test do
