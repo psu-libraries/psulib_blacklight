@@ -48,9 +48,7 @@ RSpec.describe CatalogController, type: :controller do
       expect(controller.logger).to receive(:error).with(fake_error)
       get :index, params: { q: '+' }
       expect(response.redirect_url).to eq root_url
-      expect(request.flash[:notice]).to eq 'Sorry, our search index experienced a problem.
-      Please try again in a moment. If this error persists, please
-      [report the issue](https://libraries.psu.edu/website-feedback) to Libraries Strategic Technology.'
+      expect(request.flash[:notice]).to eq 'Sorry, our search index experienced a problem. Please try again in a moment. If this error persists, please [report the issue](https://libraries.psu.edu/website-feedback) to Libraries Strategic Technology.'
       expect(response).not_to be_successful
       expect(response).to have_http_status :found
     end
