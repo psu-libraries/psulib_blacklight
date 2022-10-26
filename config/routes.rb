@@ -14,6 +14,14 @@ Rails.application.routes.draw do
   mount BlacklightAdvancedSearch::Engine => '/'
   mount OkComputer::Engine, at: '/health'
 
+  namespace :admin do
+    authenticate :user do
+      constraints AdminUser do
+        mount GoodJob::Engine => 'jobs'
+      end
+    end
+  end
+
   authenticate :user do
     get '/login', to: 'application#login', as: :login
   end
