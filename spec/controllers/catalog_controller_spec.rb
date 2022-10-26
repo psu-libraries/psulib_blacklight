@@ -34,7 +34,7 @@ RSpec.describe CatalogController, type: :controller do
     end
   end
 
-  context "when there is an invalid search", api: false do
+  context 'when there is an invalid search', api: false do
     let(:service) { instance_double(Blacklight::SearchService) }
     let(:fake_error) { Blacklight::Exceptions::InvalidRequest.new }
 
@@ -44,16 +44,18 @@ RSpec.describe CatalogController, type: :controller do
       allow(Rails.env).to receive_messages(test?: false)
     end
 
-    it "redirects the user to the root url for a bad search" do
+    it 'redirects the user to the root url for a bad search' do
       expect(controller.logger).to receive(:error).with(fake_error)
       get :index, params: { q: '+' }
       expect(response.redirect_url).to eq root_url
-      expect(request.flash[:notice]).to eq "Sorry, our search index experienced a problem. Please try again in a moment. If this error persists, please [report the issue](https://libraries.psu.edu/website-feedback) to Libraries Strategic Technology."
+      expect(request.flash[:notice]).to eq 'Sorry, our search index experienced a problem.
+      Please try again in a moment. If this error persists, please
+      [report the issue](https://libraries.psu.edu/website-feedback) to Libraries Strategic Technology.'
       expect(response).not_to be_successful
-      expect(response.status).to eq 302
+      expect(response).to have_http_status :found
     end
 
-    it "returns status 500 if the catalog path is raising an exception" do
+    it 'returns status 500 if the catalog path is raising an exception' do
       allow(controller).to receive(:flash).and_return(notice: I18n.t('blacklight.search.errors.request_error'))
       expect { get :index, params: { q: '+' } }.to raise_error Blacklight::Exceptions::InvalidRequest
     end

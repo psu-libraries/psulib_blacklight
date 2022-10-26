@@ -71,3 +71,7 @@ RSpec/AnyInstance:
 RSpec/RepeatedExampleGroupBody:
   Exclude:
   - 'spec/features/google_preview_link_spec.rb'
+
+RSpec/MessageSpies:
+  Exclude:
+  - 'spec/controllers/catalog_controller_spec.rb'
