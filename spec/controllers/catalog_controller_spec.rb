@@ -33,4 +33,29 @@ RSpec.describe CatalogController, type: :controller do
       expect(get: '/catalog/id/marc_view').to route_to(controller: 'catalog', action: 'librarian_view', id: 'id')
     end
   end
+
+  context "when there is an invalid search", api: false do
+    let(:service) { instance_double(Blacklight::SearchService) }
+    let(:fake_error) { Blacklight::Exceptions::InvalidRequest.new }
+
+    before do
+      allow(controller).to receive(:search_service).and_return(service)
+      allow(service).to receive(:search_results) { |*_args| raise fake_error }
+      allow(Rails.env).to receive_messages(test?: false)
+    end
+
+    it "redirects the user to the root url for a bad search" do
+      expect(controller.logger).to receive(:error).with(fake_error)
+      get :index, params: { q: '+' }
+      expect(response.redirect_url).to eq root_url
+      expect(request.flash[:notice]).to eq "Sorry, our search index experienced a problem. Please try again in a moment. If this error persists, please [report the issue](https://libraries.psu.edu/website-feedback) to Libraries Strategic Technology."
+      expect(response).not_to be_successful
+      expect(response.status).to eq 302
+    end
+
+    it "returns status 500 if the catalog path is raising an exception" do
+      allow(controller).to receive(:flash).and_return(notice: I18n.t('blacklight.search.errors.request_error'))
+      expect { get :index, params: { q: '+' } }.to raise_error Blacklight::Exceptions::InvalidRequest
+    end
+  end
 end
