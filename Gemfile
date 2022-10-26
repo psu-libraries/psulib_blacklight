@@ -18,6 +18,8 @@ gem 'high_voltage', '~> 3.1'
 gem 'lcsort', '~> 0.9'
 gem 'lograge'
 gem 'memory_profiler'
+gem 'net-imap', require: false
+gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'okcomputer', '~> 1.18'
 gem 'puma', '~> 4.3'
