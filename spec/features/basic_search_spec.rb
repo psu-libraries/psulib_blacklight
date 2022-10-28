@@ -170,7 +170,7 @@ RSpec.describe 'Basic Search', type: :feature do
         end
       end
 
-      context 'when using a fuller search without quotes' do
+      context 'when using a fuller search with quotes' do
         before do
           fill_in 'q', with: '"African American women"'
           click_button 'search'
