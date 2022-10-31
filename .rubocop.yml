@@ -35,6 +35,7 @@ Layout/LineLength:
   Exclude:
   # The catalog controller is just one giant block for config.
   - 'app/controllers/catalog_controller.rb'
+  - 'spec/controllers/catalog_controller_spec.rb'
 
 Lint/MissingSuper:
   Exclude:
@@ -71,3 +72,7 @@ RSpec/AnyInstance:
 RSpec/RepeatedExampleGroupBody:
   Exclude:
   - 'spec/features/google_preview_link_spec.rb'
+
+RSpec/MessageSpies:
+  Exclude:
+  - 'spec/controllers/catalog_controller_spec.rb'

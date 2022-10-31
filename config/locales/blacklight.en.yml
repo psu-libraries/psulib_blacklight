@@ -14,6 +14,8 @@ en:
       librarian_view: 'MARC View'
       sms: 'SMS'
     search:
+      errors:
+        request_error: "Sorry, our search index experienced a problem. Please try again in a moment. If this error persists, please [report the issue](https://libraries.psu.edu/website-feedback) to Libraries Strategic Technology."
       librarian_view:
         title: 'MARC View'
       facets:
