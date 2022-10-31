@@ -21,9 +21,6 @@ require.context('../psulib_blacklight/images/', true);
 document.addEventListener('DOMContentLoaded', () => {
   Rails.start();
   Turbolinks.start();
-});
-
-document.addEventListener('turbolinks:load', () => {
   availability.loadAvailability();
   bookCovers.start();
   search.autoPlaceholder();
