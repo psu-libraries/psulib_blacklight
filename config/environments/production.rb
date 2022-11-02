@@ -51,6 +51,7 @@ Rails.application.configure do
     config.cache_store = :redis_cache_store, {
       url: Settings.redis.cache.uri
     }
+  end
   # config.cache_store = :mem_cache_store
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
