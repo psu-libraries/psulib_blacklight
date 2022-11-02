@@ -6,16 +6,18 @@ class SitemapController < ApplicationController
   end
 
   def show
-    @solr_response = Blacklight.default_index.connection.select(
-      params:
-            {
-              q: "{!prefix f=hashed_id_si v=#{access_params}}}",
-              defType: 'lucene',
-              fl: 'id,timestamp',
-              facet: false,
-              rows: 3_000_000 # a sufficiently large number to prevent Solr from ever attempting paging
-            }
-    )
+    @solr_response = Rails.cache.fetch(access_params, expires_in: 1.day) do 
+      Blacklight.default_index.connection.select(
+        params:
+              {
+                q: "{!prefix f=hashed_id_si v=#{access_params}}}",
+                defType: 'lucene',
+                fl: 'id,timestamp',
+                facet: false,
+                rows: 3_000_000 # a sufficiently large number to prevent Solr from ever attempting paging
+              }
+      )
+    end
   end
 
   private
