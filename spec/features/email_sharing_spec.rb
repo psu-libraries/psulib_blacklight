@@ -16,6 +16,7 @@ RSpec.describe "Using the email feature in the 'Share' dropdown", type: :feature
      expect(ActionMailer::Base.deliveries.first.from).to eq ["noreply@psu.edu"]
      expect(ActionMailer::Base.deliveries.first.body.to_s).to include 'Ethical and Social Issues in the Information Age'
      expect(ActionMailer::Base.deliveries.first.body.to_s).to include 'Message: Message'
+     expect(ActionMailer::Base.deliveries.first.body.to_s).to include 'http://www.example.com/catalog/22090269'
      expect(ActionMailer::Base.deliveries.first.subject).to eq 'PSU Libraries Item Record: Ethical and Social Issues in the Information Age [electronic resource] / by Joseph Migga Kizza'
    end
  end
