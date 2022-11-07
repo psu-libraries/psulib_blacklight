@@ -24,5 +24,10 @@ RSpec.describe 'Ask a librarian', type: :feature do
                            wait: 10)
       expect(page).to have_css('button[class^="libchat"]', count: 1)
     end
+
+    it 'shows on the bookmarks page' do
+      visit '/bookmarks'
+      expect(page).to have_css('button[class^="libchat"]', count: 1)
+    end
   end
 end
