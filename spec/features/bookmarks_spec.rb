@@ -4,7 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'Bookmarks', type: :feature do
   before do
-    stub_request(:any, /hathitrust/).to_return(status: 200, body: '{}', headers: {})
+    # In Rails 6, CSRF protection is turned off by default in test env
+    # Turning it on here to test that it doesn't break Bookmarks
+    ActionController::Base.allow_forgery_protection = true
+  end
+
+  after do
+    ActionController::Base.allow_forgery_protection = false
   end
 
   it 'Adds, removes, re-adds, and views a bookmarked record', js: true do
