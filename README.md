@@ -47,6 +47,7 @@ hold_button_url: https://myaccount01qa.libraries.psu.edu/holds/new?catkey=
 # Booleans
 readonly: false
 hide_hold_button: false
+hide_announcement: false
 hathi_etas: false
 ```
 
