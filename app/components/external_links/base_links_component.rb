@@ -36,9 +36,8 @@ module ExternalLinks
       def sorted_links(links_arg)
         return links_arg unless links_arg.is_a?(Array)
 
-        links_arg.sort_by{ |l| l['text'] == 'Special Collections Materials' ? 0 : 1 }
+        links_arg.sort_by { |l| l['text'] == 'Special Collections Materials' ? 0 : 1 }
       end
-
 
       def show_links?
         !!@show_links
