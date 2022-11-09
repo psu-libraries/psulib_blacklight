@@ -3,7 +3,7 @@
 module ExternalLinks
   class BaseLinksComponent < ViewComponent::Base
     def initialize(links:, heading: nil, show_links: true)
-      @links = links
+      @links = sorted_links(links)
       @heading = heading
       @show_links = show_links
       @data_target = data_target
@@ -32,6 +32,13 @@ module ExternalLinks
     private
 
       attr_reader :links, :heading
+
+      def sorted_links(links_arg)
+        return links_arg unless links_arg.is_a?(Array)
+
+        links_arg.sort_by{ |l| l['text'] == 'Special Collections Materials' ? 0 : 1 }
+      end
+
 
       def show_links?
         !!@show_links
