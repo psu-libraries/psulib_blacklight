@@ -28,14 +28,13 @@ RSpec.describe 'Errors', type: :request do
   end
 
   describe 'internal server error' do
-    before (:all) { get '/500' }
-
-    it 'has http status 500' do
-      expect(response).to have_http_status(:internal_server_error)
-    end
-
-    it 'redirects to customized internal_server_error error page' do
-      expect(response.body).to include("We're sorry, but something went wrong.")
+    it 'has http status 500 and redirects to customized internal_server_error error page' do
+      respond_without_detailed_exceptions do
+        allow(RSolr).to receive(:connect).and_raise(Exception)
+        get '/'
+        expect(response).to have_http_status(:internal_server_error)
+        expect(response.body).to include("We're sorry, but something went wrong.")
+      end
     end
   end
 
