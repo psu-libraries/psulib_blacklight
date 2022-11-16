@@ -106,6 +106,7 @@ RSpec.describe 'Advanced Search', type: :feature do
         before do
           fill_in 'title', with: 'quilts cumberland'
           fill_in 'author', with: 'quilters'
+          #fill_in 'facet-access_facet' with: 'In the Library'
           #facets go here
           click_button 'advanced-search-submit'
         end  
@@ -120,6 +121,7 @@ RSpec.describe 'Advanced Search', type: :feature do
           fill_in 'subject', with: 'Climatology'
           fill_in 'series', with: 'AAPG studies in geology'
           fill_in 'publisher', with: 'Petroleum Geologists'
+          select 'In the Library', from: 'facet-access_facet'
           #facets go here
           click_button 'advanced-search-submit'
         end  
@@ -131,27 +133,26 @@ RSpec.describe 'Advanced Search', type: :feature do
     end
 
     describe 'vernacular language', js: true do
-        before do
-          #conditions for vernacular language search
-        end  
-          
+
         context 'when searching in simplified chinese' do
           before do
-             #search in field 'title' with term 广西壮族自治区地图
+            fill_in 'title', with: '上海理论'
+            click_button 'advanced-search-submit'
           end 
       
           it 'results include expected CAT keys' do
-            #expect statements for 12348543
+            expect(page).to have_selector 'article[data-document-id="17280643"]'
           end
         end 
 
         context 'when searching in traditional chinese' do
             before do
-               #search in field 'title' with term 廣西壯族自治區地圖
+              fill_in 'title', with: '上海理論'
+              click_button 'advanced-search-submit'
             end 
         
             it 'results include expected CAT keys' do
-              #expect statements for 12348543
+              expect(page).to have_selector 'article[data-document-id="17280643"]'
             end
           end 
     end
@@ -159,11 +160,12 @@ RSpec.describe 'Advanced Search', type: :feature do
     # should this be in another location?
     describe 'link to MARC view', js: true do
       before do
-        #navigate through search to a record page (23794738)
+        visit '/catalog/24053587'
       end
 
       it 'record page contains link to MARC record' do
-        #expect page to contain https://catalog.libraries.psu.edu/catalog/23794738/marc_view 
+       expect(page).to have_selector  'a[id="marc_record_link"]'
+       expect(page).to have_selector  'a[href="/catalog/24053587/marc_view"]'
       end
     end
   end
