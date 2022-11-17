@@ -8,7 +8,7 @@ RSpec.describe 'Advanced Search', type: :feature do
       visit '/advanced'
     end 
 
-    describe 'single term searches', js: true do 
+    context 'single term searches' do 
 
       context 'when searching by series title' do
         before do
@@ -75,11 +75,11 @@ RSpec.describe 'Advanced Search', type: :feature do
           expect(page).to have_selector 'article[data-document-id="2069311"]'
         end
       end 
-=begin
+
       context 'when searching by a single publication date' do
         before do
-            #field 'range[pub_date_itsi][begin]=', with: '2017'
-            click_button 'advanced-search-submit'
+          fill_in 'range_pub_date_itsi_begin', with: '2017'
+          click_button 'advanced-search-submit'
         end 
 
         it 'results include expected CAT keys' do
@@ -89,7 +89,9 @@ RSpec.describe 'Advanced Search', type: :feature do
 
       context 'when searching by publication date range' do
         before do
-            #field 'range%5Bpub_date_itsi%5D%5Bbegin%5D=2017&range%5Bpub_date_itsi%5D%5Bend%5D=2018'
+          fill_in 'range_pub_date_itsi_begin', with: '2017'
+          fill_in 'range_pub_date_itsi_end', with: '2018'
+          click_button 'advanced-search-submit'
         end 
 
         it 'results include expected CAT keys' do
@@ -97,17 +99,22 @@ RSpec.describe 'Advanced Search', type: :feature do
           expect(page).to have_selector 'article[data-document-id="31805615"]'
         end
       end 
-=end
     end 
     
-    describe 'combination searches', js: true do
+    context 'combination searches' do
         
       context 'when searching for a specific book about quilts in Cumberland County' do
         before do
           fill_in 'title', with: 'quilts cumberland'
           fill_in 'author', with: 'quilters'
-          #fill_in 'facet-access_facet' with: 'In the Library'
-          #facets go here
+          find('button[data-id="access_facet"]').click
+          find('#bs-select-1-1').click
+          find('button[data-id="format"]').click
+          find('#bs-select-2-3').click
+          find('button[data-id="language_facet"]').click
+          find('#bs-select-3-4').click
+          find('button[data-id="lc_1letter_facet"]').click
+          find('#bs-select-5-12').click
           click_button 'advanced-search-submit'
         end  
     
@@ -117,22 +124,23 @@ RSpec.describe 'Advanced Search', type: :feature do
       end 
 
       context 'when searching for a specific book on geological perspectives of climate change' do
+
         before do
           fill_in 'subject', with: 'Climatology'
           fill_in 'series', with: 'AAPG studies in geology'
           fill_in 'publisher', with: 'Petroleum Geologists'
-          select 'In the Library', from: 'facet-access_facet'
-          #facets go here
+          find('button[data-id="library_facet"]').click
+          find('#bs-select-6-4').click
           click_button 'advanced-search-submit'
         end  
     
-        it 'results include expected CAT keys' do
-          expect(page).to have_selector 'article[data-document-id="2250425"]'
+        it 'results include expected CAT keys' do         
+            expect(page).to have_selector 'article[data-document-id="2250425"]'
         end
       end 
     end
 
-    describe 'vernacular language', js: true do
+    context 'vernacular language' do
 
         context 'when searching in simplified chinese' do
           before do
@@ -158,7 +166,7 @@ RSpec.describe 'Advanced Search', type: :feature do
     end
 
     # should this be in another location?
-    describe 'link to MARC view', js: true do
+    context 'link to MARC view' do
       before do
         visit '/catalog/24053587'
       end

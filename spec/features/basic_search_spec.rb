@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Basic Search', type: :feature do
   describe 'User uses basic search', js: true do
 
-    describe 'searching by title', js: true do
+    context 'searching by title' do
       before do
         visit '/?search_field=title&q='
       end
@@ -67,7 +67,7 @@ RSpec.describe 'Basic Search', type: :feature do
       end
     end
 
-    describe 'searching by author', js: true do
+    context 'searching by author' do
       before do
         visit '/?search_field=author&q='
       end
@@ -128,7 +128,7 @@ RSpec.describe 'Basic Search', type: :feature do
       end
     end
     
-    describe 'searching by subject', js: true do
+    context 'searching by subject' do
       before do
         visit '/?search_field=subject&q='
       end
