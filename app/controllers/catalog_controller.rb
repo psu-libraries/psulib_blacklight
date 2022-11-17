@@ -323,6 +323,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'bibliography_note_ssm', label: 'Bibliography Note', helper_method: :newline_format
     config.add_show_field 'with_note_ssm', label: 'With', helper_method: :newline_format
     config.add_show_field 'binding_information_ssm', label: 'Binding Information', helper_method: :newline_format
+    config.add_show_field 'part_of_ssm', label: 'Part Of', helper_method: :newline_format
     config.add_show_field 'creation_production_credits_ssm', label: 'Creation/Production Credits Note', helper_method: :newline_format
     config.add_show_field 'citation_references_note_ssm', label: 'Citation/References Note', helper_method: :newline_format
     config.add_show_field 'participant_performer_ssm', label: 'Participant/Performer Note', helper_method: :newline_format
