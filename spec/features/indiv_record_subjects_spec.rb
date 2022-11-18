@@ -5,42 +5,34 @@ require 'rails_helper'
 RSpec.describe 'Individual Record Subjects', type: :feature do
   describe 'Individual record subject links', js: true do
     before do
-      #visit individual record
+      visit '/catalog/1839879'
     end
 
     it 'displays the subjects for a given record' do
-      #expect list of subjects
+      expect(page).to have_content 'African Americans—Civil rights'
+      expect(page).to have_content 'Black Muslims'
+      expect(page).to have_content 'United States—Race relations'
     end
 
     context 'when users want to search for the first term of a given subject' do
       before do
-        #click term for first level of hierarchy
+        click_on 'African Americans'
       end
 
       it 'takes them to a search result of the first term of a given subject' do
-        #expect appropriate result for just first search term (either by content or by number of results? or both?)
-        #expect not to have result that would only pop for later terms?
-      end
-    end
-
-    context 'when users want to search for the second term of a given subject' do
-      before do
-        #click term for second level of hierarchy
-      end
-  
-      it 'takes them to a search result of the second term of a given subject' do
-        #expect appropriate result for second search term
-        #expect not to have result that would only pop for later terms?
+        expect(page).to have_selector 'article[data-document-id="22080733"]'
+        expect(page).to have_selector 'article[data-document-id="1839879"]'
       end
     end
 
     context 'when users want to search for the full term of a given subject' do
       before do
-        #click term for first level of hierarchy
+        click_on 'African Americans—Civil rights'
       end
   
       it 'takes them to a search result of the full term of a given subject' do
-        #expect appropriate result for full search term
+        expect(page).to have_selector 'article[data-document-id="1839879"]'
+        expect(page).to_not have_selector 'article[data-document-id="22080733"]'
       end
     end
   end

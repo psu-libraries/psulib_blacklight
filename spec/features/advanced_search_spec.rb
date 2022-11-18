@@ -135,7 +135,7 @@ RSpec.describe 'Advanced Search', type: :feature do
         end  
     
         it 'results include expected CAT keys' do         
-            expect(page).to have_selector 'article[data-document-id="2250425"]'
+          expect(page).to have_selector 'article[data-document-id="2250425"]'
         end
       end 
     end
