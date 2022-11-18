@@ -1,7 +1,12 @@
-<div class="bs-callout bs-callout-primary">
-  <h5><%= heading %></h5>
+<div class="<%= card_class %>">
+  <h5><%= heading_display %></h5>
 
-  <ul class="external-links">
+  <% if special_collections_materials_only? %>
+      <%= image_pack_tag('media/psulib_blacklight/images/psu-shield.png',
+                      alt: 'Penn State Shield',
+                      class: 'mr-3') %>
+  <% end %>
+  <ul class="<%= list_class %>">
     <% preview_links.map do |item| %>
         <%= render ExternalLinks::LinkComponent.new(item) %>
     <% end %>

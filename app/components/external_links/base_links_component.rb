@@ -29,6 +29,22 @@ module ExternalLinks
       links.slice(2, links.length - 2)
     end
 
+    def special_collections_materials_only?
+      links.map { |l| l['url'].include?('ark:/42409/fa8') }.count(true) == links.count
+    end
+
+    def card_class
+      special_collections_materials_only? ? 'bs-callout bs-callout-psu' : 'bs-callout bs-callout-primary'
+    end
+
+    def heading_display
+      special_collections_materials_only? ? 'Special Collections Materials' : heading
+    end
+
+    def list_class
+      special_collections_materials_only? ? 'external-links-psu-digital-collections' : 'external-links'
+    end
+
     private
 
       attr_reader :links, :heading
@@ -36,7 +52,7 @@ module ExternalLinks
       def sorted_links(links_arg)
         return links_arg unless links_arg.is_a?(Array)
 
-        links_arg.sort_by { |l| l['text'] == 'Special Collections Materials' ? 0 : 1 }
+        links_arg.sort_by { |l| l['url'].include?('ark:/42409/fa8') ? 0 : 1 }
       end
 
       def show_links?
