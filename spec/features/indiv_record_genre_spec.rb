@@ -5,16 +5,19 @@ require 'rails_helper'
 RSpec.describe 'Individual Record Genre', type: :feature do
   describe 'Individual record genre links', js: true do
     before do
-      #visit individual record
+      visit '/catalog/22080733'
     end
 
     it 'has a list of record genres' do
-      #expect genres (consult wiki for which fields are involved)
+      #expect genres (field 655)
+      expect(page).to have_content 'Domestic fiction'
+      expect(page).to have_content 'Fiction'
     end
 
     it 'links to that genre' do 
-      #click on a genre
-      #expect set of results for that genre
+      click_on 'Domestic Fiction'
+      expect(page).to have_selector 'article[data-document-id="22080733"]'
+      expect(page).to have_selector 'article[data-document-id="2052181"]'
     end
   end
 end
