@@ -9,9 +9,10 @@ RSpec.describe 'Individual Record Genre', type: :feature do
     end
 
     it 'has a list of record genres' do
-      #expect genres (field 655)
+      # expect genres (field 655)
       expect(page).to have_content 'Domestic fiction'
       expect(page).to have_content 'Fiction'
+      #genre does not have women-fiction (technically genre MARC field 650 but displayed in subject)
     end
 
     it 'links to that genre' do 
