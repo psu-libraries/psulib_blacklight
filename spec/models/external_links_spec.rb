@@ -211,7 +211,7 @@ RSpec.describe ExternalLinks do
       expect(related_resources_links).not_to be_present
     end
 
-    it 'returns a list of psu_special_collections_links when there is PSU Special Collections data (ARK urls)' do
+    it 'returns a list of related_resources_links that disregards PSU Special Collections data (ARK urls)' do
       document = { suppl_links_struct: [
         '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73013"}',
         '{"text":"View Finding Aid","url":"n2t.net/ark:/42409/fa815432"}',
