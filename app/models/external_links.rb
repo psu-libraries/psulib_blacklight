@@ -22,7 +22,13 @@ module ExternalLinks
   def related_resources_links
     return if suppl_links.blank?
 
-    parsed_links(suppl_links)
+    parsed_suppl_links.reject { |link| special_collections_link? link }
+  end
+
+  def psu_special_collections_links
+    return if suppl_links.blank?
+
+    parsed_suppl_links.select { |link| special_collections_link? link }
   end
 
   private
@@ -48,6 +54,10 @@ module ExternalLinks
         end
     end
 
+    def parsed_suppl_links
+      parsed_links(suppl_links)
+    end
+
     def all_links
       parsed_links(full_links)
     end
@@ -61,6 +71,10 @@ module ExternalLinks
       ]
 
       link['url'].match? Regexp.union(matching_urls)
+    end
+
+    def special_collections_link?(link)
+      link['url'].include?('ark:/42409/fa8')
     end
 
     def link_prefix(link)
