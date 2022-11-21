@@ -3,7 +3,7 @@
 module ExternalLinks
   class PsuCollectionsLinksComponent < BaseLinksComponent
     def heading
-      if links.collect { |l| l['url'].include?('ark:/42409/fa8') }.count(true) > 0
+      if links.map { |l| l['url'].include?('ark:/42409/fa8') }.count(true).positive?
         'Special Collections Materials'
       else
         'View in Penn State Digital Collections'
