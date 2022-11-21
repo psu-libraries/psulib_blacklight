@@ -112,28 +112,4 @@ RSpec.describe ExternalLinks::BaseLinksComponent, type: :component do
       expect(rendered).not_to have_selector('#collapseLinksExternalLinks')
     end
   end
-
-  context 'when there are 3 links and one directs to "Special Collections Materials"' do
-    let(:links) {
-      [
-        {
-          text: '2nd link',
-          url: 'url.2'
-        }.with_indifferent_access,
-        {
-          text: '3rd link',
-          url: 'url.3'
-        }.with_indifferent_access,
-        {
-          text: 'Special Collections Materials',
-          url: 'http://n2t.net/ark:/42409/fa812345'
-        }.with_indifferent_access
-      ]
-    }
-
-    it 'displays 3 links with the "Special Collections Materials" first' do
-      expect(rendered.search('li').count).to eq(3)
-      expect(rendered.search('li').first.text).to include('Special Collections Materials')
-    end
-  end
 end
