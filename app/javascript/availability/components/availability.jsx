@@ -39,6 +39,8 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
           ...moreHoldings.slice(0, pageSize),
         ]);
         setMoreHoldings(moreHoldings.slice(pageSize));
+        // reinitialize tooltips when loading new records
+        setTimeout(function () { $('i.fas.fa-info-circle[data-toggle="tooltip"]').tooltip(); }, 100);
       };
 
       return (
