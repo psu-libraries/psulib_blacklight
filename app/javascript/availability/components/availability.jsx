@@ -32,6 +32,10 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
         (holdingIndex === 0 ||
           (holdingIndex - initialVisibleCount) % pageSize === 0);
 
+      function tooltipInit() {
+        $('i.fas.fa-info-circle[data-toggle="tooltip"]').tooltip();
+      }
+
       const viewMore = () => {
         setLastA11yIndex(visibleHoldings.length);
         setVisibleHoldings([
@@ -40,7 +44,9 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
         ]);
         setMoreHoldings(moreHoldings.slice(pageSize));
         // reinitialize tooltips when loading new records
-        setTimeout(function () { $('i.fas.fa-info-circle[data-toggle="tooltip"]').tooltip(); }, 100);
+        setTimeout(() => {
+          tooltipInit();
+        }, 100);
       };
 
       return (
