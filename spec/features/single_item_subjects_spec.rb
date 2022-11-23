@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Individual Record Subjects', type: :feature do
-  describe 'Individual record subject links', js: true do
+RSpec.describe 'Single Item Subjects', type: :feature do
+  describe 'Single item subject links', js: true do
     before do
       visit '/catalog/1839879'
     end
 
-    it 'displays the subjects for a given record' do
+    it 'displays the subjects for a given item' do
       expect(page).to have_content 'African Americans—Civil rights'
       expect(page).to have_content 'Black Muslims'
       expect(page).to have_content 'United States—Race relations'

@@ -2,13 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Individual Record Genre', type: :feature do
-  describe 'Individual record genre links', js: true do
+RSpec.describe 'Single Item Genre', type: :feature do
+  describe 'Single item genre links', js: true do
     before do
       visit '/catalog/22080733'
     end
 
-    it 'has a list of record genres' do
+    it 'has a list of item genres' do
       within 'dd.blacklight-genre_display_ssm.ml-5' do
         expect(page).to have_content 'Domestic fiction'
         expect(page).to have_content 'Fiction'
