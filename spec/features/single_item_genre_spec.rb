@@ -16,7 +16,7 @@ RSpec.describe 'Single Item Genre', type: :feature do
       end
     end
 
-    it 'links to that genre' do 
+    it 'links to that genre' do
       click_on 'Domestic fiction'
       expect(page).to have_selector 'article[data-document-id="22080733"]'
       expect(page).to have_selector 'article[data-document-id="2052181"]'

@@ -29,10 +29,10 @@ RSpec.describe 'Single Item Subjects', type: :feature do
       before do
         click_on 'African Americans—Civil rights'
       end
-  
+
       it 'takes them to a search result of the full term of a given subject' do
         expect(page).to have_selector 'article[data-document-id="1839879"]'
-        expect(page).to_not have_selector 'article[data-document-id="22080733"]'
+        expect(page).not_to have_selector 'article[data-document-id="22080733"]'
       end
     end
   end

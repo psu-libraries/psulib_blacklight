@@ -4,8 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Basic Search', type: :feature do
   describe 'User uses basic search', js: true do
-
-    context 'searching by title' do
+    context 'when searching by title' do
       before do
         visit '/?search_field=title&q='
       end
@@ -14,8 +13,8 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'Becoming'
           click_button 'search'
-        end 
-      
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="24053587"]'
           expect(page).to have_selector 'article[data-document-id="3626147"]'
@@ -26,8 +25,8 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'IEEE standards'
           click_button 'search'
-        end 
-        
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="2290006"]'
         end
@@ -37,8 +36,8 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'Blind swordsman'
           click_button 'search'
-        end 
-        
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="12133574"]'
         end
@@ -48,8 +47,8 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'Washington post and times herald'
           click_button 'search'
-        end 
-        
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="114189"]'
         end
@@ -59,15 +58,15 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'Bear Cove Head to Brigus South'
           click_button 'search'
-        end 
-        
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="24798226"]'
         end
       end
     end
 
-    context 'searching by author' do
+    context 'when searching by author' do
       before do
         visit '/?search_field=author&q='
       end
@@ -76,8 +75,8 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'Michelle Obama'
           click_button 'search'
-        end 
-        
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="24053587"]'
         end
@@ -87,8 +86,8 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'Obama, Michelle'
           click_button 'search'
-        end 
-        
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="24053587"]'
         end
@@ -98,8 +97,8 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'Pennsylvania Institution for the Instruction of the Blind'
           click_button 'search'
-        end 
-        
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="79172"]'
         end
@@ -109,8 +108,8 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'IEEE International Frequency Control Symposium'
           click_button 'search'
-        end 
-        
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="1443986"]'
         end
@@ -120,15 +119,15 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: '新聞局'
           click_button 'search'
-        end 
-        
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="6844545"]'
         end
       end
     end
-    
-    context 'searching by subject' do
+
+    context 'when searching by subject' do
       before do
         visit '/?search_field=subject&q='
       end
@@ -137,8 +136,8 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'geology'
           click_button 'search'
-        end 
-  
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="2680348"]'
           expect(page).to have_selector 'article[data-document-id="2724728"]'
@@ -149,8 +148,8 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: 'African American women lawyers--Illinois--Chicago--Biography'
           click_button 'search'
-        end 
-  
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="24053587"]'
         end
@@ -160,15 +159,13 @@ RSpec.describe 'Basic Search', type: :feature do
         before do
           fill_in 'q', with: '"African American women"'
           click_button 'search'
-        end 
-  
+        end
+
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="24053587"]'
           expect(page).not_to have_selector 'article[data-document-id="22080733"]'
         end
       end
-
-
     end
   end
 end

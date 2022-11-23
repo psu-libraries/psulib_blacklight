@@ -7,7 +7,7 @@ RSpec.describe 'Search Results', type: :feature do
     before do
       visit '/?search_field=all_fields&q=history'
     end
-    
+
     it 'displays the correct headers' do
       expect(page).to have_content 'Sort by relevance'
       expect(page).to have_content 'per page'
@@ -27,7 +27,7 @@ RSpec.describe 'Search Results', type: :feature do
           expect(page).not_to have_content 'No results found for your search'
         end
       end
-    end 
+    end
 
     context 'when there are no results to display' do
       before do
