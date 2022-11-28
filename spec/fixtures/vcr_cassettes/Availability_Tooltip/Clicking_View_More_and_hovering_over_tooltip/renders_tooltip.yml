@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=2169033
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Mon, 28 Nov 2022 15:59:57 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>2169033</titleID><TitleAvailabilityInfo><totalCopiesAvailable>4</totalCopiesAvailable><libraryWithAvailableCopies>Annex
+        (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>ARKTHESES</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>ASIS</classificationID><callNumber>Microfilm
+        C1177</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000050393299</itemID><itemTypeID>MICROFORM</itemTypeID><currentLocationID>CATO-PARK</currentLocationID><homeLocationID>CATO-PARK</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>ASIS</classificationID><callNumber>Thesis
+        1957dWilli,EG pt.1</callNumber><numberOfCopies>3</numberOfCopies><ItemInfo><itemID>000052165108</itemID><itemTypeID>THESIS-D</itemTypeID><currentLocationID>ARKTHESES</currentLocationID><homeLocationID>ARKTHESES</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{Archival}</staffNote></ItemInfo><ItemInfo><itemID>000008454935</itemID><itemTypeID>THESIS-D</itemTypeID><currentLocationID>DEPTCHARGE</currentLocationID><homeLocationID>CATO-2</homeLocationID><chargeable>false</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo><ItemInfo><itemID>000014567513</itemID><itemTypeID>THESIS-D</itemTypeID><currentLocationID>CATO-2</currentLocationID><homeLocationID>CATO-2</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>ASIS</classificationID><callNumber>Thesis
+        1957dWilli,EG pt.2</callNumber><numberOfCopies>3</numberOfCopies><ItemInfo><itemID>000014567582</itemID><itemTypeID>THESIS-D</itemTypeID><currentLocationID>DEPTCHARGE</currentLocationID><homeLocationID>CATO-2</homeLocationID><chargeable>false</chargeable><fixedTimeBooking>false</fixedTimeBooking><publicNote>Pagination
+        in this v.2 is off by 3 from original, i.e., p.129 in table of contents appears
+        as p.132 in this copy.</publicNote></ItemInfo><ItemInfo><itemID>000052165115</itemID><itemTypeID>THESIS-D</itemTypeID><currentLocationID>ARKTHESES</currentLocationID><homeLocationID>ARKTHESES</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking><staffNote>{Archival}</staffNote></ItemInfo><ItemInfo><itemID>000008454942</itemID><itemTypeID>THESIS-D</itemTypeID><currentLocationID>DEPTCHARGE</currentLocationID><homeLocationID>CATO-2</homeLocationID><chargeable>false</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Mon, 28 Nov 2022 15:59:57 GMT
+- request:
+    method: get
+    uri: https://books.google.com/books?bibkeys=OCLC:81776829&jscmd=viewapi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - books.google.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 28 Nov 2022 15:59:57 GMT
+      Expires:
+      - Mon, 28 Nov 2022 15:59:57 GMT
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      P3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      - policyref="http://www.google.com/googlebooks/p3p.xml", CP="DSP NON ADM DEV
+        OUR BUS NAV COM INT STA"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=604800
+      Content-Type:
+      - application/javascript; charset=ISO-8859-1
+      X-Content-Type-Options:
+      - nosniff
+      Content-Disposition:
+      - attachment; filename="f.txt"
+      Server:
+      - OFE/0.1
+      Set-Cookie:
+      - NID=511=E-Y1rtZ9K7Z_VSSQ_8WnWgb2RUd6gYCtzPnEyafTRr1In1Tn7IMEF8pWZ3Hg9tIEe55bmP0-Td1YFmHiSjj6XvPrcGFO9akbzdpfaMGoqPhPmNiArhlPAfCdBbpYloeITSW5wr99sK1noE5kGzMTCg2A4XjbUiYT3m_3rsEp6bI;
+        expires=Tue, 30-May-2023 15:59:57 GMT; path=/; domain=.google.com; HttpOnly
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: var _GBSBookInfo = {};
+  recorded_at: Mon, 28 Nov 2022 16:00:00 GMT
+recorded_with: VCR 6.1.0
