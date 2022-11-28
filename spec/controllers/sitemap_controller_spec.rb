@@ -16,7 +16,7 @@ RSpec.describe SitemapController, type: :controller do
 
     it 'returns documents in response to the query' do
       sitemap.params = { id: 0 }
-      expect(sitemap.show.response[:body]).to include '"numFound":34'
+      expect(sitemap.show.response[:body]).to include '"numFound":35'
     end
   end
 
