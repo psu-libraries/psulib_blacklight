@@ -161,4 +161,77 @@ RSpec.describe ExternalLinks do
       }.with_indifferent_access])
     end
   end
+
+  describe '#psu_special_collections_links' do
+    it 'returns nil for psu_special_collections_links when there is no suppl_link data' do
+      document = { full_links_struct: [
+        '{"text":"View Finding Aid","url":"http://n2t.net/ark:/42409/fa812345"}'
+      ] }
+
+      psu_special_collections_links = SolrDocument.new(document).psu_special_collections_links
+
+      expect(psu_special_collections_links).not_to be_present
+    end
+
+    it 'returns a list of psu_special_collections_links when there is PSU Special Collections data (ARK urls)' do
+      document = { suppl_links_struct: [
+        '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73013"}',
+        '{"text":"View Finding Aid","url":"n2t.net/ark:/42409/fa815432"}',
+        '{"text":"digital.libraries.psu.edu","url":"https://digital.libraries.psu.edu/digital/collection/test"}',
+        '{"text":"libraries.psu.edu/collections","url":"https://libraries.psu.edu/collections/test"}',
+        '{"text":"libraries.psu.edu/about/collections","url":"https://libraries.psu.edu/about/collections/x"}',
+        '{"text":"libraries.psu.edu/test/collections","url":"https://libraries.psu.edu/test/collections/x"}',
+        '{"text":"View Finding Aid","url":"http://n2t.net/ark:/42409/fa812345"}'
+      ] }
+
+      psu_special_collections_links = SolrDocument.new(document).psu_special_collections_links
+
+      expect(psu_special_collections_links).to eq([{
+        prefix: nil,
+        text: 'View Finding Aid',
+        url: 'n2t.net/ark:/42409/fa815432',
+        notes: nil
+      }.with_indifferent_access, {
+        prefix: nil,
+        text: 'View Finding Aid',
+        url: 'http://n2t.net/ark:/42409/fa812345',
+        notes: nil
+      }.with_indifferent_access])
+    end
+  end
+
+  describe '#related_resources_links' do
+    it 'returns nil for related_resources_links when there is no suppl_link data' do
+      document = { full_links_struct: [
+        '{"text":"resources.libraries.psu.edu","url":"http://resources.libraries.psu.edu/findingaids/2789.htm"}'
+      ] }
+
+      related_resources_links = SolrDocument.new(document).related_resources_links
+
+      expect(related_resources_links).not_to be_present
+    end
+
+    it 'returns a list of related_resources_links that disregards PSU Special Collections data (ARK urls)' do
+      document = { suppl_links_struct: [
+        '{"text":"purl.access.gpo.gov","url":"http://purl.access.gpo.gov/GPO/LPS73013"}',
+        '{"text":"View Finding Aid","url":"n2t.net/ark:/42409/fa815432"}',
+        '{"text":"libraries.psu.edu/test/collections","url":"https://libraries.psu.edu/test/collections/x"}',
+        '{"text":"View Finding Aid","url":"http://n2t.net/ark:/42409/fa812345"}'
+      ] }
+
+      related_resources_links = SolrDocument.new(document).related_resources_links
+
+      expect(related_resources_links).to eq([{
+        prefix: nil,
+        text: 'purl.access.gpo.gov',
+        url: 'http://purl.access.gpo.gov/GPO/LPS73013',
+        notes: nil
+      }.with_indifferent_access, {
+        prefix: nil,
+        text: 'libraries.psu.edu/test/collections',
+        url: 'https://libraries.psu.edu/test/collections/x',
+        notes: nil
+      }.with_indifferent_access])
+    end
+  end
 end
