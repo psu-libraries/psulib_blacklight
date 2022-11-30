@@ -26,14 +26,14 @@ describe('when the record has less than 5 holdings', () => {
 });
 
 describe('when the record has more than 5 but less than 1000 holdings', () => {
-  var holdings = []
-  for (let i = 0; i < 200; i++) {
-    holdings[i] = { catkey: `${i}`, callNumber: `CallNum${i}` }
+  const holdings = [];
+  for (let i = 0; i < 200; i += 1) {
+    holdings[i] = { catkey: `${i}`, callNumber: `CallNum${i}` };
   }
   const structuredHoldings = [
     {
       summary: {},
-      holdings: holdings,
+      holdings,
     },
   ];
 
@@ -111,14 +111,14 @@ describe('when the record has summary holdings', () => {
   });
 
   describe('when the record has more than 1000 holdings', () => {
-    var holdings = []
-    for (let i = 0; i < 1002; i++) {
-      holdings[i] = { catkey: `${i}`, callNumber: `CallNum${i}` }
+    const holdings = [];
+    for (let i = 0; i < 1002; i += 1) {
+      holdings[i] = { catkey: `${i}`, callNumber: `CallNum${i}` };
     }
     const structuredHoldings = [
       {
         summary: {},
-        holdings: holdings,
+        holdings,
       },
     ];
 
