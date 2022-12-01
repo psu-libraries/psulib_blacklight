@@ -107,8 +107,7 @@ describe('when all fields are present', () => {
       />
     );
 
-    const microformParams =
-      '&Form=30&isbn=1234';
+    const microformParams = '&Form=30&isbn=1234';
     const href = baseUrl + microformParams + moreParams;
 
     await testLink(
