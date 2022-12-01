@@ -160,17 +160,5 @@ RSpec.describe 'Advanced Search', type: :feature do
         end
       end
     end
-
-    # should this be in another location?
-    context 'with linking to MARC view' do
-      before do
-        visit '/catalog/24053587'
-      end
-
-      it 'record page contains link to MARC record' do
-        expect(page).to have_selector 'a[id="marc_record_link"]'
-        expect(page).to have_selector 'a[href="/catalog/24053587/marc_view"]'
-      end
-    end
   end
 end
