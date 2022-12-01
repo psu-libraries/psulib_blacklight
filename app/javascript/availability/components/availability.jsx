@@ -8,8 +8,11 @@ import ViewMoreButton from './view_more_button';
 const Availability = ({ structuredHoldings, summaryHoldings }) => (
   <>
     {structuredHoldings.map((element, index) => {
+      const totalHoldingsCount = structuredHoldings
+        .map((e) => e.holdings.length)
+        .reduce((acum, val) => acum + val, 0);
       const initialVisibleCount = 4;
-      const pageSize = 100;
+      const pageSize = totalHoldingsCount > 1000 ? 500 : 100;
       const { holdings, summary } = element;
       const { catkey } = holdings[0];
       const uniqueID = catkey + index;
