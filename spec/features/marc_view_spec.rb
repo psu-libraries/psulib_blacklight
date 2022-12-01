@@ -7,7 +7,7 @@ RSpec.describe 'MARC view', type: :feature do
     before do
       visit '/catalog/24053587'
     end
-  
+
     it 'single item page contains link to MARC record' do
       expect(page).to have_selector 'a[id="marc_record_link"]'
       expect(page).to have_selector 'a[href="/catalog/24053587/marc_view"]'
