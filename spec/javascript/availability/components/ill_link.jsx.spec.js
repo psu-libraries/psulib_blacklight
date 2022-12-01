@@ -71,11 +71,12 @@ describe('when all fields are present', () => {
     availability.reservesScanLocations = [];
   });
 
-  test('renders a microform link', async () => {
+  test('renders a non-ILL microform link', async () => {
     const { getByRole, container } = render(
       <IllLink
         holding={{
-          ...holdingData,
+          callNumber: '123',
+          locationID: 'MFILM-NML',
           libraryID: 'UP-MICRO',
           itemTypeID: 'MICROFORM',
         }}
@@ -83,13 +84,36 @@ describe('when all fields are present', () => {
     );
 
     const microformParams =
-      '&Form=30&isbn=1234&Genre=GenericRequestMicroScan&location=BINDERY';
+      '&Form=30&isbn=1234&Genre=GenericRequestMicroScan&location=MFILM-NML';
     const href = baseUrl + microformParams + moreParams;
 
     await testLink(
       getByRole,
       container,
       'Request Scan - Penn State Users',
+      href
+    );
+  });
+
+  test('renders an ILL microform link', async () => {
+    const { getByRole, container } = render(
+      <IllLink
+        holding={{
+          callNumber: '123',
+          locationID: 'ILL',
+          libraryID: 'UP-MICRO',
+          itemTypeID: 'MICROFORM',
+        }}
+      />
+    );
+
+    const microformParams = '&Form=30&isbn=1234';
+    const href = baseUrl + microformParams + moreParams;
+
+    await testLink(
+      getByRole,
+      container,
+      'Copy unavailable, request via Interlibrary Loan',
       href
     );
   });
