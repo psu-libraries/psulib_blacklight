@@ -25,4 +25,4 @@ fi
 
 echo "starting rails"
 
-bundle exec rails s -b '0.0.0.0'
+exec bundle exec rails s -b '0.0.0.0'
