@@ -136,6 +136,14 @@ const SpecialRequestLink = ({ holding, locationText }) => {
   const label = () => {
     if (locationText) {
       if (!hasData) {
+        return 'Use Aeon to request this item';
+      }
+
+      return availability.isArchivalThesis(holding)
+        ? 'View in Special Collections'
+        : 'Request Material';
+    } else {
+      if (!hasData) {
         return 'Use ILLiad to request this item';
       }
 
@@ -147,14 +155,6 @@ const SpecialRequestLink = ({ holding, locationText }) => {
       }
 
       return availability.illiadLocations[holding.locationID];
-    } else {
-      if (!hasData) {
-        return 'Use Aeon to request this item';
-      }
-
-      return availability.isArchivalThesis(holding)
-        ? 'View in Special Collections'
-        : 'Request Material';
     }
   };
 
