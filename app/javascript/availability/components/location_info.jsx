@@ -45,7 +45,7 @@ const LocationInfo = ({ holding }) => {
 
         <br />
 
-        <AeonLink holding={holding} locationText={specialCollectionsText} />
+        <SpecialRequestLink holding={holding} locationText={specialCollectionsText} />
       </>
     );
   }
