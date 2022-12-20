@@ -3,17 +3,79 @@ import { useEffect, useState } from 'react';
 import availability from '../index';
 import SpinnerLink from './spinner_link';
 
-const AeonLink = ({ holding, locationText }) => {
+const SpecialRequestLink = ({ holding, locationText }) => {
   const [hasData, setHasData] = useState(false);
   const [showSpinner, setShowSpinner] = useState(true);
   const [url, setUrl] = useState('#');
 
   useEffect(() => {
-    createAeonUrl();
+    if (locationText) {
+      createAeonUrl();
+    } else {
+      createIllUrl();
+    }
   }, []);
 
   const fetchJson = (jsonUrl) =>
     fetch(jsonUrl).then((response) => response.json());
+
+  const createIllUrl = () => {
+    let illUrl =
+      'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/';
+    const { catkey } = holding;
+    const callNumber = encodeURIComponent(holding.callNumber);
+    const linkType = encodeURIComponent(illLinkType());
+    const itemLocation = encodeURIComponent(holding.locationID);
+
+    fetchJson(`/catalog/${catkey}/raw.json`)
+      .then((data) => {
+        if (Object.keys(data).length > 0) {
+          setHasData(true);
+
+          const title = encodeURIComponent(data.title_245ab_tsim);
+          const author = encodeURIComponent(
+            data.author_tsim ? data.author_tsim : ''
+          );
+          const pubDate = data.pub_date_illiad_ssm
+            ? data.pub_date_illiad_ssm
+            : '';
+
+          illUrl += 'upm/illiad.dll/OpenURL?Action=10';
+          if (linkType === 'archival-thesis') {
+            illUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
+          } else {
+            const ISBN = data.isbn_valid_ssm[0] ? data.isbn_valid_ssm[0] : '';
+            illUrl += `&Form=30&isbn=${ISBN}`;
+          }
+          if (linkType === 'reserves-scan') {
+            illUrl += `&Genre=GenericRequestReserves&location=${itemLocation}`;
+          }
+          if (linkType === 'news-microform-scan') {
+            illUrl += `&Genre=GenericRequestMicroScan&location=${itemLocation}`;
+          }
+          illUrl += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
+          if (author) {
+            illUrl += `&aulast=${author}`;
+          }
+          if (pubDate) {
+            illUrl += `&date=${pubDate}`;
+          }
+        }
+      })
+      .catch(() => { })
+      .finally(() => {
+        setShowSpinner(false);
+        setUrl(illUrl);
+      });
+  };
+
+  const illLinkType = () => {
+    if (availability.isReserves(holding)) return 'reserves-scan';
+    if (availability.isMicroform(holding)) return 'news-microform-scan';
+    if (availability.isArchivalThesis(holding)) return 'archival-thesis';
+
+    return 'request-via-ill';
+  };
 
   const createAeonUrl = () => {
     const { catkey } = holding;
@@ -64,7 +126,7 @@ const AeonLink = ({ holding, locationText }) => {
             `&SubLocation=${subLocation}`;
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => {
         setShowSpinner(false);
         setUrl(aeonUrl);
@@ -72,13 +134,28 @@ const AeonLink = ({ holding, locationText }) => {
   };
 
   const label = () => {
-    if (!hasData) {
-      return 'Use Aeon to request this item';
-    }
+    if (locationText) {
+      if (!hasData) {
+        return 'Use ILLiad to request this item';
+      }
 
-    return availability.isArchivalThesis(holding)
-      ? 'View in Special Collections'
-      : 'Request Material';
+      if (
+        availability.isMicroform(holding) ||
+        availability.isArchivalThesis(holding)
+      ) {
+        return 'Request Scan - Penn State Users';
+      }
+
+      return availability.illiadLocations[holding.locationID];
+    } else {
+      if (!hasData) {
+        return 'Use Aeon to request this item';
+      }
+
+      return availability.isArchivalThesis(holding)
+        ? 'View in Special Collections'
+        : 'Request Material';
+    }
   };
 
   const linkTarget = () => (hasData ? null : '_blank');
@@ -94,9 +171,9 @@ const AeonLink = ({ holding, locationText }) => {
 };
 
 // eslint-react: defines valid prop types passed to this component
-AeonLink.propTypes = {
+SpecialRequestLink.propTypes = {
   holding: PropTypes.object,
   locationText: PropTypes.string,
 };
 
-export default AeonLink;
+export default SpecialRequestLink;

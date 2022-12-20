@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import availability from '../index';
-import IllLink from './ill_link';
-import AeonLink from './aeon_link';
+import SpecialRequestLink from './special_request_link';
 
 const LocationInfo = ({ holding }) => {
   const mapLocation = (locationID) =>
@@ -12,7 +11,7 @@ const LocationInfo = ({ holding }) => {
   // Location information presented to the user is different based on a few scenarios
   // First, if it's related to ILL
   if (availability.isIllLink(holding)) {
-    return <IllLink holding={holding} />;
+    return <SpecialRequestLink holding={holding} />;
   }
 
   // AEON
@@ -23,7 +22,7 @@ const LocationInfo = ({ holding }) => {
 
     return (
       <>
-        <IllLink holding={holding} />
+        <SpecialRequestLink holding={holding} />
 
         <br />
 
@@ -31,7 +30,7 @@ const LocationInfo = ({ holding }) => {
 
         <br />
 
-        <AeonLink holding={holding} locationText={aeonLocationText} />
+        <SpecialRequestLink holding={holding} locationText={aeonLocationText} />
       </>
     );
   }
