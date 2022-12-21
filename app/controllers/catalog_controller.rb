@@ -488,7 +488,7 @@ class CatalogController < ApplicationController
     config.add_sort_field 'score desc, pub_date_itsi desc, title_sort asc', label: 'relevance'
     config.add_sort_field 'pub_date_itsi desc, title_sort asc', label: 'year'
     config.add_sort_field 'title_sort asc, pub_date_itsi desc', label: 'title'
-    config.add_sort_field 'purchase-date', sort: 'id_sort desc', label: 'purchase date' #try zero padding, adds zeros to the front to make them all the same length?
+    config.add_sort_field 'purchase-date', sort: 'id_sort desc', label: 'purchase date' 
 
     # Configuration for autocomplete suggestor
     # Disable until https://github.com/projectblacklight/blacklight/issues/1972 resolved
