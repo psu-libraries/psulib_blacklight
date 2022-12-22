@@ -142,20 +142,19 @@ const SpecialRequestLink = ({ holding, locationText }) => {
       return availability.isArchivalThesis(holding)
         ? 'View in Special Collections'
         : 'Request Material';
-    } else {
-      if (!hasData) {
-        return 'Use ILLiad to request this item';
-      }
-
-      if (
-        availability.isMicroform(holding) ||
-        availability.isArchivalThesis(holding)
-      ) {
-        return 'Request Scan - Penn State Users';
-      }
-
-      return availability.illiadLocations[holding.locationID];
     }
+    if (!hasData) {
+      return 'Use ILLiad to request this item';
+    }
+
+    if (
+      availability.isMicroform(holding) ||
+      availability.isArchivalThesis(holding)
+    ) {
+      return 'Request Scan - Penn State Users';
+    }
+
+    return availability.illiadLocations[holding.locationID];
   };
 
   const linkTarget = () => (hasData ? null : '_blank');

@@ -45,7 +45,10 @@ const LocationInfo = ({ holding }) => {
 
         <br />
 
-        <SpecialRequestLink holding={holding} locationText={specialCollectionsText} />
+        <SpecialRequestLink
+          holding={holding}
+          locationText={specialCollectionsText}
+        />
       </>
     );
   }
