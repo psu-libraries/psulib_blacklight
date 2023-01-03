@@ -107,27 +107,24 @@ const SpecialRequestLink = ({ holding, locationText }) => {
   };
 
   const label = () => {
+    let text = '';
     if (locationText) {
       if (!hasData) {
-        return 'Use Aeon to request this item';
+        text = 'Use Aeon to request this item';
+      } else {
+        text = availability.isArchivalThesis(holding)
+          ? 'View in Special Collections'
+          : 'Request Material';
       }
-
-      return availability.isArchivalThesis(holding)
-        ? 'View in Special Collections'
-        : 'Request Material';
-    }
-    if (!hasData) {
-      return 'Use ILLiad to request this item';
-    }
-
-    if (
+    } else if (!hasData) {
+      text = 'Use ILLiad to request this item';
+    } else if (
       availability.isMicroform(holding) ||
       availability.isArchivalThesis(holding)
     ) {
-      return 'Request Scan - Penn State Users';
+      text = 'Request Scan - Penn State Users';
     }
-
-    return availability.illiadLocations[holding.locationID];
+    return text || availability.illiadLocations[holding.locationID];
   };
 
   const linkTarget = () => (hasData ? null : '_blank');
