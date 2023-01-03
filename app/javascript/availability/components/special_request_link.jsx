@@ -25,15 +25,9 @@ const SpecialRequestLink = ({ holding, locationText }) => {
       .then((data) => {
         if (Object.keys(data).length > 0) {
           setHasData(true);
-
           const title = encodeURIComponent(data.title_245ab_tsim);
-          const author = encodeURIComponent(
-            data.author_tsim ? data.author_tsim : ''
-          );
-          const pubDate = data.pub_date_illiad_ssm
-            ? data.pub_date_illiad_ssm
-            : '';
-
+          const author = encodeURIComponent(data.author_tsim || '');
+          const pubDate = data.pub_date_illiad_ssm || '';
           if (locationText) {
             linkUrl = aeonLinkUrl(linkUrl, data, title, author, pubDate);
           } else {
@@ -41,7 +35,7 @@ const SpecialRequestLink = ({ holding, locationText }) => {
           }
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => {
         setShowSpinner(false);
         setUrl(linkUrl);
