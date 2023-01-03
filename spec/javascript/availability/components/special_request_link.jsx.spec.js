@@ -53,7 +53,10 @@ describe('when locationText is sent to SpecialRequestLink', () => {
 
     test('renders an Aeon link', async () => {
       const { getByRole, container } = render(
-        <SpecialRequestLink holding={holdingData} locationText="item location" />
+        <SpecialRequestLink
+          holding={holdingData}
+          locationText="item location"
+        />
       );
 
       const href = `${baseUrl}&ReferenceNumber=456&Genre=BOOK${moreParams}`;
@@ -110,7 +113,9 @@ describe('when locationText is sent to SpecialRequestLink', () => {
       })
     );
 
-    const { getByRole, container } = render(<SpecialRequestLink holding={holdingData} locationText="item location" />);
+    const { getByRole, container } = render(
+      <SpecialRequestLink holding={holdingData} locationText="item location" />
+    );
 
     await testLink(
       getByRole,
@@ -125,7 +130,9 @@ describe('when locationText is sent to SpecialRequestLink', () => {
   test('renders a basic Aeon link if the AJAX request fails', async () => {
     global.fetch = jest.fn(() => Promise.reject());
 
-    const { getByRole, container } = render(<SpecialRequestLink holding={holdingData} locationText="item location" />);
+    const { getByRole, container } = render(
+      <SpecialRequestLink holding={holdingData} locationText="item location" />
+    );
 
     await testLink(
       getByRole,
@@ -136,7 +143,7 @@ describe('when locationText is sent to SpecialRequestLink', () => {
 
     expect(getByRole('link')).toHaveAttribute('target', '_blank');
   });
-})
+});
 
 describe('when locationText is not sent to SpecialRequestLink', () => {
   const baseUrl =
@@ -176,7 +183,9 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
     });
 
     test('renders an ILL link', async () => {
-      const { getByRole, container } = render(<SpecialRequestLink holding={holdingData} />);
+      const { getByRole, container } = render(
+        <SpecialRequestLink holding={holdingData} />
+      );
 
       const href = `${baseUrl}&Form=30&isbn=1234${moreParams}`;
 
@@ -191,7 +200,9 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
     test('renders a reserves scan link', async () => {
       availability.reservesScanLocations = ['BINDERY'];
 
-      const { getByRole, container } = render(<SpecialRequestLink holding={holdingData} />);
+      const { getByRole, container } = render(
+        <SpecialRequestLink holding={holdingData} />
+      );
 
       const reservesScanParams =
         '&Form=30&isbn=1234&Genre=GenericRequestReserves&location=BINDERY';
@@ -232,7 +243,9 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
 
     test('renders an archival thesis link', async () => {
       const { getByRole, container } = render(
-        <SpecialRequestLink holding={{ ...holdingData, locationID: 'ARKTHESES' }} />
+        <SpecialRequestLink
+          holding={{ ...holdingData, locationID: 'ARKTHESES' }}
+        />
       );
 
       const archivalThesisParams =
@@ -260,7 +273,9 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
       })
     );
 
-    const { getByRole, container } = render(<SpecialRequestLink holding={holdingData} />);
+    const { getByRole, container } = render(
+      <SpecialRequestLink holding={holdingData} />
+    );
 
     const href =
       `${baseUrl}&Form=30&isbn=1234&title=book%20title&callno=123` +
@@ -286,7 +301,9 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
       })
     );
 
-    const { getByRole, container } = render(<SpecialRequestLink holding={holdingData} />);
+    const { getByRole, container } = render(
+      <SpecialRequestLink holding={holdingData} />
+    );
 
     const href =
       `${baseUrl}&Form=30&isbn=1234&title=book%20title&callno=123` +
@@ -313,7 +330,9 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
       })
     );
 
-    const { getByRole, container } = render(<SpecialRequestLink holding={holdingData} />);
+    const { getByRole, container } = render(
+      <SpecialRequestLink holding={holdingData} />
+    );
 
     const href =
       `${baseUrl}&Form=30&isbn=&title=book%20title&callno=123` +
@@ -334,7 +353,9 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
       })
     );
 
-    const { getByRole, container } = render(<SpecialRequestLink holding={holdingData} />);
+    const { getByRole, container } = render(
+      <SpecialRequestLink holding={holdingData} />
+    );
 
     await testLink(
       getByRole,
@@ -349,7 +370,9 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
   test('renders a basic ILL link if the AJAX request fails', async () => {
     global.fetch = jest.fn(() => Promise.reject());
 
-    const { getByRole, container } = render(<SpecialRequestLink holding={holdingData} />);
+    const { getByRole, container } = render(
+      <SpecialRequestLink holding={holdingData} />
+    );
 
     await testLink(
       getByRole,
@@ -360,4 +383,4 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
 
     expect(getByRole('link')).toHaveAttribute('target', '_blank');
   });
-})
+});

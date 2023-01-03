@@ -18,8 +18,9 @@ const SpecialRequestLink = ({ holding, locationText }) => {
     fetch(jsonUrl).then((response) => response.json());
 
   const createUrl = () => {
-    let linkUrl = locationText ? 'https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll' :
-      'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/';
+    let linkUrl = locationText
+      ? 'https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll'
+      : 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/';
     fetchJson(`/catalog/${catkey}/raw.json`)
       .then((data) => {
         if (Object.keys(data).length > 0) {
@@ -90,7 +91,7 @@ const SpecialRequestLink = ({ holding, locationText }) => {
           }
         }
       })
-      .catch(() => { })
+      .catch(() => {})
       .finally(() => {
         setShowSpinner(false);
         setUrl(linkUrl);
