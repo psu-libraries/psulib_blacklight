@@ -37,36 +37,41 @@ const SpecialRequestLink = ({ holding, locationText }) => {
           if (locationText) {
             linkUrl = aeonLinkUrl(linkUrl, data, title, author, pubDate);
           } else {
-            const linkType = encodeURIComponent(illLinkType());
-            const itemLocation = encodeURIComponent(holding.locationID);
-            linkUrl += 'upm/illiad.dll/OpenURL?Action=10';
-            if (linkType === 'archival-thesis') {
-              linkUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
-            } else {
-              const ISBN = data.isbn_valid_ssm[0] ? data.isbn_valid_ssm[0] : '';
-              linkUrl += `&Form=30&isbn=${ISBN}`;
-            }
-            if (linkType === 'reserves-scan') {
-              linkUrl += `&Genre=GenericRequestReserves&location=${itemLocation}`;
-            }
-            if (linkType === 'news-microform-scan') {
-              linkUrl += `&Genre=GenericRequestMicroScan&location=${itemLocation}`;
-            }
-            linkUrl += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
-            if (author) {
-              linkUrl += `&aulast=${author}`;
-            }
-            if (pubDate) {
-              linkUrl += `&date=${pubDate}`;
-            }
+            linkUrl = illLinkUrl(linkUrl, data, title, author, pubDate);
           }
         }
       })
-      .catch(() => { })
+      .catch(() => {})
       .finally(() => {
         setShowSpinner(false);
         setUrl(linkUrl);
       });
+  };
+
+  const illLinkUrl = (linkUrl, data, title, author, pubDate) => {
+    const linkType = encodeURIComponent(illLinkType());
+    const itemLocation = encodeURIComponent(holding.locationID);
+    linkUrl += 'upm/illiad.dll/OpenURL?Action=10';
+    if (linkType === 'archival-thesis') {
+      linkUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
+    } else {
+      const ISBN = data.isbn_valid_ssm[0] ? data.isbn_valid_ssm[0] : '';
+      linkUrl += `&Form=30&isbn=${ISBN}`;
+    }
+    if (linkType === 'reserves-scan') {
+      linkUrl += `&Genre=GenericRequestReserves&location=${itemLocation}`;
+    }
+    if (linkType === 'news-microform-scan') {
+      linkUrl += `&Genre=GenericRequestMicroScan&location=${itemLocation}`;
+    }
+    linkUrl += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
+    if (author) {
+      linkUrl += `&aulast=${author}`;
+    }
+    if (pubDate) {
+      linkUrl += `&date=${pubDate}`;
+    }
+    return linkUrl;
   };
 
   const aeonLinkUrl = (linkUrl, data, title, author, pubDate) => {
