@@ -7,26 +7,19 @@ const SpecialRequestLink = ({ holding, locationText }) => {
   const [hasData, setHasData] = useState(false);
   const [showSpinner, setShowSpinner] = useState(true);
   const [url, setUrl] = useState('#');
+  const { catkey } = holding;
+  const callNumber = encodeURIComponent(holding.callNumber);
 
   useEffect(() => {
-    if (locationText) {
-      createAeonUrl();
-    } else {
-      createIllUrl();
-    }
+    createUrl();
   }, []);
 
   const fetchJson = (jsonUrl) =>
     fetch(jsonUrl).then((response) => response.json());
 
-  const createIllUrl = () => {
-    let illUrl =
+  const createUrl = () => {
+    let linkUrl = locationText ? 'https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll' :
       'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/';
-    const { catkey } = holding;
-    const callNumber = encodeURIComponent(holding.callNumber);
-    const linkType = encodeURIComponent(illLinkType());
-    const itemLocation = encodeURIComponent(holding.locationID);
-
     fetchJson(`/catalog/${catkey}/raw.json`)
       .then((data) => {
         if (Object.keys(data).length > 0) {
@@ -40,32 +33,67 @@ const SpecialRequestLink = ({ holding, locationText }) => {
             ? data.pub_date_illiad_ssm
             : '';
 
-          illUrl += 'upm/illiad.dll/OpenURL?Action=10';
-          if (linkType === 'archival-thesis') {
-            illUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
+          if (locationText) {
+            const itemLocation = encodeURIComponent(locationText);
+            const itemID = encodeURIComponent(holding.itemID);
+            const { itemTypeID } = holding;
+            const genre = itemTypeID === 'ARCHIVES' ? 'ARCHIVES' : 'BOOK';
+            linkUrl =
+              'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30' +
+              `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
+              `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
+
+            const publisher = encodeURIComponent(
+              data.publisher_name_ssm ? data.publisher_name_ssm : ''
+            );
+            const pubPlace = encodeURIComponent(
+              data.publication_place_ssm ? data.publication_place_ssm : ''
+            );
+            const edition = encodeURIComponent(
+              data.edition_display_ssm ? data.edition_display_ssm : ''
+            );
+            const restrictions = encodeURIComponent(
+              data.restrictions_access_note_ssm
+                ? data.restrictions_access_note_ssm
+                : ''
+            );
+            const subLocation = encodeURIComponent(
+              data.sublocation_ssm ? data.sublocation_ssm.join('; ') : ''
+            );
+            linkUrl +=
+              `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=` +
+              `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}` +
+              `&SubLocation=${subLocation}`;
           } else {
-            const ISBN = data.isbn_valid_ssm[0] ? data.isbn_valid_ssm[0] : '';
-            illUrl += `&Form=30&isbn=${ISBN}`;
-          }
-          if (linkType === 'reserves-scan') {
-            illUrl += `&Genre=GenericRequestReserves&location=${itemLocation}`;
-          }
-          if (linkType === 'news-microform-scan') {
-            illUrl += `&Genre=GenericRequestMicroScan&location=${itemLocation}`;
-          }
-          illUrl += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
-          if (author) {
-            illUrl += `&aulast=${author}`;
-          }
-          if (pubDate) {
-            illUrl += `&date=${pubDate}`;
+            const linkType = encodeURIComponent(illLinkType());
+            const itemLocation = encodeURIComponent(holding.locationID);
+            linkUrl += 'upm/illiad.dll/OpenURL?Action=10';
+            if (linkType === 'archival-thesis') {
+              linkUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
+            } else {
+              const ISBN = data.isbn_valid_ssm[0] ? data.isbn_valid_ssm[0] : '';
+              linkUrl += `&Form=30&isbn=${ISBN}`;
+            }
+            if (linkType === 'reserves-scan') {
+              linkUrl += `&Genre=GenericRequestReserves&location=${itemLocation}`;
+            }
+            if (linkType === 'news-microform-scan') {
+              linkUrl += `&Genre=GenericRequestMicroScan&location=${itemLocation}`;
+            }
+            linkUrl += `&title=${title}&callno=${callNumber}&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu`;
+            if (author) {
+              linkUrl += `&aulast=${author}`;
+            }
+            if (pubDate) {
+              linkUrl += `&date=${pubDate}`;
+            }
           }
         }
       })
       .catch(() => { })
       .finally(() => {
         setShowSpinner(false);
-        setUrl(illUrl);
+        setUrl(linkUrl);
       });
   };
 
@@ -75,62 +103,6 @@ const SpecialRequestLink = ({ holding, locationText }) => {
     if (availability.isArchivalThesis(holding)) return 'archival-thesis';
 
     return 'request-via-ill';
-  };
-
-  const createAeonUrl = () => {
-    const { catkey } = holding;
-    const callNumber = encodeURIComponent(holding.callNumber);
-    const itemLocation = encodeURIComponent(locationText);
-    const itemID = encodeURIComponent(holding.itemID);
-    const { itemTypeID } = holding;
-    const genre = itemTypeID === 'ARCHIVES' ? 'ARCHIVES' : 'BOOK';
-    let aeonUrl = 'https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll';
-
-    fetchJson(`/catalog/${catkey}/raw.json`)
-      .then((data) => {
-        if (Object.keys(data).length > 0) {
-          setHasData(true);
-
-          aeonUrl =
-            'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30' +
-            `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
-            `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
-
-          const title = encodeURIComponent(data.title_245ab_tsim);
-          const author = encodeURIComponent(
-            data.author_tsim ? data.author_tsim : ''
-          );
-          const publisher = encodeURIComponent(
-            data.publisher_name_ssm ? data.publisher_name_ssm : ''
-          );
-          const pubDate = encodeURIComponent(
-            data.pub_date_illiad_ssm ? data.pub_date_illiad_ssm : ''
-          );
-          const pubPlace = encodeURIComponent(
-            data.publication_place_ssm ? data.publication_place_ssm : ''
-          );
-          const edition = encodeURIComponent(
-            data.edition_display_ssm ? data.edition_display_ssm : ''
-          );
-          const restrictions = encodeURIComponent(
-            data.restrictions_access_note_ssm
-              ? data.restrictions_access_note_ssm
-              : ''
-          );
-          const subLocation = encodeURIComponent(
-            data.sublocation_ssm ? data.sublocation_ssm.join('; ') : ''
-          );
-          aeonUrl +=
-            `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=` +
-            `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}` +
-            `&SubLocation=${subLocation}`;
-        }
-      })
-      .catch(() => { })
-      .finally(() => {
-        setShowSpinner(false);
-        setUrl(aeonUrl);
-      });
   };
 
   const label = () => {
