@@ -484,7 +484,8 @@ const availability = {
     return (
       ['UP-MICRO'].includes(holding.libraryID) &&
       holding.homeLocationID !== 'THESIS-NML' &&
-      holding.itemTypeID === 'MICROFORM'
+      holding.itemTypeID === 'MICROFORM' &&
+      !(holding.locationID in availability.illiadLocations)
     );
   },
 

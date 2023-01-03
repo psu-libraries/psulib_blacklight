@@ -25,17 +25,15 @@ describe('when the record has less than 5 holdings', () => {
   });
 });
 
-describe('when the record has 5 or more holdings', () => {
+describe('when the record has more than 5 but less than 1000 holdings', () => {
+  const holdings = [];
+  for (let i = 0; i < 200; i += 1) {
+    holdings[i] = { catkey: `${i}`, callNumber: `CallNum${i}` };
+  }
   const structuredHoldings = [
     {
       summary: {},
-      holdings: [
-        { catkey: '1', callNumber: 'CallNum1' },
-        { catkey: '2', callNumber: 'CallNum2' },
-        { catkey: '3', callNumber: 'CallNum3' },
-        { catkey: '4', callNumber: 'CallNum4' },
-        { catkey: '5', callNumber: 'CallNum5' },
-      ],
+      holdings,
     },
   ];
 
@@ -49,25 +47,26 @@ describe('when the record has 5 or more holdings', () => {
   });
 
   describe('when the view more button is clicked', () => {
-    test('expands visible holdings + updates a11y elements', () => {
+    test('expands visible holdings by 100 + updates a11y elements', () => {
       const { getByRole, getAllByRole, queryByText, queryAllByRole } = render(
         <Availability structuredHoldings={structuredHoldings} />
       );
 
       expect(queryAllByRole('row')).toHaveLength(6);
-      expect(queryByText('Holdings 5 - 5')).toBeNull();
+      expect(queryByText('Holdings 5 - 104')).toBeNull();
       expect(queryByText('CallNum5')).toBeNull();
 
       fireEvent.click(getByRole('button'));
 
-      expect(queryAllByRole('row')).toHaveLength(8);
-      expect(queryByText('Holdings 5 - 5')).toBeInTheDocument();
+      expect(queryAllByRole('row')).toHaveLength(107);
+      expect(queryByText('Holdings 5 - 104')).toBeInTheDocument();
       expect(queryByText('CallNum5')).toBeInTheDocument();
 
       const buttons = getAllByRole('button');
-      expect(buttons).toHaveLength(2);
+      expect(buttons).toHaveLength(3);
       expect(buttons[0]).toHaveTextContent('Next');
       expect(buttons[1]).toHaveTextContent('Previous');
+      expect(buttons[2]).toHaveTextContent('View More');
     });
   });
 });
@@ -109,5 +108,42 @@ describe('when the record has summary holdings', () => {
     expect(
       getByText('Pattee - Stacks 3: Holdings Summary')
     ).toBeInTheDocument();
+  });
+
+  describe('when the record has more than 1000 holdings', () => {
+    const holdings = [];
+    for (let i = 0; i < 1002; i += 1) {
+      holdings[i] = { catkey: `${i}`, callNumber: `CallNum${i}` };
+    }
+    const structuredHoldings = [
+      {
+        summary: {},
+        holdings,
+      },
+    ];
+
+    describe('when the view more button is clicked', () => {
+      test('expands visible holdings by 500 + updates a11y elements', () => {
+        const { getByRole, getAllByRole, queryByText, queryAllByRole } = render(
+          <Availability structuredHoldings={structuredHoldings} />
+        );
+
+        expect(queryAllByRole('row')).toHaveLength(6);
+        expect(queryByText('Holdings 5 - 504')).toBeNull();
+        expect(queryByText('CallNum503')).toBeNull();
+
+        fireEvent.click(getByRole('button'));
+
+        expect(queryAllByRole('row')).toHaveLength(507);
+        expect(queryByText('Holdings 5 - 504')).toBeInTheDocument();
+        expect(queryByText('CallNum503')).toBeInTheDocument();
+
+        const buttons = getAllByRole('button');
+        expect(buttons).toHaveLength(3);
+        expect(buttons[0]).toHaveTextContent('Next');
+        expect(buttons[1]).toHaveTextContent('Previous');
+        expect(buttons[2]).toHaveTextContent('View More');
+      });
+    });
   });
 });
