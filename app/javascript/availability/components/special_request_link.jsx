@@ -35,36 +35,7 @@ const SpecialRequestLink = ({ holding, locationText }) => {
             : '';
 
           if (locationText) {
-            const itemLocation = encodeURIComponent(locationText);
-            const itemID = encodeURIComponent(holding.itemID);
-            const { itemTypeID } = holding;
-            const genre = itemTypeID === 'ARCHIVES' ? 'ARCHIVES' : 'BOOK';
-            linkUrl =
-              'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30' +
-              `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
-              `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
-
-            const publisher = encodeURIComponent(
-              data.publisher_name_ssm ? data.publisher_name_ssm : ''
-            );
-            const pubPlace = encodeURIComponent(
-              data.publication_place_ssm ? data.publication_place_ssm : ''
-            );
-            const edition = encodeURIComponent(
-              data.edition_display_ssm ? data.edition_display_ssm : ''
-            );
-            const restrictions = encodeURIComponent(
-              data.restrictions_access_note_ssm
-                ? data.restrictions_access_note_ssm
-                : ''
-            );
-            const subLocation = encodeURIComponent(
-              data.sublocation_ssm ? data.sublocation_ssm.join('; ') : ''
-            );
-            linkUrl +=
-              `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=` +
-              `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}` +
-              `&SubLocation=${subLocation}`;
+            linkUrl = aeonLinkUrl(linkUrl, data, title, author, pubDate);
           } else {
             const linkType = encodeURIComponent(illLinkType());
             const itemLocation = encodeURIComponent(holding.locationID);
@@ -91,11 +62,43 @@ const SpecialRequestLink = ({ holding, locationText }) => {
           }
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => {
         setShowSpinner(false);
         setUrl(linkUrl);
       });
+  };
+
+  const aeonLinkUrl = (linkUrl, data, title, author, pubDate) => {
+    const itemLocation = encodeURIComponent(locationText);
+    const itemID = encodeURIComponent(holding.itemID);
+    const { itemTypeID } = holding;
+    const genre = itemTypeID === 'ARCHIVES' ? 'ARCHIVES' : 'BOOK';
+    linkUrl =
+      'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30' +
+      `&ReferenceNumber=${catkey}&Genre=${genre}&Location=${itemLocation}` +
+      `&ItemNumber=${itemID}&CallNumber=${callNumber}`;
+
+    const publisher = encodeURIComponent(
+      data.publisher_name_ssm ? data.publisher_name_ssm : ''
+    );
+    const pubPlace = encodeURIComponent(
+      data.publication_place_ssm ? data.publication_place_ssm : ''
+    );
+    const edition = encodeURIComponent(
+      data.edition_display_ssm ? data.edition_display_ssm : ''
+    );
+    const restrictions = encodeURIComponent(
+      data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : ''
+    );
+    const subLocation = encodeURIComponent(
+      data.sublocation_ssm ? data.sublocation_ssm.join('; ') : ''
+    );
+    linkUrl +=
+      `&ItemTitle=${title}&ItemAuthor=${author}&ItemEdition=${edition}&ItemPublisher=` +
+      `${publisher}&ItemPlace=${pubPlace}&ItemDate=${pubDate}&ItemInfo1=${restrictions}` +
+      `&SubLocation=${subLocation}`;
+    return linkUrl;
   };
 
   const illLinkType = () => {
