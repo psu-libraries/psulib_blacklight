@@ -35,7 +35,7 @@ const SpecialRequestLink = ({ holding, locationText }) => {
           }
         }
       })
-      .catch(() => { })
+      .catch(() => {})
       .finally(() => {
         setShowSpinner(false);
         setUrl(linkUrl);
