@@ -41,7 +41,7 @@ const SpecialRequestLink = ({ holding, locationText }) => {
           }
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => {
         setShowSpinner(false);
         setUrl(linkUrl);
@@ -49,7 +49,6 @@ const SpecialRequestLink = ({ holding, locationText }) => {
   };
 
   const illLinkUrl = (linkUrl, data, title, author, pubDate) => {
-    const linkType = encodeURIComponent(illLinkType());
     const itemLocation = encodeURIComponent(holding.locationID);
     linkUrl += 'upm/illiad.dll/OpenURL?Action=10';
     if (linkType === 'archival-thesis') {
@@ -73,6 +72,16 @@ const SpecialRequestLink = ({ holding, locationText }) => {
     }
     return linkUrl;
   };
+
+  const illLinkType = () => {
+    if (availability.isReserves(holding)) return 'reserves-scan';
+    if (availability.isMicroform(holding)) return 'news-microform-scan';
+    if (availability.isArchivalThesis(holding)) return 'archival-thesis';
+
+    return 'request-via-ill';
+  };
+
+  const linkType = encodeURIComponent(illLinkType());
 
   const aeonLinkUrl = (linkUrl, data, title, author, pubDate) => {
     const itemLocation = encodeURIComponent(locationText);
@@ -112,14 +121,6 @@ const SpecialRequestLink = ({ holding, locationText }) => {
     encodeURIComponent(
       data.sublocation_ssm ? data.sublocation_ssm.join('; ') : ''
     );
-
-  const illLinkType = () => {
-    if (availability.isReserves(holding)) return 'reserves-scan';
-    if (availability.isMicroform(holding)) return 'news-microform-scan';
-    if (availability.isArchivalThesis(holding)) return 'archival-thesis';
-
-    return 'request-via-ill';
-  };
 
   const label = () => {
     let text = '';
