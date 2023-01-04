@@ -15,7 +15,7 @@ en:
       sms: 'SMS'
     search:
       errors:
-        request_error: "Sorry, our search index experienced a problem. Please try again in a moment. If this error persists, please [report the issue](https://libraries.psu.edu/website-feedback) to Libraries Strategic Technology."
+        request_error: "Sorry, our search index experienced a problem. Please try again in a moment. If this error persists, please report the issue to Libraries Strategic Technology here: https://libraries.psu.edu/website-feedback."
       librarian_view:
         title: 'MARC View'
       facets:
