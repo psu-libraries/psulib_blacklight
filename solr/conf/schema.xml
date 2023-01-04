@@ -240,6 +240,7 @@
 
     <!-- Sorts -->
     <field name="title_sort"          type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="id_sort"             type="int" docValues="true" indexed="true" stored="false" multiValued="true" />
   </fields>
 
 
@@ -257,6 +258,7 @@
   <copyField source="*_tesim" dest="suggest"/>
   <copyField source="*_ssim" dest="suggest"/>
   <copyField source="*_si" dest="suggest"/>
+  <copyField source="id" dest="id_sort" />
 
   <!-- unstemmed fields -->
   <copyField source="title_tsim" dest="title_unstem_search"/>
