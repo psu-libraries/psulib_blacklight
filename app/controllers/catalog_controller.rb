@@ -201,6 +201,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'pub_date_itsi', label: 'Publication Year', range: { segments: false }
     config.add_facet_field 'subject_browse_facet', show: false, limit: 0
     config.add_facet_field 'subject_facet', show: false
+    config.add_facet_field 'title_sort', label: 'Title', show: false
 
     #
     # Facets that only appear on the home page
