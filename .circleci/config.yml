@@ -64,13 +64,16 @@ jobs:
     docker:
       - image: cimg/ruby:3.1.2-browsers
       - image: redis:5.0.7
-      - image: harbor.k8s.libraries.psu.edu/library/solr:7.7.3
+      - image: harbor.k8s.libraries.psu.edu/library/solr:8.11.2
         command: [
-          "solr-foreground",
-          "-DzkRun"
+          "/bin/bash",
+          "-c",
+          "solr -c && solr auth enable -credentials catalog:catalog -z localhost:9983; solr stop && solr -c -f",
         ]
     environment:
       RAILS_ENV: test
+      SETTINGS__solr__username: catalog
+      SETTINGS__solr__password: catalog
     steps:
     - browser-tools/install-chrome
     - browser-tools/install-chromedriver
