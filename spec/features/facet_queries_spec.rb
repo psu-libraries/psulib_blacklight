@@ -20,4 +20,13 @@ RSpec.describe 'Facet Queries', type: :feature do
                                   exact_text: 'Islamic decorative arts—Turkey'
     expect(page).to have_selector 'article[data-document-id="21322677"]'
   end
+
+  it 'Title Facet' do
+    visit '/?f%5Btitle_sort%5D%5B%5D=Becoming'
+    expect(page).to have_selector '.filter-name',
+                                  exact_text: 'Title'
+    expect(page).to have_selector '.filter-value',
+                                  exact_text: 'Becoming'
+    expect(page).to have_selector 'article[data-document-id="24053587"]'
+  end
 end

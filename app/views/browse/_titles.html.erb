@@ -12,7 +12,7 @@
   <tbody>
     <% title_list.entries.map do |item| %>
       <tr>
-        <td><%= link_to item.value, search_catalog_path('search_field' => 'title', 'q' => item.value) %></td>
+        <td><%= link_to item.value, search_catalog_path('f[title_sort][]' => item.value) %></td>
         <td><%= item.hits %></td>
       </tr>
     <% end %>
