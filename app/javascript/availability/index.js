@@ -20,6 +20,7 @@ const availability = {
   allItemTypes: itemTypes.item_types,
   reserveCirculationRules: reserveCirculationRules.reserve_circulation_rules,
   movedLocations: [],
+  nonHoldableLocations: locations.non_holdable,
 
   sirsiUrl: '/availability/sirsi-data/?',
   sirsiItemUrl: '/availability/sirsi-item-data/?',
@@ -352,6 +353,7 @@ const availability = {
           '.availability-snippet'
         );
         const holdButton = availabilityHTML.find('.hold-button');
+        const noRecallsButton = availabilityHTML.find('.no-recalls-button');
 
         // If at least one physical copy, then display availability and holding info
         if (Object.keys(rawHoldings).length > 0) {
@@ -375,7 +377,12 @@ const availability = {
             );
           }
 
-          // If holdable, then display the hold button
+          // If holdable and no-recalls then display the no-recalls button
+          if (availability.showNoRecallsButton(rawHoldings)) {
+            noRecallsButton.removeClass('d-none').addClass('d-md-inline');
+          }
+
+          // If holdable and not no-recalls then display the hold button
           if (availability.showHoldButton(rawHoldings)) {
             holdButton.removeClass('d-none').addClass('d-md-inline');
           }
@@ -510,8 +517,13 @@ const availability = {
   showHoldButton(holdings) {
     return (
       holdings[0].holdable === 'true' &&
-      !availability.allCourseReserves(holdings)
+      !availability.allCourseReserves(holdings) &&
+      !availability.noRecalls(holdings)
     );
+  },
+
+  showNoRecallsButton(holdings) {
+    return holdings[0].holdable === 'true' && availability.noRecalls(holdings);
   },
 
   allCourseReserves(holdings) {
@@ -522,6 +534,46 @@ const availability = {
     }
 
     return true;
+  },
+
+  noRecalls(holdings) {
+    if (availability.allIllLocation(holdings)) {
+      return true;
+    }
+
+    if (availability.allNonHoldableLocation(holdings)) {
+      return true;
+    }
+
+    return false;
+  },
+
+  allIllLocation(holdings) {
+    for (const holding of holdings) {
+      if (!availability.isIllLocation(holding)) {
+        return false;
+      }
+    }
+
+    return true;
+  },
+
+  allNonHoldableLocation(holdings) {
+    for (const holding of holdings) {
+      if (!availability.isNonHoldableLocation(holding)) {
+        return false;
+      }
+    }
+
+    return true;
+  },
+
+  isIllLocation(holding) {
+    return holding.locationID in availability.illiadLocations;
+  },
+
+  isNonHoldableLocation(holding) {
+    return holding.locationID in availability.nonHoldableLocations;
   },
 };
 

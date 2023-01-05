@@ -10,7 +10,12 @@
         <% unless Settings&.hide_hold_button %>
           <% unless @document.hathi_links && @document.hathi_links.dig(:etas_item) -%>
             <div class="hold-button d-none">
-              <%= link_to 'I Want It', "#{Settings.hold_button_url}#{id}", class: 'btn btn-primary pr-4 pl-4 mb-2' %>
+              <%= link_to 'I Want It', "#{Settings.my_account_url}##{Settings.hold_button_path}#{id}",
+                          class: 'btn btn-primary pr-4 pl-4 mb-2' %>
+            </div>
+            <div class="no-recalls-button d-none">
+              <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.no_recall_button_path}#{id}",
+                          class: 'btn btn-primary pr-4 pl-4 mb-2' %>
             </div>
           <% end %>
         <% end %>

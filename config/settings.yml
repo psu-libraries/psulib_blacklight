@@ -1,4 +1,6 @@
-hold_button_url: https://myaccount.qa.k8s.libraries.psu.edu/holds/new?catkey=
+my_account_url: https://myaccount.libraries.psu.edu/
+hold_button_path: holds/new?catkey=
+no_recall_button_path: ill/new?catkey=
 sirsi_url: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true
 matomo_id: 10
 mysql:
