@@ -9,7 +9,7 @@ x-web_env: &web_env
       SETTINGS__redis__sessions__uri: "redis://redis:6379/3"
 services:
   redis:
-    image: redis:6.0.6-alpine3.12
+    image: redis:7.0.7
     volumes:
       - redis-data:/data
     ports:
