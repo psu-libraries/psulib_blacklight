@@ -332,17 +332,18 @@
   <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler" />
 
   <query>
-    <filterCache class="solr.FastLRUCache"
-                 size="1000"
-                 initialSize="1000"
+
+    <filterCache class="solr.CaffeineCache"
+                 size="2000"
+                 initialSize="2000"
                  autowarmCount="100"/>
 
-    <queryResultCache class="solr.LRUCache"
+    <queryResultCache class="solr.CaffeineCache"
                       size="1000"
                       initialSize="1000"
                       autowarmCount="100"/>
 
-    <documentCache class="solr.LRUCache"
+    <documentCache class="solr.CaffeineCache"
                    size="1000"
                    initialSize="1000"/>
 
