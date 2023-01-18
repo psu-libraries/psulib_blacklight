@@ -64,9 +64,9 @@ class Search
   end
 
   def save
-    redis.multi do |pipeline|
-      pipeline.set(id, @query_params.to_json)
-      pipeline.expire(id, ttl)
+    redis.multi do
+      redis.set(id, @query_params.to_json)
+      redis.expire(id, ttl)
     end
 
     self
