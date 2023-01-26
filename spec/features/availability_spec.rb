@@ -270,7 +270,7 @@ RSpec.describe 'Availability', :vcr, type: :feature do
         within 'div[data-library="UP-ANNEX"]' do
           expect(page).to have_link(
             'Request Scan - Penn State Users',
-            href: 'https://psu.illiad.oclc.org/illiad/upm/illiad.dll/' \
+            href: 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/' \
                   'OpenURL?Action=10&Form=20&Genre=GenericRequestThesisDigitization&title=Ecology' \
                   '%20of%20the%20wild-trapped%20and%20transplanted%20ring-necked%20pheasant%20near' \
                   '%20Centre%20Hall%2C%20Pennsylvania&callno=Thesis%201968mMyers%2CJE&rfr_id=info' \
@@ -437,7 +437,7 @@ RSpec.describe 'Availability', :vcr, type: :feature do
         within 'div[data-library="HARRISBURG"]' do
           expect(page).to have_link(
             'Copy unavailable, request via Interlibrary Loan',
-            href: 'https://psu.illiad.oclc.org/illiad/upm/illiad.dll/' \
+            href: 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/' \
                   'OpenURL?Action=10&Form=30&isbn=9781599901091' \
                   '&title=Sun%20and%20moon%2C%20ice%20and%20snow&callno=PZ8.G3295Su%202008&rfr_id=' \
                   'info%3Asid%2Fcatalog.libraries.psu.edu&aulast=George%2C%20Jessica%20Day%2C%201976' \
