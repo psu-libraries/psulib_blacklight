@@ -20,7 +20,7 @@ const SpecialRequestLink = ({ holding, locationText }) => {
   const createUrl = () => {
     let linkUrl = locationText
       ? 'https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll'
-      : 'https://psu.illiad.oclc.org/illiad/';
+      : 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/';
     fetchJson(`/catalog/${catkey}/raw.json`)
       .then((data) => {
         if (Object.keys(data).length > 0) {

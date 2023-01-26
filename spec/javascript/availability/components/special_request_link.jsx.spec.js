@@ -147,7 +147,8 @@ describe('when locationText is sent to SpecialRequestLink', () => {
 
 describe('when locationText is not sent to SpecialRequestLink', () => {
   const baseUrl =
-    'https://psu.illiad.oclc.org/illiad/upm/illiad.dll/OpenURL?Action=10';
+    'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/' +
+    'OpenURL?Action=10';
   const holdingData = { locationID: 'BINDERY', callNumber: '123' };
 
   const testLink = async (getByRole, container, label, href) => {
@@ -384,7 +385,7 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
       getByRole,
       container,
       'Use ILLiad to request this item',
-      'https://psu.illiad.oclc.org/illiad/'
+      'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/'
     );
 
     expect(getByRole('link')).toHaveAttribute('target', '_blank');
@@ -401,7 +402,7 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
       getByRole,
       container,
       'Use ILLiad to request this item',
-      'https://psu.illiad.oclc.org/illiad/'
+      'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/'
     );
 
     expect(getByRole('link')).toHaveAttribute('target', '_blank');
