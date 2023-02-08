@@ -81,6 +81,13 @@ module PsulibBlacklight
       check_resp(resp)
     end
 
+    def delete_unused_collections
+      collections_to_delete = collections_with_prefix - [current_collection]
+      collections_to_delete.each do |collection|
+        delete_collection(collection)
+      end
+    end
+
     private
 
       def version_number(colection_name)
@@ -125,6 +132,11 @@ module PsulibBlacklight
       def config_sets
         list = connection.get(PsulibBlacklight::SolrConfig::CONFIG_PATH, action: 'LIST')
         JSON.parse(list.body).fetch('configSets', [])
+      end
+
+      def current_collection
+        resp = connection.get(PsulibBlacklight::SolrConfig::COLLECTION_PATH, action: 'LISTALIASES')
+        JSON.parse(resp.body)['aliases']&.dig(config.alias_name)
       end
 
       def collections

@@ -14,6 +14,26 @@ RSpec.describe PsulibBlacklight::SolrManager do
     stub_const('PsulibBlacklight::SolrManager::ALLOWED_TIME_TO_RESPOND', 1)
   end
 
+  describe '#delete_unused_collections' do
+    context 'when there are collections to delete' do
+      before do
+        stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LIST")
+          .to_return(status: 200, body: '{"responseHeader":{"status":0, "QTime":11},
+                    "collections":["psul_catalog_v1", "psul_catalog_v2"]}')
+        stub_request(:get, "#{config_obj.url}/solr/admin/collections?action=LISTALIASES")
+          .to_return(status: 200, body: '{"responseHeader":{"status":0,"QTime":1}, 
+                    "aliases":{"psul_catalog":"psul_catalog_v1"},"properties":{}}')
+        stub_request(:post, "#{config_obj.url}/solr/admin/collections?action=DELETE").with(
+          query: { name: 'psul_catalog_v2' })
+          .to_return(status: 200, body: '{"responseHeader":{"status":0,"QTime":318},"success":{"host":{"responseHeader":{"status":0,"QTime":45}}}}')
+      end
+
+      it 'deletes unused collections' do
+        expect(solr_manager.delete_unused_collections).to eq(["psul_catalog_v2"])
+      end
+    end
+  end
+
   describe '#initialize_collection' do
     context 'when collection does not exist' do
       before do
