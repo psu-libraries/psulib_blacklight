@@ -49,4 +49,9 @@ namespace :solr do
 
     solr_manager.delete_collection(args['collection'])
   end
+
+  desc 'Delete all unused collections'
+  task delete_unused_collections: :environment do
+    solr_manager.delete_unused_collections
+  end
 end
