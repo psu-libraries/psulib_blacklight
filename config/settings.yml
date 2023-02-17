@@ -24,3 +24,9 @@ solr:
   # password: 
   # url: http://127.0.0.1:8983
   collection: psul_catalog
+hide_announcement: false
+announcement:
+  # See https://fontawesome.com/icons
+  icon: fa-exclamation-circle
+  message: 'Planned maintenance: Realtime availability, "I Want It," and My Account will be unavailable between 6 and 7am on Thursday February 23, 2023'
+  html_class: bg-warning
