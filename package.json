@@ -6,7 +6,7 @@
     "@fontsource/open-sans": "^4.5.0",
     "@fontsource/roboto-slab": "^4.5.0",
     "@fortawesome/fontawesome-free": "^5.7.2",
-    "@rails/webpacker": "^5.4.0",
+    "@rails/webpacker": "^5.4.4",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "blacklight-frontend": "7.25.0",
     "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#latest",
