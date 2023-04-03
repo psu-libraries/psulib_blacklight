@@ -285,6 +285,40 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
     });
   });
 
+  describe('when no isbn_valid_ssm', () => {
+    const moreParams =
+      '&title=book%20title&callno=123&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu' +
+      '&aulast=author%20name&date=2021';
+
+    beforeEach(() => {
+      global.fetch = jest.fn(() =>
+        Promise.resolve({
+          json: () =>
+            Promise.resolve({
+              title_245ab_tsim: 'book title',
+              author_tsim: 'author name',
+              pub_date_illiad_ssm: 2021
+            }),
+        })
+      );
+    });
+
+    test('renders an ILL link', async () => {
+      const { getByRole, container } = render(
+        <SpecialRequestLink holding={holdingData} />
+      );
+
+      const href = `${baseUrl}&Form=30&isbn=${moreParams}`;
+
+      await testLink(
+        getByRole,
+        container,
+        'Copy unavailable, request via Interlibrary Loan',
+        href
+      );
+    });
+  });
+
   test('renders a link with no author info', async () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
