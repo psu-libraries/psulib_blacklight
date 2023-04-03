@@ -47,10 +47,10 @@ class SearchHistory
   def add(search)
     key = search.try(:id) || search
 
-    redis.multi do
-      redis.lpush(id, key)
-      redis.ltrim(id, 0, (limit - 1))
-      redis.expire(id, ttl)
+    redis.multi do |pipeline|
+      pipeline.lpush(id, key)
+      pipeline.ltrim(id, 0, (limit - 1))
+      pipeline.expire(id, ttl)
     end
 
     reload
