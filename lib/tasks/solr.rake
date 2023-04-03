@@ -28,6 +28,23 @@ namespace :solr do
     solr_manager.create_alias
   end
 
+  desc 'Loads record from the catalog and places into current_fixtures'
+  task :load_from_catalog, [:catkey] => [:environment] do |_task, args|
+    catkeys = [args[:catkey]]
+    if catkeys.compact.empty?
+      catkeys = Settings.fixture_catkeys
+    end
+    docs = []
+    catkeys.each do |catkey|
+      doc = JSON.parse(Net::HTTP.get(URI("#{Settings.fixture_host}/catalog/#{catkey}/raw.json")))
+      doc.delete("_version_")
+      docs << doc
+      doc_file = File.open("spec/fixtures/current_fixtures/#{catkey}.json", "w")
+      doc_file.write(doc.to_json)
+      doc_file.close
+    end
+  end
+
   desc 'Load the test fixtures'
   task load_fixtures: :environment do
     PsulibBlacklight::DataManager.load_fixtures
