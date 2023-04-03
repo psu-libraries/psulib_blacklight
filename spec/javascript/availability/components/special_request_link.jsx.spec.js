@@ -297,7 +297,7 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
             Promise.resolve({
               title_245ab_tsim: 'book title',
               author_tsim: 'author name',
-              pub_date_illiad_ssm: 2021
+              pub_date_illiad_ssm: 2021,
             }),
         })
       );
