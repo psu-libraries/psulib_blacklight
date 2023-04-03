@@ -35,7 +35,7 @@ const SpecialRequestLink = ({ holding, locationText }) => {
           }
         }
       })
-      .catch(() => { })
+      .catch(() => {})
       .finally(() => {
         setShowSpinner(false);
         setUrl(linkUrl);
@@ -49,8 +49,9 @@ const SpecialRequestLink = ({ holding, locationText }) => {
     if (linkType === 'archival-thesis') {
       linkUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
     } else {
-      const isbn_field = data.isbn_valid_ssm
-      const isbn = (!isbn_field || isbn_field.length === 0) ? '' : data.isbn_valid_ssm[0];
+      const isbnField = data.isbn_valid_ssm;
+      const isbn =
+        !isbnField || isbnField.length === 0 ? '' : data.isbn_valid_ssm[0];
       linkUrl += `&Form=30&isbn=${isbn}`;
     }
     if (linkType === 'reserves-scan') {
