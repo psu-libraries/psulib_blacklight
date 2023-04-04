@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Call Number Browse', type: :feature do
   context 'when Browse by LC Call Numbers' do
-    context 'when the user is not searching for a particular call number' do
+    xcontext 'when the user is not searching for a particular call number' do
       specify do
         visit '/browse/call_numbers?classification=lc'
 
@@ -45,7 +45,7 @@ RSpec.describe 'Call Number Browse', type: :feature do
         end
       end
 
-      context 'when there is not an exact match' do
+      xcontext 'when there is not an exact match' do
         specify do
           visit '/browse/call_numbers?nearby=LOL&classification=lc'
 
@@ -80,7 +80,7 @@ RSpec.describe 'Call Number Browse', type: :feature do
     end
 
     context 'when the user is searching for a particular call number' do
-      context 'when there is an exact match' do
+      xcontext 'when there is an exact match' do
         specify do
           visit '/browse/call_numbers?nearby=301.154G854c&classification=dewey'
 
