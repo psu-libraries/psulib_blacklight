@@ -44,12 +44,15 @@ const SpecialRequestLink = ({ holding, locationText }) => {
 
   const illLinkUrl = (linkUrl, data, title, author, pubDate) => {
     const itemLocation = encodeURIComponent(holding.locationID);
+    const linkType = encodeURIComponent(illLinkType());
     linkUrl += 'upm/illiad.dll/OpenURL?Action=10';
     if (linkType === 'archival-thesis') {
       linkUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
     } else {
-      const ISBN = data.isbn_valid_ssm[0] ? data.isbn_valid_ssm[0] : '';
-      linkUrl += `&Form=30&isbn=${ISBN}`;
+      const isbnField = data.isbn_valid_ssm;
+      const isbn =
+        !isbnField || isbnField.length === 0 ? '' : data.isbn_valid_ssm[0];
+      linkUrl += `&Form=30&isbn=${isbn}`;
     }
     if (linkType === 'reserves-scan') {
       linkUrl += `&Genre=GenericRequestReserves&location=${itemLocation}`;
@@ -74,8 +77,6 @@ const SpecialRequestLink = ({ holding, locationText }) => {
 
     return 'request-via-ill';
   };
-
-  const linkType = encodeURIComponent(illLinkType());
 
   const aeonLinkUrl = (linkUrl, data, title, author, pubDate) => {
     const itemLocation = encodeURIComponent(locationText);
