@@ -112,7 +112,7 @@ class ShelfListPresenter
 
     def match_item(list)
       list.select do |shelf_item|
-        if Shelvit.normalize(shelf_item.call_number).include? shelf_key
+        if Shelvit.normalize(shelf_item.call_number)&.include? shelf_key
           shelf_item.match = true
           shelf_item.nearby = true if before_list.count.positive?
         end
