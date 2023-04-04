@@ -47,6 +47,9 @@ config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
 
+# Ignore vendor packages
+vendor/**/*
+
 .cache
 .local
 .pki

@@ -63,7 +63,12 @@ class ShelfListPresenter
   private
 
     def shelf_items
-      (before_items + after_items)
+      combined_items = (before_items + after_items)
+      if match?(combined_items)
+        combined_items
+      else
+        nearby_item(combined_items)
+      end
     end
 
     def shelvit_nearby
@@ -87,29 +92,27 @@ class ShelfListPresenter
 
       return list if shelf_key.blank?
 
-      if match?
-        match_item list
-      else
-        nearby_item list
-      end
+      match_item list
     end
 
     # @return [Array<ShelfItem>]
     def after_items
-      shelf_list[:after].reject do |shelf_item|
+      filter_list = shelf_list[:after].reject do |shelf_item|
         before_items.map(&:key).include? shelf_item.key
       end
+
+      match_item filter_list
     end
 
-    def match?
-      before_list
-        &.map(&:key)
+    def match?(input_list)
+      input_list
+        &.map { |i| Shelvit.normalize(i.call_number) }
         &.include?(shelf_key)
     end
 
     def match_item(list)
       list.select do |shelf_item|
-        if shelf_item.key == shelf_key
+        if Shelvit.normalize(shelf_item.call_number).include? shelf_key
           shelf_item.match = true
           shelf_item.nearby = true if before_list.count.positive?
         end
