@@ -4,6 +4,7 @@ class SolrDocument
   include Blacklight::Solr::Document
   include HathiLinks
   include ExternalLinks
+  include PreferredCallNumber
 
   # self.unique_key = 'id'
   field_semantics.merge!(
