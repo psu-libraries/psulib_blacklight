@@ -42,8 +42,8 @@ RSpec.describe Browse::NearbyButton, type: :component do
 
     it 'renders a dropdown button with multiple options' do
       expect(node).to have_selector('button[data-toggle=dropdown]')
-      expect(node).to have_link('ABC', href: '/browse/call_numbers?classification=dewey&nearby=131')
-      expect(node).to have_link('DEF', href: '/browse/call_numbers?classification=dewey&nearby=132')
+      expect(node).to have_link('131', href: '/browse/call_numbers?classification=dewey&nearby=131')
+      expect(node).to have_link('132', href: '/browse/call_numbers?classification=dewey&nearby=132')
     end
   end
 end
