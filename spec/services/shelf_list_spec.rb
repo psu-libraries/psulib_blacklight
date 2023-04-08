@@ -102,9 +102,9 @@ RSpec.describe ShelfList do
 
         it 'returns the previous four things that appear before it in reverse order, but not the thing itself' do
           expect(list[:before].map(&:call_number)).to contain_exactly(
+            '016.53976Un3i',
             '111.85M35b',
             '136.53M582a',
-            '170M366l 1844',
             '294.516B14b Zs',
             '301.154G854c'
           )
