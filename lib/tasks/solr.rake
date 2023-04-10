@@ -36,12 +36,15 @@ namespace :solr do
     end
     docs = []
     catkeys.each do |catkey|
-      doc = JSON.parse(Net::HTTP.get(URI("#{Settings.fixture_host}/catalog/#{catkey}/raw.json")))
-      doc.delete('_version_')
-      docs << doc
-      doc_file = File.open("spec/fixtures/current_fixtures/#{catkey}.json", 'w')
-      doc_file.write(doc.to_json)
-      doc_file.close
+      filepath = "spec/fixtures/current_fixtures/#{catkey}.json"
+      unless File.exists?(filepath)
+        doc = JSON.parse(Net::HTTP.get(URI("#{Settings.fixture_host}/catalog/#{catkey}/raw.json")))
+        doc.delete('_version_')
+        docs << doc
+        doc_file = File.open(filepath, 'w')
+        doc_file.write(doc.to_json)
+        doc_file.close
+      end
     end
   end
 
