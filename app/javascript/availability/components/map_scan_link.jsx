@@ -4,7 +4,7 @@ import availability from '../index';
 const MapScanLink = ({ holding }) => {
   const isUPMap = () =>
     ['MAP', 'MAPSPEC'].includes(holding.itemTypeID) &&
-    ['UP-MAPS'].includes(holding.libraryID);
+    ['UP-MAPS', 'UP-EMS'].includes(holding.libraryID);
 
   if (!isUPMap()) {
     return null;
