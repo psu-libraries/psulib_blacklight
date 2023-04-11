@@ -51,3 +51,4 @@ config/environments/*.local.yml
 .local
 .pki
 .webdrivers
+.envrc

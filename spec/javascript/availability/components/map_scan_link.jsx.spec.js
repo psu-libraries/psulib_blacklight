@@ -23,7 +23,7 @@ describe('when the item is not an eligible map type', () => {
 
 describe('when the item is an eligible map type and at an eligible library', () => {
   test('renders the component with the correct link', () => {
-    const holdingData = { libraryID: 'UP-MAPS', itemTypeID: 'MAP' };
+    const holdingData = { libraryID: 'UP-EMS', itemTypeID: 'MAP' };
     const { getByRole } = render(<MapScanLink holding={holdingData} />);
     const link = getByRole('link');
 
