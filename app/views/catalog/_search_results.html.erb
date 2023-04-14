@@ -19,6 +19,8 @@
 
 <h2 class="sr-only"><%= t('blacklight.search.search_results') %></h2>
 
+<%= campus_facet_all_online_links %>
+
 <%- if @response.empty? %>
   <%= render 'zero_results' %>
 <%- elsif render_grouped_response? %>

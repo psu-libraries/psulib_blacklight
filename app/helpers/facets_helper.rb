@@ -60,4 +60,22 @@ module FacetsHelper
     default_component = facet_config.pivot ? Blacklight::FacetItemPivotComponent : PsulFacetItemComponent
     facet_config.fetch(:item_component, default_component)
   end
+
+  def campus_facet_all_online_links
+    if params['f'].keys == ['campus_facet']
+      if params[:add_all_online].present?
+        link_to(
+          'Remove online results',
+          "?#{params.except(:controller, :action, :add_all_online).to_query}",
+          class: 'btn btn-outline-secondary btn-sm mt-2'
+        )
+      else
+        link_to(
+          'Include all online results',
+          "?#{params.except(:controller, :action, :add_all_online).to_query}&add_all_online=true",
+          class: 'btn btn-outline-primary btn-sm mt-2'
+        )
+      end
+    end
+  end
 end
