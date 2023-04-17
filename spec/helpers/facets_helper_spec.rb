@@ -106,4 +106,54 @@ RSpec.describe FacetsHelper do
       end
     end
   end
+
+  describe 'campus_facet_all_online_links?' do
+    context "when params['f'] is nil" do
+      before do
+        allow(helper).to receive_messages(params: {})
+      end
+
+      it 'returns nothing' do
+        expect(helper.campus_facet_all_online_links).to be_nil
+      end
+    end
+
+    context "when params['f'] is not filtering on only campus_facet" do
+      before do
+        allow(helper).to receive_messages(params: { 'f' => { 'campus_facet' => ['Penn State Great Valley'],
+                                                             'format' => ['Book'] } })
+      end
+
+      it 'returns nothing' do
+        expect(helper.campus_facet_all_online_links).to be_nil
+      end
+    end
+
+    context "when params['f'] is filtering on only campus_facet" do
+      context "when params[:add_all_online] is not 'true'" do
+        before do
+          allow(helper).to receive_messages(params: { 'f' => { 'campus_facet' => ['Penn State Great Valley'] } })
+        end
+
+        it 'returns a link to "Include all online results"' do
+          expect(helper.campus_facet_all_online_links).to eq '<a class="btn btn-outline-primary btn-sm mt-2" href="' \
+                                                             '?f%5Bcampus_facet%5D%5B%5D=Penn+State+Great+Valley&am' \
+                                                             'p;add_all_online=true">Include all online results</a>'
+        end
+      end
+
+      context "when params[:add_all_online] is 'true'" do
+        before do
+          allow(helper).to receive_messages(params: { 'f' => { 'campus_facet' => ['Penn State Great Valley'] },
+                                                      'add_all_online' => 'true' })
+        end
+
+        it 'returns a link to "Remove online results"' do
+          expect(helper.campus_facet_all_online_links).to eq '<a class="btn btn-outline-secondary btn-sm mt-2" href' \
+                                                             '="?add_all_online=true&amp;f%5Bcampus_facet%5D%5B%5D=' \
+                                                             'Penn+State+Great+Valley">Remove online results</a>'
+        end
+      end
+    end
+  end
 end

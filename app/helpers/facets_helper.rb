@@ -63,7 +63,7 @@ module FacetsHelper
 
   def campus_facet_all_online_links
     if params['f']&.keys == ['campus_facet']
-      if params[:add_all_online].present?
+      if params['add_all_online'].present?
         link_to(
           'Remove online results',
           "?#{params.except(:controller, :action, :add_all_online).to_query}",
