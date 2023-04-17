@@ -28,7 +28,7 @@ class SearchBuilder < Blacklight::SearchBuilder
 
     def campus_facet_all_online_query?(solr_parameters)
       blacklight_params['add_all_online'] == 'true' &&
-        solr_parameters['fq']&.count == 1 &&
-        solr_parameters['fq']&.first&.include?('tag=campus_facet_single')
+        solr_parameters[:fq]&.count == 1 &&
+        solr_parameters[:fq]&.first&.include?('tag=campus_facet_single')
     end
 end
