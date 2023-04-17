@@ -107,7 +107,7 @@ RSpec.describe FacetsHelper do
     end
   end
 
-  describe 'campus_facet_all_online_links?' do
+  describe 'campus_facet_all_online_links' do
     context 'when params[:f] is nil' do
       before do
         allow(helper).to receive_messages(params: {})
