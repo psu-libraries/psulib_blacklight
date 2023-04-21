@@ -10,7 +10,7 @@ RSpec.describe 'Campus Facet Add All Online', type: :feature do
       visit '/?f[campus_facet][]=Penn+State+Behrend'
       expect(page).to have_content ' 1 - 10 of 21 '
       click_on 'Include all online results'
-      expect(page).to have_content ' 1 - 10 of 155 '
+      expect(page).to have_content ' 1 - 10 of 182 '
       click_on 'Remove online results'
       expect(page).to have_content ' 1 - 10 of 21 '
     end
