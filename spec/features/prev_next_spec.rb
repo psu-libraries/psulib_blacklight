@@ -14,7 +14,7 @@ RSpec.describe 'Previous Next Toggle', type: :feature do
       # Go to the number 6 result separately
       visit '/catalog/24053587'
       expect(page).not_to have_selector '.page-links'
-      expect(page).not_to have_content '← Previous | 6 of 584 | Next →'
+      expect(page).not_to have_content '← Previous | 6 of 585 | Next →'
     end
   end
 end

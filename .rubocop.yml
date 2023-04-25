@@ -79,3 +79,7 @@ RSpec/RepeatedExampleGroupBody:
 RSpec/MessageSpies:
   Exclude:
   - 'spec/controllers/catalog_controller_spec.rb'
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+  - 'spec/models/search_builder_spec.rb'

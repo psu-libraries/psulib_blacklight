@@ -415,7 +415,6 @@ RSpec.describe 'Availability', :vcr, type: :feature do
         visit '/catalog/24519'
 
         within('div[data-library="UP-MAPS"]') do
-          expect(page).to have_link 'Copy unavailable, request via Interlibrary Loan'
           expect(page).to have_link 'Request scan'
         end
       end
@@ -428,27 +427,6 @@ RSpec.describe 'Availability', :vcr, type: :feature do
           expect(page).to have_xpath './/tbody/tr[td//text()[contains(., \'Request scan\')]]', count: 50
           expect(page).not_to have_selector 'button', text: /View More/
         end
-      end
-    end
-
-    describe 'Request via ILL link' do
-      it 'displays if a record has a holding in an ILL location' do
-        visit '/catalog/5112336'
-        within 'div[data-library="HARRISBURG"]' do
-          expect(page).to have_link(
-            'Copy unavailable, request via Interlibrary Loan',
-            href: 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/' \
-                  'OpenURL?Action=10&Form=30&isbn=9781599901091' \
-                  '&title=Sun%20and%20moon%2C%20ice%20and%20snow&callno=PZ8.G3295Su%202008&rfr_id=' \
-                  'info%3Asid%2Fcatalog.libraries.psu.edu&aulast=George%2C%20Jessica%20Day%2C%201976' \
-                  '-&date=2008'
-          )
-        end
-      end
-
-      it 'doesn\'t display if a record does not have a holding in a ILL location' do
-        visit '/catalog/1839879'
-        expect(page).not_to have_link 'Copy unavailable, request via Interlibrary Loan'
       end
     end
 

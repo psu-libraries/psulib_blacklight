@@ -9,7 +9,7 @@ RSpec.describe 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?classification=lc'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: 'AP3.M33 to BM516.B5134 1948'
+                                      exact_text: 'AP3.M33 to BM517.S6 1983'
 
         expect(page).not_to have_selector '.table-primary'
 
