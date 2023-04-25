@@ -20,7 +20,7 @@ RSpec.describe 'Title Browse', type: :feature do
       first(:link, 'Next').click
 
       expect(page).to have_selector 'tr:nth-child(2) td:nth-child(1)',
-                                    exact_text: 'American marriage'
+                                    exact_text: 'American anthem'
     end
   end
 
