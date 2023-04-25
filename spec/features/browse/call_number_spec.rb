@@ -29,7 +29,7 @@ RSpec.describe 'Call Number Browse', type: :feature do
           visit '/browse/call_numbers?nearby=F127.A2M9 1869&classification=lc'
 
           expect(page).to have_selector 'h2.h4',
-                                        exact_text: 'E909.O24A3 2018 to HD4909.H5 1948'
+                                        exact_text: 'E909.O24A3 2018 to HB179.T84'
 
           expect(page).to have_link('F127.A2M9 1869', href: '/catalog/213578')
 
@@ -65,17 +65,17 @@ RSpec.describe 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?classification=dewey'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: '001B289h to 660.6So1r'
+                                      exact_text: '001B289h to 590.52An7'
 
         expect(page).not_to have_selector '.table-primary'
 
         expect(page).to have_link('001B289h', href: '/catalog/839980')
         expect(page).to have_selector 'tr:nth-child(2) td:nth-child(2)',
-                                      exact_text: 'The beautiful / by Henry Rutgers Marshall'
+                                      exact_text: 'An international bibliography on atomic energy'
         expect(page).to have_selector 'tr:nth-child(2) td:nth-child(3)',
-                                      exact_text: 'Annex / Penn State Harrisburg'
+                                      exact_text: 'Annex'
         expect(page).to have_selector 'tr:nth-child(2) td:nth-child(4)',
-                                      exact_text: 'London : Macmillan, 1924.'
+                                      exact_text: 'Lake Success : [publisher not identified], 1949-1951.'
       end
     end
 
@@ -106,7 +106,7 @@ RSpec.describe 'Call Number Browse', type: :feature do
           visit '/browse/call_numbers?nearby=LOL&classification=dewey'
 
           expect(page).to have_selector 'h2.h4',
-                                        exact_text: '977.3Il6c v.11 to None'
+                                        exact_text: 'None to None'
 
           expect(page).to have_selector 'tr.table-primary:nth-child(2) td',
                                         exact_text: 'You\'re looking for: LOL'
