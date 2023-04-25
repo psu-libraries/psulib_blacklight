@@ -15,7 +15,7 @@ RSpec.describe 'Title Browse', type: :feature do
       end
 
       expect(page).to have_selector 'tr:nth-child(3) td:nth-child(1)',
-                                    exact_text: '1960s film posters collection'
+                                    exact_text: '12th-century chant Abelard, hymns & sequences for Heloise'
 
       first(:link, 'Next').click
 
