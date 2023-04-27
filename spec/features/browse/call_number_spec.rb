@@ -9,7 +9,7 @@ RSpec.describe 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?classification=lc'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: 'AP3.M33 to BM517.S6 1983'
+                                      exact_text: 'AP3.M33 to BM516.B5134 1948'
 
         expect(page).not_to have_selector '.table-primary'
 
@@ -29,7 +29,7 @@ RSpec.describe 'Call Number Browse', type: :feature do
           visit '/browse/call_numbers?nearby=F127.A2M9 1869&classification=lc'
 
           expect(page).to have_selector 'h2.h4',
-                                        exact_text: 'E909.O24A3 2018 to HD4909.H5 1948'
+                                        exact_text: 'E909.O24A3 2018 to HB179.T84'
 
           expect(page).to have_link('F127.A2M9 1869', href: '/catalog/213578')
 
@@ -65,7 +65,7 @@ RSpec.describe 'Call Number Browse', type: :feature do
         visit '/browse/call_numbers?classification=dewey'
 
         expect(page).to have_selector 'h2.h4',
-                                      exact_text: '001B289h to 977.3Il6c v.11'
+                                      exact_text: '001B289h to 590.52An7'
 
         expect(page).not_to have_selector '.table-primary'
 
@@ -106,7 +106,7 @@ RSpec.describe 'Call Number Browse', type: :feature do
           visit '/browse/call_numbers?nearby=LOL&classification=dewey'
 
           expect(page).to have_selector 'h2.h4',
-                                        exact_text: '977.3Il6c v.11 to None'
+                                        exact_text: 'None to None'
 
           expect(page).to have_selector 'tr.table-primary:nth-child(2) td',
                                         exact_text: 'You\'re looking for: LOL'

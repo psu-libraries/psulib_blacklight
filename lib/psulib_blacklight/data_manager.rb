@@ -13,7 +13,11 @@ module PsulibBlacklight
 
     # @note Loads fixtures for our development and testing environments
     def self.load_fixtures
-      docs = File.open('spec/fixtures/current_fixtures.json').each_line.map { |l| JSON.parse(l) }
+      docs = []
+      Dir.glob('spec/fixtures/current_fixtures/*.json').each do |file|
+        doc = File.open(file).each_line.map { |l| JSON.parse(l) }
+        docs += doc
+      end
       Blacklight.default_index.connection.add(docs)
       Blacklight.default_index.connection.commit
     end

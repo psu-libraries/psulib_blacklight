@@ -27,12 +27,12 @@ RSpec.describe 'Subject Browse', type: :feature do
       first(:link, 'Next').click
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('Archaeology—History', href: /subject_browse_facet/)
+        expect(page).to have_link('Aptheker, Herbert, 1915-2003', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Bangladesh—Drama', href: /subject_browse_facet/)
+        expect(page).to have_link('Authors, Yiddish—Soviet Union', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
     end
@@ -50,24 +50,24 @@ RSpec.describe 'Subject Browse', type: :feature do
       end
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('Banks and banking—Congresses', href: /subject_browse_facet/)
+        expect(page).to have_link('Authors—Drama', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Blind—Education—Pennsylvania—Periodicals', href: /subject_browse_facet/)
+        expect(page).to have_link('Biometry', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       first(:link, 'Previous').click
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('Archaeology—History', href: /subject_browse_facet/)
+        expect(page).to have_link('Aptheker, Herbert, 1915-2003', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Bangladesh—Drama', href: /subject_browse_facet/)
+        expect(page).to have_link('Authors, Yiddish—Soviet Union', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
     end

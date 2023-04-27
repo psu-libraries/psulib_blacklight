@@ -35,10 +35,10 @@ RSpec.describe ShelfList do
 
         it 'returns the previous four books that appear before it in reverse order, but not the thing itself' do
           expect(list[:before].map(&:call_number)).to contain_exactly(
-            'F2230.1.F6L413 1973',
-            'G125.M7665 1885',
-            'G3803.W3J3 1956.N4',
             'G3823.D3P2 1988.P4',
+            'G3824.G5G475 1903.S2',
+            'G3824.M72G475 1895.S2',
+            'G3860 1776.G4 1961',
             'G4831.P2 1950.G4'
           )
         end
@@ -102,9 +102,9 @@ RSpec.describe ShelfList do
 
         it 'returns the previous four things that appear before it in reverse order, but not the thing itself' do
           expect(list[:before].map(&:call_number)).to contain_exactly(
-            '016.53976Un3i',
             '111.85M35b',
             '136.53M582a',
+            '170M366l 1844',
             '294.516B14b Zs',
             '301.154G854c'
           )
