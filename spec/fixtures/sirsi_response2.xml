@@ -27,7 +27,7 @@
         </ItemInfo>
       </CallInfo>
       <CallInfo>
-        <libraryID>BRANDYWINE</libraryID>
+        <libraryID>ONLINE</libraryID>
         <classificationID>LC</classificationID>
         <callNumber>E909.O24A3 2018</callNumber>
         <numberOfCopies>1</numberOfCopies>
@@ -35,7 +35,7 @@
           <itemID>000080904731</itemID>
           <itemTypeID>BOOK</itemTypeID>
           <currentLocationID>ONLINE</currentLocationID>
-          <homeLocationID>BROWSINGDE</homeLocationID>
+          <homeLocationID>ONLINE</homeLocationID>
           <chargeable>true</chargeable>
           <fixedTimeBooking>false</fixedTimeBooking>
           <staffNote>{GOBI}</staffNote>

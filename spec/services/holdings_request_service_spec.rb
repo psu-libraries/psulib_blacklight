@@ -23,11 +23,13 @@ RSpec.describe HoldingsRequestService do
       let(:response2) { Rails.root.join('spec/fixtures/sirsi_response2.xml').read }
       let(:availability) { "Currently on shelf as of #{Time.now.strftime('%m/%d/%Y %H:%M')}" \
         "\n\nPenn State Altoona:\nCall Number: E909.O24A3 2018, Location: Stacks - General Collection" \
-        "\n\nPenn State Brandywine:\nCall Number: E909.O24A3 2018, Location: Online Content\n\n" \
-        "Penn State York:\nCall Number: E909.O24A3 2018, Location: " \
-        "\nCall Number: E909.O24A3 2018, Location: \n\nPattee Library and Paterno Library Stacks:" \
-        "\nCall Number: E909.O24A3 2018, Location: \nCall Number: E909.O24A3 2018, Location: " \
-        "\nCall Number: E909.O24A3 2018, Location: \n\nFollow record link view more available locations" }
+        "\n\nPenn State York:\nCall Number: E909.O24A3 2018, Location: York - Leisure Collection" \
+        "\nCall Number: E909.O24A3 2018, Location: York - Leisure Collection" \
+        "\n\nPattee Library and Paterno Library Stacks:" \
+        "\nCall Number: E909.O24A3 2018, Location: Pattee - 1st Floor, Leisure Reading Collection" \
+        "\nCall Number: E909.O24A3 2018, Location: Pattee - 1st Floor, Leisure Reading Collection" \
+        "\nCall Number: E909.O24A3 2018, Location: Pattee - 1st Floor, Leisure Reading Collection" \
+        "\n\nFollow record link view more available locations" }
 
       before { allow(Net::HTTP).to receive(:get).and_return(response2) }
 

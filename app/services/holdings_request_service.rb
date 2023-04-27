@@ -35,7 +35,7 @@ class HoldingsRequestService
       else
         item_location_data = call_info['libraryID'] == 'ONLINE' ? [] : get_item_location_data(call_info)
         if item_location_data.present?
-          [{ 'location' => libraries[call_info['libraryID']],
+          [{ 'library' => libraries[call_info['libraryID']],
              'call_number' => call_info['callNumber'],
              'items' => item_location_data }]
         end
@@ -51,7 +51,7 @@ class HoldingsRequestService
         end
         item_location_data = holding['libraryID'] == 'ONLINE' ? [] : get_item_location_data(holding)
         if item_location_data.present?
-          availability << { 'location' => libraries[holding['libraryID']],
+          availability << { 'library' => libraries[holding['libraryID']],
                             'call_number' => holding['callNumber'],
                             'items' => item_location_data }
         end
@@ -68,7 +68,7 @@ class HoldingsRequestService
             break
           end
           unless exclude.key?(item['currentLocationID'])
-            item_location_data << { 'location' => locations[item['currentLocationID']] }
+            item_location_data << { 'current_location' => locations[item['currentLocationID']] }
           end
         end
       else
@@ -82,7 +82,7 @@ class HoldingsRequestService
     def availability_to_string(availability)
       string = "Currently on shelf as of #{Time.now.strftime('%m/%d/%Y %H:%M')}"
       availability.each do |library|
-        string += "\n\n#{library['location']}:"
+        string += "\n\n#{library['library']}:"
         library['items'].each do |item|
           string += "\nCall Number: #{library['call_number']}, Location: #{item['current_location']}"
         end
