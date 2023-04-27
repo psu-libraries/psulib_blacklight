@@ -10,5 +10,12 @@ $(document).ready(() => {
     // Set ARIA attribute for "sort" dropdown
     const sortSelect = document.getElementById('sort');
     sortSelect.setAttribute('role', 'listbox');
+    // Set ARIA label for multiselect drop downs
+    var multiDropDowns = document.querySelectorAll('[multiple="multiple"]')
+    for (var i = 0; i < multiDropDowns.length; i++) {
+      var label = multiDropDowns[i].parentElement.parentElement.parentElement.querySelectorAll('label')[0].textContent.trim()
+      multiDropDowns[i].setAttribute('aria-label', label);
+      multiDropDowns[i].setAttribute('aria-multiselectable', 'true');
+    }
   }
 });
