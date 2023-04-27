@@ -3,6 +3,9 @@ config/master.key
 # Ignore bundler config.
 /.bundle
 
+# Ignore vendor/bundle files
+vendor/bundle/**/*
+
 # Ignore the SQLite database.
 /blackcat_dev
 /blackcat_test
@@ -51,3 +54,4 @@ config/environments/*.local.yml
 .local
 .pki
 .webdrivers
+.envrc
