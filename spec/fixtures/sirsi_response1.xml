@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  <LookupTitleInfoResponse xmlns="http://schemas.sirsidynix.com/symws/standard">
+    <TitleInfo>
+      <titleID>24053587</titleID>
+      <TitleAvailabilityInfo>
+        <totalCopiesAvailable>1</totalCopiesAvailable>
+        <libraryWithAvailableCopies>Penn State Altoona</libraryWithAvailableCopies>
+        <totalResvCopiesAvailable>0</totalResvCopiesAvailable>
+        <locationOfFirstAvailableItem>STACKS-AA</locationOfFirstAvailableItem>
+        <holdable>true</holdable><bookable>false</bookable>
+      </TitleAvailabilityInfo>
+      <CallInfo>
+        <libraryID>ALTOONA</libraryID>
+        <classificationID>LC</classificationID>
+        <callNumber>E909.O24A3 2018</callNumber>
+        <numberOfCopies>1</numberOfCopies>
+        <ItemInfo>
+          <itemID>000080901440</itemID>
+          <itemTypeID>BOOKFLOAT</itemTypeID>
+          <currentLocationID>STACKS-AA</currentLocationID>
+          <homeLocationID>STACKS-AA</homeLocationID>
+          <chargeable>true</chargeable>
+          <fixedTimeBooking>false</fixedTimeBooking>
+          <staffNote>{GOBI}</staffNote>
+        </ItemInfo>
+      </CallInfo>
+    </TitleInfo>
+  </LookupTitleInfoResponse>
