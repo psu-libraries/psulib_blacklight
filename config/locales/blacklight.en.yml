@@ -37,6 +37,7 @@ en:
           one: 'PSU Libraries Item Record: %{title}'
           other: 'PSU Libraries Item Records'
         url: '%{url}'
+        holdings: 'Availability: %{value}'
     sms:
       text:
         latin_title: "Title: %{value}"
