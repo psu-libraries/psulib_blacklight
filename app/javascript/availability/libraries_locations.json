@@ -781,6 +781,23 @@
     "WSCRANTON": "Penn State Scranton",
     "XTERNAL": "Associated Libraries",
     "YORK": "Penn State York"
+  },  
+  "exclude_from_email_availability": {
+    "CHECKEDOUT": "Checked out",
+    "DARCHIVE-P": "Copy unavailable",
+    "DEPTCHARGE": "Copy unavailable",
+    "DSLOFFCHRG": "Material has been checked out to a department",
+    "ILLEND": "Checked out",
+    "ILL": "Checked out",
+    "IN-MARKING": "Material is in the Marking Unit of Cataloging Services",
+    "INPROCESS": "Material being cataloged",
+    "INTRANSIT": "Being transferred between libraries",
+    "LOST": "Copy unavailable",
+    "MISSING": "Copy unavailable",
+    "ON-ORDER": "Being acquired by the library",
+    "REPAIR": "Being repaired",
+    "SCANGOVDOC": "Material out for digitization",
+    "SCANNING": "Material out for digitization"
   },
   "request_via_ill": {
     "BINDERY-DN": "Copy unavailable, request via Interlibrary Loan",
