@@ -13,7 +13,7 @@ $(document).ready(() => {
     // Set ARIA label and multiselect for multiselect drop downs
     const multiDropDowns = document.querySelectorAll('[multiple="multiple"]');
     for (let i = 0; i < multiDropDowns.length; i += 1) {
-      const label = multiDropDowns[i].parentElement.parentElement.parentElement
+      const label = multiDropDowns[i].parentElement.parentElement
         .querySelectorAll('label')[0]
         .textContent.trim();
       multiDropDowns[i].setAttribute('aria-label', label);
