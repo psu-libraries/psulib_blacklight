@@ -5,6 +5,7 @@ class HoldingsRequestService
 
   def initialize(args)
     @args = args
+    @libraries_data = libraries_data
     @locations = libraries_data['locations']
     @libraries = libraries_data['libraries']
     @exclude = libraries_data['exclude_from_email_availability']
@@ -92,6 +93,6 @@ class HoldingsRequestService
     end
 
     def libraries_data
-      JSON.parse(File.read(Rails.root.join('app/javascript/availability/libraries_locations.json')))
+      @libraries_data ||= JSON.parse(File.read(Rails.root.join('app/javascript/availability/libraries_locations.json')))
     end
 end
