@@ -10,7 +10,7 @@ $(document).ready(() => {
     // Set ARIA attribute for "sort" dropdown
     const sortSelect = document.getElementById('sort');
     sortSelect.setAttribute('role', 'listbox');
-    // Set ARIA label for multiselect drop downs
+    // Set ARIA label and multiselect for multiselect drop downs
     const multiDropDowns = document.querySelectorAll('[multiple="multiple"]');
     for (let i = 0; i < multiDropDowns.length; i += 1) {
       const label = multiDropDowns[i].parentElement.parentElement.parentElement
