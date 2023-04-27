@@ -5,7 +5,6 @@ class HoldingsRequestService
 
   def initialize(args)
     @args = args
-    libraries_data = JSON.parse(File.read(Rails.root.join('app/javascript/availability/libraries_locations.json')))
     @locations = libraries_data['locations']
     @libraries = libraries_data['libraries']
     @exclude = libraries_data['exclude_from_email_availability']
@@ -90,5 +89,9 @@ class HoldingsRequestService
       string += "\n"
       string += "\nFollow record link view more available locations" if @view_more
       string
+    end
+
+    def libraries_data
+      JSON.parse(File.read(Rails.root.join('app/javascript/availability/libraries_locations.json')))
     end
 end
