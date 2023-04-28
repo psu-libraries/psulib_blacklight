@@ -33,12 +33,10 @@ class HoldingsRequestService
       if call_info.is_a?(Array)
         get_data_from_call_info(call_info)
       else
-        item_location_data = call_info['libraryID'] == 'ONLINE' ? [] : get_item_location_data(call_info)
-        if item_location_data.present?
-          [{ 'library' => libraries[call_info['libraryID']],
-             'call_number' => call_info['callNumber'],
-             'items' => item_location_data }]
-        end
+        library_data = get_library_data(call_info)
+        return [] if call_info['libraryID'] == 'ONLINE' || library_data.blank?
+
+        [library_data]
       end
     end
 
@@ -49,14 +47,21 @@ class HoldingsRequestService
           @view_more = true
           break
         end
-        item_location_data = holding['libraryID'] == 'ONLINE' ? [] : get_item_location_data(holding)
-        if item_location_data.present?
-          availability << { 'library' => libraries[holding['libraryID']],
-                            'call_number' => holding['callNumber'],
-                            'items' => item_location_data }
-        end
+        library_data = get_library_data(holding)
+        next if holding['libraryID'] == 'ONLINE' || library_data.blank?
+
+        availability << library_data
       end
       availability
+    end
+
+    def get_library_data(call_info_or_holding)
+      item_location_data = get_item_location_data(call_info_or_holding)
+      return {} if item_location_data.blank?
+
+      { 'library' => libraries[call_info_or_holding['libraryID']],
+        'call_number' => call_info_or_holding['callNumber'],
+        'items' => item_location_data }
     end
 
     def get_item_location_data(holding)
