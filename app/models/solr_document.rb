@@ -16,11 +16,18 @@ class SolrDocument
     published: 'overall_imprint_display_ssm',
     edition: 'edition_display_ssm',
     format: 'format',
-    language: 'language_facet_ssim'
+    # language: 'language_facet_ssim',
+    # addl_author: 'author_addl_tsim',
+    # publication_year: 'pub_date_illiad_ssm',
+    # place_of_publication: 'publication_place_ssm',
+    # publisher_name: 'publisher_name_ssm',
+    # issn: 'issn_ssm'
   )
 
   # Email uses the semantic field mappings below to generate the body of an email.
   SolrDocument.use_extension(Blacklight::Document::Email)
+
+  #SolrDocument.use_extension(Blacklight::Document::DocumentRis)
 
   # SMS uses the semantic field mappings below to generate the body of an SMS email.
   SolrDocument.use_extension(Blacklight::Document::Sms)

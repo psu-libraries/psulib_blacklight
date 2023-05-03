@@ -5,6 +5,7 @@ module Blacklight::Document::Email
   # Return a text string that will be the body of the email
   def to_email_text
     semantics = to_semantic_values
+    byebug
     body = []
     ['title', 'latin_title', 'author', 'corporate_author', 'conference_author',
      'published', 'edition', 'format', 'language'].each do |field|

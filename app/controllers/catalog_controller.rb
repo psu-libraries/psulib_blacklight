@@ -5,8 +5,10 @@ class CatalogController < ApplicationController
   include BlacklightRangeLimit::ControllerOverride
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
+  include Blacklight::Searchable
   include Browse
   include ReportIssue
+  #include Ris
   include SearchContext
 
   before_action :redirect_browse
@@ -66,16 +68,38 @@ class CatalogController < ApplicationController
     super
   end
 
+  def ris
+    @document = search_service.fetch(params[:id])
+    @document_ris = DocumentRis.new(@document)
+    
+    #send_file Rails.root.join('app/views/catalog/show.ris.erb'), filename: "document.ris", type: :ris   -displays literal file
+    
+    #send_data @document_ris.ris_to_string, filename: "document.ris", type: :ris   #correct output but displayed vs download
+    
+    # respond_to do |format|     -unknown method #export_as
+    #   format.ris { render @document_ris.ris_to_string.export_as(:ris)}
+    # end     
+    
+    respond_to do |format|   #correct output but displayed vs download
+      format.ris { render 'catalog/show.ris.erb'}
+    end  
+
+    # respond_to do |format|   #204 no content
+    #   format.ris { @document_ris.ris_to_string }
+    # end  
+  end
+
   configure_blacklight do |config|
     # Controls the document actions (also called "tools"), note that blacklight_marc adds refworks and endnote
     config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params, html_class: 'dropdown-item')
+    config.add_show_tools_partial(:ris, callback: :ris_action, html_class: 'dropdown-item')
     config.add_show_tools_partial(:report_issue, callback: :report_issue_action, validator: :validate_report_issue_params)
     # TODO: hide SMS action for now, should be enabled when fixed
     # config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params, html_class: 'dropdown-item')
-    config.show.document_actions.refworks.html_class = 'dropdown-item'
-    config.show.document_actions.endnote.html_class = 'dropdown-item'
     config.show.document_actions.delete_field('librarian_view') # removing something added by blacklight_marc
     config.show.document_actions.delete_field('report_issue') # hide the 'Report an Issue' action from the Share dropdown
+    config.show.document_actions.delete_field('endnote') # hide the 'Refworks' action from the Share dropdown
+    config.show.document_actions.delete_field('refworks') # hide the 'Endnote' action from the Share dropdown
 
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
