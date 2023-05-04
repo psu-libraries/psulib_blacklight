@@ -74,15 +74,15 @@ class CatalogController < ApplicationController
     
     #send_file Rails.root.join('app/views/catalog/show.ris.erb'), filename: "document.ris", type: :ris   -displays literal file
     
-    #send_data @document_ris.ris_to_string, filename: "document.ris", type: :ris   #correct output but displayed vs download
+    send_data @document_ris.ris_to_string, filename: "document.ris", type: :ris   #correct output but displayed vs download
     
     # respond_to do |format|     -unknown method #export_as
     #   format.ris { render @document_ris.ris_to_string.export_as(:ris)}
     # end     
     
-    respond_to do |format|   #correct output but displayed vs download
-      format.ris { render 'catalog/show.ris.erb'}
-    end  
+    # respond_to do |format|   #correct output but displayed vs download
+    #   format.ris { render 'catalog/show.ris.erb'}
+    # end  
 
     # respond_to do |format|   #204 no content
     #   format.ris { @document_ris.ris_to_string }

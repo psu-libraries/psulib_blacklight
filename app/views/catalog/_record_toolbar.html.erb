@@ -12,7 +12,7 @@
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
           <%= render_show_doc_actions @document do |config, inner| %>
             <% if (config.key == :ris)%>
-              <a class="dropdown-item" data-blacklight-modal="trigger" href=<%="/catalog/#{params[:id]}/ris"%>>RIS file</a>
+              <a class="dropdown-item" href=<%="/catalog/#{params[:id]}/ris"%>>RIS file</a>
             <% elsif (config.key != :citation) %>
               <%= inner %>
             <% end %>
