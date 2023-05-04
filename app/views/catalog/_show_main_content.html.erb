@@ -16,6 +16,16 @@
     </div>
 
   </div>
+
+  <% if @document[:iiif_manifest_ssim].present? %>
+    <h4>Digitized Materials</h4>
+    <div class="row document-metadata metadata-primary py-4">
+      <div class="col">
+        <div id="iiif-viewer" class="iiif-viewer" data-manifest="<%= @document[:iiif_manifest_ssim].first %>"></div>
+      </div>
+    </div>
+  <% end %>
+
   <% if @document && !Settings&.readonly -%>
     <% unless @document.hathi_links && @document.hathi_links[:etas_item] && Settings&.hide_etas_holdings -%>
       <%= render partial: 'show_availability', locals: { document: @document } %>

@@ -237,6 +237,7 @@ RSpec.describe 'Availability', :vcr, type: :feature do
       it 'has a "Request Material" link so it can be requested through Aeon' do
         visit '/catalog/1836205'
         click_button('View More')
+        sleep 1 # It seems to be taking a little longer to expand this list than it used to
         expect(page).to have_link(
           'Request Material',
           href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=' \
