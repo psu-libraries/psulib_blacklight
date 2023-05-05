@@ -14,6 +14,10 @@ module Blacklight::Document::Email
         body << I18n.t(label, value: value.join('; '))
       end
     end
+    availability = HoldingsRequestService.new("&titleID=#{id}").holdings_availability
+    label = 'blacklight.email.text.holdings'
+    body << I18n.t(label, value: availability) unless availability.nil?
+
     return body.join("\n") unless body.empty?
   end
 end

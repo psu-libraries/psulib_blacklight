@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  <LookupTitleInfoResponse xmlns="http://schemas.sirsidynix.com/symws/standard">
+    <TitleInfo>
+      <titleID>24053587</titleID>
+      <TitleAvailabilityInfo>
+        <totalCopiesAvailable>11</totalCopiesAvailable>
+        <libraryWithAvailableCopies>Penn State Altoona</libraryWithAvailableCopies>
+        <libraryWithAvailableCopies>Penn State York</libraryWithAvailableCopies>
+        <libraryWithAvailableCopies>Pattee Library and Paterno Library Stacks</libraryWithAvailableCopies>
+        <totalResvCopiesAvailable>0</totalResvCopiesAvailable>
+        <locationOfFirstAvailableItem>STACKS-AA</locationOfFirstAvailableItem>
+        <holdable>true</holdable><bookable>false</bookable>
+      </TitleAvailabilityInfo>
+      <CallInfo>
+        <libraryID>ALTOONA</libraryID>
+        <classificationID>LC</classificationID>
+        <callNumber>E909.O24A3 2018</callNumber>
+        <numberOfCopies>1</numberOfCopies>
+        <ItemInfo>
+          <itemID>000080901440</itemID>
+          <itemTypeID>BOOKFLOAT</itemTypeID>
+          <currentLocationID>STACKS-AA</currentLocationID>
+          <homeLocationID>STACKS-AA</homeLocationID>
+          <chargeable>true</chargeable>
+          <fixedTimeBooking>false</fixedTimeBooking>
+          <staffNote>{GOBI}</staffNote>
+        </ItemInfo>
+      </CallInfo>
+      <CallInfo>
+        <libraryID>ONLINE</libraryID>
+        <classificationID>LC</classificationID>
+        <callNumber>E909.O24A3 2018</callNumber>
+        <numberOfCopies>1</numberOfCopies>
+        <ItemInfo>
+          <itemID>000080904731</itemID>
+          <itemTypeID>BOOK</itemTypeID>
+          <currentLocationID>ONLINE</currentLocationID>
+          <homeLocationID>ONLINE</homeLocationID>
+          <chargeable>true</chargeable>
+          <fixedTimeBooking>false</fixedTimeBooking>
+          <staffNote>{GOBI}</staffNote>
+        </ItemInfo>
+      </CallInfo>
+      <CallInfo>
+        <libraryID>DUBOIS</libraryID>
+        <classificationID>LC</classificationID>
+        <callNumber>E909.O24A3 2018</callNumber>
+        <numberOfCopies>1</numberOfCopies>
+        <ItemInfo>
+          <itemID>000080901662</itemID>
+          <itemTypeID>BOOKFLOAT</itemTypeID>
+          <currentLocationID>CHECKEDOUT</currentLocationID>
+          <homeLocationID>STACKS-DS</homeLocationID>
+          <chargeable>true</chargeable>
+          <fixedTimeBooking>false</fixedTimeBooking>
+          <staffNote>{GOBI}</staffNote>
+        </ItemInfo>
+      </CallInfo>
+      <CallInfo>
+        <libraryID>YORK</libraryID>
+        <classificationID>LC</classificationID>
+        <callNumber>E909.O24A3 2018</callNumber>
+        <numberOfCopies>1</numberOfCopies>
+        <ItemInfo>
+          <itemID>000080900825</itemID>
+          <itemTypeID>BOOK</itemTypeID>
+          <currentLocationID>LEISURE-YK</currentLocationID>
+          <homeLocationID>LEISURE-YK</homeLocationID>
+          <chargeable>true</chargeable>
+          <fixedTimeBooking>false</fixedTimeBooking>
+          <staffNote>{GOBI}</staffNote>
+        </ItemInfo>
+        <ItemInfo>
+          <itemID>000080900825</itemID>
+          <itemTypeID>BOOK</itemTypeID>
+          <currentLocationID>LEISURE-YK</currentLocationID>
+          <homeLocationID>LEISURE-YK</homeLocationID>
+          <chargeable>true</chargeable>
+          <fixedTimeBooking>false</fixedTimeBooking>
+          <staffNote>{GOBI}</staffNote>
+        </ItemInfo>
+      </CallInfo>
+      <CallInfo>
+        <libraryID>UP-PAT</libraryID>
+        <classificationID>LC</classificationID>
+        <callNumber>E909.O24A3 2018</callNumber>
+        <numberOfCopies>2</numberOfCopies>
+        <ItemInfo><itemID>000080787761</itemID>
+          <itemTypeID>BOOK</itemTypeID>
+          <currentLocationID>LEISURE-PA</currentLocationID>
+          <homeLocationID>LEISURE-PA</homeLocationID>
+          <dueDate>2023-08-28T00:00:00.990-04:00</dueDate>
+          <chargeable>false</chargeable>
+          <fixedTimeBooking>false</fixedTimeBooking>
+          <staffNote>{Baker &amp; Taylor lease plan book}</staffNote>
+        </ItemInfo>
+        <ItemInfo>
+          <itemID>000075744601</itemID>
+          <itemTypeID>BOOK</itemTypeID>
+          <currentLocationID>LEISURE-PA</currentLocationID>
+          <homeLocationID>LEISURE-PA</homeLocationID>
+          <dueDate>2023-08-28T00:00:00.990-04:00</dueDate>
+          <chargeable>false</chargeable>
+          <fixedTimeBooking>false</fixedTimeBooking>
+          <staffNote>{Baker &amp; Taylor lease plan book}</staffNote>
+        </ItemInfo>
+        <ItemInfo><itemID>000080787761</itemID>
+          <itemTypeID>BOOK</itemTypeID>
+          <currentLocationID>LEISURE-PA</currentLocationID>
+          <homeLocationID>LEISURE-PA</homeLocationID>
+          <dueDate>2023-08-28T00:00:00.990-04:00</dueDate>
+          <chargeable>false</chargeable>
+          <fixedTimeBooking>false</fixedTimeBooking>
+          <staffNote>{Baker &amp; Taylor lease plan book}</staffNote>
+        </ItemInfo>
+        <ItemInfo><itemID>000080787761</itemID>
+          <itemTypeID>BOOK</itemTypeID>
+          <currentLocationID>LEISURE-PA</currentLocationID>
+          <homeLocationID>LEISURE-PA</homeLocationID>
+          <dueDate>2023-08-28T00:00:00.990-04:00</dueDate>
+          <chargeable>false</chargeable>
+          <fixedTimeBooking>false</fixedTimeBooking>
+          <staffNote>{Baker &amp; Taylor lease plan book}</staffNote>
+        </ItemInfo>
+      </CallInfo>
+    </TitleInfo>
+  </LookupTitleInfoResponse>
