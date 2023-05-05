@@ -15,7 +15,8 @@ class SolrDocument
     conference_author: 'author_meeting_display_ssm',
     published: 'overall_imprint_display_ssm',
     edition: 'edition_display_ssm',
-    format: 'format'
+    format: 'format',
+    language: 'language_facet_ssim'
   )
 
   # Email uses the semantic field mappings below to generate the body of an email.
