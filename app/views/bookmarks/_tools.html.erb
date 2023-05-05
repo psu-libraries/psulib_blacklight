@@ -3,7 +3,7 @@
     <a class="btn btn-info btn-md dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">Share</a>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-md-left" aria-labelledby="btnGroupDrop1">
       <%= render_show_doc_actions document_list, document: nil, document_list: @response.documents, url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h) do |config, inner| %>
-          <% if (config.key != :citation) %>
+          <% if (config.key != :citation || config.key != :ris) %>
               <%= inner %>
           <% end %>
       <% end %>
