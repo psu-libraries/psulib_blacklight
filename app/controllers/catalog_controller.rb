@@ -7,7 +7,7 @@ class CatalogController < ApplicationController
   include Blacklight::Marc::Catalog
   include Browse
   include ReportIssue
-  include SearchContext
+  include ::ReportIssue
 
   before_action :redirect_browse
 
@@ -119,10 +119,6 @@ class CatalogController < ApplicationController
 
     # items to show per page, each number in the array represent another option to choose from.
     # config.per_page = [10,20,50,100]
-
-    # Number of searches to save in a session
-    # It's not clear if we use this in the catalog controller, but we need to set it to the same value as SearchHistory.
-    config.search_history_window = Settings.search_history_window
 
     ## Default parameters to send on single-document requests to Solr. These settings are the Blackligt defaults (see
     ## SearchHelper#solr_doc_params) or parameters included in the Blacklight-jetty document requestHandler.
@@ -523,12 +519,5 @@ class CatalogController < ApplicationController
 
     def trailing_punctuation?
       params[:id].match(/\d+[.,;:!"')\]]/)
-    end
-
-    # @note Part of the SearchContext override; however, this method is only used in the search history feature, which
-    # we do not use. Since we removed the searches table, we need this override in case the method is ever called
-    # elsewhere.
-    def searches_from_history
-      session[:history] ||= SearchHistory.find_or_initialize(session.id).search_ids
     end
 end

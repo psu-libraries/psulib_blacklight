@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 2022_08_02_203924) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
+  create_table "searches", force: :cascade do |t|
+    t.binary "query_params"
+    t.integer "user_id"
+    t.string "user_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_searches_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
