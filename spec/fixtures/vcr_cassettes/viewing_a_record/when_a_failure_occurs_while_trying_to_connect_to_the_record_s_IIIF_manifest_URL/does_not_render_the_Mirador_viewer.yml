@@ -1,0 +1,195 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=2025781
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 05 May 2023 19:50:50 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>2025781</titleID><TitleAvailabilityInfo><totalCopiesAvailable>2</totalCopiesAvailable><libraryWithAvailableCopies>Special
+        Collections Library (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>RARE-MAPS</locationOfFirstAvailableItem><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-SPECCOL</libraryID><classificationID>LC</classificationID><callNumber>G3860
+        1776.G4 1961</callNumber><numberOfCopies>2</numberOfCopies><ItemInfo><itemID>000026874098</itemID><itemTypeID>MAP</itemTypeID><currentLocationID>RARE-MAPS</currentLocationID><homeLocationID>RARE-MAPS</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo><ItemInfo><itemID>000026879802</itemID><itemTypeID>MAP</itemTypeID><currentLocationID>RARE-MAPS</currentLocationID><homeLocationID>RARE-MAPS</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Fri, 05 May 2023 19:50:50 GMT
+- request:
+    method: get
+    uri: https://books.google.com/books?bibkeys=LCCN:74694843&jscmd=viewapi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - books.google.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 05 May 2023 19:50:50 GMT
+      Expires:
+      - Fri, 05 May 2023 19:50:50 GMT
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      P3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      - policyref="http://www.google.com/googlebooks/p3p.xml", CP="DSP NON ADM DEV
+        OUR BUS NAV COM INT STA"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=604800
+      Content-Type:
+      - application/javascript; charset=ISO-8859-1
+      X-Content-Type-Options:
+      - nosniff
+      Content-Disposition:
+      - attachment; filename="f.txt"
+      Server:
+      - OFE/0.1
+      Set-Cookie:
+      - CONSENT=PENDING+633; expires=Sun, 04-May-2025 19:50:50 GMT; path=/; domain=.google.com;
+        Secure
+      - NID=511=MU06N8qySbKlMZGB-xTN5YzCT4BWKWA4pPAsXnAT0j2b0s2IWySU38eCXqhUsK5iY0aveXM5AAJ5K-Wgo9gWwUMed4_O8mZLPPkJipIdjvUV2Usc92ExaBACV2S1xxhFIXiXCZk1LfVHnZ9XJR5XWxTI7VYyk4q6XtC4IQLaZCg;
+        expires=Sat, 04-Nov-2023 19:50:50 GMT; path=/; domain=.google.com; HttpOnly
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: var _GBSBookInfo = {};
+  recorded_at: Fri, 05 May 2023 19:50:50 GMT
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=1267921
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 05 May 2023 19:56:20 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>1267921</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Pattee
+        Library and Paterno Library Stacks (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>PATTEE-2A</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LCPER</classificationID><callNumber>PN851.C52
+        v.1-3 no.1 1987-89</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000071202587</itemID><itemTypeID>PERIODICAL</itemTypeID><currentLocationID>PATTEE-2A</currentLocationID><homeLocationID>PATTEE-2A</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Fri, 05 May 2023 19:56:20 GMT
+- request:
+    method: get
+    uri: https://books.google.com/books?bibkeys=LCCN:sn%2088016767&jscmd=viewapi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - books.google.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 05 May 2023 19:57:46 GMT
+      Expires:
+      - Fri, 05 May 2023 19:57:46 GMT
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      P3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      - policyref="http://www.google.com/googlebooks/p3p.xml", CP="DSP NON ADM DEV
+        OUR BUS NAV COM INT STA"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=604800
+      Content-Type:
+      - application/javascript; charset=ISO-8859-1
+      X-Content-Type-Options:
+      - nosniff
+      Content-Disposition:
+      - attachment; filename="f.txt"
+      Server:
+      - OFE/0.1
+      Set-Cookie:
+      - CONSENT=PENDING+851; expires=Sun, 04-May-2025 19:57:46 GMT; path=/; domain=.google.com;
+        Secure
+      - NID=511=gE8mVGJYaxegz85CxAQGJviMHycgjQVMuWaJG7nlo2qDF56DZ1-IPg6aO43tCnCfgstIKf8esUuFR0lT-m2lMpAlAQxT7Js9q9Hm_vFXQiI5Uc5lFTLfl8EXzbob_61HBy25FIbV-qSOxdqu_4yTe3JDwv6DhwsIxMiRJtJbPs4;
+        expires=Sat, 04-Nov-2023 19:57:46 GMT; path=/; domain=.google.com; HttpOnly
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: var _GBSBookInfo = {};
+  recorded_at: Fri, 05 May 2023 19:57:46 GMT
+recorded_with: VCR 6.1.0
