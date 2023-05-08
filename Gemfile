@@ -59,6 +59,7 @@ group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rails-controller-testing'
+  gem 'rspec-its'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
