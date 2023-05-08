@@ -271,7 +271,7 @@ RSpec.describe 'Availability', :vcr, type: :feature do
         within 'div[data-library="UP-ANNEX"]' do
           expect(page).to have_link(
             'Request Scan - Penn State Users',
-            href: 'https://psu-illiad-oclc-org.ezaccess.libraries.psu.edu/illiad/upm/illiad.dll/' \
+            href: 'https://psu.illiad.oclc.org/illiad/upm/illiad.dll/' \
                   'OpenURL?Action=10&Form=20&Genre=GenericRequestThesisDigitization&title=Ecology' \
                   '%20of%20the%20wild-trapped%20and%20transplanted%20ring-necked%20pheasant%20near' \
                   '%20Centre%20Hall%2C%20Pennsylvania&callno=Thesis%201968mMyers%2CJE&rfr_id=info' \
