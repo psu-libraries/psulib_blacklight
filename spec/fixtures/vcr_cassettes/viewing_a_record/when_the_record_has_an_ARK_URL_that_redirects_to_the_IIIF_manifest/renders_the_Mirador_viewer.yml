@@ -1,0 +1,315 @@
+---
+http_interactions:
+- request:
+    method: head
+    uri: https://arks.libraries.psu.edu/ark:/42409/ii34w27
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Date:
+      - Fri, 05 May 2023 19:50:59 GMT
+      Server:
+      - Apache/2.4.37 (Red Hat Enterprise Linux) OpenSSL/1.1.1k
+      Strict-Transport-Security:
+      - max-age=63072000
+      Location:
+      - https://n2t.net//ark:/42409/ii34w27
+      Content-Type:
+      - text/html; charset=iso-8859-1
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 05 May 2023 19:50:58 GMT
+- request:
+    method: head
+    uri: https://n2t.net//ark:/42409/ii34w27
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Date:
+      - Fri, 05 May 2023 19:50:59 GMT
+      Server:
+      - Apache/2.4.43 () OpenSSL/1.0.2k-fips
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Location
+      Access-Control-Allow-Methods:
+      - GET, HEAD, OPTIONS
+      Location:
+      - https://digital.libraries.psu.edu/iiif/info/Comparatist/manifest.json
+      Content-Type:
+      - text/html; charset=iso-8859-1
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 05 May 2023 19:50:59 GMT
+- request:
+    method: head
+    uri: https://digital.libraries.psu.edu/iiif/info/Comparatist/manifest.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Date:
+      - Fri, 05 May 2023 19:51:00 GMT
+      Server:
+      - Apache
+      Content-Type:
+      - application/json;charset=UTF-8
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Link:
+      - <http://iiif.io/api/presentation/2/context.json>; rel="http://www.w3.org/ns/json-ld#context";
+        type="application/ld+json"
+      X-Oclc-Iiif-Provider:
+      - cantaloupe
+      Location:
+      - https://digital.libraries.psu.edu/iiif/Comparatist/manifest.json
+      Cache-Control:
+      - max-age=0
+      Expires:
+      - Fri, 05 May 2023 19:51:00 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 05 May 2023 19:50:59 GMT
+- request:
+    method: head
+    uri: https://digital.libraries.psu.edu/iiif/Comparatist/manifest.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Date:
+      - Fri, 05 May 2023 19:51:00 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Link:
+      - <http://iiif.io/api/presentation/2/context.json>; rel="http://www.w3.org/ns/json-ld#context";
+        type="application/ld+json"
+      X-Oclc-Iiif-Provider:
+      - cantaloupe
+      Location:
+      - https://digital.libraries.psu.edu/iiif/2/Comparatist/manifest.json
+      Cache-Control:
+      - max-age=0
+      Expires:
+      - Fri, 05 May 2023 19:51:00 GMT
+      Content-Type:
+      - text/html; charset=iso-8859-1
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 05 May 2023 19:51:00 GMT
+- request:
+    method: head
+    uri: https://digital.libraries.psu.edu/iiif/2/Comparatist/manifest.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 05 May 2023 19:51:00 GMT
+      Server:
+      - Apache
+      X-Content-Type-Options:
+      - nosniff
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      - 1; mode=block
+      Access-Control-Allow-Headers:
+      - X-Requested-With
+      Link:
+      - <http://iiif.io/api/presentation/2/context.json>; rel="http://www.w3.org/ns/json-ld#context";
+        type="application/ld+json"
+      X-Oclc-Iiif-Provider:
+      - cantaloupe
+      Vary:
+      - Origin,Access-Control-Request-Method,Access-Control-Request-Headers,Accept-Encoding,User-Agent
+      Content-Type:
+      - application/json
+      X-Frame-Options:
+      - SAMEORIGIN
+      Content-Length:
+      - '0'
+      Set-Cookie:
+      - JSESSIONID=Y2EzMTQ2NDAtZDkzZi00ZmU1LThiNzEtOWNhMzU3Y2I1Yzkz; Path=/; HttpOnly;
+        SameSite=Lax
+      Cache-Control:
+      - max-age=0
+      Expires:
+      - Fri, 05 May 2023 19:51:00 GMT
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Fri, 05 May 2023 19:51:00 GMT
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=1267921
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 05 May 2023 19:51:01 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>1267921</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Pattee
+        Library and Paterno Library Stacks (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>PATTEE-2A</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LCPER</classificationID><callNumber>PN851.C52
+        v.1-3 no.1 1987-89</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000071202587</itemID><itemTypeID>PERIODICAL</itemTypeID><currentLocationID>PATTEE-2A</currentLocationID><homeLocationID>PATTEE-2A</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Fri, 05 May 2023 19:51:01 GMT
+- request:
+    method: get
+    uri: https://books.google.com/books?bibkeys=LCCN:sn%2088016767&jscmd=viewapi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - books.google.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 05 May 2023 19:56:23 GMT
+      Expires:
+      - Fri, 05 May 2023 19:56:23 GMT
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      P3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      - policyref="http://www.google.com/googlebooks/p3p.xml", CP="DSP NON ADM DEV
+        OUR BUS NAV COM INT STA"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=604800
+      Content-Type:
+      - application/javascript; charset=ISO-8859-1
+      X-Content-Type-Options:
+      - nosniff
+      Content-Disposition:
+      - attachment; filename="f.txt"
+      Server:
+      - OFE/0.1
+      Set-Cookie:
+      - CONSENT=PENDING+914; expires=Sun, 04-May-2025 19:56:23 GMT; path=/; domain=.google.com;
+        Secure
+      - NID=511=qOVFT3ve88b6nESl5AyeJZWuCGj19NdZPEJBVuadrdR8Tso3lMsfM5WhN0CKmRFlb9L1dj8-aDdtNrsQJVt77rQeMIJFmiyPInVcY6wGu5z_B4oCP6cyd9jEwiJn80w7kYc54BCJGehs8gQizVqvq3fkt-d1iYkBHLxBk55zOrU;
+        expires=Sat, 04-Nov-2023 19:56:23 GMT; path=/; domain=.google.com; HttpOnly
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: var _GBSBookInfo = {};
+  recorded_at: Fri, 05 May 2023 19:56:23 GMT
+recorded_with: VCR 6.1.0
