@@ -57,6 +57,10 @@ class SolrDocument
 
       r = Faraday.head(url)
 
+      # Allow the IIIF viewer to handle any further redirects on the front end as long as
+      # we've arrived at a response that allows CORS.
+      return url if r.headers['access-control-allow-origin'] == '*'
+
       case r.status
       when 301, 302
         follow_redirects(r.headers[:location])

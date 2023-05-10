@@ -312,4 +312,38 @@ http_interactions:
       encoding: ASCII-8BIT
       string: var _GBSBookInfo = {};
   recorded_at: Fri, 05 May 2023 19:56:23 GMT
+- request:
+    method: head
+    uri: https://arks.libraries.psu.edu/ark:/42409/ii34w27
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.10.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 301
+      message: Moved Permanently
+    headers:
+      Date:
+      - Wed, 10 May 2023 19:15:24 GMT
+      Server:
+      - Apache/2.4.37 (Red Hat Enterprise Linux) OpenSSL/1.1.1k
+      Strict-Transport-Security:
+      - max-age=63072000
+      Access-Control-Allow-Origin:
+      - "*"
+      Location:
+      - https://n2t.net//ark:/42409/ii34w27
+      Content-Type:
+      - text/html; charset=iso-8859-1
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Wed, 10 May 2023 19:15:22 GMT
 recorded_with: VCR 6.1.0

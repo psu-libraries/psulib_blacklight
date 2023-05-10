@@ -51,22 +51,26 @@ RSpec.describe SolrDocument do
 
     context "when the document's iiif_manifest_ssim field contains an array containing one valid URL with some other host" do
       let(:manifest) { ['https://someotherhost.edu/manifest'] }
-      let(:response) { instance_double Faraday::Response }
+      let(:response1) { instance_double Faraday::Response, status: response_1_status, headers: response_1_headers }
+      let(:response2) { instance_double Faraday::Response, status: response_2_status, headers: response_2_headers }
+      let(:response_1_headers) { {} }
+      let(:response_2_headers) { {} }
+      let(:response_1_status) { 200 }
+      let(:response_2_status) { 200 }
 
       before do
-        allow(Faraday).to receive(:head).with('https://someotherhost.edu/manifest').and_return response
+        allow(Faraday).to receive(:head).with('https://someotherhost.edu/manifest').and_return response1
+        allow(Faraday).to receive(:head).with('https://yetanotherhost.edu/manifest').and_return response2
       end
 
       context 'when a head request for the URL returns a 200 response' do
-        before { allow(response).to receive(:status).and_return 200 }
-
         it 'returns the URL' do
           expect(d.iiif_manifest_url).to eq 'https://someotherhost.edu/manifest'
         end
       end
 
       context 'when a head request for the URL returns a 500 response' do
-        before { allow(response).to receive(:status).and_return 500 }
+        let(:response_1_status) { 500 }
 
         it 'returns the URL' do
           expect(d.iiif_manifest_url).to eq 'https://someotherhost.edu/manifest'
@@ -74,33 +78,43 @@ RSpec.describe SolrDocument do
       end
 
       context 'when a head request for the URL returns a 301 response' do
-        let(:response2) { instance_double Faraday::Response, status: 200 }
+        let(:response_1_headers) { { location: 'https://yetanotherhost.edu/manifest' } }
+        let(:response_1_status) { 301 }
 
-        before do
-          allow(response).to receive(:status).and_return 301
-          allow(response).to receive(:headers).and_return({ location: 'https://yetanotherhost.edu/manifest' })
-          allow(Faraday).to receive(:head).with('https://yetanotherhost.edu/manifest').and_return response2
+        context 'when the response does not have a header that allows CORS' do
+          context "when a head request for the response's location returns a 200 reponse" do
+            it "returns the response's location" do
+              expect(d.iiif_manifest_url).to eq 'https://yetanotherhost.edu/manifest'
+            end
+          end
         end
 
-        context "when a head request for the response's location returns a 200 reponse" do
-          it "returns the response's location" do
-            expect(d.iiif_manifest_url).to eq 'https://yetanotherhost.edu/manifest'
+        context 'when the response has a header that allows CORS' do
+          let(:response_1_headers) { { location: 'https://yetanotherhost.edu/manifest', 'access-control-allow-origin' => '*' } }
+
+          it 'returns the URL' do
+            expect(d.iiif_manifest_url).to eq 'https://someotherhost.edu/manifest'
           end
         end
       end
 
       context 'when a head request for the URL returns a 302 response' do
-        let(:response2) { instance_spy Faraday::Response, status: 200 }
+        let(:response_1_headers) { { location: 'https://yetanotherhost.edu/manifest' } }
+        let(:response_1_status) { 302 }
 
-        before do
-          allow(response).to receive(:status).and_return 302
-          allow(response).to receive(:headers).and_return({ location: 'https://yetanotherhost.edu/manifest' })
-          allow(Faraday).to receive(:head).with('https://yetanotherhost.edu/manifest').and_return response2
+        context 'when the response does not have a header that allows CORS' do
+          context "when a head request for the response's location returns a 200 reponse" do
+            it "returns the response's location" do
+              expect(d.iiif_manifest_url).to eq 'https://yetanotherhost.edu/manifest'
+            end
+          end
         end
 
-        context "when a head request for the response's location returns a 200 reponse" do
-          it "returns the response's location" do
-            expect(d.iiif_manifest_url).to eq 'https://yetanotherhost.edu/manifest'
+        context 'when the response has a header that allows CORS' do
+          let(:response_1_headers) { { location: 'https://yetanotherhost.edu/manifest', 'access-control-allow-origin' => '*' } }
+
+          it 'returns the URL' do
+            expect(d.iiif_manifest_url).to eq 'https://someotherhost.edu/manifest'
           end
         end
       end
