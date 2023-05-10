@@ -23,7 +23,7 @@ RSpec.describe SolrDocument do
       end
     end
 
-    context "when the document's iiif_manifest_ssim field contains an array containing one string that is not a valid URL" do
+    context "when the document's iiif_manifest_ssim field contains an array with a string that is not a valid URL" do
       let(:manifest) { ['not a valid URL'] }
 
       it 'returns the string' do
@@ -31,7 +31,7 @@ RSpec.describe SolrDocument do
       end
     end
 
-    context "when the document's iiif_manifest_ssim field contains an array containing one valid URL with host cdm17287.contentdm.oclc.org" do
+    context "when the document's iiif_manifest_ssim field contains an array with a valid Content DM URL" do
       let(:manifest) { ['https://cdm17287.contentdm.oclc.org/manifest'] }
 
       it 'returns the URL without making any HTTP requests' do
@@ -40,7 +40,7 @@ RSpec.describe SolrDocument do
       end
     end
 
-    context "when the document's iiif_manifest_ssim field contains an array containing one valid URL with host digital.libraries.psu.edu" do
+    context "when the document's iiif_manifest_ssim field contains an array with a valid PSU digital collections URL" do
       let(:manifest) { ['https://digital.libraries.psu.edu/manifest'] }
 
       it 'returns the URL without making any HTTP requests' do
@@ -49,7 +49,7 @@ RSpec.describe SolrDocument do
       end
     end
 
-    context "when the document's iiif_manifest_ssim field contains an array containing one valid URL with some other host" do
+    context "when the document's iiif_manifest_ssim field contains an array with a valid URL with some other host" do
       let(:manifest) { ['https://someotherhost.edu/manifest'] }
       let(:response1) { instance_double Faraday::Response, status: response_1_status, headers: response_1_headers }
       let(:response2) { instance_double Faraday::Response, status: response_2_status, headers: response_2_headers }
