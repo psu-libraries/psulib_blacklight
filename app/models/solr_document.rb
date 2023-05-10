@@ -39,4 +39,33 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  def iiif_manifest_url
+    if self[:iiif_manifest_ssim].present?
+      follow_redirects(self[:iiif_manifest_ssim].first)
+    end
+  end
+
+  private
+
+    def follow_redirects(url)
+      host = URI.parse(url).host
+
+      # Skip any further redirect business if we already know that we're going to get a
+      # response with good CORS headers.
+      return url if ['cdm17287.contentdm.oclc.org', 'digital.libraries.psu.edu'].include?(host)
+
+      r = Faraday.head(url)
+
+      case r.status
+      when 301, 302
+        follow_redirects(r.headers[:location])
+      else
+        # Let the IIIF viewer deal with any HTTP errors on the front end.
+        url
+      end
+    rescue Faraday::ConnectionFailed, Faraday::TimeoutError, URI::InvalidURIError
+      # Again, let the viewer handle these errors.
+      url
+    end
 end

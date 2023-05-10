@@ -65,10 +65,6 @@ class CatalogController < ApplicationController
     return redirect_to action: 'show', id: params[:id].chop if trailing_punctuation?
 
     super
-
-    if @document[:iiif_manifest_ssim].present?
-      @iiif_manifest = follow_redirects(@document[:iiif_manifest_ssim].first)
-    end
   end
 
   def ris
@@ -542,23 +538,5 @@ class CatalogController < ApplicationController
     # elsewhere.
     def searches_from_history
       session[:history] ||= SearchHistory.find_or_initialize(session.id).search_ids
-    end
-
-    def follow_redirects(url)
-      host = URI.parse(url).host
-
-      # Skip any further redirect business if we already know that we're going to get a
-      # response with good CORS headers.
-      return url if ['cdm17287.contentdm.oclc.org', 'digital.libraries.psu.edu'].include?(host)
-
-      r = Faraday.head(url)
-      case r.status
-      when 301, 302
-        follow_redirects(r.headers[:location])
-      when 200
-        url
-      end
-    rescue Faraday::ConnectionFailed, Faraday::TimeoutError
-      nil
     end
 end
