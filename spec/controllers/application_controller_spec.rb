@@ -21,12 +21,6 @@ RSpec.describe ApplicationController do
       get :login
       expect(response).to redirect_to('/')
     end
-
-    it 'redirects to home' do
-      @request.env['ORIGINAL_FULLPATH'] = '/home'
-      get :login
-      expect(response).to redirect_to('/home')
-    end
   end
 
   context 'when given the wrong headers' do

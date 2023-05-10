@@ -6,6 +6,8 @@ RSpec.describe 'Ask a librarian', type: :feature do
   describe 'side tab widget', js: true do
     before do
       stub_request(:any, /hathitrust/).to_return(status: 200, body: '{}', headers: {})
+      user = User.new(email: 'user1234@psu.edu')
+      sign_in user
     end
 
     it 'shows up on the homepage' do

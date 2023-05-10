@@ -31,6 +31,7 @@
 
 en:
   blackcat:
+    successful_login: Successfully authenticated from Penn State account
     hathitrust:
       mono_url: https://hdl.handle.net/2027/
       multi_url: https://catalog.hathitrust.org/Record/

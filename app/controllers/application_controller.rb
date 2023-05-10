@@ -15,10 +15,10 @@ class ApplicationController < ActionController::Base
   helper_method :blackcat_config
 
   def login
-    session[:redirect_url] = home_or_original_path
     session[:groups] = request.env.fetch(Settings.groups_header, '').split(',')
     if current_user
-      redirect_to session[:redirect_url] || '/'
+      flash[:success] = I18n.t('blackcat.successful_login')
+      redirect_to params['fullpath'] || stored_location_for(User) || '/'
     else
       redirect_to login_path
     end
@@ -29,14 +29,6 @@ class ApplicationController < ActionController::Base
   end
 
   private
-
-    def home_or_original_path
-      original_fullpath = request.env.fetch('ORIGINAL_FULLPATH', '/')
-      # prevent redirect loops when user hits /login directly
-      return '/' if original_fullpath == '/login'
-
-      original_fullpath
-    end
 
     def authorize_profiler
       return unless request.session.fetch(:groups, []).include?(Settings.admin_group)
