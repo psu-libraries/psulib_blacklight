@@ -6,6 +6,8 @@ RSpec.describe SolrDocument do
   let(:d) { described_class.new(iiif_manifest_ssim: manifest) }
   let(:manifest) { nil }
 
+  before { allow(Faraday).to receive(:head) }
+
   describe '#iiif_manifest_url' do
     context "when the document's iiif_manifest_ssim field is nil" do
       it 'returns nil' do
