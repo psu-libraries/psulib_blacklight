@@ -17,7 +17,7 @@ const LocationInfo = ({ holding }) => {
   // AEON
   if (availability.isArchivalThesis(holding)) {
     const illiadURL =
-      'https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html';
+      'https://psu.illiad.oclc.org/upm2/lending/lendinglogon.html';
     const aeonLocationText = mapLocation(holding.locationID);
 
     return (
