@@ -15,6 +15,7 @@
     "bootstrap-select": "^1.13.18",
     "caniuse-lite": "^1.0.30000697",
     "jquery": "3.6.0",
+    "mirador": "^3.3.0",
     "popper.js": "^1.14.7",
     "prop-types": "^15.7.2",
     "rails-ujs": "^5.2.6",

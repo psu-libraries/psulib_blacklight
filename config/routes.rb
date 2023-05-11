@@ -46,6 +46,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   match '/catalog/:id/report_issue' => 'catalog#report_issue', via: [:get, :post], as: 'report_issue_solr_document'
+  match '/catalog/:id/ris' => 'catalog#ris', via: [:get, :post], as: 'ris_solr_document'
 
   resource :browse, controller: :browse, only: [] do
     get 'call_numbers', as: 'call_number'

@@ -5,6 +5,7 @@ class CatalogController < ApplicationController
   include BlacklightRangeLimit::ControllerOverride
   include Blacklight::Catalog
   include Blacklight::Marc::Catalog
+  include Blacklight::Searchable
   include Browse
   include ReportIssue
   include ::ReportIssue
@@ -64,18 +65,29 @@ class CatalogController < ApplicationController
     return redirect_to action: 'show', id: params[:id].chop if trailing_punctuation?
 
     super
+
+    if @document[:iiif_manifest_ssim].present?
+      @iiif_manifest = follow_redirects(@document[:iiif_manifest_ssim].first)
+    end
+  end
+
+  def ris
+    @document = search_service.fetch(params[:id])
+    @document_ris = DocumentRis.new(@document)
+    send_data @document_ris.ris_to_string, filename: 'document.ris', type: :ris
   end
 
   configure_blacklight do |config|
     # Controls the document actions (also called "tools"), note that blacklight_marc adds refworks and endnote
     config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params, html_class: 'dropdown-item')
+    config.add_show_tools_partial(:ris, callback: :ris_action, html_class: 'dropdown-item')
     config.add_show_tools_partial(:report_issue, callback: :report_issue_action, validator: :validate_report_issue_params)
     # TODO: hide SMS action for now, should be enabled when fixed
     # config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params, html_class: 'dropdown-item')
-    config.show.document_actions.refworks.html_class = 'dropdown-item'
-    config.show.document_actions.endnote.html_class = 'dropdown-item'
     config.show.document_actions.delete_field('librarian_view') # removing something added by blacklight_marc
     config.show.document_actions.delete_field('report_issue') # hide the 'Report an Issue' action from the Share dropdown
+    config.show.document_actions.delete_field('endnote') # hide the 'Refworks' action from the Share dropdown
+    config.show.document_actions.delete_field('refworks') # hide the 'Endnote' action from the Share dropdown
 
     # default advanced config values
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
@@ -519,5 +531,23 @@ class CatalogController < ApplicationController
 
     def trailing_punctuation?
       params[:id].match(/\d+[.,;:!"')\]]/)
+    end
+
+    def follow_redirects(url)
+      host = URI.parse(url).host
+
+      # Skip any further redirect business if we already know that we're going to get a
+      # response with good CORS headers.
+      return url if ['cdm17287.contentdm.oclc.org', 'digital.libraries.psu.edu'].include?(host)
+
+      r = Faraday.head(url)
+      case r.status
+      when 301, 302
+        follow_redirects(r.headers[:location])
+      when 200
+        url
+      end
+    rescue Faraday::ConnectionFailed, Faraday::TimeoutError
+      nil
     end
 end

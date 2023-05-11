@@ -11,7 +11,9 @@
         <a class="btn btn-info btn-sm dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
           <%= render_show_doc_actions @document do |config, inner| %>
-            <% if (config.key != :citation) %>
+            <% if (config.key == :ris) %>
+              <a class="dropdown-item" href="/catalog/<%= params[:id] %>/ris">RIS file</a>
+            <% elsif (config.key != :citation) %>
               <%= inner %>
             <% end %>
           <% end %>
