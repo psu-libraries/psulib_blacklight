@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     concerns :exportable
 
     collection do
+      get 'initialize_bookmark'
       delete 'clear'
     end
   end

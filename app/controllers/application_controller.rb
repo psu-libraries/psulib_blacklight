@@ -16,9 +16,15 @@ class ApplicationController < ActionController::Base
 
   def login
     session[:groups] = request.env.fetch(Settings.groups_header, '').split(',')
+    redirect_location = params['fullpath'] || stored_location_for(User) || '/'
     if current_user
       flash[:success] = I18n.t('blackcat.successful_login')
-      redirect_to params['fullpath'] || stored_location_for(User) || '/'
+      if params['bookmark_doc_id']
+        redirect_to controller: 'bookmarks', action: 'initialize_bookmark',
+                    id: params['bookmark_doc_id'], redirect_location: redirect_location and return
+      end
+
+      redirect_to redirect_location
     else
       redirect_to login_path
     end
