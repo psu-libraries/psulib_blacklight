@@ -279,7 +279,7 @@ RSpec.describe 'Availability', :vcr, type: :feature do
           )
           expect(page).to have_link(
             'Request Scan - Guest',
-            href: 'https://psu.illiad.oclc.org/illiad/upm/lending/lendinglogon.html'
+            href: 'https://psu.illiad.oclc.org/upm2/lending/lendinglogon.html'
           )
           expect(page).to have_link(
             'View in Special Collections',
