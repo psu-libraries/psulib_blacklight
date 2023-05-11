@@ -8,7 +8,6 @@ class CatalogController < ApplicationController
   include Blacklight::Searchable
   include Browse
   include ReportIssue
-  include ::ReportIssue
 
   before_action :redirect_browse
 
