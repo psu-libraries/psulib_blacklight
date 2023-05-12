@@ -47,11 +47,11 @@ class BrowseList
         .get('select', params: {
                'rows' => '0',
                'facet' => 'true',
+               'facet.matches' => "(?i)^#{prefix}.*$",
                'facet.sort' => 'index',
                'facet.limit' => length + 1,
                'facet.offset' => (page - 1) * length,
-               'facet.field' => field,
-               'facet.prefix' => prefix
+               'facet.field' => field
              })
         .dig('facet_counts', 'facet_fields', field)
     end
@@ -61,7 +61,6 @@ class BrowseList
 
       normalized_prefix = prefix.dup
 
-      normalized_prefix[0] = normalized_prefix[0].upcase # uppercase the first character
       normalized_prefix.gsub!(/--/, '—') # replace 2 normal dashes with em dash
       normalized_prefix.chomp('*') # remove trailing * (wildcard chars)
     end

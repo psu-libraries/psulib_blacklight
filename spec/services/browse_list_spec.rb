@@ -43,7 +43,7 @@ RSpec.describe BrowseList do
               'facet.field' => 'browsing_facet',
               'facet.limit' => 21,
               'facet.offset' => 0,
-              'facet.prefix' => nil,
+              'facet.matches' => '(?i)^.*$',
               'facet.sort' => 'index',
               'rows' => '0'
             }
@@ -63,7 +63,7 @@ RSpec.describe BrowseList do
           field: 'browsing_facet',
           page: 2,
           length: 50,
-          prefix: 'tE--rM--*'
+          prefix: 'te--rm--*'
         ).entries
 
         expect(mock_connection).to have_received(:get).with(
@@ -74,7 +74,7 @@ RSpec.describe BrowseList do
               'facet.field' => 'browsing_facet',
               'facet.limit' => 51,
               'facet.offset' => 50,
-              'facet.prefix' => 'TE—rM—',
+              'facet.matches' => '(?i)^te—rm—.*$',
               'facet.sort' => 'index',
               'rows' => '0'
             }
