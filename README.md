@@ -42,7 +42,9 @@ announcement:
   message: All University Libraries locations are closed, but we're here to help! See <a href="https://libraries.psu.edu/covid19"> University Libraries COVID-19 (novel coronavirus) Updates and Resources</a> for more information.
   # See https://getbootstrap.com/docs/4.4/utilities/colors/
   html_class: bg-warning
-hold_button_url: https://myaccount01qa.libraries.psu.edu/holds/new?catkey=
+my_account_url: https://myaccount.libraries.psu.edu/
+hold_button_path: holds/new?catkey=
+no_recall_button_path: ill/new?catkey=
 
 # Booleans
 readonly: false
