@@ -1,1 +1,5 @@
-<%= render PsulBookmarkComponent.new(document: document) if current_or_guest_user %>
+<% if current_user %>
+<%= render PsulBookmarkComponent.new(document: document) %>
+<% else %>
+<a class="btn btn-sm btn-info" href="/login?fullpath=<%= u(request.fullpath) %>&bookmark_doc_id=<%= document.id %>">Login to Bookmark</a>
+<% end %>

@@ -27,7 +27,7 @@ require 'view_component/test_helpers'
 # allow connections to localhost, webdrivers
 WebMock.disable_net_connect!(
   allow_localhost: true,
-  allow: ['chromedriver.storage.googleapis.com', 'solr']
+  allow: ['chromedriver.storage.googleapis.com', 'solr', Settings.solr.host]
 )
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -82,6 +82,8 @@ RSpec.configure do |config|
   config.include ViewComponent::TestHelpers, type: :component
   config.include Capybara::RSpecMatchers, type: :component
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Warden::Test::Helpers
 end
 
 Capybara.register_driver :chrome_headless do |app|
