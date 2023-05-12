@@ -34,7 +34,7 @@ RSpec.describe 'viewing a record', js: true, vcr: { record: :new_episodes } do
   end
 
   context 'when the record has an IIIF manifest URL that returns a 500 error' do
-    let(:r) { instance_double Faraday::Response, status: 500 }
+    let(:r) { instance_double Faraday::Response, status: 500, headers: {} }
 
     before do
       allow(Faraday).to receive(:head)
@@ -42,9 +42,10 @@ RSpec.describe 'viewing a record', js: true, vcr: { record: :new_episodes } do
         .and_return r
     end
 
-    it 'does not render the Mirador viewer' do
+    it 'renders the Mirador viewer' do
       visit '/catalog/1267921'
-      expect(page).not_to have_selector 'div[id="iiif-viewer"]'
+      expect(page).to have_selector 'div[id="iiif-viewer"]'
+      expect(page).to have_selector 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
     end
   end
 
@@ -55,9 +56,10 @@ RSpec.describe 'viewing a record', js: true, vcr: { record: :new_episodes } do
         .and_raise Faraday::ConnectionFailed.new(nil)
     end
 
-    it 'does not render the Mirador viewer' do
+    it 'renders the Mirador viewer' do
       visit '/catalog/1267921'
-      expect(page).not_to have_selector 'div[id="iiif-viewer"]'
+      expect(page).to have_selector 'div[id="iiif-viewer"]'
+      expect(page).to have_selector 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
     end
   end
 
@@ -68,9 +70,10 @@ RSpec.describe 'viewing a record', js: true, vcr: { record: :new_episodes } do
         .and_raise Faraday::TimeoutError
     end
 
-    it 'does not render the Mirador viewer' do
+    it 'renders the Mirador viewer' do
       visit '/catalog/1267921'
-      expect(page).not_to have_selector 'div[id="iiif-viewer"]'
+      expect(page).to have_selector 'div[id="iiif-viewer"]'
+      expect(page).to have_selector 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
     end
   end
 end
