@@ -85,4 +85,14 @@ RSpec.describe 'Subject Browse', type: :feature do
       expect(page).not_to have_selector('td', text: /^Quilting$/)
     end
   end
+
+  context 'when the search prefix is lowercased' do
+    specify do
+      visit subject_browse_path(prefix: 'african american')
+
+      expect(page).to have_link('African American women lawyers—Illinois—Chicago—Biography',
+                                href: /subject_browse_facet/)
+      expect(page).to have_link('African Americans—Civil rights', href: /subject_browse_facet/)
+    end
+  end
 end
