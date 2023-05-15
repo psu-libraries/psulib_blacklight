@@ -17,11 +17,11 @@
 
   </div>
 
-  <% if @iiif_manifest.present? %>
+  <% if @document.iiif_manifest_url.present? %>
     <h4>Digitized Materials</h4>
     <div class="row document-metadata metadata-primary py-4">
       <div class="col">
-        <div id="iiif-viewer" class="iiif-viewer" data-manifest="<%= @iiif_manifest %>"></div>
+        <div id="iiif-viewer" class="iiif-viewer" data-manifest="<%= @document.iiif_manifest_url %>"></div>
       </div>
     </div>
   <% end %>

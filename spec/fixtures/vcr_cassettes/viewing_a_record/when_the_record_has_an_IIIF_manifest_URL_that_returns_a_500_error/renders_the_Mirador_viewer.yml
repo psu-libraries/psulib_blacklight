@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://books.google.com/books?bibkeys=LCCN:sn%2088016767&jscmd=viewapi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - books.google.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 10 May 2023 19:28:35 GMT
+      Expires:
+      - Wed, 10 May 2023 19:28:35 GMT
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      P3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      - policyref="http://www.google.com/googlebooks/p3p.xml", CP="DSP NON ADM DEV
+        OUR BUS NAV COM INT STA"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=604800
+      Content-Type:
+      - application/javascript; charset=ISO-8859-1
+      X-Content-Type-Options:
+      - nosniff
+      Content-Disposition:
+      - attachment; filename="f.txt"
+      Server:
+      - OFE/0.1
+      Set-Cookie:
+      - NID=511=k5Y4KyR0tiEgB1PqUa6YW8mJeYFzQbwYO5O_TG1hrPrVjQQk-AQ0eE2kdhA8OHogSq7Dryj2Qhf-R6dedwAZfv53MOS05QvvnXOKEagCq1XEgPEVB9ocFtVwyqFkNLt1yx2eSiWL3yaZXa2LeovrSU2wfuea92u6yHDzK3B05_Q;
+        expires=Thu, 09-Nov-2023 19:28:35 GMT; path=/; domain=.google.com; HttpOnly
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: var _GBSBookInfo = {};
+  recorded_at: Wed, 10 May 2023 19:28:34 GMT
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=1267921
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Wed, 10 May 2023 19:28:35 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>1267921</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Pattee
+        Library and Paterno Library Stacks (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>PATTEE-2A</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LCPER</classificationID><callNumber>PN851.C52
+        v.1-3 no.1 1987-89</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000071202587</itemID><itemTypeID>PERIODICAL</itemTypeID><currentLocationID>PATTEE-2A</currentLocationID><homeLocationID>PATTEE-2A</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Wed, 10 May 2023 19:28:34 GMT
+recorded_with: VCR 6.1.0
