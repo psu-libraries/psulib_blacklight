@@ -23,7 +23,7 @@ module SearchLinksHelper
 
   # Makes a link to title search
   def title_links(options = {})
-    generate_links(:serial_title, options)
+    generate_links(:title, options)
   end
 
   private
@@ -34,14 +34,14 @@ module SearchLinksHelper
       lnk = link_to(item,
                     "/?#{search_type(link_type)}=#{CGI.escape(zipped || item)}",
                     class: title_search_html_class(link_type), 
-                    title: search_field?(link_type) ? "Search: #{zipped || item}" : "#{item}")
+                    title: search_field?(link_type) && link_type != :title ? "Search: #{zipped || item}" : nil)
       result << content_tag('li', lnk, nil, false)
     end
     content_tag 'ul', result.join, nil, false
   end
 
   def search_field?(link_type)
-    [:series, :serial_title, :subject].include?(link_type)
+    [:series, :title, :subject].include?(link_type)
   end
 
   def search_type(link_type)
@@ -49,7 +49,7 @@ module SearchLinksHelper
   end
 
   def title_search_html_class(link_type)
-    search_field?(link_type) ? "#{link_type.to_s}" : nil
+    search_field?(link_type) && link_type != :title ? "search-#{link_type.to_s}" : nil
   end
 
   def strict_titles(link_type, options)
