@@ -53,6 +53,18 @@ module CatalogHelper
     content_tag 'ul', result.join, nil, false
   end
 
+  # Makes a link to thesis_department facet
+  def thesis_dept_links(options = {})
+    result = []
+
+    options[:value].each do |thesis_dept|
+      link = link_to thesis_dept, "/?f[thesis_dept_facet][]=#{CGI.escape thesis_dept}"
+      result << content_tag('li', link, nil, false)
+    end
+
+    content_tag 'ul', result.join, nil, false
+  end
+
   # Given a list of items, displays each item on its own line
   def newline_format(options = {})
     content_tag 'span', options[:value].join('<br>'), nil, false

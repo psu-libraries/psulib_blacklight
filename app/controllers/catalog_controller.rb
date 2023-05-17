@@ -205,6 +205,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_browse_facet', show: false, limit: 0
     config.add_facet_field 'subject_facet', show: false
     config.add_facet_field 'title_sort', label: 'Title', show: false
+    config.add_facet_field 'thesis_dept_facet', show: false
 
     #
     # Facets that only appear on the home page
@@ -368,6 +369,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'references_note_ssm', label: 'Reviewed/Cited In', helper_method: :newline_format
     config.add_show_field 'dedication_ssim', label: 'Dedication', helper_method: :newline_format
     config.add_show_field 'endowment_note_display_ssm', label: 'Endowment Note', helper_method: :newline_format
+    config.add_show_field 'thesis_dept_display_ssm', label: 'Thesis Department', helper_method: :thesis_dept_links
 
     # Order not yet specified
     # config.add_show_field 'lc_callnum_display_ssm', label: 'Call number'
