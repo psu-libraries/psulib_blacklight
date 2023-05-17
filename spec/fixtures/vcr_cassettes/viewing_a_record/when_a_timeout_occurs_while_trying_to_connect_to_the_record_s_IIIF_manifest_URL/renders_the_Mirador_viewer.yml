@@ -29,7 +29,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Wed, 10 May 2023 19:28:38 GMT
+      - Tue, 16 May 2023 20:05:42 GMT
       Server:
       - SirsiDynix IlsWS
     body:
@@ -38,7 +38,7 @@ http_interactions:
         xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>1267921</titleID><TitleAvailabilityInfo><totalCopiesAvailable>1</totalCopiesAvailable><libraryWithAvailableCopies>Pattee
         Library and Paterno Library Stacks (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>PATTEE-2A</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LCPER</classificationID><callNumber>PN851.C52
         v.1-3 no.1 1987-89</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000071202587</itemID><itemTypeID>PERIODICAL</itemTypeID><currentLocationID>PATTEE-2A</currentLocationID><homeLocationID>PATTEE-2A</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
-  recorded_at: Wed, 10 May 2023 19:28:36 GMT
+  recorded_at: Tue, 16 May 2023 20:05:42 GMT
 - request:
     method: get
     uri: https://books.google.com/books?bibkeys=LCCN:sn%2088016767&jscmd=viewapi
@@ -60,9 +60,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 16 May 2023 20:16:37 GMT
+      - Tue, 16 May 2023 20:05:42 GMT
       Expires:
-      - Tue, 16 May 2023 20:16:37 GMT
+      - Tue, 16 May 2023 20:05:42 GMT
       Cache-Control:
       - private, must-revalidate, max-age=0
       P3p:
@@ -84,8 +84,8 @@ http_interactions:
       Server:
       - OFE/0.1
       Set-Cookie:
-      - NID=511=GTog1CeGuWlaao2U0txavF6tY2pm9Dlb--np3W-ofGJwDdsXBK56ddvquf9HXL2vvvPY1RnRXM7acmAPQnBlZJe49MjURosEwQ0eQRXJw5LYCYLojqpE40SlrL90PdAT7zPFR3LJZyt6AfCxPAnAStCgA-tepUFMLg3wknpMczk;
-        expires=Wed, 15-Nov-2023 20:16:37 GMT; path=/; domain=.google.com; HttpOnly
+      - NID=511=DLHqsZXoOSc8ASYsaD2frTNo4B5dWPt7Mktc2wiX8YmOTGsyhpy7U4fLH-JFe0WfxXG4CkIA7J1tpo9CSMQnQo5BM1-vJefq2A4DtIV7_WK0rAxbG-6KnlXu_bY5P3Af3eJ5zQp6nA63GemN_55JbFfPcn_VqT1ACVDZRLa_NUQ;
+        expires=Wed, 15-Nov-2023 20:05:42 GMT; path=/; domain=.google.com; HttpOnly
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -93,5 +93,5 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: var _GBSBookInfo = {};
-  recorded_at: Tue, 16 May 2023 20:16:37 GMT
+  recorded_at: Tue, 16 May 2023 20:05:42 GMT
 recorded_with: VCR 6.1.0

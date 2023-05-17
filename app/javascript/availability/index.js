@@ -537,25 +537,11 @@ const availability = {
   },
 
   noRecalls(holdings) {
-    if (availability.allIllLocation(holdings)) {
-      return true;
-    }
-
     if (availability.allNonHoldableLocation(holdings)) {
       return true;
     }
 
     return false;
-  },
-
-  allIllLocation(holdings) {
-    for (const holding of holdings) {
-      if (!availability.isIllLocation(holding)) {
-        return false;
-      }
-    }
-
-    return true;
   },
 
   allNonHoldableLocation(holdings) {
@@ -568,12 +554,8 @@ const availability = {
     return true;
   },
 
-  isIllLocation(holding) {
-    return holding.locationID in availability.illiadLocations;
-  },
-
   isNonHoldableLocation(holding) {
-    return holding.locationID in availability.nonHoldableLocations;
+    return availability.nonHoldableLocations.includes(holding.locationID);
   },
 };
 
