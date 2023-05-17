@@ -16,7 +16,8 @@ RSpec.describe 'Bookmarks', type: :feature do
   context 'when the user is not logged in' do
     it 'Shows a link to login', js: true do
       visit '/?utf8=✓&search_field=all_fields&q=Ethical+and+Social+Issues+in+the+Information+Age+AND+9783319707129'
-      expect(page).to have_css('.btn', text: 'Login to Bookmark')
+      expect(page).to have_css('.btn', text: 'Bookmark')
+      expect(page).to have_link(href: /login/)
     end
   end
 
