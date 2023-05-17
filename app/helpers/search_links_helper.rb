@@ -30,7 +30,7 @@ module SearchLinksHelper
 
   def generate_links(link_type, options)
     result = []
-    options[:value].zip(strict_titles).each do |item, zipped|
+    options[:value].zip(strict_titles(link_type, options)).each do |item, zipped|
       lnk = link_to(item,
                     "/?#{search_type(link_type)}=#{CGI.escape(zipped || item)}",
                     class: title_search_html_class(link_type), 
