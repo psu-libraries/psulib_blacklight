@@ -29,14 +29,12 @@ module SearchLinksHelper
   private
 
   def generate_links(link_type, options)
-    search_type = search_field?(link_type) ? "search_field=#{link_type.to_s}&q" : "f[#{link_type.to_s.concat("_facet")}][]"
-    title_search_html_class = search_field?(link_type) ? "#{link_type.to_s}" : nil
-    strict_titles = link_type == :series ? options[:document][:series_title_strict_tsim] || [] : []
     result = []
     options[:value].zip(strict_titles).each do |item, zipped|
       lnk = link_to(item,
-                    "/?#{search_type}=#{CGI.escape(zipped || item)}",
-                    class: title_search_html_class, title: search_field?(link_type) ? "Search: #{zipped || item}" : "#{item}")
+                    "/?#{search_type(link_type)}=#{CGI.escape(zipped || item)}",
+                    class: title_search_html_class(link_type), 
+                    title: search_field?(link_type) ? "Search: #{zipped || item}" : "#{item}")
       result << content_tag('li', lnk, nil, false)
     end
     content_tag 'ul', result.join, nil, false
@@ -44,5 +42,17 @@ module SearchLinksHelper
 
   def search_field?(link_type)
     [:series, :serial_title, :subject].include?(link_type)
+  end
+
+  def search_type(link_type)
+    search_field?(link_type) ? "search_field=#{link_type.to_s}&q" : "f[#{link_type.to_s.concat("_facet")}][]"
+  end
+
+  def title_search_html_class(link_type)
+    search_field?(link_type) ? "#{link_type.to_s}" : nil
+  end
+
+  def strict_titles(link_type, options)
+    link_type == :series ? options[:document][:series_title_strict_tsim] || [] : []
   end
 end
