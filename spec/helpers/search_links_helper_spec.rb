@@ -90,4 +90,15 @@ RSpec.describe SearchLinksHelper, type: :helper do
                              '<a href="/?search_field=title&amp;q=Another+Title">Another Title</a></li></ul>'
     end
   end
+
+  describe '#thesis_dept_links' do
+    let (:field_data) { ['Number One Department', 'Number Two Department'] }
+    let (:thesis_dept_doc) { { value: field_data } }
+
+    it 'assembles links to thesis department facet search and puts it in a list' do
+      links = thesis_dept_links thesis_dept_doc
+      expect(links).to match '<ul><li><a href="/?f[thesis_dept_facet][]=Number+One+Department">Number One Department</a></li>' \
+                             '<li><a href="/?f[thesis_dept_facet][]=Number+Two+Department">Number Two Department</a></li></ul>'
+    end
+  end
 end
