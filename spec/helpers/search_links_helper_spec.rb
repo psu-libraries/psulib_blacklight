@@ -97,8 +97,9 @@ RSpec.describe SearchLinksHelper, type: :helper do
 
     it 'assembles links to thesis department facet search and puts it in a list' do
       links = thesis_dept_links thesis_dept_doc
-      expect(links).to match '<ul><li><a href="/?f[thesis_dept_facet][]=Number+One+Department">Number One Department</a></li>' \
-                             '<li><a href="/?f[thesis_dept_facet][]=Number+Two+Department">Number Two Department</a></li></ul>'
+      expect(links).to match '<ul><li><a href="/?f[thesis_dept_facet][]=Number+One+Department">Number One ' \
+                             'Department</a></li><li><a href="/?f[thesis_dept_facet][]=Number+Two+Departme' \
+                             'nt">Number Two Department</a></li></ul>'
     end
   end
 end
