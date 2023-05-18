@@ -48,7 +48,7 @@ module SearchLinksHelper
       search_field?(search_type) ? "search_field=#{search_type}&q" : "f[#{search_type.to_s.concat('_facet')}][]"
     end
 
-    def title_search_html_class(search_type)
+    def search_html_class(search_type)
       search_field?(search_type) && search_type != :title ? "search-#{search_type}" : nil
     end
 
