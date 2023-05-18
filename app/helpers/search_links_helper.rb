@@ -33,7 +33,7 @@ module SearchLinksHelper
       options[:value].zip(strict_titles(search_type, options)).each do |item, zipped|
         lnk = link_to(item,
                       "/?#{search_query(search_type)}=#{CGI.escape(zipped || item)}",
-                      class: title_search_html_class(search_type),
+                      class: search_html_class(search_type),
                       title: search_field?(search_type) && search_type != :title ? "Search: #{zipped || item}" : nil)
         result << content_tag('li', lnk, nil, false)
       end
