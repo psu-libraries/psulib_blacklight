@@ -90,7 +90,7 @@ class CatalogController < ApplicationController
     config.advanced_search[:url_key] ||= 'advanced'
     config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
-      'facet.field' => %w[access_facet format language_facet media_type_facet 
+      'facet.field' => %w[access_facet format language_facet media_type_facet
                           library_facet location_facet lc_1letter_facet thesis_dept_facet],
       'facet.pivot' => '',
       'facet.limit' => -1,
