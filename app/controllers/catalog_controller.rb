@@ -90,7 +90,8 @@ class CatalogController < ApplicationController
     config.advanced_search[:url_key] ||= 'advanced'
     config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
-      'facet.field' => %w[access_facet format language_facet media_type_facet library_facet location_facet lc_1letter_facet],
+      'facet.field' => %w[access_facet format language_facet media_type_facet
+                          library_facet location_facet lc_1letter_facet thesis_dept_facet],
       'facet.pivot' => '',
       'facet.limit' => -1,
       'f.language_facet.facet.limit' => -1,
@@ -205,7 +206,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_browse_facet', show: false, limit: 0
     config.add_facet_field 'subject_facet', show: false
     config.add_facet_field 'title_sort', label: 'Title', show: false
-    config.add_facet_field 'thesis_dept_facet', show: false
+    config.add_facet_field 'thesis_dept_facet', label: 'Graduate Program', show: false
 
     #
     # Facets that only appear on the home page
@@ -275,7 +276,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'edition_display_ssm', label: 'Edition', top_field: true, if: false, helper_method: :newline_format
     config.add_show_field 'phys_desc_ssm', label: 'Physical Description', top_field: true, if: false, helper_method: :newline_format
     config.add_show_field 'addl_author_display_ssm', label: 'Additional Creators', link_to_facet: :all_authors_facet, top_field: true, if: false
-    config.add_show_field 'thesis_dept_display_ssm', label: 'Thesis Department', helper_method: :thesis_dept_links
+    config.add_show_field 'thesis_dept_display_ssm', label: 'Graduate Program', helper_method: :thesis_dept_links
     config.add_show_field 'series_title_display_ssm', label: 'Series', helper_method: :series_links
     config.add_show_field 'language_ssim', label: 'Language'
     config.add_show_field 'language_note_ssm', label: 'Language Note', helper_method: :newline_format
