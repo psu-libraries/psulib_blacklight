@@ -2,6 +2,7 @@
 
 module CatalogHelper
   include Blacklight::CatalogHelperBehavior
+  extend SearchLinksHelper
 
   # Makes a link to a catalog item.
   def bound_info(options = {})
@@ -29,30 +30,6 @@ module CatalogHelper
     SubjectifyService.new(options[:value]).content
   end
 
-  # Links to general subject search for other subjects
-  def other_subjectify(options = {})
-    result = []
-    options[:value].each do |subject|
-      lnk = link_to(subject,
-                    "/?search_field=subject&q=#{CGI.escape subject}",
-                    class: 'search-subject', title: "Search: #{subject}")
-      result << content_tag('li', lnk, nil, false)
-    end
-    content_tag 'ul', result.join, nil, false
-  end
-
-  # Makes a link to genre full facet
-  def genre_links(options = {})
-    result = []
-
-    options[:value].each do |genre|
-      link = link_to genre, "/?f[genre_full_facet][]=#{CGI.escape genre}"
-      result << content_tag('li', link, nil, false)
-    end
-
-    content_tag 'ul', result.join, nil, false
-  end
-
   # Given a list of items, displays each item on its own line
   def newline_format(options = {})
     content_tag 'span', options[:value].join('<br>'), nil, false
@@ -71,19 +48,6 @@ module CatalogHelper
       link_to json['text'], json['url']
     end
     content_tag 'span', contents.join('<br>'), nil, false
-  end
-
-  # Links to series search for series
-  def series_links(options = {})
-    strict_titles = options[:document][:series_title_strict_tsim] || []
-    result = []
-    options[:value].zip(strict_titles).each do |series, strict_title|
-      lnk = link_to(series,
-                    "/?search_field=series&q=#{CGI.escape(strict_title || series)}",
-                    class: 'search-series', title: "Search: #{strict_title || series}")
-      result << content_tag('li', lnk, nil, false)
-    end
-    content_tag 'ul', result.join, nil, false
   end
 
   # To render format icon on search results as the default thumbnail for now
@@ -107,16 +71,6 @@ module CatalogHelper
 
   def oclc_number(document)
     document.fetch(:oclc_number_ssim, [])&.first
-  end
-
-  # Makes a link to title search
-  def title_links(options = {})
-    result = options[:value].map do |serial_title|
-      link = link_to serial_title, "/?search_field=title&q=#{CGI.escape serial_title}"
-      content_tag('li', link, nil, false)
-    end
-
-    content_tag 'ul', result.join, nil, false
   end
 
   def marc_record_details(document)
