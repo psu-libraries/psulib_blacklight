@@ -121,13 +121,17 @@ GEM
     config (4.0.0)
       deep_merge (~> 1.2, >= 1.2.1)
       dry-validation (~> 1.0, >= 1.0.0)
+    connection_pool (2.4.1)
     crack (0.4.5)
       rexml
     crass (1.0.6)
     date (3.3.3)
-    ddtrace (0.48.0)
-      ffi (~> 1.0)
+    ddtrace (1.11.1)
+      debase-ruby_core_source (>= 0.10.16, <= 3.2.0)
+      libdatadog (~> 2.0.0.1.0)
+      libddwaf (~> 1.8.2.0.0)
       msgpack
+    debase-ruby_core_source (3.2.0)
     debug_inspector (1.1.0)
     deep_merge (1.2.2)
     deprecation (1.1.0)
@@ -249,6 +253,9 @@ GEM
     launchy (2.5.0)
       addressable (~> 2.7)
     lcsort (0.9.1)
+    libdatadog (2.0.0.1.0)
+    libddwaf (1.8.2.0.0)
+      ffi (~> 1.0)
     library_stdnums (1.6.0)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -369,7 +376,10 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.7.1)
+    redis (5.0.6)
+      redis-client (>= 0.9.0)
+    redis-client (0.14.1)
+      connection_pool
     regexp_parser (2.5.0)
     request_store (1.5.1)
       rack (>= 1.4)
@@ -537,7 +547,7 @@ DEPENDENCIES
   byebug
   capybara
   config
-  ddtrace (~> 0.48.0)
+  ddtrace (~> 1.11.1)
   devise (>= 4.6.0)
   devise-guests (~> 0.6)
   faraday (~> 1.10)
@@ -559,7 +569,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 6.1.0)
   rails-controller-testing
-  redis (~> 4.2)
+  redis (~> 5.0, >= 5.0.6)
   rsolr (>= 2.5)
   rspec-its
   rspec-rails
