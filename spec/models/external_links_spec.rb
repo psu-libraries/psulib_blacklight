@@ -234,4 +234,74 @@ RSpec.describe ExternalLinks do
       }.with_indifferent_access])
     end
   end
+
+  describe '#online_version_links' do
+    let(:document) { { partial_links_struct: partial_links_struct } }
+    let(:online_version_links) { SolrDocument.new(document).online_version_links }
+    let(:partial_links_struct) {
+      [
+        '{"prefix":"Digitized copy:","text":"libraries.psu.edu","url":"https://libraries.psu.edu/the-digitized-thing","notes":""}',
+        '{"prefix":"","text":"IIIF manifest","url":"https://arks.libraries.psu.edu/ark:/42409/ii34w27","notes":"Note:"}'
+      ]
+    }
+
+    context "when the document's partial_links_struct is nil" do
+      let(:partial_links_struct) { nil }
+
+      it 'returns nil' do
+        expect(online_version_links).to be_nil
+      end
+    end
+
+    context "when the document's partial_links_struct is empty" do
+      let(:partial_links_struct) { [] }
+
+      it 'returns nil' do
+        expect(online_version_links).to be_nil
+      end
+    end
+
+    context "when the document's partial_links_struct is not empty" do
+      it 'returns the parsed links' do
+        expect(online_version_links).to eq(
+          [
+            {
+              prefix: 'Digitized copy: ',
+              text: 'libraries.psu.edu',
+              url: 'https://libraries.psu.edu/the-digitized-thing',
+              notes: nil
+            }.with_indifferent_access,
+            {
+              prefix: nil,
+              text: 'IIIF manifest',
+              url: 'https://arks.libraries.psu.edu/ark:/42409/ii34w27',
+              notes: ', Note'
+            }.with_indifferent_access
+          ]
+        )
+      end
+
+      context 'when the document has a iiif_manifest_ssim value' do
+        let(:document) {
+          {
+            partial_links_struct: partial_links_struct,
+            iiif_manifest_ssim: 'https://arks.libraries.psu.edu/ark:/42409/ii34w27'
+          }
+        }
+
+        it 'returns the parsed links excluding any IIIF manifest links' do
+          expect(online_version_links).to eq(
+            [
+              {
+                prefix: 'Digitized copy: ',
+                text: 'libraries.psu.edu',
+                url: 'https://libraries.psu.edu/the-digitized-thing',
+                notes: nil
+              }.with_indifferent_access
+            ]
+          )
+        end
+      end
+    end
+  end
 end

@@ -38,7 +38,13 @@ module ExternalLinks
     end
 
     def partial_links
-      @_source['partial_links_struct']
+      links = @_source['partial_links_struct']
+
+      if @_source['iiif_manifest_ssim'].present?
+        links.grep_v(/IIIF manifest/)
+      else
+        links
+      end
     end
 
     def suppl_links
