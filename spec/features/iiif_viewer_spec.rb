@@ -12,10 +12,11 @@ RSpec.describe 'viewing a record', js: true, vcr: { record: :new_episodes } do
   end
 
   context 'when the record has an IIIF manifest URL' do
-    it 'renders the Mirador viewer' do
+    it 'renders the Mirador viewer with no workspace type' do
       visit '/catalog/2025781'
       expect(page).to have_selector 'div[id="iiif-viewer"]'
       expect(page).to have_selector 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
+      expect(page).not_to have_selector 'div[class="mosaic-window-body"]'
       within '#iiif-viewer' do
         expect(page).not_to have_content 'error'
       end
@@ -24,6 +25,24 @@ RSpec.describe 'viewing a record', js: true, vcr: { record: :new_episodes } do
     it 'does not show a link to the IIIF manifest file' do
       visit '/catalog/2025781'
       expect(page).not_to have_link 'IIIF manifest'
+    end
+  end
+
+  context 'when the record has multiple IIIF manifest URLs' do
+    # Note: none of the existing test fixtures actually had multiple IIIF manifest URLs,
+    # perhaps because no such records currently exist. So this fixture now combines its
+    # actual manifest URL with the manifest URL from another, unrelated fixture. In other
+    # words, this example is fabricated, but it should represent what this would actually
+    # look like if a real example existed.
+
+    it 'renders the Mirador viewer with a mosaic workspace' do
+      visit '/catalog/7280921'
+      expect(page).to have_selector 'div[id="iiif-viewer"]'
+      expect(page).to have_selector 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
+      expect(page).to have_selector 'div[class="mosaic-window-body"]'
+      within '#iiif-viewer' do
+        expect(page).not_to have_content 'error'
+      end
     end
   end
 
