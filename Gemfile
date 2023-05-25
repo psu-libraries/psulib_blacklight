@@ -9,7 +9,7 @@ end
 
 gem 'bootsnap', require: false
 gem 'config'
-gem 'ddtrace', '~> 0.48.0'
+gem 'ddtrace', '~> 1.11.1'
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.6'
 gem 'faraday', '~>1.10'
@@ -25,7 +25,7 @@ gem 'okcomputer', '~> 1.18'
 gem 'puma', '~> 4.3'
 gem 'rack-mini-profiler'
 gem 'rails', '~> 6.1.0'
-gem 'redis', '~> 4.2'
+gem 'redis', '~> 5.0', '>= 5.0.6'
 gem 'rsolr', '>= 2.5'
 gem 'rubyzip'
 gem 'shelvit'
