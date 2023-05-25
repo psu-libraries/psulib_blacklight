@@ -20,6 +20,11 @@ RSpec.describe 'viewing a record', js: true, vcr: { record: :new_episodes } do
         expect(page).not_to have_content 'error'
       end
     end
+
+    it 'does not show a link to the IIIF manifest file' do
+      visit '/catalog/2025781'
+      expect(page).not_to have_link 'IIIF manifest'
+    end
   end
 
   context 'when the record has an ARK URL that redirects to the IIIF manifest' do
