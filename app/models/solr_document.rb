@@ -40,10 +40,18 @@ class SolrDocument
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
 
-  def iiif_manifest_url
-    if self[:iiif_manifest_ssim].present?
-      follow_redirects(self[:iiif_manifest_ssim].first)
-    end
+  def any_iiif_manifests?
+    self[:iiif_manifest_ssim].present?
+  end
+
+  def iiif_manifest_urls
+    if any_iiif_manifests?
+      self[:iiif_manifest_ssim].map do |url|
+        follow_redirects(url)
+      end
+    else
+      []
+    end.to_json
   end
 
   private
