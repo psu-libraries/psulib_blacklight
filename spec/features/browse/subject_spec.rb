@@ -32,7 +32,7 @@ RSpec.describe 'Subject Browse', type: :feature do
       end
 
       within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Authors, Yiddish—Soviet Union', href: /subject_browse_facet/)
+        expect(page).to have_link('Authors, Yiddish—Correspondence', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
     end
@@ -50,12 +50,12 @@ RSpec.describe 'Subject Browse', type: :feature do
       end
 
       within('tbody tr:nth-child(1)') do
-        expect(page).to have_link('Authors—Drama', href: /subject_browse_facet/)
+        expect(page).to have_link('Authors, Yiddish—Soviet Union', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
       within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Biometry', href: /subject_browse_facet/)
+        expect(page).to have_link('Bible—History of Biblical events—Fiction', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
 
@@ -67,7 +67,7 @@ RSpec.describe 'Subject Browse', type: :feature do
       end
 
       within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Authors, Yiddish—Soviet Union', href: /subject_browse_facet/)
+        expect(page).to have_link('Authors, Yiddish—Correspondence', href: /subject_browse_facet/)
         expect(page).to have_selector('td', text: 1)
       end
     end

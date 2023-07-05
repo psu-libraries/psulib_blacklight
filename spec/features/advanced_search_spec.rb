@@ -82,7 +82,7 @@ RSpec.describe 'Advanced Search', type: :feature do
         end
 
         it 'results include expected CAT keys' do
-          expect(page).to have_selector 'article[data-document-id="31805602"]'
+          expect(page).to have_selector 'article[data-document-id="37402255"]'
         end
       end
 
@@ -96,6 +96,19 @@ RSpec.describe 'Advanced Search', type: :feature do
         it 'results include expected CAT keys' do
           expect(page).to have_selector 'article[data-document-id="31805602"]'
           expect(page).to have_selector 'article[data-document-id="31805615"]'
+        end
+      end
+
+      context 'when searching by contributor demographic' do
+        before do
+          find('button[data-id="author_demo_facet"]').click
+          find('#bs-select-9-0').click
+          click_button 'advanced-search-submit'
+        end
+
+        it 'results include expected CAT keys' do
+          # at this time, only a few documents have this field. Results may change if more are indexed.
+          expect(page).to have_selector 'article[data-document-id="35855357"]'
         end
       end
     end
