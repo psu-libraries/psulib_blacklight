@@ -237,6 +237,7 @@
     <field name="subject_topic_facet"  type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="thesis_dept_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
     <field name="up_library_facet"     type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
+    <field name="author_demo_facet"    type="string" docValues="true" indexed="true" stored="false" multiValued="true" />
 
     <!-- Sorts -->
     <field name="title_sort"          type="string" docValues="true" indexed="true" stored="false" multiValued="true" />

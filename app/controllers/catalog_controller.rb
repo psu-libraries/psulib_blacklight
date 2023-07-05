@@ -11,6 +11,8 @@ class CatalogController < ApplicationController
 
   before_action :redirect_browse
 
+  excluded_auth_demo_values = ['University and college faculty members', 'Writers'].freeze
+
   def index
     cache_key = nil
     # No other params presents indicates we are on the homepage
@@ -91,7 +93,7 @@ class CatalogController < ApplicationController
     config.advanced_search[:query_parser] ||= 'edismax'
     config.advanced_search[:form_solr_parameters] ||= {
       'facet.field' => %w[access_facet format language_facet media_type_facet
-                          library_facet location_facet lc_1letter_facet thesis_dept_facet],
+                          library_facet location_facet lc_1letter_facet thesis_dept_facet author_demo_facet],
       'facet.pivot' => '',
       'facet.limit' => -1,
       'f.language_facet.facet.limit' => -1,
@@ -207,7 +209,10 @@ class CatalogController < ApplicationController
     config.add_facet_field 'subject_facet', show: false
     config.add_facet_field 'title_sort', label: 'Title', show: false
     config.add_facet_field 'thesis_dept_facet', label: 'Graduate Program', show: false
-
+    config.add_facet_field 'author_demo_facet',
+                           label: 'Contributor Demographic',
+                           show: false,
+                           solr_params: { 'facet.mincount' => 5, 'facet.excludeTerms' => excluded_auth_demo_values.join(',') }
     #
     # Facets that only appear on the home page
     #
