@@ -77,9 +77,6 @@ jobs:
     steps:
     - browser-tools/install-chrome
     - browser-tools/install-chromedriver
-    - run:
-        name: Remove Cruft
-        command: rm *
     - checkout
     - restore_cache:
         keys:
