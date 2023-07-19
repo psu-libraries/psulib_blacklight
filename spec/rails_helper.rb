@@ -23,6 +23,11 @@ require 'capybara/rspec'
 require 'capybara/rails'
 require 'webmock/rspec'
 require 'view_component/test_helpers'
+require 'webdrivers'
+
+# TODO remove this when webdrivers updates
+# https://github.com/titusfortner/webdrivers/issues/247
+Webdrivers::Chromedriver.required_version = '114.0.5735.90'
 
 # allow connections to localhost, webdrivers
 WebMock.disable_net_connect!(
