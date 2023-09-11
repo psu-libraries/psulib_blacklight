@@ -65,7 +65,6 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', '< 0.18', require: false # CodeClimate does not work with .18 or later
   gem 'vcr'
-  gem 'webdrivers', '~> 5.0'
   gem 'webmock'
 end
 
