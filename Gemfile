@@ -22,7 +22,7 @@ gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'okcomputer', '~> 1.18'
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 5.6'
 gem 'rack-mini-profiler'
 gem 'rails', '~> 6.1.0'
 gem 'redis', '~> 5.0', '>= 5.0.6'
