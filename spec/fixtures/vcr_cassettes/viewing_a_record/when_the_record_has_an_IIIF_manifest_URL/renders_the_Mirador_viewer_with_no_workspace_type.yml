@@ -94,4 +94,106 @@ http_interactions:
       encoding: ASCII-8BIT
       string: var _GBSBookInfo = {};
   recorded_at: Thu, 25 May 2023 18:31:49 GMT
+- request:
+    method: get
+    uri: https://chromedriver.storage.googleapis.com/LATEST_RELEASE_116.0.5845
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - chromedriver.storage.googleapis.com
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      X-Guploader-Uploadid:
+      - ADPycdto0392sX6RNtnkK50pbLCn9wMHh2H9bF0fGcb6rsyb6fILy_BQgtPLYmqyF0Y3ljhGW3odcA4zpmM5UBRo9zUgFg
+      Content-Type:
+      - application/xml; charset=UTF-8
+      Content-Length:
+      - '200'
+      Date:
+      - Mon, 11 Sep 2023 15:23:49 GMT
+      Expires:
+      - Mon, 11 Sep 2023 15:23:49 GMT
+      Cache-Control:
+      - private, max-age=0
+      Server:
+      - UploadServer
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: "<?xml version='1.0' encoding='UTF-8'?><Error><Code>NoSuchKey</Code><Message>The
+        specified key does not exist.</Message><Details>No such object: chromedriver/LATEST_RELEASE_116.0.5845</Details></Error>"
+  recorded_at: Mon, 11 Sep 2023 15:23:49 GMT
+- request:
+    method: get
+    uri: https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - chromedriver.storage.googleapis.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Guploader-Uploadid:
+      - ADPycdthD2GKZup0YDOjpJHVJ8jTKEV0lIJiFCqLK1J0cGb1MyH4RH28u73B6AN4U_ymPNs1vrWqRS7Ux4m1vXu9CrHAnw
+      X-Goog-Generation:
+      - '1685523462105569'
+      X-Goog-Metageneration:
+      - '1'
+      X-Goog-Stored-Content-Encoding:
+      - identity
+      X-Goog-Stored-Content-Length:
+      - '13'
+      X-Goog-Hash:
+      - crc32c=tVW4TA==
+      - md5=NoaEuIlBlniwTkiZ1T16sA==
+      X-Goog-Storage-Class:
+      - STANDARD
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '13'
+      Server:
+      - UploadServer
+      Date:
+      - Mon, 11 Sep 2023 14:55:52 GMT
+      Expires:
+      - Mon, 11 Sep 2023 15:55:52 GMT
+      Cache-Control:
+      - public, max-age=3600
+      Age:
+      - '1677'
+      Last-Modified:
+      - Wed, 31 May 2023 08:57:42 GMT
+      Etag:
+      - '"368684b889419678b04e4899d53d7ab0"'
+      Content-Type:
+      - text/plain
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: 114.0.5735.90
+  recorded_at: Mon, 11 Sep 2023 15:23:49 GMT
 recorded_with: VCR 6.1.0
