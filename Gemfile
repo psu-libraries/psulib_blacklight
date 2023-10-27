@@ -28,9 +28,9 @@ gem 'rails', '~> 6.1.0'
 gem 'redis', '~> 5.0', '>= 5.0.6'
 gem 'rsolr', '>= 2.5'
 gem 'rubyzip'
+gem 'shakapacker', '= 7.1'
 gem 'shelvit'
 gem 'stackprof'
-gem "shakapacker", "= 7.1"
 
 gem 'blacklight', '~> 7.30'
 gem 'blacklight_advanced_search', '~> 7.0'
