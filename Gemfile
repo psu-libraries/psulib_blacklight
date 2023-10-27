@@ -30,7 +30,7 @@ gem 'rsolr', '>= 2.5'
 gem 'rubyzip'
 gem 'shelvit'
 gem 'stackprof'
-gem 'webpacker'
+gem "shakapacker", "= 7.1"
 
 gem 'blacklight', '~> 7.30'
 gem 'blacklight_advanced_search', '~> 7.0'
