@@ -1,4 +1,4 @@
-const { environment } = require('@rails/webpacker')
+const { environment } = require('@rails/shakapacker')
 const webpack = require('webpack')
 
 // const customConfig = require('./custom')
@@ -12,10 +12,6 @@ const webpack = require('webpack')
 environment.plugins.prepend(
     'Provide',
     new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        jquery: 'jquery',
-        'window.jQuery': 'jquery',
         Popper: ['popper.js', 'default'],
         Rails: 'rails-ujs'
     })

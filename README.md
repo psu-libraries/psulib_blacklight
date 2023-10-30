@@ -12,7 +12,7 @@ The Penn State University Libraries' catalog. Built on Blacklight, using Traject
 
 ## When upgrading Blacklight
 
-Because we use webpacker, when upgrading the Blacklight gem for this application, we should also update `package.json`
+Because we use shakapacker, when upgrading the Blacklight gem for this application, we should also update `package.json`
 to the same version as the installed gem so as to keep these things in step from Blacklight.
 
 ## Development

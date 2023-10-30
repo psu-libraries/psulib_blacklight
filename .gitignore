@@ -27,7 +27,7 @@ vendor/bundle/**/*
 *.sublime-*
 .idea
 
-# node/webpacker/yarn things
+# node/shakapacker/yarn things
 /node_modules
 /yarn-error.log
 /public/packs
