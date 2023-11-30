@@ -353,8 +353,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'related_materials_ssm', label: 'Related Materials', helper_method: :newline_format
     config.add_show_field 'copyright_status_ssm', label: 'Copyright Note', helper_method: :newline_format
     config.add_show_field 'associated_materials_ssm', label: 'Associated Materials', helper_method: :newline_format
-    config.add_show_field 'administrative_history_note_ssm', label: 'Administrative History', helper_method: :newline_format
-    config.add_show_field 'biographical_sketch_note_ssm', label: 'Biographical Note', helper_method: :newline_format
+    config.add_show_field 'bio_admin_sketch_note_ssm', label: 'Biographical or Historical Sketch', helper_method: :newline_format
     config.add_show_field 'former_title_ssm', label: 'Title Varies', helper_method: :newline_format
     config.add_show_field 'issuing_ssm', label: 'Issuing Body', helper_method: :newline_format
     config.add_show_field 'index_note_ssm', label: 'Index Note', helper_method: :newline_format
