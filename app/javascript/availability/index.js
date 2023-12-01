@@ -551,7 +551,10 @@ const availability = {
 
   allNonHoldable(holdings) {
     for (const holding of holdings) {
-      if (!availability.isNonHoldableLocation(holding) && !availability.isClosedLibrary(holding)) {
+      if (
+        !availability.isNonHoldableLocation(holding) &&
+        !availability.isClosedLibrary(holding)
+      ) {
         return false;
       }
     }
