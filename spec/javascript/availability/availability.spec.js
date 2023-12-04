@@ -1,25 +1,29 @@
 import $ from 'jquery';
 import availability from '../../../app/javascript/availability/index';
 import 'bootstrap';
-import React from 'react';
-import ReactDOM from 'react-dom';
 
-global.$ = global.jQuery = $;
+global.$ = $;
+global.jQuery = $;
 
 jest.mock(
   '../../../app/javascript/availability/libraries_locations.json',
   () => ({
     closed_libraries: ['WSCRANTON'],
-    locations: {"STACKS-WS": "Stacks - General Collection",
-                "STACKS-AB": "Stacks - General Collection",
-                "STACKS-FE": "Stacks - General Collection",
-                "STACKS-YK": "Stacks - General Collection"},
-    libraries: {"WSCRANTON": "Penn State Scranton",
-                "ABINGTON": "Penn State Abington",
-                "FAYETTE": "Penn State Fayette",
-                "YORK": "Penn State York"},
-    non_holdable: ["CHECKEDOUT"],
-  }), { virtual: true }
+    locations: {
+      'STACKS-WS': 'Stacks - General Collection',
+      'STACKS-AB': 'Stacks - General Collection',
+      'STACKS-FE': 'Stacks - General Collection',
+      'STACKS-YK': 'Stacks - General Collection',
+    },
+    libraries: {
+      WSCRANTON: 'Penn State Scranton',
+      ABINGTON: 'Penn State Abington',
+      FAYETTE: 'Penn State Fayette',
+      YORK: 'Penn State York',
+    },
+    non_holdable: ['CHECKEDOUT'],
+  }),
+  { virtual: true }
 );
 jest.mock('react-dom', () => ({
   render: jest.fn(),
@@ -40,13 +44,15 @@ beforeEach(() => {
 describe('when a holdable record is only in a closed library', () => {
   test('I Want It directs to ILLiad placement', () => {
     const allHoldingsMock = [
-      [{
-        catkey: '0',
-        libraryID: 'WSCRANTON',
-        locationID: 'STACKS-WS',
-        holdable: 'true',
-        reserveCollectionID: '',
-      }],
+      [
+        {
+          catkey: '0',
+          libraryID: 'WSCRANTON',
+          locationID: 'STACKS-WS',
+          holdable: 'true',
+          reserveCollectionID: '',
+        },
+      ],
     ];
 
     availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
@@ -61,24 +67,25 @@ describe('when a holdable record is only in a closed library', () => {
   });
 });
 
-
 describe('when a holdable record is in a closed library and a holdable location', () => {
   test('I Want It directs to Symphony placement', () => {
     const allHoldingsMock = [
-      [{
-        catkey: '0',
-        libraryID: 'WSCRANTON',
-        locationID: 'STACKS-WS',
-        holdable: 'true',
-        reserveCollectionID: '',
-      },
-      {
-        catkey: '0',
-        libraryID: 'FAYETTE',
-        locationID: 'STACKS-FE',
-        holdable: 'true',
-        reserveCollectionID: '',
-      }]
+      [
+        {
+          catkey: '0',
+          libraryID: 'WSCRANTON',
+          locationID: 'STACKS-WS',
+          holdable: 'true',
+          reserveCollectionID: '',
+        },
+        {
+          catkey: '0',
+          libraryID: 'FAYETTE',
+          locationID: 'STACKS-FE',
+          holdable: 'true',
+          reserveCollectionID: '',
+        },
+      ],
     ];
 
     availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
@@ -96,20 +103,22 @@ describe('when a holdable record is in a closed library and a holdable location'
 describe('when a holdable record is in a closed library and a non holdable location', () => {
   test('I Want It directs to ILLiad placement', () => {
     const allHoldingsMock = [
-      [{
-        catkey: '0',
-        libraryID: 'WSCRANTON',
-        locationID: 'STACKS-WS',
-        holdable: 'true',
-        reserveCollectionID: '',
-      },
-      {
-        catkey: '0',
-        libraryID: 'ABINGTON',
-        locationID: 'CHECKEDOUT',
-        holdable: 'true',
-        reserveCollectionID: '',
-      }],
+      [
+        {
+          catkey: '0',
+          libraryID: 'WSCRANTON',
+          locationID: 'STACKS-WS',
+          holdable: 'true',
+          reserveCollectionID: '',
+        },
+        {
+          catkey: '0',
+          libraryID: 'ABINGTON',
+          locationID: 'CHECKEDOUT',
+          holdable: 'true',
+          reserveCollectionID: '',
+        },
+      ],
     ];
 
     availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
@@ -125,15 +134,17 @@ describe('when a holdable record is in a closed library and a non holdable locat
 });
 
 describe('when a holdable record is only in a non holdable location', () => {
-  test('I Want It directs to ILLiad placement', () => {    
+  test('I Want It directs to ILLiad placement', () => {
     const allHoldingsMock = [
-      [{
-        catkey: '0',
-        libraryID: 'ABINGTON',
-        locationID: 'CHECKEDOUT',
-        holdable: 'true',
-        reserveCollectionID: '',
-      }],
+      [
+        {
+          catkey: '0',
+          libraryID: 'ABINGTON',
+          locationID: 'CHECKEDOUT',
+          holdable: 'true',
+          reserveCollectionID: '',
+        },
+      ],
     ];
 
     availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
@@ -151,13 +162,15 @@ describe('when a holdable record is only in a non holdable location', () => {
 describe('when a holdable record is in a holdable location', () => {
   test('I Want It directs to Symphony placement', () => {
     const allHoldingsMock = [
-      [{
-        catkey: '0',
-        libraryID: 'YORK',
-        locationID: 'STACKS-YK',
-        holdable: 'true',
-        reserveCollectionID: '',
-      }]
+      [
+        {
+          catkey: '0',
+          libraryID: 'YORK',
+          locationID: 'STACKS-YK',
+          holdable: 'true',
+          reserveCollectionID: '',
+        },
+      ],
     ];
 
     availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
@@ -175,13 +188,15 @@ describe('when a holdable record is in a holdable location', () => {
 describe('when a record is not holdable', () => {
   test('I Want It is not rendered', () => {
     const allHoldingsMock = [
-      [{
-        catkey: '0',
-        libraryID: 'ABINGTON',
-        locationID: 'STACKS-AB',
-        holdable: 'false',
-        reserveCollectionID: '',
-      }]
+      [
+        {
+          catkey: '0',
+          libraryID: 'ABINGTON',
+          locationID: 'STACKS-AB',
+          holdable: 'false',
+          reserveCollectionID: '',
+        },
+      ],
     ];
 
     availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
