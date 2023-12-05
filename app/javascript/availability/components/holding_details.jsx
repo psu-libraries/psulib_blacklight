@@ -5,14 +5,10 @@ import CourseReserveDueDate from './course_reserve_due_date';
 import MapScanLink from './map_scan_link';
 
 const HoldingDetails = ({ holding }) => {
-  // Do not display call number for on loan items
-  const generateCallNumber = () =>
-    holding.locationID === 'ILLEND' ? '' : holding.callNumber;
-
   return (
     <>
       <td>
-        {generateCallNumber(holding)}
+        {holding.callNumber}
         <PublicNote holding={holding} />
       </td>
       <td>{holding.itemType}</td>
