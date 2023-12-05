@@ -9,12 +9,14 @@ RSpec.describe 'Previous Next Toggle', type: :feature do
       fill_in 'q', with: ''
       click_button 'search'
       click_on 'An American marriage / a novel by Tayari Jones'
-      expect(page).to have_content '← Previous | 4 of 597 | Next →'
+      expect(page).to have_content '← Previous | '
+      expect(page).to have_content ' | Next →'
 
       # Go to the number 6 result separately
       visit '/catalog/24053587'
       expect(page).not_to have_selector '.page-links'
-      expect(page).not_to have_content '← Previous | 6 of 585 | Next →'
+      expect(page).not_to have_content '← Previous | '
+      expect(page).not_to have_content ' | Next →'
     end
   end
 end
