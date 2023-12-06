@@ -77,6 +77,7 @@ jobs:
     steps:
     - browser-tools/install-chrome:
         chrome-version: 119.0.6045.199 # TODO: remove when chromedriver downloads are fixed
+        replace-existing: true # TODO: remove when chromedriver downloads are fixed
     - browser-tools/install-chromedriver
     - checkout
     - restore_cache:
