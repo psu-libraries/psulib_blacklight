@@ -18,8 +18,9 @@ class BookmarksController < CatalogController
 
   def bulk_ris
     bulk_string = ''
-    document_ids = action_documents.first['response']['docs'].map { |doc| doc['id'] }
-    document_ids.each do |id|
+    bookmarks = token_or_current_or_guest_user.bookmarks
+    bookmark_ids = bookmarks.map { |b| b.document_id.to_s }
+    bookmark_ids.each do |id|
       solr_document = search_service.fetch(id)
       bulk_string += DocumentRis.new(solr_document).ris_to_string
     end
