@@ -10,8 +10,7 @@ RSpec.describe BookmarksController, type: :controller do
     let(:user) { User.new(email: 'user1237@psu.edu') }
     let!(:bookmark1) { instance_double(Bookmark, document_id: '38685872') }
     let!(:bookmark2) { instance_double(Bookmark, document_id: '24053587') }
-    let!(:bookmark3) { instance_double(Bookmark, document_id: '20049333') }
-    let!(:bookmarks) { [bookmark1, bookmark2, bookmark3] }
+    let!(:bookmarks) { [bookmark1, bookmark2] }
 
     before do
       @request.env['devise.mapping'] = Devise.mappings[:user]
