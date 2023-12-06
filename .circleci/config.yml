@@ -75,7 +75,9 @@ jobs:
       SETTINGS__solr__username: catalog
       SETTINGS__solr__password: catalog
     steps:
-    - browser-tools/install-chrome
+    - browser-tools/install-chrome:
+      chrome-version: "119.0.6045.199"
+      replace-existing: true
     - browser-tools/install-chromedriver
     - checkout
     - restore_cache:
