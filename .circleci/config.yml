@@ -75,6 +75,11 @@ jobs:
       SETTINGS__solr__username: catalog
       SETTINGS__solr__password: catalog
     steps:
+    - run:
+        name: "libu2f-udev"
+        command: |
+          sudo apt-get update
+          sudo apt-get install libu2f-udev -y
     - browser-tools/install-chrome:
         chrome-version: 119.0.6045.199 # TODO: remove when chromedriver downloads are fixed
         replace-existing: true # TODO: remove when chromedriver downloads are fixed
