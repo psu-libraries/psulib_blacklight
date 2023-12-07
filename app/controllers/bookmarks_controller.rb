@@ -16,7 +16,20 @@ class BookmarksController < CatalogController
     create
   end
 
+  def bulk_ris
+    bulk_string = ''
+    bookmarks = token_or_current_or_guest_user.bookmarks
+    bookmark_ids = bookmarks.map { |b| b.document_id.to_s }
+    bookmark_ids.each do |id|
+      solr_document = search_service.fetch(id)
+      bulk_string += DocumentRis.new(solr_document).ris_to_string
+    end
+
+    send_data bulk_string, filename: 'document.ris', type: :ris
+  end
+
   configure_blacklight do |config|
     config.index.collection_actions.delete(:sort_widget)
+    config.add_show_tools_partial(:bulk_ris, callback: :bulk_ris_action, html_class: 'dropdown-item')
   end
 end
