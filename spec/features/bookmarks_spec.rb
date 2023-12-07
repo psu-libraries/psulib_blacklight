@@ -22,9 +22,6 @@ RSpec.describe 'Bookmarks', type: :feature do
   end
 
   context 'when user is logged in' do
-    let(:expected_content_type) { 'application/x-research-info-systems' }
-    let(:expected_file_name) { 'document.ris' }
-
     before do
       user = User.create!(email: 'user1234@psu.edu')
       login_as(user, scope: :user)
