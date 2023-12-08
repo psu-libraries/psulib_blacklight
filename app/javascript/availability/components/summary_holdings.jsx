@@ -24,10 +24,29 @@ const SummaryHoldings = ({ summaryHoldings }) => {
               <div className="h6">{locationName}: Holdings Summary</div>
 
               <ul style={listStyle}>
-                {/* Summaries */}
-                {locationData.summary.map((summary, i) => (
-                  <li key={`summary${i}`}>{summary}</li>
-                ))}
+               
+                {summaryHoldings[locationID].length > 1 ? (
+                  <ul style={listStyle}>
+                    {/* Summaries */}
+                    {summaryHoldings[locationID].map((data, index) => (
+                      <li key={`location${index}`}>
+                        <div>Call Number: {data.call_number}</div>
+                        <ul>
+                          {data.summary.map((summary, i) => (
+                            <li key={`summary${i}`}>{summary}</li>
+                          ))}
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <ul style={listStyle}>
+                    {/* Summaries */}
+                    {locationData.summary.map((summary, i) => (
+                      <li key={`summary${i}`}>{summary}</li>
+                    ))}
+                  </ul>
+                )}
 
                 {/* Indexes */}
                 {locationData.index.length > 0 && (
