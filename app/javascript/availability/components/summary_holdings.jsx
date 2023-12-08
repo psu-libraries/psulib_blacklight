@@ -26,11 +26,11 @@ const SummaryHoldings = ({ summaryHoldings }) => {
               <ul style={listStyle}>
                
                 {summaryHoldings[locationID].length > 1 ? (
-                  <ul style={listStyle}>
+                  <ul style={{ listStyleType: 'none', padding: 0, marginLeft: '0' }}>
                     {/* Summaries */}
                     {summaryHoldings[locationID].map((data, index) => (
                       <li key={`location${index}`}>
-                        <div>Call Number: {data.call_number}</div>
+                        <div>{data.call_number}</div>
                         <ul>
                           {data.summary.map((summary, i) => (
                             <li key={`summary${i}`}>{summary}</li>
@@ -40,7 +40,7 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                     ))}
                   </ul>
                 ) : (
-                  <ul style={listStyle}>
+                  <ul style={{ listStyleType: 'none', padding: 0, marginLeft: '0' }}>
                     {/* Summaries */}
                     {locationData.summary.map((summary, i) => (
                       <li key={`summary${i}`}>{summary}</li>
