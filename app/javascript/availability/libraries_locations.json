@@ -791,6 +791,10 @@
     "XTERNAL": "Associated Libraries",
     "YORK": "Penn State York"
   },
+  "closed_libraries": [
+    "FAYETTE",
+    "WSCRANTON"
+  ],
   "exclude_from_email_availability": {
     "CHECKEDOUT": "Checked out",
     "DARCHIVE-P": "Copy unavailable",
