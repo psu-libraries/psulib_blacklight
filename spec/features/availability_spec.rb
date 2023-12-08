@@ -151,8 +151,9 @@ RSpec.describe 'Availability', :vcr, type: :feature do
 
   describe 'User visits catalog record page', js: true do
     it 'that has holdings to display' do
-      visit '/catalog/1839879'
-      expect(page).to have_css 'div[class="availability"][data-keys="1839879"]'
+      visit '/catalog/370199'
+      expect(page).to have_css 'div[class="availability"][data-keys="370199"]'
+      expect(page).to have_content 'NK9406.L48'
     end
 
     it 'that is an online resource and has no holdings to display' do

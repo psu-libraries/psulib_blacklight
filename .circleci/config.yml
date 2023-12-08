@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   docker: circleci/docker@1.5.0
-  browser-tools: circleci/browser-tools@1.4.5
+  browser-tools: circleci/browser-tools@1.4.6
 
 jobs:
   release:
@@ -75,7 +75,14 @@ jobs:
       SETTINGS__solr__username: catalog
       SETTINGS__solr__password: catalog
     steps:
-    - browser-tools/install-chrome
+    - run:
+        name: "libu2f-udev"
+        command: |
+          sudo apt-get update
+          sudo apt-get install libu2f-udev -y
+    - browser-tools/install-chrome:
+        chrome-version: 119.0.6045.199 # TODO: remove when chromedriver downloads are fixed
+        replace-existing: true # TODO: remove when chromedriver downloads are fixed
     - browser-tools/install-chromedriver
     - checkout
     - restore_cache:
