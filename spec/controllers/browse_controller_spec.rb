@@ -75,7 +75,7 @@ RSpec.describe BrowseController, type: :controller do
         it { is_expected.to be_successful }
 
         it 'strips starting stopword from search and builds a title list' do
-          expect(assigns(:title_list).prefix).to eq "A AN Title of this Thing"
+          expect(assigns(:title_list).prefix).to eq 'A AN Title of this Thing'
           expect(assigns(:title_list)).to be_a(BrowseList)
         end
       end
@@ -86,7 +86,7 @@ RSpec.describe BrowseController, type: :controller do
         it { is_expected.to be_successful }
 
         it 'strips starting stopword from search and builds a title list' do
-          expect(assigns(:title_list).prefix).to eq "a The Title of this Thing"
+          expect(assigns(:title_list).prefix).to eq 'a The Title of this Thing'
           expect(assigns(:title_list)).to be_a(BrowseList)
         end
       end
@@ -97,7 +97,7 @@ RSpec.describe BrowseController, type: :controller do
         it { is_expected.to be_successful }
 
         it 'strips starting stopword from search and builds a title list' do
-          expect(assigns(:title_list).prefix).to eq "an THE Title of this Thing"
+          expect(assigns(:title_list).prefix).to eq 'an THE Title of this Thing'
           expect(assigns(:title_list)).to be_a(BrowseList)
         end
       end
