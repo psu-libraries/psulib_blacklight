@@ -46,7 +46,7 @@ RSpec.describe BrowseController, type: :controller do
   describe 'GET #subjects' do
     subject { response }
 
-    before { get :subjects }
+    before { get :subjects, params: { prefix: '' } }
 
     it { is_expected.to be_successful }
 
@@ -58,12 +58,49 @@ RSpec.describe BrowseController, type: :controller do
   describe 'GET #titles' do
     subject { response }
 
-    before { get :titles }
+    context 'when search value (prefix) contains no stopwords' do
+      before { get :titles, params: { prefix: '' } }
 
-    it { is_expected.to be_successful }
+      it { is_expected.to be_successful }
 
-    it 'builds a title list' do
-      expect(assigns(:title_list)).to be_a(BrowseList)
+      it 'builds a title list' do
+        expect(assigns(:title_list)).to be_a(BrowseList)
+      end
+    end
+
+    context 'when search value (prefix) contains starting stopwords: An/A/The' do
+      context 'when the starting stopword is "The"' do
+        before { get :titles, params: { prefix: 'The A AN Title of this Thing' } }
+
+        it { is_expected.to be_successful }
+
+        it 'strips starting stopword from search and builds a title list' do
+          expect(assigns(:title_list).prefix).to eq 'A AN Title of this Thing'
+          expect(assigns(:title_list)).to be_a(BrowseList)
+        end
+      end
+
+      context 'when the starting stopword is "AN"' do
+        before { get :titles, params: { prefix: 'AN a The Title of this Thing' } }
+
+        it { is_expected.to be_successful }
+
+        it 'strips starting stopword from search and builds a title list' do
+          expect(assigns(:title_list).prefix).to eq 'a The Title of this Thing'
+          expect(assigns(:title_list)).to be_a(BrowseList)
+        end
+      end
+
+      context 'when the starting stopword is "a"' do
+        before { get :titles, params: { prefix: 'a an THE Title of this Thing' } }
+
+        it { is_expected.to be_successful }
+
+        it 'strips starting stopword from search and builds a title list' do
+          expect(assigns(:title_list).prefix).to eq 'an THE Title of this Thing'
+          expect(assigns(:title_list)).to be_a(BrowseList)
+        end
+      end
     end
   end
 end
