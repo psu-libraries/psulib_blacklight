@@ -34,7 +34,7 @@ RSpec.describe BrowseController, type: :controller do
   describe 'GET #authors' do
     subject { response }
 
-    before { get :authors, params: { prefix: '' } }
+    before { get :authors }
 
     it { is_expected.to be_successful }
 
