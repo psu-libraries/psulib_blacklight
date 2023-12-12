@@ -14,6 +14,7 @@
 <%- unless @response.empty? %>
   <%= render 'search_header' %>
 <%- end %>
+<div class='float-right'><%= link_to 'Bookmark All on Page', '#', id: 'bookmark-all', class: 'btn btn-primary' %></div>
 
 <%= render 'constraints' %>
 
