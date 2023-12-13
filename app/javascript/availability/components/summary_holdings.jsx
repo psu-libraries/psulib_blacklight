@@ -30,9 +30,7 @@ const SummaryHoldings = ({ summaryHoldings }) => {
 
               <ul style={listStyle}>
                 {summaryHoldings[locationID].length > 1 ? (
-                  <ul
-                    style={nestedListStyle}
-                  >
+                  <ul style={nestedListStyle}>
                     {/* Summaries for multiple holding statements in a library location pair */}
                     {summaryHoldings[locationID].map((data, index) => (
                       <li key={`location${index}`}>
@@ -44,9 +42,7 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                           {/* Indexes */}
                           {data.index.length > 0 && (
                             <li>
-                              <ul
-                                style={nestedListStyle}
-                              >
+                              <ul style={nestedListStyle}>
                                 {data.index.map((indexes, i) => (
                                   <li key={`index${i}`}>Indexes: {indexes}</li>
                                 ))}
@@ -56,9 +52,7 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                           {/* Supplements */}
                           {data.supplement.length > 0 && (
                             <li>
-                              <ul
-                                style={nestedListStyle}
-                              >
+                              <ul style={nestedListStyle}>
                                 {data.supplement.map((supplement, i) => (
                                   <li key={`supplement${i}`}>
                                     Supplements: {supplement}
@@ -72,9 +66,7 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                     ))}
                   </ul>
                 ) : (
-                  <ul
-                    style={nestedListStyle}
-                  >
+                  <ul style={nestedListStyle}>
                     {/* Summaries for a single holding statement in a library location pair */}
                     {locationData.summary.map((summary, i) => (
                       <li key={`summary${i}`}>{summary}</li>
