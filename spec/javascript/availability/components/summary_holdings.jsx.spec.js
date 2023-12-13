@@ -75,3 +75,44 @@ describe('when some summary holdings data is not present', () => {
     expect(queryByText('Supplements')).toBeNull();
   });
 });
+
+describe('when multiple holding statements are present', () => {
+  test('renders summaries, indexes, and supplements', () => {
+    const data = {
+      'PATTEE-3': [
+        {
+          call_number: 'PR9400 .M43',
+          summary: ['summary1'],
+          supplement: [],
+          index: [],
+        },
+        {
+          call_number: 'PR9400 .M44',
+          summary: ['summary2'],
+          supplement: ['supplemental info'],
+          index: ['index info'],
+        },
+      ],
+    };
+
+    const { getAllByRole, getByText } = render(
+      <SummaryHoldings summaryHoldings={data} />,
+      {
+        container: document.body.appendChild(document.createElement('tbody')),
+      }
+    );
+
+    const items = getAllByRole('listitem');
+    expect(items.length).toBe(8);
+    expect(items[0]).toHaveTextContent('PR9400 .M43');
+    expect(items[1]).toHaveTextContent('summary1');
+    expect(items[2]).toHaveTextContent('PR9400 .M44');
+    expect(items[3]).toHaveTextContent('summary2');
+    expect(items[5]).toHaveTextContent('Indexes: index info');
+    expect(items[7]).toHaveTextContent('Supplements: supplemental info');
+
+    expect(
+      getByText('Pattee - Stacks 3: Holdings Summary')
+    ).toBeInTheDocument();
+  });
+});
