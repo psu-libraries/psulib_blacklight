@@ -5,7 +5,8 @@
       <%= render_show_doc_actions document_list, document: nil, document_list: @response.documents, url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h) do |config, inner| %>
           <% if (config.key != :citation) %>
             <% if (config.key == :bulk_ris) %>
-               <a class="dropdown-item" href="/bookmarks/bulk_ris">RIS file</a>
+               <% bookmark_ids = current_user.bookmarks.map { |b| b.document_id.to_s }.join(',') %>
+               <a class="dropdown-item" href="<%= bulk_ris_bookmarks_path(item_ids: bookmark_ids) %>">RIS file</a>
                <% else %>
               <%= inner %>
               <% end %>
