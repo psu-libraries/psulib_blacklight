@@ -1,13 +1,10 @@
-import CheckboxSubmit from 'blacklight/checkbox_submit'
+import CheckboxSubmitAll from './checkbox_submit_all';
 
 $(document).ready(() => {
   let bookmarkAllButton = $('#bookmark-all');
   bookmarkAllButton.on("click", function () {
-    let bookmarkCheckboxes = $('[id^=toggle-bookmark_]');
+    let bookmarkCheckboxes = $('form[data-absent="Bookmark"]');
 
-    $.each(bookmarkCheckboxes, function (index, item) {
-      item.click() //closest('form')
-      //if (form) new CheckboxSubmit(form).clicked(e);
-    })
+    new CheckboxSubmitAll(bookmarkCheckboxes).clicked()
   });
 });
