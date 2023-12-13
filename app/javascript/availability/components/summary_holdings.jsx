@@ -11,6 +11,11 @@ const SummaryHoldings = ({ summaryHoldings }) => {
     marginBottom: 0,
     listStyleType: 'none',
   };
+  const nestedListStyle = {
+    listStyleType: 'none',
+    padding: 0,
+    marginLeft: '0',
+  };
 
   return (
     <tr className="table-primary">
@@ -26,11 +31,7 @@ const SummaryHoldings = ({ summaryHoldings }) => {
               <ul style={listStyle}>
                 {summaryHoldings[locationID].length > 1 ? (
                   <ul
-                    style={{
-                      listStyleType: 'none',
-                      padding: 0,
-                      marginLeft: '0',
-                    }}
+                    style={nestedListStyle}
                   >
                     {/* Summaries for multiple holding statements in a library location pair */}
                     {summaryHoldings[locationID].map((data, index) => (
@@ -44,11 +45,7 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                           {data.index.length > 0 && (
                             <li>
                               <ul
-                                style={{
-                                  listStyleType: 'none',
-                                  padding: 0,
-                                  marginLeft: '0',
-                                }}
+                                style={nestedListStyle}
                               >
                                 {data.index.map((indexes, i) => (
                                   <li key={`index${i}`}>Indexes: {indexes}</li>
@@ -60,11 +57,7 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                           {data.supplement.length > 0 && (
                             <li>
                               <ul
-                                style={{
-                                  listStyleType: 'none',
-                                  padding: 0,
-                                  marginLeft: '0',
-                                }}
+                                style={nestedListStyle}
                               >
                                 {data.supplement.map((supplement, i) => (
                                   <li key={`supplement${i}`}>
@@ -80,11 +73,7 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                   </ul>
                 ) : (
                   <ul
-                    style={{
-                      listStyleType: 'none',
-                      padding: 0,
-                      marginLeft: '0',
-                    }}
+                    style={nestedListStyle}
                   >
                     {/* Summaries for a single holding statement in a library location pair */}
                     {locationData.summary.map((summary, i) => (
