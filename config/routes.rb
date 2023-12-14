@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     collection do
       get 'initialize_bookmark'
       delete 'clear'
-      match 'bulk_ris', to: 'bookmarks#bulk_ris', via: [:get, :post], as: 'bulk_ris_solr_document'
+      match 'bulk_ris/:item_ids', to: 'bookmarks#bulk_ris', via: [:get, :post], as: 'bulk_ris'
     end
   end
 
