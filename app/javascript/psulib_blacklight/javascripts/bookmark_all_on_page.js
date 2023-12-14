@@ -5,6 +5,6 @@ $(document).ready(() => {
   bookmarkAllButton.on("click", function () {
     let bookmarkCheckboxes = $('form[data-absent="Bookmark"]');
 
-    new CheckboxSubmitAll(bookmarkCheckboxes).clicked()
+    new CheckboxSubmitAll(bookmarkCheckboxes).clicked();
   });
 });

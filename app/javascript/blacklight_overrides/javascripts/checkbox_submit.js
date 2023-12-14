@@ -100,6 +100,8 @@
             // if app isn't running at all, xhr annoyingly
             // reports success with status 0.
             if (xhr.status !== 0) {
+              // Re-evaluate checked since it could have changed from BookmarkAll code
+              let checked = form.find('input[name=_method][value=delete]').length !== 0;
               checked = !checked;
               updateStateFor(checked);
               label.removeAttr('disabled');
@@ -125,6 +127,6 @@
     error() {
       alert('Error');
     },
-    success() {}, // callback
+    success() { }, // callback
   };
 })(jQuery);
