@@ -4,8 +4,8 @@ export default class CheckboxSubmitAll {
   }
 
   async clicked() {
-    for (let i = 0; i < this.forms.length; i++) {
-      if (!this.checked(this.forms[i])) {
+    for (let i = 0; i < this.forms.length; i += 1) {
+      if (!this.checked(i)) {
         this.forms[i].querySelector('span').innerHTML =
           this.forms[i].getAttribute('data-inprogress');
         this.forms[i]
@@ -14,6 +14,7 @@ export default class CheckboxSubmitAll {
         this.forms[i]
           .querySelector("input[id^='toggle-bookmark_']")
           .setAttribute('disabled', 'disabled');
+        /* eslint-disable no-await-in-loop */
         const response = await fetch(this.forms[i].getAttribute('action'), {
           body: new FormData(this.forms[i]),
           method: this.forms[i].getAttribute('method').toUpperCase(),
@@ -30,25 +31,28 @@ export default class CheckboxSubmitAll {
           .removeAttribute('disabled');
         if (response.ok) {
           const json = await response.json();
-          this.updateState(this.forms[i]);
+          this.updateState(i);
           document.querySelector('[data-role=bookmark-counter]').innerHTML =
             json.bookmarks.count;
         } else {
           alert('Error');
         }
+        /* eslint-disable no-await-in-loop */
       }
     }
   }
 
-  checked(form) {
+  checked(index) {
     return (
-      form.querySelectorAll('input[name=_method][value=delete]').length != 0
+      this.form[index].querySelectorAll('input[name=_method][value=delete]')
+        .length !== 0
     );
   }
 
-  updateState(form) {
-    form.querySelector('label').classList.add('checked');
-    form.querySelector('input[name=_method]').value = 'delete';
-    form.querySelector('span').innerHTML = form.getAttribute('data-present');
+  updateState(index) {
+    this.form[index].querySelector('label').classList.add('checked');
+    this.form[index].querySelector('input[name=_method]').value = 'delete';
+    this.form[index].querySelector('span').innerHTML =
+      this.form[index].getAttribute('data-present');
   }
 }
