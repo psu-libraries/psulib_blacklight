@@ -103,7 +103,7 @@
             if (xhr.status !== 0) {
               // Re-evaluate checked since it could have changed from BookmarkAll code
               const toggledChecked =
-                !form.find('input[name=_method][value=delete]').length !== 0;
+                form.find('input[name=_method][value=delete]').length === 0;
               updateStateFor(toggledChecked);
               label.removeAttr('disabled');
               checkbox.removeAttr('disabled');
@@ -128,6 +128,6 @@
     error() {
       alert('Error');
     },
-    success() { }, // callback
+    success() {}, // callback
   };
 })(jQuery);
