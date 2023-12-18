@@ -44,15 +44,15 @@ export default class CheckboxSubmitAll {
 
   checked(index) {
     return (
-      this.form[index].querySelectorAll('input[name=_method][value=delete]')
+      this.forms[index].querySelectorAll('input[name=_method][value=delete]')
         .length !== 0
     );
   }
 
   updateState(index) {
-    this.form[index].querySelector('label').classList.add('checked');
-    this.form[index].querySelector('input[name=_method]').value = 'delete';
-    this.form[index].querySelector('span').innerHTML =
-      this.form[index].getAttribute('data-present');
+    this.forms[index].querySelector('label').classList.add('checked');
+    this.forms[index].querySelector('input[name=_method]').value = 'delete';
+    this.forms[index].querySelector('span').innerHTML =
+      this.forms[index].getAttribute('data-present');
   }
 }
