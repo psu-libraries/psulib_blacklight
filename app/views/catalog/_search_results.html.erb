@@ -14,13 +14,24 @@
 <%- unless @response.empty? %>
   <%= render 'search_header' %>
 <%- end %>
-<div class='float-right'><%= link_to 'Bookmark All on Page', '#', id: 'bookmark-all', class: 'btn btn-primary' %></div>
 
-<%= render 'constraints' %>
+
+  <%= render 'constraints' %>
+
 
 <h2 class="sr-only"><%= t('blacklight.search.search_results') %></h2>
 
-<%= campus_facet_all_online_links %>
+<div class='pt-1 pb-3'>
+  <div class='float-left'>
+    <%= campus_facet_all_online_links %>
+  </div>
+
+  <% unless @response.empty? %>
+    <div class='float-right'>
+      <%= link_to 'Bookmark All on Page', '#', id: 'bookmark-all', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
 
 <%- if @response.empty? %>
   <%= render 'zero_results' %>
