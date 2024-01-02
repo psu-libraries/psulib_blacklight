@@ -17,7 +17,7 @@
         "Blacklight": "writable"
     },
     "parserOptions": {
-        "ecmaVersion": 2018,
+        "ecmaVersion": 2020,
         "sourceType": "module"
     },
     "plugins": [
@@ -26,16 +26,46 @@
     "rules": {
         "consistent-return": "off",
         "guard-for-in": "off",
-        "import/order": ["error", { "groups": ["builtin", "external", "parent", "sibling", "index"] }],
+        "import/order": [
+            "error",
+            {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "parent",
+                    "sibling",
+                    "index"
+                ]
+            }
+        ],
         "import/no-cycle": "off",
-        "max-len": ["error", { "code": 120 }],
+        "max-len": [
+            "error",
+            {
+                "code": 120
+            }
+        ],
         "no-alert": "off",
         "no-param-reassign": "off",
-        "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
+        "no-restricted-syntax": [
+            "error",
+            "LabeledStatement",
+            "WithStatement"
+        ],
         "no-use-before-define": "off",
-        "prettier/prettier": ["error", { "singleQuote": true }],
+        "prettier/prettier": [
+            "error",
+            {
+                "singleQuote": true
+            }
+        ],
         "react/forbid-prop-types": "off",
-        "react/function-component-definition": ["error", { "namedComponents": "arrow-function" }],
+        "react/function-component-definition": [
+            "error",
+            {
+                "namedComponents": "arrow-function"
+            }
+        ],
         "react/jsx-filename-extension": "off",
         "react/jsx-no-target-blank": "off",
         "react/jsx-uses-react": "off",
