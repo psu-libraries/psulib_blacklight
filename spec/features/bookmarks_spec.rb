@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Bookmarks', type: :feature do
+RSpec.describe 'Bookmarks', type: :feature, js: true do
   before do
     # In Rails 6, CSRF protection is turned off by default in test env
     # Turning it on here to test that it doesn't break Bookmarks
@@ -14,10 +14,16 @@ RSpec.describe 'Bookmarks', type: :feature do
   end
 
   context 'when the user is not logged in' do
-    it 'Shows a link to login', js: true do
+    it 'Shows a link to login' do
       visit '/?utf8=✓&search_field=all_fields&q=Ethical+and+Social+Issues+in+the+Information+Age+AND+9783319707129'
       expect(page).to have_css('.btn', text: 'Bookmark')
-      expect(page).to have_link(href: /login/)
+      expect(page).to have_css('.btn', text: 'Bookmark All On Page')
+      expect(find('a[href="/login?fullpath=%2F%3Futf8%3D%25E2%259C%2593%26search_field%3D' \
+                  'all_fields%26q%3DEthical%2Band%2BSocial%2BIssues%2Bin%2Bthe%2BInformat' \
+                  'ion%2BAge%2BAND%2B9783319707129"]')).to be_present
+      expect(find('a[href="/login?fullpath=%2F%3Futf8%3D%25E2%259C%2593%26search_field%3D' \
+                  'all_fields%26q%3DEthical%2Band%2BSocial%2BIssues%2Bin%2Bthe%2BInformat' \
+                  'ion%2BAge%2BAND%2B9783319707129&bookmark_doc_id=22090269"]')).to be_present
     end
   end
 
@@ -27,7 +33,7 @@ RSpec.describe 'Bookmarks', type: :feature do
       login_as(user, scope: :user)
     end
 
-    it 'Adds, removes, re-adds bookmarks, and views Bookmarks page', js: true do
+    it 'Adds, removes, re-adds bookmarks, and views Bookmarks page' do
       visit '/'
       # Test that the 'Bookmark All On Page' button doesn't show on empty search
       expect(page).not_to have_content 'Bookmark All On Page'
