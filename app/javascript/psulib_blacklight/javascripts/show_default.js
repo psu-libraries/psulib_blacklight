@@ -12,9 +12,12 @@ $(document).ready(() => {
   // Align rtl text properly
   $('article').each(function () {
     const titleLink = this.querySelector('.index_title').querySelector('a');
-    titleLink.setAttribute('dir', 'auto')
-    if (getComputedStyle(titleLink).direction === "rtl") {
-      titleLink.setAttribute('class', 'float-right text-align-start col-sm-11 p-0 pr-4')
+    titleLink.setAttribute('dir', 'auto');
+    if (getComputedStyle(titleLink).direction === 'rtl') {
+      titleLink.setAttribute(
+        'class',
+        'float-right text-align-start col-sm-11 p-0 pr-4'
+      );
     }
-  })
+  });
 });
