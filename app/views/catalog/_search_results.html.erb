@@ -24,9 +24,14 @@
     <%= campus_facet_all_online_links %>
   </div>
 
-  <% unless @response.empty? %>
+  <% if @response.present? && current_user.present? %>
     <div class='float-right'>
       <%= link_to 'Bookmark All On Page', '#', id: 'bookmark-all', class: 'btn btn-primary' %>
+    </div>
+  <% elsif current_user.blank? %>
+    <div class='float-right'>
+      <%= link_to 'Bookmark All On Page', "/login?fullpath=#{u(request.fullpath)}",
+                  id: 'bookmark-all', class: 'btn btn-primary' %>
     </div>
   <% end %>
 </div>
