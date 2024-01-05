@@ -1,5 +1,6 @@
-import { alignRtl } from '../../../app/javascript/psulib_blacklight/javascripts/align_rtl_index';
 import $ from 'jquery';
+import alignRtl from '../../../app/javascript/psulib_blacklight/javascripts/align_rtl_index';
+
 global.$ = $;
 global.jQuery = $;
 
@@ -35,20 +36,23 @@ describe('when catalog index list contains rtl text titles', () => {
     };
 
     window.getComputedStyle = jest.fn().mockImplementation((element) => {
-      if (element == 'http://localhost/catalog/123') {
+      if (element === 'http://localhost/catalog/123') {
         return mockComputedStyleRtl;
-      } else {
-        return mockComputedStyleLtr;
       }
+      return mockComputedStyleLtr;
     });
 
     alignRtl();
-    expect($('a')[0].outerHTML).toBe('<a data-context-href=\"/catalog/123/track?counter=4&amp;' +
-      'document_id=2123&amp;search_id=106\" href=\"/catalog/123' +
-      '\" dir=\"auto\" class=\"float-right text-align-start col' +
-      '-sm-11 p-0 pr-4\">بعض عناوين الأدب</a>')
-    expect($('a')[1].outerHTML).toBe('<a data-context-href=\"/catalog/124/track?counter=4&amp;' +
-      'document_id=2124&amp;search_id=107\" href=\"/catalog/124' +
-      '\" dir=\"auto\">Some other title</a>')
+    expect($('a')[0].outerHTML).toBe(
+      '<a data-context-href="/catalog/123/track?counter=4&amp;' +
+      'document_id=2123&amp;search_id=106" href="/catalog/123' +
+      '" dir="auto" class="float-right text-align-start col' +
+      '-sm-11 p-0 pr-4">بعض عناوين الأدب</a>'
+    );
+    expect($('a')[1].outerHTML).toBe(
+      '<a data-context-href="/catalog/124/track?counter=4&amp;' +
+      'document_id=2124&amp;search_id=107" href="/catalog/124' +
+      '" dir="auto">Some other title</a>'
+    );
   });
 });

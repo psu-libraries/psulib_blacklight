@@ -1,4 +1,4 @@
-export const alignRtl = function () {
+const alignRtl = function () {
   // Align rtl text properly
   $('article').each(function () {
     const titleLink = this.querySelector('.index_title').querySelector('a');
@@ -11,3 +11,5 @@ export const alignRtl = function () {
     }
   });
 };
+
+export default alignRtl;
