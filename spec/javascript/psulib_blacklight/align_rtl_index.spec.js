@@ -36,7 +36,7 @@ describe('when catalog index list contains rtl text titles', () => {
     };
 
     window.getComputedStyle = jest.fn().mockImplementation((element) => {
-      if (element === 'http://localhost/catalog/123') {
+      if (element == 'http://localhost/catalog/123') {
         return mockComputedStyleRtl;
       }
       return mockComputedStyleLtr;
