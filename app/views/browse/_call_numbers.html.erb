@@ -29,7 +29,7 @@
                     id: doc[:id]
                   ) %>
             </td>
-            <td><%= doc[:title_display_ssm]&.join(' / ') %></td>
+            <td class="text-align-start" dir="auto"><%= doc[:title_display_ssm]&.join(' / ') %></td>
             <td><%= doc.location_display %></td>
             <td><%= doc[:publication_display_ssm]&.join(' / ') %></td>
           </tr>

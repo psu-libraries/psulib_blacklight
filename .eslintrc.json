@@ -23,6 +23,9 @@
     "plugins": [
         "prettier"
     ],
+    "ignorePatterns": [
+        "spec/javascript/psulib_blacklight/align_rtl_index.spec.js"
+    ],
     "rules": {
         "consistent-return": "off",
         "guard-for-in": "off",
