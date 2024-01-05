@@ -1,4 +1,4 @@
-import { alignRtl } from '../../../app/javascript/psulib_blacklight/javascripts/show_default';
+import { alignRtl } from '../../../app/javascript/psulib_blacklight/javascripts/align_rtl_index';
 import $ from 'jquery';
 global.$ = $;
 global.jQuery = $;
