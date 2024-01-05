@@ -22,6 +22,7 @@ gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'okcomputer', '~> 1.18'
+gem 'openurl'
 gem 'puma', '~> 5.6'
 gem 'rack-mini-profiler'
 gem 'rails', '~> 6.1.0'

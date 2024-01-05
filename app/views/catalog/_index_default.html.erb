@@ -23,6 +23,10 @@
           </li>
       <% end -%>
     </ul>
+    
+    <% if document.respond_to?(:export_as_openurl_ctx_kev) %>
+      <span class="Z3988" title="<%= document.export_as_openurl_ctx_kev(document[:format]) %>"></span>
+    <% end %>
 
     <%= render partial: 'external_links/index_external_links',
                locals: {
