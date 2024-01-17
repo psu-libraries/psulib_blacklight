@@ -802,7 +802,8 @@
   },
   "closed_libraries": [
     "FAYETTE",
-    "WSCRANTON"
+    "WSCRANTON",
+    "NEWKEN"
   ],
   "exclude_from_email_availability": {
     "CHECKEDOUT": "Checked out",
