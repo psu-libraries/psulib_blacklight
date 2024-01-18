@@ -98,4 +98,47 @@ http_interactions:
       encoding: ASCII-8BIT
       string: var _GBSBookInfo = {"OCLC:80200908":{"bib_key":"OCLC:80200908","info_url":"https://books.google.com/books?id=jdtKHAAACAAJ\u0026source=gbs_ViewAPI","preview_url":"https://books.google.com/books?id=jdtKHAAACAAJ\u0026source=gbs_ViewAPI","preview":"noview","embeddable":false,"can_download_pdf":false,"can_download_epub":false,"is_pdf_drm_enabled":false,"is_epub_drm_enabled":false}};
   recorded_at: Fri, 15 Apr 2022 15:06:57 GMT
-recorded_with: VCR 6.0.0
+- request:
+    method: get
+    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=29252445
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 12 Jan 2024 14:51:58 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>29252445</titleID><TitleAvailabilityInfo><totalCopiesAvailable>0</totalCopiesAvailable><totalResvCopiesAvailable>1</totalResvCopiesAvailable><libraryWithAvailableResvCopies>Penn
+        State Wilkes-Barre</libraryWithAvailableResvCopies><holdable>false</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>WILKESBAR</libraryID><classificationID>LC</classificationID><callNumber>LB1029.T6T73
+        2018</callNumber><numberOfCopies>0</numberOfCopies></CallInfo><numberOfBoundwithLinks>1</numberOfBoundwithLinks><BoundwithLinkInfo><linkedAsParent>true</linkedAsParent><callNumber>LB1029.T6C36
+        2018</callNumber><libraryID>WILKESBAR</libraryID><itemID>000081643127</itemID><linkedTitle><titleID>29248124</titleID><title>Cargo
+        train</title><author>LEGO koncernen (Denmark), production company.</author><yearOfPublication>2018</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC>673419306324</UPC><OCLCControlNumber>1148090423</OCLCControlNumber></linkedTitle></BoundwithLinkInfo><BoundwithLinkInfo><linkedAsParent>false</linkedAsParent><callNumber>LB1029.T6T73
+        2018</callNumber><libraryID>WILKESBAR</libraryID><linkedTitle><titleID>29252445</titleID><title>Tracks</title><author>LEGO
+        koncernen (Denmark), production company.</author><yearOfPublication>2018</yearOfPublication><copiesOnOrder>0</copiesOnOrder><ISBN></ISBN><SICI></SICI><UPC>673419294089</UPC><OCLCControlNumber>1138887894</OCLCControlNumber></linkedTitle></BoundwithLinkInfo></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Fri, 12 Jan 2024 14:51:59 GMT
+recorded_with: VCR 6.1.0
