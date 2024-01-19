@@ -63,7 +63,7 @@ jobs:
   test:
     docker:
       - image: cimg/ruby:3.1.2-browsers
-      - image: redis:5.0.7
+      - image: redis:7.2.4
       - image: harbor.k8s.libraries.psu.edu/library/solr:8.11.2
         command: [
           "/bin/bash",
