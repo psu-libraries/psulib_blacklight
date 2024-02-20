@@ -16,7 +16,7 @@
   <%= csrf_meta_tags %>
   <%= content_for(:head) %>
 
-  <% if Rails.env != 'production' %>
+  <% if Rails.env.production? %>
   <script type="text/javascript">
       var _paq = window._paq || [];
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
