@@ -11,7 +11,8 @@ gem 'bootsnap', require: false
 gem 'config'
 gem 'ddtrace', '~> 1.11.1'
 gem 'devise', '>= 4.6.0'
-gem 'devise-guests', '~> 0.6'
+gem 'devise-guests', git: 'https://github.com/psu-libraries/devise-guests.git', branch: 'clean-guests-args'
+
 gem 'faraday', '~>1.10'
 gem 'flamegraph'
 gem 'high_voltage', '~> 3.1'

@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/psu-libraries/devise-guests.git
+  revision: 983a13e56f60818d64a29a4917f5b6f8372ed913
+  branch: clean-guests-args
+  specs:
+    devise-guests (0.8.2)
+      devise
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -141,8 +149,6 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-guests (0.8.2)
-      devise
     diff-lcs (1.5.0)
     docile (1.4.0)
     domain_name (0.5.20190701)
@@ -545,7 +551,7 @@ DEPENDENCIES
   config
   ddtrace (~> 1.11.1)
   devise (>= 4.6.0)
-  devise-guests (~> 0.6)
+  devise-guests!
   faraday (~> 1.10)
   flamegraph
   high_voltage (~> 3.1)
