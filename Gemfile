@@ -24,7 +24,7 @@ gem 'net-smtp', require: false
 gem 'okcomputer', '~> 1.18'
 gem 'puma', '~> 5.6'
 gem 'rack-mini-profiler'
-gem 'rails', '~> 6.1.0'
+gem 'rails', '~> 6.1.7'
 gem 'redis', '~> 5.0', '>= 5.0.6'
 gem 'rsolr', '>= 2.5'
 gem 'rubyzip'
