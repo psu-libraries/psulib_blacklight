@@ -22,9 +22,9 @@ gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'okcomputer', '~> 1.18'
-gem 'puma', '~> 5.6'
+gem 'puma', '~> 6'
 gem 'rack-mini-profiler'
-gem 'rails', '~> 6.1.0'
+gem 'rails', '~> 7.0'
 gem 'redis', '~> 5.0', '>= 5.0.6'
 gem 'rsolr', '>= 2.5'
 gem 'rubyzip'
@@ -63,7 +63,7 @@ group :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
-  gem 'simplecov', '< 0.18', require: false # CodeClimate does not work with .18 or later
+  gem 'simplecov'
   gem 'vcr'
   gem 'webmock'
 end

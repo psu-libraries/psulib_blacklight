@@ -6,7 +6,7 @@ RSpec.describe Browse::CallNumberNavigation, type: :component do
   let(:node) { render_inline(described_class.new(list: mock_list)) }
   let(:mock_list) { instance_spy(ShelfListPresenter, previous_item: prev_item, next_item: next_item) }
 
-  before { controller.params = { length: 20, action: 'call_numbers', classification: classification } }
+  before { allow_any_instance_of(described_class).to receive(:params).and_return({ length: 20, action: 'call_numbers', classification: classification }) }
 
   context 'when Browse by LC Call Number' do
     let(:classification) { 'lc' }
