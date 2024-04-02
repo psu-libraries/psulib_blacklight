@@ -62,7 +62,7 @@ RSpec/NestedGroups:
 RSpec/Capybara/FeatureMethods:
   Enabled: false
 
-RSpec/Capybara/SpecificMatcher:
+Capybara/SpecificMatcher:
   Enabled: false
 
 RSpec/MultipleMemoizedHelpers:
@@ -71,6 +71,19 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/AnyInstance:
   Exclude:
   - 'spec/features/google_preview_link_spec.rb'
+  - 'spec/components/browse/call_number_navigation_spec.rb'
+  - 'spec/components/browse/facet_navigation_spec.rb'
+  - 'spec/components/browse/page_size_selector_spec.rb'
+  - 'spec/components/browse/prefix_selector_spec.rb'
+
+RSpec/IndexedLet:
+  Exclude:
+  - 'spec/models/holdings_spec.rb'
+  - 'spec/models/solr_document_spec.rb'
+
+RSpec/PendingWithoutReason:
+  Exclude:
+  - 'spec/views/shared/_header_navbar.html.erb_spec.rb'
 
 RSpec/RepeatedExampleGroupBody:
   Exclude:

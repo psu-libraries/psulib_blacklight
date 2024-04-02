@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'external_links/index_external_links', type: :view do
+RSpec.describe 'external_links/index_external_links' do
   context 'when PSU Digital Collectionslinks present' do
     let(:document) { SolrDocument.new(
       {
@@ -53,8 +53,8 @@ RSpec.describe 'external_links/index_external_links', type: :view do
 
     it 'does not renders Online Version links' do
       render 'external_links/index_external_links', document: document, show_hathi_links: false
-      expect(rendered).not_to have_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73013')
-      expect(rendered).not_to have_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73014')
+      expect(rendered).to have_no_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73013')
+      expect(rendered).to have_no_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73014')
       expect(rendered).not_to include('Pt.1, text version:')
       expect(rendered).not_to include('This is a note')
       expect(rendered).not_to include('Pt.1, PDF version:')
@@ -71,7 +71,7 @@ RSpec.describe 'external_links/index_external_links', type: :view do
 
     it 'does not renders Related Resources links' do
       render 'external_links/index_external_links', document: document, show_hathi_links: false
-      expect(rendered).not_to have_link('related.resource', href: 'http://related.resource')
+      expect(rendered).to have_no_link('related.resource', href: 'http://related.resource')
       expect(rendered).not_to include('This is a prefix:')
       expect(rendered).not_to include('This is a note')
     end
@@ -96,8 +96,8 @@ RSpec.describe 'external_links/index_external_links', type: :view do
     it 'does not render Hathi links when show_hathi_links is false' do
       render 'external_links/index_external_links', document: document, show_hathi_links: false
 
-      expect(rendered).not_to have_link(href: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html')
-      expect(rendered).not_to have_css("img[src*='HathiTrust_logo']")
+      expect(rendered).to have_no_link(href: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html')
+      expect(rendered).to have_no_css("img[src*='HathiTrust_logo']")
       expect(rendered).not_to include(I18n.t!('blackcat.hathitrust.public_domain_text'))
     end
   end

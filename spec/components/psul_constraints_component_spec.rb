@@ -21,10 +21,10 @@ RSpec.describe PsulConstraintsComponent, type: :component do
   end
 
   it 'renders constraints container' do
-    expect(rendered).to have_selector('div.constraints-container')
+    expect(rendered).to have_css('div.constraints-container')
   end
 
   it 'does not render a start over link' do
-    expect(rendered).not_to have_link('Start Over')
+    expect(rendered).to have_no_link('Start Over')
   end
 end

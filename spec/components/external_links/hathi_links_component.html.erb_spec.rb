@@ -25,7 +25,7 @@ RSpec.describe ExternalLinks::HathiLinksComponent, type: :component do
         expect(rendered).to have_link(href: 'https://catalog.hathitrust.org/Record/12345')
           .and have_css("img[src*='HathiTrust_logo']")
           .and have_text(I18n.t!('blackcat.hathitrust.public_domain_text'))
-        expect(rendered).not_to have_content(I18n.t!('blackcat.hathitrust.etas_additional_text'))
+        expect(rendered).to have_no_content(I18n.t!('blackcat.hathitrust.etas_additional_text'))
       end
     end
 

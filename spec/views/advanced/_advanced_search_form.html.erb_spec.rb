@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'advanced/advanced_search_form', type: :view do
+RSpec.describe 'advanced/advanced_search_form' do
   let(:context) { {} }
 
   let(:config) { Blacklight::Configuration.new }
@@ -16,6 +16,6 @@ RSpec.describe 'advanced/advanced_search_form', type: :view do
   it 'renders an additional search button at the top of the form' do
     render 'advanced/advanced_search_form', advanced_search_context: context, blacklight_config: config
 
-    expect(rendered).to have_selector 'form h1.page-header input#advanced-search-submit-top'
+    expect(rendered).to have_css 'form h1.page-header input#advanced-search-submit-top'
   end
 end

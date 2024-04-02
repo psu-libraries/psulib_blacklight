@@ -25,7 +25,8 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
   end
 
   describe 'call number page selectors' do
-    before { allow_any_instance_of(described_class).to receive(:params).and_return({ nearby: 'abc', action: 'call_numbers' }) }
+    before {
+ allow_any_instance_of(described_class).to receive(:params).and_return({ nearby: 'abc', action: 'call_numbers' }) }
 
     context 'when the length param is not provided' do
       specify do
@@ -34,7 +35,8 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
     end
 
     context 'when the length param is explicitly provided' do
-      before { allow_any_instance_of(described_class).to receive(:params).and_return({ length: 50, action: 'call_numbers' }) }
+      before {
+ allow_any_instance_of(described_class).to receive(:params).and_return({ length: 50, action: 'call_numbers' }) }
 
       specify do
         expect(button.text).to include('50 per page')
@@ -58,7 +60,8 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
     end
 
     context 'when the length param is explicitly provided' do
-      before { allow_any_instance_of(described_class).to receive(:params).and_return({ length: 50, action: 'subjects' }) }
+      before {
+ allow_any_instance_of(described_class).to receive(:params).and_return({ length: 50, action: 'subjects' }) }
 
       specify do
         expect(button.text).to include('50 per page')

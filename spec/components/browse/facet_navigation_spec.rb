@@ -16,14 +16,14 @@ RSpec.describe Browse::FacetNavigation, type: :component do
     end
 
     context 'when browsing authors' do
-      it { is_expected.not_to have_link('Previous') }
+      it { is_expected.to have_no_link('Previous') }
       it { is_expected.to have_link('Next', href: '/browse/authors?length=10&page=2') }
     end
 
     context 'when browsing subjects' do
       before { allow_any_instance_of(described_class).to receive(:params).and_return({ action: 'subjects' }) }
 
-      it { is_expected.not_to have_link('Previous') }
+      it { is_expected.to have_no_link('Previous') }
       it { is_expected.to have_link('Next', href: '/browse/subjects?length=10&page=2') }
     end
   end
@@ -31,22 +31,22 @@ RSpec.describe Browse::FacetNavigation, type: :component do
   describe 'the last page' do
     let(:browse_list) { instance_spy(BrowseList, page: 5, length: 10, entries: [entry]) }
 
-
-
     context 'when browsing authors' do
       before do
         allow_any_instance_of(described_class).to receive(:params).and_return({ action: 'authors' })
       end
+
       it { is_expected.to have_link('Previous', href: '/browse/authors?length=10&page=4') }
-      it { is_expected.not_to have_link('Next') }
+      it { is_expected.to have_no_link('Next') }
     end
 
     context 'when browsing subjects' do
       before do
         allow_any_instance_of(described_class).to receive(:params).and_return({ action: 'subjects' })
       end
+
       it { is_expected.to have_link('Previous', href: '/browse/subjects?length=10&page=4') }
-      it { is_expected.not_to have_link('Next') }
+      it { is_expected.to have_no_link('Next') }
     end
   end
 

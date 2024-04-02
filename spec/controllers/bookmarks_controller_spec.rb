@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BookmarksController, type: :controller do
+RSpec.describe BookmarksController do
   describe 'GET #bulk_ris' do
     let(:expected_content_type) { 'application/x-research-info-systems' }
     let(:expected_file_name) { 'document.ris' }
