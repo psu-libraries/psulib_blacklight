@@ -32,7 +32,7 @@ gem 'shakapacker', '= 7.1'
 gem 'shelvit'
 gem 'stackprof'
 
-gem 'blacklight', '~> 7.30'
+gem 'blacklight', '~> 7.35'
 gem 'blacklight_advanced_search', '~> 7.0'
 gem 'blacklight-marc', '~> 7.0'
 gem 'blacklight_range_limit'
