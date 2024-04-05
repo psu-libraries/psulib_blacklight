@@ -36,7 +36,7 @@ Performance/CollectionLiteralInLoop:
     - 'config/environments/production.rb'
 
 # Offense count: 25
-Capybara/SpecificMatcher:
+RSpec/Capybara:
   Exclude:
     - 'spec/components/psul_constraint_layout_component_spec.rb'
     - 'spec/features/ask_a_librarian_spec.rb'
