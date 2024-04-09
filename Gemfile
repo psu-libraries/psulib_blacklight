@@ -30,6 +30,7 @@ gem 'rsolr', '>= 2.5'
 gem 'rubyzip'
 gem 'shakapacker', '= 7.1'
 gem 'shelvit'
+gem 'sprockets-rails'
 gem 'stackprof'
 
 gem 'blacklight', '~> 7.35'

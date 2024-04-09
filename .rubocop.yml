@@ -43,6 +43,10 @@ Lint/MissingSuper:
     - 'app/components/external_links/*'
     - 'app/models/concerns/null_object_pattern.rb'
 
+Metrics/CyclomaticComplexity:
+  Exclude:
+  - 'app/components/psul_search_bar_component.rb'
+
 Rails/ContentTag:
   Enabled: false
 
