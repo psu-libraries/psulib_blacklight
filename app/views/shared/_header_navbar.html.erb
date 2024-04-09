@@ -15,6 +15,12 @@
           url: search_action_url,
           params: search_state.params_for_search.except(:qt)
         ) %>
+        <div class="col-md d-none d-md-block">
+    <ul class="list-inline mt-1 mb-0">
+      <li class="list-inline-item"><%= link_to 'Advanced search', blacklight_advanced_search_engine.advanced_search_path %></li>
+      <li class="list-inline-item"><%= link_to t('blacklight.search.start_over'), start_over_path %></li>
+    </ul>
+  </div>
   </div>
 </div>
 <% end %>

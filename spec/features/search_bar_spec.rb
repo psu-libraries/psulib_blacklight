@@ -41,6 +41,12 @@ RSpec.describe 'Search Bar' do
     end
   end
 
+  it 'shows links for Advanced Search and Start Over', :js do
+    visit '/'
+    expect(page).to have_link('Advanced search', href: '/advanced')
+    expect(page).to have_link('Start Over', href: '/')
+  end
+
   it 'updates the placeholder when the search type changes', :js do
     visit '/'
 
