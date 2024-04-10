@@ -1,8 +1,8 @@
-$(document).ready(() => {
+function googlePreview() {
   const element = document.getElementById('google-preview');
   const urlComponents = {
     googlePreviewUrl: '/preview/google-preview-data',
-    searchItem: element.dataset.searchItem,
+    searchItem: element?.dataset?.searchItem,
   };
   const { googlePreviewUrl, searchItem } = urlComponents;
   const googlePreviewUrlQuery = `${googlePreviewUrl}/?search_item=${searchItem}`;
@@ -34,4 +34,6 @@ $(document).ready(() => {
       element.style.display = '';
     }
   };
-});
+};
+
+export { googlePreview };
