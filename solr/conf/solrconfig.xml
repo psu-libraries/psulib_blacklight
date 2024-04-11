@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
-  <!--for Sematext Monitoring-->
-  <jmx />
 
   <valueSourceParser name="stringdiff"
     class="edu.psu.solr.plugin.bookcodesort.StringDiffValueSourceParser" />
