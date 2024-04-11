@@ -65,6 +65,8 @@ jobs:
       - image: cimg/ruby:3.1.2-browsers
       - image: redis:5.0.7
       - image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
+        environment:
+          SOLR_STOP_WAIT: 1
         command: [
           "/bin/bash",
           "-c",
