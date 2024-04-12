@@ -12,7 +12,7 @@ RSpec.describe 'external_links/show_external_links', type: :view do
     )}
 
     it 'renders PSU Digital Collections links correctly' do
-      render 'external_links/show_external_links', document: document, show_hathi_links: false
+      render 'external_links/show_external_links', document: document
 
       expect(rendered).to have_link('digital.libraries.psu.edu', href: 'http://digital.libraries.psu.edu')
         .and have_text('This is a prefix')
@@ -31,7 +31,7 @@ RSpec.describe 'external_links/show_external_links', type: :view do
     )}
 
     it 'renders Access Online links correctly' do
-      render 'external_links/show_external_links', document: document, show_hathi_links: false
+      render 'external_links/show_external_links', document: document
 
       expect(rendered).to have_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73013')
         .and have_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73014')
@@ -52,7 +52,7 @@ RSpec.describe 'external_links/show_external_links', type: :view do
     )}
 
     it 'renders Online Version links' do
-      render 'external_links/show_external_links', document: document, show_hathi_links: false
+      render 'external_links/show_external_links', document: document
 
       expect(rendered).to have_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73013')
         .and have_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73014')
@@ -71,7 +71,7 @@ RSpec.describe 'external_links/show_external_links', type: :view do
     )}
 
     it 'renders Related Resources links' do
-      render 'external_links/show_external_links', document: document, show_hathi_links: false
+      render 'external_links/show_external_links', document: document
       expect(rendered).to have_link('related.resource', href: 'http://related.resource')
         .and include('This is a prefix:')
         .and include('This is a note')
