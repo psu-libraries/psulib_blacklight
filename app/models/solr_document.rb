@@ -2,7 +2,6 @@
 
 class SolrDocument
   include Blacklight::Solr::Document
-  include HathiLinks
   include ExternalLinks
   include PreferredCallNumber
 

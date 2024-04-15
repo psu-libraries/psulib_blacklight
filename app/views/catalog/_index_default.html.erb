@@ -32,7 +32,5 @@
 </div>
 
 <div class="blacklight-availability">
-  <% unless document.hathi_links && document.hathi_links[:etas_item] && Settings&.hide_etas_holdings -%>
-    <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
-  <% end -%>
+  <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
 </div>
