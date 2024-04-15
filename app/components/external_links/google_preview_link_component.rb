@@ -3,7 +3,7 @@
 module ExternalLinks
   class GooglePreviewLinkComponent < HathiGoogleLinksComponent
     def search_item
-      return nil if free_to_read? 
+      return nil if free_to_read?
 
       return "LCCN:#{lccn}" if lccn.present?
 
@@ -15,6 +15,7 @@ module ExternalLinks
     end
 
     private
+
       def isbn
         document[:document]['isbn_valid_ssm']&.first
       end

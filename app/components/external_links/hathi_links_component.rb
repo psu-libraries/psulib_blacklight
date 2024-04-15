@@ -2,10 +2,6 @@
 
 module ExternalLinks
   class HathiLinksComponent < HathiGoogleLinksComponent
-    def initialize(document)
-      @document = document
-    end
-
     def search_item
       return nil if free_to_read?
 
