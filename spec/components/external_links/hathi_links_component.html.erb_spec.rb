@@ -7,57 +7,48 @@ RSpec.describe ExternalLinks::HathiLinksComponent, type: :component do
     render_inline(described_class.new(document: document))
   end
 
-  context 'when document has an LCCN, OCLC and ISBN' do
-    let(:document) { { 'lccn_ssim' => ['13579'], 'oclc_number_ssim' => ['24680'], 'isbn_valid_ssm' => ['92746'] } }
+  context 'when document has an OCLC, LCCN and ISSN' do
+    let(:document) { { 'lccn_ssim' => ['13579'], 'oclc_number_ssim' => ['24680'], 'issn_ssm' => ['1234-1234'] } }
 
-    it 'renders a hidden link with the LCCN search term and LCCN attached in the data attr' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("div[data-search-item='LCCN:13579']", visible: :hidden)
+    it 'renders a hidden link with the OCLC search path and OCLC attached in the data attr' do
+      expect(rendered).to have_css("img[src*='128px-HathiTrust_logo.svg-38d4f863063a07c4b29f.png']", visible: false)
+        .and have_css("div[data-search-item='oclc/24680']", visible: false)
     end
   end
 
-  context 'when document has an OCLC and ISBN' do
-    let(:document) { { 'oclc_number_ssim' => ['24680'], 'isbn_valid_ssm' => ['92746'] } }
+  context 'when document has an LCCN and ISSN' do
+    let(:document) { { 'lccn_ssim' => ['13579'], 'issn_ssm' => ['1234-1234'] } }
 
-    it 'renders a hidden link with the OCLC search term and OCLC attached in the data attr' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("div[data-search-item='OCLC:24680']", visible: :hidden)
+    it 'renders a hidden link with the LCCN search path and LCCN attached in the data attr' do
+      expect(rendered).to have_css("img[src*='128px-HathiTrust_logo.svg-38d4f863063a07c4b29f.png']", visible: false)
+        .and have_css("div[data-search-item='lccn/13579']", visible: false)
     end
   end
 
-  context 'when document has only an ISBN' do
-    let(:document) { { 'isbn_valid_ssm' => ['92746'] } }
+  context 'when document has only an ISSN' do
+    let(:document) { { 'issn_ssm' => ['1234-1234'] } }
 
-    it 'renders a hidden link with the ISBN search term and ISBN attached in the data attr' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("div[data-search-item='ISBN:92746']", visible: :hidden)
+    it 'renders a hidden link with the ISSN search path and ISSN attached in the data attr' do
+      expect(rendered).to have_css("img[src*='128px-HathiTrust_logo.svg-38d4f863063a07c4b29f.png']", visible: false)
+        .and have_css("div[data-search-item='issn/1234-1234']", visible: false)
     end
   end
 
-  context 'when document has no LCCN, OCLC or ISBN' do
+  context 'when document has no OCLC, lCCN or ISSN' do
     let(:document) { {} }
 
     it 'renders a hidden link with no attached search term data' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("div[data-search-item='']", visible: :hidden)
+      expect(rendered).to have_css("img[src*='128px-HathiTrust_logo.svg-38d4f863063a07c4b29f.png']", visible: false)
+        .and have_css("div[data-search-item='']", visible: false)
     end
   end
 
-  context 'when document has an LCCN, OCLC or ISBN, but is Free to Read' do
-    let(:document) { { 'access_facet' => ['Free to Read', 'In the Library'], 'isbn_valid_ssm' => ['92746'] } }
+  context 'when document has an ISSN, but is Free to Read' do
+    let(:document) { { 'access_facet' => ['Free to Read', 'In the Library'], 'issn_ssm' => ['1234-1234'] } }
 
     it 'renders a hidden link with no attached search term data' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("div[data-search-item='']", visible: :hidden)
-    end
-  end
-
-  context 'when document has an LCCN, OCLC or ISBN, but has a link to a Hathi Trust version' do
-    let(:document) { { 'ht_access_ss' => 'allow', 'isbn_valid_ssm' => ['92746'] } }
-
-    it 'renders a hidden link with no attached search term data' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("div[data-search-item='']", visible: :hidden)
+      expect(rendered).to have_css("img[src*='128px-HathiTrust_logo.svg-38d4f863063a07c4b29f.png']", visible: false)
+        .and have_css("div[data-search-item='']", visible: false)
     end
   end
 end
