@@ -8,10 +8,14 @@ RSpec.describe 'Advanced Search' do
       visit '/advanced'
     end
 
+    it 'renders an additional search button at the top of the form' do
+      expect(page).to have_css 'form h1.page-header input#advanced-search-submit-top'
+    end
+
     context 'when doing single term searches' do
       context 'when searching by series title' do
         before do
-          fill_in 'series', with: 'Yale studies in political science'
+          fill_in 'clause_series_query', with: 'Yale studies in political science'
           click_on 'advanced-search-submit'
         end
 
@@ -22,7 +26,7 @@ RSpec.describe 'Advanced Search' do
 
       context 'when searching by series keyword' do
         before do
-          fill_in 'series', with: 'political science'
+          fill_in 'clause_series_query', with: 'political science'
           click_on 'advanced-search-submit'
         end
 
@@ -33,7 +37,7 @@ RSpec.describe 'Advanced Search' do
 
       context 'when searching by isbn' do
         before do
-          fill_in 'identifiers', with: '9780442290917'
+          fill_in 'clause_identifiers_query', with: '9780442290917'
           click_on 'advanced-search-submit'
         end
 
@@ -44,7 +48,7 @@ RSpec.describe 'Advanced Search' do
 
       context 'when searching by issn' do
         before do
-          fill_in 'identifiers', with: '10756787'
+          fill_in 'clause_identifiers_query', with: '10756787'
           click_on 'advanced-search-submit'
         end
 
@@ -55,7 +59,7 @@ RSpec.describe 'Advanced Search' do
 
       context 'when searching by LCCN' do
         before do
-          fill_in 'identifiers', with: '2001270122'
+          fill_in 'clause_identifiers_query', with: '2001270122'
           click_on 'advanced-search-submit'
         end
 
@@ -66,7 +70,7 @@ RSpec.describe 'Advanced Search' do
 
       context 'when searching by publisher' do
         before do
-          fill_in 'publisher', with: 'Norton'
+          fill_in 'clause_publisher_query', with: 'Norton'
           click_on 'advanced-search-submit'
         end
 
@@ -103,8 +107,8 @@ RSpec.describe 'Advanced Search' do
     context 'when doing combination searches' do
       context 'when searching for a specific book about quilts in Cumberland County' do
         before do
-          fill_in 'title', with: 'quilts cumberland'
-          fill_in 'author', with: 'quilters'
+          fill_in 'clause_title_query', with: 'quilts cumberland'
+          fill_in 'clause_author_query', with: 'quilters'
           find('button[data-id="access_facet"]').click
           find_by_id('bs-select-1-1').click
           find('button[data-id="format"]').click
@@ -123,9 +127,9 @@ RSpec.describe 'Advanced Search' do
 
       context 'when searching for a specific book on geological perspectives of climate change' do
         before do
-          fill_in 'subject', with: 'Climatology'
-          fill_in 'series', with: 'AAPG studies in geology'
-          fill_in 'publisher', with: 'Petroleum Geologists'
+          fill_in 'clause_subject_query', with: 'Climatology'
+          fill_in 'clause_series_query', with: 'AAPG studies in geology'
+          fill_in 'clause_publisher_query', with: 'Petroleum Geologists'
           find('button[data-id="library_facet"]').click
           find_by_id('bs-select-6-4').click
           click_on 'advanced-search-submit'
@@ -140,7 +144,7 @@ RSpec.describe 'Advanced Search' do
     context 'when using vernacular language' do
       context 'when searching in simplified chinese' do
         before do
-          fill_in 'title', with: '上海理论'
+          fill_in 'clause_title_query', with: '上海理论'
           click_on 'advanced-search-submit'
         end
 
@@ -151,7 +155,7 @@ RSpec.describe 'Advanced Search' do
 
       context 'when searching in traditional chinese' do
         before do
-          fill_in 'title', with: '上海理論'
+          fill_in 'clause_title_query', with: '上海理論'
           click_on 'advanced-search-submit'
         end
 

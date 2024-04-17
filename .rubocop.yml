@@ -36,6 +36,7 @@ Layout/LineLength:
   # The catalog controller is just one giant block for config.
   - 'app/controllers/catalog_controller.rb'
   - 'spec/controllers/catalog_controller_spec.rb'
+  - 'app/components/blacklight/advanced_search_form_component.rb'
 
 Lint/MissingSuper:
   Exclude:
