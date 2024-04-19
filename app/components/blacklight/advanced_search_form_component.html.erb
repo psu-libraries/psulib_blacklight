@@ -22,21 +22,6 @@
       </div>
     </div>
 
-     <% if search_filter_controls? %>
-      <div class="limit-criteria">
-      <h3 class="limit-criteria-heading"><%= t('blacklight.advanced_search.form.limit_criteria_heading_html') %></h3>
-
-      <div id="advanced_search_facets" class="limit_input">
-        <% if blacklight_config.try(:advanced_search).try {|h| h[:form_facet_partial] } %>
-          <%= render blacklight_config.advanced_search[:form_facet_partial] %>
-        <% else %>
-          <%= render 'advanced_search_facets' %>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
-
-<!-- original BL code
     <% if search_filter_controls? %>
       <div class="limit-criteria mb-4">
         <h2 class="limit-criteria-heading h3"><%= t('blacklight.advanced_search.form.limit_criteria_heading_html') %></h2>
@@ -50,9 +35,21 @@
         </div>
       </div>
     <% end %>
-       -->
-
   </div>
+
+  <%# Publication Date is a range input %>
+<% pub_date = helpers.facet_configuration_for_field('pub_date_itsi') %>
+<div class="form-group advanced-search-facet row">
+  <%= label_tag pub_date.field.parameterize, class: 'col-sm-4 control-label' do %>
+    <%= pub_date.label %>
+  <% end %>
+  <div class="col-sm-8 range_limit">
+    <label for="range_pub_date_start_sort_begin" class="sr-only">Publication date range (starting year)</label>
+    <%= number_field_tag("range[pub_date_itsi][begin]", nil, maxlength: 6, class: "form-control text-center range_begin") %> –
+    <label for="range_pub_date_start_sort_end" class="sr-only">Publication date range (ending year)</label>
+    <%= number_field_tag("range[pub_date_itsi][end]", nil, maxlength: 6, class: "form-control text-center range_end") %>
+  </div>
+</div>
 
    <div class="sort-submit-buttons clearfix">
     <%= render 'advanced_search_submit_btns' %>
