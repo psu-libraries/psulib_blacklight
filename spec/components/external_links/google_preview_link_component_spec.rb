@@ -11,8 +11,8 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
     let(:document) { { 'lccn_ssim' => ['13579'], 'oclc_number_ssim' => ['24680'], 'isbn_valid_ssm' => ['92746'] } }
 
     it 'renders a hidden link with the LCCN search term and LCCN attached in the data attr' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: false)
-        .and have_css("div[data-search-item='LCCN:13579']", visible: false)
+      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
+        .and have_css("div[data-search-item='LCCN:13579']", visible: :hidden)
     end
   end
 
@@ -20,8 +20,8 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
     let(:document) { { 'oclc_number_ssim' => ['24680'], 'isbn_valid_ssm' => ['92746'] } }
 
     it 'renders a hidden link with the OCLC search term and OCLC attached in the data attr' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: false)
-        .and have_css("div[data-search-item='OCLC:24680']", visible: false)
+      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
+        .and have_css("div[data-search-item='OCLC:24680']", visible: :hidden)
     end
   end
 
@@ -29,8 +29,8 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
     let(:document) { { 'isbn_valid_ssm' => ['92746'] } }
 
     it 'renders a hidden link with the ISBN search term and ISBN attached in the data attr' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: false)
-        .and have_css("div[data-search-item='ISBN:92746']", visible: false)
+      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
+        .and have_css("div[data-search-item='ISBN:92746']", visible: :hidden)
     end
   end
 
@@ -38,8 +38,8 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
     let(:document) { {} }
 
     it 'renders a hidden link with no attached search term data' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: false)
-        .and have_css("div[data-search-item='']", visible: false)
+      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
+        .and have_css("div[data-search-item='']", visible: :hidden)
     end
   end
 
@@ -47,8 +47,8 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
     let(:document) { { 'access_facet' => ['Free to Read', 'In the Library'], 'isbn_valid_ssm' => ['92746'] } }
 
     it 'renders a hidden link with no attached search term data' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: false)
-        .and have_css("div[data-search-item='']", visible: false)
+      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
+        .and have_css("div[data-search-item='']", visible: :hidden)
     end
   end
 end

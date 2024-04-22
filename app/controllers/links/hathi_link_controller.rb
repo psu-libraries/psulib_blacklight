@@ -11,14 +11,16 @@ module Links
     private
 
       def json_response
-        JSON.parse(send_request)["items"].each do |item|
-          return { itemUrl: item["itemURL"] }.to_json if item["usRightsString"] == "Full view"
+        if send_request.present?
+          JSON.parse(send_request)['items']&.each do |item|
+            return { itemUrl: item['itemURL'] }.to_json if item['usRightsString'] == 'Full view'
+          end
         end
-        { itmeUrl: nil }.to_json
+        { itemUrl: nil }.to_json
       end
 
       def send_request
-        Net::HTTP.get(uri)
+        @send_request ||= Net::HTTP.get(uri)
       end
 
       def uri

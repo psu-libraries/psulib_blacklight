@@ -6,5 +6,5 @@
                                                  heading: 'Online Version' %>
 <%= render ExternalLinks::BaseLinksComponent.new links: document.related_resources_links,
                                                  heading: 'Related Resources' %>
-<%= render ExternalLinks::HathiLinksComponent.new(document: document) %>
+<%= render ExternalLinks::HathiLinkComponent.new(document: document) %>
 <%= render ExternalLinks::GooglePreviewLinkComponent.new(document: document) %>

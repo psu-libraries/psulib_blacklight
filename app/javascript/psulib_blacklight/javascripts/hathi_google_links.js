@@ -1,15 +1,15 @@
 import { googlePreview } from "./google_preview";
-import { hathilink } from "./hathilink";
+import { hathiLink } from "./hathi_link";
 
-async function hathi_google_links() {
-  // Wait for hathilink function to finish before 
+async function hathiGoogleLinks() {
+  // Wait for hathiLink function to finish before 
   // determining if google should be checked
-  hathilink();
-  if ($("#hathilink:visible").length == 0) {
+  hathiLink();
+  if ($("#hathi-link:visible").length == 0) {
     googlePreview();
   }
 }
 
 $(document).ready(() => {
-  hathi_google_links();
+  hathiGoogleLinks();
 });

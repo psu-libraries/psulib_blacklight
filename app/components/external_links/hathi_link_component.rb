@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ExternalLinks
-  class HathiLinksComponent < HathiGoogleLinksComponent
+  class HathiLinkComponent < HathiGoogleLinksComponent
     def search_item
       return nil if free_to_read?
 

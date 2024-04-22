@@ -1,5 +1,5 @@
-export function hathilink() {
-  const element = document.getElementById("hathilink");
+export function hathiLink() {
+  const element = document.getElementById("hathi-link");
   const urlComponents = {
     hathitrustUrl: '/links/hathi-link',
     searchItem: element?.dataset?.searchItem,

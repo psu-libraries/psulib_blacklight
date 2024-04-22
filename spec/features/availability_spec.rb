@@ -7,7 +7,7 @@ RSpec.describe 'Availability', :vcr, type: :feature do
   let(:hold_button_url) { "#{Settings.my_account_url}#{Settings.hold_button_path}" }
 
   before do
-    Settings.hathi_etas = false
+    stub_request(:get, /https:\/\/catalog.hathitrust.org\/api\/volumes\/brief\//)
     Settings.readonly = false
     Settings.hide_hold_button = false
     Settings.hide_etas_holdings = false

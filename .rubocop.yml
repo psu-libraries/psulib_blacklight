@@ -71,10 +71,12 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/AnyInstance:
   Exclude:
   - 'spec/features/google_preview_link_spec.rb'
+  - 'spec/features/hathi_link_spec.rb'
 
 RSpec/RepeatedExampleGroupBody:
   Exclude:
   - 'spec/features/google_preview_link_spec.rb'
+  - 'spec/features/hathi_link_spec.rb'
 
 RSpec/MessageSpies:
   Exclude:
