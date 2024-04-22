@@ -1,34 +1,29 @@
-export async function hathilink() {
+export function hathilink() {
   const element = document.getElementById("hathilink");
-
   const urlComponents = {
-    hathitrustUrl: 'https://catalog.hathitrust.org/api/volumes/brief/',
+    hathitrustUrl: '/links/hathi-link',
     searchItem: element?.dataset?.searchItem,
   };
   const { hathitrustUrl, searchItem } = urlComponents;
-  const hathiLinkUrlQuery = `${hathitrustUrl}${searchItem}.json`;
+  const hathiLinkUrlQuery = `${hathitrustUrl}/?search_item=${searchItem}`;
 
   if (searchItem) {
     $.ajax({
-      // This whole function is async so make the ajax synchronous
+      // Do not run as async request
+      // Needs to run to completion to determine if Google Preview is needed
       async: false,
       url: hathiLinkUrlQuery,
       success(response) {
-        const bookInfo = response["items"];
-        if (bookInfo) {
-          setLink(bookInfo, element);
+        const itemUrl = response["itemUrl"];
+        if (itemUrl) {
+          setLink(itemUrl, element);
         }
       },
     });
   }
 
-  function setLink(bookInfo, element) {
-    for (let i = 0; i < bookInfo.length; i++) {
-      if (bookInfo[i].usRightsString === "Full view") {
-        element.firstElementChild.href = bookInfo[i].itemURL;
-        element.classList.remove("d-none");
-        return
-      }
-    }
-  };
+  function setLink(itemUrl, element) {
+    element.firstElementChild.href = itemUrl;
+    element.classList.remove("d-none");
+  }
 };

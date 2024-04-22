@@ -1,7 +1,7 @@
 export function googlePreview() {
   const element = document.getElementById('google-preview');
   const urlComponents = {
-    googlePreviewUrl: '/preview/google-preview-data',
+    googlePreviewUrl: '/links/google-preview-data',
     searchItem: element?.dataset?.searchItem,
   };
   const { googlePreviewUrl, searchItem } = urlComponents;
