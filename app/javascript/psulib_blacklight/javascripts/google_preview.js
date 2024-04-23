@@ -1,4 +1,4 @@
-export function googlePreview() {
+export default function googlePreview() {
   const element = document.getElementById('google-preview');
   const urlComponents = {
     googlePreviewUrl: '/links/google-preview-data',
@@ -28,10 +28,10 @@ export function googlePreview() {
     element.firstElementChild.href = bookInfo.preview_url;
     if (bookInfo.preview === 'full') {
       element.firstElementChild.innerHTML += 'Read online at Google Books';
-      element.classList.remove("d-none");
+      element.style.display = 'revert';
     } else if (bookInfo.preview === 'partial') {
       element.firstElementChild.innerHTML += 'Search inside at Google Books';
-      element.classList.remove("d-none");
+      element.style.display = 'revert';
     }
   };
-};
+}

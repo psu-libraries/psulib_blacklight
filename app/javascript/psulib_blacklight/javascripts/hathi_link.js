@@ -1,29 +1,29 @@
-export function hathiLink() {
-  const element = document.getElementById("hathi-link");
+export default function hathiLink() {
+  const element = document.getElementById('hathi-link');
   const urlComponents = {
-    hathitrustUrl: '/links/hathi-link',
+    hathiTrustUrl: '/links/hathi-link',
     searchItem: element?.dataset?.searchItem,
   };
-  const { hathitrustUrl, searchItem } = urlComponents;
-  const hathiLinkUrlQuery = `${hathitrustUrl}/?search_item=${searchItem}`;
+  const { hathiTrustUrl, searchItem } = urlComponents;
+  const hathiLinkUrlQuery = `${hathiTrustUrl}/?search_item=${searchItem}`;
 
   if (searchItem) {
     $.ajax({
       // Do not run as async request
-      // Needs to run to completion to determine if Google Preview is needed
+      // Needs to run in same thread to determine if Google Preview is needed
       async: false,
       url: hathiLinkUrlQuery,
       success(response) {
-        const itemUrl = response["itemUrl"];
-        if (itemUrl) {
-          setLink(itemUrl, element);
+        const { itemUrl: url } = response;
+        if (url) {
+          setLink(url);
         }
       },
     });
   }
 
-  function setLink(itemUrl, element) {
+  function setLink(itemUrl) {
     element.firstElementChild.href = itemUrl;
-    element.classList.remove("d-none");
+    element.style.display = 'revert';
   }
-};
+}
