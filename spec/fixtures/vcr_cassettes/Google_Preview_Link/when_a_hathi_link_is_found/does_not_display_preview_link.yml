@@ -45,7 +45,7 @@ http_interactions:
   recorded_at: Mon, 22 Apr 2024 17:54:48 GMT
 - request:
     method: get
-    uri: https://catalog.itrust.org/api/volumes/brief/oclc/1234.json
+    uri: https://catalog.hathitrust.org/api/volumes/brief/oclc/1234.json
     body:
       encoding: US-ASCII
       string: ''
