@@ -303,6 +303,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
     config.add_show_field 'isbn_ssm', label: 'ISBN', helper_method: :newline_format
     config.add_show_field 'issn_ssm', label: 'ISSN', helper_method: :newline_format
+    config.add_show_field 'grouping_issn_ssm', label: 'Grouping ISSN', helper_method: :newline_format
     config.add_show_field 'related_title_display_ssm', label: 'Related Titles', helper_method: :newline_format
     config.add_show_field 'duration_ssm', label: 'Duration', helper_method: :display_duration
     config.add_show_field 'frequency_ssm', label: 'Publication Frequency', helper_method: :newline_format
