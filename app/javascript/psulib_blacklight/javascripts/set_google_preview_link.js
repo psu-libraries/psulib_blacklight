@@ -1,4 +1,4 @@
-export default function googlePreview() {
+export default function setGooglePreview() {
   const element = document.getElementById('google-preview');
   const urlComponents = {
     googlePreviewUrl: '/links/google-preview-data',

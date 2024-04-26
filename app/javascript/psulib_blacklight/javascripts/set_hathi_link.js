@@ -1,4 +1,4 @@
-export default function hathiLink() {
+export default function setHathiLink() {
   const element = document.getElementById('hathi-link');
   const urlComponents = {
     hathiTrustUrl: '/links/hathi-link',
