@@ -11,5 +11,5 @@ async function setHathiGoogleLinks() {
 }
 
 $(document).ready(() => {
-  hathiGoogleLinks();
+  setHathiGoogleLinks();
 });
