@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'external_links/show_external_links', type: :view do
+RSpec.describe 'external_links/show_external_links' do
   context 'when PSU Digital Collectionslinks present' do
     let(:document) { SolrDocument.new(
       {
@@ -97,8 +97,8 @@ RSpec.describe 'external_links/show_external_links', type: :view do
     it 'does not render Hathi links when show_hathi_links is false' do
       render 'external_links/show_external_links', document: document, show_hathi_links: false
 
-      expect(rendered).not_to have_link(href: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html')
-      expect(rendered).not_to have_css("img[src*='HathiTrust_logo']")
+      expect(rendered).to have_no_link(href: 'https://catalog.hathitrust.org/api/volumes/oclc/12345.html')
+      expect(rendered).to have_no_css("img[src*='HathiTrust_logo']")
       expect(rendered).not_to include(I18n.t!('blackcat.hathitrust.public_domain_text'))
     end
   end

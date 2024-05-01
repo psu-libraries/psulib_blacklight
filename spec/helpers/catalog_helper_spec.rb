@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CatalogHelper, type: :helper do
+RSpec.describe CatalogHelper do
   describe '#bound_info' do
     let (:field_data) { ['{"bound_catkey": "355035", ' \
                          '"bound_title": "The high-caste Hindu woman / With introduction by Rachel L. Bodley",' \
@@ -134,7 +134,7 @@ RSpec.describe CatalogHelper, type: :helper do
                                                      additional_text: 'By blah blah blah.' }] }] }}
 
     it 'returns the first value of the value array' do
-      expect(get_first_only(options)).not_to be_a_kind_of Array
+      expect(get_first_only(options)).not_to be_a Array
     end
   end
 end

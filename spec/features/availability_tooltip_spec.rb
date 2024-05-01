@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'support/vcr'
 
-RSpec.describe 'Availability Tooltip', :vcr, type: :feature do
+RSpec.describe 'Availability Tooltip', :vcr do
   before do
     Settings.hathi_etas = false
     Settings.readonly = false
@@ -11,10 +11,10 @@ RSpec.describe 'Availability Tooltip', :vcr, type: :feature do
     Settings.hide_etas_holdings = false
   end
 
-  describe 'Clicking "View More" and hovering over tooltip', js: true do
+  describe 'Clicking "View More" and hovering over tooltip', :js do
     it 'renders tooltip' do
       visit '/catalog/2169033'
-      click_button 'View More'
+      click_on 'View More'
       sleep(0.5)
       find('i[data-toggle="tooltip"]').hover
       expect(find('i[aria-describedby^="tooltip"]')).to be_present

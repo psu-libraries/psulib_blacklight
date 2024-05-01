@@ -36,12 +36,17 @@ Layout/LineLength:
   # The catalog controller is just one giant block for config.
   - 'app/controllers/catalog_controller.rb'
   - 'spec/controllers/catalog_controller_spec.rb'
+  - 'app/components/blacklight/advanced_search_form_component.rb'
 
 Lint/MissingSuper:
   Exclude:
     - 'app/components/browse/*'
     - 'app/components/external_links/*'
     - 'app/models/concerns/null_object_pattern.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+  - 'app/components/psul_search_bar_component.rb'
 
 Rails/ContentTag:
   Enabled: false
@@ -62,7 +67,7 @@ RSpec/NestedGroups:
 RSpec/Capybara/FeatureMethods:
   Enabled: false
 
-RSpec/Capybara/SpecificMatcher:
+RSpec/Capybara:
   Enabled: false
 
 RSpec/MultipleMemoizedHelpers:
@@ -71,6 +76,10 @@ RSpec/MultipleMemoizedHelpers:
 RSpec/AnyInstance:
   Exclude:
   - 'spec/features/google_preview_link_spec.rb'
+  - 'spec/components/browse/call_number_navigation_spec.rb'
+  - 'spec/components/browse/facet_navigation_spec.rb'
+  - 'spec/components/browse/page_size_selector_spec.rb'
+  - 'spec/components/browse/prefix_selector_spec.rb'
 
 RSpec/RepeatedExampleGroupBody:
   Exclude:

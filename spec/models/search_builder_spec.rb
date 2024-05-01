@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SearchBuilder, type: :model do
+RSpec.describe SearchBuilder do
   describe '#add_all_online_to_query' do
     let(:scope) do
       struct = Struct.new(:blacklight_config)

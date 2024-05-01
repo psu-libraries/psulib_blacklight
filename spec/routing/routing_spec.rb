@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Error Routing', type: :routing do
+RSpec.describe 'Error Routing' do
   it 'routes to page not found if path is completely invalid' do
     expect(get: 'kaljhgl').to route_to controller: 'errors', action: 'not_found', catch_unknown_routes: 'kaljhgl'
   end

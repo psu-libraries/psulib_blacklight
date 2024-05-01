@@ -17,7 +17,10 @@
             <span class="
                     <%= 'text-muted' unless field[:sr_only] %>
                     <%= 'sr-only' if field[:sr_only] %>">
-              <%= render_index_field_label document, field: field_name %>
+              <%= render(Blacklight::MetadataFieldComponent.new(
+                           field: field,
+                           show: true
+                         )) %>
             </span>
             <%= doc_presenter.field_value field %>
           </li>
@@ -34,6 +37,6 @@
 
 <div class="blacklight-availability">
   <% unless document.hathi_links && document.hathi_links[:etas_item] && Settings&.hide_etas_holdings -%>
-    <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
+    <%= render partial: 'index_availability', locals: { document: document } unless Settings.readonly %>
   <% end -%>
 </div>

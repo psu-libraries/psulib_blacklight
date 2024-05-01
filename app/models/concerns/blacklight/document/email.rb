@@ -18,6 +18,6 @@ module Blacklight::Document::Email
     label = 'blacklight.email.text.holdings'
     body << I18n.t(label, value: availability) unless availability.nil?
 
-    return body.join("\n") unless body.empty?
+    body.join("\n") unless body.empty?
   end
 end

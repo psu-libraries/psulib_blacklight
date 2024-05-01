@@ -41,7 +41,7 @@
 <%- elsif render_grouped_response? %>
   <%= render_grouped_document_index %>
 <%- else %>
-  <%= render_document_index %>
+  <%= render_document_index @response.documents %>
     <%- if @response.response[:numFound] < 3 %>
       <div class="card bg-light mt-4 mb-3">
         <h3 class="card-header facet-field-heading"><%= t 'blacklight.search.continue_search.title' %></h3>

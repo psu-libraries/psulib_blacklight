@@ -41,7 +41,7 @@ module ExternalLinks
 
       def hathi_link?
         document[:document]['ht_access_ss'] == 'allow' ||
-          (document[:document]['ht_access_ss'] == 'deny' && Settings&.hathi_etas)
+          (document[:document]['ht_access_ss'] == 'deny' && Settings.hathi_etas)
       end
 
       attr_reader :document

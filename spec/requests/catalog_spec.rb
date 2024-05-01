@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Catalog', type: :request do
+RSpec.describe 'Catalog' do
   describe 'id in the url ending with a punctuation' do
     it 'redirects to the record after cleaning the punctuation' do
       get '/catalog/22090269.'

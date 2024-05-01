@@ -24,7 +24,7 @@ RSpec.describe ExternalLinks::BaseLinksComponent, type: :component do
   }
 
   it 'renders the heading correctly' do
-    expect(rendered).to have_selector 'h5', text: 'External Links'
+    expect(rendered).to have_css 'h5', text: 'External Links'
   end
 
   context 'when are less than 3 links of the same type' do
@@ -36,11 +36,11 @@ RSpec.describe ExternalLinks::BaseLinksComponent, type: :component do
     end
 
     it 'does not display a view more button' do
-      expect(rendered).not_to have_selector '.toggle-external-links'
+      expect(rendered).to have_no_css '.toggle-external-links'
     end
 
     it 'does not collapse any links' do
-      expect(rendered).not_to have_selector('#collapseLinksExternalLinks')
+      expect(rendered).to have_no_css('#collapseLinksExternalLinks')
     end
   end
 
@@ -67,7 +67,7 @@ RSpec.describe ExternalLinks::BaseLinksComponent, type: :component do
     }
 
     it 'displays a view more button' do
-      expect(rendered).to have_selector '.toggle-external-links.collapsed'
+      expect(rendered).to have_css '.toggle-external-links.collapsed'
     end
 
     it 'displays 2 links and collapses the rest' do
@@ -105,11 +105,11 @@ RSpec.describe ExternalLinks::BaseLinksComponent, type: :component do
     end
 
     it 'does not display a view more button' do
-      expect(rendered).not_to have_selector '.toggle-external-links'
+      expect(rendered).to have_no_css '.toggle-external-links'
     end
 
     it 'does not collapse any links' do
-      expect(rendered).not_to have_selector('#collapseLinksExternalLinks')
+      expect(rendered).to have_no_css('#collapseLinksExternalLinks')
     end
   end
 end

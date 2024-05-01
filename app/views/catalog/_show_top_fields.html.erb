@@ -6,7 +6,7 @@
       <dt class="blacklight-<%= field_name.parameterize %>-label col-md-3
           <%= 'text-muted' unless field[:sr_only] -%>
           <%= 'sr-only' if field[:sr_only] -%>">
-        <%= render_document_show_field_label document, field: field_name %>
+        <%= field.label %>
       </dt>
       <dd class="blacklight-<%= field_name.parameterize %> col-md-9"><%= doc_presenter.field_value field %></dd>
     <% end %>

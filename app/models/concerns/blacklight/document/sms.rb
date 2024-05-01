@@ -14,6 +14,6 @@ module Blacklight::Document::Sms
         body << I18n.t(label, value: value.join('; '))
       end
     end
-    return body.join("\n") unless body.empty?
+    body.join("\n") unless body.empty?
   end
 end
