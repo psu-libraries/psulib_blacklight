@@ -23,7 +23,10 @@ module ClauseCountLimiter
                20
              end
 
-    truncate_query(solr_parameters, length) unless blacklight_params['search_field'] == 'call_number'
+    unless blacklight_params['search_field'] == 'call_number' || solr_parameters[:defType] == 'lucene'
+      truncate_query(solr_parameters,
+                     length)
+    end
   end
 
   private
