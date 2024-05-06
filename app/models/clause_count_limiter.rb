@@ -7,7 +7,7 @@ module ClauseCountLimiter
 
     length = case blacklight_params['search_field']
              when 'all_fields'
-               # 10 terms, 1 will be added while truncating
+               # 10 terms
                10
              when 'title', 'author'
                # 27 terms + "edismax", "qf", "title/author_qf", "pf", "title/author_pf", "pf3", "title/author_pf3",
@@ -40,7 +40,7 @@ module ClauseCountLimiter
     end
 
     def truncate_query(solr_parameters, length)
-      solr_parameters[:q] = solr_parameters[:q].truncate_words(length + 1, separator: /\W+/, omission: '') unless
+      solr_parameters[:q] = solr_parameters[:q].truncate_words(length, separator: /\W+/, omission: '') unless
       get_query_length(solr_parameters) <= length
     end
 end
