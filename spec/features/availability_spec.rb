@@ -7,7 +7,7 @@ RSpec.describe 'Availability', :vcr, type: :feature do
   let(:hold_button_url) { "#{Settings.my_account_url}#{Settings.hold_button_path}" }
 
   before do
-    Settings.hathi_etas = false
+    stub_request(:get, /https:\/\/catalog.hathitrust.org\/api\/volumes\/brief\//)
     Settings.readonly = false
     Settings.hide_hold_button = false
     Settings.hide_etas_holdings = false
@@ -80,50 +80,6 @@ RSpec.describe 'Availability', :vcr, type: :feature do
       visit '/?utf8=✓&search_field=all_fields&q=1793712'
       click_button('View Availability')
       expect(page).to have_css 'tr.table-primary .h6', text: 'Stacks - General Collection: Holdings Summary'
-    end
-
-    context 'when Hathi ETAS is enabled' do
-      before do
-        Settings.hathi_etas = true
-      end
-
-      it 'an etas record displays the \'View Availability\' button but hides the hold button' do
-        visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
-        expect(page).to have_css 'button[data-target="#availability-3753687"]'
-        expect(page).not_to have_css '#availability-3753687'
-        click_button('View Availability')
-        expect(page).not_to have_css '.availability-3753687', wait: 3
-        expect(page).to have_content 'PN4885.Y5C5 1946'
-        expect(page).not_to have_link(
-          'I Want It', href: "#{hold_button_url}3753687"
-        )
-      end
-
-      context 'when hide Hathi ETAS holdings is enabled' do
-        before do
-          Settings.hide_etas_holdings = true
-        end
-
-        it "an etas record does not display 'View Availability' button even though there are holdable items" do
-          skip "This record doesn't seem to be ETAS anymore, so availability is showing when it shouldn't"
-          visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
-          expect(page).not_to have_css 'button[data-target="#availability-3753687"]'
-        end
-      end
-    end
-
-    context 'when Hathi ETAS is disabled' do
-      it 'an etas record displays \'View Availability\' button and hold button' do
-        visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
-        expect(page).to have_css 'button[data-target="#availability-3753687"]'
-        expect(page).not_to have_css '#availability-3753687'
-        click_button('View Availability')
-        expect(page).not_to have_css '.availability-3753687', wait: 3
-        expect(page).to have_content 'PN4885.Y5C5 1946'
-        expect(page).to have_link(
-          'I Want It', href: "#{hold_button_url}3753687"
-        )
-      end
     end
 
     context 'when all items are on course reserves' do
@@ -323,28 +279,6 @@ RSpec.describe 'Availability', :vcr, type: :feature do
           visit '/catalog/107'
           expect(page).not_to have_link(
             'I Want It', href: "#{hold_button_url}107"
-          )
-        end
-      end
-
-      context 'when Hathi ETAS is enabled' do
-        before do
-          Settings.hathi_etas = true
-        end
-
-        it 'does not display for an etas record even with holdable items' do
-          visit '/catalog/3753687'
-          expect(page).not_to have_link(
-            'I Want It', href: "#{hold_button_url}3753687"
-          )
-        end
-      end
-
-      context 'when Hathi ETAS is disabled' do
-        it 'displays for an etas record if there are holdable items' do
-          visit '/catalog/3753687'
-          expect(page).to have_link(
-            'I Want It', href: "#{hold_button_url}3753687"
           )
         end
       end

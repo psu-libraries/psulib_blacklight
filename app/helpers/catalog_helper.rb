@@ -83,10 +83,6 @@ module CatalogHelper
     safe_join(details, ' | ')
   end
 
-  def get_first_only(options = {})
-    options[:value].first
-  end
-
   # Returns suitable argument to options_for_select method, to create
   # an html select based on #search_field_list with labels for search
   # bar only. Skips search_fields marked :include_in_simple_select => false

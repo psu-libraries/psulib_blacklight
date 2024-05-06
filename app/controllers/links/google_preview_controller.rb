@@ -2,7 +2,7 @@
 
 require 'net/http'
 
-module Preview
+module Links
   class GooglePreviewController < ActionController::API
     def data
       render json: json_response

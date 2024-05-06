@@ -62,8 +62,9 @@ Rails.application.routes.draw do
     get '/sirsi-item-data', to: 'availability#sirsi_item_data'
   end
 
-  namespace :preview do
+  namespace :links do
     get '/google-preview-data', to: 'google_preview#data'
+    get '/hathi-link', to: 'hathi_link#data'
   end
 
   # error pages

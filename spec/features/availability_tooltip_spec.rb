@@ -5,7 +5,7 @@ require 'support/vcr'
 
 RSpec.describe 'Availability Tooltip', :vcr, type: :feature do
   before do
-    Settings.hathi_etas = false
+    stub_request(:get, /https:\/\/catalog.hathitrust.org\/api\/volumes\/brief\//)
     Settings.readonly = false
     Settings.hide_hold_button = false
     Settings.hide_etas_holdings = false

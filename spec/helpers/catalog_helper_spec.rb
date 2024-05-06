@@ -127,14 +127,4 @@ RSpec.describe CatalogHelper, type: :helper do
       expect(marc_record_details).to include "catkey: #{document[:id]}"
     end
   end
-
-  describe '#get_first_only' do
-    let(:options) { { value: [{ hathidata_struct: [{ text: 'Check out digital copy through HathiTrust',
-                                                     url: 'http://example.com',
-                                                     additional_text: 'By blah blah blah.' }] }] }}
-
-    it 'returns the first value of the value array' do
-      expect(get_first_only(options)).not_to be_a_kind_of Array
-    end
-  end
 end
