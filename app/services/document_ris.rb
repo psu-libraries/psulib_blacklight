@@ -29,8 +29,7 @@ class DocumentRis
   }.freeze
 
   def initialize(document)
-    @document = document
-    @docs = @document.first['response']['docs'].first
+    @docs = document
   end
 
   def ris_to_string

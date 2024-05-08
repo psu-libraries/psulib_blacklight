@@ -22,7 +22,7 @@ class CatalogController < ApplicationController
 
     if cache_key
       @response = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
-        response = search_service.search_results.first
+        response = search_service.search_results
         # Nilling out below is necessary in order to avoid a Marshal.dump error of "can't dump an anonymous class" when
         # attempting to cache the Solr response object.
         response.blacklight_config = nil
@@ -36,7 +36,7 @@ class CatalogController < ApplicationController
         blacklight_config: blacklight_config
       }
     else
-      @response = search_service.search_results.first
+      @response = search_service.search_results
     end
 
     respond_to do |format|
