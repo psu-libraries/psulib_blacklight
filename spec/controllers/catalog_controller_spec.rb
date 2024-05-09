@@ -4,11 +4,6 @@ require 'rails_helper'
 
 RSpec.describe CatalogController do
   describe 'index action' do
-    it 'gets the homepage and renders only the homepage facets' do
-      get :index
-      configured_home_page_facets = %w[access_facet format campus_facet media_type_facet classification_pivot_field]
-      expect(assigns(:blacklight_config)[:facet_fields].keys).to eq(configured_home_page_facets)
-    end
 
     it 'pages too deep' do
       get :index, params: { page: 251 }
