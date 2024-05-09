@@ -54,8 +54,8 @@
             <%= link_back_to_catalog label: t('blacklight.back_to_search.html'), class: 'btn btn-outline-secondary btn-sm' %>
           </div>
         <% end %>
+        <%= render(Blacklight::SearchContext::ServerItemPaginationComponent.new(search_context: @search_context, search_session: search_session, current_document: @document)) if search_session['document_id'] == @document.id %>
 
-        <%= render 'previous_next_doc' if search_session['document_id'] == @document.id %>
       <% end %>
       <% if @document %>
         <%= render 'record_toolbar' %>
