@@ -803,7 +803,8 @@
   "closed_libraries": [
     "FAYETTE",
     "WSCRANTON",
-    "NEWKEN"
+    "NEWKEN",
+    "DSL-CARL"
   ],
   "exclude_from_email_availability": {
     "CHECKEDOUT": "Checked out",
