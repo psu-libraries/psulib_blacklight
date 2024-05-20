@@ -26,6 +26,7 @@ solr:
   # password: 
   # url: http://127.0.0.1:8983
   collection: psul_catalog
+readonly: true
 
 # Used with rake solr:load_from_catalog
 fixture_host: https://catalog.qa.k8s.libraries.psu.edu
