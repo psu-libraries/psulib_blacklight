@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :blacklight do
   # task to clean out old, unsaved searches
   # overrides blacklight task to delete searches in batches
