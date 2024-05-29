@@ -57,7 +57,7 @@ http_interactions:
   recorded_at: Wed, 24 May 2023 20:42:03 GMT
 - request:
     method: get
-    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=2025781
+    uri: https://sdws08.sirsidynix.net/psu_ilsws/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=2025781
     body:
       encoding: US-ASCII
       string: ''
