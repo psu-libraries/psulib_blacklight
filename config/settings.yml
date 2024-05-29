@@ -1,7 +1,7 @@
 my_account_url: https://myaccount.libraries.psu.edu/
 hold_button_path: holds/new?catkey=
 no_recall_button_path: ill/new?catkey=
-sirsi_url: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true
+sirsi_url: https://sdws08.sirsidynix.net/psu_ilsws/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true
 matomo_id: 10
 mysql:
   connection_pool: 10

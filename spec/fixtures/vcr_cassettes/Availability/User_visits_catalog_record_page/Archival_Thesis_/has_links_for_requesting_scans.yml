@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=123730
+    uri: https://sdws08.sirsidynix.net/psu_ilsws/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=123730
     body:
       encoding: US-ASCII
       string: ''
