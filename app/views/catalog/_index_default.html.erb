@@ -29,14 +29,11 @@
 
     <%= render partial: 'external_links/index_external_links',
                locals: {
-                 document: document,
-                 show_hathi_links: document.hathi_links && document.hathi_links[:etas_item]
+                 document: document
                } %>
   </div>
 </div>
 
 <div class="blacklight-availability">
-  <% unless document.hathi_links && document.hathi_links[:etas_item] && Settings&.hide_etas_holdings -%>
-    <%= render partial: 'index_availability', locals: { document: document } unless Settings.readonly %>
-  <% end -%>
+  <%= render partial: 'index_availability', locals: { document: document } unless Settings&.readonly %>
 </div>

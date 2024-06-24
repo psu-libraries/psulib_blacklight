@@ -80,10 +80,12 @@ RSpec/AnyInstance:
   - 'spec/components/browse/facet_navigation_spec.rb'
   - 'spec/components/browse/page_size_selector_spec.rb'
   - 'spec/components/browse/prefix_selector_spec.rb'
+  - 'spec/features/hathi_link_spec.rb'
 
 RSpec/RepeatedExampleGroupBody:
   Exclude:
   - 'spec/features/google_preview_link_spec.rb'
+  - 'spec/features/hathi_link_spec.rb'
 
 RSpec/MessageSpies:
   Exclude:

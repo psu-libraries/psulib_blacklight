@@ -1,0 +1,102 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://books.google.com/books?bibkeys=LCCN:12345&jscmd=viewapi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - books.google.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 15 Apr 2022 13:25:03 GMT
+      Expires:
+      - Fri, 15 Apr 2022 13:25:03 GMT
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      P3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      - policyref="http://www.google.com/googlebooks/p3p.xml", CP="DSP NON ADM DEV
+        OUR BUS NAV COM INT STA"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=604800
+      Content-Type:
+      - application/javascript; charset=ISO-8859-1
+      X-Content-Type-Options:
+      - nosniff
+      Content-Disposition:
+      - attachment; filename="f.txt"
+      Server:
+      - OFE/0.1
+      Set-Cookie:
+      - NID=511=MaBljwrjVHI3sVz99BXcfP9BerECTLcvW4f1C6aBiYXw4tKakppPMtDUWWB4U4JvrHQmBj4RZryudqB5m-5zpGILrP1I8bc0FIsE-DuJF1lyd_9FrkUgldSTkQu0Zh4brMDEVAcu2wwgKyN8-ypj2o2MCYxBiyQU1hky2VrhS2k;
+        expires=Sat, 15-Oct-2022 13:25:03 GMT; path=/; domain=.google.com; HttpOnly
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000,h3-Q050=":443"; ma=2592000,h3-Q046=":443";
+        ma=2592000,h3-Q043=":443"; ma=2592000,quic=":443"; ma=2592000; v="46,43"
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: 'var _GBSBookInfo = {"LCCN:12345":{"bib_key":"ISBN:9783030149079","info_url":"https://books.google.com/books?id=iDuSDwAAQBAJ\u0026source=gbs_ViewAPI","preview_url":"https://books.google.com/books?id=iDuSDwAAQBAJ\u0026printsec=frontcover\u0026source=gbs_ViewAPI","thumbnail_url":"https://books.google.com/books/content?id=iDuSDwAAQBAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5\u0026edge=curl","preview":"partial","embeddable":true,"can_download_pdf":false,"can_download_epub":false,"is_pdf_drm_enabled":false,"is_epub_drm_enabled":false}};'
+  recorded_at: Fri, 15 Apr 2022 13:25:03 GMT
+- request:
+    method: get
+    uri: https://sdws08.sirsidynix.net/psu_ilsws/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=3500414
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Fri, 15 Apr 2022 13:25:07 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>3500414</titleID><TitleAvailabilityInfo><totalCopiesAvailable>3</totalCopiesAvailable><libraryWithAvailableCopies>Pattee
+        Library and Paterno Library Stacks (UP)</libraryWithAvailableCopies><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><libraryWithAvailableCopies>Dickinson
+        Law (Carlisle)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>DOC-US</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>SUDOC</classificationID><callNumber>Y
+        1.1/8:109-607/ PT.1</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000058166284</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>DOC-US</currentLocationID><homeLocationID>DOC-US</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>SUDOC</classificationID><callNumber>Y
+        1.1/8:109-607/ PT.1</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>3500414-4001</itemID><itemTypeID>ONLINE</itemTypeID><currentLocationID>ONLINE-DSL</currentLocationID><homeLocationID>ONLINE-DSL</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>DSL-CARL</libraryID><classificationID>SUDOC</classificationID><callNumber>Y
+        1.1/8:109-607/ PT.1</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>3500414-3001</itemID><itemTypeID>MICROFORM</itemTypeID><currentLocationID>DOCUSMF-DN</currentLocationID><homeLocationID>DOCUSMF-DN</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Fri, 15 Apr 2022 13:25:07 GMT
+recorded_with: VCR 6.0.0

@@ -83,8 +83,18 @@ module CatalogHelper
     safe_join(details, ' | ')
   end
 
-  def get_first_only(options = {})
-    options[:value].first
+  # Returns suitable argument to options_for_select method, to create
+  # an html select based on #search_field_list with labels for search
+  # bar only. Skips search_fields marked :include_in_simple_select => false
+  def search_bar_select
+    blacklight_config.search_fields.map do |_key, field_def|
+      if should_render_field?(field_def)
+        [
+          field_def.dropdown_label ||
+            field_def.label, field_def.key, { 'data-placeholder' => placeholder_text(field_def) }
+        ]
+      end
+    end.compact
   end
 
   def placeholder_text(field_def)

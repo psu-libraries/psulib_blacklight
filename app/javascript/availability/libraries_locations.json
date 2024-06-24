@@ -218,7 +218,7 @@
     "GRFCNOV-BK": "Berks - Graphic Novels Collection",
     "GRFCNOV-DE": "Brandywine - Graphic Novels Collection",
     "GRFCNOV-FE": "Fayette - Graphic Novels Collection",
-    "GRFCNOV-WB": "Wilkes-Barre - Graphic Novels & Non-Fiction Collection",
+    "GRFCNOV-WB": "Wilkes-Barre - Graphic Novels, Comics, Manga, & Art Books",
     "GRFCNOV-WS": "Scranton - Graphic Novels & Non-Fiction Collection",
     "GRFCNOV-YK": "York - Graphic Novel & Non-fiction Collection",
     "GROFF": "University Archives, 1st Floor Paterno, Groff Collection",
@@ -236,7 +236,7 @@
     "HC-UMW": "Historical Collections/Labor Archives, 1st Floor Paterno - UMW",
     "HC-USWA": "Historical Collections/Labor Archives, 1st Floor Paterno - USWA",
     "HENISCH-RM": "Special Collections, 104 Paterno, Henisch Room",
-    "HENISCH": "Rare Books & Manuscripts, 1st Floor Paterno, Henisch Collection",
+    "HENISCH": "Temporarily unavailable",
     "HIGHACRES": "Hazleton - Archives and Highacres Collection-In-Library Use",
     "HIST-ED": "Education & Behavioral Sciences Library, 501 Paterno - Historical - In-Library Use",
     "HJSC-HB": "Harrisburg-Holocaust & Jewish Studies-Special Coll-3rd Floor",
@@ -803,7 +803,8 @@
   "closed_libraries": [
     "FAYETTE",
     "WSCRANTON",
-    "NEWKEN"
+    "NEWKEN",
+    "DSL-CARL"
   ],
   "exclude_from_email_availability": {
     "CHECKEDOUT": "Checked out",

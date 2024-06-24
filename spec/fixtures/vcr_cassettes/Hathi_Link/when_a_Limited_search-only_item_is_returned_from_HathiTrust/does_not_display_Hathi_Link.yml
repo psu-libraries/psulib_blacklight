@@ -1,0 +1,93 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sdws08.sirsidynix.net/psu_ilsws/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=3500414
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - cat.libraries.psu.edu:28443
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - accept-encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Mon, 22 Apr 2024 17:12:39 GMT
+      Server:
+      - SirsiDynix IlsWS
+    body:
+      encoding: ASCII-8BIT
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>3500414</titleID><TitleAvailabilityInfo><totalCopiesAvailable>3</totalCopiesAvailable><libraryWithAvailableCopies>Pattee
+        Library and Paterno Library Stacks (UP)</libraryWithAvailableCopies><libraryWithAvailableCopies>Online
+        Resource</libraryWithAvailableCopies><libraryWithAvailableCopies>Dickinson
+        Law (Carlisle)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>DOC-US</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>SUDOC</classificationID><callNumber>Y
+        1.1/8:109-607/ PT.1</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000058166284</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>DOC-US</currentLocationID><homeLocationID>DOC-US</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>ONLINE</libraryID><classificationID>SUDOC</classificationID><callNumber>Y
+        1.1/8:109-607/ PT.1</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>3500414-4001</itemID><itemTypeID>ONLINE</itemTypeID><currentLocationID>ONLINE-DSL</currentLocationID><homeLocationID>ONLINE-DSL</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>DSL-CARL</libraryID><classificationID>SUDOC</classificationID><callNumber>Y
+        1.1/8:109-607/ PT.1</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>3500414-3001</itemID><itemTypeID>MICROFORM</itemTypeID><currentLocationID>DOCUSMF-DN</currentLocationID><homeLocationID>DOCUSMF-DN</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Mon, 22 Apr 2024 17:12:39 GMT
+- request:
+    method: get
+    uri: https://catalog.hathitrust.org/api/volumes/brief/oclc/1234.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - catalog.hathitrust.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 22 Apr 2024 17:12:39 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - max-age=0
+      Expires:
+      - Mon, 22 Apr 2024 17:12:39 GMT
+      Vary:
+      - Accept-Encoding
+      Content-Length:
+      - '330'
+      Content-Type:
+      - application/json; charset=UTF-8
+      Strict-Transport-Security:
+      - max-age=31536000
+      Set-Cookie:
+      - STICKY=s207; path=/
+    body:
+      encoding: ASCII-8BIT
+      string: '{"records":{"006177833":{"recordURL":"https:\/\/catalog.hathitrust.org\/Record\/006177833","titles":["Test Title"],
+        "isbns":[],"issns":[],"oclcs":["12345678","1234"],"lccns":["7654321"],"publishDates":["1967"]}},"items":[{"orig":"University of Things",
+        "fromRecord":"006177833","htid":"abc1.123hjkl","itemURL":"https:\/\/babel.hathitrust.org\/cgi\/pt?id=abc1.123hjkl","rightsCode":"pdus",
+        "lastUpdate":"20230525","enumcron":false,"usRightsString":"Limited (search-only)"}]}'
+  recorded_at: Mon, 22 Apr 2024 17:12:39 GMT
+recorded_with: VCR 6.1.0

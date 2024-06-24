@@ -161,7 +161,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise-guests (0.8.2)
+    devise-guests (0.8.3)
       devise
     diff-lcs (1.5.1)
     docile (1.4.0)
@@ -562,7 +562,7 @@ DEPENDENCIES
   config
   ddtrace (~> 1.11.1)
   devise (>= 4.6.0)
-  devise-guests (~> 0.6)
+  devise-guests (~> 0.8.3)
   faraday (~> 1.10)
   flamegraph
   high_voltage (~> 3.1)

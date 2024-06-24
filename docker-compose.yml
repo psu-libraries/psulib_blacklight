@@ -35,7 +35,9 @@ services:
     ports:
       - "${APP_PORT:-3000}:3000"
   solr:
-    image: harbor.k8s.libraries.psu.edu/library/solr:8.11.2
+    image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
+    environment:
+      SOLR_STOP_WAIT: 1
     restart: always
     volumes:
     - solr-data:/var/solr
