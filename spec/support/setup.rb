@@ -13,7 +13,7 @@ RSpec.configure do |config|
     PsulibBlacklight::DataManager.clean_database
   end
 
-  config.before do |example|
+  config.before do |_example|
     ActionMailer::Base.deliveries.clear
   end
 end
