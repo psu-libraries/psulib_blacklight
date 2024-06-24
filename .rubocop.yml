@@ -47,6 +47,11 @@ Lint/MissingSuper:
 Metrics/CyclomaticComplexity:
   Exclude:
   - 'app/components/psul_search_bar_component.rb'
+  - 'app/components/blacklight/document/action_component.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+  - 'app/components/blacklight/document/action_component.rb'
 
 Rails/ContentTag:
   Enabled: false
