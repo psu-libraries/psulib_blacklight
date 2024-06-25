@@ -6,10 +6,6 @@ matomo_id: 10
 mysql:
   connection_pool: 10
   host: 127.0.0.1
-datadog:
-  enabled: false
-  # defaults to Rails.env. override here
-  # env: feature-foo
 user_header: HTTP_X_AUTH_REQUEST_EMAIL
 groups_header: HTTP_X_AUTH_REQUEST_GROUPS
 admin_group: umg-up.ul-dev-team

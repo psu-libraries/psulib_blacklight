@@ -8,8 +8,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootsnap', require: false
+gem 'bugsnag', '~> 6.26'
 gem 'config'
-gem 'ddtrace', '~> 1.11.1'
 gem 'devise', '>= 4.6.0'
 gem 'devise-guests', '~> 0.8.3'
 gem 'faraday', '~>1.10'
@@ -48,10 +48,11 @@ end
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'html_tokenizer', '~> 0.0.8'
   gem 'niftany', '~> 0.10'
   gem 'pry-byebug'
   gem 'sinatra'
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.5.0'
 end
 
 group :test do
@@ -68,5 +69,5 @@ group :test do
 end
 
 group :production, :test do
-  gem 'mysql2', '>= 0.4.4', '< 0.6.0'
+  gem 'mysql2', '>= 0.5.6', '< 0.6.0'
 end
