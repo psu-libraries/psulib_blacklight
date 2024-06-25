@@ -3,8 +3,7 @@
 class SearchHistoryController < ApplicationController
   include Blacklight::SearchHistory
 
-  # TODO: Consider deleting the following two lines altogether. The following lines were generated during an install.
-  # Removing these lines has zero effect on the display of constraints.
-  helper BlacklightAdvancedSearch::RenderConstraintsOverride
+  # TODO: Consider deleting the following line altogether. The following line was generated during an install.
+  # Removing the line has zero effect on the display of constraints.
   helper RangeLimitHelper
 end
