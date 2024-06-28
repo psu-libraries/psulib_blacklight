@@ -25,7 +25,7 @@
 
   <% unless selected_missing_for_range_limit?(field_name) %>
     <%= form_tag search_action_path, method: :get, class: [BlacklightRangeLimit.classes[:form], "range_#{field_name}"].join(' ') do %>
-      <%= render Blacklight::HiddenSearchStateComponent(params: search_state.params_for_search.except(:page)) %>
+      <%= render_hash_as_hidden_fields(search_state.params_for_search.except(:page)) %>
 
       <!-- we need to include a dummy search_field parameter if none exists,
            to trick blacklight into displaying actual search results instead
