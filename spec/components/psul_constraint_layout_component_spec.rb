@@ -13,16 +13,16 @@ RSpec.describe PsulConstraintLayoutComponent, type: :component do
     end
 
     it 'renders label and value' do
-      expect(rendered).to have_selector('span.applied-filter.constraint')
+      expect(rendered).to have_css('span.applied-filter.constraint')
       expect(rendered).to have_css('span.constraint-value')
-      expect(rendered).not_to have_css('a.constraint-value')
-      expect(rendered).not_to have_css('span.btn.btn-outline-secondary.constraint-value')
-      expect(rendered).to have_selector 'span.filter-name', text: 'my label'
-      expect(rendered).to have_selector 'span.filter-value', text: 'my value'
+      expect(rendered).to have_no_css('a.constraint-value')
+      expect(rendered).to have_no_css('span.btn.btn-outline-secondary.constraint-value')
+      expect(rendered).to have_css 'span.filter-name', text: 'my label'
+      expect(rendered).to have_css 'span.filter-value', text: 'my value'
     end
 
     it 'not a button group' do
-      expect(rendered).not_to have_selector('span.btn-group.applied-filter.constraint')
+      expect(rendered).to have_no_css('span.btn-group.applied-filter.constraint')
     end
   end
 
@@ -32,21 +32,21 @@ RSpec.describe PsulConstraintLayoutComponent, type: :component do
     end
 
     it 'includes remove link' do
-      expect(rendered).to have_selector('span.applied-filter') do |s|
-        expect(s).to have_selector(".remove[href='http://remove']")
+      expect(rendered).to have_css('span.applied-filter') do |s|
+        expect(s).to have_css(".remove[href='http://remove']")
       end
     end
 
     it 'has an accessible remove label' do
-      expect(rendered).to have_selector('.remove') do |s|
-        expect(s).to have_selector('.sr-only', text: 'Remove constraint my label: my value')
+      expect(rendered).to have_css('.remove') do |s|
+        expect(s).to have_css('.sr-only', text: 'Remove constraint my label: my value')
       end
     end
 
     it 'not a button group' do
-      expect(rendered).to have_selector('span.applied-filter') do |s|
+      expect(rendered).to have_css('span.applied-filter') do |s|
         expect(s).to have_css('a.remove')
-        expect(s).not_to have_css('a.btn.btn-outline-secondary')
+        expect(s).to have_no_css('a.btn.btn-outline-secondary')
       end
     end
   end

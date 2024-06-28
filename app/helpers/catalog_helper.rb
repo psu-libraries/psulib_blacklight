@@ -104,24 +104,4 @@ module CatalogHelper
       t('blacklight.search.form.search.placeholder')
     end
   end
-
-  def search_bar_field
-    case params[:action]
-    when 'call_numbers'
-      case params[:classification]
-      when 'lc'
-        'browse_lc'
-      when 'dewey'
-        'browse_dewey'
-      end
-    when 'authors'
-      'browse_authors'
-    when 'subjects'
-      'browse_subjects'
-    when 'titles'
-      'browse_titles'
-    else
-      params[:search_field]
-    end
-  end
 end

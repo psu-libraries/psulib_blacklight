@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'external_links/index_external_links', type: :view do
+RSpec.describe 'external_links/index_external_links' do
   context 'when PSU Digital Collectionslinks present' do
     let(:document) { SolrDocument.new(
       {

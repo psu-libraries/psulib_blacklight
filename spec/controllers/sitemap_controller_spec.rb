@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SitemapController, type: :controller do
+RSpec.describe SitemapController do
   describe 'calculations and responses from solr' do
     let(:sitemap) { described_class.new }
 

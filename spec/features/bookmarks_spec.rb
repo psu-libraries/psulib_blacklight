@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Bookmarks', type: :feature, js: true do
+RSpec.describe 'Bookmarks', :js do
   before do
     # In Rails 6, CSRF protection is turned off by default in test env
     # Turning it on here to test that it doesn't break Bookmarks
@@ -36,11 +36,11 @@ RSpec.describe 'Bookmarks', type: :feature, js: true do
     it 'Adds, removes, re-adds bookmarks, and views Bookmarks page' do
       visit '/'
       # Test that the 'Bookmark All On Page' button doesn't show on empty search
-      expect(page).not_to have_content 'Bookmark All On Page'
+      expect(page).to have_no_content 'Bookmark All On Page'
       visit '/?search_field=all_fields&q='
       expect(page).to have_content 'Bookmark All On Page'
       first_title = find_all('h3[class^="index_title"]').first.text
-      bookmark_all_button = find('#bookmark-all')
+      bookmark_all_button = find_by_id('bookmark-all')
       bookmark_buttons = find_all('.toggle-bookmark')
       bookmark_buttons.each do |button|
         expect(button.text).to eq 'Bookmark'
@@ -69,7 +69,7 @@ RSpec.describe 'Bookmarks', type: :feature, js: true do
         expect(button.text).to eq 'In Bookmarks'
       end
       # Test that the Bookmarks page has proper content
-      click_link 'Bookmarks'
+      click_on 'Bookmarks'
       expect(page).to have_css :h1, text: 'Bookmarks'
       expect(page).to have_content '1 - 10 of 10'
       expect(page).to have_content first_title

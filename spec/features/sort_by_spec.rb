@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Sort by', type: :feature do
-  describe 'search result page', js: true do
+RSpec.describe 'Sort by' do
+  describe 'search result page', :js do
     before do
       visit '/?search_field=all_fields&q=history'
       click_on 'Sort by relevance'
@@ -20,7 +20,7 @@ RSpec.describe 'Sort by', type: :feature do
 
       it 'displays results content' do
         within '#documents' do
-          expect(page).to have_selector 'article[data-document-id="11160284"]'
+          expect(page).to have_css 'article[data-document-id="11160284"]'
         end
       end
     end
@@ -36,7 +36,7 @@ RSpec.describe 'Sort by', type: :feature do
 
       it 'displays results content' do
         within '#documents' do
-          expect(page).to have_selector 'article[data-document-id="21601671"]'
+          expect(page).to have_css 'article[data-document-id="21601671"]'
         end
       end
     end
@@ -52,7 +52,7 @@ RSpec.describe 'Sort by', type: :feature do
 
       it 'displays results content' do
         within '#documents' do
-          expect(page).to have_selector 'article[data-document-id="1293861"]'
+          expect(page).to have_css 'article[data-document-id="1293861"]'
         end
       end
     end
@@ -68,8 +68,8 @@ RSpec.describe 'Sort by', type: :feature do
 
       it 'displays results content' do
         within '#documents' do
-          expect(page).to have_selector 'article[data-document-id="27422489"]'
-          expect(page).not_to have_selector 'article[data-document-id="11160284"]'
+          expect(page).to have_css 'article[data-document-id="27422489"]'
+          expect(page).to have_no_css 'article[data-document-id="11160284"]'
         end
       end
     end

@@ -23,13 +23,7 @@ class ShelfListPresenter
   end
 
   def length
-    if @length > MAX
-      MAX
-    elsif @length < MIN
-      MIN
-    else
-      @length
-    end
+    @length.clamp(MIN, MAX)
   end
 
   def list

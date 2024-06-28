@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Campus Facet Add All Online', type: :feature do
-  describe 'Adding and removing online items to campus facet filter', js: true do
+RSpec.describe 'Campus Facet Add All Online' do
+  describe 'Adding and removing online items to campus facet filter', :js do
     it 'adds online items' do
       # This test is dependent on there being 21 Behrend items and 134
       # Online items. Adding records to the fixtures could break this.

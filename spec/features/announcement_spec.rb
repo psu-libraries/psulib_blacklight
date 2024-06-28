@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Announcement', type: :feature, js: true do
+RSpec.describe 'Announcement', :js do
   context 'when hide_announcement is enabled' do
     before do
       Settings.add_source!(
@@ -16,7 +16,7 @@ RSpec.describe 'Announcement', type: :feature, js: true do
 
     it 'does not display an announcement on top' do
       visit root_path
-      expect(page).not_to have_css '.announcement'
+      expect(page).to have_no_css '.announcement'
     end
   end
 

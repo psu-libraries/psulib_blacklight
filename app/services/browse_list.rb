@@ -61,7 +61,7 @@ class BrowseList
 
       normalized_prefix = prefix.dup
 
-      normalized_prefix.gsub!(/--/, '—') # replace 2 normal dashes with em dash
+      normalized_prefix.gsub!('--', '—') # replace 2 normal dashes with em dash
       normalized_prefix.chomp('*') # remove trailing * (wildcard chars)
     end
 end

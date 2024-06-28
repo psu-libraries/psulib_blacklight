@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Single Item Subjects', type: :feature do
-  describe 'Single item subject links', js: true do
+RSpec.describe 'Single Item Subjects' do
+  describe 'Single item subject links', :js do
     before do
       visit '/catalog/1839879'
     end
@@ -20,8 +20,8 @@ RSpec.describe 'Single Item Subjects', type: :feature do
       end
 
       it 'takes them to a search result of the first term of a given subject' do
-        expect(page).to have_selector 'article[data-document-id="22080733"]'
-        expect(page).to have_selector 'article[data-document-id="1839879"]'
+        expect(page).to have_css 'article[data-document-id="22080733"]'
+        expect(page).to have_css 'article[data-document-id="1839879"]'
       end
     end
 
@@ -31,8 +31,8 @@ RSpec.describe 'Single Item Subjects', type: :feature do
       end
 
       it 'takes them to a search result of the full term of a given subject' do
-        expect(page).to have_selector 'article[data-document-id="1839879"]'
-        expect(page).not_to have_selector 'article[data-document-id="22080733"]'
+        expect(page).to have_css 'article[data-document-id="1839879"]'
+        expect(page).to have_no_css 'article[data-document-id="22080733"]'
       end
     end
   end

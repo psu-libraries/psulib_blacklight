@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CatalogHelper, type: :helper do
+RSpec.describe CatalogHelper do
   describe '#bound_info' do
     let (:field_data) { ['{"bound_catkey": "355035", ' \
                          '"bound_title": "The high-caste Hindu woman / With introduction by Rachel L. Bodley",' \

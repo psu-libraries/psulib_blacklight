@@ -17,7 +17,10 @@
             <span class="
                     <%= 'text-muted' unless field[:sr_only] %>
                     <%= 'sr-only' if field[:sr_only] %>">
-              <%= render_index_field_label document, field: field_name %>
+              <%= render(Blacklight::MetadataFieldComponent.new(
+                           field: field,
+                           show: true
+                         )) %>
             </span>
             <%= doc_presenter.field_value field %>
           </li>

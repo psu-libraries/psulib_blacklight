@@ -38,7 +38,7 @@ class ShelfItem
 
     keymap
       .select { |cn| all_shelfkeys.include?(cn['key']) }
-      .map { |cn| cn['call_number'] }
+      .pluck('call_number')
   end
 
   def add(document)

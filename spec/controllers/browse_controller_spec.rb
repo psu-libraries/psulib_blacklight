@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BrowseController, type: :controller do
+RSpec.describe BrowseController do
   describe 'GET #call_numbers' do
     subject { response }
 
