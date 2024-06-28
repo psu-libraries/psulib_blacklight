@@ -3,7 +3,6 @@
 namespace :dev do
   desc 'Clean out everything and reload fixtures'
   task clean: :environment do
-    PsulibBlacklight::DataManager.clean_redis
     PsulibBlacklight::DataManager.clean_database
     PsulibBlacklight::DataManager.clean_solr
     PsulibBlacklight::SolrManager.new.initialize_collection
