@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'shared/_header_navbar', type: :view do
+RSpec.describe 'shared/_header_navbar' do
   let(:blacklight_config) { Blacklight::Configuration.new }
 
   before do
@@ -13,12 +13,12 @@ RSpec.describe 'shared/_header_navbar', type: :view do
 
   xit 'displays search bar except on Advanced Search' do
     render 'shared/header_navbar'
-    expect(rendered).to have_selector '.navbar-search'
+    expect(rendered).to have_css '.navbar-search'
   end
 
   xit 'does not display search bar on Advanced Search' do
     assign(:search_fields_for_advanced_search, :search_bar)
     render 'shared/header_navbar'
-    expect(rendered).not_to have_selector '.navbar-search'
+    expect(rendered).to have_no_css '.navbar-search'
   end
 end

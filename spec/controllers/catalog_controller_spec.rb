@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CatalogController, type: :controller do
+RSpec.describe CatalogController do
   describe 'index action' do
     it 'gets the homepage and renders only the homepage facets' do
       get :index

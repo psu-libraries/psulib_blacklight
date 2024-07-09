@@ -11,6 +11,10 @@ vendor/bundle/**/*
 /blackcat_test
 /psulcat_dev
 /psulcat_test
+/psulcat_test-shm
+/psulcat_test-wal
+/psulcat_dev-shm
+/psulcat_dev-wal
 
 # Ignore all logfiles and tempfiles.
 /log/*
