@@ -81,10 +81,7 @@ jobs:
         command: |
           sudo apt-get update
           sudo apt-get install libu2f-udev -y
-    - browser-tools/install-chrome:
-        chrome-version: 119.0.6045.199 # TODO: remove when chromedriver downloads are fixed
-        replace-existing: true # TODO: remove when chromedriver downloads are fixed
-    - browser-tools/install-chromedriver
+    - browser-tools/install-browser-tools
     - checkout
     - restore_cache:
         keys:
