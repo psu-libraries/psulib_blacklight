@@ -804,7 +804,8 @@
     "FAYETTE",
     "WSCRANTON",
     "NEWKEN",
-    "DSL-CARL"
+    "DSL-CARL",
+    "UP-ENGIN"
   ],
   "exclude_from_email_availability": {
     "CHECKEDOUT": "Checked out",
