@@ -9,6 +9,7 @@ exclude:
   - 'node_modules/**/*'
   - 'app/javascript/psulib_blacklight/styles/_callouts.scss'
   - 'app/javascript/psulib_blacklight/styles/blacklight_overrides/*'
+  - 'public/packs/**'
 
 # List of gem names to load custom linters from (make sure they are already
 # installed)
