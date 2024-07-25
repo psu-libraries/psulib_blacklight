@@ -399,7 +399,7 @@ class CatalogController < ApplicationController
     config.add_search_field 'all_fields', label: 'Keyword'
 
     # Add Crawler Detector. If the session is a crawler we will not save the search
-    config.crawler_detector = lambda { |req| req.env['HTTP_USER_AGENT'].include?('bot') }
+    config.crawler_detector = lambda { |req| req.env['HTTP_USER_AGENT'] =~ /bot|nagios|facebook|python-requests|Python|Kuma|Grammarly/ }
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
