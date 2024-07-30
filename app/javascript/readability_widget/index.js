@@ -1,6 +1,5 @@
 // Loads widget on page
 // initiates widget functionality (toggle button, on|off switches)
-import './styles/widget.css';
 import './styles/widget.scss';
 import './styles/fonts/OpenDyslexic-Bold.otf';
 import './styles/fonts/OpenDyslexic-Regular.otf';
