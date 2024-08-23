@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'support/vcr'
 
-RSpec.describe 'viewing a record', :js, vcr: { record: :new_episodes } do
+RSpec.describe 'viewing a record', :js, :vcr do
   context 'when the record does not have an IIIF manifest URL' do
     it 'does not render the Mirador viewer' do
       visit '/catalog/3500414'
