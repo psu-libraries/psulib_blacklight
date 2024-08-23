@@ -21,6 +21,7 @@ const availability = {
   reserveCirculationRules: reserveCirculationRules.reserve_circulation_rules,
   movedLocations: [],
   nonHoldableLocations: locations.non_holdable,
+  closedLibraries: locations.closed_libraries,
 
   sirsiUrl: '/availability/sirsi-data/?',
   sirsiItemUrl: '/availability/sirsi-item-data/?',
@@ -537,16 +538,23 @@ const availability = {
   },
 
   noRecalls(holdings) {
-    if (availability.allNonHoldableLocation(holdings)) {
+    if (availability.allNonHoldable(holdings)) {
       return true;
     }
 
     return false;
   },
 
-  allNonHoldableLocation(holdings) {
+  isClosedLibrary(holding) {
+    return availability.closedLibraries.includes(holding.libraryID);
+  },
+
+  allNonHoldable(holdings) {
     for (const holding of holdings) {
-      if (!availability.isNonHoldableLocation(holding)) {
+      if (
+        !availability.isNonHoldableLocation(holding) &&
+        !availability.isClosedLibrary(holding)
+      ) {
         return false;
       }
     }

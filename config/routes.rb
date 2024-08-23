@@ -39,6 +39,7 @@ Rails.application.routes.draw do
     collection do
       get 'initialize_bookmark'
       delete 'clear'
+      match 'bulk_ris/:item_ids', to: 'bookmarks#bulk_ris', via: [:get, :post], as: 'bulk_ris'
     end
   end
 
@@ -61,8 +62,9 @@ Rails.application.routes.draw do
     get '/sirsi-item-data', to: 'availability#sirsi_item_data'
   end
 
-  namespace :preview do
+  namespace :links do
     get '/google-preview-data', to: 'google_preview#data'
+    get '/hathi-link', to: 'hathi_link#data'
   end
 
   # error pages

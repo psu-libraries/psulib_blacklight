@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
-  <!--for Sematext Monitoring-->
-  <jmx />
 
   <valueSourceParser name="stringdiff"
     class="edu.psu.solr.plugin.bookcodesort.StringDiffValueSourceParser" />
@@ -12,13 +10,12 @@
 
   <abortOnConfigurationError>${solr.abortOnConfigurationError:true}</abortOnConfigurationError>
 
-  <luceneMatchVersion>7.4.0</luceneMatchVersion>
+  <luceneMatchVersion>8.11</luceneMatchVersion>
 
   <directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}"/>
 
   <!-- solr lib dirs -->
   <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lib" />
-  <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs" />
 
   <!-- using default data directory here, for the vanilla Solr installation-->
   <dataDir>${solr.data.dir:}</dataDir>

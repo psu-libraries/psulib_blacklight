@@ -46,7 +46,8 @@
       const uniqueId = form.attr('data-doc-id') || Math.random();
       // if form is currently using method delete to change state,
       // then checkbox is currently checked
-      let checked = form.find('input[name=_method][value=delete]').length !== 0;
+      const checked =
+        form.find('input[name=_method][value=delete]').length !== 0;
 
       const checkbox = $('<input type="checkbox">')
         .addClass(options.cssClass)
@@ -100,8 +101,10 @@
             // if app isn't running at all, xhr annoyingly
             // reports success with status 0.
             if (xhr.status !== 0) {
-              checked = !checked;
-              updateStateFor(checked);
+              // Re-evaluate checked since it could have changed from BookmarkAll code
+              const toggledChecked =
+                form.find('input[name=_method][value=delete]').length === 0;
+              updateStateFor(toggledChecked);
               label.removeAttr('disabled');
               checkbox.removeAttr('disabled');
               options.success.call(form, checked, xhr.responseJSON);

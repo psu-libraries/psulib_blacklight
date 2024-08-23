@@ -42,7 +42,7 @@ RSpec.describe Holdings do
       expect(holdings.items.length).to eq(4)
       item = holdings.find('key_1')
       expect(item.call_number).to eq('Solr Doc 1')
-      expect(item.documents.map { |document| document['title_display_ssm'] }).to contain_exactly('Title 1')
+      expect(item.documents.pluck('title_display_ssm')).to contain_exactly('Title 1')
     end
   end
 
@@ -83,7 +83,7 @@ RSpec.describe Holdings do
       expect(holdings.items.length).to eq(3)
       item = holdings.find('key_1')
       expect(item.call_number).to eq('Solr Doc 1')
-      expect(item.documents.map { |document| document['title_display_ssm'] }).to contain_exactly('Title 1', 'Title 2')
+      expect(item.documents.pluck('title_display_ssm')).to contain_exactly('Title 1', 'Title 2')
     end
   end
 

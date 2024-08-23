@@ -67,7 +67,7 @@ http_interactions:
   recorded_at: Tue, 20 Jul 2021 16:41:09 GMT
 - request:
     method: get
-    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=21588551
+    uri: https://sdws08.sirsidynix.net/psu_ilsws/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=21588551
     body:
       encoding: US-ASCII
       string: ''

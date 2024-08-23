@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Ask a librarian', type: :feature do
-  describe 'side tab widget', js: true do
+RSpec.describe 'Ask a librarian' do
+  describe 'side tab widget', :js do
     before do
       stub_request(:any, /hathitrust/).to_return(status: 200, body: '{}', headers: {})
       user = User.new(email: 'user1234@psu.edu')
@@ -17,7 +17,7 @@ RSpec.describe 'Ask a librarian', type: :feature do
 
     it 'shows up on a catalog item page only once after going to MARC View and back' do
       visit '/catalog/22090269'
-      click_link 'View MARC record'
+      click_on 'View MARC record'
       page.assert_selector('h1', text: 'MARC View', wait: 10)
       page.driver.go_back
       page.assert_selector('h1',

@@ -15,22 +15,22 @@ module PsulibBlacklight
     def query_url
       query_url = "#{url}/solr/#{collection_name}"
       if solr_username && solr_password
-        return query_url.gsub(/:\/\//, "://#{solr_username}:#{CGI.escape(solr_password)}@")
+        return query_url.gsub('://', "://#{solr_username}:#{CGI.escape(solr_password)}@")
       end
 
       query_url
     end
 
     def solr_username
-      Settings&.solr&.username
+      Settings.solr&.username
     end
 
     def solr_password
-      Settings&.solr&.password
+      Settings.solr&.password
     end
 
     def collection_name
-      Settings&.solr&.collection || 'blacklight-core'
+      Settings.solr&.collection || 'blacklight-core'
     end
 
     def alias_name
@@ -38,15 +38,15 @@ module PsulibBlacklight
     end
 
     def num_shards
-      Settings&.solr&.num_shards || 1
+      Settings.solr&.num_shards || 1
     end
 
     def replication_factor
-      Settings&.solr&.replication_factor || 1
+      Settings.solr&.replication_factor || 1
     end
 
     def max_shards_per_node
-      Settings&.solr&.max_shards_per_node || 1
+      Settings.solr&.max_shards_per_node || 1
     end
 
     def configset_name

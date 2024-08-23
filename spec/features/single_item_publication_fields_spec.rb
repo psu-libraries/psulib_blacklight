@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Single Item Publication Fields', type: :feature do
-  describe 'Single item publication fields', js: true do
+RSpec.describe 'Single Item Publication Fields' do
+  describe 'Single item publication fields', :js do
     context 'when the item has multiple indicators for MARC field 264' do
       before do
         visit '/catalog/19437'
@@ -37,7 +37,7 @@ RSpec.describe 'Single Item Publication Fields', type: :feature do
       end
 
       it 'does not display missing fields' do
-        expect(page).not_to have_content 'Copyright Date:'
+        expect(page).to have_no_content 'Copyright Date:'
       end
     end
 

@@ -11,7 +11,7 @@ RSpec.describe Browse::CallNumberToggleList, type: :component do
     let (:node) { render_inline(instance) }
 
     it 'renders the component and all links' do
-      expect(node).to have_selector('#moreCallNumbers123')
+      expect(node).to have_css('#moreCallNumbers123')
       expect(node).to have_link('ABC', href: '/catalog/123')
       expect(node).to have_link('DEF', href: '/catalog/123')
     end

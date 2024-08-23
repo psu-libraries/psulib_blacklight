@@ -83,10 +83,6 @@ module CatalogHelper
     safe_join(details, ' | ')
   end
 
-  def get_first_only(options = {})
-    options[:value].first
-  end
-
   # Returns suitable argument to options_for_select method, to create
   # an html select based on #search_field_list with labels for search
   # bar only. Skips search_fields marked :include_in_simple_select => false
@@ -106,26 +102,6 @@ module CatalogHelper
       field_def.placeholder_text
     else
       t('blacklight.search.form.search.placeholder')
-    end
-  end
-
-  def search_bar_field
-    case params[:action]
-    when 'call_numbers'
-      case params[:classification]
-      when 'lc'
-        'browse_lc'
-      when 'dewey'
-        'browse_dewey'
-      end
-    when 'authors'
-      'browse_authors'
-    when 'subjects'
-      'browse_subjects'
-    when 'titles'
-      'browse_titles'
-    else
-      params[:search_field]
     end
   end
 end

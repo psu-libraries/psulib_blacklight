@@ -1,4 +1,4 @@
-FROM harbor.k8s.libraries.psu.edu/library/ruby-3.1.2-node-16:20230612 as base
+FROM harbor.k8s.libraries.psu.edu/library/ruby-3.1.2-node-16:20240520 as base
 ARG UID=2000
 
 USER root
@@ -61,6 +61,7 @@ RUN apt-get update && apt-get install -y x11vnc \
     fluxbox \
     wget \
     sqlite3 \
+    rsync \
     libsqlite3-dev \
     libnss3 \
     wmctrl \

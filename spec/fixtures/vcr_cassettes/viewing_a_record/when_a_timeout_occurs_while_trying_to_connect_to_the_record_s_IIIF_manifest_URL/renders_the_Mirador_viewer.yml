@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=1267921
+    uri: https://sdws08.sirsidynix.net/psu_ilsws/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=1267921
     body:
       encoding: US-ASCII
       string: ''
@@ -94,4 +94,94 @@ http_interactions:
       encoding: ASCII-8BIT
       string: var _GBSBookInfo = {};
   recorded_at: Tue, 16 May 2023 20:05:42 GMT
+- request:
+    method: get
+    uri: https://catalog.hathitrust.org/api/volumes/brief/oclc/17545759.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - catalog.hathitrust.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 22 Apr 2024 18:17:56 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - max-age=0
+      Expires:
+      - Mon, 22 Apr 2024 18:17:56 GMT
+      Content-Length:
+      - '31'
+      Content-Type:
+      - text/html; charset=UTF-8
+      Strict-Transport-Security:
+      - max-age=31536000
+      Set-Cookie:
+      - STICKY=s206; path=/
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+         "records": {}, "items": []
+        }
+  recorded_at: Mon, 22 Apr 2024 18:17:56 GMT
+- request:
+    method: get
+    uri: https://catalog.hathitrust.org/api/volumes/brief/oclc/17545759.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - catalog.hathitrust.org
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 22 Apr 2024 18:40:18 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - max-age=0
+      Expires:
+      - Mon, 22 Apr 2024 18:40:18 GMT
+      Content-Length:
+      - '31'
+      Content-Type:
+      - text/html; charset=UTF-8
+      Strict-Transport-Security:
+      - max-age=31536000
+      Set-Cookie:
+      - STICKY=s139; path=/
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+         "records": {}, "items": []
+        }
+  recorded_at: Mon, 22 Apr 2024 18:40:18 GMT
 recorded_with: VCR 6.1.0

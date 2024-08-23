@@ -17,16 +17,14 @@
   <div class="collapse" id="availability-<%= id %>" aria-expanded="false">
     <div class="card card-body">
       <% unless Settings&.hide_hold_button %>
-        <% unless document.hathi_links && document.hathi_links&.dig(:etas_item) -%>
-          <div class="hold-button text-right d-none mb-2">
-            <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.hold_button_path}#{id}",
-                        class: 'btn btn-primary pr-4 pl-4' %>
-          </div>
-          <div class="no-recalls-button text-right d-none mb-2">
-            <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.no_recall_button_path}#{id}",
-                        class: 'btn btn-primary pr-4 pl-4' %>
-          </div>
-        <% end %>
+        <div class="hold-button text-right d-none mb-2">
+          <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.hold_button_path}#{id}",
+                      class: 'btn btn-primary pr-4 pl-4' %>
+        </div>
+        <div class="no-recalls-button text-right d-none mb-2">
+          <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.no_recall_button_path}#{id}",
+                      class: 'btn btn-primary pr-4 pl-4' %>
+        </div>
       <% end %>
       <div class="availability-holdings"></div>
     </div>

@@ -1,0 +1,18 @@
+<div class="form-group advanced-search-facet">
+    <p><%= @facet_field.label %>
+    <span class="col-sm-9">
+        <%= content_tag(:select,
+                        multiple: true,
+                        name: "f_inclusive[#{@facet_field.key}][]",
+                        id: @facet_field.key,
+                        class: 'form-control selectpicker',
+                        data: { 'live-search': 'true', placeholder: "Type or select #{@facet_field.key.downcase.pluralize}" }) do %>
+            <% presenters.each_with_index do |presenter, idx| -%>
+                <%= content_tag :option, value: presenter.value do %>
+                    <%= presenter.label %>
+                <% end %>
+            <% end %>
+        <% end %>
+    <span>
+    </p>
+</div>

@@ -39,7 +39,7 @@ module HathiLinks
     end
 
     def etas_item?
-      ht_access == 'deny' && Settings&.hathi_etas
+      ht_access == 'deny' && Settings.hathi_etas
     end
 
     def open_ht_access?

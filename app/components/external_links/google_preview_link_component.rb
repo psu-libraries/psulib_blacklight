@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
 module ExternalLinks
-  class GooglePreviewLinkComponent < ViewComponent::Base
-    def initialize(document)
-      @document = document
-    end
-
+  class GooglePreviewLinkComponent < HathiGoogleLinksComponent
     def search_item
-      return nil if free_to_read? || hathi_link?
+      return nil if free_to_read?
 
       return "LCCN:#{lccn}" if lccn.present?
 
@@ -20,30 +16,8 @@ module ExternalLinks
 
     private
 
-      def lccn
-        document[:document]['lccn_ssim']&.first
-      end
-
-      def oclc
-        document[:document]['oclc_number_ssim']&.first
-      end
-
       def isbn
         document[:document]['isbn_valid_ssm']&.first
       end
-
-      def free_to_read?
-        access_facet = document[:document]['access_facet']
-        return false if access_facet.nil?
-
-        access_facet.include?('Free to Read')
-      end
-
-      def hathi_link?
-        document[:document]['ht_access_ss'] == 'allow' ||
-          (document[:document]['ht_access_ss'] == 'deny' && Settings&.hathi_etas)
-      end
-
-      attr_reader :document
   end
 end

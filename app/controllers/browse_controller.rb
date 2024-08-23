@@ -44,6 +44,8 @@ class BrowseController < ApplicationController
     end
 
     def title_list_params
+      params[:prefix] = params[:prefix]&.gsub(/^(?i)(an|a|the) /, '')
+
       params
         .permit(:length, :page, :prefix)
         .to_hash

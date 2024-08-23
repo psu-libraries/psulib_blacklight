@@ -2,11 +2,11 @@
 
 module Browse::Paths
   def browse_path(args)
-    send("#{action.singularize}_browse_path", args)
+    send(:"#{action.singularize}_browse_path", args)
   end
 
   def browse_url
-    send("#{action.singularize}_browse_url")
+    send(:"#{action.singularize}_browse_url")
   end
 
   private

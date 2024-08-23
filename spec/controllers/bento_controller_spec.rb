@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe BentoController, type: :controller do
+RSpec.describe BentoController do
   describe '#index' do
     context 'when an html format request comes in' do
       it 'responds with unsupported media type' do
@@ -14,7 +14,7 @@ RSpec.describe BentoController, type: :controller do
 
     context 'when it returns json' do
       render_views
-      let(:json_response) { JSON.parse(response.body) }
+      let(:json_response) { response.parsed_body }
 
       before do
         get :index, params: { format: :json, utf8: '✓', q: 'green', per_page: '3' }
