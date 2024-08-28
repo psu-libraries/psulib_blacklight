@@ -49,7 +49,7 @@ describe('when a holdable record is only in a closed library', () => {
         {
           catkey: '0',
           libraryID: 'NEWKEN',
-          locationID: 'STACKS-WS',
+          locationID: 'STACKS-NK',
           holdable: 'true',
           reserveCollectionID: '',
         },
@@ -108,7 +108,7 @@ describe('when a holdable record is in a closed library and a non holdable locat
         {
           catkey: '0',
           libraryID: 'NEWKEN',
-          locationID: 'STACKS-WS',
+          locationID: 'STACKS-NK',
           holdable: 'true',
           reserveCollectionID: '',
         },
