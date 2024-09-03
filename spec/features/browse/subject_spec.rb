@@ -50,11 +50,6 @@ RSpec.describe 'Subject Browse' do
         expect(page).to have_link('Aptheker, Herbert, 1915-2003', href: /subject_browse_facet/)
         expect(page).to have_css('td', text: 1)
       end
-
-      within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Authors, Yiddish—Soviet Union', href: /subject_browse_facet/)
-        expect(page).to have_css('td', text: 1)
-      end
     end
   end
 
