@@ -30,7 +30,6 @@ RSpec.describe 'Subject Browse' do
         expect(page).to have_link('Aptheker, Herbert, 1915-2003', href: /subject_browse_facet/)
         expect(page).to have_css('td', text: 1)
       end
-
     end
   end
 
