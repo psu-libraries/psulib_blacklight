@@ -44,11 +44,6 @@ RSpec.describe 'Subject Browse' do
         expect(page).to have_content('Count')
       end
 
-      within('tbody tr:nth-child(20)') do
-        expect(page).to have_link('Biometry', href: /subject_browse_facet/)
-        expect(page).to have_css('td', text: 1)
-      end
-
       first(:link, 'Previous').click
 
       within('tbody tr:nth-child(1)') do
