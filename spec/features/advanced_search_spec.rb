@@ -79,17 +79,6 @@ RSpec.describe 'Advanced Search' do
         end
       end
 
-      # context 'when searching by a single publication date' do
-        # before do
-        #   fill_in 'range_pub_date_itsi_begin', with: '2017'
-        #   click_on 'advanced-search-submit'
-        # end
-
-        # it 'results include expected CAT keys' do
-        #   expect(page).to have_css 'article[data-document-id="31805602"]'
-        # end
-      # end
-
       context 'when searching by publication date range' do
         before do
           fill_in 'range_pub_date_itsi_begin', with: '2017'

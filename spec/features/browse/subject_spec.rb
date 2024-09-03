@@ -31,10 +31,6 @@ RSpec.describe 'Subject Browse' do
         expect(page).to have_css('td', text: 1)
       end
 
-      # within('tbody tr:nth-child(20)') do
-      #   expect(page).to have_link('Authors, Yiddish—Soviet Union', href: /subject_browse_facet/)
-      #   expect(page).to have_css('td', text: 1)
-      # end
     end
   end
 
@@ -48,11 +44,6 @@ RSpec.describe 'Subject Browse' do
         expect(page).to have_content('Subject Heading')
         expect(page).to have_content('Count')
       end
-
-      # within('tbody tr:nth-child(1)') do
-      #   expect(page).to have_link('Authors—Drama', href: /subject_browse_facet/)
-      #   expect(page).to have_css('td', text: 1)
-      # end
 
       within('tbody tr:nth-child(20)') do
         expect(page).to have_link('Biometry', href: /subject_browse_facet/)
