@@ -802,9 +802,7 @@
   },
   "closed_libraries": [
     "FAYETTE",
-    "NEWKEN",
-    "DSL-CARL",
-    "UP-ENGIN"
+    "DSL-CARL"
   ],
   "exclude_from_email_availability": {
     "CHECKEDOUT": "Checked out",
