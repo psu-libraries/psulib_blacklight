@@ -21,12 +21,12 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
         : null;
 
       const [visibleHoldings, setVisibleHoldings] = useState(
-        holdings.slice(0, initialVisibleCount)
+        holdings.slice(0, initialVisibleCount),
       );
       const [moreHoldings, setMoreHoldings] = useState(
         holdings.length > initialVisibleCount
           ? holdings.slice(initialVisibleCount)
-          : []
+          : [],
       );
       const [lastA11yIndex, setLastA11yIndex] = useState(0);
 

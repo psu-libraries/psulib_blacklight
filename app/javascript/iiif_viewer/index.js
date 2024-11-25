@@ -4,7 +4,7 @@ const viewerContainer = document.getElementById('iiif-viewer');
 
 if (viewerContainer) {
   const manifestURLs = JSON.parse(
-    viewerContainer.getAttribute('data-manifest')
+    viewerContainer.getAttribute('data-manifest'),
   );
   const multipleManifests = manifestURLs.length > 1;
 

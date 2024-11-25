@@ -68,7 +68,7 @@
     "eslint-plugin-prettier": ">=4.0.0",
     "eslint-plugin-react": ">=7.27.1",
     "jest": "^28",
-    "prettier": "^2.5.1",
+    "prettier": ">=3.0.0",
     "webpack-dev-server": "4"
   },
   "scripts": {

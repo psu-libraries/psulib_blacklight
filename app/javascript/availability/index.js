@@ -64,12 +64,12 @@ const availability = {
               const catkey = $(this).children('titleID').text();
               const totalCopiesAvailable = parseInt(
                 $(this).find('totalCopiesAvailable').text(),
-                10
+                10,
               );
               const holdable = $(this).find('holdable').text();
               const numberOfBoundwithLinks = parseInt(
                 $(this).find('numberOfBoundwithLinks').text(),
-                10
+                10,
               );
 
               const titleInfo = {
@@ -86,7 +86,7 @@ const availability = {
               if (numberOfBoundwithLinks > 0) {
                 boundHoldings = availability.getBoundHoldings(
                   boundHoldings,
-                  titleInfo
+                  titleInfo,
                 );
               }
 
@@ -97,7 +97,7 @@ const availability = {
               if (isOnlineOnOrderOnly) {
                 $(`.availability[data-keys="${catkey}"`).data(
                   'isOnlineOnOrderOnly',
-                  true
+                  true,
                 );
               }
             });
@@ -107,7 +107,7 @@ const availability = {
             availability.processBoundParents(
               boundHoldings,
               allHoldings,
-              summaryHoldings
+              summaryHoldings,
             );
           } else {
             // Print availability data
@@ -116,7 +116,7 @@ const availability = {
         },
         () => {
           availability.displayErrorMsg();
-        }
+        },
       );
     }
   },
@@ -319,7 +319,7 @@ const availability = {
                             // once processed remove to avoid duplicates
                             // when children of same parent are in the search results
                             delete boundHoldings[catkey][itemID];
-                          }
+                          },
                         );
                       }
                     });
@@ -332,7 +332,7 @@ const availability = {
       },
       () => {
         availability.displayErrorMsg();
-      }
+      },
     );
   },
 
@@ -345,13 +345,13 @@ const availability = {
       if (catkey in allHoldings) {
         const rawHoldings = allHoldings[catkey];
         const availabilityButton = availabilityHTML.find(
-          '.availability-button'
+          '.availability-button',
         );
         const holdingsPlaceHolder = availabilityHTML.find(
-          '.availability-holdings'
+          '.availability-holdings',
         );
         const snippetPlaceHolder = availabilityHTML.find(
-          '.availability-snippet'
+          '.availability-snippet',
         );
         const holdButton = availabilityHTML.find('.hold-button');
         const noRecallsButton = availabilityHTML.find('.no-recalls-button');
@@ -368,13 +368,13 @@ const availability = {
               structuredHoldings,
               summaryHoldings: summaryHoldings ? summaryHoldings[catkey] : null,
             }),
-            holdingsPlaceHolder[0]
+            holdingsPlaceHolder[0],
           );
 
           if (snippetPlaceHolder && snippetPlaceHolder.length === 1) {
             ReactDOM.render(
               React.createElement(Snippet, { data: structuredHoldings }),
-              snippetPlaceHolder[0]
+              snippetPlaceHolder[0],
             );
           }
 
@@ -475,7 +475,7 @@ const availability = {
       $(this).addClass('availability-error alert alert-light');
       $(this).html(
         'Please check back shortly for item availability or ' +
-          '<a href="https://libraries.psu.edu/ask">ask a librarian</a> for assistance.'
+          '<a href="https://libraries.psu.edu/ask">ask a librarian</a> for assistance.',
       );
     });
   },

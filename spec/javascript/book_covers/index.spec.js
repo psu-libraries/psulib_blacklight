@@ -12,7 +12,7 @@ describe('bookCovers', () => {
       '</span>';
 
     expect(bookCovers.getBibkeys()).toMatch(
-      'OCLC:8151989,ISBN:3801210022,LCCN:62022109'
+      'OCLC:8151989,ISBN:3801210022,LCCN:62022109',
     );
   });
 
