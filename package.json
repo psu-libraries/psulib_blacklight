@@ -45,7 +45,7 @@
     "url": "^0.11.3",
     "webpack": "5",
     "webpack-assets-manifest": "5",
-    "webpack-cli": "4",
+    "webpack-cli": "5",
     "webpack-merge": "5"
   },
   "version": "0.1.0",
@@ -60,16 +60,16 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
-    "eslint": "7.32.0",
-    "eslint-config-airbnb": "^19.0.2",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.27.1",
-    "jest": "^26.6.3",
+    "eslint": "9",
+    "eslint-config-airbnb": ">=19.0.2",
+    "eslint-config-prettier": ">=8.3.0",
+    "eslint-plugin-import": ">=2.25.3",
+    "eslint-plugin-jsx-a11y": ">=6.5.1",
+    "eslint-plugin-prettier": ">=4.0.0",
+    "eslint-plugin-react": ">=7.27.1",
+    "jest": "^28",
     "prettier": "^2.5.1",
-    "webpack-dev-server": "4"
+    "webpack-dev-server": "5"
   },
   "scripts": {
     "test": "jest",
