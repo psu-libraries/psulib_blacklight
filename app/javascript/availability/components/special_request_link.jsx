@@ -99,22 +99,24 @@ const SpecialRequestLink = ({ holding, locationText }) => {
 
   const pubPlace = (data) =>
     encodeURIComponent(
-      data.publication_place_ssm ? data.publication_place_ssm : ''
+      data.publication_place_ssm ? data.publication_place_ssm : '',
     );
 
   const edition = (data) =>
     encodeURIComponent(
-      data.edition_display_ssm ? data.edition_display_ssm : ''
+      data.edition_display_ssm ? data.edition_display_ssm : '',
     );
 
   const restrictions = (data) =>
     encodeURIComponent(
-      data.restrictions_access_note_ssm ? data.restrictions_access_note_ssm : ''
+      data.restrictions_access_note_ssm
+        ? data.restrictions_access_note_ssm
+        : '',
     );
 
   const subLocation = (data) =>
     encodeURIComponent(
-      data.sublocation_ssm ? data.sublocation_ssm.join('; ') : ''
+      data.sublocation_ssm ? data.sublocation_ssm.join('; ') : '',
     );
 
   const label = () => {

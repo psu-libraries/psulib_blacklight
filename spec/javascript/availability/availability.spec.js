@@ -24,7 +24,7 @@ jest.mock(
     },
     non_holdable: ['CHECKEDOUT'],
   }),
-  { virtual: true }
+  { virtual: true },
 );
 jest.mock('react-dom', () => ({
   render: jest.fn(),

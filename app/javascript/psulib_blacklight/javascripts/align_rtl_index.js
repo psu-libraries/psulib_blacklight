@@ -6,7 +6,7 @@ const alignRtl = function () {
     if (window.getComputedStyle(titleLink).direction === 'rtl') {
       titleLink.setAttribute(
         'class',
-        'float-right text-align-start col-sm-11 p-0 pr-4'
+        'float-right text-align-start col-sm-11 p-0 pr-4',
       );
     }
   });

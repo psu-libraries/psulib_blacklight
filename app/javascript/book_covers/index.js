@@ -53,7 +53,7 @@ const bookCovers = {
         // instead of zoom of 5
         const thumbUrlZoom1 = `${responseItem.thumbnail_url.slice(0, -1)}1`;
         $(`[data-${type.toLowerCase()}*="${identifier}"]`).replaceWith(
-          `<img class="img-fluid" src="${thumbUrlZoom1}">`
+          `<img class="img-fluid" src="${thumbUrlZoom1}">`,
         );
       }
     }
