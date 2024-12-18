@@ -77,6 +77,11 @@ jobs:
       SETTINGS__solr__password: catalog
     steps:
     - run:
+        name: "Install Dependencies"
+        command: |
+          sudo apt-get update
+          sudo apt-get install -y libssl-dev
+    - run:
         name: "libu2f-udev"
         command: |
           sudo apt-get update
