@@ -77,10 +77,10 @@ jobs:
       SETTINGS__solr__password: catalog
     steps:
     - run:
-        name: "Install Dependencies"
+        name: "Install OpenSSL 1.1"
         command: |
           sudo apt-get update
-          sudo apt-get install -y libssl-dev
+          sudo apt-get install -y libssl1.1
     - run:
         name: "libu2f-udev"
         command: |
