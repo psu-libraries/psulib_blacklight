@@ -62,7 +62,7 @@ jobs:
             ./bin/generate_app
   test:
     docker:
-      - image: cimg/ruby:3.1.2-browsers
+      - image: cimg/ruby:3.1.6-browsers
       - image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
         environment:
           SOLR_STOP_WAIT: 1
