@@ -814,8 +814,7 @@
     "YORK": "Penn State York"
   },
   "closed_libraries": [
-    "FAYETTE",
-    "DSL-CARL"
+    "FAYETTE"
   ],
   "exclude_from_email_availability": {
     "CHECKEDOUT": "Checked out",
