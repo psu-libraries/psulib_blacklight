@@ -38,12 +38,12 @@ jobs:
       - docker/build:
           image: library/psulib_blacklight
           registry: harbor.k8s.libraries.psu.edu
+          use-buildkit: true
           extra_build_args: "--target production"
       - docker/push:
           digest-path: /tmp/digest.txt
           image: library/psulib_blacklight
           registry: harbor.k8s.libraries.psu.edu
-          use-buildkit: true
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
