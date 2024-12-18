@@ -43,6 +43,7 @@ jobs:
           digest-path: /tmp/digest.txt
           image: library/psulib_blacklight
           registry: harbor.k8s.libraries.psu.edu
+          use-buildkit: true
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
