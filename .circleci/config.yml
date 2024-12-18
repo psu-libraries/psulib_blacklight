@@ -7,7 +7,7 @@ orbs:
 jobs:
   release:
     docker:
-      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:$CI_UTILS_IMAGE_TAG
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v4.0.4
     environment:
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       REGISTRY_REPO: library/psulib_blacklight
@@ -26,7 +26,7 @@ jobs:
 
   publish:
     docker:
-      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:$CI_UTILS_IMAGE_TAG
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v4.0.4
         user: root
     steps:
       - setup_remote_docker:
@@ -48,7 +48,7 @@ jobs:
             echo "Digest is: $(</tmp/digest.txt)"
   deploy:
     docker:
-      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:$CI_UTILS_IMAGE_TAG
+      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v4.0.4
     environment:
       CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
     steps:
@@ -76,11 +76,11 @@ jobs:
       SETTINGS__solr__username: catalog
       SETTINGS__solr__password: catalog
     steps:
-    - run:
-        name: "Install OpenSSL 1.1"
-        command: |
-          sudo apt-get update
-          sudo apt-get install -y libssl1.1
+    # - run:
+    #     name: "Install OpenSSL 1.1"
+    #     command: |
+    #       sudo apt-get update
+    #       sudo apt-get install -y libssl1.1
     - run:
         name: "libu2f-udev"
         command: |
