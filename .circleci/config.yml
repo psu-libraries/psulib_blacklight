@@ -30,7 +30,7 @@ jobs:
         user: root
     steps:
       - setup_remote_docker:
-          version: docker24
+          version: default
           docker_layer_caching: true
       - checkout
       - docker/check:
