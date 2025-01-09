@@ -815,9 +815,7 @@
     "XTERNAL": "Associated Libraries",
     "YORK": "Penn State York"
   },
-  "closed_libraries": [
-    "FAYETTE"
-  ],
+  "closed_libraries": [],
   "exclude_from_email_availability": {
     "CHECKEDOUT": "Checked out",
     "DARCHIVE-P": "Copy unavailable",
