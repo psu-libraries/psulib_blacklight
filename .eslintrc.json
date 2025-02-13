@@ -24,7 +24,8 @@
         "prettier"
     ],
     "ignorePatterns": [
-        "spec/javascript/psulib_blacklight/align_rtl_index.spec.js"
+        "spec/javascript/psulib_blacklight/align_rtl_index.spec.js",
+         "app/javascript/readability_widget/**"
     ],
     "rules": {
         "consistent-return": "off",
