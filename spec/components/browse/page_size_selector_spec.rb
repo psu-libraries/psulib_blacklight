@@ -20,7 +20,7 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
     specify do
       expect {
         node
-      }.to raise_error(NoMethodError, starting_with("undefined method `bogu_browse_path'"))
+      }.to raise_error(NoMethodError, include("undefined method 'bogu_browse_path'"))
     end
   end
 
