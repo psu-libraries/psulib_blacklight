@@ -20,13 +20,6 @@ RUN bundle install --deployment --without development test && \
   rm -rf /app/.bundle/cache && \
   rm -rf /app/vendor/bundle/ruby/*/cache
 
-# Adding this to see if it installs FireFox properly < WIP
-RUN FIREFOX_VERSION=135.0.1 && \
-  wget http://archive.mozilla.org/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.xz -O /tmp/firefox.tar.xz && \
-  tar -xjf /tmp/firefox.tar.xz -C /opt && \
-  ln -s /opt/firefox/firefox /usr/local/bin/firefox && \
-  rm /tmp/firefox.tar.xz  
-
 
 COPY package.json yarn.lock /app/
 RUN yarn --frozen-lockfile && \
@@ -54,6 +47,14 @@ RUN RAILS_ENV=production \
   rm -rf /app/node_modules/.cache/ && \
   rm -rf /app/tmp/
 
+# Adding this to see if it installs FireFox properly < WIP
+RUN FIREFOX_VERSION=135.0.1 && \
+  wget http://archive.mozilla.org/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.xz -O /tmp/firefox.tar.xz && \
+  tar -xjf /tmp/firefox.tar.xz -C /opt && \
+  ln -s /opt/firefox/firefox /usr/local/bin/firefox && \
+  rm /tmp/firefox.tar.xz  
+
+
 CMD ["/app/bin/startup"]
 
 # dev stage installs chrome, and all the deps needed to run rspec
@@ -73,6 +74,13 @@ RUN apt-get update && apt-get install -y x11vnc \
     libnss3 \
     wmctrl \
     google-chrome-stable
+
+# Adding this to see if it installs FireFox properly < WIP
+RUN FIREFOX_VERSION=135.0.1 && \
+  wget http://archive.mozilla.org/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.xz -O /tmp/firefox.tar.xz && \
+  tar -xjf /tmp/firefox.tar.xz -C /opt && \
+  ln -s /opt/firefox/firefox /usr/local/bin/firefox && \
+  rm /tmp/firefox.tar.xz      
 
 USER app
 
