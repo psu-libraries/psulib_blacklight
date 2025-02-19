@@ -20,6 +20,13 @@ RUN bundle install --deployment --without development test && \
   rm -rf /app/.bundle/cache && \
   rm -rf /app/vendor/bundle/ruby/*/cache
 
+# Adding this to see if it installs FireFox properly < WIP
+RUN FIREFOX_VERSION=135.0.1 && \
+  wget http://archive.mozilla.org/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.xz -O /tmp/firefox.tar.xz && \
+  tar -xjf /tmp/firefox.tar.xz -C /opt && \
+  ln -s /opt/firefox/firefox /usr/local/bin/firefox && \
+  rm /tmp/firefox.tar.xz  
+
 
 COPY package.json yarn.lock /app/
 RUN yarn --frozen-lockfile && \
