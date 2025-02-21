@@ -23,11 +23,10 @@ jobs:
             git clone $CONFIG_REPO
             cd catalog-config
             /usr/local/bin/pr-release clusters/prod/manifests/psulib_blacklight/prod.yaml
-
   publish:
-    docker:
-      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v4.0.4
-        user: root
+    executor:
+      name: docker/docker
+      tag: "3.8"
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
