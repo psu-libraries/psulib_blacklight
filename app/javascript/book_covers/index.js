@@ -52,20 +52,18 @@ const bookCovers = {
         const identifier = responseItem.bib_key.split(':')[1];
         // instead of zoom of 5
         const thumbUrlZoom1 = `${responseItem.thumbnail_url.slice(0, -1)}1`;
-        var target = $(`[data-${type.toLowerCase()}*="${identifier}"]`);
+        const target = $(`[data-${type.toLowerCase()}*="${identifier}"]`);
 
         if (!target.length) return;
-      
+
         // cut off text after colon if present or slash if not
-        var title = target.data('title');
+        let title = target.data('title');
 
         const colonIndex = title.indexOf(':');
         const slashIndex = title.indexOf('/');
-        
-        if (colonIndex > -1)
-          title = title.substring(0, colonIndex);
-        else if (slashIndex > -1)
-          title = title.substring(0, slashIndex);
+
+        if (colonIndex > -1) title = title.substring(0, colonIndex);
+        else if (slashIndex > -1) title = title.substring(0, slashIndex);
 
         target.replaceWith(
           `<img class="img-fluid" src="${thumbUrlZoom1}" alt="Cover image for ${title.trim()}">`,
