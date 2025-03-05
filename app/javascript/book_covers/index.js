@@ -55,16 +55,20 @@ const bookCovers = {
         var target = $(`[data-${type.toLowerCase()}*="${identifier}"]`);
 
         if (!target.length) return;
+      
+        // cut off text after colon if present or slash if not
+        var title = target.data('title');
+
+        const colonIndex = title.indexOf(':');
+        const slashIndex = title.indexOf('/');
         
-        // format alt text
-        var title = target.data('title')
-        // don't replace slash with "by" if there is already a "by" after the slash
-        title = title.replace(' / ', (title.indexOf('by') > title.indexOf('/')) ? ' ' : ' by ')
-        // remove info other then the author 
-        title = title.split(';')[0]; 
+        if (colonIndex > -1)
+          title = title.substring(0, colonIndex);
+        else if (slashIndex > -1)
+          title = title.substring(0, slashIndex);
 
         target.replaceWith(
-          `<img class="img-fluid" src="${thumbUrlZoom1}" alt="Cover image for ${title}">`,
+          `<img class="img-fluid" src="${thumbUrlZoom1}" alt="Cover image for ${title.trim()}">`,
         );
       }
     }
