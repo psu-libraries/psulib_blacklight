@@ -3,6 +3,7 @@
 <div class="row">
   <div class="col-sm-3 order-sm-10">
     <div class="document-thumbnail">
+      <%# <div class="book-title"><%= document[0]['response']['docs'][0]['title_sort'][0] %>
       <%= render(Blacklight::Document::ThumbnailComponent.new(
                    presenter: document_presenter(document),
                    counter: document_counter_with_offset(document_counter)

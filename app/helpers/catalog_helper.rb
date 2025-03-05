@@ -55,6 +55,12 @@ module CatalogHelper
     isbn_values = document.fetch(:isbn_valid_ssm, [])
     oclc_values = document.fetch(:oclc_number_ssim, [])
     lccn_values = document.fetch(:lccn_ssim, [])
+    title = document.fetch(:title_display_ssm, [])[0]
+
+    puts 'DOCUMENT_KEYS'
+    document.keys.each do |key|
+      puts "#{key}: #{document[key]}"
+    end
 
     if isbn_values.empty? && oclc_values.empty? && lccn_values.empty?
       content_tag(:span, '',
@@ -65,7 +71,8 @@ module CatalogHelper
                   data: { isbn: isbn_values,
                           oclc: oclc_values,
                           lccn: lccn_values,
-                          type: 'bibkeys' })
+                          type: 'bibkeys',
+                          title: title })
     end
   end
 

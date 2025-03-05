@@ -52,8 +52,19 @@ const bookCovers = {
         const identifier = responseItem.bib_key.split(':')[1];
         // instead of zoom of 5
         const thumbUrlZoom1 = `${responseItem.thumbnail_url.slice(0, -1)}1`;
-        $(`[data-${type.toLowerCase()}*="${identifier}"]`).replaceWith(
-          `<img class="img-fluid" src="${thumbUrlZoom1}">`,
+        var target = $(`[data-${type.toLowerCase()}*="${identifier}"]`);
+
+        if (!target.length) return;
+        
+        // format alt text
+        var title = target.data('title')
+        // don't replace slash with "by" if there is already a "by" after the slash
+        title = title.replace(' / ', (title.indexOf('by') > title.indexOf('/')) ? ' ' : ' by ')
+        // remove info other then the author 
+        title = title.split(';')[0]; 
+
+        target.replaceWith(
+          `<img class="img-fluid" src="${thumbUrlZoom1}" alt="Cover image for ${title}">`,
         );
       }
     }
