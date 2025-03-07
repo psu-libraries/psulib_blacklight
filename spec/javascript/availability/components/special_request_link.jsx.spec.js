@@ -147,7 +147,11 @@ describe('when locationText is sent to SpecialRequestLink', () => {
 describe('when locationText is not sent to SpecialRequestLink', () => {
   const baseUrl =
     'https://psu.illiad.oclc.org/illiad/upm/illiad.dll/OpenURL?Action=10';
-  const holdingData = { locationID: 'BINDERY', callNumber: '123' };
+  const holdingData = {
+    locationID: 'BINDERY',
+    callNumber: '123',
+    catkey: '456',
+  };
 
   const testLink = async (getByRole, container, label, href) => {
     expect(getByRole('link')).toHaveAttribute('href', '#');
@@ -164,7 +168,7 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
   describe('when all fields are present', () => {
     const moreParams =
       '&title=book%20title&callno=123&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu' +
-      '&aulast=author%20name&date=2021';
+      '&aulast=author%20name&date=2021&catkey=456';
 
     beforeEach(() => {
       global.fetch = jest.fn(() =>
@@ -184,6 +188,7 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
       const { getByRole, container } = render(
         <SpecialRequestLink
           holding={{
+            catkey: '456',
             callNumber: '123',
             locationID: 'MFILM-NML',
             libraryID: 'UP-MICRO',
