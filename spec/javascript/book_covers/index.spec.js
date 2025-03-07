@@ -43,15 +43,16 @@ describe('bookCovers', () => {
       '    data-title="Test Book Title: A Subtitle / Foo Bar" ' +
       '    data-type="bibkeys">' +
       '</span>';
-      
+
     const replaceWith = jest.fn();
     const jQuery = jest.fn((selector) => {
       // Verify the selector is targeting the element with the correct ISBN
       expect(selector).toBe('[data-isbn*="9780972658355"]');
       return {
         length: 1,
-        data: (key) => key === 'title' ? 'Test Book Title: A Subtitle / Foo Bar' : null,
-        replaceWith
+        data: (key) =>
+          key === 'title' ? 'Test Book Title: A Subtitle / Foo Bar' : null,
+        replaceWith,
       };
     });
 
