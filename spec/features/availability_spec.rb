@@ -232,7 +232,7 @@ RSpec.describe 'Availability', :vcr do
                   'OpenURL?Action=10&Form=20&Genre=GenericRequestThesisDigitization&title=Ecology' \
                   '%20of%20the%20wild-trapped%20and%20transplanted%20ring-necked%20pheasant%20near' \
                   '%20Centre%20Hall%2C%20Pennsylvania&callno=Thesis%201968mMyers%2CJE&rfr_id=info' \
-                  '%3Asid%2Fcatalog.libraries.psu.edu&aulast=Myers%2C%20James%20E.&date=1968'
+                  '%3Asid%2Fcatalog.libraries.psu.edu&aulast=Myers%2C%20James%20E.&date=1968&catkey=123730'
           )
           expect(page).to have_link(
             'Request Scan - Guest',
