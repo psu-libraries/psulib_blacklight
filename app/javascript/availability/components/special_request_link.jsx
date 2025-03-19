@@ -45,7 +45,7 @@ const SpecialRequestLink = ({ holding, locationText }) => {
   const illLinkUrl = (linkUrl, data, title, author, pubDate) => {
     const itemLocation = encodeURIComponent(holding.locationID);
     const linkType = encodeURIComponent(illLinkType());
-    linkUrl += `upm/illiad.dll/OpenURL?Action=10`;
+    linkUrl += 'upm/illiad.dll/OpenURL?Action=10';
     if (linkType === 'archival-thesis') {
       linkUrl += '&Form=20&Genre=GenericRequestThesisDigitization';
     } else {
