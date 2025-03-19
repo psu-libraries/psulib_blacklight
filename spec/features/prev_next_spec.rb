@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.describe 'Previous Next Toggle' do
   describe 'Previous next links toggle', :js do
     it 'does not display stale previous and next links for direct item views' do
-      save_and_open_page
       visit root_path
       fill_in 'q', with: ''
       click_on 'search'
