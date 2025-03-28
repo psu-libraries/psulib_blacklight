@@ -4,7 +4,9 @@
   <div class="row">
     <div class="availability-button col-md-auto pr-0 invisible">
       <p>
-        <button class="btn btn-primary header" type="button" data-toggle="collapse" data-target="#availability-<%= id %>" aria-expanded="false" aria-controls="<%= id %>-location">
+        <% title = document[:title_display_ssm]&.join('/') %>
+        <% title = title&.split('/')&.first %>
+        <button class="btn btn-primary header" type="button" data-toggle="collapse" data-target="#availability-<%= id %>" aria-expanded="false" aria-controls="<%= id %>-location" aria-label="View <%= title %> availability">
           <span>View Availability</span>
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </button>
