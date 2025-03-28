@@ -9,7 +9,7 @@
                absent: t('blacklight.search.bookmarks.absent'),
                inprogress: t('blacklight.search.bookmarks.inprogress')
              },
-             aria: {label: "Bookmark #{title}"}) do %>
+             aria: { label: "Bookmark button for #{title}" }) do %>
   <%= submit_tag(t(bookmarked? ? 'remove.button' : 'add.button', scope: 'blacklight.bookmarks'),
                  id: "bookmark_toggle_#{@document.id.to_s.parameterize}",
                  class: "bookmark-#{bookmarked? ? 'remove' : 'add'} btn btn-info btn-sm") %>
