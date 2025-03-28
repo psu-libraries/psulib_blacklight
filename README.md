@@ -2,13 +2,13 @@
 
 The Penn State University Libraries' catalog. Built on Blacklight, using Traject for ingesting binary marc.
 
-# Software Dependencies 
+# Software Dependencies
 
-| Software |  Version |
-|----------|------|
-| `ruby`    |  3.4.1 |
-| `rails`   |  6.1.7 |
-| `solr`   |  8.11.2 |
+| Software  | Version |
+|-----------|---------|
+| `ruby`    |  3.4.1  |
+| `rails`   |  7.1.4  |
+| `solr`    |  9.6.1  |
 
 ## When upgrading Blacklight
 
@@ -28,7 +28,7 @@ The [config](https://rubygems.org/gems/config) gem provides a means for adding a
 
 1. Modify the announcement bar (thin bar at top)
 1. Put the site in "readonly" (no availability data)
-1. Put holds in readonly mode by hiding the I Want It button 
+1. Put holds in readonly mode by hiding the I Want It button
 1. Modify the hold button url
 
 Here is a sample of what the `settings.yml` file might look like:
