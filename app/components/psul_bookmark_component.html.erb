@@ -1,3 +1,5 @@
+<% title = @document[:title_display_ssm]&.join('/') %>
+<% title = title&.split('/')&.first %>
 <%= form_tag(bookmark_path,
              method: bookmarked? ? :delete : :put,
              class: 'bookmark-toggle',
@@ -6,7 +8,8 @@
                present: t('blacklight.search.bookmarks.present'),
                absent: t('blacklight.search.bookmarks.absent'),
                inprogress: t('blacklight.search.bookmarks.inprogress')
-             }) do %>
+             },
+             aria: { label: title.to_s }) do %>
   <%= submit_tag(t(bookmarked? ? 'remove.button' : 'add.button', scope: 'blacklight.bookmarks'),
                  id: "bookmark_toggle_#{@document.id.to_s.parameterize}",
                  class: "bookmark-#{bookmarked? ? 'remove' : 'add'} btn btn-info btn-sm") %>
