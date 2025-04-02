@@ -64,20 +64,19 @@
       const checkboxDiv = $('<div class="checkbox" />')
         .addClass(options.cssClass)
         .append(label);
-
+      
+      const title = form.attr('aria-label');
       function updateStateFor(state) {
         checkbox.prop('checked', state);
         label.toggleClass('checked', state);
-
+        
         if (state) {
           // Set the Rails hidden field that fakes an HTTP verb
           // properly for current state action.
-          const title = form.attr('aria-label').replace('Bookmark: ', '');
           form.attr('aria-label', `In bookmarks: ${title}`);
           form.find('input[name=_method]').val('delete');
           span.text(form.attr('data-present'));
         } else {
-          const title = form.attr('aria-label').replace('In bookmarks: ', '');
           form.attr('aria-label', `Bookmark: ${title}`);
           form.find('input[name=_method]').val('put');
           span.text(form.attr('data-absent'));
