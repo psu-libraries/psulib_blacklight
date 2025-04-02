@@ -64,12 +64,12 @@
       const checkboxDiv = $('<div class="checkbox" />')
         .addClass(options.cssClass)
         .append(label);
-      
+
       const title = form.attr('aria-label');
       function updateStateFor(state) {
         checkbox.prop('checked', state);
         label.toggleClass('checked', state);
-        
+
         if (state) {
           // Set the Rails hidden field that fakes an HTTP verb
           // properly for current state action.
