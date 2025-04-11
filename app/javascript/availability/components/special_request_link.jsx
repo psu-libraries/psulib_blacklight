@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import availability from '../index';
 import SpinnerLink from './spinner_link';
 
+const cache = {};
+
 const SpecialRequestLink = ({ holding, locationText }) => {
   const [hasData, setHasData] = useState(false);
   const [showSpinner, setShowSpinner] = useState(true);
@@ -14,8 +16,19 @@ const SpecialRequestLink = ({ holding, locationText }) => {
     createUrl();
   }, []);
 
-  const fetchJson = (jsonUrl) =>
-    fetch(jsonUrl).then((response) => response.json());
+  const fetchJson = (jsonUrl) => {    
+    if (!cache[jsonUrl]) {
+      return fetch(jsonUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          cache[jsonUrl] = data;
+          return data;
+        });
+    } else {
+      return Promise.resolve(cache[jsonUrl]);
+    }
+  }
+
 
   const createUrl = () => {
     let linkUrl = locationText
