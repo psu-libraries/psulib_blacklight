@@ -16,7 +16,7 @@ const SpecialRequestLink = ({ holding, locationText }) => {
     createUrl();
   }, []);
 
-  const fetchJson = (jsonUrl) => {    
+  const fetchJson = (jsonUrl) => {
     if (!cache[jsonUrl]) {
       return fetch(jsonUrl)
         .then((response) => response.json())
@@ -24,11 +24,9 @@ const SpecialRequestLink = ({ holding, locationText }) => {
           cache[jsonUrl] = data;
           return data;
         });
-    } else {
-      return Promise.resolve(cache[jsonUrl]);
     }
-  }
-
+    return Promise.resolve(cache[jsonUrl]);
+  };
 
   const createUrl = () => {
     let linkUrl = locationText
