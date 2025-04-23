@@ -5,6 +5,12 @@ import SpinnerLink from './spinner_link';
 
 const cache = {};
 
+const clearCache = () => {
+  Object.keys(cache).forEach(key => {
+    delete cache[key];
+  });
+};
+
 const SpecialRequestLink = ({ holding, locationText }) => {
   const [hasData, setHasData] = useState(false);
   const [showSpinner, setShowSpinner] = useState(true);
@@ -151,6 +157,7 @@ const SpecialRequestLink = ({ holding, locationText }) => {
     ) {
       text = 'Request Scan - Penn State Users';
     }
+    console.log(holding, hasData, cache, text);
     return text || availability.illiadLocations[holding.locationID];
   };
 
@@ -172,4 +179,5 @@ SpecialRequestLink.propTypes = {
   locationText: PropTypes.string,
 };
 
+export { clearCache };
 export default SpecialRequestLink;
