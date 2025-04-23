@@ -6,7 +6,7 @@ import SpinnerLink from './spinner_link';
 const cache = {};
 
 const clearCache = () => {
-  Object.keys(cache).forEach(key => {
+  Object.keys(cache).forEach((key) => {
     delete cache[key];
   });
 };

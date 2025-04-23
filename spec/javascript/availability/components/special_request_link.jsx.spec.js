@@ -1,6 +1,8 @@
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SpecialRequestLink, {clearCache} from '../../../../app/javascript/availability/components/special_request_link';
+import SpecialRequestLink, {
+  clearCache,
+} from '../../../../app/javascript/availability/components/special_request_link';
 
 beforeEach(() => {
   clearCache();
