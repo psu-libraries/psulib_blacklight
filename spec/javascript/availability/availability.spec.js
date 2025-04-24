@@ -9,22 +9,22 @@ global.jQuery = $;
 jest.mock(
   '../../../app/javascript/availability/libraries_locations.json',
   () => ({
-    closed_libraries: ['WSCRANTON'],
+    closed_libraries: ['NEWKEN'],
     locations: {
-      'STACKS-WS': 'Stacks - General Collection',
+      'STACKS-NK': 'Stacks - General Collection',
       'STACKS-AB': 'Stacks - General Collection',
       'STACKS-FE': 'Stacks - General Collection',
       'STACKS-YK': 'Stacks - General Collection',
     },
     libraries: {
-      WSCRANTON: 'Penn State Scranton',
+      NEWKEN: 'Penn State New Kensington',
       ABINGTON: 'Penn State Abington',
       FAYETTE: 'Penn State Fayette',
       YORK: 'Penn State York',
     },
     non_holdable: ['CHECKEDOUT'],
   }),
-  { virtual: true }
+  { virtual: true },
 );
 jest.mock('react-dom', () => ({
   render: jest.fn(),
@@ -48,8 +48,8 @@ describe('when a holdable record is only in a closed library', () => {
       [
         {
           catkey: '0',
-          libraryID: 'WSCRANTON',
-          locationID: 'STACKS-WS',
+          libraryID: 'NEWKEN',
+          locationID: 'STACKS-NK',
           holdable: 'true',
           reserveCollectionID: '',
         },
@@ -74,8 +74,8 @@ describe('when a holdable record is in a closed library and a holdable location'
       [
         {
           catkey: '0',
-          libraryID: 'WSCRANTON',
-          locationID: 'STACKS-WS',
+          libraryID: 'NEWKEN',
+          locationID: 'STACKS-NK',
           holdable: 'true',
           reserveCollectionID: '',
         },
@@ -107,8 +107,8 @@ describe('when a holdable record is in a closed library and a non holdable locat
       [
         {
           catkey: '0',
-          libraryID: 'WSCRANTON',
-          locationID: 'STACKS-WS',
+          libraryID: 'NEWKEN',
+          locationID: 'STACKS-NK',
           holdable: 'true',
           reserveCollectionID: '',
         },

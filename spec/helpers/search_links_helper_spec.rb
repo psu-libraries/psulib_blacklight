@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SearchLinksHelper, type: :helper do
+RSpec.describe SearchLinksHelper do
   describe '#other_subjectify' do
     let (:field_data) { ['Power Amplifiers',
                          'Research',

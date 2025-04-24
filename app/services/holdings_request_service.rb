@@ -98,6 +98,6 @@ class HoldingsRequestService
     end
 
     def libraries_data
-      @libraries_data ||= JSON.parse(File.read(Rails.root.join('app/javascript/availability/libraries_locations.json')))
+      @libraries_data ||= JSON.parse(Rails.root.join('app/javascript/availability/libraries_locations.json').read)
     end
 end

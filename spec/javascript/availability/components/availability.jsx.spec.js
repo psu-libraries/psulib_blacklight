@@ -17,7 +17,7 @@ describe('when the record has less than 5 holdings', () => {
 
   test('does not show the view more button or accessibility controls', () => {
     const { queryByRole, queryByText } = render(
-      <Availability structuredHoldings={structuredHoldings} />
+      <Availability structuredHoldings={structuredHoldings} />,
     );
 
     expect(queryByRole('button')).toBeNull();
@@ -39,7 +39,7 @@ describe('when the record has more than 5 but less than 1000 holdings', () => {
 
   test('shows the view more button and accessibility controls', () => {
     const { getByRole, queryByText } = render(
-      <Availability structuredHoldings={structuredHoldings} />
+      <Availability structuredHoldings={structuredHoldings} />,
     );
 
     expect(getByRole('button')).toHaveTextContent('View More');
@@ -49,7 +49,7 @@ describe('when the record has more than 5 but less than 1000 holdings', () => {
   describe('when the view more button is clicked', () => {
     test('expands visible holdings by 100 + updates a11y elements', () => {
       const { getByRole, getAllByRole, queryByText, queryAllByRole } = render(
-        <Availability structuredHoldings={structuredHoldings} />
+        <Availability structuredHoldings={structuredHoldings} />,
       );
 
       expect(queryAllByRole('row')).toHaveLength(6);
@@ -102,11 +102,11 @@ describe('when the record has summary holdings', () => {
       <Availability
         structuredHoldings={structuredHoldings}
         summaryHoldings={summaryHoldings}
-      />
+      />,
     );
 
     expect(
-      getByText('Pattee - Stacks 3: Holdings Summary')
+      getByText('Pattee - Stacks 3: Holdings Summary'),
     ).toBeInTheDocument();
   });
 
@@ -125,7 +125,7 @@ describe('when the record has summary holdings', () => {
     describe('when the view more button is clicked', () => {
       test('expands visible holdings by 500 + updates a11y elements', () => {
         const { getByRole, getAllByRole, queryByText, queryAllByRole } = render(
-          <Availability structuredHoldings={structuredHoldings} />
+          <Availability structuredHoldings={structuredHoldings} />,
         );
 
         expect(queryAllByRole('row')).toHaveLength(6);

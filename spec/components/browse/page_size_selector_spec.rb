@@ -15,17 +15,18 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
   end
 
   context 'when there is no corresponding path method for the action' do
-    before { controller.params = { action: 'bogus' } }
+    before { allow_any_instance_of(described_class).to receive(:params).and_return({ action: 'bogus' }) }
 
     specify do
       expect {
         node
-      }.to raise_error(NoMethodError, starting_with("undefined method `bogu_browse_path'"))
+      }.to raise_error(NoMethodError, include('undefined method', 'bogu_browse_path'))
     end
   end
 
   describe 'call number page selectors' do
-    before { controller.params = { nearby: 'abc', action: 'call_numbers' } }
+    before {
+ allow_any_instance_of(described_class).to receive(:params).and_return({ nearby: 'abc', action: 'call_numbers' }) }
 
     context 'when the length param is not provided' do
       specify do
@@ -34,7 +35,8 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
     end
 
     context 'when the length param is explicitly provided' do
-      before { controller.params = { length: 50, action: 'call_numbers' } }
+      before {
+ allow_any_instance_of(described_class).to receive(:params).and_return({ length: 50, action: 'call_numbers' }) }
 
       specify do
         expect(button.text).to include('50 per page')
@@ -49,7 +51,7 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
   end
 
   describe 'subject page selectors' do
-    before { controller.params = { action: 'subjects' } }
+    before { allow_any_instance_of(described_class).to receive(:params).and_return({ action: 'subjects' }) }
 
     context 'when the length param is not provided' do
       specify do
@@ -58,7 +60,8 @@ RSpec.describe Browse::PageSizeSelector, type: :component do
     end
 
     context 'when the length param is explicitly provided' do
-      before { controller.params = { length: 50, action: 'subjects' } }
+      before {
+ allow_any_instance_of(described_class).to receive(:params).and_return({ length: 50, action: 'subjects' }) }
 
       specify do
         expect(button.text).to include('50 per page')

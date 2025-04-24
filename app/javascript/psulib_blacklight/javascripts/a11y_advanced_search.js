@@ -1,6 +1,6 @@
 $(document).ready(() => {
   const advancedSearchPage = document.getElementsByClassName(
-    'advanced-search-form'
+    'advanced-search-form',
   );
   // Check to see if we are in the advanced search page
   if (advancedSearchPage.length > 0) {

@@ -4,6 +4,8 @@ class CatalogController < ApplicationController
   include BlacklightAdvancedSearch::Controller
   include BlacklightRangeLimit::ControllerOverride
   include Blacklight::Catalog
+  include Blacklight::Configurable
+  include Blacklight::SearchContext
   include Blacklight::Marc::Catalog
   include Blacklight::Searchable
   include Browse
@@ -192,6 +194,7 @@ class CatalogController < ApplicationController
                              show: "\uf0fe", # same as '<i class="fa fa-plus-square" aria-hidden="true"></i>',
                              hide: "\uf146"
                            }
+    config.add_facet_field 'pub_date_itsi', label: 'Publication Year', range: { segments: false }
 
     #
     # Facets that are configured but are not in the solr response
@@ -202,7 +205,6 @@ class CatalogController < ApplicationController
     config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'location_facet', label: 'Location', sort: 'index', show: false, limit: -1, single: true # just advanced search
-    config.add_facet_field 'pub_date_itsi', label: 'Publication Year', range: { segments: false }
     config.add_facet_field 'subject_browse_facet', show: false, limit: 0
     config.add_facet_field 'subject_facet', show: false
     config.add_facet_field 'title_sort', label: 'Title', show: false
@@ -395,6 +397,9 @@ class CatalogController < ApplicationController
     # since we aren't specifying it otherwise.
 
     config.add_search_field 'all_fields', label: 'Keyword'
+
+    # Add Crawler Detector. If the session is a crawler we will not save the search
+    config.crawler_detector = lambda { |req| req.env['HTTP_USER_AGENT'] =~ /bot|nagios|facebook|python-requests|Python|Kuma|Grammarly/ }
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate

@@ -12,7 +12,7 @@ describe('bookCovers', () => {
       '</span>';
 
     expect(bookCovers.getBibkeys()).toMatch(
-      'OCLC:8151989,ISBN:3801210022,LCCN:62022109'
+      'OCLC:8151989,ISBN:3801210022,LCCN:62022109',
     );
   });
 
@@ -37,10 +37,24 @@ describe('bookCovers', () => {
         is_epub_drm_enabled: false,
       },
     };
+    document.body.innerHTML =
+      '<span class="fas fa-responsive-sizing faspsu-proceeding-congress" ' +
+      '    data-isbn="[&quot;9780972658355&quot;]" ' +
+      '    data-title="Test Book Title: A Subtitle / Foo Bar" ' +
+      '    data-type="bibkeys">' +
+      '</span>';
+
     const replaceWith = jest.fn();
-    const jQuery = jest.fn(() => ({
-      replaceWith,
-    }));
+    const jQuery = jest.fn((selector) => {
+      // Verify the selector is targeting the element with the correct ISBN
+      expect(selector).toBe('[data-isbn*="9780972658355"]');
+      return {
+        length: 1,
+        data: (key) =>
+          key === 'title' ? 'Test Book Title: A Subtitle / Foo Bar' : null,
+        replaceWith,
+      };
+    });
 
     bookCovers.parseXhrGoogleResponse(response, jQuery);
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'browse/authors', type: :view do
+RSpec.describe 'browse/authors' do
   before do
     controller.params = { action: 'authors' }
     assign(:author_list, instance_spy(BrowseList, entries: []))
@@ -10,9 +10,9 @@ RSpec.describe 'browse/authors', type: :view do
   end
 
   it 'renders an error message when there are no items to show' do
-    expect(rendered).not_to have_selector 'table'
-    expect(rendered).to have_selector '.alert-warning h4',
-                                      text: 'No authors found. Try the following tips to revise your search:'
-    expect(rendered).to have_selector 'ol'
+    expect(rendered).to have_no_css 'table'
+    expect(rendered).to have_css '.alert-warning h4',
+                                 text: 'No authors found. Try the following tips to revise your search:'
+    expect(rendered).to have_css 'ol'
   end
 end

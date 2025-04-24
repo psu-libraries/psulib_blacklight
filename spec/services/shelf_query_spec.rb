@@ -17,7 +17,7 @@ RSpec.describe ShelfQuery do
   context 'when the Solr configuration has only one shard' do
     # @note Technically, RSolr is returning RSolr::HashWithResponse but it's just a hash under the hood.
     let(:json_response) do
-      HashWithIndifferentAccess.new(
+      ActiveSupport::HashWithIndifferentAccess.new(
         {
           'responseHeader' => {
             'zkConnected' => true,
@@ -63,7 +63,7 @@ RSpec.describe ShelfQuery do
   context 'when the Solr configuration has more than one shard' do
     # @note Technically, RSolr is returning RSolr::HashWithResponse but it's just a hash under the hood.
     let(:json_response) do
-      HashWithIndifferentAccess.new(
+      ActiveSupport::HashWithIndifferentAccess.new(
         {
           'responseHeader' => {
             'zkConnected' => true,

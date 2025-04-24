@@ -21,12 +21,12 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
         : null;
 
       const [visibleHoldings, setVisibleHoldings] = useState(
-        holdings.slice(0, initialVisibleCount)
+        holdings.slice(0, initialVisibleCount),
       );
       const [moreHoldings, setMoreHoldings] = useState(
         holdings.length > initialVisibleCount
           ? holdings.slice(initialVisibleCount)
-          : []
+          : [],
       );
       const [lastA11yIndex, setLastA11yIndex] = useState(0);
 
@@ -57,11 +57,10 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
           <h5>
             {`${summary.library} (${summary.countAtLibrary} ${summary.pluralize})`}
           </h5>
-
+          <h5 className="sr-only">
+            Listing where to find this item in the library.
+          </h5>
           <table id={`holdings-${uniqueID}`} className="table table-sm">
-            <caption className="sr-only">
-              Listing where to find this item in our buildings.
-            </caption>
             <thead className="thead-light">
               <tr>
                 <th>Call number</th>

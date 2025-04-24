@@ -11,7 +11,7 @@ RSpec.describe Browse::CallNumberToggle, type: :component do
     let (:node) { render_inline(instance) }
 
     it 'renders the component' do
-      expect(node).to have_selector('#moreCallNumbers123Btn')
+      expect(node).to have_css('#moreCallNumbers123Btn')
     end
   end
 

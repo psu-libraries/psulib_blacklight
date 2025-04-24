@@ -2,8 +2,8 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Search Results', type: :feature do
-  describe 'search result page', js: true do
+RSpec.describe 'Search Results' do
+  describe 'search result page', :js do
     before do
       visit '/?search_field=all_fields&q=history'
     end
@@ -23,8 +23,8 @@ RSpec.describe 'Search Results', type: :feature do
     context 'when there are results to display' do
       it 'displays results content' do
         within '#documents' do
-          expect(page).to have_selector 'article[data-document-id="124958"]'
-          expect(page).not_to have_content 'No results found for your search'
+          expect(page).to have_css 'article[data-document-id="124958"]'
+          expect(page).to have_no_content 'No results found for your search'
         end
       end
     end
@@ -41,7 +41,7 @@ RSpec.describe 'Search Results', type: :feature do
           expect(page).to have_link 'Libraries worldwide (WorldCat)'
           expect(page).to have_link 'Public domain books and journals: HathiTrust'
           expect(page).to have_link 'Articles: Google Scholar'
-          expect(page).not_to have_selector 'article[data-document-id="124958"]'
+          expect(page).to have_no_css 'article[data-document-id="124958"]'
         end
       end
     end

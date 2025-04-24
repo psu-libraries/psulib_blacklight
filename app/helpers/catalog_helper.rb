@@ -55,6 +55,7 @@ module CatalogHelper
     isbn_values = document.fetch(:isbn_valid_ssm, [])
     oclc_values = document.fetch(:oclc_number_ssim, [])
     lccn_values = document.fetch(:lccn_ssim, [])
+    title = document.fetch(:title_display_ssm, [])[0]
 
     if isbn_values.empty? && oclc_values.empty? && lccn_values.empty?
       content_tag(:span, '',
@@ -65,7 +66,8 @@ module CatalogHelper
                   data: { isbn: isbn_values,
                           oclc: oclc_values,
                           lccn: lccn_values,
-                          type: 'bibkeys' })
+                          type: 'bibkeys',
+                          title: title || 'unknown' })
     end
   end
 
@@ -102,26 +104,6 @@ module CatalogHelper
       field_def.placeholder_text
     else
       t('blacklight.search.form.search.placeholder')
-    end
-  end
-
-  def search_bar_field
-    case params[:action]
-    when 'call_numbers'
-      case params[:classification]
-      when 'lc'
-        'browse_lc'
-      when 'dewey'
-        'browse_dewey'
-      end
-    when 'authors'
-      'browse_authors'
-    when 'subjects'
-      'browse_subjects'
-    when 'titles'
-      'browse_titles'
-    else
-      params[:search_field]
     end
   end
 end

@@ -6,20 +6,12 @@ x-web_env: &web_env
       SETTINGS__solr__password: catalog
       SETTINGS__solr__host: solr
       SETTINGS__solr__collection: 'psul_catalog'
-      SETTINGS__redis__sessions__uri: "redis://redis:6379/3"
 services:
-  redis:
-    image: redis:7.0.7
-    volumes:
-      - redis-data:/data
-    ports:
-    - "6379:6379"
   web:
     tty: true
     stdin_open: true
     <<: *web_env
     depends_on: 
-      - redis
       - solr
     command: 
       - /app/bin/startup
@@ -49,7 +41,6 @@ services:
       "solr -c && solr auth enable -credentials catalog:catalog -z localhost:9983; solr stop && solr -c -f",
     ]
 volumes:
-  redis-data:
   bundle-data:
   node-data:
   solr-data:
