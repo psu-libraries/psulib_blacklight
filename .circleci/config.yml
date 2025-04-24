@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
    docker: circleci/docker@2.6.0
-   browser-tools: circleci/browser-tools@1.4.8
+   browser-tools: circleci/browser-tools@1.5.2
 
 jobs:
   release:
@@ -23,14 +23,12 @@ jobs:
             git clone $CONFIG_REPO
             cd catalog-config
             /usr/local/bin/pr-release clusters/prod/manifests/psulib_blacklight/prod.yaml
-
   publish:
-    docker:
-      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v4.0.4
-        user: root
+    executor:
+      name: docker/docker
+      tag: "3.8"
     steps:
       - setup_remote_docker:
-          version: default
           docker_layer_caching: true
       - checkout
       - docker/check:
@@ -93,7 +91,7 @@ jobs:
     - run:
         name: "Update Node.js and npm"
         command: |
-          curl -sSL "https://nodejs.org/dist/v16.13.1/node-v16.13.1-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v16.13.1-linux-x64/bin/node
+          curl -sSL "https://nodejs.org/dist/v22.14.0/node-v22.14.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v22.14.0-linux-x64/bin/node
           curl -L https://npmjs.com/install.sh | sudo bash
     - run:
         name: "Bundle"

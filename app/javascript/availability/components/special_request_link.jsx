@@ -67,6 +67,9 @@ const SpecialRequestLink = ({ holding, locationText }) => {
     if (pubDate) {
       linkUrl += `&date=${pubDate}`;
     }
+    if (catkey) {
+      linkUrl += `&catkey=${catkey}`;
+    }
     return linkUrl;
   };
 

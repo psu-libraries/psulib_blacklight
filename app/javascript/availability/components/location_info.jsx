@@ -8,6 +8,17 @@ const LocationInfo = ({ holding }) => {
       ? availability.allLocations[locationID]
       : '';
 
+  // Microform
+  if (availability.isMicroform(holding)) {
+    return (
+      <>
+        {mapLocation(holding.locationID)}
+        <br />
+        <SpecialRequestLink holding={holding} />
+      </>
+    );
+  }
+
   // Location information presented to the user is different based on a few scenarios
   // First, if it's related to ILL
   if (availability.isIllLink(holding)) {
