@@ -1,13 +1,11 @@
-<% doc_presenter = document_presenter(document) %>
+å<% doc_presenter = document_presenter(document) %>
 
 <div class="row">
   <div class="col-sm-3 order-sm-10">
-    <div class="document-thumbnail">
-      <%= render(Blacklight::Document::ThumbnailComponent.new(
-                   presenter: document_presenter(document),
-                   counter: document_counter_with_offset(document_counter)
-                 )) %>
-    </div>
+    <%= render(Blacklight::Document::ThumbnailComponent.new(
+                  presenter: document_presenter(document),
+                  counter: document_counter_with_offset(document_counter)
+                )) %>
   </div>
 
   <div class="col-sm-9 order-sm-1">
