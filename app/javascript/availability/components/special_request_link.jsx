@@ -157,7 +157,6 @@ const SpecialRequestLink = ({ holding, locationText }) => {
     ) {
       text = 'Request Scan - Penn State Users';
     }
-    console.log(holding, hasData, cache, text);
     return text || availability.illiadLocations[holding.locationID];
   };
 
