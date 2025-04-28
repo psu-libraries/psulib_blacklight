@@ -6,6 +6,9 @@ import 'bootstrap';
 global.$ = $;
 global.jQuery = $;
 
+// mock Bootstrap's .tooltip() in Jest
+$.fn.tooltip = jest.fn();
+
 jest.mock(
   '../../../app/javascript/availability/libraries_locations.json',
   () => ({

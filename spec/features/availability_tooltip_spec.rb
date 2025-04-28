@@ -16,7 +16,7 @@ RSpec.describe 'Availability Tooltip', :vcr do
       visit '/catalog/2169033'
       click_on 'View More'
       sleep(0.5)
-      find('i[data-toggle="tooltip"]').hover
+      find('i[data-bs-toggle="tooltip"]').hover
       expect(find('i[aria-describedby^="tooltip"]')).to be_present
       expect(page).to have_content('Pagination in this v.2 is off by 3 from original')
     end

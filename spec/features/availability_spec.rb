@@ -67,13 +67,13 @@ RSpec.describe 'Availability', :vcr do
     it 'that has a public note' do
       visit '/?utf8=✓&search_field=all_fields&q=6962697'
       click_on('View Availability')
-      expect(page).to have_css 'i.fa-info-circle[data-toggle="tooltip"][data-original-title="Struwwelpeter"]'
+      expect(page).to have_css 'i.fa-info-circle[data-bs-toggle="tooltip"][data-original-title="Struwwelpeter"]'
     end
 
     it 'that does NOT have a public note' do
       visit '/?utf8=✓&search_field=all_fields&q=2422046'
       click_on('View Availability')
-      expect(page).to have_no_css 'i.fa-info-circle[data-toggle="tooltip"]'
+      expect(page).to have_no_css 'i.fa-info-circle[data-bs-toggle="tooltip"]'
     end
 
     it 'that has summary holdings information' do
@@ -125,12 +125,12 @@ RSpec.describe 'Availability', :vcr do
 
     it 'that has a public note' do
       visit '/catalog/6962697'
-      expect(page).to have_css 'i.fa-info-circle[data-toggle="tooltip"][data-original-title="Struwwelpeter"]'
+      expect(page).to have_css 'i.fa-info-circle[data-bs-toggle="tooltip"][data-original-title="Struwwelpeter"]'
     end
 
     it 'that does NOT have a public note' do
       visit '/?utf8=✓&search_field=all_fields&q=2422046'
-      expect(page).to have_no_css 'i.fa-info-circle[data-toggle="tooltip"]'
+      expect(page).to have_no_css 'i.fa-info-circle[data-bs-toggle="tooltip"]'
     end
 
     it 'that has an item on course reserve' do
