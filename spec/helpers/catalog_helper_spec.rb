@@ -44,7 +44,7 @@ RSpec.describe CatalogHelper do
 
     context 'when a bound info is "null"' do
       before do
-        field_data << "null"
+        field_data << 'null'
       end
 
       it 'assembles all the info correctly and ignores the "null"' do
