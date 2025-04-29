@@ -41,6 +41,19 @@ RSpec.describe CatalogHelper do
         expect(link).to eql link_text
       end
     end
+
+    context 'when a bound info is "null"' do
+      before do
+        field_data << "null"
+      end
+
+      it 'assembles all the info correctly and ignores the "null"' do
+        link_text = '<span>AY67.N5W7 1922-24 (Microfilm, Microfiche, etc.) bound in <a href="/catalog/355035">The ' \
+                    'high-caste Hindu woman / With introduction by Rachel L. Bodley</a></span>'
+        link = bound_info bound_info_doc
+        expect(link).to eql link_text
+      end
+    end
   end
 
   describe '#subjectify' do

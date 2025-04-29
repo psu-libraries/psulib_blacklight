@@ -10,6 +10,8 @@ module CatalogHelper
 
     contents = field_data.map do |item|
       json = JSON.parse item
+      next if json.nil?
+
       if json['bound_catkey'].nil?
         json['bound_title']
       else
@@ -18,7 +20,7 @@ module CatalogHelper
       end
     end
 
-    content_tag 'span', contents.join('<br>'), nil, false
+    content_tag 'span', contents.compact.join('<br>'), nil, false
   end
 
   def bound_format(bound_format)
