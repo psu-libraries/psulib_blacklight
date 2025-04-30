@@ -54,7 +54,7 @@ describe('bookCovers', () => {
         data: (key) =>
           key === 'title' ? 'Test Book Title: A Subtitle / Foo Bar' : null,
         replaceWith,
-        parent
+        parent,
       };
     });
 
