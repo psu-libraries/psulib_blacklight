@@ -2,10 +2,12 @@
 
 <div class="row">
   <div class="col-sm-3 order-sm-10">
-    <%= render(Blacklight::Document::ThumbnailComponent.new(
-                  presenter: document_presenter(document),
-                  counter: document_counter_with_offset(document_counter)
-                )) %>
+      <%= render(
+            Blacklight::Document::ThumbnailComponent.new(
+              presenter: document_presenter(document),
+              counter: document_counter_with_offset(document_counter)
+            )
+          ) %>
   </div>
 
   <div class="col-sm-9 order-sm-1">
