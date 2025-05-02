@@ -65,6 +65,8 @@ const bookCovers = {
         if (colonIndex > -1) title = title.substring(0, colonIndex);
         else if (slashIndex > -1) title = title.substring(0, slashIndex);
 
+        title = title.replaceAll("\"", "'");
+
         const parent = target.parent();
         if (parent) parent.removeAttr('aria-hidden');
 
