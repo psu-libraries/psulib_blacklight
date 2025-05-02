@@ -68,7 +68,7 @@ const bookCovers = {
         title = title.replaceAll('"', "&quot;");
 
         const parent = target.parent();
-        if (parent) parent.removeAttr('aria-hidden');
+        if (parent && parent.is('a')) parent.removeAttr('aria-hidden');
 
         const altText = `Cover image for ${title.trim()}`;
         target.replaceWith(
