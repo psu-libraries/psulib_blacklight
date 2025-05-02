@@ -1,5 +1,5 @@
+import $ from 'jquery';
 import bookCovers from '../../../app/javascript/book_covers';
-import $ from 'jquery'
 
 describe('bookCovers', () => {
   const response = {
@@ -68,19 +68,19 @@ describe('bookCovers', () => {
     expect(replaceWith.mock.calls.length).toBe(1);
   });
 
-  it('formats accessibility attributes correctly', () => {    
+  it('formats accessibility attributes correctly', () => {
     bookCovers.parseXhrGoogleResponse(response, $);
 
     const img = document.querySelector('img');
     expect(img).not.toBeNull();
-    
-    const expectedAltText = "Cover image for Test Book \"Title\"";
+
+    const expectedAltText = 'Cover image for Test Book "Title"';
     expect(img.getAttribute('alt')).toBe(expectedAltText);
     expect(img.getAttribute('aria-label')).toBe(expectedAltText);
-    
+
     const parent = img.parentNode;
-    expect(parent).not.toBeNull()
-    expect(parent.tagName === 'A').toBe(true)
-    expect(parent.getAttribute('aria-hidden')).toBeNull()
-  })
+    expect(parent).not.toBeNull();
+    expect(parent.tagName === 'A').toBe(true);
+    expect(parent.getAttribute('aria-hidden')).toBeNull();
+  });
 });
