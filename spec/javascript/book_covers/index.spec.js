@@ -45,6 +45,7 @@ describe('bookCovers', () => {
       '</span>';
 
     const replaceWith = jest.fn();
+    const parent = jest.fn();
     const jQuery = jest.fn((selector) => {
       // Verify the selector is targeting the element with the correct ISBN
       expect(selector).toBe('[data-isbn*="9780972658355"]');
@@ -53,6 +54,7 @@ describe('bookCovers', () => {
         data: (key) =>
           key === 'title' ? 'Test Book Title: A Subtitle / Foo Bar' : null,
         replaceWith,
+        parent,
       };
     });
 
