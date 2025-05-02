@@ -29,6 +29,7 @@
     "compression-webpack-plugin": "9",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
+    "jquery": "^3.7.1",
     "mini-css-extract-plugin": "^2.7.6",
     "mirador": "^3.3.0",
     "popper.js": "^1.14.7",
