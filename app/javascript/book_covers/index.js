@@ -65,7 +65,7 @@ const bookCovers = {
         if (colonIndex > -1) title = title.substring(0, colonIndex);
         else if (slashIndex > -1) title = title.substring(0, slashIndex);
 
-        title = title.replace("\"", "'");
+        title = title.replace('"', "'");
 
         target.replaceWith(
           `<img class="img-fluid" src="${thumbUrlZoom1}" alt="Cover image for ${title.trim()}">`,
