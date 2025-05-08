@@ -1,6 +1,12 @@
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SpecialRequestLink from '../../../../app/javascript/availability/components/special_request_link';
+import SpecialRequestLink, {
+  clearCache,
+} from '../../../../app/javascript/availability/components/special_request_link';
+
+beforeEach(() => {
+  clearCache();
+});
 
 describe('when locationText is sent to SpecialRequestLink', () => {
   const baseUrl = 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30';
