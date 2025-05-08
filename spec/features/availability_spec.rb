@@ -16,7 +16,7 @@ RSpec.describe 'Availability', :vcr do
   describe 'User searches for a record', :js do
     it 'that has holdings and a \'View Availability\' button' do
       visit '/?utf8=✓&search_field=all_fields&q=9781599901091'
-      expect(page).to have_css 'button[data-target="#availability-5112336"]'
+      expect(page).to have_css 'button[data-bs-target="#availability-5112336"]'
     end
 
     it 'that has holdings but none are available' do
@@ -44,7 +44,7 @@ RSpec.describe 'Availability', :vcr do
 
     it 'and clicks the \'View Availability\' button to display and hide holdings' do
       visit '/?utf8=✓&search_field=all_fields&q=9781599901091'
-      expect(page).to have_css 'button[data-target="#availability-5112336"]'
+      expect(page).to have_css 'button[data-bs-target="#availability-5112336"]'
       expect(page).to have_no_css '#availability-5112336'
       click_on('View Availability')
       expect(page).to have_no_css '.availability-5112336', wait: 3
@@ -54,7 +54,7 @@ RSpec.describe 'Availability', :vcr do
 
     it 'that is an online resource and has no holdings to display' do
       visit '/?utf8=✓&search_field=all_fields&q=D-humanos+Arruti%2C+Mariana'
-      expect(page).to have_no_css 'button[data-target="#availability-22091400"]'
+      expect(page).to have_no_css 'button[data-bs-target="#availability-22091400"]'
       expect(page).to have_no_css '#availability-22091400'
     end
 
@@ -85,7 +85,7 @@ RSpec.describe 'Availability', :vcr do
     context 'when all items are on course reserves' do
       it 'hides the hold button' do
         visit '/?search_field=all_fields&q=Employment+law'
-        expect(page).to have_css 'button[data-target="#availability-9186426"]'
+        expect(page).to have_css 'button[data-bs-target="#availability-9186426"]'
         click_on('View Availability')
         expect(page).to have_no_link(
           'I Want It', href: "#{hold_button_url}9186426"
@@ -96,7 +96,7 @@ RSpec.describe 'Availability', :vcr do
     context 'when not all items are on course reserves' do
       it 'displays the hold button' do
         visit '/?search_field=all_fields&q=+40+short+stories+%3A+a+portable+anthology'
-        expect(page).to have_css 'button[data-target="#availability-23783767"]'
+        expect(page).to have_css 'button[data-bs-target="#availability-23783767"]'
         click_on('View Availability')
         expect(page).to have_link(
           'I Want It', href: "#{hold_button_url}23783767"
