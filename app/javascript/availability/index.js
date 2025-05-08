@@ -412,7 +412,7 @@ const availability = {
     });
 
     // initialize tooltips
-    $('i.fas.fa-info-circle[data-toggle="tooltip"]').tooltip();
+    $('i.fas.fa-info-circle[data-bs-toggle="tooltip"]').tooltip();
   },
 
   availabilityDataStructurer(holdingMetadata) {

@@ -2,10 +2,6 @@
   .navbar-toggler {
     border-color: $navbar-light-toggler-border-color;
     color: $navbar-light-active-color;
-
-    @include hover-focus {
-      color: $navbar-light-active-color;
-    }
   }
 
   .navbar-toggler-icon {
