@@ -78,6 +78,8 @@ Rails.application.routes.draw do
   get '/about' => 'high_voltage/pages#show', id: 'about'
   get '/search_tips' => 'high_voltage/pages#show', id: 'search_tips'
 
+  get '/widget' => 'readability_widget#widget'
+
   # catchall for not predefined requests - keep this at the very bottom of the routes file
   match '*catch_unknown_routes' => 'errors#not_found', via: :all
 end
