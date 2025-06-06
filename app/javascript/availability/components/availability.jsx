@@ -36,7 +36,7 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
           (holdingIndex - initialVisibleCount) % pageSize === 0);
 
       function tooltipInit() {
-        $('i.fas.fa-info-circle[data-toggle="tooltip"]').tooltip();
+        $('i.fas.fa-info-circle[data-bs-toggle="tooltip"]').tooltip();
       }
 
       const viewMore = () => {

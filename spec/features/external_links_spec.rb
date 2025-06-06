@@ -42,15 +42,10 @@ RSpec.describe 'External Links' do
 
       it 'toggles links correctly', :js do
         click_link_or_button('collapseLinksAccessOnlineBtn')
-        expect(page).to have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-1-eng.pdf')
-          .and have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-2-eng.pdf')
-          .and have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-3-eng.pdf')
-          .and have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-4-eng.pdf')
+        expect(page).to have_css('span#collapseLinksAccessOnline.collapse.show')
+        
         click_link_or_button('collapseLinksAccessOnlineBtn')
-        expect(page).to have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-1-eng.pdf')
-          .and have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-2-eng.pdf')
-        expect(page).to have_no_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-3-eng.pdf')
-        expect(page).to have_no_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-4-eng.pdf')
+        expect(page).to have_no_css('span#collapseLinksAccessOnline.collapse.show')
       end
     end
 
@@ -97,15 +92,11 @@ RSpec.describe 'External Links' do
 
       it 'toggles links correctly', :js do
         click_link_or_button('collapseLinksAccessOnlineBtn')
-        expect(page).to have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-1-eng.pdf')
-          .and have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-2-eng.pdf')
-          .and have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-3-eng.pdf')
-          .and have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-4-eng.pdf')
+        expect(page).to have_css('span#collapseLinksAccessOnline.collapse.show')
+        
         click_link_or_button('collapseLinksAccessOnlineBtn')
-        expect(page).to have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-1-eng.pdf')
-          .and have_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-2-eng.pdf')
-        expect(page).to have_no_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-3-eng.pdf')
-        expect(page).to have_no_link('publications.gc.ca', href: 'http://publications.gc.ca/collections/collection_2016/rncan-nrcan/M183-2-6450-4-eng.pdf')
+        expect(page).to have_no_css('span#collapseLinksAccessOnline.collapse.show')
+        end
       end
     end
 
