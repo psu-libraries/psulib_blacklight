@@ -6057,7 +6057,7 @@ minimist@^1.2.0, minimist@^1.2.6:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.8.tgz#c1a464e7693302e082a075cee0c057741ac4772c"
   integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
 
-mirador@^3.4.0:
+mirador@^3.3.0:
   version "3.4.3"
   resolved "https://registry.yarnpkg.com/mirador/-/mirador-3.4.3.tgz#1b083bd037b851d1389758f3c86eb94832b00ec6"
   integrity sha512-yHoug0MHy4e9apykbbBhK+4CmbZS94zMxmugw2E2VX6iB0b2PKKY0JfYr/QfXh9P29YnWAbymaXJVpgbHVpTVw==

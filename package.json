@@ -31,7 +31,7 @@
     "css-minimizer-webpack-plugin": "^5.0.1",
     "jquery": "^3.7.1",
     "mini-css-extract-plugin": "^2.7.6",
-    "mirador": "^3.4.0",
+    "mirador": "^3.3.0",
     "popper.js": "^1.14.7",
     "prop-types": "^15.7.2",
     "rails-ujs": "^5.2.6",
