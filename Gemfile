@@ -34,7 +34,7 @@ gem 'stackprof'
 
 gem 'blacklight', '~> 7.35'
 gem 'blacklight_advanced_search', '~> 8.0.0.alpha'
-gem 'blacklight-marc', '~> 7.0'
+gem 'blacklight-marc', '~> 8.0'
 gem 'blacklight_range_limit'
 
 group :development do
