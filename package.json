@@ -23,7 +23,7 @@
     "blacklight-frontend": "7.33.1",
     "blacklight-marc": "https://github.com/projectblacklight/blacklight-marc.git#latest",
     "blacklight-range-limit": "https://github.com/projectblacklight/blacklight_range_limit.git#latest",
-    "bootstrap": "4.x",
+    "bootstrap": "5.x",
     "bootstrap-select": "^1.13.18",
     "caniuse-lite": "^1.0.30000697",
     "compression-webpack-plugin": "9",
