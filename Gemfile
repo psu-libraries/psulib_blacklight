@@ -24,7 +24,7 @@ gem 'net-smtp', require: false
 gem 'okcomputer', '~> 1.18'
 gem 'puma', '~> 6.5'
 gem 'rack-mini-profiler'
-gem 'rails', '~> 7.1.4.1'
+gem 'rails', '~> 7.1'
 gem 'rsolr', '>= 2.5'
 gem 'rubyzip'
 gem 'shakapacker', '= 7.1'
@@ -34,7 +34,7 @@ gem 'stackprof'
 
 gem 'blacklight', '~> 7.35'
 gem 'blacklight_advanced_search', '~> 8.0.0.alpha'
-gem 'blacklight-marc', '~> 7.0'
+gem 'blacklight-marc', '~> 8.0'
 gem 'blacklight_range_limit'
 
 group :development do
