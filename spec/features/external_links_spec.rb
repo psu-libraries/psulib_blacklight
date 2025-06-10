@@ -96,7 +96,6 @@ RSpec.describe 'External Links' do
         
         click_link_or_button('collapseLinksAccessOnlineBtn')
         expect(page).to have_no_css('span#collapseLinksAccessOnline.collapse.show')
-        end
       end
     end
 

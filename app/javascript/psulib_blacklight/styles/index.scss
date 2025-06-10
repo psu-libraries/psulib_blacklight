@@ -2,6 +2,18 @@
 @import 'theme';
 @import 'psulib_utilities';
 
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "dark": $psu-dark-blue,
+    "light": #f2f2f2
+  )
+);
+
 // Twitter bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import 'twitter_bootstrap_overrides';
