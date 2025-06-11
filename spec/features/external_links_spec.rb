@@ -43,7 +43,7 @@ RSpec.describe 'External Links' do
       it 'toggles links correctly', :js do
         click_link_or_button('collapseLinksAccessOnlineBtn')
         expect(page).to have_css('span#collapseLinksAccessOnline.collapse.show')
-        
+
         click_link_or_button('collapseLinksAccessOnlineBtn')
         expect(page).to have_no_css('span#collapseLinksAccessOnline.collapse.show')
       end
@@ -93,7 +93,7 @@ RSpec.describe 'External Links' do
       it 'toggles links correctly', :js do
         click_link_or_button('collapseLinksAccessOnlineBtn')
         expect(page).to have_css('span#collapseLinksAccessOnline.collapse.show')
-        
+
         click_link_or_button('collapseLinksAccessOnlineBtn')
         expect(page).to have_no_css('span#collapseLinksAccessOnline.collapse.show')
       end
