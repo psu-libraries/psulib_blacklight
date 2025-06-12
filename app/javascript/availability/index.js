@@ -10,6 +10,8 @@ import itemTypes from './item_types.json';
 import reserveCirculationRules from './reserve_circulation_rules.json';
 import Availability from './components/availability';
 import Snippet from './components/snippet';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import Tooltip from 'bootstrap/js/dist/tooltip';
 
 const availability = {
   // Load Sirsi locations
@@ -412,7 +414,9 @@ const availability = {
     });
 
     // initialize tooltips
-    $('i.fas.fa-info-circle[data-bs-toggle="tooltip"]').tooltip();
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
+              new Tooltip(el);
+            });
   },
 
   availabilityDataStructurer(holdingMetadata) {

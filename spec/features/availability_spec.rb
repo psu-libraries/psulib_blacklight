@@ -67,7 +67,7 @@ RSpec.describe 'Availability', :vcr do
     it 'that has a public note' do
       visit '/?utf8=✓&search_field=all_fields&q=6962697'
       click_on('View Availability')
-      expect(page).to have_css 'i.fa-info-circle[data-bs-toggle="tooltip"][data-original-title="Struwwelpeter"]'
+      expect(page).to have_css 'i.fa-info-circle[data-bs-toggle="tooltip"][data-bs-original-title="Struwwelpeter"]'
     end
 
     it 'that does NOT have a public note' do
@@ -125,7 +125,7 @@ RSpec.describe 'Availability', :vcr do
 
     it 'that has a public note' do
       visit '/catalog/6962697'
-      expect(page).to have_css 'i.fa-info-circle[data-bs-toggle="tooltip"][data-original-title="Struwwelpeter"]'
+      expect(page).to have_css 'i.fa-info-circle[data-bs-toggle="tooltip"][data-bs-original-title="Struwwelpeter"]'
     end
 
     it 'that does NOT have a public note' do

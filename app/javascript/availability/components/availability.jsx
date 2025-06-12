@@ -4,6 +4,8 @@ import A11yRow from './a11y_row';
 import HoldingDetails from './holding_details';
 import SummaryHoldings from './summary_holdings';
 import ViewMoreButton from './view_more_button';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import Tooltip from 'bootstrap/js/dist/tooltip';
 
 const Availability = ({ structuredHoldings, summaryHoldings }) => (
   <>
@@ -36,7 +38,9 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
           (holdingIndex - initialVisibleCount) % pageSize === 0);
 
       function tooltipInit() {
-        $('i.fas.fa-info-circle[data-bs-toggle="tooltip"]').tooltip();
+        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
+          new Tooltip(el);
+        });
       }
 
       const viewMore = () => {

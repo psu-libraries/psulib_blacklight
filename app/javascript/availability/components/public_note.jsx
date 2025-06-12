@@ -9,7 +9,7 @@ const PublicNote = ({ holding }) => {
     <i
       className="fas fa-info-circle"
       data-bs-toggle="tooltip"
-      data-placement="right"
+      data-bs-placement="right"
       title={holding.publicNote}
     />
   );
