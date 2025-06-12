@@ -5,13 +5,13 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Tooltip from 'bootstrap/js/dist/tooltip';
 import locations from './libraries_locations.json';
 import itemTypes from './item_types.json';
 import reserveCirculationRules from './reserve_circulation_rules.json';
 import Availability from './components/availability';
 import Snippet from './components/snippet';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Tooltip from 'bootstrap/js/dist/tooltip';
 
 const availability = {
   // Load Sirsi locations
@@ -415,8 +415,8 @@ const availability = {
 
     // initialize tooltips
     document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
-              new Tooltip(el);
-            });
+      el.tooltipInstance = new Tooltip(el);
+    });
   },
 
   availabilityDataStructurer(holdingMetadata) {

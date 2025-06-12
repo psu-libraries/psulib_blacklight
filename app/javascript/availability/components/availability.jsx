@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { Fragment, useState } from 'react';
+import Tooltip from 'bootstrap/js/dist/tooltip';
 import A11yRow from './a11y_row';
 import HoldingDetails from './holding_details';
 import SummaryHoldings from './summary_holdings';
 import ViewMoreButton from './view_more_button';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import Tooltip from 'bootstrap/js/dist/tooltip';
 
 const Availability = ({ structuredHoldings, summaryHoldings }) => (
   <>
@@ -38,9 +38,11 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
           (holdingIndex - initialVisibleCount) % pageSize === 0);
 
       function tooltipInit() {
-        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach((el) => {
-          new Tooltip(el);
-        });
+        document
+          .querySelectorAll('[data-bs-toggle="tooltip"]')
+          .forEach((el) => {
+            el.tooltipInstance = new Tooltip(el);
+          });
       }
 
       const viewMore = () => {
