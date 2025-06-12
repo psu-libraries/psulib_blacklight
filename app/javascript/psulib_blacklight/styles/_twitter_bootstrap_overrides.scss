@@ -1,3 +1,13 @@
 .navbar {
   display: block;
 }
+
+.container {
+  max-width: 1140px;
+}
+
+a {
+  background-color: transparent;
+  color: $psu-blue;
+  text-decoration: none;
+}

@@ -5,7 +5,7 @@ import './javascripts';
 
 // Vendor
 import 'popper.js/dist/umd/popper';
-import 'bootstrap/dist/js/bootstrap';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'bootstrap-select/dist/css/bootstrap-select.min.css';
 import 'bootstrap-select/dist/js/bootstrap-select';
 

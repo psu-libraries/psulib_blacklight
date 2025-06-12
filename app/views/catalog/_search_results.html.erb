@@ -25,11 +25,11 @@
   </div>
 
   <% if !@response.empty? && current_user.present? %>
-    <div class='float-right'>
+    <div class='float-end'>
       <%= link_to 'Bookmark All On Page', '#', id: 'bookmark-all', class: 'btn btn-primary' %>
     </div>
   <% elsif !@response.empty? && current_user.blank? %>
-    <div class='float-right'>
+    <div class='float-end'>
       <%= link_to 'Bookmark All On Page', "/login?fullpath=#{u(request.fullpath)}",
                   id: 'bookmark-all', class: 'btn btn-primary' %>
     </div>

@@ -4,7 +4,7 @@
   <div class="blacklight-availability col">
     <div class="availability" data-keys="<%= id %>" data-summary-holdings="<%= document[:summary_holdings_struct]&.first %>">
       <h4>Availability</h4>
-      <div class="text-right">
+      <div class="text-end">
         <%= render Browse::NearbyButton.new(call_numbers: document.preferred_call_number, classification: document.preferred_classification) %>
 
         <% unless Settings&.hide_hold_button %>
