@@ -80,4 +80,7 @@ Rails.application.routes.draw do
 
   # catchall for not predefined requests - keep this at the very bottom of the routes file
   match '*catch_unknown_routes' => 'errors#not_found', via: :all
+
+  # Bot challenge page
+  post '/challenge', to: 'bot_challenge_page/bot_challenge_page#verify_challenge', as: :bot_detect_challenge
 end

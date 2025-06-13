@@ -12,6 +12,9 @@ class CatalogController < ApplicationController
   include ReportIssue
 
   before_action :redirect_browse
+  before_action only: :index do |controller|
+    BotChallengePage::BotChallengePageController.bot_challenge_enforce_filter(controller, immediate: true)
+  end
 
   def index
     cache_key = nil
