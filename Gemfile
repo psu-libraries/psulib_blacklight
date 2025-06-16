@@ -8,6 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootsnap', require: false
+gem 'bot_challenge_page', '~> 0.3.1'
 gem 'bugsnag', '~> 6.26'
 gem 'config'
 gem 'devise', '>= 4.6.0'
