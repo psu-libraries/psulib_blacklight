@@ -8,6 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootsnap', require: false
+gem 'bot_challenge_page', '~> 0.3.1'
 gem 'bugsnag', '~> 6.26'
 gem 'config'
 gem 'devise', '>= 4.6.0'
@@ -24,7 +25,7 @@ gem 'net-smtp', require: false
 gem 'okcomputer', '~> 1.18'
 gem 'puma', '~> 6.5'
 gem 'rack-mini-profiler'
-gem 'rails', '~> 7.1'
+gem 'rails', '~> 7.1.0'
 gem 'rsolr', '>= 2.5'
 gem 'rubyzip'
 gem 'shakapacker', '= 7.1'
