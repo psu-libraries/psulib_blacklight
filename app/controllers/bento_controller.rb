@@ -2,6 +2,8 @@
 
 # Bento endpoint
 class BentoController < CatalogController
+  skip_before_action :enforce_bot_challenge, only: :index
+
   def index
     super
 
