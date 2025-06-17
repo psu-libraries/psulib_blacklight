@@ -1,19 +1,17 @@
-<div class="mb-3 advanced-search-facet">
-    <p><%= @facet_field.label %>
-    <span class="col-sm-9">
-        <%= content_tag(:select,
-                        multiple: true,
-                        name: "f_inclusive[#{@facet_field.key}][]",
-                        id: @facet_field.key,
-                        class: 'form-control selectpicker',
-                        data: { 'live-search': 'true', placeholder: "Type or select #{@facet_field.key.downcase.pluralize}" },
-                        aria: { label: @facet_field.label }) do %>
-            <% presenters.each_with_index do |presenter, idx| -%>
-                <%= content_tag :option, value: presenter.value do %>
-                    <%= presenter.label %>
-                <% end %>
-            <% end %>
-        <% end %>
-    <span>
-    </p>
+<div class="mb-3 advanced-search-facet row">
+  <label for="<%= @facet_field.key %>" class="form-label col-sm-5">
+    <%= @facet_field.label %>
+  </label>
+  <div class="col-sm-9 w-100">
+    <%= content_tag(:select,
+                    name: "f_inclusive[#{@facet_field.key}][]",
+                    id: @facet_field.key,
+                    class: 'js-example-basic-multiple w-100',
+                    multiple: "multiple",
+                    aria: { label: @facet_field.label }) do %>
+      <% presenters.each do |presenter| %>
+        <option value="<%= presenter.value %>"><%= presenter.label %></option>
+      <% end %>
+    <% end %>
+  </div>
 </div>
