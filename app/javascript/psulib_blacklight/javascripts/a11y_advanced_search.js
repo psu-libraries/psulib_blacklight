@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import 'select2';
-import 'select2/dist/css/select2.min.css'
+import 'select2/dist/css/select2.min.css';
 
 $(document).ready(() => {
   const advancedSearchPage = document.getElementsByClassName(
@@ -26,11 +26,11 @@ $(document).ready(() => {
   }
 });
 
-$(document).ready(function() {
-    $('.js-example-basic-multiple').select2();
+$(document).ready(() => {
+  $('.js-example-basic-multiple').select2();
 });
 
 $('.js-example-basic-multiple').select2({
-  placeholder: "Select options...",
-  width: '100%' // Important!
+  placeholder: 'Select options...',
+  width: '100%', // Important!
 });

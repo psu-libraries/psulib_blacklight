@@ -67,7 +67,7 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
             Listing where to find this item in the library.
           </h5>
           <table id={`holdings-${uniqueID}`} className="table table-sm">
-            <thead className="thead-light">
+            <thead className="table-secondary">
               <tr>
                 <th>Call number</th>
                 <th>Material</th>

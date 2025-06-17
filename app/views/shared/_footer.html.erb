@@ -1,34 +1,38 @@
 <footer class="footer mt-auto">
   <div class="container">
     <section class="row">
-      <div class="footer__logo">
+      <div class="col-md-3 footer__logo">
         <%= link_to image_pack_tag('static/psulib_blacklight/images/psu_mark_footer.png', alt: 'Penn State logo', class: 'img-fluid'), 'https://www.psu.edu', title: t('blacklight.organization_name').html_safe %>
       </div>
 
-      <div class="footer__boiler">
-        <p>Copyright @2019 The Pennsylvania State University.
+      <div class="col-md-4 footer__boiler">
+        <p>Copyright ©2019 The Pennsylvania State University.
           All rights reserved. Except where otherwise noted, this work is subject to a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 license.</a> <a href="https://libraries.psu.edu/psu-libraries-copyright-statement">Details and exceptions.</a></p>
         <p><a href="http://www.psu.edu/ur/legal.html">Legal Statements</a> | <a href="http://www.psu.edu/ur/hotline.html">PSU Hotlines</a></p>
       </div>
 
-      <div class="footer__meta">
+      <div class="col-md-2 footer__meta">
         <h2>Penn State<br>University Libraries</h2>
         <div class="row no-gutters">
-          <ul>
-            <li><a href="/">Libraries Home</a></li>
-            <li><a href="//staff.libraries.psu.edu">Libraries Intranet (Staff Only)</a></li>
-            <li><a href="https://libraries.psu.edu/accessibility-help"><i class="fab fa-accessible-icon"></i> Accessibility Help</a></li>
-            <li><a href="https://libraries.psu.edu/website-feedback">Website Feedback</a></li>
-            <li><a href="https://libraries.psu.edu/policies">Policies and Guidelines</a></li>
-            <li><a href="https://libraries.psu.edu/directory">Staff Directory</a></li>
-          </ul>
-          <ul>
-            <li><a href="tel:814-865-6368">(814) 865-6368</a></li>
-          </ul>
+          <div class="col">
+            <ul class="w-100">
+              <li><a href="/">Libraries Home</a></li>
+              <li><a href="//staff.libraries.psu.edu">Libraries Intranet (Staff Only)</a></li>
+              <li><a href="https://libraries.psu.edu/accessibility-help"><i class="fab fa-accessible-icon"></i> Accessibility Help</a></li>
+              <li><a href="https://libraries.psu.edu/website-feedback">Website Feedback</a></li>
+              <li><a href="https://libraries.psu.edu/policies">Policies and Guidelines</a></li>
+              <li><a href="https://libraries.psu.edu/directory">Staff Directory</a></li>
+            </ul>
+          </div>
+          <div class="col">
+            <ul class="w-100">
+              <li><a href="tel:814-865-6368">(814) 865-6368</a></li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div class="footer__social">
+      <div class="col-md-2 footer__social">
         <h2>Connect with<br>Penn State University Libraries</h2>
         <ul>
           <li><a href="//www.facebook.com/psulibs"><i class="fab fa-facebook-square"></i> Facebook</a></li>
@@ -36,7 +40,6 @@
           <li><a href="//www.instagram.com/psulibs/"><i class="fab fa-instagram"></i> Instagram</a></li>
         </ul>
       </div>
-
     </section>
   </div>
 </footer>

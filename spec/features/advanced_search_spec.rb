@@ -109,14 +109,14 @@ RSpec.describe 'Advanced Search' do
         before do
           fill_in 'clause_1_query', with: 'quilts cumberland'
           fill_in 'clause_2_query', with: 'quilters'
-          find('button[data-id="access_facet"]').click
-          find_by_id('bs-select-1-1').click
-          find('button[data-id="format"]').click
-          find_by_id('bs-select-2-3').click
-          find('button[data-id="language_facet"]').click
-          find_by_id('bs-select-3-4').click
-          find('button[data-id="lc_1letter_facet"]').click
-          find_by_id('bs-select-5-12').click
+          find(:xpath, '//ul[@id="select2-access_facet-container"]/parent::span').click
+          find('li.select2-results__option', text: 'In the Library').click
+          find(:xpath, '//ul[@id="select2-format-container"]/parent::span').click
+          find('li.select2-results__option', text: /^Book$/).click
+          find(:xpath, '//ul[@id="select2-language_facet-container"]/parent::span').click
+          find('li.select2-results__option', text: 'English').click
+          find(:xpath, '//ul[@id="select2-lc_1letter_facet-container"]/parent::span').click
+          find('li.select2-results__option', text: 'N - Fine Arts').click
           click_on 'advanced-search-submit'
         end
 
@@ -130,8 +130,8 @@ RSpec.describe 'Advanced Search' do
           fill_in 'clause_3_query', with: 'Climatology'
           fill_in 'clause_5_query', with: 'AAPG studies in geology'
           fill_in 'clause_6_query', with: 'Petroleum Geologists'
-          find('button[data-id="library_facet"]').click
-          find_by_id('bs-select-6-4').click
+          find(:xpath, '//ul[@id="select2-library_facet-container"]/parent::span').click
+          find('li.select2-results__option', text: 'Earth & Mineral Sciences Library').click
           click_on 'advanced-search-submit'
         end
 
