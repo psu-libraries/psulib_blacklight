@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import { Fragment, useState } from 'react';
+import Tooltip from 'bootstrap/js/dist/tooltip';
 import A11yRow from './a11y_row';
 import HoldingDetails from './holding_details';
 import SummaryHoldings from './summary_holdings';
 import ViewMoreButton from './view_more_button';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const Availability = ({ structuredHoldings, summaryHoldings }) => (
   <>
@@ -36,7 +38,11 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
           (holdingIndex - initialVisibleCount) % pageSize === 0);
 
       function tooltipInit() {
-        $('i.fas.fa-info-circle[data-toggle="tooltip"]').tooltip();
+        document
+          .querySelectorAll('[data-bs-toggle="tooltip"]')
+          .forEach((el) => {
+            el.tooltipInstance = new Tooltip(el);
+          });
       }
 
       const viewMore = () => {
@@ -61,7 +67,7 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
             Listing where to find this item in the library.
           </h5>
           <table id={`holdings-${uniqueID}`} className="table table-sm">
-            <thead className="thead-light">
+            <thead className="table-secondary">
               <tr>
                 <th>Call number</th>
                 <th>Material</th>
