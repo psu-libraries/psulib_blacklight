@@ -6,9 +6,16 @@
   max-width: 1140px;
 }
 
-a,
-nav-link:hover {
+a {
   text-decoration: none;
+}
+
+.nav-link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 a:hover,
