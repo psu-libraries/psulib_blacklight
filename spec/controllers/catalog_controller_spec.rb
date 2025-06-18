@@ -14,6 +14,16 @@ RSpec.describe CatalogController do
       get :index, params: { page: 251 }
       expect(:response).to redirect_to '/404'
     end
+
+    it 'calls bot_challenge_enforce_filter on every request' do
+      allow(BotChallengePage::BotChallengePageController)
+        .to receive(:bot_challenge_enforce_filter)
+
+      get :index
+      expect(BotChallengePage::BotChallengePageController)
+        .to have_received(:bot_challenge_enforce_filter)
+        .with(instance_of(controller.class), immediate: true)
+    end
   end
 
   describe 'facet action' do

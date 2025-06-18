@@ -2,8 +2,6 @@
 
 # Bento endpoint
 class BentoController < CatalogController
-  skip_before_action :enforce_bot_challenge, only: :index
-
   def index
     super
 
@@ -25,4 +23,17 @@ class BentoController < CatalogController
       facet: false
     }
   end
+
+  private
+
+    def enforce_bot_challenge
+      # Challenge only if remote IP is not whitelisted
+      ip_whitelist = ENV.fetch('BOT_CHALLENGE_IP_WHITELIST', '')
+        .split(',')
+        .map { |ip| IPAddr.new(ip.strip) unless ip.strip.empty? }
+        .compact
+      return if ip_whitelist.any? { |ip| ip.include?(IPAddr.new(request.remote_ip)) }
+
+      super
+    end
 end

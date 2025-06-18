@@ -14,10 +14,6 @@ class CatalogController < ApplicationController
   before_action :redirect_browse
   before_action :enforce_bot_challenge, only: :index
 
-  def enforce_bot_challenge
-    BotChallengePage::BotChallengePageController.bot_challenge_enforce_filter(self, immediate: true)
-  end
-
   def index
     cache_key = nil
     # No other params presents indicates we are on the homepage
@@ -539,5 +535,9 @@ class CatalogController < ApplicationController
 
     def trailing_punctuation?
       params[:id].match(/\d+[.,;:!"')\]]/)
+    end
+
+    def enforce_bot_challenge
+      BotChallengePage::BotChallengePageController.bot_challenge_enforce_filter(self, immediate: true)
     end
 end
