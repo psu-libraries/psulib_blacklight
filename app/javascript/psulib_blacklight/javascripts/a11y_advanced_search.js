@@ -34,3 +34,11 @@ $('.js-example-basic-multiple').select2({
   placeholder: 'Select options...',
   width: '100%', // Important!
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.select2-search__field').forEach((el) => {
+    el.style.width = '8em';
+    el.style.minWidth = '8em';
+    el.style.lineHeight = '1.5';
+  });
+});

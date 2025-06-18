@@ -6,8 +6,22 @@
   max-width: 1140px;
 }
 
-a {
-  background-color: transparent;
-  color: $psu-blue;
+// scss-lint:disable QualifyingElement
+a,
+a.nav-link:hover {
   text-decoration: none;
 }
+// scss-lint:enable QualifyingElement
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+// scss-lint:disable IdSelector, QualifyingElement
+button#search {
+  border-bottom-right-radius: .25rem;
+  border-radius: 0;
+  border-top-right-radius: .25rem;
+}
+// scss-lint:enable IdSelector, QualifyingElement
