@@ -538,6 +538,13 @@ class CatalogController < ApplicationController
     end
 
     def enforce_bot_challenge
+      # Challenge only if remote IP is not whitelisted
+      ip_whitelist = ENV.fetch('BOT_CHALLENGE_IP_WHITELIST', '')
+        .split(',')
+        .map { |ip| IPAddr.new(ip.strip) unless ip.strip.empty? }
+        .compact
+      return if ip_whitelist.any? { |ip| ip.include?(IPAddr.new(request.remote_ip)) }
+
       BotChallengePage::BotChallengePageController.bot_challenge_enforce_filter(self, immediate: true)
     end
 end
