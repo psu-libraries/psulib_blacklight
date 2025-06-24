@@ -63,7 +63,7 @@ const Availability = ({ structuredHoldings, summaryHoldings }) => (
           <h5>
             {`${summary.library} (${summary.countAtLibrary} ${summary.pluralize})`}
           </h5>
-          <h5 className="sr-only">
+          <h5 className="visually-hidden">
             Listing where to find this item in the library.
           </h5>
           <table id={`holdings-${uniqueID}`} className="table table-sm">

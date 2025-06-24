@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe "Using the 'Share' dropdown" do
+RSpec.describe "Using the 'Share' dropdown", :js do
   let(:expected_content_type) { 'application/x-research-info-systems' }
   let(:expected_file_name) { 'document.ris' }
 

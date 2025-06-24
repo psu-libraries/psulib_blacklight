@@ -16,7 +16,7 @@
           <li class="blacklight-<%= field_name.parameterize -%>">
             <span class="
                     <%= 'text-muted' unless field[:sr_only] %>
-                    <%= 'sr-only' if field[:sr_only] %>">
+                    <%= 'visually-hidden' if field[:sr_only] %>">
               <%= render(Blacklight::MetadataFieldComponent.new(
                            field: field,
                            show: true
