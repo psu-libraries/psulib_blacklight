@@ -7,7 +7,7 @@ module Blacklight
       with_collection_parameter :action
 
       # @param [Blacklight::Document] document
-      def initialize(document:, action:, options: {}, url_opts: {}, id: nil, link_classes: 'nav-link')
+      def initialize(document:, action:, options: {}, url_opts: {}, id: nil, link_classes: 'nav-link ps-3')
         super
         @document = document
         @action = action

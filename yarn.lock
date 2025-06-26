@@ -1924,7 +1924,7 @@
   resolved "https://registry.yarnpkg.com/@pkgr/core/-/core-0.1.1.tgz#1ec17e2edbec25c8306d424ecfbf13c7de1aaa31"
   integrity sha512-cq8o4cWH0ibXh9VGi5P20Tu9XF/0fFXl9EUinr9QfTM7a7p0oTA4iJRCQWppXR1Pg8dSM0UCItCkPwsk9qWWYA==
 
-"@popperjs/core@^2.11.7":
+"@popperjs/core@^2.11.7", "@popperjs/core@^2.11.8":
   version "2.11.8"
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.8.tgz#6b79032e760a0899cd4204710beede972a3a185f"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
@@ -2904,10 +2904,10 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
 
-blacklight-frontend@7.37.0:
-  version "7.37.0"
-  resolved "https://registry.yarnpkg.com/blacklight-frontend/-/blacklight-frontend-7.37.0.tgz#cbc2e744ebf1728546e3f6a6b0033fe36227d4e0"
-  integrity sha512-WaZs10y8BFKrz6yWNqhszNujgkqrQggJDOzoFhPAhF/1/vs+mZ1TkEd+vktnCdxaustRZqEeNa5KQWIuvjgIaA==
+blacklight-frontend@7.38.0:
+  version "7.38.0"
+  resolved "https://registry.yarnpkg.com/blacklight-frontend/-/blacklight-frontend-7.38.0.tgz#0dce6531602c7bb3a0e3c5f99cea788158d19401"
+  integrity sha512-zsX+cMgeuUuKxwx1FydE4H1XzkTJoywmwGOznllyVYCatIlG2xCVM8IFbuv+VB9Qwoss9z0MjH87l2nMnSPKIA==
   dependencies:
     bootstrap ">=4.3.1 <6.0.0"
     jquery "^3.5.1"
@@ -6460,11 +6460,6 @@ popper.js@1.16.1-lts:
   version "1.16.1-lts"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1-lts.tgz#cf6847b807da3799d80ee3d6d2f90df8a3f50b05"
   integrity sha512-Kjw8nKRl1m+VrSFCoVGPph93W/qrSO7ZkqPpTf7F4bk/sqcfWK019dWBUpE/fBOsOQY1dks/Bmcbfn1heM/IsA==
-
-popper.js@^1.14.7:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
-  integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
 
 possible-typed-array-names@^1.0.0:
   version "1.0.0"
