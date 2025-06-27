@@ -7,7 +7,7 @@ module Blacklight
       with_collection_parameter :action
 
       # @param [Blacklight::Document] document
-      def initialize(document:, action:, options: {}, url_opts: {}, id: nil, link_classes: 'nav-link')
+      def initialize(document:, action:, options: {}, url_opts: {}, id: nil, link_classes: 'nav-link ps-3')
         super
         @document = document
         @action = action
@@ -32,7 +32,7 @@ module Blacklight
                 url,
                 id: @id,
                 class: @link_classes,
-                data: {}.merge(({ blacklight_modal: 'trigger', turbo: false } if @action.modal != false) || {})
+                data: {}.merge(({ bs_blacklight_modal: 'trigger', bs_turbo: false } if @action.modal != false) || {})
       end
 
       def render_partial

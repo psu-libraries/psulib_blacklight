@@ -10,7 +10,7 @@
   <% if @remove_path.present? %>
     <%= link_to(@remove_path, class: 'remove') do %>
       <span class="remove-icon" aria-hidden="true">✖</span>
-      <span class="sr-only">
+      <span class="visually-hidden">
         <%= if @label.blank?
               t('blacklight.search.filters.remove.value', value: @value)
             else

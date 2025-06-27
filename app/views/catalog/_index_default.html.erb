@@ -1,7 +1,7 @@
 <% doc_presenter = document_presenter(document) %>
 
 <div class="row">
-  <div class="col-sm-3 order-sm-10">
+  <div class="col-sm-3 order-sm-2">
       <%= render(
             Blacklight::Document::ThumbnailComponent.new(
               presenter: document_presenter(document),
@@ -16,7 +16,7 @@
           <li class="blacklight-<%= field_name.parameterize -%>">
             <span class="
                     <%= 'text-muted' unless field[:sr_only] %>
-                    <%= 'sr-only' if field[:sr_only] %>">
+                    <%= 'visually-hidden' if field[:sr_only] %>">
               <%= render(Blacklight::MetadataFieldComponent.new(
                            field: field,
                            show: true
