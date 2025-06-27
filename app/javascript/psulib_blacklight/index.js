@@ -5,7 +5,7 @@ import './javascripts';
 
 // Vendor
 import 'popper.js/dist/umd/popper';
-// import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 // Fonts
 import '@fontsource/open-sans';
