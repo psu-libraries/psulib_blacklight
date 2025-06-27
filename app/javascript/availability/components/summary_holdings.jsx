@@ -75,7 +75,9 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                     {locationData.index.length > 0 && (
                       <li>
                         <div className="h6 mt-2">
-                          <span className="visually-hidden">{locationName}</span>
+                          <span className="visually-hidden">
+                            {locationName}
+                          </span>
                           Indexes
                         </div>
 
@@ -90,7 +92,9 @@ const SummaryHoldings = ({ summaryHoldings }) => {
                     {locationData.supplement.length > 0 && (
                       <li>
                         <div className="h6 mt-2">
-                          <span className="visually-hidden">{locationName}</span>
+                          <span className="visually-hidden">
+                            {locationName}
+                          </span>
                           Supplements
                         </div>
 
