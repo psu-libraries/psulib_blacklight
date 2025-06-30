@@ -14,8 +14,7 @@
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
-        "Blacklight": "writable",
-        "bootstrap": "readonly"
+        "Blacklight": "writable"
     },
     "parserOptions": {
         "ecmaVersion": 2020,
