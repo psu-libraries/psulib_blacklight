@@ -1,5 +1,4 @@
 import 'bootstrap/dist/js/bootstrap.bundle';
-import * as bootstrap from 'bootstrap';
 
 document.addEventListener('DOMContentLoaded', () => {
   initBootstrapDropdowns();
@@ -14,7 +13,7 @@ function initBootstrapDropdowns() {
     document.querySelectorAll('.dropdown-toggle'),
   );
   dropdowns.forEach((toggle) => {
-    toggle.DropdownInstance = bootstrap.Dropdown(toggle, {
+    bootstrap.Dropdown.getOrCreateInstance(toggle, {
       autoClose: true,
     });
   });
@@ -23,7 +22,7 @@ function initBootstrapDropdowns() {
     const modal = event.target;
     const dropdownsQuery = modal.querySelectorAll('.dropdown-toggle');
     dropdownsQuery.forEach((toggle) => {
-      toggle.DropdownInstance = bootstrap.Dropdown(toggle);
+      bootstrap.Dropdown.getOrCreateInstance(toggle);
     });
   });
 }
