@@ -8,6 +8,8 @@ module.exports = generateWebpackConfig({
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
+      'bootstrap': 'Bootstrap',
+      'bootstrap/js/dist/modal': 'Bootstrap.Modal'
     })
   ],
 })
