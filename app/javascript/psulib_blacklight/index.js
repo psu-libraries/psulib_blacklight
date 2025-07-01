@@ -14,9 +14,10 @@ import '@fontsource/roboto-slab';
 // Picking and choosing rather than taking all JS from BL
 import 'blacklight-frontend/app/javascript/blacklight/core';
 import 'blacklight-frontend/app/javascript/blacklight/checkbox_submit';
+import 'blacklight-frontend/app/javascript/blacklight/modal';
 import 'blacklight-frontend/app/javascript/blacklight/button_focus';
 import 'blacklight-frontend/app/javascript/blacklight/facet_load';
 import 'blacklight-frontend/app/javascript/blacklight/search_context';
 
-// Overrides for blacklight-frontend
-import './blacklight_frontend/modal';
+// Overrides for Blacklight-frontend
+import '../blacklight_frontend_overrides';
