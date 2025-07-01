@@ -18,6 +18,3 @@ import 'blacklight-frontend/app/javascript/blacklight/modal';
 import 'blacklight-frontend/app/javascript/blacklight/button_focus';
 import 'blacklight-frontend/app/javascript/blacklight/facet_load';
 import 'blacklight-frontend/app/javascript/blacklight/search_context';
-
-// Overrides for Blacklight-frontend
-import '../blacklight_frontend_overrides';
