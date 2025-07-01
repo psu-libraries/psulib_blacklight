@@ -12,5 +12,5 @@
              aria: { label: title.to_s }) do %>
   <%= submit_tag(t(bookmarked? ? 'remove.button' : 'add.button', scope: 'blacklight.bookmarks'),
                  id: "bookmark_toggle_#{@document.id.to_s.parameterize}",
-                 class: "bookmark-#{bookmarked? ? 'remove' : 'add'} btn btn-outline-secondary btn-sm") %>
+                 class: "bookmark-#{bookmarked? ? 'remove' : 'add'} btn btn-info btn-sm") %>
 <% end %>
