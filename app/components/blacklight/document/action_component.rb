@@ -32,6 +32,7 @@ module Blacklight
                 url,
                 id: @id,
                 class: @link_classes,
+                style: 'color: #0071bc;',
                 data: {}.merge(({ blacklight_modal: 'trigger', turbo: false } if @action.modal != false) || {})
       end
 

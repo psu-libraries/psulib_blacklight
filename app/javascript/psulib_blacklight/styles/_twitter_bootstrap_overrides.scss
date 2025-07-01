@@ -15,7 +15,8 @@ a {
   }
 }
 
-.btn[href] {
+.btn[href],
+.dropdown-item[href] {
   text-decoration: none;
 }
 
