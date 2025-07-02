@@ -14,8 +14,14 @@ RSpec.describe 'MARC view' do
     end
 
     context 'when MARC link is clicked' do
+      before do
+        link = find('a', text: 'View MARC record')
+        page.execute_script('arguments[0].scrollIntoView({block: "center"});', link)
+        sleep 1
+        link.click
+      end
+
       it 'displays MARC record' do
-        click_on 'View MARC record'
         expect(page).to have_content 'MARC View'
         expect(page).to have_content '003 SIRSI'
         expect(page).to have_content 'a| African American women lawyers z| Illinois z| Chicago v| Biography.'

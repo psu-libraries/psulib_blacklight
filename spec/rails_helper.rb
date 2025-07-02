@@ -27,7 +27,7 @@ require 'view_component/test_helpers'
 # allow connections to localhost, webdrivers
 WebMock.disable_net_connect!(
   allow_localhost: true,
-  allow: ['solr', Settings.solr.host]
+  allow: ['github.com', 'solr', Settings.solr.host]
 )
 # Add additional requires below this line. Rails is not loaded until this point!
 

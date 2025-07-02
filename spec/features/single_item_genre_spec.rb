@@ -17,7 +17,10 @@ RSpec.describe 'Single Item Genre' do
     end
 
     it 'links to that genre' do
-      click_on 'Domestic fiction'
+      link = find('a', text: 'Domestic fiction')
+      page.execute_script('arguments[0].scrollIntoView({block: "center"});', link)
+      sleep 1
+      link.click
       expect(page).to have_css 'article[data-document-id="22080733"]'
       expect(page).to have_css 'article[data-document-id="2052181"]'
     end
