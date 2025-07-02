@@ -15,7 +15,7 @@ bundle exec rake solr:load_fixtures
 
 
 echo "Downloading webdrivers"
-bundle exec rake webdrivers:chromedriver:update
+# bundle exec rake webdrivers:chromedriver:update
 
 if [ ! -f ${REPORTER_BIN} ]; then
   echo "Downloading Code Climate reporting tool"
