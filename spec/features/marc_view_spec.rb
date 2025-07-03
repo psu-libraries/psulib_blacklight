@@ -14,8 +14,12 @@ RSpec.describe 'MARC view' do
     end
 
     context 'when MARC link is clicked' do
-      it 'displays MARC record' do
+      before do
+        sleep 0.5
         click_on 'View MARC record'
+      end
+
+      it 'displays MARC record' do
         expect(page).to have_content 'MARC View'
         expect(page).to have_content '003 SIRSI'
         expect(page).to have_content 'a| African American women lawyers z| Illinois z| Chicago v| Biography.'

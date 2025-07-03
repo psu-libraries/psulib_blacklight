@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Single Item Subjects' do
-  describe 'Single item subject links', :js do
+  describe 'Single item subject links', js: true do
     before do
       visit '/catalog/1839879'
     end
@@ -16,6 +16,7 @@ RSpec.describe 'Single Item Subjects' do
 
     context 'when users want to search for the first term of a given subject' do
       before do
+        sleep 0.5
         click_on 'African Americans'
       end
 
@@ -27,6 +28,7 @@ RSpec.describe 'Single Item Subjects' do
 
     context 'when users want to search for the full term of a given subject' do
       before do
+        sleep 0.5
         click_on 'African Americans—Civil rights'
       end
 

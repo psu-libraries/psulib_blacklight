@@ -27,7 +27,7 @@ require 'view_component/test_helpers'
 # allow connections to localhost, webdrivers
 WebMock.disable_net_connect!(
   allow_localhost: true,
-  allow: ['chromedriver.storage.googleapis.com', 'solr', Settings.solr.host]
+  allow: ['github.com', 'solr', Settings.solr.host]
 )
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -86,19 +86,17 @@ RSpec.configure do |config|
   config.include Warden::Test::Helpers
 end
 
-Capybara.register_driver :chrome_headless do |app|
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :chrome,
-    options: Selenium::WebDriver::Chrome::Options.new(
-      args: %w[no-sandbox headless disable-gpu]
-    )
-  )
+Capybara.register_driver :firefox_headless do |app|
+  options = Selenium::WebDriver::Firefox::Options.new
+  options.add_argument('--headless')
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-gpu')
+  Capybara::Selenium::Driver.new app, browser: :firefox, options: options
 end
 
 # Capybara
 Capybara.configure do |config|
-  config.javascript_driver = :chrome_headless # This is slower
+  config.javascript_driver = :firefox_headless
 end
 
 # Disable CSS animations which slows down tests

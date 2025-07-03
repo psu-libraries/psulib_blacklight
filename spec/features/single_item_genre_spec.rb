@@ -17,6 +17,7 @@ RSpec.describe 'Single Item Genre' do
     end
 
     it 'links to that genre' do
+      sleep 0.5
       click_on 'Domestic fiction'
       expect(page).to have_css 'article[data-document-id="22080733"]'
       expect(page).to have_css 'article[data-document-id="2052181"]'
