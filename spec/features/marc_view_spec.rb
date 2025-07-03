@@ -15,10 +15,8 @@ RSpec.describe 'MARC view' do
 
     context 'when MARC link is clicked' do
       before do
-        link = find('a', text: 'View MARC record')
-        page.execute_script('arguments[0].scrollIntoView({block: "center"});', link)
-        sleep 1
-        link.click
+        sleep 0.5
+        click_on 'View MARC record'
       end
 
       it 'displays MARC record' do
