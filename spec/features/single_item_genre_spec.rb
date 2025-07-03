@@ -9,7 +9,7 @@ RSpec.describe 'Single Item Genre' do
     end
 
     it 'has a list of item genres' do
-      within 'dd.blacklight-genre_display_ssm.ml-5' do
+      within 'dd.blacklight-genre_display_ssm.ms-5' do
         expect(page).to have_content 'Domestic fiction'
         expect(page).to have_content 'Fiction'
         expect(page).to have_no_content 'FICTION / Women'

@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (inputGroup && searchFieldSelect) {
     // Check if the header already exists to avoid duplicates
-    if (!inputGroup.querySelector('h2.sr-only')) {
+    if (!inputGroup.querySelector('h2.visually-hidden')) {
       const header = document.createElement('h2');
-      header.className = 'sr-only';
+      header.className = 'visually-hidden';
       header.textContent = 'Search Bar';
 
       // Insert the header before the search_field tag

@@ -6,7 +6,7 @@
       <p>
         <% title = document[:title_display_ssm]&.join('/') %>
         <% title = title&.split('/')&.first %>
-        <button class="btn btn-primary header" type="button" data-toggle="collapse" data-target="#availability-<%= id %>" aria-expanded="false" aria-controls="<%= id %>-location" aria-label="View <%= title %> availability">
+        <button class="btn btn-primary header" type="button" data-bs-toggle="collapse" data-bs-target="#availability-<%= id %>" aria-expanded="false" aria-controls="<%= id %>-location" aria-label="View <%= title %> availability">
           <span>View Availability</span>
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
         </button>
@@ -19,13 +19,13 @@
   <div class="collapse" id="availability-<%= id %>" aria-expanded="false">
     <div class="card card-body">
       <% unless Settings&.hide_hold_button %>
-        <div class="hold-button text-right d-none mb-2">
+        <div class="hold-button text-end d-none mb-2">
           <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.hold_button_path}#{id}",
-                      class: 'btn btn-primary pr-4 pl-4' %>
+                      class: 'btn btn-primary ps-4 pe-4' %>
         </div>
-        <div class="no-recalls-button text-right d-none mb-2">
+        <div class="no-recalls-button text-end d-none mb-2">
           <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.no_recall_button_path}#{id}",
-                      class: 'btn btn-primary pr-4 pl-4' %>
+                      class: 'btn btn-primary ps-4 pe-4' %>
         </div>
       <% end %>
       <div class="availability-holdings"></div>

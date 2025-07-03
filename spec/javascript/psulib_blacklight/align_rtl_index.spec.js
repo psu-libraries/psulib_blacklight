@@ -46,7 +46,7 @@ describe('when catalog index list contains rtl text titles', () => {
     expect($('a')[0].outerHTML).toBe(
       '<a data-context-href="/catalog/123/track?counter=4&amp;' +
       'document_id=2123&amp;search_id=106" href="/catalog/123' +
-      '" dir="auto" class="float-right text-align-start col' +
+      '" dir="auto" class="float-end text-align-start col' +
       '-sm-11 p-0 pr-4">بعض عناوين الأدب</a>'
     );
     expect($('a')[1].outerHTML).toBe(
