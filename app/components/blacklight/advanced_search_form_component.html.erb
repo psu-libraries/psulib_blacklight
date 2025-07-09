@@ -17,7 +17,9 @@
 
       <div id="advanced_search">
         <% search_field_controls.each do |control| %>
+          <div class="mb-3">
             <%= control %>
+          </div>
         <% end %>
       </div>
     </div>
@@ -39,14 +41,14 @@
 
   <%# Publication Date is a range input %>
 <% pub_date = helpers.facet_configuration_for_field('pub_date_itsi') %>
-<div class="form-group advanced-search-facet row">
+<div class="mb-3 advanced-search-facet row">
   <%= label_tag pub_date.field.parameterize, class: 'col-sm-4 control-label' do %>
     <%= pub_date.label %>
   <% end %>
   <div class="col-sm-8 range_limit">
-    <label for="range_pub_date_itsi_begin" class="sr-only">Publication date range (starting year)</label>
+    <label for="range_pub_date_itsi_begin" class="visually-hidden">Publication date range (starting year)</label>
     <%= number_field_tag('range[pub_date_itsi][begin]', nil, id: 'range_pub_date_itsi_begin', maxlength: 6, class: 'form-control text-center range_begin') %> –
-    <label for="range_pub_date_itsi_end" class="sr-only">Publication date range (ending year)</label>
+    <label for="range_pub_date_itsi_end" class="visually-hidden">Publication date range (ending year)</label>
     <%= number_field_tag('range[pub_date_itsi][end]', nil, id: 'range_pub_date_itsi_end', maxlength: 6, class: 'form-control text-center range_end') %>
   </div>
 </div>

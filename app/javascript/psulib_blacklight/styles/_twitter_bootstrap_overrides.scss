@@ -1,3 +1,41 @@
 .navbar {
   display: block;
 }
+
+.container {
+  max-width: 1140px;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+.btn[href],
+.dropdown-item[href] {
+  text-decoration: none;
+}
+
+.nav-link {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.search-btn {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: .25rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: .25rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}

@@ -9,7 +9,7 @@ RSpec.describe 'Single Item Browse Button' do
     end
 
     it 'displays browse button for LC call number' do
-      expect(page).to have_no_css('button[data-toggle=dropdown]')
+      expect(page).to have_no_css('button[data-bs-toggle=dropdown]')
       expect(page).to have_link('Browse Nearby on Shelf',
                                 href: '/browse/call_numbers?classification=lc&nearby=PS3610.O63A84+2018')
     end
@@ -21,7 +21,7 @@ RSpec.describe 'Single Item Browse Button' do
     end
 
     it 'displays browse button for LC call numbers' do
-      expect(page).to have_css('button[data-toggle=dropdown]')
+      expect(page).to have_css('button[data-bs-toggle=dropdown]')
       expect(page).to have_link('AP3.M33',
                                 href: '/browse/call_numbers?classification=lc&nearby=AP3.M33',
                                 visible: :hidden)
@@ -37,7 +37,7 @@ RSpec.describe 'Single Item Browse Button' do
     end
 
     it 'displays browse button for Dewey call number' do
-      expect(page).to have_no_css('button[data-toggle=dropdown]')
+      expect(page).to have_no_css('button[data-bs-toggle=dropdown]')
       expect(page).to have_link('Browse Nearby on Shelf',
                                 href: '/browse/call_numbers?classification=dewey&nearby=111.85M35b')
     end
@@ -49,7 +49,7 @@ RSpec.describe 'Single Item Browse Button' do
     end
 
     it 'displays browse button for Dewey call numbers' do
-      expect(page).to have_css('button[data-toggle=dropdown]')
+      expect(page).to have_css('button[data-bs-toggle=dropdown]')
       expect(page).to have_link('016.53976Un3i',
                                 href: '/browse/call_numbers?classification=dewey&nearby=016.53976Un3i',
                                 visible: :hidden)
@@ -65,7 +65,7 @@ RSpec.describe 'Single Item Browse Button' do
     end
 
     it 'displays browse button for LC call numbers' do
-      expect(page).to have_css('button[data-toggle=dropdown]')
+      expect(page).to have_css('button[data-bs-toggle=dropdown]')
       expect(page).to have_link('HQ1061.M5 Selections',
                                 href: '/browse/call_numbers?classification=lc&nearby=HQ1061.M5+Selections',
                                 visible: :hidden)

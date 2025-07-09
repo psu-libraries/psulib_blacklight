@@ -1,6 +1,6 @@
 <div class="share-widget" role="group" aria-label="Actions including with nested dropdown">
   <div class="dropdown">
-    <a class="btn btn-info btn-md dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">Share</a>
+    <a class="btn btn-outline-secondary btn-md dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-bs-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">Share</a>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-md-left" aria-labelledby="btnGroupDrop1">
       <%= render_show_doc_actions @response.documents, document: nil, document_list: @response.documents, url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h) do |config, inner| %>
           <% next if config.key == :citation || config.key == :ris %>

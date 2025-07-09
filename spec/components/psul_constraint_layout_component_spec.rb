@@ -39,7 +39,7 @@ RSpec.describe PsulConstraintLayoutComponent, type: :component do
 
     it 'has an accessible remove label' do
       expect(rendered).to have_css('.remove') do |s|
-        expect(s).to have_css('.sr-only', text: 'Remove constraint my label: my value')
+        expect(s).to have_css('.visually-hidden', text: 'Remove constraint my label: my value')
       end
     end
 

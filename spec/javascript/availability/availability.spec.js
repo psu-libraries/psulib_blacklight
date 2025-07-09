@@ -6,6 +6,9 @@ import 'bootstrap';
 global.$ = $;
 global.jQuery = $;
 
+// mock Bootstrap's .tooltip() in Jest
+$.fn.tooltip = jest.fn();
+
 jest.mock(
   '../../../app/javascript/availability/libraries_locations.json',
   () => ({
@@ -33,10 +36,10 @@ const summaryHoldingsMock = {};
 
 beforeEach(() => {
   document.body.innerHTML = `<div class="availability" data-keys="0">
-  <div class="no-recalls-button text-right d-none mb-2">
+  <div class="no-recalls-button text-end d-none mb-2">
     <a href="ill_url" class="btn btn-primary pr-4 pl-4">I Want It</a>
   </div>
-  <div class="hold-button text-right d-none mb-2">
+  <div class="hold-button text-end d-none mb-2">
   <a href="symphony_url" class="btn btn-primary pr-4 pl-4">I Want It</a>
   </div>
   </div>`;

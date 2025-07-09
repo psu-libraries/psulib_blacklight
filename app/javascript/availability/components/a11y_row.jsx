@@ -63,7 +63,7 @@ const A11yRow = ({
   };
 
   return (
-    <tr className="sr-only">
+    <tr className="visually-hidden">
       <td
         id={`a11y-${uniqueID}-${holdingIndex}`}
         tabIndex={-1}

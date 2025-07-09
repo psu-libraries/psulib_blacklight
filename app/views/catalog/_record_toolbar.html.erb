@@ -1,6 +1,6 @@
 <div class="col record-actions ">
-  <h2 class="sr-only">Actions for <%= document_presenter(@document).html_title.split('/').first %></h2>
-  <div class="float-right">
+  <h2 class="visually-hidden">Actions for <%= document_presenter(@document).html_title.split('/').first %></h2>
+  <div class="float-end">
     <div class="d-inline-block mb-1" role="group" aria-label="Actions including with nested dropdown">
       <%= render_show_doc_actions @document do |config, inner| %>
         <% if (config.key == :citation) %>
@@ -9,7 +9,7 @@
       <% end %>
 
       <div class="dropdown">
-        <a class="btn btn-info btn-sm dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
+        <a class="btn btn-outline-secondary btn-sm dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
           <%= render_show_doc_actions @document do |config, inner| %>
             <% if (config.key == :ris) %>
