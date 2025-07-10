@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Report Issue Form', :js do
-  describe 'when a comment is included', :js do
+  describe 'when a comment is included' do
     it 'submits the report issue form successfully and sends an email' do
       visit '/catalog/19437'
       click_on 'Report an Issue'
@@ -23,7 +23,7 @@ RSpec.describe 'Report Issue Form', :js do
     end
   end
 
-  describe 'when a comment is not included', :js do
+  describe 'when a comment is not included' do
     it 'does not submit form or send an email' do
       visit '/catalog/19437'
       click_on 'Report an Issue'
