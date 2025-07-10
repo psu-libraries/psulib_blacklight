@@ -3,11 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe "Using the 'Share' dropdown" do
-  let(:expected_content_type) { 'application/x-research-info-systems' }
-  let(:expected_file_name) { 'document.ris' }
-
   it 'renders email prompt and sends email', :js do
     visit '/catalog/22090269'
+    sleep 0.5
     click_on 'Share'
     click_on 'Email'
     expect(page).to have_content 'Email This'
@@ -27,6 +25,7 @@ RSpec.describe "Using the 'Share' dropdown" do
 
   it 'renders RIS file in the dropdown', :js do
     visit '/catalog/22090269'
+    sleep 0.5
     click_on 'Share'
     expect(page).to have_link 'RIS file'
   end

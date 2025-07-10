@@ -68,6 +68,7 @@ RSpec.describe 'viewing a record', :js, :vcr do
 
     it 'renders the Mirador viewer' do
       visit '/catalog/1267921'
+      sleep 0.5
       expect(page).to have_css 'div[id="iiif-viewer"]'
       expect(page).to have_css 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
     end
