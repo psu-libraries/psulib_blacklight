@@ -7,6 +7,7 @@ RSpec.describe 'Report Issue Form', :js do
     it 'submits the report issue form successfully and sends an email' do
       visit '/catalog/19437'
       click_on 'Report an Issue'
+      sleep 0.5 # Wait for the modal to appear
 
       fill_in 'comment', with: 'There is an issue with this record.'
       fill_in 'email', with: 'user@example.com'
@@ -27,6 +28,7 @@ RSpec.describe 'Report Issue Form', :js do
     it 'does not submit form or send an email' do
       visit '/catalog/19437'
       click_on 'Report an Issue'
+      sleep 0.5 # Wait for the modal to appear
 
       fill_in 'comment', with: ''
       fill_in 'email', with: 'user@example.com'
