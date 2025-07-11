@@ -11,7 +11,7 @@
         <%= t('blackcat.report_issue.form.record_title') %>
       </label>
       <div class="col-sm-9">
-        <%= text_field_tag :title, @documents.first['title_display_ssm'], class: 'form-control', disabled: true %>
+        <%= text_field_tag :title, @documents.first['title_display_ssm'], class: 'form-control text-muted bg-light', readonly: true %>
       </div>
     </div>
 
@@ -20,7 +20,7 @@
         <%= t('blackcat.report_issue.form.record_number') %>
       </label>
       <div class="col-sm-9">
-        <%= text_field_tag :record_number, @documents.first.id, class: 'form-control', disabled: true %>
+        <%= text_field_tag :record_number, @documents.first.id, class: 'form-control text-muted bg-light', readonly: true %>
       </div>
     </div>
 
