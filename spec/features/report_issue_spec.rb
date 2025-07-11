@@ -6,6 +6,7 @@ RSpec.describe 'Report Issue Form' do
   describe 'when a comment is included' do
     it 'submits the report issue form successfully and sends an email', :js do
       visit '/catalog/19437'
+      sleep 0.5
       click_on 'Report an Issue'
 
       fill_in 'comment', with: 'There is an issue with this record.'
@@ -26,6 +27,7 @@ RSpec.describe 'Report Issue Form' do
   describe 'when a comment is not included' do
     it 'does not submit form or send an email', :js do
       visit '/catalog/19437'
+      sleep 0.5
       click_on 'Report an Issue'
 
       fill_in 'comment', with: ''
