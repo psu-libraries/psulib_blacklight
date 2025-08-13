@@ -11,7 +11,7 @@ RSpec.describe 'Hathi Link', :vcr, type: :feature, js: true do
   context 'when nothing is returned from HathiTrust' do
     it 'does not display Hathi Link' do
       visit 'catalog/3500414'
-      expect(page).to have_css("img[src*='HathiTrust_logo.svg']", visible: :hidden)
+      expect(page).to have_css("img[src*='Springshare-LibGuide-Image']", visible: :hidden)
         .and have_css("div[data-search-item='oclc/1234']", visible: :hidden)
     end
   end
@@ -19,7 +19,7 @@ RSpec.describe 'Hathi Link', :vcr, type: :feature, js: true do
   context 'when a "Limited (search-only)" item is returned from HathiTrust' do
     it 'does not display Hathi Link' do
       visit 'catalog/3500414'
-      expect(page).to have_css("img[src*='HathiTrust_logo.svg']", visible: :hidden)
+      expect(page).to have_css("img[src*='Springshare-LibGuide-Image']", visible: :hidden)
         .and have_css("div[data-search-item='oclc/1234']", visible: :hidden)
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe 'Hathi Link', :vcr, type: :feature, js: true do
   context 'when a "Full view" item is returned from HathiTrust' do
     it 'does display Hathi Link' do
       visit 'catalog/3500414'
-      expect(page).to have_css("img[src*='HathiTrust_logo.svg']", visible: :visible)
+      expect(page).to have_css("img[src*='Springshare-LibGuide-Image']", visible: :visible)
         .and have_css("div[id='hathi-link']", visible: :visible)
         .and have_css("a[href*='https://babel.hathitrust.org/cgi/pt?id=abc1.123hjkl']",
                       visible: :visible)
