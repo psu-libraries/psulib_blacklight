@@ -2,7 +2,7 @@
 
 class PsulFacetItemComponent < Blacklight::FacetItemComponent
   def initialize(facet_item:, wrapping_element: 'li', suppress_link: false)
-    super(facet_item: facet_item, wrapping_element: wrapping_element, suppress_link: suppress_link)
+    super
   end
 
   ##

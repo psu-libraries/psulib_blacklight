@@ -2,6 +2,7 @@
 
 module LayoutHelper
   include Blacklight::LayoutHelperBehavior
+
   ##
   # Classes used for sizing the main content of a Blacklight page
   # @return [String]

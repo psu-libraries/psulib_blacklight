@@ -3,7 +3,7 @@
 require 'rails_helper'
 require 'support/vcr'
 
-RSpec.describe 'Hathi Link', :vcr, type: :feature, js: true do
+RSpec.describe 'Hathi Link', :js, :vcr do
   before do
     allow_any_instance_of(ExternalLinks::HathiLinkComponent).to receive(:search_item).and_return 'oclc/1234'
   end

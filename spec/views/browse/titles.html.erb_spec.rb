@@ -10,7 +10,7 @@ RSpec.describe 'browse/titles' do
   end
 
   it 'renders an error message when there are no items to show' do
-    expect(rendered).to have_no_css 'table'
+    expect(rendered).to have_no_table
     expect(rendered).to have_css '.alert-warning h2', text: 'No records found.'
   end
 end

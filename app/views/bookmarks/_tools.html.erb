@@ -3,7 +3,7 @@
     <a class="btn btn-outline-secondary btn-md dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-bs-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">Share</a>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu-md-left" aria-labelledby="btnGroupDrop1">
       <%= render_show_doc_actions @response.documents, document: nil, document_list: @response.documents, url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h) do |config, inner| %>
-          <% next if config.key == :citation || config.key == :ris %>
+          <% next if [:citation, :ris].include?(config.key) %>
             <% if (config.key == :bulk_ris) %>
               <% bookmark_ids = current_user.bookmarks.map { |b| b.document_id.to_s }.join(',') %>
               <a class="dropdown-item" href="<%= bulk_ris_bookmarks_path(item_ids: bookmark_ids) %>">RIS file</a>

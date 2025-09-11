@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Single Item Subjects' do
-  describe 'Single item subject links', js: true do
+  describe 'Single item subject links', :js do
     before do
       visit '/catalog/1839879'
     end
