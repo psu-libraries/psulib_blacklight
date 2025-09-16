@@ -52,6 +52,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'html_tokenizer', '~> 0.0.8'
   gem 'niftany', '~> 0.12.1'
+  gem 'rubocop-capybara'
   gem 'pry-byebug'
   gem 'sinatra'
   gem 'sqlite3', '~> 1.5.0'
