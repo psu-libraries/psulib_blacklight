@@ -11,12 +11,14 @@ RSpec.describe 'shared/_header_navbar' do
     assign(:search_bar, Blacklight::SearchBarPresenter.new(controller, blacklight_config))
   end
 
-  xit 'displays search bar except on Advanced Search' do
+  it 'displays search bar except on Advanced Search' do
+    pending 'incomplete'
     render 'shared/header_navbar'
     expect(rendered).to have_css '.navbar-search'
   end
 
-  xit 'does not display search bar on Advanced Search' do
+  it 'does not display search bar on Advanced Search' do
+    pending 'incomplete'
     assign(:search_fields_for_advanced_search, :search_bar)
     render 'shared/header_navbar'
     expect(rendered).to have_no_css '.navbar-search'

@@ -47,9 +47,9 @@
   <% end %>
   <div class="col-sm-8 range_limit">
     <label for="range_pub_date_itsi_begin" class="visually-hidden">Publication date range (starting year)</label>
-    <%= number_field_tag('range[pub_date_itsi][begin]', nil, id: 'range_pub_date_itsi_begin', maxlength: 6, class: 'form-control text-center range_begin') %> –
+    <%= number_field_tag('range[pub_date_itsi][begin]', nil, id: 'range_pub_date_itsi_begin', maxlength: 6, class: 'form-control text-center range_begin', autocomplete: 'off') %> –
     <label for="range_pub_date_itsi_end" class="visually-hidden">Publication date range (ending year)</label>
-    <%= number_field_tag('range[pub_date_itsi][end]', nil, id: 'range_pub_date_itsi_end', maxlength: 6, class: 'form-control text-center range_end') %>
+    <%= number_field_tag('range[pub_date_itsi][end]', nil, id: 'range_pub_date_itsi_end', maxlength: 6, class: 'form-control text-center range_end', autocomplete: 'off') %>
   </div>
 </div>
 

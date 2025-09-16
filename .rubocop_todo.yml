@@ -58,3 +58,7 @@ Rails/I18nLocaleTexts:
 Style/OptionalBooleanParameter:
   Exclude:
     - 'app/helpers/facets_helper.rb'
+
+Lint/UselessConstantScoping:
+  Exclude:
+    - app/components/psul_facet_item_component.rb
