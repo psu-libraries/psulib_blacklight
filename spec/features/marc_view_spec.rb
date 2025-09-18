@@ -10,7 +10,7 @@ RSpec.describe 'MARC view' do
 
     it 'single item page contains link to MARC record' do
       expect(page).to have_css 'a[id="marc_record_link"]'
-      expect(page).to have_link('View MARC Record', href: '/catalog/24053587/marc_view')
+      expect(page).to have_link('View MARC record', href: '/catalog/24053587/marc_view')
     end
 
     context 'when MARC link is clicked' do
