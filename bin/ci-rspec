@@ -5,6 +5,7 @@ export MYSQL_PASSWORD=mysql
 export MYSQL_HOST=mysql
 export MYSQL_DATABASE=mysql
 
+
 echo "initalizing solr"
 bundle exec rake solr:create_collection
 bundle exec rake solr:update_config
@@ -13,4 +14,5 @@ bundle exec rake solr:load_fixtures
 
 bundle exec rspec
 RSPEC_EXIT_CODE=$?
+
 exit ${RSPEC_EXIT_CODE}
