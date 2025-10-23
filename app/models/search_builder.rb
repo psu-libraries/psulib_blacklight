@@ -5,6 +5,7 @@ class SearchBuilder < Blacklight::SearchBuilder
   include BlacklightRangeLimit::RangeLimitBuilder
   include BlacklightAdvancedSearch::AdvancedSearchBuilder
   include ClauseCountLimiter
+
   self.default_processor_chain += [:add_advanced_parse_q_to_solr, :add_advanced_search_to_solr,
                                    :add_all_online_to_query, :limit_clause_count]
 
@@ -29,7 +30,7 @@ class SearchBuilder < Blacklight::SearchBuilder
 
     def campus_facet_all_online_query?(solr_parameters)
       blacklight_params['add_all_online'] == 'true' &&
-        solr_parameters[:fq]&.count == 1 &&
+        solr_parameters[:fq]&.one? &&
         solr_parameters[:fq]&.first&.include?('tag=campus_facet_single')
     end
 end

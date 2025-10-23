@@ -20,7 +20,7 @@ module ReportIssue
       flash[:success] = t('blacklight.email.success')
     end
 
-    def validate_report_issue_params
+    def validate_report_issue_params?
       if params[:comment].blank?
         flash[:error] = t('blackcat.report_issue.errors.comment')
       end

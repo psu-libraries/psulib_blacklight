@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'RIS file download', type: :request do
+RSpec.describe 'RIS file download' do
   let(:expected_content_type) { 'application/x-research-info-systems' }
   let(:expected_file_name) { 'document.ris' }
 

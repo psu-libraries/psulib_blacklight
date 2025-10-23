@@ -35,18 +35,6 @@ Performance/CollectionLiteralInLoop:
   Exclude:
     - 'config/environments/production.rb'
 
-# Offense count: 25
-RSpec/Capybara:
-  Exclude:
-    - 'spec/components/psul_constraint_layout_component_spec.rb'
-    - 'spec/features/ask_a_librarian_spec.rb'
-    - 'spec/features/availability_spec.rb'
-    - 'spec/features/google_preview_link_spec.rb'
-    - 'spec/views/browse/authors.html.erb_spec.rb'
-    - 'spec/views/browse/call_numbers.html.erb_spec.rb'
-    - 'spec/views/browse/subjects.html.erb_spec.rb'
-    - 'spec/views/browse/titles.html.erb_spec.rb'
-
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
 RSpec/ExpectActual:
@@ -70,3 +58,7 @@ Rails/I18nLocaleTexts:
 Style/OptionalBooleanParameter:
   Exclude:
     - 'app/helpers/facets_helper.rb'
+
+Lint/UselessConstantScoping:
+  Exclude:
+    - app/components/psul_facet_item_component.rb

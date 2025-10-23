@@ -15,6 +15,9 @@ AllCops:
     - 'vendor/**/*'
   NewCops: enable
 
+Capybara/NegationMatcherAfterVisit:
+  Enabled: false
+
 Metrics/BlockLength:
   Exclude:
   # The catalog controller is just one giant block for config.
@@ -66,13 +69,10 @@ RSpec/ExampleLength:
   # Feature specs are special.
   - 'spec/features/**/*'
 
+RSpec/IndexedLet:
+  Enabled: false
+
 RSpec/NestedGroups:
-  Enabled: false
-
-RSpec/Capybara/FeatureMethods:
-  Enabled: false
-
-RSpec/Capybara:
   Enabled: false
 
 RSpec/MultipleMemoizedHelpers:

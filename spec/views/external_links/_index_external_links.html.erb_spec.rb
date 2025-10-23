@@ -53,8 +53,8 @@ RSpec.describe 'external_links/index_external_links' do
 
     it 'does not renders Online Version links' do
       render 'external_links/index_external_links', document: document
-      expect(rendered).not_to have_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73013')
-      expect(rendered).not_to have_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73014')
+      expect(rendered).to have_no_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73013')
+      expect(rendered).to have_no_link('purl.access.gpo.gov', href: 'http://purl.access.gpo.gov/GPO/LPS73014')
       expect(rendered).not_to include('Pt.1, text version:')
       expect(rendered).not_to include('This is a note')
       expect(rendered).not_to include('Pt.1, PDF version:')
@@ -71,7 +71,7 @@ RSpec.describe 'external_links/index_external_links' do
 
     it 'does not renders Related Resources links' do
       render 'external_links/index_external_links', document: document
-      expect(rendered).not_to have_link('related.resource', href: 'http://related.resource')
+      expect(rendered).to have_no_link('related.resource', href: 'http://related.resource')
       expect(rendered).not_to include('This is a prefix:')
       expect(rendered).not_to include('This is a note')
     end
