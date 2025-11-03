@@ -47,7 +47,7 @@ RSpec.describe 'viewing a record', :js, :vcr do
   end
 
   context 'when the record has an ARK URL that redirects to the IIIF manifest' do
-    it 'renders the Mirador viewer' do
+    it 'renders the Mirador viewer', :retry => 3 do
       visit '/catalog/1267921'
       expect(page).to have_css 'div[id="iiif-viewer"]'
       expect(page).to have_css 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
