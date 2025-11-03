@@ -12,7 +12,7 @@ RSpec.describe 'Availability Tooltip', :vcr do
   end
 
   describe 'Clicking "View More" and hovering over tooltip', :js do
-    it 'renders tooltip', :retry => 3 do
+    it 'renders tooltip', retry: 3 do
       visit '/catalog/2169033'
       click_on 'View More'
       sleep(0.5)
