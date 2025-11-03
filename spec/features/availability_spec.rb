@@ -191,7 +191,7 @@ RSpec.describe 'Availability', :vcr do
     end
 
     describe 'Archival Material:' do
-      it 'has a "Request Material" link so it can be requested through Aeon', retry: 3 do
+      it 'has a "Request Material" link so it can be requested through Aeon', retry: 3, retry_wait: 10 do
         visit '/catalog/1836205'
         click_on('View More')
         sleep 2 # It seems to be taking a little longer to expand this list than it used to

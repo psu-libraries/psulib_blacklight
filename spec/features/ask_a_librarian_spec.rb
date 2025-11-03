@@ -15,7 +15,7 @@ RSpec.describe 'Ask a librarian' do
       expect(page).to have_css('button[class^="libchat"]')
     end
 
-    it 'shows up on a catalog item page only once after going to MARC View and back', retry: 2 do
+    it 'shows up on a catalog item page only once after going to MARC View and back', retry: 2, retry_wait: 10 do
       visit '/catalog/22090269'
       click_on 'View MARC record'
       page.assert_selector('h1', text: 'MARC View', wait: 10)
