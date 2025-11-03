@@ -440,6 +440,8 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
+    rspec-rebound (0.2.1)
+      rspec-core (~> 3.3)
     rspec-support (3.13.5)
     rubocop (1.80.2)
       json (~> 2.3)
@@ -628,6 +630,7 @@ DEPENDENCIES
   rsolr (>= 2.5)
   rspec-its
   rspec-rails
+  rspec-rebound
   rubocop-capybara
   rubyzip
   selenium-webdriver
