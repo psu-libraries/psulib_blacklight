@@ -11,8 +11,6 @@ services:
     tty: true
     stdin_open: true
     <<: *web_env
-    depends_on: 
-      - solr
     command: 
       - /app/bin/startup
     build: 
@@ -26,6 +24,9 @@ services:
       target: /app/
     ports:
       - "${APP_PORT:-3000}:3000"
+    depends_on:
+      solr:
+        condition: service_healthy
   solr:
     image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
     environment:
@@ -40,6 +41,15 @@ services:
       "-c",
       "solr -c && solr auth enable -credentials catalog:catalog -z localhost:9983; solr stop && solr -c -f",
     ]
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "curl -sf -u catalog:catalog http://localhost:8983/solr/admin/info/system | grep -q 'solr_home'"
+      ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 volumes:
   bundle-data:
   node-data:
