@@ -59,6 +59,7 @@ jobs:
             git clone $CONFIG_REPO
             cd catalog-config
             ./bin/generate_app
+            ./bin/generate_app_uldev
   test:
     docker:
       - image: cimg/ruby:3.4.1-browsers
