@@ -422,8 +422,7 @@ workflows:
           to_tag: "<< pipeline.git.tag >>"
           filters:
             branches:
-              only: /.*/
-              # ignore: /.*/
+              ignore: /.*/
             tags:
               only: /^v\d+\.\d+\.\d+.*/
       - test-application:
