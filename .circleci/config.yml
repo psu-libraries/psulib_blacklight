@@ -158,37 +158,37 @@ jobs:
             cd $CONFIG_REPO_NAME
             ./bin/ci-delete-manifest
   
-  # deploy-application:
-  #   executor:
-  #     name: ci-utils
-  #     image_tag: << pipeline.parameters.CI_UTILS_IMAGE_TAG >>
-  #     registry_host: << pipeline.parameters.REGISTRY_HOST >>
-  #   environment:
-  #     clusters: << parameters.clusters >>
-  #     CONFIG_REPO_NAME: << pipeline.parameters.CONFIG_REPO_NAME >>
-  #     CONFIG_REPO_URL: << pipeline.parameters.CONFIG_REPO_URL >>
-  #   parameters:
-  #     clusters:
-  #       type: string
-  #   steps:
-  #     - clone-config-repo
-  #     - compute-docker-tag
-  #     - run:
-  #         name: Add or Update Application Manifest
-  #         command: |
-  #           export TRIGGERED_BY="$CIRCLE_USERNAME"
-  #           # Split comma-separated clusters into array and loop
-  #           clusters="${clusters// /}"
-  #           IFS=',' read -ra CLUSTERS \<<< "$clusters"
-  #           echo "Pre loop Directory: $(pwd)"
-  #           for cluster in "${CLUSTERS[@]}"; do
-  #               export TARGET_CLUSTER="$cluster"
-  #               echo "Processing cluster: $TARGET_CLUSTER"
-  #               cd $CONFIG_REPO_NAME
-  #               ./bin/ci-write-manifest
-  #               echo "Finished processing $TARGET_CLUSTER"
-  #               git status
-  #           done
+  deploy-application:
+    executor:
+      name: ci-utils
+      image_tag: << pipeline.parameters.CI_UTILS_IMAGE_TAG >>
+      registry_host: << pipeline.parameters.REGISTRY_HOST >>
+    environment:
+      clusters: << parameters.clusters >>
+      CONFIG_REPO_NAME: << pipeline.parameters.CONFIG_REPO_NAME >>
+      CONFIG_REPO_URL: << pipeline.parameters.CONFIG_REPO_URL >>
+    parameters:
+      clusters:
+        type: string
+    steps:
+      - clone-config-repo
+      - compute-docker-tag
+      - run:
+          name: Add or Update Application Manifest
+          command: |
+            export TRIGGERED_BY="$CIRCLE_USERNAME"
+            # Split comma-separated clusters into array and loop
+            clusters="${clusters// /}"
+            IFS=',' read -ra CLUSTERS \<<< "$clusters"
+            echo "Pre loop Directory: $(pwd)"
+            for cluster in "${CLUSTERS[@]}"; do
+                export TARGET_CLUSTER="$cluster"
+                echo "Processing cluster: $TARGET_CLUSTER"
+                cd $CONFIG_REPO_NAME
+                ./bin/ci-write-manifest
+                echo "Finished processing $TARGET_CLUSTER"
+                git status
+            done
 
 # jobs:
   # release:
