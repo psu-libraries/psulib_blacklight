@@ -109,6 +109,20 @@ jobs:
           tag: $TAG
           extra_build_args: "--target production"
           use-buildkit: true
+      - run:
+          name: Save Docker image
+          command: |
+            docker save $REGISTRY_HOST/library/$CIRCLE_PROJECT_REPONAME:$TAG -o /tmp/docker-image.tar          
+      - run:
+          name: Save image info for push job
+          command: |
+            mkdir -p /tmp/docker-image-info
+            echo "$REGISTRY_HOST/library/$CIRCLE_PROJECT_REPONAME:$TAG" > /tmp/docker-image-info/image-name.txt
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - docker-image.tar
+            - docker-image-info            
       - docker/push:
           digest-path: /tmp/digest.txt
           image: $REGISTRY_REPO
