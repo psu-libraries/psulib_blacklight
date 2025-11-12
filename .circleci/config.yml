@@ -39,12 +39,6 @@ parameters:
 
 commands:
 
-  announce-config-version:
-    steps:
-      - run:
-          name: Announce Pipeline Config Version
-          command: echo "PIPELINE_CONFIG_VERSION=<< pipeline.parameters.PIPELINE_CONFIG_VERSION >>"
-
   clone-config-repo:
     steps:
       - add_ssh_keys
@@ -88,7 +82,6 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
-      - announce-config-version
       - run:
           name: Checkout Branch
           command: |
