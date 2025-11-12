@@ -49,7 +49,8 @@ commands:
           name: Prepare GitHub Access
           command: |
             ssh-keyscan github.com > ~/.ssh/known_hosts
-            git clone $CONFIG_REPO_URL
+            git clone << pipeline.parameters.CONFIG_REPO_URL >>
+
 
   compute-docker-tag:
     steps:
