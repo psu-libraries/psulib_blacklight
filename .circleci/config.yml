@@ -335,7 +335,7 @@ jobs:
       registry_host: << pipeline.parameters.REGISTRY_HOST >>
     environment:
       clusters: << parameters.clusters >>
-      CONFIG_REPO: git@github.com:psu-libraries/drupal-site-config.git
+      CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       FROM_TAG: << parameters.from_tag >>
       TO_TAG: << parameters.to_tag >>
