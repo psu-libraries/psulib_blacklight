@@ -320,8 +320,7 @@ workflows:
           delete_branch: << pipeline.parameters.GHA_Meta >>
           filters:
             branches:
-              only: main
-
+              only: /.*/
   docker-push:
     unless:
       equal: [ "delete", << pipeline.parameters.GHA_Event >> ]
@@ -332,9 +331,10 @@ workflows:
             - org-global
           filters:
             branches:
-              only:
-                - main
-                - /preview\/.*/
+              only: /.*/
+              # only:
+              #   - main
+              #   - /preview\/.*/
       - deploy-application:
           name: deploy-application
           context:
@@ -342,9 +342,10 @@ workflows:
           clusters: << pipeline.parameters.CLUSTERS_DEV >>
           filters:
             branches:
-              only:
-                - main
-                - /preview\/.*/
+              only: /.*/            
+              # only:
+              #   - main
+              #   - /preview\/.*/
           requires:
             - push-image
       - push-image:
@@ -353,9 +354,10 @@ workflows:
             - org-global
           filters:
             branches:
-              only:
-                - main
-                - /preview\/.*/
+              only: /.*/              
+              # only:
+              #   - main
+              #   - /preview\/.*/
           requires:
             - build-image
             - test-application
@@ -368,7 +370,8 @@ workflows:
           to_tag: "<< pipeline.git.tag >>"
           filters:
             branches:
-              ignore: /.*/
+              only: /.*/
+              # ignore: /.*/
             tags:
               only: /^v\d+\.\d+\.\d+.*/
       - test-application:
@@ -377,9 +380,10 @@ workflows:
             - org-global
           filters:
             branches:
-              only:
-                - main
-                - /preview\/.*/              
+              only: /.*/
+              # only:
+              #   - main
+              #   - /preview\/.*/              
 
   # blacklight:
   #   jobs:
