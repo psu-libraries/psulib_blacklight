@@ -350,10 +350,9 @@ workflows:
           clusters: << pipeline.parameters.CLUSTERS_DEV >>
           filters:
             branches:
-              only: /.*/            
-              # only:
-              #   - main
-              #   - /preview\/.*/
+              only:
+                - main
+                - /preview\/.*/
           requires:
             - push-image
       - push-image:
