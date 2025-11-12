@@ -67,8 +67,10 @@ executors:
     parameters:
       image_tag:
         type: string
+      registry_host:
+        type: string
     docker:
-      - image: harbor.k8s.libraries.psu.edu/library/ci-utils:<< parameters.image_tag >>
+      - image: << parameters.registry_host >>/library/ci-utils:<< parameters.image_tag >>
 
 jobs: 
   build-image:
