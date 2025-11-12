@@ -27,6 +27,12 @@ parameters:
   CONFIG_REPO_URL:
     type: string
     default: "git@github.com:psu-libraries/catalog-config.git"
+  CLUSTERS_DEV:
+    type: string
+    default: "uldev"
+  CLUSTERS_PROD:
+    type: string
+    default: "prod"    
 
 commands:
 
