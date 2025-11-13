@@ -321,7 +321,7 @@ jobs:
 workflows:
   version: 2
 
-  delete-deployment:
+  blacklight-delete-ci-cd:
     when:
       equal: [ "delete", << pipeline.parameters.GHA_Event >> ]
     jobs:
@@ -332,7 +332,8 @@ workflows:
           filters:
             branches:
               only: /.*/
-  docker-push:
+
+  blacklight-ci-cd:
     unless:
       equal: [ "delete", << pipeline.parameters.GHA_Event >> ]
     jobs:              
