@@ -89,18 +89,7 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
-      - run:
-          name: Checkout Branch
-          command: |
-            export TRIGGERED_BY="$CIRCLE_USERNAME"
-            if [[ "$CIRCLE_BRANCH" == update/* ]]; then
-              git fetch origin "$CIRCLE_BRANCH"
-              git checkout "$CIRCLE_BRANCH"
-              echo "Now on branch: $(git rev-parse --abbrev-ref HEAD)"
-            else
-              echo "Using detached HEAD at commit: $CIRCLE_SHA1"
-            fi
-      - compute-docker-tag          
+      - compute-docker-tag
       - docker/check:
           registry: $REGISTRY_HOST
       - docker/build:
@@ -112,7 +101,7 @@ jobs:
       - run:
           name: Save Docker image
           command: |
-            docker save $REGISTRY_HOST/library/$CIRCLE_PROJECT_REPONAME:$TAG -o /tmp/docker-image.tar          
+            docker save $REGISTRY_HOST/library/$CIRCLE_PROJECT_REPONAME:$TAG -o /tmp/docker-image.tar
       - run:
           name: Save image info for push job
           command: |
