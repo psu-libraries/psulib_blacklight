@@ -75,7 +75,8 @@
   },
   "scripts": {
     "test": "jest",
-    "lint": "yarn run eslint --ext .js,.jsx app/javascript spec/javascript"
+    "lint": "eslint --ext .js,.jsx app/javascript spec/javascript --max-warnings=0"
+
   },
   "jest": {
     "roots": [
