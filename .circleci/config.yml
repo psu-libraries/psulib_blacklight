@@ -343,9 +343,6 @@ workflows:
           filters:
             branches:
               only: /.*/
-              # only:
-              #   - main
-              #   - /preview\/.*/      
 
       - build-image:
           name: build-image
@@ -353,20 +350,19 @@ workflows:
             - org-global
           filters:
             branches:
-              only: /.*/
-              # only:
-              #   - main
-              #   - /preview\/.*/
+              only:
+                - main
+                - /preview\/.*/
+
       - push-image:
           name: push-image
           context:
             - org-global
           filters:
-            branches:
-              only: /.*/              
-              # only:
-              #   - main
-              #   - /preview\/.*/
+            branches:              
+              only:
+                - main
+                - /preview\/.*/
           requires:
             - build-image
             - test-application
