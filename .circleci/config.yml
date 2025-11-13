@@ -336,8 +336,8 @@ workflows:
     unless:
       equal: [ "delete", << pipeline.parameters.GHA_Event >> ]
     jobs:
-      - build-image:
-          name: build-image
+      - test-application:
+          name: test-application
           context:
             - org-global
           filters:
@@ -345,7 +345,21 @@ workflows:
               only: /.*/
               # only:
               #   - main
-              #   - /preview\/.*/
+              #   - /preview\/.*/  
+
+      - deploy-application:
+          context:
+            - org-global
+          requires:
+            - test-application
+            - push-image
+            - build-image
+          filters:
+            branches:
+              only:
+                - main
+                - /preview\/.*/            
+
       - deploy-application:
           name: deploy-application
           context:
@@ -357,7 +371,20 @@ workflows:
                 - main
                 - /preview\/.*/
           requires:
+            - test-application
             - push-image
+
+      - build-image:
+          name: build-image
+          context:
+            - org-global
+          filters:
+            branches:
+              only: /.*/
+              # only:
+              #   - main
+              #   - /preview\/.*/
+
       - push-image:
           name: push-image
           context:
@@ -369,9 +396,10 @@ workflows:
               #   - main
               #   - /preview\/.*/
           requires:
-            - build-image
             - test-application
-      - release-image:
+            - build-image
+      
+      - release-image: 
           name: release-image
           clusters: << pipeline.parameters.CLUSTERS_PROD >>
           context:
@@ -383,13 +411,4 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v\d+\.\d+\.\d+.*/
-      - test-application:
-          name: test-application
-          context:
-            - org-global
-          filters:
-            branches:
-              only: /.*/
-              # only:
-              #   - main
-              #   - /preview\/.*/      
+    
