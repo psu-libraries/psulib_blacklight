@@ -393,3 +393,13 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v\d+\.\d+\.\d+.*/
+
+## Workflows
+
+# | **Scenario**                       | **Workflow**              | **Jobs (in order)**                                                                  |
+# | ---------------------------------- | ------------------------- | -----------------------------------------------------------------------------------  |
+# | Feature branch push                | `blacklight-ci-cd`        | 🧪 `test-application`                                                                |
+# | `preview/feature` branch push      | `blacklight-ci-cd`        | 🧪 `test-application` → 🏗️ `build-image` → 📦 `push-image` → 🚀 `deploy-application` |
+# | Push to `main`                     | `blacklight-ci-cd`        | 🧪 `test-application` → 🏗️ `build-image` → 📦 `push-image` → 🚀 `deploy-application` |
+# | Tag like `v1.2.3`                  | `blacklight-ci-cd`        | 🏁 `release-image` only                                                              |
+# | Delete event (`GHA_Event: delete`) | `blacklight-delete-ci-cd` | 🗑️ `delete-deployment` only                                                          |
