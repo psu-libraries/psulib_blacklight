@@ -122,15 +122,7 @@ jobs:
           root: /tmp
           paths:
             - docker-image.tar
-            - docker-image-info            
-      - docker/push:
-          digest-path: /tmp/digest.txt
-          image: $REGISTRY_REPO
-          registry: $REGISTRY_HOST
-          tag: $TAG     
-      - run:
-          command: |
-            echo "Digest is: $(</tmp/digest.txt)"
+            - docker-image-info
 
   push-image:
     environment:
@@ -210,6 +202,44 @@ jobs:
                 echo "Finished processing $TARGET_CLUSTER"
                 git status
             done
+  
+  release-image:
+    parameters:
+      to_tag:
+        type: string
+      from_tag:
+        type: string
+      clusters:
+        type: string
+    executor:
+      name: ci-utils
+      image_tag: << pipeline.parameters.CI_UTILS_IMAGE_TAG >>
+      registry_host: << pipeline.parameters.REGISTRY_HOST >>
+    environment:
+      clusters: << parameters.clusters >>
+      CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
+      REGISTRY_HOST: harbor.k8s.libraries.psu.edu
+      FROM_TAG: << parameters.from_tag >>
+      TO_TAG: << parameters.to_tag >>
+      PIPELINE_CONFIG_VERSION: << pipeline.parameters.PIPELINE_CONFIG_VERSION >>
+    steps:
+      - clone-config-repo
+      - run:
+          name: Tag & Release Image
+          command: |
+            export TRIGGERED_BY="$CIRCLE_USERNAME"
+            export REGISTRY_REPO="$CIRCLE_PROJECT_REPONAME"
+            /usr/local/bin/image-tag
+            cd $CONFIG_REPO_NAME
+
+            # Split comma-separated clusters into array and loop
+            clusters="${clusters// /}"
+            IFS=',' read -ra CLUSTERS \<<< "$clusters"
+            for cluster in "${CLUSTERS[@]}"; do
+              export TARGET_CLUSTER="$cluster"
+              echo "Processing cluster: $TARGET_CLUSTER"
+              /usr/local/bin/image-release-pr "clusters/$TARGET_CLUSTER/manifests/$CIRCLE_PROJECT_REPONAME/prod.yaml"
+            done          
 
   test-application:
     docker:
@@ -279,44 +309,6 @@ jobs:
         name: "RSpec"
         command: |
           ./bin/ci-rspec
-
-  release-image:
-    parameters:
-      to_tag:
-        type: string
-      from_tag:
-        type: string
-      clusters:
-        type: string
-    executor:
-      name: ci-utils
-      image_tag: << pipeline.parameters.CI_UTILS_IMAGE_TAG >>
-      registry_host: << pipeline.parameters.REGISTRY_HOST >>
-    environment:
-      clusters: << parameters.clusters >>
-      CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
-      REGISTRY_HOST: harbor.k8s.libraries.psu.edu
-      FROM_TAG: << parameters.from_tag >>
-      TO_TAG: << parameters.to_tag >>
-      PIPELINE_CONFIG_VERSION: << pipeline.parameters.PIPELINE_CONFIG_VERSION >>
-    steps:
-      - clone-config-repo
-      - run:
-          name: Tag & Release Image
-          command: |
-            export TRIGGERED_BY="$CIRCLE_USERNAME"
-            export REGISTRY_REPO="$CIRCLE_PROJECT_REPONAME"
-            /usr/local/bin/image-tag
-            cd $CONFIG_REPO_NAME
-
-            # Split comma-separated clusters into array and loop
-            clusters="${clusters// /}"
-            IFS=',' read -ra CLUSTERS \<<< "$clusters"
-            for cluster in "${CLUSTERS[@]}"; do
-              export TARGET_CLUSTER="$cluster"
-              echo "Processing cluster: $TARGET_CLUSTER"
-              /usr/local/bin/image-release-pr "clusters/$TARGET_CLUSTER/manifests/$CIRCLE_PROJECT_REPONAME/prod.yaml"
-            done          
 
 workflows:
   version: 2
