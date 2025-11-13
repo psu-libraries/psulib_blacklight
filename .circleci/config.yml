@@ -211,62 +211,6 @@ jobs:
                 git status
             done
 
-# jobs:
-  # release:
-  #   docker:
-  #     - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v4.0.4
-  #   environment:
-  #     REGISTRY_HOST: harbor.k8s.libraries.psu.edu
-  #     REGISTRY_REPO: library/psulib_blacklight
-  #     GITHUB_USER: 'psu-stewardship-bot'
-  #     CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
-  #   steps:
-  #     - add_ssh_keys
-  #     - run:
-  #         name: "Release"
-  #         command: |
-  #           /usr/local/bin/tag-image
-  #           ssh-keyscan github.com > ~/.ssh/known_hosts
-  #           git clone $CONFIG_REPO
-  #           cd catalog-config
-  #           /usr/local/bin/pr-release clusters/prod/manifests/psulib_blacklight/prod.yaml
-  # publish:
-  #   executor:
-  #     name: docker/docker
-  #     tag: "3.8"
-  #   steps:
-  #     - setup_remote_docker:
-  #         docker_layer_caching: true
-  #     - checkout
-  #     - docker/check:
-  #         registry: harbor.k8s.libraries.psu.edu
-  #     - docker/build:
-  #         image: library/psulib_blacklight
-  #         registry: harbor.k8s.libraries.psu.edu
-  #         use-buildkit: true
-  #         extra_build_args: "--target production"
-  #     - docker/push:
-  #         digest-path: /tmp/digest.txt
-  #         image: library/psulib_blacklight
-  #         registry: harbor.k8s.libraries.psu.edu
-  #     - run:
-  #         command: |
-  #           echo "Digest is: $(</tmp/digest.txt)"
-  # deploy:
-  #   docker:
-  #     - image: harbor.k8s.libraries.psu.edu/library/ci-utils:v4.0.4
-  #   environment:
-  #     CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
-  #   steps:
-  #     - add_ssh_keys
-  #     - run:
-  #         name: "Updating Config Repo"
-  #         command: |
-  #           ssh-keyscan github.com > ~/.ssh/known_hosts
-  #           git clone $CONFIG_REPO
-  #           cd catalog-config
-  #           ./bin/generate_app
-  #           ./bin/generate_app_uldev
   test-application:
     docker:
       - image: cimg/ruby:3.4.1-browsers
@@ -448,38 +392,4 @@ workflows:
               only: /.*/
               # only:
               #   - main
-              #   - /preview\/.*/              
-
-  # blacklight:
-  #   jobs:
-  #     - release:
-  #         context:
-  #           - org-global
-  #         name: "Release"
-  #         filters:
-  #           tags:
-  #             only:
-  #               - /^v\d+.\d+.\d+.*/
-  #           branches:
-  #             ignore:
-  #               - /.*/
-  #     - test
-  #     - publish:
-  #         context: 
-  #           - org-global
-  #         filters:
-  #           branches:
-  #             only:
-  #               - main
-  #               - /preview\/.*/
-  #     - deploy:
-  #         context: 
-  #           - org-global
-  #         requires:
-  #           - test
-  #           - publish
-  #         filters:
-  #           branches:
-  #             only:
-  #               - main
-  #               - /preview\/.*/
+              #   - /preview\/.*/      
