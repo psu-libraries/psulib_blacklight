@@ -335,7 +335,7 @@ workflows:
   docker-push:
     unless:
       equal: [ "delete", << pipeline.parameters.GHA_Event >> ]
-    jobs:
+    jobs:              
       - test-application:
           name: test-application
           context:
@@ -345,20 +345,31 @@ workflows:
               only: /.*/
               # only:
               #   - main
-              #   - /preview\/.*/  
+              #   - /preview\/.*/      
 
-      - deploy-application:
+      - build-image:
+          name: build-image
           context:
             - org-global
-          requires:
-            - test-application
-            - push-image
-            - build-image
           filters:
             branches:
-              only:
-                - main
-                - /preview\/.*/            
+              only: /.*/
+              # only:
+              #   - main
+              #   - /preview\/.*/
+      - push-image:
+          name: push-image
+          context:
+            - org-global
+          filters:
+            branches:
+              only: /.*/              
+              # only:
+              #   - main
+              #   - /preview\/.*/
+          requires:
+            - build-image
+            - test-application
 
       - deploy-application:
           name: deploy-application
@@ -371,33 +382,7 @@ workflows:
                 - main
                 - /preview\/.*/
           requires:
-            - test-application
             - push-image
-
-      - build-image:
-          name: build-image
-          context:
-            - org-global
-          filters:
-            branches:
-              only: /.*/
-              # only:
-              #   - main
-              #   - /preview\/.*/
-
-      - push-image:
-          name: push-image
-          context:
-            - org-global
-          filters:
-            branches:
-              only: /.*/              
-              # only:
-              #   - main
-              #   - /preview\/.*/
-          requires:
-            - test-application
-            - build-image
       
       - release-image: 
           name: release-image
@@ -411,4 +396,3 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v\d+\.\d+\.\d+.*/
-    
