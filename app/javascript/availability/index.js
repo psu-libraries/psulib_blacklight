@@ -14,7 +14,7 @@ import Snippet from './components/snippet';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 const availability = {
-  // Load Sirsi locations - comment
+  // Load Sirsi locations 
   allLocations: locations.locations,
   allLibraries: locations.libraries,
   illiadLocations: locations.request_via_ill,
