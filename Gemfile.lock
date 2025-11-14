@@ -116,9 +116,8 @@ GEM
     blacklight_advanced_search (8.0.0.alpha2)
       blacklight (>= 7.15, < 9)
       parslet
-    blacklight_range_limit (9.1.0)
-      blacklight (>= 7.25.2, < 9)
-      view_component (>= 2.54, < 5)
+    blacklight_range_limit (8.1.0)
+      blacklight (~> 7.0)
     bootsnap (1.18.6)
       msgpack (~> 1.2)
     bot_challenge_page (0.3.1)
@@ -294,7 +293,8 @@ GEM
     mustermann (3.0.4)
       ruby2_keywords (~> 0.0.1)
     mutex_m (0.3.0)
-    mysql2 (0.5.6)
+    mysql2 (0.5.7)
+      bigdecimal
     net-imap (0.5.10)
       date
       net-protocol
@@ -599,7 +599,7 @@ DEPENDENCIES
   blacklight (~> 7.35)
   blacklight-marc (~> 8.0)
   blacklight_advanced_search (~> 8.0.0.alpha)
-  blacklight_range_limit
+  blacklight_range_limit (~> 8.1.0)
   bootsnap
   bot_challenge_page (~> 0.3.1)
   bugsnag (~> 6.26)
@@ -617,7 +617,7 @@ DEPENDENCIES
   listen
   lograge
   memory_profiler
-  mysql2 (>= 0.5.6, < 0.6.0)
+  mysql2 (>= 0.5.7, < 0.6.0)
   net-imap
   net-pop
   net-smtp

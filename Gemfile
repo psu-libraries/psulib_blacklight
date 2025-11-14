@@ -37,7 +37,7 @@ gem 'stackprof'
 gem 'blacklight', '~> 7.35'
 gem 'blacklight_advanced_search', '~> 8.0.0.alpha'
 gem 'blacklight-marc', '~> 8.0'
-gem 'blacklight_range_limit'
+gem 'blacklight_range_limit', '~> 8.1.0'
 
 group :development do
   gem 'better_errors'
@@ -73,5 +73,5 @@ group :test do
 end
 
 group :production, :test do
-  gem 'mysql2', '>= 0.5.6', '< 0.6.0'
+  gem 'mysql2', '>= 0.5.7', '< 0.6.0'
 end
