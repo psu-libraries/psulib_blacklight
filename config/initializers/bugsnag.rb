@@ -7,6 +7,6 @@ Bugsnag.configure do |config|
   config.add_on_error(proc do |event|
     path = event.request&.dig(:path)
 
-    false if path&.start_with?('/health')
+    event.ignore! if path&.start_with?('/health')
   end)
 end
