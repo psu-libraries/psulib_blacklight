@@ -15,41 +15,41 @@ RSpec.describe CatalogController do
       expect(:response).to redirect_to '/404'
     end
 
-    # describe 'enforce_bot_challenge' do
-    #   let(:whitelisted_ip) { '192.168.1.1' }
-    #   let(:non_whitelisted_ip) { '10.0.0.1' }
+    describe 'enforce_bot_challenge' do
+      let(:whitelisted_ip) { '192.168.1.1' }
+      let(:non_whitelisted_ip) { '10.0.0.1' }
 
-    #   before do
-    #     allow(BotChallengePage::BotChallengePageController)
-    #       .to receive(:bot_challenge_enforce_filter)
-    #     ENV['BOT_CHALLENGE_IP_WHITELIST'] = whitelisted_ip
-    #   end
+      before do
+        allow(BotChallengePage::BotChallengePageController)
+          .to receive(:bot_challenge_enforce_filter)
+        ENV['BOT_CHALLENGE_IP_WHITELIST'] = whitelisted_ip
+      end
 
-    #   after do
-    #     ENV['BOT_CHALLENGE_IP_WHITELIST'] = nil
-    #   end
+      after do
+        ENV['BOT_CHALLENGE_IP_WHITELIST'] = nil
+      end
 
-    #   context 'when remote_ip is whitelisted' do
-    #     it 'does not call bot_challenge_enforce_filter' do
-    #       request.remote_addr = whitelisted_ip
+      context 'when remote_ip is whitelisted' do
+        it 'does not call bot_challenge_enforce_filter' do
+          request.remote_addr = whitelisted_ip
 
-    #       get :index
-    #       expect(BotChallengePage::BotChallengePageController)
-    #         .not_to have_received(:bot_challenge_enforce_filter)
-    #     end
-    #   end
+          get :index
+          expect(BotChallengePage::BotChallengePageController)
+            .not_to have_received(:bot_challenge_enforce_filter)
+        end
+      end
 
-    #   context 'when remote_ip is not whitelisted' do
-    #     it 'calls bot_challenge_enforce_filter' do
-    #       request.remote_addr = non_whitelisted_ip
+      context 'when remote_ip is not whitelisted' do
+        it 'calls bot_challenge_enforce_filter' do
+          request.remote_addr = non_whitelisted_ip
 
-    #       get :index
-    #       expect(BotChallengePage::BotChallengePageController)
-    #         .to have_received(:bot_challenge_enforce_filter)
-    #         .with(instance_of(described_class), immediate: true)
-    #     end
-    #   end
-    # end
+          get :index
+          expect(BotChallengePage::BotChallengePageController)
+            .to have_received(:bot_challenge_enforce_filter)
+            .with(instance_of(described_class), immediate: true)
+        end
+      end
+    end
   end
 
   describe 'facet action' do
