@@ -49,7 +49,7 @@ RSpec.describe CatalogController do
     #         .with(instance_of(described_class), immediate: true)
     #     end
     #   end
-    end
+    # end
   end
 
   describe 'facet action' do
