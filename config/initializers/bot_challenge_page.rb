@@ -1,4 +1,4 @@
-# # frozen_string_literal: true
+# frozen_string_literal: true
 
 # Rails.application.config.to_prepare do
 #   BotChallengePage::BotChallengePageController.bot_challenge_config.enabled = !Rails.env.test?
