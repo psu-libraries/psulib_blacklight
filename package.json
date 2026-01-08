@@ -40,7 +40,7 @@
     "sass": "^1.69.4",
     "sass-loader": "^13.3.2",
     "select2": "^4.1.0-rc.0",
-    "shakapacker": "7.1.0",
+    "shakapacker": "9.5.0",
     "style-loader": "^3.3.3",
     "terser-webpack-plugin": "5",
     "turbolinks": "^5.2.0",
