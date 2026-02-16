@@ -3,7 +3,7 @@
 Rails.application.config.to_prepare do
   enabled =
     !Rails.env.test? &&
-    ActiveModel::Type::Boolean.new.cast(ENV.fetch('CLOUDFLARE_CHALLENGE_ENABLED', 'true'))
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('CF_CHALLENGE_ENABLED', 'true'))
 
   BotChallengePage::BotChallengePageController.bot_challenge_config.enabled = enabled
 
@@ -28,7 +28,7 @@ Rails.application.config.to_prepare do
   ]
 
   # How long will a challenge success exempt a session from further challenges?
-  BotChallengePage::BotChallengePageController.bot_challenge_config.session_passed_good_for = 72.hours
+  BotChallengePage::BotChallengePageController.bot_challenge_config.session_passed_good_for = 15.minutes
   BotChallengePage::BotChallengePageController.bot_challenge_config.allow_exempt = ->(controller, _config) {
     # Does not challenge "Good Bots" – we have another layer of filters so Header containing "Bot" should be legit
     !!(controller.request.headers['User-Agent'] =~ /bot|nagios-plugins/i)

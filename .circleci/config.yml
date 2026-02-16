@@ -32,13 +32,13 @@ parameters:
     default: "uldev"
   CLUSTERS_PROD:
     type: string
-    default: "prod"    
+    default: "prod"
   REGISTRY_HOST:
     type: string
-    default: "harbor.k8s.libraries.psu.edu"    
+    default: "harbor.k8s.libraries.psu.edu"
   PIPELINE_CONFIG_VERSION:
     type: string
-    default: "1.0.1"    
+    default: "1.0.1"
 
 commands:
 
@@ -63,7 +63,7 @@ commands:
               SLUG=$(slugify-branch "$CIRCLE_BRANCH")
               TAG="${SLUG}--$CIRCLE_SHA1"
             fi
-            echo "export TAG=$TAG" >> "$BASH_ENV"    
+            echo "export TAG=$TAG" >> "$BASH_ENV"
 
 executors:
 
@@ -76,14 +76,14 @@ executors:
     docker:
       - image: << parameters.registry_host >>/library/ci-utils:<< parameters.image_tag >>
 
-jobs: 
+jobs:
   build-image:
     environment:
       REGISTRY_HOST: << pipeline.parameters.REGISTRY_HOST >>
       REGISTRY_REPO: "library/$CIRCLE_PROJECT_REPONAME"
     executor:
       name: ci-utils
-      image_tag: << pipeline.parameters.CI_UTILS_IMAGE_TAG >>  
+      image_tag: << pipeline.parameters.CI_UTILS_IMAGE_TAG >>
       registry_host: << pipeline.parameters.REGISTRY_HOST >>
     steps:
       - setup_remote_docker:
@@ -137,8 +137,8 @@ jobs:
       - docker/push:
           image: $REGISTRY_REPO
           registry: $REGISTRY_HOST
-          tag: $TAG                     
-  
+          tag: $TAG
+
   delete-deployment:
     parameters:
       delete_branch:
@@ -159,7 +159,7 @@ jobs:
             export TRIGGERED_BY="$CIRCLE_USERNAME"
             cd $CONFIG_REPO_NAME
             ./bin/ci-delete-manifest
-  
+
   deploy-application:
     executor:
       name: ci-utils
@@ -191,7 +191,7 @@ jobs:
                 echo "Finished processing $TARGET_CLUSTER"
                 git status
             done
-  
+
   release-image:
     parameters:
       to_tag:
@@ -228,7 +228,7 @@ jobs:
               export TARGET_CLUSTER="$cluster"
               echo "Processing cluster: $TARGET_CLUSTER"
               /usr/local/bin/image-release-pr "clusters/$TARGET_CLUSTER/manifests/$CIRCLE_PROJECT_REPONAME/prod.yaml"
-            done          
+            done
 
   test-application:
     docker:
@@ -246,6 +246,11 @@ jobs:
       SETTINGS__solr__username: catalog
       SETTINGS__solr__password: catalog
     steps:
+    - run:
+        name: "Add Google Chrome GPG key (Ubuntu jammy)"
+        command: |
+          curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
     - run:
         name: "libu2f-udev"
         command: |
@@ -269,7 +274,9 @@ jobs:
         name: "Bundle"
         command: |
           gem install bundler
-          bundle check --path vendor/bundle || bundle install --deployment
+          bundle config set path 'vendor/bundle'
+          bundle config set deployment true
+          bundle install
     - run:
         name: "Yarn"
         command: |
@@ -280,7 +287,7 @@ jobs:
     - save_cache:
         paths:
           - vendor/bundle
-        key: bundle-{{ checksum "Gemfile.lock" }} 
+        key: bundle-{{ checksum "Gemfile.lock" }}
     - save_cache:
         key: yarn-{{ checksum "yarn.lock" }}
         paths:
@@ -317,7 +324,7 @@ workflows:
   blacklight-ci-cd:
     unless:
       equal: [ "delete", << pipeline.parameters.GHA_Event >> ]
-    jobs:              
+    jobs:
       - test-application:
           name: test-application
           context:
@@ -341,7 +348,7 @@ workflows:
           context:
             - org-global
           filters:
-            branches:              
+            branches:
               only:
                 - main
                 - /preview\/.*/
@@ -361,8 +368,8 @@ workflows:
                 - /preview\/.*/
           requires:
             - push-image
-      
-      - release-image: 
+
+      - release-image:
           name: release-image
           clusters: << pipeline.parameters.CLUSTERS_PROD >>
           context:
