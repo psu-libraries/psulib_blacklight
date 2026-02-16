@@ -1,4 +1,4 @@
-FROM harbor.k8s.libraries.psu.edu/library/ruby-3.4.1-node-22:20260202 AS base
+FROM harbor.k8s.libraries.psu.edu/library/ruby-3.4.1-node-22:20250131 AS base
 ARG UID=2000
 
 USER root
@@ -24,8 +24,7 @@ RUN bundle install --deployment --without development test && \
   rm -rf /app/vendor/bundle/ruby/*/cache
 
 
-
-COPY --chown=app package.json yarn.lock /app/
+COPY package.json yarn.lock /app/
 RUN yarn --frozen-lockfile && \
   rm -rf /app/.cache && \
   rm -rf /app/tmp
@@ -56,11 +55,9 @@ CMD ["/app/bin/startup"]
 # dev stage installs chrome, and all the deps needed to run rspec
 FROM base as dev
 
-
 USER root
-# Add Google Chrome GPG key and repo (Ubuntu jammy, signed-by method)
-RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor | tee /usr/share/keyrings/google-chrome.gpg > /dev/null \
-  && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
 
 RUN apt-get update && apt-get install -y x11vnc \
     xvfb \
