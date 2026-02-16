@@ -3,7 +3,7 @@
 Rails.application.config.to_prepare do
   enabled =
     !Rails.env.test? &&
-    ActiveModel::Type::Boolean.new.cast(ENV.fetch('CLOUDFLARE_CHALLENGE_ENABLED', 'true'))
+    ActiveModel::Type::Boolean.new.cast(ENV.fetch('CF_CHALLENGE_ENABLED', 'true'))
 
   BotChallengePage::BotChallengePageController.bot_challenge_config.enabled = enabled
 
