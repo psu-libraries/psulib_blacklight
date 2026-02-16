@@ -24,7 +24,8 @@ RUN bundle install --deployment --without development test && \
   rm -rf /app/vendor/bundle/ruby/*/cache
 
 
-COPY package.json yarn.lock /app/
+
+COPY --chown=app package.json yarn.lock /app/
 RUN yarn --frozen-lockfile && \
   rm -rf /app/.cache && \
   rm -rf /app/tmp
@@ -57,9 +58,10 @@ FROM base as dev
 
 
 USER root
-# Add Google Chrome GPG key and repo (Ubuntu jammy method)
+# Add Google Chrome GPG key and repo (Ubuntu jammy method, with key file check)
 RUN curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor | tee /usr/share/keyrings/google-chrome.gpg > /dev/null \
-  && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+  && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
+  && ls -l /usr/share/keyrings/google-chrome.gpg
 
 RUN apt-get update && apt-get install -y x11vnc \
     xvfb \
