@@ -1,4 +1,4 @@
-FROM harbor.k8s.libraries.psu.edu/library/ruby-3.4.1-node-22:20250131 AS base
+FROM harbor.k8s.libraries.psu.edu/library/ruby-3.4.1-node-22:20260202 AS base
 ARG UID=2000
 
 USER root
@@ -24,7 +24,7 @@ RUN bundle install --deployment --without development test && \
   rm -rf /app/vendor/bundle/ruby/*/cache
 
 
-COPY package.json yarn.lock /app/
+COPY --chown=app package.json yarn.lock /app/
 RUN yarn --frozen-lockfile && \
   rm -rf /app/.cache && \
   rm -rf /app/tmp
