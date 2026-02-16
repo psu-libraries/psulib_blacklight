@@ -247,6 +247,11 @@ jobs:
       SETTINGS__solr__password: catalog
     steps:
     - run:
+        name: "Add Google Chrome GPG key (Ubuntu jammy)"
+        command: |
+          curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+    - run:
         name: "libu2f-udev"
         command: |
           sudo apt-get update
