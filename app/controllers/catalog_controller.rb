@@ -550,7 +550,7 @@ class CatalogController < ApplicationController
     end
 
     def limit_queries
-      #try to log in first then send back to original page
+      # try to log in first then send back to original page
       if search_query_count > 3
         Rails.logger.info("Query length exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
         redirect_to '/query_limit'
@@ -558,17 +558,10 @@ class CatalogController < ApplicationController
     end
 
     def search_query_count
-      count = 0
-      #advanced search clause queries
-      params['clause']&.each do |key, value|
-        count += 1 if value['query'].present?
-      end
+      advanced_search_clauses = params.fetch('clause', {}).values.count { |value| value['query'].present? }
+      advanced_search_facets = params.fetch('f_inclusive', {}).values.flatten.count
+      index_facets = params.fetch('f', {}).values.flatten.count
 
-      #advanced search facet queries
-      count += params['f_inclusive']&.values&.flat_map(&:itself)&.count || 0
-
-      #index facet queries
-      count += params['f']&.values&.flat_map(&:itself)&.count || 0
-      count
+      advanced_search_clauses + advanced_search_facets + index_facets
     end
 end
