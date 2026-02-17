@@ -13,6 +13,7 @@ class CatalogController < ApplicationController
 
   before_action :redirect_browse
   before_action :enforce_bot_challenge, only: :index
+  before_action :limit_queries, unless: -> { current_user.present? }
 
   def index
     cache_key = nil
@@ -546,5 +547,28 @@ class CatalogController < ApplicationController
       return if ip_whitelist.any? { |ip| ip.include?(IPAddr.new(request.remote_ip)) }
 
       BotChallengePage::BotChallengePageController.bot_challenge_enforce_filter(self, immediate: true)
+    end
+
+    def limit_queries
+      #try to log in first then send back to original page
+      if search_query_count > 3
+        Rails.logger.info("Query length exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
+        redirect_to '/query_limit'
+      end
+    end
+
+    def search_query_count
+      count = 0
+      #advanced search clause queries
+      params['clause']&.each do |key, value|
+        count += 1 if value['query'].present?
+      end
+
+      #advanced search facet queries
+      count += params['f_inclusive']&.values&.flat_map(&:itself)&.count || 0
+
+      #index facet queries
+      count += params['f']&.values&.flat_map(&:itself)&.count || 0
+      count
     end
 end
