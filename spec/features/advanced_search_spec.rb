@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe 'Advanced Search' do
   describe 'User uses advanced search', :js do
     before do
+      user = User.create!(email: 'user1234@psu.edu')
+      login_as(user, scope: :user)
       visit '/advanced'
     end
 

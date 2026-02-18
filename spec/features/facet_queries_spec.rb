@@ -29,4 +29,25 @@ RSpec.describe 'Facet Queries' do
                              exact_text: 'Becoming'
     expect(page).to have_css 'article[data-document-id="24053587"]'
   end
+
+  context 'when user is not logged in' do
+    it 'redirect to query limit page' do
+      visit '/?f[access_facet][]=In+the+Library&f[campus_facet][]=University+Park&f[format][]=Book' \
+            '&f[up_library_facet][]=Pattee+Library+and+Paterno+Library+Stacks'
+      expect(page).to have_current_path('/query_limit')
+    end
+  end
+
+  context 'when user is logged in' do
+    before do
+      user = User.create!(email: 'user1234@psu.edu')
+      login_as(user, scope: :user)
+    end
+
+    it 'displays search results' do
+      visit '/?f[access_facet][]=In+the+Library&f[campus_facet][]=University+Park&f[format][]=Book' \
+            '&f[up_library_facet][]=Pattee+Library+and+Paterno+Library+Stacks'
+      expect(page).to have_css 'article[data-document-id="24053587"]'
+    end
+  end
 end
