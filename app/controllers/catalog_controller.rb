@@ -13,7 +13,7 @@ class CatalogController < ApplicationController
 
   before_action :redirect_browse
   before_action :enforce_bot_challenge, only: :index
-  before_action :limit_queries, unless: -> { current_user.present? }
+  before_action :authenticate_or_limit_queries
 
   def index
     cache_key = nil
@@ -549,8 +549,17 @@ class CatalogController < ApplicationController
       BotChallengePage::BotChallengePageController.bot_challenge_enforce_filter(self, immediate: true)
     end
 
+    def authenticate_or_limit_queries
+      return if user_signed_in?
+
+      warden.authenticate(scope: :user)
+
+      return if user_signed_in?
+
+      limit_queries
+    end
+
     def limit_queries
-      # try to log in first then send back to original page
       if search_query_count > 3
         Rails.logger.info("Query length exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
         redirect_to '/query_limit'

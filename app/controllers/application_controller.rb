@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
 
+  before_action :attempt_passive_authentication
   layout 'blacklight'
 
   protect_from_forgery with: :exception
@@ -41,5 +42,11 @@ class ApplicationController < ActionController::Base
       return unless request.session.fetch(:groups, []).include?(Settings.admin_group)
 
       Rack::MiniProfiler.authorize_request
+    end
+
+    def attempt_passive_authentication
+      return if user_signed_in?
+
+      warden.authenticate(scope: :user)
     end
 end
