@@ -1,8 +1,8 @@
 version: 2.1
 
 orbs:
-   docker: circleci/docker@2.6.0
-   browser-tools: circleci/browser-tools@1.5.2
+  docker: circleci/docker@2.8.2
+  browser-tools: circleci/browser-tools@1.5.3
 
 parameters:
 
@@ -20,7 +20,7 @@ parameters:
     default: ""
   CI_UTILS_IMAGE_TAG:
     type: string
-    default: "v4.3.0"
+    default: "v4.5.2"
   CONFIG_REPO_NAME:
     type: string
     default: "catalog-config"
@@ -50,7 +50,6 @@ commands:
           command: |
             ssh-keyscan github.com > ~/.ssh/known_hosts
             git clone << pipeline.parameters.CONFIG_REPO_URL >>
-
 
   compute-docker-tag:
     steps:
@@ -169,6 +168,7 @@ jobs:
       clusters: << parameters.clusters >>
       CONFIG_REPO_NAME: << pipeline.parameters.CONFIG_REPO_NAME >>
       CONFIG_REPO_URL: << pipeline.parameters.CONFIG_REPO_URL >>
+      CONFIG_REPO: << pipeline.parameters.CONFIG_REPO_URL >>
     parameters:
       clusters:
         type: string
@@ -206,9 +206,9 @@ jobs:
       registry_host: << pipeline.parameters.REGISTRY_HOST >>
     environment:
       clusters: << parameters.clusters >>
-      CONFIG_REPO_URL: << pipeline.parameters.CONFIG_REPO_URL >>
       CONFIG_REPO_NAME: << pipeline.parameters.CONFIG_REPO_NAME >>
-      REGISTRY_HOST: harbor.k8s.libraries.psu.edu
+      CONFIG_REPO: << pipeline.parameters.CONFIG_REPO_URL >>
+      REGISTRY_HOST: << pipeline.parameters.REGISTRY_HOST >>
       FROM_TAG: << parameters.from_tag >>
       TO_TAG: << parameters.to_tag >>
       PIPELINE_CONFIG_VERSION: << pipeline.parameters.PIPELINE_CONFIG_VERSION >>
@@ -217,19 +217,7 @@ jobs:
       - run:
           name: Tag & Release Image
           command: |
-            export TRIGGERED_BY="$CIRCLE_USERNAME"
-            export REGISTRY_REPO="$CIRCLE_PROJECT_REPONAME"
-            /usr/local/bin/image-tag
-            cd $CONFIG_REPO_NAME
-
-            # Split comma-separated clusters into array and loop
-            clusters="${clusters// /}"
-            IFS=',' read -ra CLUSTERS \<<< "$clusters"
-            for cluster in "${CLUSTERS[@]}"; do
-              export TARGET_CLUSTER="$cluster"
-              echo "Processing cluster: $TARGET_CLUSTER"
-              /usr/local/bin/image-release-pr "clusters/$TARGET_CLUSTER/manifests/$CIRCLE_PROJECT_REPONAME/prod.yaml"
-            done
+            /usr/local/bin/image-release-for-clusters
 
   test-application:
     docker:
@@ -382,13 +370,3 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v\d+\.\d+\.\d+.*/
-
-## Workflows
-
-# | **Scenario**                       | **Workflow**              | **Jobs (in order)**                                                                  |
-# | ---------------------------------- | ------------------------- | -----------------------------------------------------------------------------------  |
-# | Feature branch push                | `blacklight-ci-cd`        | 🧪 `test-application`                                                                |
-# | `preview/feature` branch push      | `blacklight-ci-cd`        | 🧪 `test-application` → 🏗️ `build-image` → 📦 `push-image` → 🚀 `deploy-application` |
-# | Push to `main`                     | `blacklight-ci-cd`        | 🧪 `test-application` → 🏗️ `build-image` → 📦 `push-image` → 🚀 `deploy-application` |
-# | Tag like `v1.2.3`                  | `blacklight-ci-cd`        | 🏁 `release-image` only                                                              |
-# | Delete event (`GHA_Event: delete`) | `blacklight-delete-ci-cd` | 🗑️ `delete-deployment` only                                                          |
