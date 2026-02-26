@@ -12,6 +12,7 @@ import reserveCirculationRules from './reserve_circulation_rules.json';
 import Availability from './components/availability';
 import Snippet from './components/snippet';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import ViewAvailabilityButton from './components/view_availability_button';
 
 const availability = {
   // Load Sirsi locations - comment
@@ -32,16 +33,37 @@ const availability = {
     'geospatial-information/map-scanning-and-printing',
 
   /**
+  * On page-load, build ViewAvailabilityButtons for the index page and load availability for the show page
+  */
+  setUpAvailability(){
+    $('.availability-index').each(function () {
+      const titleID = $(this).attr('data-keys');
+      const title = $(this).attr('data-title');
+      const access_facet = $(this).attr('data-access');
+      if (access_facet.includes('In the Library') || access_facet.includes('On Order')) {
+        ReactDOM.render(
+                React.createElement(ViewAvailabilityButton, {
+                  titleID: titleID,
+                  title: title
+                }),
+                this
+              );
+      }
+    });
+    $('.availability-show').each(function () {
+      const titleID = $(this).attr('data-keys');
+      availability.loadAvailability(titleID);
+    });
+  },
+
+  /**
    * Load real time holdings and availability info from Sirsi Web Services
    */
-  loadAvailability() {
-    const titleIDs = [];
+  loadAvailability(titleID) {
     const summaryHoldings = {};
-
-    // Get the catkeys
-    $('.availability').each(function () {
-      const titleID = $(this).attr('data-keys');
-      titleIDs.push(titleID);
+    const parent = $(`[data-keys='${titleID}']`)
+    // Get the summaryHoldings
+    $(parent).each(function () {
 
       const summaryHoldingsData = $(this).attr('data-summary-holdings');
       if (summaryHoldingsData) {
@@ -49,13 +71,11 @@ const availability = {
       }
     });
 
-    if (titleIDs.length > 0) {
       let allHoldings = [];
       let boundHoldings = [];
-      const sirsiRequestParams = titleIDs
-        .map((url) => `title_ids[]=${url}`)
-        .join('&');
-
+      const sirsiRequestParams = `title_ids[]=${titleID}`
+      const loadingIcon =  $(`#availability-parent-${titleID}`).find('.snippet-loading');
+      loadingIcon.removeClass('invisible');
       $.ajax({
         url: availability.sirsiUrl + sirsiRequestParams,
       }).then(
@@ -63,7 +83,6 @@ const availability = {
           $(response)
             .find('TitleInfo')
             .each(function () {
-              const catkey = $(this).children('titleID').text();
               const totalCopiesAvailable = parseInt(
                 $(this).find('totalCopiesAvailable').text(),
                 10,
@@ -76,7 +95,7 @@ const availability = {
 
               const titleInfo = {
                 jQueryObj: $(this),
-                catkey,
+                catkey: titleID,
                 totalCopiesAvailable,
                 holdable,
               };
@@ -97,7 +116,7 @@ const availability = {
                 availability.getIsOnlineOnOrderOnly(titleInfo);
 
               if (isOnlineOnOrderOnly) {
-                $(`.availability[data-keys="${catkey}"`).data(
+                $(`#availability-parent-${titleID}`).data(
                   'isOnlineOnOrderOnly',
                   true,
                 );
@@ -110,17 +129,17 @@ const availability = {
               boundHoldings,
               allHoldings,
               summaryHoldings,
+              titleID
             );
           } else {
             // Print availability data
-            availability.availabilityDisplay(allHoldings, summaryHoldings);
+            availability.availabilityDisplay(allHoldings, summaryHoldings, titleID);
           }
         },
         () => {
-          availability.displayErrorMsg();
+          availability.displayErrorMsg(titleID);
         },
       );
-    }
   },
 
   getAllHoldings(allHoldings, titleInfo) {
@@ -256,7 +275,7 @@ const availability = {
     return isOnlineOnOrderOnly;
   },
 
-  processBoundParents(boundHoldings, allHoldings, summaryHoldings) {
+  processBoundParents(boundHoldings, allHoldings, summaryHoldings, titleID) {
     const catkeys = Object.keys(boundHoldings);
 
     let itemIDs = [];
@@ -330,25 +349,20 @@ const availability = {
           });
 
         // Print availability data
-        availability.availabilityDisplay(allHoldings, summaryHoldings);
+        availability.availabilityDisplay(allHoldings, summaryHoldings, titleID);
       },
       () => {
-        availability.displayErrorMsg();
+        availability.displayErrorMsg(titleID);
       },
     );
   },
 
-  availabilityDisplay(allHoldings, summaryHoldings) {
-    $('.availability').each(function () {
+  availabilityDisplay(allHoldings, summaryHoldings, titleID) {
+    $(`#availability-parent-${titleID}`).each(function () {
       const availabilityHTML = $(this);
-      const catkey = availabilityHTML.data('keys');
       const isOnlineOnOrderOnly = availabilityHTML.data('isOnlineOnOrderOnly');
 
-      if (catkey in allHoldings) {
-        const rawHoldings = allHoldings[catkey];
-        const availabilityButton = availabilityHTML.find(
-          '.availability-button',
-        );
+        const rawHoldings = allHoldings[titleID];
         const holdingsPlaceHolder = availabilityHTML.find(
           '.availability-holdings',
         );
@@ -358,9 +372,9 @@ const availability = {
         const holdButton = availabilityHTML.find('.hold-button');
         const noRecallsButton = availabilityHTML.find('.no-recalls-button');
 
+      if (titleID in allHoldings) {
         // If at least one physical copy, then display availability and holding info
         if (Object.keys(rawHoldings).length > 0) {
-          availabilityButton.removeClass('invisible').addClass('visible');
           const holdings = availability.groupByLibrary(rawHoldings);
           const structuredHoldings =
             availability.availabilityDataStructurer(holdings);
@@ -368,7 +382,7 @@ const availability = {
           ReactDOM.render(
             React.createElement(Availability, {
               structuredHoldings,
-              summaryHoldings: summaryHoldings ? summaryHoldings[catkey] : null,
+              summaryHoldings: summaryHoldings ? summaryHoldings[titleID] : null,
             }),
             holdingsPlaceHolder[0],
           );
@@ -473,9 +487,9 @@ const availability = {
     }, {});
   },
 
-  displayErrorMsg() {
+  displayErrorMsg(titleID) {
     // Display the error message
-    $('.availability').each(function () {
+    $(`.availability-parent-${titleID}`).each(function () {
       $(this).addClass('availability-error alert alert-light');
       $(this).html(
         'Please check back shortly for item availability or ' +
