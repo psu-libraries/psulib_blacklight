@@ -33,21 +33,24 @@ const availability = {
     'geospatial-information/map-scanning-and-printing',
 
   /**
-  * On page-load, build ViewAvailabilityButtons for the index page and load availability for the show page
-  */
-  setUpAvailability(){
+   * On page-load, build ViewAvailabilityButtons for the index page and load availability for the show page
+   */
+  setUpAvailability() {
     $('.availability-index').each(function () {
       const titleID = $(this).attr('data-keys');
       const title = $(this).attr('data-title');
-      const access_facet = $(this).attr('data-access');
-      if (access_facet.includes('In the Library') || access_facet.includes('On Order')) {
+      const accessFacet = $(this).attr('data-access');
+      if (
+        accessFacet.includes('In the Library') ||
+        accessFacet.includes('On Order')
+      ) {
         ReactDOM.render(
-                React.createElement(ViewAvailabilityButton, {
-                  titleID: titleID,
-                  title: title
-                }),
-                this
-              );
+          React.createElement(ViewAvailabilityButton, {
+            titleID,
+            title,
+          }),
+          this,
+        );
       }
     });
     $('.availability-show').each(function () {
@@ -61,89 +64,96 @@ const availability = {
    */
   loadAvailability(titleID) {
     // Don't make the call if hiding availability, only upon showing it
-    if ($(`[data-bs-target='#availability-${titleID}']`).hasClass('collapsed')){
-      return
+    if (
+      $(`[data-bs-target='#availability-${titleID}']`).hasClass('collapsed')
+    ) {
+      return;
     }
     const summaryHoldings = {};
-    const parent = $(`[data-keys='${titleID}']`)
+    const parent = $(`[data-keys='${titleID}']`);
     // Get the summaryHoldings
     $(parent).each(function () {
-
       const summaryHoldingsData = $(this).attr('data-summary-holdings');
       if (summaryHoldingsData) {
         summaryHoldings[titleID] = JSON.parse(summaryHoldingsData);
       }
     });
 
-      let allHoldings = [];
-      let boundHoldings = [];
-      const sirsiRequestParams = `title_ids[]=${titleID}`
-      const loadingIcon =  $(`#availability-parent-${titleID}`).find('.snippet-loading');
-      loadingIcon.removeClass('invisible');
-      $.ajax({
-        url: availability.sirsiUrl + sirsiRequestParams,
-      }).then(
-        (response) => {
-          $(response)
-            .find('TitleInfo')
-            .each(function () {
-              const totalCopiesAvailable = parseInt(
-                $(this).find('totalCopiesAvailable').text(),
-                10,
-              );
-              const holdable = $(this).find('holdable').text();
-              const numberOfBoundwithLinks = parseInt(
-                $(this).find('numberOfBoundwithLinks').text(),
-                10,
-              );
-
-              const titleInfo = {
-                jQueryObj: $(this),
-                catkey: titleID,
-                totalCopiesAvailable,
-                holdable,
-              };
-
-              // Process for regular records
-              allHoldings = availability.getAllHoldings(allHoldings, titleInfo);
-
-              // Process for bound-with records
-              if (numberOfBoundwithLinks > 0) {
-                boundHoldings = availability.getBoundHoldings(
-                  boundHoldings,
-                  titleInfo,
-                );
-              }
-
-              // check to see if the item is only available online AND is in ON-ORDER status
-              const isOnlineOnOrderOnly =
-                availability.getIsOnlineOnOrderOnly(titleInfo);
-
-              if (isOnlineOnOrderOnly) {
-                $(`#availability-parent-${titleID}`).data(
-                  'isOnlineOnOrderOnly',
-                  true,
-                );
-              }
-            });
-
-          if (Object.keys(boundHoldings).length > 0) {
-            // Get bound with parents and print availability data
-            availability.processBoundParents(
-              boundHoldings,
-              allHoldings,
-              summaryHoldings,
-              titleID
+    let allHoldings = [];
+    let boundHoldings = [];
+    const sirsiRequestParams = `title_ids[]=${titleID}`;
+    const loadingIcon = $(`#availability-parent-${titleID}`).find(
+      '.snippet-loading',
+    );
+    loadingIcon.removeClass('invisible');
+    $.ajax({
+      url: availability.sirsiUrl + sirsiRequestParams,
+    }).then(
+      (response) => {
+        $(response)
+          .find('TitleInfo')
+          .each(function () {
+            const totalCopiesAvailable = parseInt(
+              $(this).find('totalCopiesAvailable').text(),
+              10,
             );
-          } else {
-            // Print availability data
-            availability.availabilityDisplay(allHoldings, summaryHoldings, titleID);
-          }
-        },
-        () => {
-          availability.displayErrorMsg(titleID);
-        },
-      );
+            const holdable = $(this).find('holdable').text();
+            const numberOfBoundwithLinks = parseInt(
+              $(this).find('numberOfBoundwithLinks').text(),
+              10,
+            );
+
+            const titleInfo = {
+              jQueryObj: $(this),
+              catkey: titleID,
+              totalCopiesAvailable,
+              holdable,
+            };
+
+            // Process for regular records
+            allHoldings = availability.getAllHoldings(allHoldings, titleInfo);
+
+            // Process for bound-with records
+            if (numberOfBoundwithLinks > 0) {
+              boundHoldings = availability.getBoundHoldings(
+                boundHoldings,
+                titleInfo,
+              );
+            }
+
+            // check to see if the item is only available online AND is in ON-ORDER status
+            const isOnlineOnOrderOnly =
+              availability.getIsOnlineOnOrderOnly(titleInfo);
+
+            if (isOnlineOnOrderOnly) {
+              $(`#availability-parent-${titleID}`).data(
+                'isOnlineOnOrderOnly',
+                true,
+              );
+            }
+          });
+
+        if (Object.keys(boundHoldings).length > 0) {
+          // Get bound with parents and print availability data
+          availability.processBoundParents(
+            boundHoldings,
+            allHoldings,
+            summaryHoldings,
+            titleID,
+          );
+        } else {
+          // Print availability data
+          availability.availabilityDisplay(
+            allHoldings,
+            summaryHoldings,
+            titleID,
+          );
+        }
+      },
+      () => {
+        availability.displayErrorMsg(titleID);
+      },
+    );
   },
 
   getAllHoldings(allHoldings, titleInfo) {
@@ -366,15 +376,13 @@ const availability = {
       const availabilityHTML = $(this);
       const isOnlineOnOrderOnly = availabilityHTML.data('isOnlineOnOrderOnly');
 
-        const rawHoldings = allHoldings[titleID];
-        const holdingsPlaceHolder = availabilityHTML.find(
-          '.availability-holdings',
-        );
-        const snippetPlaceHolder = availabilityHTML.find(
-          '.availability-snippet',
-        );
-        const holdButton = availabilityHTML.find('.hold-button');
-        const noRecallsButton = availabilityHTML.find('.no-recalls-button');
+      const rawHoldings = allHoldings[titleID];
+      const holdingsPlaceHolder = availabilityHTML.find(
+        '.availability-holdings',
+      );
+      const snippetPlaceHolder = availabilityHTML.find('.availability-snippet');
+      const holdButton = availabilityHTML.find('.hold-button');
+      const noRecallsButton = availabilityHTML.find('.no-recalls-button');
 
       if (titleID in allHoldings) {
         // If at least one physical copy, then display availability and holding info
@@ -386,7 +394,9 @@ const availability = {
           ReactDOM.render(
             React.createElement(Availability, {
               structuredHoldings,
-              summaryHoldings: summaryHoldings ? summaryHoldings[titleID] : null,
+              summaryHoldings: summaryHoldings
+                ? summaryHoldings[titleID]
+                : null,
             }),
             holdingsPlaceHolder[0],
           );
