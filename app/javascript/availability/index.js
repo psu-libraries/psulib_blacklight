@@ -60,6 +60,10 @@ const availability = {
    * Load real time holdings and availability info from Sirsi Web Services
    */
   loadAvailability(titleID) {
+    // Don't make the call if hiding availability, only upon showing it
+    if ($(`[data-bs-target='#availability-${titleID}']`).hasClass('collapsed')){
+      return
+    }
     const summaryHoldings = {};
     const parent = $(`[data-keys='${titleID}']`)
     // Get the summaryHoldings
