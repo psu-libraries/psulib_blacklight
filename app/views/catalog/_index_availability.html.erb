@@ -1,9 +1,8 @@
 <% document ||= @document
-   id = document[:id] 
+   id = document[:id]
    title = document[:title_display_ssm]&.join('/')
    title = title&.split('/')&.first
-   access = document[:access_facet]
-   %>
+   access = document[:access_facet] %>
 <div id="availability-parent-<%= id %>">
   <div class="availability-index" data-keys="<%= id %>" data-title="<%= title %>" data-access="<%= access %>" data-summary-holdings="<%= document[:summary_holdings_struct]&.first %>">
   </div>
