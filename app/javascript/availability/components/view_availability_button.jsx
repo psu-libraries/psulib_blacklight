@@ -20,8 +20,7 @@ const ViewAvailabilityButton = ({ titleID, title }) => (
         </button>
       </p>
     </div>
-    <div className="availability-snippet col-md-auto">
-    </div>
+    <div className="availability-snippet col-md-auto" />
     <div className="availability-spinner col-md-auto invisible">
       <p>
         <span
