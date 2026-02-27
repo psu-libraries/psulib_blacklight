@@ -147,8 +147,8 @@ module PsulibBlacklight
 
       def live_nodes
         resp = connection.get(PsulibBlacklight::SolrConfig::COLLECTION_PATH,
-                             action: 'CLUSTERSTATUS',
-                             wt: 'json')
+                              action: 'CLUSTERSTATUS',
+                              wt: 'json')
         JSON.parse(resp.body).dig('cluster', 'live_nodes') || []
       end
 
