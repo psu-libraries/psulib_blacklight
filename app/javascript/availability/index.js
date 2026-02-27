@@ -83,7 +83,7 @@ const availability = {
     let boundHoldings = [];
     const sirsiRequestParams = `title_ids[]=${titleID}`;
     const loadingIcon = $(`#availability-parent-${titleID}`).find(
-      '.snippet-loading',
+      '.availability-spinner',
     );
     loadingIcon.removeClass('invisible');
     $.ajax({
@@ -380,10 +380,12 @@ const availability = {
       const holdingsPlaceHolder = availabilityHTML.find(
         '.availability-holdings',
       );
+      const loadingIcon = availabilityHTML.find('.availability-spinner');
       const snippetPlaceHolder = availabilityHTML.find('.availability-snippet');
       const holdButton = availabilityHTML.find('.hold-button');
       const noRecallsButton = availabilityHTML.find('.no-recalls-button');
 
+      loadingIcon.addClass('invisible');
       if (titleID in allHoldings) {
         // If at least one physical copy, then display availability and holding info
         if (Object.keys(rawHoldings).length > 0) {
