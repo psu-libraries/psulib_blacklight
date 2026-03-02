@@ -1,0 +1,97 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://books.google.com/books?bibkeys=LCCN:47021093&jscmd=viewapi
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - books.google.com
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 25 Feb 2026 17:47:12 GMT
+      Expires:
+      - Wed, 25 Feb 2026 17:47:12 GMT
+      Cache-Control:
+      - private, must-revalidate, max-age=0
+      P3p:
+      - CP="This is not a P3P policy! See g.co/p3phelp for more info."
+      - policyref="http://www.google.com/googlebooks/p3p.xml", CP="DSP NON ADM DEV
+        OUR BUS NAV COM INT STA"
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      Strict-Transport-Security:
+      - max-age=604800
+      Content-Type:
+      - application/javascript; charset=ISO-8859-1
+      X-Content-Type-Options:
+      - nosniff
+      Content-Disposition:
+      - attachment; filename="f.txt"
+      Server:
+      - OFE/0.1
+      Set-Cookie:
+      - NID=529=CxAxWGQ7b7Venx4N4eOp01rfW7j-HGjBlGByenyCo9eBojhRjPZSZdve4ormzNSaaIk5cg914DFb0Nbtnh4Nc7lmToiNM9LjN_eBX7JM4FBGin9-b4eQYvqFU2LRkzU4mNBfZNKCoAJqmQdyTfM75RaH61PPJHktiamZMhF-KyY0Fv_2dqeU3In1xWUvL4cfyrnlJ1gFotBdUAhNhia-8uLV;
+        expires=Thu, 27-Aug-2026 17:47:12 GMT; path=/; domain=.google.com; HttpOnly
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: var _GBSBookInfo = {"LCCN:47021093":{"bib_key":"LCCN:47021093","info_url":"https://books.google.com/books?id=OwY3AAAAIAAJ\u0026source=gbs_ViewAPI","preview_url":"https://books.google.com/books?id=OwY3AAAAIAAJ\u0026source=gbs_ViewAPI","thumbnail_url":"https://books.google.com/books/content?id=OwY3AAAAIAAJ\u0026printsec=frontcover\u0026img=1\u0026zoom=5","preview":"noview","embeddable":false,"can_download_pdf":false,"can_download_epub":false,"is_pdf_drm_enabled":false,"is_epub_drm_enabled":false}};
+  recorded_at: Wed, 25 Feb 2026 17:47:12 GMT
+- request:
+    method: get
+    uri: https://sdws08.sirsidynix.net/psu_ilsws/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=3753687
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - sdws08.sirsidynix.net
+  response:
+    status:
+      code: 200
+      message: '200'
+    headers:
+      Date:
+      - Wed, 25 Feb 2026 17:47:12 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=31536000
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="UTF-8" standalone="yes"?><LookupTitleInfoResponse
+        xmlns="http://schemas.sirsidynix.com/symws/standard"><TitleInfo><titleID>3753687</titleID><TitleAvailabilityInfo><totalCopiesAvailable>2</totalCopiesAvailable><libraryWithAvailableCopies>Pattee
+        Library and Paterno Library Stacks (UP)</libraryWithAvailableCopies><libraryWithAvailableCopies>Annex
+        (UP)</libraryWithAvailableCopies><totalResvCopiesAvailable>0</totalResvCopiesAvailable><locationOfFirstAvailableItem>PATTEE-2A</locationOfFirstAvailableItem><holdable>true</holdable><bookable>false</bookable></TitleAvailabilityInfo><CallInfo><libraryID>UP-PAT</libraryID><classificationID>LC</classificationID><callNumber>PN4885.Y5C5
+        1946</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000060369666</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>PATTEE-2A</currentLocationID><homeLocationID>PATTEE-2A</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><CallInfo><libraryID>UP-ANNEX</libraryID><classificationID>LC</classificationID><callNumber>PN4885.Y5C5
+        1946</callNumber><numberOfCopies>1</numberOfCopies><ItemInfo><itemID>000061609839</itemID><itemTypeID>BOOK</itemTypeID><currentLocationID>CATO-2</currentLocationID><homeLocationID>CATO-2</homeLocationID><chargeable>true</chargeable><fixedTimeBooking>false</fixedTimeBooking></ItemInfo></CallInfo><numberOfBoundwithLinks>0</numberOfBoundwithLinks></TitleInfo></LookupTitleInfoResponse>
+  recorded_at: Wed, 25 Feb 2026 17:47:12 GMT
+recorded_with: VCR 6.3.1

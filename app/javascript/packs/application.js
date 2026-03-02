@@ -21,7 +21,7 @@ import '../search/add_search_header';
 require.context('../psulib_blacklight/images/', true);
 document.addEventListener('DOMContentLoaded', () => {
   Rails.start();
-  availability.loadAvailability();
+  availability.setUpAvailability();
   bookCovers.start();
   search.autoPlaceholder();
   Blacklight.doBookmarkToggleBehavior();

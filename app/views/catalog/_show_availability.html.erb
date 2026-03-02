@@ -2,22 +2,23 @@
    id = document[:id] %>
 <div class="row document-metadata metadata-availability py-4">
   <div class="blacklight-availability col">
-    <div class="availability" data-keys="<%= id %>" data-summary-holdings="<%= document[:summary_holdings_struct]&.first %>">
-      <h4>Availability</h4>
-      <div class="text-end">
-        <%= render Browse::NearbyButton.new(call_numbers: document.preferred_call_number, classification: document.preferred_classification) %>
+    <div id="availability-parent-<%= id %>">
+      <div class="availability-show" data-keys="<%= id %>" data-summary-holdings="<%= document[:summary_holdings_struct]&.first %>">
+        <h4>Availability</h4>
+        <div class="text-end">
+          <%= render Browse::NearbyButton.new(call_numbers: document.preferred_call_number, classification: document.preferred_classification) %>
 
-        <% unless Settings&.hide_hold_button %>
-          <div class="hold-button d-none">
-            <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.hold_button_path}#{id}",
-                        class: 'btn btn-primary pr-4 pl-4 mb-2' %>
-          </div>
-          <div class="no-recalls-button d-none">
-            <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.no_recall_button_path}#{id}",
-                        class: 'btn btn-primary pr-4 pl-4 mb-2' %>
-          </div>
-        <% end %>
-      </div>
+          <% unless Settings&.hide_hold_button %>
+            <div class="hold-button d-none">
+              <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.hold_button_path}#{id}",
+                          class: 'btn btn-primary pr-4 pl-4 mb-2' %>
+            </div>
+            <div class="no-recalls-button d-none">
+              <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.no_recall_button_path}#{id}",
+                          class: 'btn btn-primary pr-4 pl-4 mb-2' %>
+            </div>
+          <% end %>
+        </div>
       <div class="availability-holdings">
         <p><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Finding items...</p>
       </div>

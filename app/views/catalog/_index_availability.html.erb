@@ -1,20 +1,10 @@
 <% document ||= @document
-   id = document[:id] %>
-<div class="availability" data-keys="<%= id %>" data-summary-holdings="<%= document[:summary_holdings_struct]&.first %>">
-  <div class="row">
-    <div class="availability-button col-md-auto pr-0 invisible">
-      <p>
-        <% title = document[:title_display_ssm]&.join('/') %>
-        <% title = title&.split('/')&.first %>
-        <button class="btn btn-primary header" type="button" data-bs-toggle="collapse" data-bs-target="#availability-<%= id %>" aria-expanded="false" aria-controls="<%= id %>-location" aria-label="View <%= title %> availability">
-          <span>View Availability</span>
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        </button>
-      </p>
-    </div>
-    <div class="availability-snippet col-md-auto">
-      <p><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Finding items...</p>
-    </div>
+   id = document[:id]
+   title = document[:title_display_ssm]&.join('/')
+   title = title&.split('/')&.first
+   access = document[:access_facet] %>
+<div id="availability-parent-<%= id %>">
+  <div class="availability-index" data-keys="<%= id %>" data-title="<%= title %>" data-access="<%= access %>" data-summary-holdings="<%= document[:summary_holdings_struct]&.first %>">
   </div>
   <div class="collapse" id="availability-<%= id %>" aria-expanded="false">
     <div class="card card-body">

@@ -21,23 +21,27 @@ RSpec.describe 'Availability', :vcr do
 
     it 'that has holdings but none are available' do
       visit '/?utf8=✓&search_field=all_fields&q=Eva+Oper+in+drei+Akten'
+      click_on('View Availability')
       # Shouldn't show the location teaser text next to the show availability button
       expect(page).to have_css '.availability-snippet', exact_text: ''
     end
 
     it 'that has holdings available in 3 or more locations' do
       visit '/?utf8=✓&search_field=all_fields&q=0802132138'
+      click_on('View Availability')
       expect(page).to have_css '.availability-snippet', exact_text: 'Multiple Locations'
     end
 
     it 'that has holdings available in exactly 2 locations' do
       visit '/?utf8=✓&search_field=all_fields&q=23783767'
+      click_on('View Availability')
       expect(page).to have_css '.availability-snippet',
                                exact_text: 'Penn State Hazleton, Penn State Mont Alto'
     end
 
     it 'that has holdings available in only 1 location' do
       visit '/?utf8=✓&search_field=all_fields&q=9788836636174'
+      click_on('View Availability')
       expect(page).to have_css '.availability-snippet',
                                exact_text: 'Pattee Library and Paterno Library Stacks'
     end
@@ -60,7 +64,9 @@ RSpec.describe 'Availability', :vcr do
 
     it 'that is an online resource and all copies are on order' do
       visit '/?search_field=all_fields&q=33183518'
-      expect(page).to have_css 'div[class="availability"][data-keys="33183518"]'
+
+      click_on('View Availability')
+      expect(page).to have_css 'div[class="availability-index"][data-keys="33183518"]'
       expect(page).to have_css 'strong', text: /Being acquired by the library/
     end
 
@@ -108,18 +114,18 @@ RSpec.describe 'Availability', :vcr do
   describe 'User visits catalog record page', :js do
     it 'that has holdings to display' do
       visit '/catalog/370199'
-      expect(page).to have_css 'div[class="availability"][data-keys="370199"]'
+      expect(page).to have_css 'div[class="availability-show"][data-keys="370199"]'
       expect(page).to have_content 'NK9406.L48'
     end
 
     it 'that is an online resource and has no holdings to display' do
       visit '/catalog/22091400'
-      expect(page).to have_no_css 'div[class="availability"]'
+      expect(page).to have_no_css 'div[class="availability-show"]'
     end
 
     it 'that is an online resource and all copies are on order' do
       visit '/catalog/33183518'
-      expect(page).to have_css 'div[class="availability"][data-keys="33183518"]'
+      expect(page).to have_css 'div[class="availability-show"][data-keys="33183518"]'
       expect(page).to have_css 'h5', text: /Being acquired by the library/
     end
 
@@ -135,7 +141,7 @@ RSpec.describe 'Availability', :vcr do
 
     it 'that has an item on course reserve' do
       visit '/catalog/3500414'
-      expect(page).to have_css 'div[class="availability"][data-keys="3500414"]'
+      expect(page).to have_css 'div[class="availability-show"][data-keys="3500414"]'
       expect(page).to have_css 'strong', text: /Due back at:/
       expect(page).to have_content '9:01 AM on 3/4/2019'
       expect(page).to have_content 'Reserve - 24 hour loan w/ 1 renewal'
@@ -153,7 +159,7 @@ RSpec.describe 'Availability', :vcr do
 
       it 'an ETAS record displays holdings' do
         visit '/catalog/3753687'
-        expect(page).to have_css 'div[class="availability"][data-keys="3753687"]'
+        expect(page).to have_css 'div[class="availability-show"][data-keys="3753687"]'
       end
 
       context 'when hide HathiTrust ETAS holdings is enabled' do
@@ -164,7 +170,7 @@ RSpec.describe 'Availability', :vcr do
         it 'an etas record does not display holdings even though there are holdable items' do
           skip "This record doesn't seem to be ETAS anymore, so availability is showing when it shouldn't"
           visit '/catalog/3753687'
-          expect(page).to have_no_css 'div[class="availability"][data-keys="3753687"]'
+          expect(page).to have_no_css 'div[class="availability-show"][data-keys="3753687"]'
         end
       end
     end
@@ -172,7 +178,7 @@ RSpec.describe 'Availability', :vcr do
     context 'when HathiTrust ETAS is disabled' do
       it 'an etas record displays holdings when there are holdable items' do
         visit '/catalog/3753687'
-        expect(page).to have_css 'div[class="availability"][data-keys="3753687"]'
+        expect(page).to have_css 'div[class="availability-show"][data-keys="3753687"]'
       end
     end
 
