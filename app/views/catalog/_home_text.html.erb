@@ -1,15 +1,25 @@
 <h1><%= t('blacklight.application_name') %></h1>
-<p class="lead">Read more about <%= link_to "the work we've been doing to improve your search experience", page_path('about') %>.</p>
-<p>You can also:</p>
+
 <ul>
   <li><%= link_to 'Learn more', page_path('search_tips') %> about searching the catalog</li>
   <li><%= link_to 'Ask a Librarian', 'https://libraries.psu.edu/ask' %> for help finding materials</li>
   <li><%= link_to 'Send us feedback', 'https://libraries.psu.edu/website-feedback' %> on how we can improve your experience</li>
 </ul>
 
+<p>
+To ensure fast and reliable access to the Catalog, we have introduced a temporary limit on the number and length of search terms for users who are not logged in. This change helps reduce automated bot traffic that was affecting system performance and availability.
+These temporary solutions will be in place while we work on long-term solutions to this issue.
+</p>
+<p>
+Logging in allows you to perform more complex searches and ensures full access to Catalog features. These measures help us maintain consistent, dependable access to Penn State Libraries’ collections while we implement longer-term improvements that will benefit all users.
+</p>
+<p>
+To perform complex searches, please <strong><a href="<%= login_path %>">log in</a></strong>. We appreciate your understanding and patience as we work to provide the best possible experience for everyone.
+</p>
+
 <h2>Other Library Resources</h2>
 <ul class="list-inline">
-  <li class="list-inline-item"><%= link_to 'LionSearch (Articles)', 'https://psu.summon.serialssolutions.com/' %></li>
+  <li class="list-inline-item"><%= link_to 'Articles', 'https://psu.summon.serialssolutions.com/' %></li>
   <li class="list-inline-item"><%= link_to 'Databases', 'https://libraries.psu.edu/databases' %></li>
   <li class="list-inline-item"><%= link_to 'E-journals', 'https://sk8es4mc2l.search.serialssolutions.com/ejp/?libHash=SK8ES4MC2L#/search/?searchControl=title&searchType=a_to_z&criteria=A&language=en-US&titleType=JOURNALS' %></li>
   <li class="list-inline-item"><%= link_to 'Digital Collections', 'https://digital.libraries.psu.edu/' %></li>

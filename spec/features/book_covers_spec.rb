@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe 'BookCovers' do
   before do
     stub_request(:any, /hathitrust/).to_return(status: 200, body: '{}', headers: {})
+    user = User.create!(email: 'user1234@psu.edu')
+    login_as(user, scope: :user)
   end
 
   describe 'User searches for a book' do
