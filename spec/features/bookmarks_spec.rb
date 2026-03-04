@@ -15,15 +15,14 @@ RSpec.describe 'Bookmarks', :js do
 
   context 'when the user is not logged in' do
     it 'Shows a link to login' do
-      visit '/?utf8=✓&search_field=all_fields&q=Ethical+and+Social+Issues+in+the+Information+Age+AND+9783319707129'
+      visit '/?utf8=✓&search_field=all_fields&q=Ethical+and+Social+Issues+AND+9783319707129'
       expect(page).to have_css('.btn', text: 'Bookmark')
       expect(page).to have_css('.btn', text: 'Bookmark All On Page')
       expect(find('a[href="/login?fullpath=%2F%3Futf8%3D%25E2%259C%2593%26search_field%3D' \
-                  'all_fields%26q%3DEthical%2Band%2BSocial%2BIssues%2Bin%2Bthe%2BInformat' \
-                  'ion%2BAge%2BAND%2B9783319707129"]')).to be_present
+                  'all_fields%26q%3DEthical%2Band%2BSocial%2BIssues%2BAND%2B9783319707129"]')).to be_present
       expect(find('a[href="/login?fullpath=%2F%3Futf8%3D%25E2%259C%2593%26search_field%3D' \
-                  'all_fields%26q%3DEthical%2Band%2BSocial%2BIssues%2Bin%2Bthe%2BInformat' \
-                  'ion%2BAge%2BAND%2B9783319707129&bookmark_doc_id=22090269"]')).to be_present
+                  'all_fields%26q%3DEthical%2Band%2BSocial%2BIssues%2BAND%2B9783319707129&' \
+                  'bookmark_doc_id=22090269"]')).to be_present
     end
   end
 

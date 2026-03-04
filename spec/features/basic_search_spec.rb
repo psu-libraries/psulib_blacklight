@@ -4,6 +4,11 @@ require 'rails_helper'
 
 RSpec.describe 'Basic Search' do
   describe 'User uses basic search', :js do
+    before do
+      user = User.create!(email: 'user1234@psu.edu')
+      login_as(user, scope: :user)
+    end
+
     context 'when searching by title' do
       before do
         visit '/?search_field=title&q='
