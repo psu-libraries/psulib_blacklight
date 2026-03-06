@@ -121,6 +121,8 @@ RSpec.describe 'Availability', :vcr do
     it 'that is an online resource and has no holdings to display' do
       visit '/catalog/22091400'
       expect(page).to have_no_css 'div[class="availability-show"]'
+      expect(page).to have_css '.metadata-primary'
+      expect(page).to have_css '.metadata-secondary'
     end
 
     it 'that is an online resource and all copies are on order' do
