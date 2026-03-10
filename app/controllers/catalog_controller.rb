@@ -558,6 +558,7 @@ class CatalogController < ApplicationController
 
       if SearchLimitService.new(params).search_volume_exceeded?
         Rails.logger.info("Query length exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
+        store_location_for(:user, request.fullpath)
         redirect_to '/query_limit'
       end
     end

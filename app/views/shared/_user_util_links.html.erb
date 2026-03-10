@@ -6,7 +6,7 @@
     <li class="nav-item"><%= link_to 'My Account', Settings.my_account_url.to_s, class: 'nav-link' %></li>
 
     <% unless current_user %>
-      <li class="nav-item"><%= link_to 'Log In', login_path, class: 'nav-link' %></li>
+      <li class="nav-item"><%= link_to 'Log In', login_path(fullpath: request.fullpath), class: 'nav-link' %></li>
     <% end %>
 
     <li class="nav-item"><%= link_to 'Advanced search', blacklight_advanced_search_engine.advanced_search_path, class: 'nav-link d-md-none' %>
