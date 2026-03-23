@@ -100,14 +100,22 @@ Capybara.register_driver :chrome_headless do |app|
   options.add_argument('--no-sandbox')
   options.add_argument('--disable-gpu')
   options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--disable-software-rasterizer')
+  options.add_argument('--disable-extensions')
   options.add_argument('--window-size=1400,1400')
-  Capybara::Selenium::Driver.new app, browser: :chrome, options: options
+  options.add_argument('--enable-features=NetworkService,NetworkServiceInProcess')
+  
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    options: options
+  )
 end
 
 # Capybara
 Capybara.configure do |config|
   # Use Chrome in CI (CircleCI provides Chrome), Firefox locally
-  config.javascript_driver = ENV['CI'] ? :chrome_headless : :firefox_headless
+  config.javascript_driver = ENV['CIRCLECI'] ? :chrome_headless : :firefox_headless
   config.default_max_wait_time = 5
   config.server = :puma, { Silent: true }
 end
