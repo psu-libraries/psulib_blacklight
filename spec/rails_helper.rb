@@ -104,7 +104,7 @@ Capybara.register_driver :chrome_headless do |app|
   options.add_argument('--disable-extensions')
   options.add_argument('--window-size=1400,1400')
   options.add_argument('--enable-features=NetworkService,NetworkServiceInProcess')
-  
+
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
