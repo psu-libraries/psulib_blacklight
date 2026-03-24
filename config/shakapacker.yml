@@ -144,7 +144,7 @@ development:
 
 test:
   <<: *default
-  compile: true
+  compile: false
   compiler_strategy: mtime
 
   # Compile test packs to a separate directory
