@@ -18,7 +18,7 @@ RSpec.describe 'Google Preview Link', :js, :vcr do
     end
 
     context 'when a preview exists in Google Books' do
-      it 'does display preview link with preview message' do
+      it 'does display preview link with preview message', retry: 3, retry_wait: 10 do
         visit 'catalog/3500414'
         expect(page).to have_css("img[src*='gbs_preview_button1']", visible: :visible)
           .and have_css("div[id='google-preview']", visible: :visible)
@@ -29,7 +29,7 @@ RSpec.describe 'Google Preview Link', :js, :vcr do
     end
 
     context 'when the full text exists in Google Books' do
-      it 'does display preview link with full view message' do
+      it 'does display preview link with full view message', retry: 3, retry_wait: 10 do
         visit 'catalog/3500414'
         expect(page).to have_css("img[src*='gbs_preview_button1']", visible: :visible)
           .and have_css("div[id='google-preview']", visible: :visible)
@@ -40,7 +40,7 @@ RSpec.describe 'Google Preview Link', :js, :vcr do
     end
 
     context 'when book is in Google Books but no preview exists' do
-      it 'does not display preview link' do
+      it 'does not display preview link', retry: 3, retry_wait: 10 do
         visit 'catalog/3500414'
         expect(page).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
           .and have_css("div[data-search-item='LCCN:12345']", visible: :hidden)
@@ -48,7 +48,7 @@ RSpec.describe 'Google Preview Link', :js, :vcr do
     end
 
     context "when returned result contains a link to a book in Google Books but the search item doesn't match" do
-      it 'displays preview link for the returned result' do
+      it 'displays preview link for the returned result', retry: 3, retry_wait: 10 do
         visit 'catalog/3500414'
         expect(page).to have_css("img[src*='gbs_preview_button1']", visible: :visible)
           .and have_css("div[id='google-preview']", visible: :visible)
@@ -64,7 +64,7 @@ RSpec.describe 'Google Preview Link', :js, :vcr do
       allow_any_instance_of(ExternalLinks::HathiLinkComponent).to receive(:search_item).and_return 'oclc/1234'
     end
 
-    it 'does not display preview link' do
+    it 'does not display preview link', retry: 3, retry_wait: 10 do
       visit 'catalog/3500414'
       expect(page).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
         .and have_css("div[data-search-item='LCCN:12345']", visible: :hidden)

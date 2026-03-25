@@ -1,17 +1,28 @@
 #!/bin/bash
 
+set -e  # Exit on any error
+
 export MYSQL_USER=mysql
 export MYSQL_PASSWORD=mysql
 export MYSQL_HOST=mysql
 export MYSQL_DATABASE=mysql
 
+echo "preparing directories"
+mkdir -p public/packs-test tmp/cache
+
+echo "preparing database"
+RAILS_ENV=test bundle exec rake db:create db:schema:load
 
 echo "initalizing solr"
-bundle exec rake solr:create_collection
-bundle exec rake solr:update_config
-bundle exec rake solr:create_alias
-bundle exec rake solr:load_fixtures
+RAILS_ENV=test bundle exec rake solr:create_collection
+RAILS_ENV=test bundle exec rake solr:update_config
+RAILS_ENV=test bundle exec rake solr:create_alias
+RAILS_ENV=test bundle exec rake solr:load_fixtures
 
+echo "compiling webpack assets for feature tests"
+RAILS_ENV=test NODE_ENV=test bundle exec rake shakapacker:compile
+
+echo "running rspec"
 bundle exec rspec
 RSPEC_EXIT_CODE=$?
 
