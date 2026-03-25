@@ -1,5 +1,8 @@
+// scss-lint:disable SelectorFormat QualifyingElement ImportantRule
+$range-selection-color: #e8cfac;
+
 form.range_limit {
-  /* leave room for buttons not to collide on line wrap */
+  // leave room for buttons not to collide on line wrap
   line-height: 3;
 }
 
@@ -8,22 +11,23 @@ form.range_limit {
   width: 100% !important;
 }
 
-.range_limit input.range_begin, .range_limit input.range_end {
+.range_limit input.range_begin,
+.range_limit input.range_end {
   display: inline-block;
   width: 4.5em;
 }
 
 .limit_content .subsection {
-  margin-top: 0.5em;
+  margin-top: .5em;
 }
 
 .hover_legend {
-  padding: 0.25em;
+  padding: .25em;
 }
 
 .slider_js .slider-selection {
-  /* color from flot selection */
-  background: #e8cfac;
+  // color from flot selection
+  background: $range-selection-color;
 }
 
 .slider_js .slider-horizontal {
@@ -39,7 +43,7 @@ form.range_limit {
   display: none;
 }
 
-/* Prevent an unstyled flash of content for values we'll replace with a chart */
+// Prevent an unstyled flash of content for values we'll replace with a chart
 .js .distribution .facet-values {
   display: none;
 }
@@ -54,7 +58,8 @@ form.range_limit {
 }
 
 .range_limit .chart_js {
-  min-height: 80px;
   margin-left: -12px;
   margin-right: -14px;
+  min-height: 80px;
 }
+// scss-lint:enable SelectorFormat QualifyingElement ImportantRule
