@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  docker: circleci/docker@2.8.2
+  docker: circleci/docker@3.0.1
   browser-tools: circleci/browser-tools@1.5.3
 
 parameters:
@@ -96,7 +96,6 @@ jobs:
           registry: $REGISTRY_HOST
           tag: $TAG
           extra_build_args: "--target production"
-          use-buildkit: true
       - run:
           name: Save Docker image
           command: |
