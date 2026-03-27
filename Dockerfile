@@ -1,4 +1,4 @@
-FROM harbor.k8s.libraries.psu.edu/library/ruby-3.4.1-node-22:20260320 AS base
+FROM harbor.k8s.libraries.psu.edu/library/ruby-3.4.9-node-22:20260317 AS base
 ARG UID=2000
 
 USER root
@@ -6,10 +6,10 @@ RUN apt-get update -y && \
     apt-get install -y build-essential libxml2-dev libxslt1-dev zlib1g-dev
 
 RUN apt-get update && \
-   apt-get install --no-install-recommends -y \
-   default-libmysqlclient-dev \
-   shared-mime-info && \
-   rm -rf /var/lib/apt/lists*
+  apt-get install --no-install-recommends -y \
+  default-libmysqlclient-dev \
+  shared-mime-info && \
+  rm -rf /var/lib/apt/lists*
 
 RUN useradd -u $UID app -d /app
 RUN mkdir /app/tmp
