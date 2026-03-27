@@ -1,15 +1,15 @@
-FROM harbor.k8s.libraries.psu.edu/library/ruby-3.4.1-node-22:20260320 AS base
+FROM harbor.k8s.libraries.psu.edu/library/ruby-3.4.9-node-22:20260317 AS base
 ARG UID=2000
 
 USER root
 RUN apt-get update -y && \
-    apt-get install -y build-essential libxml2-dev libxslt1-dev zlib1g-dev
+    apt-get install -y build-essential libxml2-dev libxslt1-dev zlib1g-dev libyaml-dev
 
 RUN apt-get update && \
-   apt-get install --no-install-recommends -y \
-   default-libmysqlclient-dev \
-   shared-mime-info && \
-   rm -rf /var/lib/apt/lists*
+  apt-get install --no-install-recommends -y \
+  default-libmysqlclient-dev \
+  shared-mime-info && \
+  rm -rf /var/lib/apt/lists*
 
 RUN useradd -u $UID app -d /app
 RUN mkdir /app/tmp
@@ -19,9 +19,11 @@ USER app
 COPY Gemfile Gemfile.lock /app/
 RUN gem install bundler -v "$(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -n 1)"
 RUN bundle config set path 'vendor/bundle'
-RUN bundle install --deployment --without development test && \
-  rm -rf /app/.bundle/cache && \
-  rm -rf /app/vendor/bundle/ruby/*/cache
+    RUN bundle config set deployment true && \
+      bundle config set without 'development test' && \
+      bundle install && \
+      rm -rf /app/.bundle/cache && \
+      rm -rf /app/vendor/bundle/ruby/*/cache
 
 
 COPY --chown=app package.json yarn.lock /app/
@@ -33,7 +35,7 @@ RUN yarn --frozen-lockfile && \
 CMD ["/app/bin/startup"]
 
 # Final Target
-FROM base as production
+FROM base AS production
 
 USER app
 
@@ -53,7 +55,7 @@ RUN RAILS_ENV=production \
 CMD ["/app/bin/startup"]
 
 # dev stage installs chrome, and all the deps needed to run rspec
-FROM base as dev
+FROM base AS dev
 
 USER root
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
@@ -74,6 +76,8 @@ USER app
 
 RUN bundle config set path 'vendor/bundle'
 
-RUN bundle install --with development test
+  RUN bundle config unset without && \
+    bundle config set with 'development test' && \
+    bundle install
 
 CMD ["sleep", "99999999"]

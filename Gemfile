@@ -50,7 +50,7 @@ group :development do
 end
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: [:mri, :windows]
   gem 'html_tokenizer', '~> 0.0.8'
   gem 'niftany', '~> 0.12.1'
   gem 'pry-byebug'
