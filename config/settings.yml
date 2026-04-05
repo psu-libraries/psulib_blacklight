@@ -19,6 +19,14 @@ solr:
   # url: http://127.0.0.1:8983
   collection: psul_catalog
 
+solrcat:
+  protocol: "http"
+  host: ""
+  port:
+  # username:
+  # password:
+  collection: psul_catalog
+
 # Used with rake solr:load_from_catalog
 fixture_host: https://catalog.qa.k8s.libraries.psu.edu
 fixture_catkeys: [
