@@ -11,9 +11,12 @@ RSpec.describe CatalogController do
     end
 
     it 'updates the blacklight Solr URL from request context' do
-      allow_any_instance_of(ApplicationController)
-        .to receive(:blacklight_solr_config)
-        .and_return(double(url: 'http://internal.example.com:8983/solr/psul_catalog'))
+      request_config = instance_double(
+        'PsulibBlacklight::SolrRequestConfig',
+        url: 'http://internal.example.com:8983/solr/psul_catalog'
+      )
+
+      allow(controller).to receive(:blacklight_solr_config).and_return(request_config)
 
       get :index
 

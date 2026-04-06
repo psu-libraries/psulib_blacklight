@@ -50,14 +50,15 @@ module PsulibBlacklight
         X_FORWARDED_FOR_HEADER_NAMES.flat_map do |name|
           value = request.headers[name]
           value.to_s.split(',').map(&:strip)
-        end.reject(&:blank?)
+        end.compact_blank
       end
 
       def internal_ip?(ip)
         return false if ip.blank?
 
         address = IPAddr.new(ip)
-        configured_internal_networks.any? { |network| network.include?(address) } || DEFAULT_INTERNAL_NETWORKS.any? { |network| network.include?(address) }
+        configured_internal_networks.any? { |network| network.include?(address) } ||
+          DEFAULT_INTERNAL_NETWORKS.any? { |network| network.include?(address) }
       rescue IPAddr::InvalidAddressError
         false
       end

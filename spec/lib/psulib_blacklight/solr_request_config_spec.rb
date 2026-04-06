@@ -17,12 +17,11 @@ RSpec.describe PsulibBlacklight::SolrRequestConfig do
       it 'creates a solrcat config for private network requests' do
         request.headers['X-Forwarded-For'] = '10.0.0.1'
 
-        expect(PsulibBlacklight::SolrConfig)
-          .to receive(:new)
-          .with(namespace: :solrcat, overrides: {})
-          .and_return(solr_config)
-
         described_class.new(request).url
+
+        expect(PsulibBlacklight::SolrConfig)
+          .to have_received(:new)
+          .with(namespace: :solrcat, overrides: {})
       end
     end
 
@@ -30,12 +29,11 @@ RSpec.describe PsulibBlacklight::SolrRequestConfig do
       it 'creates a solr config for public network requests' do
         request.headers['X-Forwarded-For'] = '203.0.113.1'
 
-        expect(PsulibBlacklight::SolrConfig)
-          .to receive(:new)
-          .with(namespace: :solr, overrides: {})
-          .and_return(solr_config)
-
         described_class.new(request).url
+
+        expect(PsulibBlacklight::SolrConfig)
+          .to have_received(:new)
+          .with(namespace: :solr, overrides: {})
       end
     end
 
@@ -45,12 +43,11 @@ RSpec.describe PsulibBlacklight::SolrRequestConfig do
         request.headers['X-SETTINGS__SOLRCAT__HOST'] = 'solrcat.example.com'
         request.headers['X-SETTINGS__SOLRCAT__PORT'] = '8984'
 
-        expect(PsulibBlacklight::SolrConfig)
-          .to receive(:new)
-          .with(namespace: :solrcat, overrides: { host: 'solrcat.example.com', port: '8984' })
-          .and_return(solr_config)
-
         described_class.new(request).url
+
+        expect(PsulibBlacklight::SolrConfig)
+          .to have_received(:new)
+          .with(namespace: :solrcat, overrides: { host: 'solrcat.example.com', port: '8984' })
       end
     end
 
@@ -59,12 +56,11 @@ RSpec.describe PsulibBlacklight::SolrRequestConfig do
         request.headers['X-SETTINGS__SOLR__HOST'] = 'solr.example.com'
         request.headers['X-SETTINGS__SOLR__PORT'] = '8983'
 
-        expect(PsulibBlacklight::SolrConfig)
-          .to receive(:new)
-          .with(namespace: :solr, overrides: { host: 'solr.example.com', port: '8983' })
-          .and_return(solr_config)
-
         described_class.new(request).url
+
+        expect(PsulibBlacklight::SolrConfig)
+          .to have_received(:new)
+          .with(namespace: :solr, overrides: { host: 'solr.example.com', port: '8983' })
       end
     end
   end
