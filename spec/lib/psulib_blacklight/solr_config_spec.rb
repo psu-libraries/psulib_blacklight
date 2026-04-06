@@ -4,16 +4,12 @@ require 'rails_helper'
 require 'psulib_blacklight/solr_config'
 
 RSpec.describe PsulibBlacklight::SolrConfig do
+  let(:settings_struct) do
+    Struct.new(:protocol, :host, :port, :username, :password, :collection)
+  end
+
   let(:solr_settings) do
-    instance_double(
-      Config::Options,
-      protocol: 'http',
-      host: '127.0.0.1',
-      port: 8983,
-      username: nil,
-      password: nil,
-      collection: 'psul_catalog'
-    )
+    settings_struct.new('http', '127.0.0.1', 8983, nil, nil, 'psul_catalog')
   end
 
   before do
@@ -23,13 +19,7 @@ RSpec.describe PsulibBlacklight::SolrConfig do
   describe 'Solrcat fallback behavior' do
     it 'uses Settings.solr when Settings.solrcat is blank' do
       allow(Settings).to receive(:solrcat).and_return(
-        instance_double(
-          Config::Options,
-          host: '',
-          port: nil,
-          protocol: 'http',
-          collection: 'psul_catalog'
-        )
+        settings_struct.new('http', '', nil, nil, nil, 'psul_catalog')
       )
       allow(Rails.logger).to receive(:info)
 
@@ -43,15 +33,7 @@ RSpec.describe PsulibBlacklight::SolrConfig do
 
     it 'uses Settings.solrcat when it is valid' do
       allow(Settings).to receive(:solrcat).and_return(
-        instance_double(
-          Config::Options,
-          protocol: 'http',
-          host: '10.0.0.1',
-          port: 8984,
-          username: nil,
-          password: nil,
-          collection: 'psul_catalog'
-        )
+        settings_struct.new('http', '10.0.0.1', 8984, nil, nil, 'psul_catalog')
       )
 
       config = described_class.new(namespace: :solrcat)
