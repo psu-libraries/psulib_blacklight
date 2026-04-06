@@ -16,7 +16,7 @@ module PsulibBlacklight
     end
 
     def url
-      "#{settings.protocol}://#{settings.host}:#{settings.port}"
+      "#{protocol}://#{host}:#{port}"
     end
 
     def query_url
@@ -26,6 +26,18 @@ module PsulibBlacklight
       end
 
       query_url
+    end
+
+    def protocol
+      overrides[:protocol].presence || settings&.protocol || 'http'
+    end
+
+    def host
+      overrides[:host].presence || settings&.host
+    end
+
+    def port
+      overrides[:port].presence || settings&.port
     end
 
     def solr_username

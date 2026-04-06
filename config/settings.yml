@@ -26,6 +26,7 @@ solrcat:
   # username:
   # password:
   collection: psul_catalog
+  ip_whitelist: []
 
 # Used with rake solr:load_from_catalog
 fixture_host: https://catalog.qa.k8s.libraries.psu.edu
