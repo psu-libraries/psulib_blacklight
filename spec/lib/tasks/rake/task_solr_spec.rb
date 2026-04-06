@@ -5,12 +5,12 @@ require 'rake'
 
 RSpec.describe Rake::Task do
   before do
-    Rake::Task.define_task(:environment)
+    described_class.define_task(:environment)
     load Rails.root.join('lib/tasks/solr.rake')
   end
 
   after do
-    Rake::Task.clear
+    described_class.clear
     ENV.delete('SOLR_NAMESPACE')
   end
 

@@ -75,17 +75,19 @@ module PsulibBlacklight
     private
 
       def settings
-        @settings ||= if namespace == :solrcat
-          solrcat_settings = Settings.respond_to?(:solrcat) ? Settings.solrcat : nil
+        @settings ||= settings_for_namespace
+      end
 
-          if missing_solrcat_settings?(solrcat_settings)
-            Rails.logger.info('Settings.solrcat is missing or empty; falling back to Settings.solr')
-            Settings.solr
-          else
-            solrcat_settings
-          end
-        else
+      def settings_for_namespace
+        return Settings.solr unless namespace == :solrcat
+
+        solrcat_settings = Settings.respond_to?(:solrcat) ? Settings.solrcat : nil
+
+        if missing_solrcat_settings?(solrcat_settings)
+          Rails.logger.info('Settings.solrcat is missing or empty; falling back to Settings.solr')
           Settings.solr
+        else
+          solrcat_settings
         end
       end
 

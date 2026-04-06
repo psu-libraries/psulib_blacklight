@@ -6,7 +6,7 @@ require 'psulib_blacklight/solr_config'
 RSpec.describe PsulibBlacklight::SolrConfig do
   let(:solr_settings) do
     instance_double(
-      'Config::Options',
+      Config::Options,
       protocol: 'http',
       host: '127.0.0.1',
       port: 8983,
@@ -24,7 +24,7 @@ RSpec.describe PsulibBlacklight::SolrConfig do
     it 'uses Settings.solr when Settings.solrcat is blank' do
       allow(Settings).to receive(:solrcat).and_return(
         instance_double(
-          'Config::Options',
+          Config::Options,
           host: '',
           port: nil,
           protocol: 'http',
@@ -44,7 +44,7 @@ RSpec.describe PsulibBlacklight::SolrConfig do
     it 'uses Settings.solrcat when it is valid' do
       allow(Settings).to receive(:solrcat).and_return(
         instance_double(
-          'Config::Options',
+          Config::Options,
           protocol: 'http',
           host: '10.0.0.1',
           port: 8984,

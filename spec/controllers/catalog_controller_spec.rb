@@ -12,7 +12,7 @@ RSpec.describe CatalogController do
 
     it 'updates the blacklight Solr URL from request context' do
       request_config = instance_double(
-        'PsulibBlacklight::SolrRequestConfig',
+        PsulibBlacklight::SolrRequestConfig,
         url: 'http://internal.example.com:8983/solr/psul_catalog'
       )
 
