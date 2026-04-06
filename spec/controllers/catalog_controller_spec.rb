@@ -10,6 +10,16 @@ RSpec.describe CatalogController do
       expect(assigns(:blacklight_config)[:facet_fields].keys).to eq(configured_home_page_facets)
     end
 
+    it 'updates the blacklight Solr URL from request context' do
+      allow_any_instance_of(ApplicationController)
+        .to receive(:blacklight_solr_config)
+        .and_return(double(url: 'http://internal.example.com:8983/solr/psul_catalog'))
+
+      get :index
+
+      expect(assigns(:blacklight_config).url).to eq('http://internal.example.com:8983/solr/psul_catalog')
+    end
+
     it 'pages too deep' do
       get :index, params: { page: 251 }
       expect(:response).to redirect_to '/404'
