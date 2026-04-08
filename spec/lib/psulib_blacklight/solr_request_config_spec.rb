@@ -23,6 +23,26 @@ RSpec.describe PsulibBlacklight::SolrRequestConfig do
           .to have_received(:new)
           .with(namespace: :solrcat, overrides: {})
       end
+
+      it 'creates a solrcat config for UEN internal network requests' do
+        request.headers['X-Forwarded-For'] = '104.38.10.1'
+
+        described_class.new(request).url
+
+        expect(PsulibBlacklight::SolrConfig)
+          .to have_received(:new)
+          .with(namespace: :solrcat, overrides: {})
+      end
+
+      it 'creates a solrcat config for a specific UEN IP address' do
+        request.headers['X-Forwarded-For'] = '208.127.66.230'
+
+        described_class.new(request).url
+
+        expect(PsulibBlacklight::SolrConfig)
+          .to have_received(:new)
+          .with(namespace: :solrcat, overrides: {})
+      end
     end
 
     context 'when the request is external' do
