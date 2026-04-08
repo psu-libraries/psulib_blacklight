@@ -41,7 +41,7 @@ module PsulibBlacklight
       IPAddr.new('208.127.66.230/32'),
       IPAddr.new('208.127.67.25/32'),
       IPAddr.new('208.127.75.216/32'),
-      IPAddr.new('208.127.77.108/32'),
+      IPAddr.new('208.127.77.108/32')
     ].freeze
 
     attr_reader :request
