@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   include Blacklight::Controller
 
   before_action :attempt_passive_authentication
+  before_action :authorize_profiler
+  before_action :set_solr_url_from_request
   layout 'blacklight'
 
   protect_from_forgery with: :exception
@@ -14,7 +16,7 @@ class ApplicationController < ActionController::Base
   # behavior until we can define all possible param  in the future.
   ActionController::Parameters.permit_all_parameters = true
 
-  helper_method :blackcat_config
+  helper_method :blackcat_config, :blacklight_solr_config
 
   def login
     session[:groups] = request.env.fetch(Settings.groups_header, '').split(',')
@@ -32,8 +34,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  before_action do
-    authorize_profiler
+  def blacklight_solr_config
+    @blacklight_solr_config ||= PsulibBlacklight::SolrRequestConfig.new(request)
+  end
+
+  def set_solr_url_from_request
+    return unless respond_to?(:blacklight_config)
+
+    blacklight_config.url = blacklight_solr_config.url
   end
 
   private
