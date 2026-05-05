@@ -54,15 +54,15 @@ module PsulibBlacklight
       solr_config.query_url
     end
 
+    def selected_namespace
+      internal_request? ? :solrcat : :solr
+    end
+
     private
 
       def solr_config
         @solr_config ||= PsulibBlacklight::SolrConfig.new(namespace: selected_namespace,
                                                           overrides: header_overrides)
-      end
-
-      def selected_namespace
-        internal_request? ? :solrcat : :solr
       end
 
       def internal_request?
