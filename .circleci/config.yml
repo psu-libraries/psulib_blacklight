@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   docker: circleci/docker@2.8.2
+  browser-tools: circleci/browser-tools@1.5.3
 
 parameters:
 
@@ -299,9 +300,8 @@ jobs:
           ./bin/ci-rspec
 
 workflows:
-  version: 2
 
-  blacklight-delete-ci-cd:
+  delete-deployment:
     when:
       equal: [ "delete", << pipeline.parameters.GHA_Event >> ]
     jobs:
