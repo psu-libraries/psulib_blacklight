@@ -3,7 +3,7 @@ on:
   delete
 jobs:
   delete-deployment:
-    if: contains(github.event.ref, 'preview/')
+    if: contains(github.event.ref, 'update/') || contains(github.event.ref, 'preview/')
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CircleCI Pipeline
