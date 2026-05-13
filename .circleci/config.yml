@@ -33,6 +33,9 @@ parameters:
   CLUSTERS_PROD:
     type: string
     default: "prod"
+  CLUSTERS_ULPROD:
+    type: string
+    default: "ulprod"
   REGISTRY_HOST:
     type: string
     default: "harbor.k8s.libraries.psu.edu"
@@ -49,7 +52,7 @@ commands:
           name: Prepare GitHub Access
           command: |
             ssh-keyscan github.com > ~/.ssh/known_hosts
-            git clone << pipeline.parameters.CONFIG_REPO_URL >>
+            git clone $CONFIG_REPO_URL
 
   compute-docker-tag:
     steps:
@@ -76,10 +79,12 @@ executors:
       - image: << parameters.registry_host >>/library/ci-utils:<< parameters.image_tag >>
 
 jobs:
+
   build-image:
     environment:
       REGISTRY_HOST: << pipeline.parameters.REGISTRY_HOST >>
       REGISTRY_REPO: "library/$CIRCLE_PROJECT_REPONAME"
+      TAG: <<pipeline.git.revision>>,<<pipeline.git.tag>>
     executor:
       name: ci-utils
       image_tag: << pipeline.parameters.CI_UTILS_IMAGE_TAG >>
@@ -115,6 +120,7 @@ jobs:
     environment:
       REGISTRY_HOST: << pipeline.parameters.REGISTRY_HOST >>
       REGISTRY_REPO: "library/$CIRCLE_PROJECT_REPONAME"
+      TAG: <<pipeline.git.revision>>,<<pipeline.git.tag>>
     executor:
       name: ci-utils
       image_tag: << pipeline.parameters.CI_UTILS_IMAGE_TAG >>
@@ -224,11 +230,10 @@ jobs:
       - image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
         environment:
           SOLR_STOP_WAIT: 1
-        command: [
-          "/bin/bash",
-          "-c",
-          "solr -c && solr auth enable -credentials catalog:catalog -z localhost:9983; solr stop && solr -c -f",
-        ]
+        command:
+          - /bin/bash
+          - -c
+          - "solr -c && solr auth enable -credentials catalog:catalog -z localhost:9983; solr stop && solr -c -f"
     environment:
       RAILS_ENV: test
       SETTINGS__solr__username: catalog
@@ -295,9 +300,8 @@ jobs:
           ./bin/ci-rspec
 
 workflows:
-  version: 2
 
-  blacklight-delete-ci-cd:
+  delete-deployment:
     when:
       equal: [ "delete", << pipeline.parameters.GHA_Event >> ]
     jobs:
