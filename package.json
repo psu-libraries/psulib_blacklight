@@ -78,7 +78,7 @@
     "jest": "^28",
     "jest-environment-jsdom": "^30",
     "prettier": ">=3.0.0",
-    "webpack-dev-server": "^5.2.3"
+    "webpack-dev-server": "^5.2.4"
   },
   "scripts": {
     "test": "jest",
