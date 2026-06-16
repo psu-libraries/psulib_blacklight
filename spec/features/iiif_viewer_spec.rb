@@ -15,9 +15,9 @@ RSpec.describe 'viewing a record', :js, :vcr do
     it 'renders the Mirador viewer with no workspace type' do
       visit '/catalog/2025781'
       expect(page).to have_css 'div[id="iiif-viewer"]'
-      expect(page).to have_css 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
-      expect(page).to have_no_css 'div[class="mosaic-window-body"]'
+      expect(page).to have_css '#iiif-viewer .mirador-viewer'
       within '#iiif-viewer' do
+        expect(page).to have_no_css '[data-testid="window"]', count: 2
         expect(page).to have_no_content 'error'
       end
     end
@@ -38,9 +38,9 @@ RSpec.describe 'viewing a record', :js, :vcr do
     it 'renders the Mirador viewer with a mosaic workspace' do
       visit '/catalog/7280921'
       expect(page).to have_css 'div[id="iiif-viewer"]'
-      expect(page).to have_css 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
-      expect(page).to have_css 'div[class="mosaic-window-body"]'
+      expect(page).to have_css '#iiif-viewer .mirador-viewer'
       within '#iiif-viewer' do
+        expect(page).to have_css '[data-testid="window"]', count: 2
         expect(page).to have_no_content 'error'
       end
     end
@@ -50,7 +50,7 @@ RSpec.describe 'viewing a record', :js, :vcr do
     it 'renders the Mirador viewer', retry: 3, retry_wait: 10 do
       visit '/catalog/1267921'
       expect(page).to have_css 'div[id="iiif-viewer"]'
-      expect(page).to have_css 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
+      expect(page).to have_css '#iiif-viewer .mirador-viewer'
       within '#iiif-viewer' do
         expect(page).to have_no_content 'error'
       end
@@ -70,7 +70,7 @@ RSpec.describe 'viewing a record', :js, :vcr do
       visit '/catalog/1267921'
       sleep 0.5
       expect(page).to have_css 'div[id="iiif-viewer"]'
-      expect(page).to have_css 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
+      expect(page).to have_css '#iiif-viewer .mirador-viewer'
     end
   end
 
@@ -84,7 +84,7 @@ RSpec.describe 'viewing a record', :js, :vcr do
     it 'renders the Mirador viewer' do
       visit '/catalog/1267921'
       expect(page).to have_css 'div[id="iiif-viewer"]'
-      expect(page).to have_css 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
+      expect(page).to have_css '#iiif-viewer .mirador-viewer'
     end
   end
 
@@ -98,7 +98,7 @@ RSpec.describe 'viewing a record', :js, :vcr do
     it 'renders the Mirador viewer' do
       visit '/catalog/1267921'
       expect(page).to have_css 'div[id="iiif-viewer"]'
-      expect(page).to have_css 'main[class="Connect(WithPlugins(WorkspaceArea))-viewer-1 mirador-viewer"]'
+      expect(page).to have_css '#iiif-viewer .mirador-viewer'
     end
   end
 end
