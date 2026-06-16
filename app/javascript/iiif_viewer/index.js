@@ -1,4 +1,4 @@
-import Mirador from 'mirador/dist/es/src/index';
+import Mirador from 'mirador';
 
 const viewerContainer = document.getElementById('iiif-viewer');
 
