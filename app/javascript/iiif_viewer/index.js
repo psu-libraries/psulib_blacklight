@@ -1,4 +1,4 @@
-import Mirador from 'mirador';
+import { viewer } from 'mirador';
 
 const viewerContainer = document.getElementById('iiif-viewer');
 
@@ -32,5 +32,5 @@ if (viewerContainer) {
     },
   };
 
-  Mirador.viewer(config);
+  viewer(config);
 }
