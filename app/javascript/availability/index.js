@@ -36,6 +36,10 @@ const availability = {
    * On page-load, build ViewAvailabilityButtons for the index page and load availability for the show page
    */
   renderReactComponent(element, component) {
+    if (!element) {
+      return;
+    }
+
     if (!element._availabilityReactRoot) {
       element._availabilityReactRoot = createRoot(element);
     }
