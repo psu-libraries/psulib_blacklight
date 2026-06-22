@@ -18,7 +18,7 @@ if (viewerContainer) {
     windows: manifestURLs.map((url) => ({ manifestId: url })),
     workspace: {
       showZoomControls: true,
-      type: multipleManifests ? 'mosaic' : null,
+      type: multipleManifests ? 'mosaic' : 'single',
     },
     workspaceControlPanel: {
       enabled: false,
