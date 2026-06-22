@@ -40,7 +40,7 @@ RSpec.describe 'viewing a record', :js, :vcr do
       expect(page).to have_css 'div[id="iiif-viewer"]'
       expect(page).to have_css '#iiif-viewer .mirador-viewer'
       within '#iiif-viewer' do
-        expect(page).to have_css '[data-testid="window"]', count: 2
+        expect(page).to have_css '#iiif-viewer .mosaic-tile', count: 2
         expect(page).to have_no_content 'error'
       end
     end
