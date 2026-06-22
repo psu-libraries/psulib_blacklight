@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Tooltip from 'bootstrap/js/dist/tooltip';
 import locations from './libraries_locations.json';
 import itemTypes from './item_types.json';
@@ -35,6 +35,17 @@ const availability = {
   /**
    * On page-load, build ViewAvailabilityButtons for the index page and load availability for the show page
    */
+  renderReactComponent(element, component) {
+    if (!element) {
+      return;
+    }
+
+    if (!element._availabilityReactRoot) {
+      element._availabilityReactRoot = createRoot(element);
+    }
+    element._availabilityReactRoot.render(component);
+  },
+
   setUpAvailability() {
     $('.availability-index').each(function () {
       const titleID = $(this).attr('data-keys');
@@ -44,12 +55,12 @@ const availability = {
         accessFacet.includes('In the Library') ||
         accessFacet.includes('On Order')
       ) {
-        ReactDOM.render(
+        availability.renderReactComponent(
+          this,
           React.createElement(ViewAvailabilityButton, {
             titleID,
             title,
           }),
-          this,
         );
       }
     });
@@ -393,20 +404,20 @@ const availability = {
           const structuredHoldings =
             availability.availabilityDataStructurer(holdings);
 
-          ReactDOM.render(
+          availability.renderReactComponent(
+            holdingsPlaceHolder[0],
             React.createElement(Availability, {
               structuredHoldings,
               summaryHoldings: summaryHoldings
                 ? summaryHoldings[titleID]
                 : null,
             }),
-            holdingsPlaceHolder[0],
           );
 
           if (snippetPlaceHolder && snippetPlaceHolder.length === 1) {
-            ReactDOM.render(
-              React.createElement(Snippet, { data: structuredHoldings }),
+            availability.renderReactComponent(
               snippetPlaceHolder[0],
+              React.createElement(Snippet, { data: structuredHoldings }),
             );
           }
 
