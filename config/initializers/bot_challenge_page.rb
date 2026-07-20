@@ -33,7 +33,7 @@ BotChallengePage.configure do |config|
     return true if current_user.present? && !current_user.guest?
 
     # Does not challenge "Good Bots" – we have another layer of filters so Header containing "Bot" should be legit
-    !!(request.headers['User-Agent'] =~ /bot|nagios-plugins|ProQuest Harvesting/i)
+    !!(request.headers['User-Agent'] =~ /bot|nagios-plugins/i)
   }
 
   # Hook after a bot challenge is presented, for logging or other
