@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
+  include BotChallengePage::Controller
 
   before_action :attempt_passive_authentication
   before_action :authorize_profiler

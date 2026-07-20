@@ -12,8 +12,8 @@ class CatalogController < ApplicationController
   include ReportIssue
 
   before_action :redirect_browse
-  before_action :enforce_bot_challenge, only: :index
   before_action :authenticate_or_limit_queries
+  bot_challenge only: :index, unless: -> { request.query_parameters.blank? }
 
   def index
     cache_key = nil
@@ -536,17 +536,6 @@ class CatalogController < ApplicationController
 
     def trailing_punctuation?
       params[:id].match(/\d+[.,;:!"')\]]/)
-    end
-
-    def enforce_bot_challenge
-      # Challenge only if remote IP is not whitelisted
-      ip_whitelist = ENV.fetch('BOT_CHALLENGE_IP_WHITELIST', '')
-        .split(',')
-        .map { |ip| IPAddr.new(ip.strip) unless ip.strip.empty? }
-        .compact
-      return if ip_whitelist.any? { |ip| ip.include?(IPAddr.new(request.remote_ip)) }
-
-      BotChallengePage::BotChallengePageController.bot_challenge_enforce_filter(self, immediate: true)
     end
 
     def authenticate_or_limit_queries
