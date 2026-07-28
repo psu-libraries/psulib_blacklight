@@ -29,6 +29,49 @@ RSpec.describe CatalogController do
     end
   end
 
+  describe 'enforce bot challenge' do
+    let(:whitelisted_ip) { '192.168.1.1' }
+    let(:non_whitelisted_ip) { '10.0.0.1' }
+
+    before do
+      ENV['BOT_CHALLENGE_IP_WHITELIST'] = whitelisted_ip
+    end
+
+    after do
+      ENV['BOT_CHALLENGE_IP_WHITELIST'] = nil
+    end
+
+    context 'when remote_ip is whitelisted' do
+      it 'does not enforce the bot challenge' do
+        request.remote_addr = whitelisted_ip
+
+        get :index, params: { q: 'test' }
+        expect(BotChallengePage::BotChallengePageController)
+          .not_to receive(:bot_challenge_guard_action)
+      end
+    end
+
+    context 'when remote_ip is not whitelisted' do
+      context 'when requesting the homepage' do
+        it 'does not enforce the bot challenge' do
+          request.remote_addr = non_whitelisted_ip
+          get :index
+          expect(BotChallengePage::BotChallengePageController)
+            .not_to receive(:bot_challenge_guard_action)
+        end
+      end
+
+      context 'when requesting a search' do
+        it 'enforces the bot challenge' do
+          request.remote_addr = non_whitelisted_ip
+          expect(BotChallengePage::BotChallengePageController)
+            .to receive(:bot_challenge_guard_action)
+          get :index, params: { q: 'test' }
+        end
+      end
+    end
+  end
+
   describe 'facet action' do
     it 'facet pages too deep' do
       get :facet, params: { id: 'format', 'facet.page': 51 }

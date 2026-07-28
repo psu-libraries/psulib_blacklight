@@ -13,7 +13,7 @@ class CatalogController < ApplicationController
 
   before_action :redirect_browse
   before_action :authenticate_or_limit_queries
-  bot_challenge only: :index, unless: -> { request.query_parameters.blank? || enforce_bot_challenge? }
+  bot_challenge only: :index, unless: -> { request.query_parameters.blank? || whitelisted_ip? }
 
   def index
     cache_key = nil
@@ -538,7 +538,7 @@ class CatalogController < ApplicationController
       params[:id].match(/\d+[.,;:!"')\]]/)
     end
 
-    def enforce_bot_challenge?
+    def whitelisted_ip?
       # Challenge only if remote IP is not whitelisted
       ip_whitelist = ENV.fetch('BOT_CHALLENGE_IP_WHITELIST', '')
         .split(',')
