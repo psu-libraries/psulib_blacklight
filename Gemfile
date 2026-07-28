@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootsnap', require: false
-gem 'bot_challenge_page', '~> 0.3.1'
+gem 'bot_challenge_page'
 gem 'bugsnag', '~> 6.26'
 gem 'config'
 gem 'devise', '>= 4.6.0'
@@ -25,7 +25,7 @@ gem 'net-smtp', require: false
 gem 'okcomputer', '~> 1.18'
 gem 'puma'
 gem 'rack-mini-profiler'
-gem 'rails', '~> 7.2'
+gem 'rails', '~> 8.1'
 gem 'rsolr', '>= 2.5'
 gem 'rspec-rebound'
 gem 'rubyzip'
@@ -56,7 +56,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rubocop-capybara'
   gem 'sinatra'
-  gem 'sqlite3', '~> 1.5.0'
+  gem 'sqlite3', '~> 2.1'
 end
 
 group :test do
