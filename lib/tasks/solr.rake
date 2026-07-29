@@ -4,8 +4,11 @@ require 'psulib_blacklight/solr_manager'
 require 'psulib_blacklight/data_manager'
 
 namespace :solr do
-  def solr_manager
-    @solr_manager ||= PsulibBlacklight::SolrManager.new
+  def solr_manager(namespace = ENV.fetch('SOLR_NAMESPACE', 'solr').to_sym)
+    @solr_managers ||= {}
+    @solr_managers[namespace] ||= PsulibBlacklight::SolrManager.new(
+      PsulibBlacklight::SolrConfig.new(namespace: namespace)
+    )
   end
 
   desc 'Remove all data from Solr'

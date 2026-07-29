@@ -14,7 +14,7 @@ export default class CheckboxSubmitAll {
         this.forms[i]
           .querySelector("input[id^='toggle-bookmark_']")
           .setAttribute('disabled', 'disabled');
-        /* eslint-disable no-await-in-loop */
+
         const response = await fetch(this.forms[i].getAttribute('action'), {
           body: new FormData(this.forms[i]),
           method: this.forms[i].getAttribute('method').toUpperCase(),
@@ -37,7 +37,6 @@ export default class CheckboxSubmitAll {
         } else {
           alert('Error');
         }
-        /* eslint-disable no-await-in-loop */
       }
     }
   }

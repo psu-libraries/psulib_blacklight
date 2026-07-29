@@ -94,9 +94,37 @@ Capybara.register_driver :firefox_headless do |app|
   Capybara::Selenium::Driver.new app, browser: :firefox, options: options
 end
 
+Capybara.register_driver :chrome_headless do |app|
+  options = Selenium::WebDriver::Chrome::Options.new
+  options.add_argument('--headless=new')
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-gpu')
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--disable-software-rasterizer')
+  options.add_argument('--disable-extensions')
+  options.add_argument('--window-size=1400,1400')
+  options.add_argument('--enable-features=NetworkService,NetworkServiceInProcess')
+  options.add_argument('--remote-debugging-port=9222')
+  options.add_argument('--disable-background-timer-throttling')
+  options.add_argument('--disable-backgrounding-occluded-windows')
+  options.add_argument('--disable-renderer-backgrounding')
+
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    options: options
+  )
+end
+
 # Capybara
 Capybara.configure do |config|
-  config.javascript_driver = :firefox_headless
+  # Use Chrome in CI (CircleCI provides Chrome), Firefox locally
+  # CircleCI sets both CIRCLECI and CI environment variables
+  config.javascript_driver = ENV['CIRCLECI'] || ENV.fetch('CI', nil) ? :chrome_headless : :firefox_headless
+  config.default_max_wait_time = 10
+  config.server = :puma, { Silent: true, Threads: '1:1' }
+  config.server_host = 'localhost'
+  config.server_port = 3001
 end
 
 # Disable CSS animations which slows down tests

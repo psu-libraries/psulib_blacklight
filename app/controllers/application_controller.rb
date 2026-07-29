@@ -3,7 +3,11 @@
 class ApplicationController < ActionController::Base
   # Adds a few additional behaviors into the application controller
   include Blacklight::Controller
+  include BotChallengePage::Controller
 
+  before_action :attempt_passive_authentication
+  before_action :authorize_profiler
+  before_action :set_solr_url_from_request
   layout 'blacklight'
 
   protect_from_forgery with: :exception
@@ -13,11 +17,11 @@ class ApplicationController < ActionController::Base
   # behavior until we can define all possible param  in the future.
   ActionController::Parameters.permit_all_parameters = true
 
-  helper_method :blackcat_config
+  helper_method :blackcat_config, :blacklight_solr_config
 
   def login
     session[:groups] = request.env.fetch(Settings.groups_header, '').split(',')
-    redirect_location = params['fullpath'] || stored_location_for(User) || '/'
+    redirect_location = stored_location_for(User) || params['fullpath'] || '/'
     if current_user
       flash[:success] = I18n.t('blackcat.successful_login')
       if params['bookmark_doc_id']
@@ -31,8 +35,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  before_action do
-    authorize_profiler
+  def blacklight_solr_config
+    @blacklight_solr_config ||= PsulibBlacklight::SolrRequestConfig.new(request)
+  end
+
+  def set_solr_url_from_request
+    return unless respond_to?(:blacklight_config)
+
+    blacklight_config.url = blacklight_solr_config.url
   end
 
   private
@@ -41,5 +51,11 @@ class ApplicationController < ActionController::Base
       return unless request.session.fetch(:groups, []).include?(Settings.admin_group)
 
       Rack::MiniProfiler.authorize_request
+    end
+
+    def attempt_passive_authentication
+      return if user_signed_in?
+
+      warden.authenticate(scope: :user)
     end
 end

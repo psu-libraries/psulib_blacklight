@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import $ from 'jquery';
 import availability from '../../../app/javascript/availability/index';
 import 'bootstrap';
@@ -35,12 +34,14 @@ jest.mock('react-dom', () => ({
 const summaryHoldingsMock = {};
 
 beforeEach(() => {
-  document.body.innerHTML = `<div class="availability" data-keys="0">
+  document.body.innerHTML = `<div id="availability-parent-0">
+  <div class="availability-index" data-keys="0">
   <div class="no-recalls-button text-end d-none mb-2">
     <a href="ill_url" class="btn btn-primary pr-4 pl-4">I Want It</a>
   </div>
   <div class="hold-button text-end d-none mb-2">
   <a href="symphony_url" class="btn btn-primary pr-4 pl-4">I Want It</a>
+  </div>
   </div>
   </div>`;
 });
@@ -59,7 +60,7 @@ describe('when a holdable record is only in a closed library', () => {
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');
@@ -92,7 +93,7 @@ describe('when a holdable record is in a closed library and a holdable location'
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');
@@ -125,7 +126,7 @@ describe('when a holdable record is in a closed library and a non holdable locat
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');
@@ -151,7 +152,7 @@ describe('when a holdable record is only in a non holdable location', () => {
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');
@@ -177,7 +178,7 @@ describe('when a holdable record is in a holdable location', () => {
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');
@@ -203,7 +204,7 @@ describe('when a record is not holdable', () => {
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');

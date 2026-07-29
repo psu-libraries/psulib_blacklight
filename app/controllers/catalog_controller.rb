@@ -12,7 +12,8 @@ class CatalogController < ApplicationController
   include ReportIssue
 
   before_action :redirect_browse
-  before_action :enforce_bot_challenge, only: :index
+  before_action :authenticate_or_limit_queries
+  bot_challenge only: :index, unless: -> { request.query_parameters.blank? || whitelisted_ip? }
 
   def index
     cache_key = nil
@@ -537,14 +538,26 @@ class CatalogController < ApplicationController
       params[:id].match(/\d+[.,;:!"')\]]/)
     end
 
-    def enforce_bot_challenge
+    def whitelisted_ip?
       # Challenge only if remote IP is not whitelisted
       ip_whitelist = ENV.fetch('BOT_CHALLENGE_IP_WHITELIST', '')
         .split(',')
         .map { |ip| IPAddr.new(ip.strip) unless ip.strip.empty? }
         .compact
-      return if ip_whitelist.any? { |ip| ip.include?(IPAddr.new(request.remote_ip)) }
+      ip_whitelist.any? { |ip| ip.include?(IPAddr.new(request.remote_ip)) }
+    end
 
-      BotChallengePage::BotChallengePageController.bot_challenge_enforce_filter(self, immediate: true)
+    def authenticate_or_limit_queries
+      return if user_signed_in?
+
+      warden.authenticate(scope: :user)
+
+      return if user_signed_in?
+
+      if SearchLimitService.new(params).search_volume_exceeded?
+        Rails.logger.info("Query length exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
+        store_location_for(:user, request.fullpath)
+        redirect_to '/query_limit'
+      end
     end
 end

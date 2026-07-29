@@ -6,7 +6,7 @@ The Penn State University Libraries' catalog. Built on Blacklight, using Traject
 
 | Software  | Version |
 |-----------|---------|
-| `ruby`    |  3.4.1  |
+| `ruby`    |  3.4.9  |
 | `rails`   |  7.2.2  |
 | `solr`    |  9.6.1  |
 

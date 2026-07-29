@@ -10,43 +10,63 @@ RSpec.describe CatalogController do
       expect(assigns(:blacklight_config)[:facet_fields].keys).to eq(configured_home_page_facets)
     end
 
+    it 'updates the blacklight Solr URL from request context' do
+      request_config = instance_double(
+        PsulibBlacklight::SolrRequestConfig,
+        url: 'http://internal.example.com:8983/solr/psul_catalog'
+      )
+
+      allow(controller).to receive(:blacklight_solr_config).and_return(request_config)
+
+      get :index
+
+      expect(assigns(:blacklight_config).url).to eq('http://internal.example.com:8983/solr/psul_catalog')
+    end
+
     it 'pages too deep' do
       get :index, params: { page: 251 }
       expect(:response).to redirect_to '/404'
     end
+  end
 
-    describe 'enforce_bot_challenge' do
-      let(:whitelisted_ip) { '192.168.1.1' }
-      let(:non_whitelisted_ip) { '10.0.0.1' }
+  describe 'enforce bot challenge' do
+    let(:whitelisted_ip) { '192.168.1.1' }
+    let(:non_whitelisted_ip) { '10.0.0.1' }
 
-      before do
-        allow(BotChallengePage::BotChallengePageController)
-          .to receive(:bot_challenge_enforce_filter)
-        ENV['BOT_CHALLENGE_IP_WHITELIST'] = whitelisted_ip
+    before do
+      ENV['BOT_CHALLENGE_IP_WHITELIST'] = whitelisted_ip
+    end
+
+    after do
+      ENV['BOT_CHALLENGE_IP_WHITELIST'] = nil
+    end
+
+    context 'when remote_ip is whitelisted' do
+      it 'does not enforce the bot challenge' do
+        request.remote_addr = whitelisted_ip
+
+        get :index, params: { q: 'test' }
+        expect(BotChallengePage::BotChallengePageController)
+          .not_to receive(:bot_challenge_guard_action)
       end
+    end
 
-      after do
-        ENV['BOT_CHALLENGE_IP_WHITELIST'] = nil
-      end
-
-      context 'when remote_ip is whitelisted' do
-        it 'does not call bot_challenge_enforce_filter' do
-          request.remote_addr = whitelisted_ip
-
+    context 'when remote_ip is not whitelisted' do
+      context 'when requesting the homepage' do
+        it 'does not enforce the bot challenge' do
+          request.remote_addr = non_whitelisted_ip
           get :index
           expect(BotChallengePage::BotChallengePageController)
-            .not_to have_received(:bot_challenge_enforce_filter)
+            .not_to receive(:bot_challenge_guard_action)
         end
       end
 
-      context 'when remote_ip is not whitelisted' do
-        it 'calls bot_challenge_enforce_filter' do
+      context 'when requesting a search' do
+        it 'enforces the bot challenge' do
           request.remote_addr = non_whitelisted_ip
-
-          get :index
           expect(BotChallengePage::BotChallengePageController)
-            .to have_received(:bot_challenge_enforce_filter)
-            .with(instance_of(described_class), immediate: true)
+            .to receive(:bot_challenge_guard_action)
+          get :index, params: { q: 'test' }
         end
       end
     end
