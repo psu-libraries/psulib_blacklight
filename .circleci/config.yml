@@ -207,6 +207,7 @@ jobs:
     environment:
       clusters: << parameters.clusters >>
       CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
+      CONFIG_REPO_URL: << pipeline.parameters.CONFIG_REPO_URL >>
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
       FROM_TAG: << parameters.from_tag >>
       TO_TAG: << parameters.to_tag >>
@@ -374,13 +375,3 @@ workflows:
               ignore: /.*/
             tags:
               only: /^v\d+\.\d+\.\d+.*/
-
-## Workflows
-
-# | **Scenario**                       | **Workflow**              | **Jobs (in order)**                                                                  |
-# | ---------------------------------- | ------------------------- | -----------------------------------------------------------------------------------  |
-# | Feature branch push                | `blacklight-ci-cd`        | 🧪 `test-application`                                                                |
-# | `preview/feature` branch push      | `blacklight-ci-cd`        | 🧪 `test-application` → 🏗️ `build-image` → 📦 `push-image` → 🚀 `deploy-application` |
-# | Push to `main`                     | `blacklight-ci-cd`        | 🧪 `test-application` → 🏗️ `build-image` → 📦 `push-image` → 🚀 `deploy-application` |
-# | Tag like `v1.2.3`                  | `blacklight-ci-cd`        | 🏁 `release-image` only                                                              |
-# | Delete event (`GHA_Event: delete`) | `blacklight-delete-ci-cd` | 🗑️ `delete-deployment` only                                                          |
