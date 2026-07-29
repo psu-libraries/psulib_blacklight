@@ -211,8 +211,9 @@ jobs:
       registry_host: << pipeline.parameters.REGISTRY_HOST >>
     environment:
       clusters: << parameters.clusters >>
+      CONFIG_REPO: git@github.com:psu-libraries/catalog-config.git
+      CONFIG_REPO_URL: << pipeline.parameters.CONFIG_REPO_URL >>
       CONFIG_REPO_NAME: << pipeline.parameters.CONFIG_REPO_NAME >>
-      CONFIG_REPO: << pipeline.parameters.CONFIG_REPO_URL >>
       REGISTRY_HOST: << pipeline.parameters.REGISTRY_HOST >>
       FROM_TAG: << parameters.from_tag >>
       TO_TAG: << parameters.to_tag >>
