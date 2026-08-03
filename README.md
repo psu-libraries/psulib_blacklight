@@ -3,7 +3,7 @@
 The Penn State University Libraries' catalog. Built on Blacklight, using Traject for ingesting binary marc.
 
 # Software Dependencies
-
+ 
 | Software  | Version |
 |-----------|---------|
 | `ruby`    |  3.4.9  |
