@@ -10,13 +10,13 @@
 <%= paginator.render do -%>
   <ul class="pagination">
     <%= prev_page_tag %>
-    <%= next_page_tag %>
     <% each_relevant_page do |page| -%>
-      <% if page.left_outer? || page.inside_window? -%>
+      <% if page.first? || page.last? || page.inside_window? -%>
         <%= page_tag page %>
       <% elsif !page.was_truncated? -%>
         <%= gap_tag %>
       <% end -%>
     <% end -%>
+    <%= next_page_tag %>
   </ul>
 <% end -%>

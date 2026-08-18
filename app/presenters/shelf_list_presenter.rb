@@ -105,7 +105,7 @@ class ShelfListPresenter
       list.select do |shelf_item|
         if shelf_item.key == shelf_key
           shelf_item.match = true
-          shelf_item.nearby = true if before_list.count.positive?
+          shelf_item.nearby = true if before_list.any?
         end
       end
 
@@ -116,8 +116,8 @@ class ShelfListPresenter
       list << ShelfItem.new(label: "You're looking for: #{nearby}",
                             call_number: 'None',
                             key: nil)
-      list.shift if list.count > 1
-      list.last.nearby = true if list.count.positive?
+      list.shift if list.many?
+      list.last.nearby = true if list.any?
 
       list
     end

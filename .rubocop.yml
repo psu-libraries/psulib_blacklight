@@ -1,4 +1,5 @@
-require: rubocop-rspec
+plugins:
+  - rubocop-rspec
 
 inherit_from: .rubocop_todo.yml
 
@@ -14,6 +15,9 @@ AllCops:
     - 'tmp/**/*'
     - 'vendor/**/*'
   NewCops: enable
+
+Capybara/NegationMatcherAfterVisit:
+  Enabled: false
 
 Metrics/BlockLength:
   Exclude:
@@ -37,6 +41,7 @@ Layout/LineLength:
   - 'app/controllers/catalog_controller.rb'
   - 'spec/controllers/catalog_controller_spec.rb'
   - 'app/components/blacklight/advanced_search_form_component.rb'
+  - 'spec/features/availability_spec.rb'
 
 Lint/MissingSuper:
   Exclude:
@@ -47,6 +52,11 @@ Lint/MissingSuper:
 Metrics/CyclomaticComplexity:
   Exclude:
   - 'app/components/psul_search_bar_component.rb'
+  - 'app/components/blacklight/document/action_component.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+  - 'app/components/blacklight/document/action_component.rb'
 
 Rails/ContentTag:
   Enabled: false
@@ -61,13 +71,10 @@ RSpec/ExampleLength:
   # Feature specs are special.
   - 'spec/features/**/*'
 
+RSpec/IndexedLet:
+  Enabled: false
+
 RSpec/NestedGroups:
-  Enabled: false
-
-RSpec/Capybara/FeatureMethods:
-  Enabled: false
-
-RSpec/Capybara:
   Enabled: false
 
 RSpec/MultipleMemoizedHelpers:
@@ -80,10 +87,12 @@ RSpec/AnyInstance:
   - 'spec/components/browse/facet_navigation_spec.rb'
   - 'spec/components/browse/page_size_selector_spec.rb'
   - 'spec/components/browse/prefix_selector_spec.rb'
+  - 'spec/features/hathi_link_spec.rb'
 
 RSpec/RepeatedExampleGroupBody:
   Exclude:
   - 'spec/features/google_preview_link_spec.rb'
+  - 'spec/features/hathi_link_spec.rb'
 
 RSpec/MessageSpies:
   Exclude:

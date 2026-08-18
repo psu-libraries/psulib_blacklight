@@ -1,8 +1,8 @@
 import './show_default';
 import alignRtl from './align_rtl_index';
-import './google_preview';
 import './a11y_advanced_search';
 import './bookmark_all_on_page';
+import './set_hathi_google_links';
 
 $(document).ready(alignRtl());
 

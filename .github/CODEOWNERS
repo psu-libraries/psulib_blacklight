@@ -1,0 +1,12 @@
+# Each line is a file pattern followed by one or more owners.
+
+# These owners will be the default owners for everything in
+# the repo. Unless a later match takes precedence,
+# space separated list of users/teams will be requested for
+# review when someone opens a pull request. Syntax is the same
+# as with .gitignore. More info here:
+#   https://help.github.com/articles/about-codeowners/
+#
+# Global CODEOWNERS
+*  @psu-libraries/devops
+

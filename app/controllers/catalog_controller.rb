@@ -12,6 +12,8 @@ class CatalogController < ApplicationController
   include ReportIssue
 
   before_action :redirect_browse
+  before_action :authenticate_or_limit_queries
+  bot_challenge only: :index, unless: -> { request.query_parameters.blank? || whitelisted_ip? }
 
   def index
     cache_key = nil
@@ -78,7 +80,7 @@ class CatalogController < ApplicationController
     # Controls the document actions (also called "tools"), note that blacklight_marc adds refworks and endnote
     config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params, html_class: 'dropdown-item')
     config.add_show_tools_partial(:ris, callback: :ris_action, html_class: 'dropdown-item')
-    config.add_show_tools_partial(:report_issue, callback: :report_issue_action, validator: :validate_report_issue_params)
+    config.add_show_tools_partial(:report_issue, callback: :report_issue_action, validator: :validate_report_issue_params?)
     # TODO: hide SMS action for now, should be enabled when fixed
     # config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params, html_class: 'dropdown-item')
     config.show.document_actions.delete_field('librarian_view') # removing something added by blacklight_marc
@@ -194,6 +196,7 @@ class CatalogController < ApplicationController
                              show: "\uf0fe", # same as '<i class="fa fa-plus-square" aria-hidden="true"></i>',
                              hide: "\uf146"
                            }
+    config.add_facet_field 'pub_date_itsi', label: 'Publication Year', range: { segments: false }
 
     #
     # Facets that are configured but are not in the solr response
@@ -204,7 +207,6 @@ class CatalogController < ApplicationController
     config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
     config.add_facet_field 'location_facet', label: 'Location', sort: 'index', show: false, limit: -1, single: true # just advanced search
-    config.add_facet_field 'pub_date_itsi', label: 'Publication Year', range: { segments: false }
     config.add_facet_field 'subject_browse_facet', show: false, limit: 0
     config.add_facet_field 'subject_facet', show: false
     config.add_facet_field 'title_sort', label: 'Title', show: false
@@ -265,6 +267,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'genre_display_ssm', label: 'Genre(s)', helper_method: :genre_links
     config.add_show_field 'isbn_ssm', label: 'ISBN', helper_method: :newline_format
     config.add_show_field 'issn_ssm', label: 'ISSN', helper_method: :newline_format
+    config.add_show_field 'grouping_issn_ssm', label: 'Grouping ISSN', helper_method: :newline_format
     config.add_show_field 'related_title_display_ssm', label: 'Related Titles', helper_method: :newline_format
     config.add_show_field 'duration_ssm', label: 'Duration', helper_method: :display_duration
     config.add_show_field 'frequency_ssm', label: 'Publication Frequency', helper_method: :newline_format
@@ -356,6 +359,9 @@ class CatalogController < ApplicationController
     # since we aren't specifying it otherwise.
 
     config.add_search_field 'all_fields', label: 'Keyword'
+
+    # Add Crawler Detector. If the session is a crawler we will not save the search
+    config.crawler_detector = lambda { |req| req.env['HTTP_USER_AGENT'] =~ /bot|nagios|facebook|python-requests|Python|Kuma|Grammarly/ }
 
     # Now we see how to over-ride Solr request handler defaults, in this
     # case for a BL "search field", which is really a dismax aggregate
@@ -490,5 +496,28 @@ class CatalogController < ApplicationController
 
     def trailing_punctuation?
       params[:id].match(/\d+[.,;:!"')\]]/)
+    end
+
+    def whitelisted_ip?
+      # Challenge only if remote IP is not whitelisted
+      ip_whitelist = ENV.fetch('BOT_CHALLENGE_IP_WHITELIST', '')
+        .split(',')
+        .map { |ip| IPAddr.new(ip.strip) unless ip.strip.empty? }
+        .compact
+      ip_whitelist.any? { |ip| ip.include?(IPAddr.new(request.remote_ip)) }
+    end
+
+    def authenticate_or_limit_queries
+      return if user_signed_in?
+
+      warden.authenticate(scope: :user)
+
+      return if user_signed_in?
+
+      if SearchLimitService.new(params).search_volume_exceeded?
+        Rails.logger.info("Query length exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
+        store_location_for(:user, request.fullpath)
+        redirect_to '/query_limit'
+      end
     end
 end

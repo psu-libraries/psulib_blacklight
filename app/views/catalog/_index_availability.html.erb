@@ -1,32 +1,22 @@
 <% document ||= @document
-   id = document[:id] %>
-<div class="availability" data-keys="<%= id %>" data-summary-holdings="<%= document[:summary_holdings_struct]&.first %>">
-  <div class="row">
-    <div class="availability-button col-md-auto pr-0 invisible">
-      <p>
-        <button class="btn btn-primary header" type="button" data-toggle="collapse" data-target="#availability-<%= id %>" aria-expanded="false" aria-controls="<%= id %>-location">
-          <span>View Availability</span>
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        </button>
-      </p>
-    </div>
-    <div class="availability-snippet col-md-auto">
-      <p><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Finding items...</p>
-    </div>
+   id = document[:id]
+   title = document[:title_display_ssm]&.join('/')
+   title = title&.split('/')&.first
+   access = document[:access_facet] %>
+<div id="availability-parent-<%= id %>">
+  <div class="availability-index" data-keys="<%= id %>" data-title="<%= title %>" data-access="<%= access %>" data-summary-holdings="<%= document[:summary_holdings_struct]&.first %>">
   </div>
   <div class="collapse" id="availability-<%= id %>" aria-expanded="false">
     <div class="card card-body">
       <% unless Settings&.hide_hold_button %>
-        <% unless document.hathi_links && document.hathi_links&.dig(:etas_item) -%>
-          <div class="hold-button text-right d-none mb-2">
-            <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.hold_button_path}#{id}",
-                        class: 'btn btn-primary pr-4 pl-4' %>
-          </div>
-          <div class="no-recalls-button text-right d-none mb-2">
-            <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.no_recall_button_path}#{id}",
-                        class: 'btn btn-primary pr-4 pl-4' %>
-          </div>
-        <% end %>
+        <div class="hold-button text-end d-none mb-2">
+          <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.hold_button_path}#{id}",
+                      class: 'btn btn-primary ps-4 pe-4' %>
+        </div>
+        <div class="no-recalls-button text-end d-none mb-2">
+          <%= link_to 'I Want It', "#{Settings.my_account_url}#{Settings.no_recall_button_path}#{id}",
+                      class: 'btn btn-primary ps-4 pe-4' %>
+        </div>
       <% end %>
       <div class="availability-holdings"></div>
     </div>

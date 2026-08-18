@@ -1,10 +1,10 @@
-import Mirador from 'mirador/dist/es/src/index';
+import { viewer } from 'mirador';
 
 const viewerContainer = document.getElementById('iiif-viewer');
 
 if (viewerContainer) {
   const manifestURLs = JSON.parse(
-    viewerContainer.getAttribute('data-manifest')
+    viewerContainer.getAttribute('data-manifest'),
   );
   const multipleManifests = manifestURLs.length > 1;
 
@@ -18,7 +18,7 @@ if (viewerContainer) {
     windows: manifestURLs.map((url) => ({ manifestId: url })),
     workspace: {
       showZoomControls: true,
-      type: multipleManifests ? 'mosaic' : null,
+      type: multipleManifests ? 'mosaic' : 'single',
     },
     workspaceControlPanel: {
       enabled: false,
@@ -32,5 +32,5 @@ if (viewerContainer) {
     },
   };
 
-  Mirador.viewer(config);
+  viewer(config);
 }

@@ -56,7 +56,7 @@
         .addClass(options.cssClass)
         .attr('for', `${options.cssClass}_${uniqueId}`)
         .attr('title', form.attr('title') || '');
-      const span = $('<span>').addClass('btn btn-info btn-sm'); // The only piece that was changed
+      const span = $('<span>').addClass('btn btn-outline-secondary btn-sm'); // The only piece that was changed
       label.append(checkbox);
       label.append(' ');
       label.append(span);
@@ -65,15 +65,19 @@
         .addClass(options.cssClass)
         .append(label);
 
+      const title = form.attr('aria-label');
       function updateStateFor(state) {
         checkbox.prop('checked', state);
         label.toggleClass('checked', state);
+
         if (state) {
           // Set the Rails hidden field that fakes an HTTP verb
           // properly for current state action.
+          form.attr('aria-label', `In bookmarks: ${title}`);
           form.find('input[name=_method]').val('delete');
           span.text(form.attr('data-present'));
         } else {
+          form.attr('aria-label', `Bookmark: ${title}`);
           form.find('input[name=_method]').val('put');
           span.text(form.attr('data-absent'));
         }

@@ -8,10 +8,11 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bootsnap', require: false
+gem 'bot_challenge_page'
+gem 'bugsnag', '~> 6.26'
 gem 'config'
-gem 'ddtrace', '~> 1.11.1'
 gem 'devise', '>= 4.6.0'
-gem 'devise-guests', '~> 0.6'
+gem 'devise-guests', '~> 0.8.3'
 gem 'faraday', '~>1.10'
 gem 'flamegraph'
 gem 'high_voltage', '~> 3.1'
@@ -22,13 +23,13 @@ gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false
 gem 'okcomputer', '~> 1.18'
-gem 'puma', '~> 6'
+gem 'puma'
 gem 'rack-mini-profiler'
-gem 'rails', '~> 7.0'
-gem 'redis', '~> 5.0', '>= 5.0.6'
+gem 'rails', '~> 8.1'
 gem 'rsolr', '>= 2.5'
+gem 'rspec-rebound'
 gem 'rubyzip'
-gem 'shakapacker', '= 7.1'
+gem 'shakapacker', '~> 9.5.0'
 gem 'shelvit'
 gem 'sprockets-rails'
 gem 'stackprof'
@@ -36,7 +37,7 @@ gem 'stackprof'
 gem 'blacklight', '~> 8'
 gem 'blacklight_advanced_search', '~> 8.0.0.alpha'
 gem 'blacklight-marc', '~> 8.1'
-gem 'blacklight_range_limit'
+gem 'blacklight_range_limit', '~> 8.1.0'
 
 group :development do
   gem 'better_errors'
@@ -49,11 +50,13 @@ group :development do
 end
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'niftany', '~> 0.10'
+  gem 'byebug', platforms: [:mri, :windows]
+  gem 'html_tokenizer', '~> 0.0.8'
+  gem 'niftany', '~> 0.12.1'
   gem 'pry-byebug'
+  gem 'rubocop-capybara'
   gem 'sinatra'
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 2.1'
 end
 
 group :test do
@@ -70,5 +73,5 @@ group :test do
 end
 
 group :production, :test do
-  gem 'mysql2', '>= 0.4.4', '< 0.6.0'
+  gem 'mysql2', '>= 0.5.7', '< 0.6.0'
 end

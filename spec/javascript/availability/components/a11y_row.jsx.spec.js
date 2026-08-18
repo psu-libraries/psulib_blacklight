@@ -16,7 +16,7 @@ describe('when the A11yRow is at index 0 and only the initial set of holdings ar
             visibleHoldingsCount={4}
           />
         </tbody>
-      </table>
+      </table>,
     );
 
     expect(queryByRole('button')).toBeNull();
@@ -37,7 +37,7 @@ describe('when the A11yRow is at index 0 and there are more pages of holdings', 
             visibleHoldingsCount={75}
           />
         </tbody>
-      </table>
+      </table>,
     );
 
     expect(getByRole('button')).toHaveTextContent('Next');
@@ -58,7 +58,7 @@ describe('when the A11yRow is at index === initialVisibleCount and there are no 
             visibleHoldingsCount={75}
           />
         </tbody>
-      </table>
+      </table>,
     );
 
     expect(getByRole('button')).toHaveTextContent('Previous');
@@ -79,7 +79,7 @@ describe('when the A11yRow is at index === initialVisibleCount and there are mor
             visibleHoldingsCount={125}
           />
         </tbody>
-      </table>
+      </table>,
     );
 
     const buttons = queryAllByRole('button');
@@ -103,7 +103,7 @@ describe('when the A11yRow is at the 3rd page of results', () => {
             visibleHoldingsCount={125}
           />
         </tbody>
-      </table>
+      </table>,
     );
 
     expect(getByRole('button')).toHaveTextContent('Previous');
@@ -129,7 +129,7 @@ describe('when the previous button is clicked', () => {
             visibleHoldingsCount={75}
           />
         </tbody>
-      </table>
+      </table>,
     );
 
     const tableCells = getAllByRole('cell');
@@ -162,7 +162,7 @@ describe('when the next button is clicked', () => {
             </td>
           </tr>
         </tbody>
-      </table>
+      </table>,
     );
 
     const tableCells = getAllByRole('cell');

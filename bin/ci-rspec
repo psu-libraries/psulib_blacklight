@@ -1,34 +1,29 @@
 #!/bin/bash
 
+set -e  # Exit on any error
+
 export MYSQL_USER=mysql
 export MYSQL_PASSWORD=mysql
 export MYSQL_HOST=mysql
 export MYSQL_DATABASE=mysql
 
-REPORTER_BIN="cc-test-reporter"
+echo "preparing directories"
+mkdir -p public/packs-test tmp/cache
+
+echo "preparing database"
+RAILS_ENV=test bundle exec rake db:create db:schema:load
 
 echo "initalizing solr"
-bundle exec rake solr:create_collection
-bundle exec rake solr:update_config
-bundle exec rake solr:create_alias
-bundle exec rake solr:load_fixtures
+RAILS_ENV=test bundle exec rake solr:create_collection
+RAILS_ENV=test bundle exec rake solr:update_config
+RAILS_ENV=test bundle exec rake solr:create_alias
+RAILS_ENV=test bundle exec rake solr:load_fixtures
 
+echo "compiling webpack assets for feature tests"
+RAILS_ENV=test bin/shakapacker
 
-echo "Downloading webdrivers"
-bundle exec rake webdrivers:chromedriver:update
-
-if [ ! -f ${REPORTER_BIN} ]; then
-  echo "Downloading Code Climate reporting tool"
-  if [[ $(uname) == *"Darwin"* ]]; then
-    wget -q https://codeclimate.com/downloads/test-reporter/test-reporter-latest-darwin-amd64 -O ${REPORTER_BIN}
-  else
-    wget -q https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -O ${REPORTER_BIN}
-  fi
-  chmod 755 ${REPORTER_BIN}
-fi
-
-./${REPORTER_BIN} before-build
+echo "running rspec"
 bundle exec rspec
 RSPEC_EXIT_CODE=$?
-./${REPORTER_BIN} after-build
+
 exit ${RSPEC_EXIT_CODE}

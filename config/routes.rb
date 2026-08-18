@@ -19,11 +19,11 @@ Rails.application.routes.draw do
   end
 
   # resource and resources
-  resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
+  resource :catalog, only: [], as: 'catalog', path: '/catalog', controller: 'catalog' do
     concerns [:searchable, :range_searchable]
   end
 
-  resource :bento, controller: :bento, defaults: { format: :json }, only: [:index], as: 'bento', path: '/bento' do
+  resource :bento, controller: :bento, defaults: { format: :json }, only: [], as: 'bento', path: '/bento' do
     concerns :searchable
   end
 
@@ -62,20 +62,25 @@ Rails.application.routes.draw do
     get '/sirsi-item-data', to: 'availability#sirsi_item_data'
   end
 
-  namespace :preview do
+  namespace :links do
     get '/google-preview-data', to: 'google_preview#data'
+    get '/hathi-link', to: 'hathi_link#data'
   end
 
   # error pages
   match '/404' => 'errors#not_found', via: :all
   match '/422' => 'errors#not_found', via: :all
   match '/500' => 'errors#internal_server_error', via: :all
+  match '/query_limit' => 'errors#query_limit', via: :all
 
   get 'catalog/:id', id: /\d+[.,;:!"')\]]?/, to: 'catalog#show'
   get 'catalog/:id/marc_view', to: 'catalog#librarian_view', as: 'marc_view'
 
   get '/about' => 'high_voltage/pages#show', id: 'about'
   get '/search_tips' => 'high_voltage/pages#show', id: 'search_tips'
+
+  # Bot challenge page
+  post '/challenge', to: 'bot_challenge_page/bot_challenge_page#verify_challenge', as: :bot_detect_challenge
 
   # catchall for not predefined requests - keep this at the very bottom of the routes file
   match '*catch_unknown_routes' => 'errors#not_found', via: :all

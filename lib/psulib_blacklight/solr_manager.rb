@@ -146,7 +146,7 @@ module PsulibBlacklight
 
       def zipped_configset
         tmp = Tempfile.new('configset')
-        Zip::File.open(tmp, Zip::File::CREATE) do |zipfile|
+        Zip::File.open(tmp, create: true) do |zipfile|
           Dir["#{PsulibBlacklight::SolrConfig::SOLR_DIR}/**/**"].each do |file|
             zipfile.add(file.sub("#{PsulibBlacklight::SolrConfig::SOLR_DIR}/", ''), file)
           end

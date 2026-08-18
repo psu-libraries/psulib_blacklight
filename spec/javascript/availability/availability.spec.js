@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import $ from 'jquery';
 import availability from '../../../app/javascript/availability/index';
 import 'bootstrap';
@@ -6,25 +5,28 @@ import 'bootstrap';
 global.$ = $;
 global.jQuery = $;
 
+// mock Bootstrap's .tooltip() in Jest
+$.fn.tooltip = jest.fn();
+
 jest.mock(
   '../../../app/javascript/availability/libraries_locations.json',
   () => ({
-    closed_libraries: ['WSCRANTON'],
+    closed_libraries: ['NEWKEN'],
     locations: {
-      'STACKS-WS': 'Stacks - General Collection',
+      'STACKS-NK': 'Stacks - General Collection',
       'STACKS-AB': 'Stacks - General Collection',
       'STACKS-FE': 'Stacks - General Collection',
       'STACKS-YK': 'Stacks - General Collection',
     },
     libraries: {
-      WSCRANTON: 'Penn State Scranton',
+      NEWKEN: 'Penn State New Kensington',
       ABINGTON: 'Penn State Abington',
       FAYETTE: 'Penn State Fayette',
       YORK: 'Penn State York',
     },
     non_holdable: ['CHECKEDOUT'],
   }),
-  { virtual: true }
+  { virtual: true },
 );
 jest.mock('react-dom', () => ({
   render: jest.fn(),
@@ -32,12 +34,14 @@ jest.mock('react-dom', () => ({
 const summaryHoldingsMock = {};
 
 beforeEach(() => {
-  document.body.innerHTML = `<div class="availability" data-keys="0">
-  <div class="no-recalls-button text-right d-none mb-2">
+  document.body.innerHTML = `<div id="availability-parent-0">
+  <div class="availability-index" data-keys="0">
+  <div class="no-recalls-button text-end d-none mb-2">
     <a href="ill_url" class="btn btn-primary pr-4 pl-4">I Want It</a>
   </div>
-  <div class="hold-button text-right d-none mb-2">
+  <div class="hold-button text-end d-none mb-2">
   <a href="symphony_url" class="btn btn-primary pr-4 pl-4">I Want It</a>
+  </div>
   </div>
   </div>`;
 });
@@ -48,15 +52,15 @@ describe('when a holdable record is only in a closed library', () => {
       [
         {
           catkey: '0',
-          libraryID: 'WSCRANTON',
-          locationID: 'STACKS-WS',
+          libraryID: 'NEWKEN',
+          locationID: 'STACKS-NK',
           holdable: 'true',
           reserveCollectionID: '',
         },
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');
@@ -74,8 +78,8 @@ describe('when a holdable record is in a closed library and a holdable location'
       [
         {
           catkey: '0',
-          libraryID: 'WSCRANTON',
-          locationID: 'STACKS-WS',
+          libraryID: 'NEWKEN',
+          locationID: 'STACKS-NK',
           holdable: 'true',
           reserveCollectionID: '',
         },
@@ -89,7 +93,7 @@ describe('when a holdable record is in a closed library and a holdable location'
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');
@@ -107,8 +111,8 @@ describe('when a holdable record is in a closed library and a non holdable locat
       [
         {
           catkey: '0',
-          libraryID: 'WSCRANTON',
-          locationID: 'STACKS-WS',
+          libraryID: 'NEWKEN',
+          locationID: 'STACKS-NK',
           holdable: 'true',
           reserveCollectionID: '',
         },
@@ -122,7 +126,7 @@ describe('when a holdable record is in a closed library and a non holdable locat
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');
@@ -148,7 +152,7 @@ describe('when a holdable record is only in a non holdable location', () => {
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');
@@ -174,7 +178,7 @@ describe('when a holdable record is in a holdable location', () => {
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');
@@ -200,7 +204,7 @@ describe('when a record is not holdable', () => {
       ],
     ];
 
-    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock);
+    availability.availabilityDisplay(allHoldingsMock, summaryHoldingsMock, 0);
 
     const noRecallsButton = document.querySelector('.no-recalls-button');
     const holdButton = document.querySelector('.hold-button');

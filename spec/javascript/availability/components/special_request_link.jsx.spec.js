@@ -1,6 +1,12 @@
 import { render, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import SpecialRequestLink from '../../../../app/javascript/availability/components/special_request_link';
+import SpecialRequestLink, {
+  clearCache,
+} from '../../../../app/javascript/availability/components/special_request_link';
+
+beforeEach(() => {
+  clearCache();
+});
 
 describe('when locationText is sent to SpecialRequestLink', () => {
   const baseUrl = 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30';
@@ -17,7 +23,7 @@ describe('when locationText is sent to SpecialRequestLink', () => {
     expect(container.getElementsByClassName('spinner-border').length).toBe(1);
 
     await waitFor(() =>
-      expect(container.getElementsByClassName('spinner-border').length).toBe(0)
+      expect(container.getElementsByClassName('spinner-border').length).toBe(0),
     );
 
     expect(getByRole('link')).toHaveTextContent(label);
@@ -46,7 +52,7 @@ describe('when locationText is sent to SpecialRequestLink', () => {
               restrictions_access_note_ssm: 'restrictions',
               sublocation_ssm: ['sublocation 1', 'sublocation 2'],
             }),
-        })
+        }),
       );
     });
 
@@ -55,7 +61,7 @@ describe('when locationText is sent to SpecialRequestLink', () => {
         <SpecialRequestLink
           holding={holdingData}
           locationText="item location"
-        />
+        />,
       );
 
       const href = `${baseUrl}&ReferenceNumber=456&Genre=BOOK${moreParams}`;
@@ -72,7 +78,7 @@ describe('when locationText is sent to SpecialRequestLink', () => {
             locationID: 'AH-X-TRANS',
           }}
           locationText="item location"
-        />
+        />,
       );
 
       const href = `${baseUrl}&ReferenceNumber=456&Genre=ARCHIVES${moreParams}`;
@@ -89,11 +95,11 @@ describe('when locationText is sent to SpecialRequestLink', () => {
             title_245ab_tsim: 'book title',
             isbn_ssm: '1234',
           }),
-      })
+      }),
     );
 
     const { getByRole, container } = render(
-      <SpecialRequestLink holding={holdingData} locationText="item location" />
+      <SpecialRequestLink holding={holdingData} locationText="item location" />,
     );
 
     const href =
@@ -109,18 +115,18 @@ describe('when locationText is sent to SpecialRequestLink', () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve({}),
-      })
+      }),
     );
 
     const { getByRole, container } = render(
-      <SpecialRequestLink holding={holdingData} locationText="item location" />
+      <SpecialRequestLink holding={holdingData} locationText="item location" />,
     );
 
     await testLink(
       getByRole,
       container,
       'Use Aeon to request this item',
-      'https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll'
+      'https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll',
     );
 
     expect(getByRole('link')).toHaveAttribute('target', '_blank');
@@ -130,14 +136,14 @@ describe('when locationText is sent to SpecialRequestLink', () => {
     global.fetch = jest.fn(() => Promise.reject());
 
     const { getByRole, container } = render(
-      <SpecialRequestLink holding={holdingData} locationText="item location" />
+      <SpecialRequestLink holding={holdingData} locationText="item location" />,
     );
 
     await testLink(
       getByRole,
       container,
       'Use Aeon to request this item',
-      'https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll'
+      'https://aeon.libraries.psu.edu/RemoteAuth/aeon.dll',
     );
 
     expect(getByRole('link')).toHaveAttribute('target', '_blank');
@@ -147,14 +153,18 @@ describe('when locationText is sent to SpecialRequestLink', () => {
 describe('when locationText is not sent to SpecialRequestLink', () => {
   const baseUrl =
     'https://psu.illiad.oclc.org/illiad/upm/illiad.dll/OpenURL?Action=10';
-  const holdingData = { locationID: 'BINDERY', callNumber: '123' };
+  const holdingData = {
+    locationID: 'BINDERY',
+    callNumber: '123',
+    catkey: '456',
+  };
 
   const testLink = async (getByRole, container, label, href) => {
     expect(getByRole('link')).toHaveAttribute('href', '#');
     expect(container.getElementsByClassName('spinner-border').length).toBe(1);
 
     await waitFor(() =>
-      expect(container.getElementsByClassName('spinner-border').length).toBe(0)
+      expect(container.getElementsByClassName('spinner-border').length).toBe(0),
     );
 
     expect(getByRole('link')).toHaveTextContent(label);
@@ -164,7 +174,7 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
   describe('when all fields are present', () => {
     const moreParams =
       '&title=book%20title&callno=123&rfr_id=info%3Asid%2Fcatalog.libraries.psu.edu' +
-      '&aulast=author%20name&date=2021';
+      '&aulast=author%20name&date=2021&catkey=456';
 
     beforeEach(() => {
       global.fetch = jest.fn(() =>
@@ -176,7 +186,7 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
               pub_date_illiad_ssm: 2021,
               isbn_valid_ssm: ['1234'],
             }),
-        })
+        }),
       );
     });
 
@@ -184,12 +194,13 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
       const { getByRole, container } = render(
         <SpecialRequestLink
           holding={{
+            catkey: '456',
             callNumber: '123',
             locationID: 'MFILM-NML',
             libraryID: 'UP-MICRO',
             itemTypeID: 'MICROFORM',
           }}
-        />
+        />,
       );
 
       const microformParams =
@@ -200,7 +211,7 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
         getByRole,
         container,
         'Request Scan - Penn State Users',
-        href
+        href,
       );
     });
 
@@ -208,7 +219,7 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
       const { getByRole, container } = render(
         <SpecialRequestLink
           holding={{ ...holdingData, locationID: 'ARKTHESES' }}
-        />
+        />,
       );
 
       const archivalThesisParams =
@@ -219,7 +230,7 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
         getByRole,
         container,
         'Request Scan - Penn State Users',
-        href
+        href,
       );
     });
   });
@@ -228,18 +239,18 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve({}),
-      })
+      }),
     );
 
     const { getByRole, container } = render(
-      <SpecialRequestLink holding={holdingData} />
+      <SpecialRequestLink holding={holdingData} />,
     );
 
     await testLink(
       getByRole,
       container,
       'Use ILLiad to request this item',
-      'https://psu.illiad.oclc.org/illiad/'
+      'https://psu.illiad.oclc.org/illiad/',
     );
 
     expect(getByRole('link')).toHaveAttribute('target', '_blank');
@@ -249,14 +260,14 @@ describe('when locationText is not sent to SpecialRequestLink', () => {
     global.fetch = jest.fn(() => Promise.reject());
 
     const { getByRole, container } = render(
-      <SpecialRequestLink holding={holdingData} />
+      <SpecialRequestLink holding={holdingData} />,
     );
 
     await testLink(
       getByRole,
       container,
       'Use ILLiad to request this item',
-      'https://psu.illiad.oclc.org/illiad/'
+      'https://psu.illiad.oclc.org/illiad/',
     );
 
     expect(getByRole('link')).toHaveAttribute('target', '_blank');

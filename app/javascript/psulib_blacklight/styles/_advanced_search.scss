@@ -15,3 +15,14 @@
   }
 }
 
+// scss-lint:disable SelectorFormat
+.select2-search__field {
+  line-height: 1.5;
+  min-width: 8em;
+  width: 8em;
+}
+// scss-lint:enable SelectorFormat
+
+.text-md-right {
+  text-align: right;
+}

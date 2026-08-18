@@ -19,8 +19,6 @@ class BentoController < CatalogController
   blacklight_config.configure do |config|
     config.add_facet_fields_to_solr_request = false
     config.add_index_field 'title_display_ssm', label: 'Title'
-    config.add_index_field 'hathitrust_struct', label: 'HathiTrust Link', accessor: 'hathi_links',
-                                                helper_method: 'get_first_only'
     config.default_solr_params = {
       facet: false
     }

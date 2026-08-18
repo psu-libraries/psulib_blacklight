@@ -7,6 +7,6 @@ describe('when the item is not related to ILL or AEON', () => {
     const holdingData = { libraryID: 'BEAVER', locationID: 'DISPLAY-BR' };
     const { getByText } = render(<LocationInfo holding={holdingData} />);
 
-    expect(getByText('Beaver - Display')).toBeInTheDocument();
+    expect(getByText('Beaver - On Display')).toBeInTheDocument();
   });
 });

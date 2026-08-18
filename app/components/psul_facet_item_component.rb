@@ -2,7 +2,7 @@
 
 class PsulFacetItemComponent < Blacklight::FacetItemComponent
   def initialize(facet_item:, wrapping_element: 'li', suppress_link: false)
-    super(facet_item: facet_item, wrapping_element: wrapping_element, suppress_link: suppress_link)
+    super
   end
 
   ##
@@ -29,7 +29,7 @@ class PsulFacetItemComponent < Blacklight::FacetItemComponent
         # remove link
         link_to(@href, class: 'remove') do
           tag.span('✖', class: 'remove-icon', aria: { hidden: true }) +
-            tag.span(@view_context.t(:'blacklight.search.facets.selected.remove'), class: 'sr-only')
+            tag.span(@view_context.t(:'blacklight.search.facets.selected.remove'), class: 'visually-hidden')
         end
     end + render_facet_count(classes: ['selected'])
   end

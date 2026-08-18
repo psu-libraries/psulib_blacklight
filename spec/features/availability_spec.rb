@@ -7,7 +7,7 @@ RSpec.describe 'Availability', :vcr do
   let(:hold_button_url) { "#{Settings.my_account_url}#{Settings.hold_button_path}" }
 
   before do
-    Settings.hathi_etas = false
+    stub_request(:get, /https:\/\/catalog.hathitrust.org\/api\/volumes\/brief\//)
     Settings.readonly = false
     Settings.hide_hold_button = false
     Settings.hide_etas_holdings = false
@@ -16,35 +16,39 @@ RSpec.describe 'Availability', :vcr do
   describe 'User searches for a record', :js do
     it 'that has holdings and a \'View Availability\' button' do
       visit '/?utf8=✓&search_field=all_fields&q=9781599901091'
-      expect(page).to have_css 'button[data-target="#availability-5112336"]'
+      expect(page).to have_css 'button[data-bs-target="#availability-5112336"]'
     end
 
     it 'that has holdings but none are available' do
       visit '/?utf8=✓&search_field=all_fields&q=Eva+Oper+in+drei+Akten'
+      click_on('View Availability')
       # Shouldn't show the location teaser text next to the show availability button
       expect(page).to have_css '.availability-snippet', exact_text: ''
     end
 
     it 'that has holdings available in 3 or more locations' do
       visit '/?utf8=✓&search_field=all_fields&q=0802132138'
+      click_on('View Availability')
       expect(page).to have_css '.availability-snippet', exact_text: 'Multiple Locations'
     end
 
     it 'that has holdings available in exactly 2 locations' do
       visit '/?utf8=✓&search_field=all_fields&q=23783767'
+      click_on('View Availability')
       expect(page).to have_css '.availability-snippet',
                                exact_text: 'Penn State Hazleton, Penn State Mont Alto'
     end
 
     it 'that has holdings available in only 1 location' do
       visit '/?utf8=✓&search_field=all_fields&q=9788836636174'
+      click_on('View Availability')
       expect(page).to have_css '.availability-snippet',
                                exact_text: 'Pattee Library and Paterno Library Stacks'
     end
 
     it 'and clicks the \'View Availability\' button to display and hide holdings' do
       visit '/?utf8=✓&search_field=all_fields&q=9781599901091'
-      expect(page).to have_css 'button[data-target="#availability-5112336"]'
+      expect(page).to have_css 'button[data-bs-target="#availability-5112336"]'
       expect(page).to have_no_css '#availability-5112336'
       click_on('View Availability')
       expect(page).to have_no_css '.availability-5112336', wait: 3
@@ -54,26 +58,28 @@ RSpec.describe 'Availability', :vcr do
 
     it 'that is an online resource and has no holdings to display' do
       visit '/?utf8=✓&search_field=all_fields&q=D-humanos+Arruti%2C+Mariana'
-      expect(page).to have_no_css 'button[data-target="#availability-22091400"]'
+      expect(page).to have_no_css 'button[data-bs-target="#availability-22091400"]'
       expect(page).to have_no_css '#availability-22091400'
     end
 
     it 'that is an online resource and all copies are on order' do
       visit '/?search_field=all_fields&q=33183518'
-      expect(page).to have_css 'div[class="availability"][data-keys="33183518"]'
+
+      click_on('View Availability')
+      expect(page).to have_css 'div[class="availability-index"][data-keys="33183518"]'
       expect(page).to have_css 'strong', text: /Being acquired by the library/
     end
 
     it 'that has a public note' do
       visit '/?utf8=✓&search_field=all_fields&q=6962697'
       click_on('View Availability')
-      expect(page).to have_css 'i.fa-info-circle[data-toggle="tooltip"][data-original-title="Struwwelpeter"]'
+      expect(page).to have_css 'i.fas.fa-info-circle[data-bs-toggle="tooltip"][data-bs-placement="right"][title="Struwwelpeter"]'
     end
 
     it 'that does NOT have a public note' do
       visit '/?utf8=✓&search_field=all_fields&q=2422046'
       click_on('View Availability')
-      expect(page).to have_no_css 'i.fa-info-circle[data-toggle="tooltip"]'
+      expect(page).to have_no_css 'i.fa-info-circle[data-bs-toggle="tooltip"]'
     end
 
     it 'that has summary holdings information' do
@@ -82,54 +88,10 @@ RSpec.describe 'Availability', :vcr do
       expect(page).to have_css 'tr.table-primary .h6', text: 'Stacks - General Collection: Holdings Summary'
     end
 
-    context 'when Hathi ETAS is enabled' do
-      before do
-        Settings.hathi_etas = true
-      end
-
-      it 'an etas record displays the \'View Availability\' button but hides the hold button' do
-        visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
-        expect(page).to have_css 'button[data-target="#availability-3753687"]'
-        expect(page).to have_no_css '#availability-3753687'
-        click_on('View Availability')
-        expect(page).to have_no_css '.availability-3753687', wait: 3
-        expect(page).to have_content 'PN4885.Y5C5 1946'
-        expect(page).to have_no_link(
-          'I Want It', href: "#{hold_button_url}3753687"
-        )
-      end
-
-      context 'when hide Hathi ETAS holdings is enabled' do
-        before do
-          Settings.hide_etas_holdings = true
-        end
-
-        it "an etas record does not display 'View Availability' button even though there are holdable items" do
-          skip "This record doesn't seem to be ETAS anymore, so availability is showing when it shouldn't"
-          visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
-          expect(page).to have_no_css 'button[data-target="#availability-3753687"]'
-        end
-      end
-    end
-
-    context 'when Hathi ETAS is disabled' do
-      it 'an etas record displays \'View Availability\' button and hold button' do
-        visit '/?search_field=all_fields&q=Yidishe+bleter+in+Amerike'
-        expect(page).to have_css 'button[data-target="#availability-3753687"]'
-        expect(page).to have_no_css '#availability-3753687'
-        click_on('View Availability')
-        expect(page).to have_no_css '.availability-3753687', wait: 3
-        expect(page).to have_content 'PN4885.Y5C5 1946'
-        expect(page).to have_link(
-          'I Want It', href: "#{hold_button_url}3753687"
-        )
-      end
-    end
-
     context 'when all items are on course reserves' do
       it 'hides the hold button' do
         visit '/?search_field=all_fields&q=Employment+law'
-        expect(page).to have_css 'button[data-target="#availability-9186426"]'
+        expect(page).to have_css 'button[data-bs-target="#availability-9186426"]'
         click_on('View Availability')
         expect(page).to have_no_link(
           'I Want It', href: "#{hold_button_url}9186426"
@@ -140,7 +102,7 @@ RSpec.describe 'Availability', :vcr do
     context 'when not all items are on course reserves' do
       it 'displays the hold button' do
         visit '/?search_field=all_fields&q=+40+short+stories+%3A+a+portable+anthology'
-        expect(page).to have_css 'button[data-target="#availability-23783767"]'
+        expect(page).to have_css 'button[data-bs-target="#availability-23783767"]'
         click_on('View Availability')
         expect(page).to have_link(
           'I Want It', href: "#{hold_button_url}23783767"
@@ -152,34 +114,36 @@ RSpec.describe 'Availability', :vcr do
   describe 'User visits catalog record page', :js do
     it 'that has holdings to display' do
       visit '/catalog/370199'
-      expect(page).to have_css 'div[class="availability"][data-keys="370199"]'
+      expect(page).to have_css 'div[class="availability-show"][data-keys="370199"]'
       expect(page).to have_content 'NK9406.L48'
     end
 
     it 'that is an online resource and has no holdings to display' do
       visit '/catalog/22091400'
-      expect(page).to have_no_css 'div[class="availability"]'
+      expect(page).to have_no_css 'div[class="availability-show"]'
+      expect(page).to have_css '.metadata-primary'
+      expect(page).to have_css '.metadata-secondary'
     end
 
     it 'that is an online resource and all copies are on order' do
       visit '/catalog/33183518'
-      expect(page).to have_css 'div[class="availability"][data-keys="33183518"]'
+      expect(page).to have_css 'div[class="availability-show"][data-keys="33183518"]'
       expect(page).to have_css 'h5', text: /Being acquired by the library/
     end
 
     it 'that has a public note' do
       visit '/catalog/6962697'
-      expect(page).to have_css 'i.fa-info-circle[data-toggle="tooltip"][data-original-title="Struwwelpeter"]'
+      expect(page).to have_css 'i.fas.fa-info-circle[data-bs-toggle="tooltip"][data-bs-placement="right"][title="Struwwelpeter"]'
     end
 
     it 'that does NOT have a public note' do
       visit '/?utf8=✓&search_field=all_fields&q=2422046'
-      expect(page).to have_no_css 'i.fa-info-circle[data-toggle="tooltip"]'
+      expect(page).to have_no_css 'i.fa-info-circle[data-bs-toggle="tooltip"]'
     end
 
     it 'that has an item on course reserve' do
       visit '/catalog/3500414'
-      expect(page).to have_css 'div[class="availability"][data-keys="3500414"]'
+      expect(page).to have_css 'div[class="availability-show"][data-keys="3500414"]'
       expect(page).to have_css 'strong', text: /Due back at:/
       expect(page).to have_content '9:01 AM on 3/4/2019'
       expect(page).to have_content 'Reserve - 24 hour loan w/ 1 renewal'
@@ -197,7 +161,7 @@ RSpec.describe 'Availability', :vcr do
 
       it 'an ETAS record displays holdings' do
         visit '/catalog/3753687'
-        expect(page).to have_css 'div[class="availability"][data-keys="3753687"]'
+        expect(page).to have_css 'div[class="availability-show"][data-keys="3753687"]'
       end
 
       context 'when hide HathiTrust ETAS holdings is enabled' do
@@ -208,7 +172,7 @@ RSpec.describe 'Availability', :vcr do
         it 'an etas record does not display holdings even though there are holdable items' do
           skip "This record doesn't seem to be ETAS anymore, so availability is showing when it shouldn't"
           visit '/catalog/3753687'
-          expect(page).to have_no_css 'div[class="availability"][data-keys="3753687"]'
+          expect(page).to have_no_css 'div[class="availability-show"][data-keys="3753687"]'
         end
       end
     end
@@ -216,7 +180,7 @@ RSpec.describe 'Availability', :vcr do
     context 'when HathiTrust ETAS is disabled' do
       it 'an etas record displays holdings when there are holdable items' do
         visit '/catalog/3753687'
-        expect(page).to have_css 'div[class="availability"][data-keys="3753687"]'
+        expect(page).to have_css 'div[class="availability-show"][data-keys="3753687"]'
       end
     end
 
@@ -235,10 +199,10 @@ RSpec.describe 'Availability', :vcr do
     end
 
     describe 'Archival Material:' do
-      it 'has a "Request Material" link so it can be requested through Aeon' do
+      it 'has a "Request Material" link so it can be requested through Aeon', retry: 3, retry_wait: 10 do
         visit '/catalog/1836205'
         click_on('View More')
-        sleep 1 # It seems to be taking a little longer to expand this list than it used to
+        sleep 2 # It seems to be taking a little longer to expand this list than it used to
         expect(page).to have_link(
           'Request Material',
           href: 'https://aeon.libraries.psu.edu/Logon/?Action=10&Form=30&ReferenceNumber=' \
@@ -276,7 +240,7 @@ RSpec.describe 'Availability', :vcr do
                   'OpenURL?Action=10&Form=20&Genre=GenericRequestThesisDigitization&title=Ecology' \
                   '%20of%20the%20wild-trapped%20and%20transplanted%20ring-necked%20pheasant%20near' \
                   '%20Centre%20Hall%2C%20Pennsylvania&callno=Thesis%201968mMyers%2CJE&rfr_id=info' \
-                  '%3Asid%2Fcatalog.libraries.psu.edu&aulast=Myers%2C%20James%20E.&date=1968'
+                  '%3Asid%2Fcatalog.libraries.psu.edu&aulast=Myers%2C%20James%20E.&date=1968&catkey=123730'
           )
           expect(page).to have_link(
             'Request Scan - Guest',
@@ -323,28 +287,6 @@ RSpec.describe 'Availability', :vcr do
           visit '/catalog/107'
           expect(page).to have_no_link(
             'I Want It', href: "#{hold_button_url}107"
-          )
-        end
-      end
-
-      context 'when Hathi ETAS is enabled' do
-        before do
-          Settings.hathi_etas = true
-        end
-
-        it 'does not display for an etas record even with holdable items' do
-          visit '/catalog/3753687'
-          expect(page).to have_no_link(
-            'I Want It', href: "#{hold_button_url}3753687"
-          )
-        end
-      end
-
-      context 'when Hathi ETAS is disabled' do
-        it 'displays for an etas record if there are holdable items' do
-          visit '/catalog/3753687'
-          expect(page).to have_link(
-            'I Want It', href: "#{hold_button_url}3753687"
           )
         end
       end

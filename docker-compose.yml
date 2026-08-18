@@ -6,21 +6,11 @@ x-web_env: &web_env
       SETTINGS__solr__password: catalog
       SETTINGS__solr__host: solr
       SETTINGS__solr__collection: 'psul_catalog'
-      SETTINGS__redis__sessions__uri: "redis://redis:6379/3"
 services:
-  redis:
-    image: redis:7.0.7
-    volumes:
-      - redis-data:/data
-    ports:
-    - "6379:6379"
   web:
     tty: true
     stdin_open: true
     <<: *web_env
-    depends_on: 
-      - redis
-      - solr
     command: 
       - /app/bin/startup
     build: 
@@ -34,8 +24,13 @@ services:
       target: /app/
     ports:
       - "${APP_PORT:-3000}:3000"
+    depends_on:
+      solr:
+        condition: service_healthy
   solr:
-    image: harbor.k8s.libraries.psu.edu/library/solr:8.11.2
+    image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
+    environment:
+      SOLR_STOP_WAIT: 1
     restart: always
     volumes:
     - solr-data:/var/solr
@@ -46,8 +41,16 @@ services:
       "-c",
       "solr -c && solr auth enable -credentials catalog:catalog -z localhost:9983; solr stop && solr -c -f",
     ]
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "curl -sf -u catalog:catalog http://localhost:8983/solr/admin/info/system | grep -q 'solr_home'"
+      ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 volumes:
-  redis-data:
   bundle-data:
   node-data:
   solr-data:

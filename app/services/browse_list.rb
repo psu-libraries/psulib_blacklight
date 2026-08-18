@@ -18,7 +18,7 @@ class BrowseList
   end
 
   def entries
-    displayed = last_page? ? items : items.slice(0, (items.count - 1))
+    displayed = last_page? ? items : items.slice(0, items.count - 1)
 
     displayed.map { |entry| Entry.new(*entry) }
   end

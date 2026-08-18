@@ -2,10 +2,6 @@
   .navbar-toggler {
     border-color: $navbar-light-toggler-border-color;
     color: $navbar-light-active-color;
-
-    @include hover-focus {
-      color: $navbar-light-active-color;
-    }
   }
 
   .navbar-toggler-icon {
@@ -71,7 +67,7 @@
   .remove {
     color: $text-muted;
     font-weight: bold;
-    padding-left: $spacer / 2;
+    padding-left: calc($spacer / 2);
 
     &:hover {
       color: theme-color("danger");
@@ -86,7 +82,7 @@
 
   .facet-label {
     display: table-cell;
-    padding-bottom: $spacer / 2;
+    padding-bottom: calc($spacer / 2);
     @include hyphens-auto;
   }
 

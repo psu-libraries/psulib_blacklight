@@ -16,11 +16,12 @@ import '../psulib_blacklight';
 import '../psulib_blacklight_range_limit';
 import '../blacklight_overrides';
 import '../iiif_viewer';
+import '../search/add_search_header';
 
 require.context('../psulib_blacklight/images/', true);
 document.addEventListener('DOMContentLoaded', () => {
   Rails.start();
-  availability.loadAvailability();
+  availability.setUpAvailability();
   bookCovers.start();
   search.autoPlaceholder();
   Blacklight.doBookmarkToggleBehavior();

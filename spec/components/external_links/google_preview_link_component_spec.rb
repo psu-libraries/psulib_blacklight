@@ -51,13 +51,4 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
         .and have_css("div[data-search-item='']", visible: :hidden)
     end
   end
-
-  context 'when document has an LCCN, OCLC or ISBN, but has a link to a Hathi Trust version' do
-    let(:document) { { 'ht_access_ss' => 'allow', 'isbn_valid_ssm' => ['92746'] } }
-
-    it 'renders a hidden link with no attached search term data' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("div[data-search-item='']", visible: :hidden)
-    end
-  end
 end

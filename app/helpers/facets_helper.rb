@@ -33,7 +33,7 @@ module FacetsHelper
     field_name = item.field if item.respond_to?(:field)
 
     value = facet_value_for_facet_item(item)
-    params[:f] && params[:f][field_name] && params[:f][field_name].include?(value)
+    params[:f] && params[:f][field_name]&.include?(value)
   end
 
   ##

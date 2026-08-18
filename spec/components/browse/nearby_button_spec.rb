@@ -10,7 +10,7 @@ RSpec.describe Browse::NearbyButton, type: :component do
     let(:classification) { 'lc' }
 
     it 'renders a simple button' do
-      expect(node).to have_no_css('button[data-toggle=dropdown]')
+      expect(node).to have_no_css('button[data-bs-toggle=dropdown]')
       expect(node).to have_link('Browse Nearby on Shelf', href: '/browse/call_numbers?classification=lc&nearby=ABC')
     end
   end
@@ -20,7 +20,7 @@ RSpec.describe Browse::NearbyButton, type: :component do
     let(:classification) { 'dewey' }
 
     it 'renders a simple button' do
-      expect(node).to have_no_css('button[data-toggle=dropdown]')
+      expect(node).to have_no_css('button[data-bs-toggle=dropdown]')
       expect(node).to have_link('Browse Nearby on Shelf', href: '/browse/call_numbers?classification=dewey&nearby=131')
     end
   end
@@ -30,7 +30,7 @@ RSpec.describe Browse::NearbyButton, type: :component do
     let(:classification) { 'lc' }
 
     it 'renders a dropdown button with multiple options' do
-      expect(node).to have_css('button[data-toggle=dropdown]')
+      expect(node).to have_css('button[data-bs-toggle=dropdown]')
       expect(node).to have_link('ABC', href: '/browse/call_numbers?classification=lc&nearby=ABC')
       expect(node).to have_link('DEF', href: '/browse/call_numbers?classification=lc&nearby=DEF')
     end
@@ -41,7 +41,7 @@ RSpec.describe Browse::NearbyButton, type: :component do
     let(:classification) { 'dewey' }
 
     it 'renders a dropdown button with multiple options' do
-      expect(node).to have_css('button[data-toggle=dropdown]')
+      expect(node).to have_css('button[data-bs-toggle=dropdown]')
       expect(node).to have_link('131', href: '/browse/call_numbers?classification=dewey&nearby=131')
       expect(node).to have_link('132', href: '/browse/call_numbers?classification=dewey&nearby=132')
     end

@@ -8,7 +8,7 @@
 <% end %>
 
 <% content_for(:container_header) do -%>
-  <h1 class="sr-only top-content-title"><%= t('blacklight.search.header') %></h1>
+  <h1 class="visually-hidden top-content-title"><%= t('blacklight.search.header') %></h1>
 <% end %>
 
 <%- unless @response.empty? %>
@@ -17,7 +17,7 @@
 
 <%= render 'constraints' %>
 
-<h2 class="sr-only"><%= t('blacklight.search.search_results') %></h2>
+<h2 class="visually-hidden"><%= t('blacklight.search.search_results') %></h2>
 
 <div class='pt-1 pb-3'>
   <div class='float-left'>
@@ -25,11 +25,11 @@
   </div>
 
   <% if !@response.empty? && current_user.present? %>
-    <div class='float-right'>
+    <div class='float-end'>
       <%= link_to 'Bookmark All On Page', '#', id: 'bookmark-all', class: 'btn btn-primary' %>
     </div>
   <% elsif !@response.empty? && current_user.blank? %>
-    <div class='float-right'>
+    <div class='float-end'>
       <%= link_to 'Bookmark All On Page', "/login?fullpath=#{u(request.fullpath)}",
                   id: 'bookmark-all', class: 'btn btn-primary' %>
     </div>

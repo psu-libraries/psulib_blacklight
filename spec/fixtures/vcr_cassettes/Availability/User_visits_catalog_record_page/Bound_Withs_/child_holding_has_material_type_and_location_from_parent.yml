@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=53953
+    uri: https://sdws08.sirsidynix.net/psu_ilsws/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeBoundTogether=true&includeItemInfo=true&titleID=53953
     body:
       encoding: US-ASCII
       string: ''
@@ -50,7 +50,7 @@ http_interactions:
   recorded_at: Tue, 20 Jul 2021 16:45:58 GMT
 - request:
     method: get
-    uri: https://cat.libraries.psu.edu:28443/symwsbc/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true&itemID=000063670073
+    uri: https://sdws08.sirsidynix.net/psu_ilsws/rest/standard/lookupTitleInfo?clientID=PSUCATALOG&includeAvailabilityInfo=true&includeItemInfo=true&itemID=000063670073
     body:
       encoding: US-ASCII
       string: ''

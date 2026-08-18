@@ -2,13 +2,13 @@
 
 The Penn State University Libraries' catalog. Built on Blacklight, using Traject for ingesting binary marc.
 
-# Software Dependencies 
-
-| Software |  Version |
-|----------|------|
-| `ruby`    |  3.1.2 |
-| `rails`   |  6.1.7 |
-| `solr`   |  8.11.2 |
+# Software Dependencies
+ 
+| Software  | Version |
+|-----------|---------|
+| `ruby`    |  3.4.9  |
+| `rails`   |  7.2.2  |
+| `solr`    |  9.6.1  |
 
 ## When upgrading Blacklight
 
@@ -28,8 +28,7 @@ The [config](https://rubygems.org/gems/config) gem provides a means for adding a
 
 1. Modify the announcement bar (thin bar at top)
 1. Put the site in "readonly" (no availability data)
-1. Put holds in readonly mode by hiding the I Want It button 
-1. Put the site in HathiTrust ETAS enabled mode (ETAS items do not display availability data)
+1. Put holds in readonly mode by hiding the I Want It button
 1. Modify the hold button url
 
 Here is a sample of what the `settings.yml` file might look like:
@@ -50,7 +49,6 @@ no_recall_button_path: ill/new?catkey=
 readonly: false
 hide_hold_button: false
 hide_announcement: false
-hathi_etas: false
 ```
 
 If one of the special keys isn't present, there is no ill-effect. It is just not there and the system operates as per

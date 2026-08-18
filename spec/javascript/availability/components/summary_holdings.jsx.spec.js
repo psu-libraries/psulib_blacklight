@@ -27,7 +27,7 @@ describe('when all summary holdings arrays are populated', () => {
       <SummaryHoldings summaryHoldings={data} />,
       {
         container: document.body.appendChild(document.createElement('tbody')),
-      }
+      },
     );
 
     const items = getAllByRole('listitem');
@@ -37,7 +37,7 @@ describe('when all summary holdings arrays are populated', () => {
     expect(items[4]).toHaveTextContent('supplemental info');
 
     expect(
-      getByText('Pattee - Stacks 3: Holdings Summary')
+      getByText('Pattee - Stacks 3: Holdings Summary'),
     ).toBeInTheDocument();
     expect(getByText('Indexes')).toBeInTheDocument();
     expect(getByText('Supplements')).toBeInTheDocument();
@@ -61,7 +61,7 @@ describe('when some summary holdings data is not present', () => {
       <SummaryHoldings summaryHoldings={data} />,
       {
         container: document.body.appendChild(document.createElement('tbody')),
-      }
+      },
     );
 
     const items = getAllByRole('listitem');
@@ -69,7 +69,7 @@ describe('when some summary holdings data is not present', () => {
     expect(items[0]).toHaveTextContent('v.67:no.3(2008)-To Date.');
 
     expect(
-      getByText('Pattee - Stacks 3: Holdings Summary')
+      getByText('Pattee - Stacks 3: Holdings Summary'),
     ).toBeInTheDocument();
     expect(queryByText('Indexes')).toBeNull();
     expect(queryByText('Supplements')).toBeNull();
@@ -99,7 +99,7 @@ describe('when multiple holding statements are present', () => {
       <SummaryHoldings summaryHoldings={data} />,
       {
         container: document.body.appendChild(document.createElement('tbody')),
-      }
+      },
     );
 
     const items = getAllByRole('listitem');
@@ -112,7 +112,7 @@ describe('when multiple holding statements are present', () => {
     expect(items[7]).toHaveTextContent('Supplements: supplemental info');
 
     expect(
-      getByText('Pattee - Stacks 3: Holdings Summary')
+      getByText('Pattee - Stacks 3: Holdings Summary'),
     ).toBeInTheDocument();
   });
 });

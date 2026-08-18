@@ -24,9 +24,10 @@ Bundler.require(*Rails.groups)
 module Psulcat
   class Application < Rails::Application
     require 'psulib_blacklight/solr_config'
+    require 'psulib_blacklight/solr_request_config'
 
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 8.1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
