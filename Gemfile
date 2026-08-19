@@ -34,7 +34,7 @@ gem 'shelvit'
 gem 'sprockets-rails'
 gem 'stackprof'
 
-gem 'blacklight', '~> 8.1'
+gem 'blacklight', '~> 8.7.0'
 gem 'blacklight_advanced_search', '~> 8.0.0.alpha'
 gem 'blacklight-marc', '~> 8.1'
 gem 'blacklight_range_limit'
