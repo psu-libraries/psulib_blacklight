@@ -4,7 +4,6 @@ require 'rails_helper'
 
 RSpec.describe CatalogController do
   describe 'index action' do
-
     it 'updates the blacklight Solr URL from request context' do
       request_config = instance_double(
         PsulibBlacklight::SolrRequestConfig,

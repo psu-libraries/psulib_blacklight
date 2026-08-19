@@ -11,7 +11,8 @@ module UrlHelper
   #   session_tracking_params(SolrDocument.new(id: 123), 7)
   #   => { data: { :'context-href' => '/catalog/123/track?counter=7&search_id=999' } }
 
-  def session_tracking_params document, counter, per_page: search_session['per_page'], search_id: current_search_session&.id
+  def session_tracking_params(document, counter, per_page: search_session['per_page'],
+search_id: current_search_session&.id)
     path_params = { per_page: params.fetch(:per_page, per_page), counter: counter, search_id: search_id }
     if blacklight_config.track_search_session.storage == 'server'
       path_params[:document_id] = document&.id
