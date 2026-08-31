@@ -2,14 +2,14 @@
   <div class="dropdown">
     <a class="btn btn-outline-secondary btn-sm dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Share</a>
       <%= render Blacklight::Document::ActionsComponent.new(
-                                                          document: document,
-                                                          tag: 'ul',
-                                                          classes: 'list-group list-group-flush dropdown-menu',
-                                                          wrapping_tag: 'li',
-                                                          wrapping_classes: 'list-group-item list-group-item-action',
-                                                          actions: actions,
-                                                          url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h),
-                                                          link_classes: 'nav-link dropdown-item'
-                                                          ) %>
+            document: document,
+            tag: 'ul',
+            classes: 'list-group list-group-flush dropdown-menu',
+            wrapping_tag: 'li',
+            wrapping_classes: 'list-group-item list-group-item-action',
+            actions: actions,
+            url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h),
+            link_classes: 'nav-link dropdown-item'
+          ) %>
   </div>
 </div>
