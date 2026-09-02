@@ -147,6 +147,8 @@ class CatalogController < ApplicationController
     config.index.title_field = 'title_display_ssm'
     config.index.display_type_field = 'format'
     config.index.thumbnail_method = :render_thumbnail
+    config.index.document_component = PsulDocumentComponent
+    config.index.partials = []
 
     # solr field configuration for document/show views
     config.show.partials = [:show]

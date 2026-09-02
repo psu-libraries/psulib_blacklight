@@ -1,39 +1,11 @@
-<% doc_presenter = document_presenter(document) %>
+<%# Blacklight 8 renders the default document title + metadata automatically.
+    Keep this partial limited to the custom extras that used to live below the metadata. %>
 
-<div class="row">
-  <div class="col-sm-3 order-sm-2">
-      <%= render(
-            Blacklight::Document::ThumbnailComponent.new(
-              presenter: document_presenter(document),
-              counter: document_counter_with_offset(document_counter)
-            )
-          ) %>
-  </div>
-
-  <div class="col-sm-9 order-sm-1">
-    <ul class="document-metadata dl-invert">
-      <% doc_presenter.fields_to_render.each do |field_name, field| -%>
-          <li class="blacklight-<%= field_name.parameterize -%>">
-            <span class="
-                    <%= 'text-muted' unless field[:sr_only] %>
-                    <%= 'visually-hidden' if field[:sr_only] %>">
-              <%= render(Blacklight::MetadataFieldComponent.new(
-                           field: field,
-                           show: true
-                         )) %>
-            </span>
-            <%= doc_presenter.field_value field %>
-          </li>
-      <% end -%>
-    </ul>
-
-    <%= render partial: 'external_links/index_external_links',
-               locals: {
-                 document: document
-               } %>
-  </div>
-</div>
+<%= render partial: 'external_links/index_external_links',
+           locals: {
+             document: document
+           } %>
 
 <div class="blacklight-availability">
-  <%= render partial: 'index_availability', locals: { document: document } unless Settings.readonly %>
+  <%= render partial: 'catalog/index_availability', locals: { document: document } unless Settings.readonly %>
 </div>
