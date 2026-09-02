@@ -9,7 +9,10 @@ class PsulDocumentComponent < Blacklight::DocumentComponent
       safe_join([
         helpers.render(partial: 'external_links/index_external_links', locals: { document: @document }),
         content_tag(:div, class: 'blacklight-availability') do
-          helpers.render(partial: 'catalog/index_availability', locals: { document: @document }) unless Settings.readonly
+          unless Settings.readonly
+            helpers.render(partial: 'catalog/index_availability',
+                           locals: { document: @document })
+          end
         end
       ].compact)
     end
@@ -20,7 +23,7 @@ class PsulDocumentComponent < Blacklight::DocumentComponent
                 id: @id,
                 data: {
                   'document-id': @document.id.to_s.parameterize,
-                  'document-counter': @counter,
+                  'document-counter': @counter
                 },
                 itemscope: true,
                 itemtype: @document.itemtype,
@@ -35,12 +38,13 @@ class PsulDocumentComponent < Blacklight::DocumentComponent
                 content,
                 metadata,
                 metadata_sections.to_a,
-                partials,
+                partials
               ].compact)
             end,
             content_tag(:div, class: 'col-sm-3 d-flex flex-column align-items-end ps-0 pe-0') do
               safe_join([
-                helpers.render_index_doc_actions(@document, wrapping_class: 'index-document-functions d-flex justify-content-end mb-2'),
+                helpers.render_index_doc_actions(@document,
+                                                 wrapping_class: 'index-document-functions d-flex justify-content-end mb-2'),
                 thumbnail
               ].compact)
             end

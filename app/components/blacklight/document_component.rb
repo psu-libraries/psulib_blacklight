@@ -79,7 +79,6 @@ module Blacklight
     # Backwards compatibility
     renders_one :actions
 
-    # rubocop:disable Metrics/ParameterLists
     # @param document [Blacklight::DocumentPresenter]
     # @param presenter [Blacklight::DocumentPresenter] alias for document
     # @param partials [Array, nil] view partial names that should be used to provide content for the `partials` slot
@@ -95,7 +94,7 @@ module Blacklight
                    id: nil, classes: [], component: :article, title_component: nil,
                    counter: nil, document_counter: nil, counter_offset: 0,
                    show: false, **args)
-    #   Blacklight.deprecation.warn('the `presenter` argument to DocumentComponent#initialize is deprecated; pass the `presenter` in as document instead') if presenter
+      #   Blacklight.deprecation.warn('the `presenter` argument to DocumentComponent#initialize is deprecated; pass the `presenter` in as document instead') if presenter
 
       @presenter = presenter || document || args[self.class.collection_parameter]
       @document = @presenter.document
@@ -139,10 +138,10 @@ module Blacklight
 
     private
 
-    attr_reader :document_counter, :presenter, :view_partials
+      attr_reader :document_counter, :presenter, :view_partials
 
-    def show?
-      @show
-    end
+      def show?
+        @show
+      end
   end
 end
