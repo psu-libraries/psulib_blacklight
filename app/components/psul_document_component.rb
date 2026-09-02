@@ -29,7 +29,7 @@ class PsulDocumentComponent < Blacklight::DocumentComponent
                 itemtype: @document.itemtype,
                 class: classes.flatten.join(' ') do
       safe_join([
-        content_tag(:div, class: 'documentHeader row align-items-start gx-3') do
+        content_tag(:div, class: 'document-header row align-items-start gx-3') do
           safe_join([
             content_tag(:div, class: 'col-sm-9 pe-0') do
               safe_join([
