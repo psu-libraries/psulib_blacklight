@@ -1,5 +1,6 @@
 <% if current_user %>
-<%= render PsulBookmarkComponent.new(document: document) %>
+<%# The ID value here is a placeholder value to bypass inheritance issues %>
+<%= render PsulBookmarkComponent.new(document: document, id: 'bookmark') %>
 <% else %>
 <a class="btn btn-sm btn-outline-secondary" href="/login?fullpath=<%= u(request.fullpath) %>&bookmark_doc_id=<%= document.id %>">Bookmark</a>
 <% end %>

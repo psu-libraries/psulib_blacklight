@@ -14,7 +14,30 @@ article.document {
 }
 
 .documents-list .document .document-thumbnail {
+  display: flex;
   float: none;
-  margin-bottom: 1em;
+  justify-content: flex-end;
+  margin-bottom: 0;
   padding-left: 0;
+  text-align: right;
+  width: 100%;
+
+  > * { // scss-lint:disable SelectorDepth
+    display: inline-block;
+    line-height: 1;
+  }
+}
+
+.documents-list .document .index-document-functions {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.documents-list .document .document-header {
+  margin-bottom: 0;
+}
+
+.documents-list .document .document-title-heading {
+  margin-bottom: 0;
 }
