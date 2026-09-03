@@ -1,5 +1,5 @@
 <ul>
-  <li><%= link_to 'Libraries worldwide (WorldCat)', "https://pennsylvaniastateuniversitylibraries.on.worldcat.org/search?queryString=#{params[:q]}&clusterResults=true&groupVariantRecords=false&bookReviews=off" %> or <%= link_to 'advanced FirstSearch', "https://libraries.psu.edu/eresources/PSU00073" %></li>
+  <li><%= link_to 'Libraries worldwide (WorldCat)', "https://pennsylvaniastateuniversitylibraries.on.worldcat.org/search?queryString=#{params[:q]}&clusterResults=true&groupVariantRecords=false&bookReviews=off" %> or <%= link_to 'advanced FirstSearch', 'https://libraries.psu.edu/eresources/PSU00073' %></li>
   <li><%= link_to 'Public domain books and journals (HathiTrust)', "https://catalog.hathitrust.org/Search/Home?lookfor=#{params[:q]}&searchtype=all&ft=ft&setft=true" %></li>
   <li><%= link_to 'Articles, book chapters, and more', "https://psu.summon.serialssolutions.com/#!/search?ho=t&l=en&q=#{params[:q]}" %></li>
   <li><%= link_to 'Google Scholar', "http://scholar.google.com/scholar?inst=15460120341296470254&q=#{params[:q]}" %></li>
