@@ -347,6 +347,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'preferred_citation_ssm', label: 'Preferred Citation', helper_method: :newline_format
     config.add_show_field 'supplement_ssm', label: 'Supplement Note', helper_method: :newline_format
     config.add_show_field 'other_forms_ssm', label: 'Other Forms', helper_method: :newline_format
+    config.add_show_field 'accessibility_note_ssm', label: 'Accessibility Note', helper_method: :newline_format
     config.add_show_field 'reproduction_note_ssm', label: 'Reproduction Note', helper_method: :newline_format
     config.add_show_field 'original_version_note_ssm', label: 'Original Version', helper_method: :newline_format
     config.add_show_field 'originals_loc_ssm', label: 'Location of Originals', helper_method: :newline_format
