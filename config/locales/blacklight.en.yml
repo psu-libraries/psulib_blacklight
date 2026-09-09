@@ -12,6 +12,7 @@ en:
       html: '<i class="fas fa-reply"></i><span class="d-none d-md-inline"> Back to results</span>'
     tools:
       librarian_view: 'MARC View'
+      ris: 'RIS File'
       sms: 'SMS'
     search:
       errors:
