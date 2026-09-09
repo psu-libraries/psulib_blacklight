@@ -77,9 +77,11 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
-    # Controls the document actions (also called "tools"), note that blacklight_marc adds refworks and endnote
+    # Controls the document actions (also called "tools"), note that blacklight_marc adds refworks and endnote.
+    # Blacklight 8 defaults document actions to a modal trigger unless modal: false is set, which breaks
+    # direct-download actions like RIS exports.
     config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params, html_class: 'dropdown-item')
-    config.add_show_tools_partial(:ris, callback: :ris_action, html_class: 'dropdown-item')
+    config.add_show_tools_partial(:ris, callback: :ris_action, html_class: 'dropdown-item', modal: false)
     config.add_show_tools_partial(:report_issue, callback: :report_issue_action, validator: :validate_report_issue_params?)
     # TODO: hide SMS action for now, should be enabled when fixed
     # config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params, html_class: 'dropdown-item')

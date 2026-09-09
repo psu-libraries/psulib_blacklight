@@ -1,6 +1,8 @@
 <%= render Blacklight::System::ModalComponent.new do |component| %>
-  <% component.with(:title, t('blacklight.email.success')) %>
+  <% component.with_title(t('blacklight.email.success')) %>
 
-  <%= render partial: '/shared/flash_msg' %>
-  <span data-blacklight-modal="close"></span>
+  <% component.with_body do %>
+    <%= render partial: '/shared/flash_msg' %>
+    <span data-blacklight-modal="close"></span>
+  <% end %>
 <% end %>
