@@ -37,10 +37,10 @@ RSpec.describe 'Search Results' do
       it 'displays content for "no results found"' do
         within '#documents' do
           expect(page).to have_content 'No results found for your search'
-          expect(page).to have_link 'All of LionSearch'
+          expect(page).to have_link 'Public domain books and journals (HathiTrust)'
           expect(page).to have_link 'Libraries worldwide (WorldCat)'
-          expect(page).to have_link 'Public domain books and journals: HathiTrust'
-          expect(page).to have_link 'Articles: Google Scholar'
+          expect(page).to have_link 'Articles, book chapters, and more'
+          expect(page).to have_link 'Google Scholar'
           expect(page).to have_no_css 'article[data-document-id="124958"]'
         end
       end
