@@ -42,6 +42,7 @@ Layout/LineLength:
   - 'spec/controllers/catalog_controller_spec.rb'
   - 'app/components/blacklight/advanced_search_form_component.rb'
   - 'spec/features/availability_spec.rb'
+  - 'app/components/psul_document_component.rb'
 
 Lint/MissingSuper:
   Exclude:

@@ -27,6 +27,6 @@ RSpec.describe "Using the 'Share' dropdown" do
     visit '/catalog/22090269'
     sleep 0.5
     click_on 'Share'
-    expect(page).to have_link 'RIS file'
+    expect(page).to have_link 'RIS File'
   end
 end
