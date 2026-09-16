@@ -1,0 +1,104 @@
+// .facet-values {
+//   display: table;
+//   table-layout: fixed;
+//   width: 100%;
+//   margin-bottom: 0;
+
+//   li {
+//     display: table-row;
+//     font-size: 14px;
+//     line-height: 1.4;
+//   }
+
+//   .remove {
+//     color: $text-muted;
+//     font-weight: bold;
+//     padding-left: calc($spacer / 2);
+
+//     &:hover {
+//       color: theme-color("danger");
+//       text-decoration: none;
+//     }
+//   }
+// }
+//   // @mixin hyphens-auto {
+//   //   overflow-wrap: break-word;
+//   //   hyphens: auto;
+//   // }
+
+//   // .facet-label {
+//   //   display: table-cell;
+//   //   padding-bottom: calc($spacer / 2);
+//   //   @include hyphens-auto;
+//   // }
+
+//   .facet-count {
+//     display: table-cell;
+//     vertical-align: top;
+//     text-align: right;
+//     width: 5em;
+//   }
+
+
+.more_facets {
+  font-size: 14px;
+}
+
+// .facet-extended-list {
+//   .sort-options {
+//     text-align: right;
+//   }
+
+//   .prev-next-links {
+//     float: left;
+//   }
+// }
+
+// .facet-field-heading {
+//   @extend .h6;
+//   /* This prevents the contained stretch link from covering the panel body */
+//   position: relative;
+
+//   a {
+//     color: inherit;
+//   }
+
+// }
+
+// // Sidenav
+// .facet-pagination {
+//   @extend .clearfix;
+
+//   &.top {
+//     padding: $modal-inner-padding;
+//   }
+// }
+
+/* style for pivot facet's nested list */
+
+// .pivot-facet {
+//   @extend .list-unstyled;
+//   @extend .py-1;
+//   @extend .px-4;
+// }
+
+.facet-leaf-node {
+  margin-left: 1rem;
+  padding-right: 1rem;
+  margin-top: -1.5rem;
+}
+
+.facet-toggle-handle {
+  font-family: "Font Awesome 5 Free";
+  font-size: 13px;
+  margin: -10px 0 0 -5px !important;
+  padding: 0;
+
+  &.collapsed {
+    .show { display: block; }
+    .hide { display: none; }
+  }
+
+  .show { display: none; }
+  .hide { display: block; }
+}

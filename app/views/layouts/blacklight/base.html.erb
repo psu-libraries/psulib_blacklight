@@ -13,6 +13,8 @@
   <%= favicon_pack_tag 'static/psulib_blacklight/images/icons/favicon.ico', rel: 'favicon-icon', type: 'image/ico' %>
 
   <%= stylesheet_pack_tag 'application' %>
+  <link rel="stylesheet" href="https://assets.libraries.psu.edu/psulib_base/dist/peripheral/peripheral.min.css">
+  <%= stylesheet_pack_tag 'overrides' %>
   <%= javascript_pack_tag 'application', defer: true %>
   <%= csrf_meta_tags %>
   <%= content_for(:head) %>
