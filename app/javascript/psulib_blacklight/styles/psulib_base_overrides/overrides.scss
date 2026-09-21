@@ -1,9 +1,18 @@
 @import '../theme';
 @import '../psulib_utilities';
 
-.documentHeader {
+.documentHeader { // scss-lint:disable SelectorFormat
+  background-color: $off-white;
   color: $nearly-black;
-  background-color: white;
+
+  a {
+    background-color: inherit;
+    color: $psu-blue;
+  }
+
+  a:hover {
+    color: $psu-dark-blue;
+  }
 }
 
 .badge-secondary {
@@ -15,17 +24,9 @@
   color: $nearly-black;
 }
 
-.documentHeader a{
-  color: $psu-blue;
-  background-color: inherit;
-}
-
-.documentHeader a:hover{
-  color: $psu-dark-blue;
-}
 
 .facet-toggle-handle {
-  font-family: "Font Awesome 5 Free";
+  font-family: 'Font Awesome 5 Free';
   font-size: 13px;
   margin: -10px 0 0 -5px;
   padding: 0;
