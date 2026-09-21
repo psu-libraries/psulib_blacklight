@@ -11,4 +11,3 @@ import 'blacklight-frontend/app/javascript/blacklight/facet_load';
 import 'blacklight-frontend/app/javascript/blacklight/search_context';
 
 import './overrides.scss';
-import './facets.scss';
