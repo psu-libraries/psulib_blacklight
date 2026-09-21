@@ -1,0 +1,64 @@
+@import '../theme';
+@import '../psulib_utilities';
+
+.documentHeader {
+  color: black;
+  background-color: white;
+}
+
+.badge-secondary {
+  border-radius: 5px;
+  color: $psu-dark-blue;
+}
+
+.btn-outline-secondary {
+  color: black;
+}
+
+.documentHeader a{
+  color: $psu-blue;
+  background-color: inherit;
+}
+
+.documentHeader a:hover{
+  color: $psu-dark-blue;
+}
+
+.facet-toggle-handle {
+  font-family: "Font Awesome 5 Free";
+  font-size: 13px;
+  margin: -10px 0 0 -5px;
+  padding: 0;
+
+  &.collapsed {
+    .show { display: block; }
+    .hide { display: none; }
+  }
+
+  .show { display: none; }
+  .hide { display: block; }
+}
+
+// .facet-values {
+//   // display: table;
+//   // table-layout: fixed;
+//   // width: 100%;
+//   // margin-bottom: 0;
+
+//   li {
+//     // display: table-row;
+//     font-size: 14px;
+//     line-height: 1.4;
+//   }
+
+  // .remove {
+  //   // color: $text-muted;
+  //   font-weight: bold;
+  //   padding-left: calc($spacer / 2);
+
+  //   &:hover {
+  //     color: theme-color("danger");
+  //     text-decoration: none;
+  //   }
+  // }
+// }
