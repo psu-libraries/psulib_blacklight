@@ -32,7 +32,7 @@
   <div class="row document-metadata metadata-secondary py-4">
     <div class="col">
       <div id="doc_<%= @document.id.to_s.parameterize %>">
-        <%= render_document_partials @document, blacklight_config.view_config(:show).partials %>
+        <%= render partial: 'show_metadata', locals: { document: @document } %>
       </div>
     </div>
   </div>
