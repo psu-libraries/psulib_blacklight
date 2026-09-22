@@ -43,3 +43,8 @@
 code {
   color: $code-red;
 }
+
+.advanced .range_limit input { // scss-lint:disable SelectorFormat
+  display: inline-block;
+  width: 5.5em;
+}
