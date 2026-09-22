@@ -7,9 +7,7 @@ module Blacklight
       with_collection_parameter :action
 
       # @param [Blacklight::Document] document
-      def initialize(document:, action:, options: {}, url_opts: {}, id: nil,
-link_classes: 'nav-link ps-3 dropdown-item')
-        super
+      def initialize(document:, action:, options: {}, url_opts: {}, id: nil, link_classes: 'nav-link ps-3 dropdown-item')
         @document = document
         @action = action
         @options = options
@@ -38,9 +36,8 @@ link_classes: 'nav-link ps-3 dropdown-item')
       end
 
       def render_partial
-        helpers.render(partial: @action.partial || @action.name.to_s,
-                       locals: { document: @document,
-                                 document_action_config: @action }.merge(@options))
+        render(partial: @action.partial || @action.name.to_s,
+               locals: { document: @document, document_action_config: @action }.merge(@options))
       end
 
       def label
@@ -70,9 +67,7 @@ link_classes: 'nav-link ps-3 dropdown-item')
         end
       end
 
-      def key
-        @action.key
-      end
+      delegate :key, to: :@action
     end
   end
 end

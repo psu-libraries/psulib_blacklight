@@ -3,7 +3,7 @@
 class PsulDocumentComponent < Blacklight::DocumentComponent
   def before_render
     super
-    set_slot(:title, nil, actions: false) unless @show
+    with_title unless title || @show
 
     with_footer do
       safe_join([
