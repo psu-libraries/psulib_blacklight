@@ -31,29 +31,58 @@ RSpec.describe 'Facet Queries' do
   end
 
   context 'when search volume exceeds limit' do
-    context 'when user is not logged in' do
+    context 'when AUTH_FOR_QUERIES is false' do
       before do
+        ENV['AUTH_FOR_QUERIES'] = 'false'
+      end
+
+      after do
+        ENV['AUTH_FOR_QUERIES'] = nil
+      end
+
+      it 'does not require auth for multiple queries' do
         visit '/?f[access_facet][]=In+the+Library&f[campus_facet][]=University+Park&f[format][]=Book' \
               '&f[up_library_facet][]=Pattee+Library+and+Paterno+Library+Stacks'
+        expect(page).to have_current_path('/?f%5Baccess_facet%5D%5B%5D=In+the+Library&f%5B' \
+                                          'campus_facet%5D%5B%5D=University+Park&f%5Bformat%5D%5B%5D' \
+                                          '=Book&f%5Bup_library_facet%5D%5B%5D=Pattee+Library+and+' \
+                                          'Paterno+Library+Stacks')
+      end
+    end
+
+    context 'when AUTH_FOR_QUERIES is true' do
+      before do
+        ENV['AUTH_FOR_QUERIES'] = 'true'
       end
 
-      it 'redirects to query limit page' do
-        expect(page).to have_current_path('/query_limit')
+      after do
+        ENV['AUTH_FOR_QUERIES'] = nil
       end
 
-      context 'when the user is able to login' do
+      context 'when user is not logged in' do
         before do
-          user = User.create!(email: 'user1234@psu.edu')
-          login_as(user, scope: :user)
-          click_link 'log in'
+          visit '/?f[access_facet][]=In+the+Library&f[campus_facet][]=University+Park&f[format][]=Book' \
+                '&f[up_library_facet][]=Pattee+Library+and+Paterno+Library+Stacks'
         end
 
-        it 'resumes the search' do
-          expect(page).to have_current_path('/?f%5Baccess_facet%5D%5B%5D=In+the+Library&f%5B' \
-                                            'campus_facet%5D%5B%5D=University+Park&f%5Bformat%5D%5B%5D' \
-                                            '=Book&f%5Bup_library_facet%5D%5B%5D=Pattee+Library+and+' \
-                                            'Paterno+Library+Stacks')
-          expect(page).to have_css 'article[data-document-id="24053587"]'
+        it 'redirects to query limit page' do
+          expect(page).to have_current_path('/query_limit')
+        end
+
+        context 'when the user is able to login' do
+          before do
+            user = User.create!(email: 'user1234@psu.edu')
+            login_as(user, scope: :user)
+            click_link 'log in'
+          end
+
+          it 'resumes the search' do
+            expect(page).to have_current_path('/?f%5Baccess_facet%5D%5B%5D=In+the+Library&f%5B' \
+                                              'campus_facet%5D%5B%5D=University+Park&f%5Bformat%5D%5B%5D' \
+                                              '=Book&f%5Bup_library_facet%5D%5B%5D=Pattee+Library+and+' \
+                                              'Paterno+Library+Stacks')
+            expect(page).to have_css 'article[data-document-id="24053587"]'
+          end
         end
       end
     end

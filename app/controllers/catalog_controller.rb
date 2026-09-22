@@ -12,7 +12,7 @@ class CatalogController < ApplicationController
   include ReportIssue
 
   before_action :redirect_browse
-  before_action :authenticate_or_limit_queries
+  before_action :authenticate_or_limit_queries, if: -> { ENV.fetch('AUTH_FOR_QUERIES', 'true') == 'true' }
   bot_challenge only: :index, unless: -> { request.query_parameters.blank? || whitelisted_ip? }
 
   def index
