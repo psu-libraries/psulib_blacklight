@@ -211,16 +211,17 @@ class CatalogController < ApplicationController
     #
     config.add_facet_field 'access_facet', label: 'Access', collapse: false
     config.add_facet_field 'format', label: 'Format', limit: true
-    config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: true, single: true
-    config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: true, single: true
+    config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: true, single: true, include_in_advanced_search: false
+    config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: true, single: true, include_in_advanced_search: false
     config.add_facet_field 'language_facet', label: 'Language', limit: true
-    config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z', include_in_advanced_search: false
+    config.add_facet_field 'genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z', include_in_advanced_search: false
     config.add_facet_field 'media_type_facet', label: 'Media Type', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'classification_pivot_field',
                            label: 'Call Number',
                            pivot: %w[lc_1letter_facet lc_rest_facet],
                            collapsing: true,
+                           include_in_advanced_search: false,
                            icons: {
                              show: "\uf0fe", # same as '<i class="fa fa-plus-square" aria-hidden="true"></i>',
                              hide: "\uf146"
@@ -230,15 +231,15 @@ class CatalogController < ApplicationController
     #
     # Facets that are configured but are not in the solr response
     #
-    config.add_facet_field 'all_authors_facet', show: false
-    config.add_facet_field 'genre_full_facet', show: false, limit: true
+    config.add_facet_field 'all_authors_facet', show: false, include_in_advanced_search: false
+    config.add_facet_field 'genre_full_facet', show: false, limit: true, include_in_advanced_search: false
     config.add_facet_field 'lc_1letter_facet', label: 'Classification', show: false, sort: 'index'
-    config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
+    config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index', include_in_advanced_search: false
     config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: true, single: true # just advanced search
     config.add_facet_field 'location_facet', label: 'Location', sort: 'index', show: false, limit: true, single: true # just advanced search
-    config.add_facet_field 'subject_browse_facet', show: false, limit: true
-    config.add_facet_field 'subject_facet', show: false
-    config.add_facet_field 'title_sort', label: 'Title', show: false
+    config.add_facet_field 'subject_browse_facet', show: false, limit: true, include_in_advanced_search: false
+    config.add_facet_field 'subject_facet', show: false, include_in_advanced_search: false
+    config.add_facet_field 'title_sort', label: 'Title', show: false, include_in_advanced_search: false
     config.add_facet_field 'thesis_dept_facet', label: 'Graduate Program', show: false
 
     #
