@@ -32,7 +32,7 @@ module FacetsHelper
   def pivot_facet_in_params?(field_name, item)
     field_name = item.field if item.respond_to?(:field)
 
-    value = facet_value_for_facet_item(item)
+    value = item.respond_to? :value ? item.value : item
     params[:f] && params[:f][field_name]&.include?(value)
   end
 
