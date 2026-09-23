@@ -23,20 +23,44 @@ class CatalogController < ApplicationController
     end
 
     if cache_key
-      @response = Rails.cache.fetch(cache_key, expires_in: 12.hours) do
-        response = search_service.search_results
-        # Nilling out below is necessary in order to avoid a Marshal.dump error of "can't dump an anonymous class" when
-        # attempting to cache the Solr response object.
-        response.blacklight_config = nil
-        response.options = nil
-        response
+      cached_payload = begin
+        Rails.cache.fetch(cache_key, expires_in: 12.hours) do
+          response = search_service.search_results
+          {
+            data: response.to_h,
+            request_params: response.request_params.to_h
+          }
+        end
+      rescue ArgumentError, NameError, TypeError => e
+        Rails.logger.warn("Refreshing stale homepage facet cache #{cache_key}: #{e.class}: #{e.message}")
+        Rails.cache.delete(cache_key)
+        Rails.cache.fetch(cache_key, expires_in: 12.hours) do
+          response = search_service.search_results
+          {
+            data: response.to_h,
+            request_params: response.request_params.to_h
+          }
+        end
       end
-      blacklight_config.facet_fields = blacklight_config.home_facet_fields
-      @response.blacklight_config = blacklight_config
-      @response.options = {
+
+      home_facet_fields = blacklight_config.home_facet_fields.each_with_object(ActiveSupport::HashWithIndifferentAccess.new) do |(key, field_config), memo|
+        default_field_config = blacklight_config.facet_fields[key]
+
+        cfg = field_config.dup
+        cfg.presenter ||= default_field_config&.presenter || blacklight_config.facet_field_presenter_class || Blacklight::FacetFieldPresenter
+        cfg.item_presenter ||= default_field_config&.item_presenter || blacklight_config.facet_item_presenter_class || Blacklight::FacetItemPresenter
+        cfg.component ||= default_field_config&.component || Blacklight::Facets::ListComponent
+
+        memo[key] = cfg
+      end
+
+      blacklight_config.facet_fields = home_facet_fields
+      @response = Blacklight::Solr::Response.new(
+        cached_payload[:data] || cached_payload['data'],
+        cached_payload[:request_params] || cached_payload['request_params'],
         document_model: SolrDocument,
         blacklight_config: blacklight_config
-      }
+      )
     else
       @response = search_service.search_results
     end
@@ -91,6 +115,7 @@ class CatalogController < ApplicationController
     config.show.document_actions.delete_field('refworks') # hide the 'Endnote' action from the Share dropdown
 
     # default advanced config values
+    config.advanced_search.enabled = false
     config.advanced_search ||= Blacklight::OpenStructWithHashAccess.new
     # config.advanced_search[:qt] ||= 'advanced'
     config.advanced_search[:url_key] ||= 'advanced'
@@ -99,9 +124,9 @@ class CatalogController < ApplicationController
       'facet.field' => %w[access_facet format language_facet media_type_facet
                           library_facet location_facet lc_1letter_facet thesis_dept_facet],
       'facet.pivot' => '',
-      'facet.limit' => -1,
-      'f.language_facet.facet.limit' => -1,
-      'f.format.facet.limit' => -1,
+      'facet.limit' => true,
+      'f.language_facet.facet.limit' => true,
+      'f.format.facet.limit' => true,
       'facet.sort' => 'index'
     }
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
@@ -186,8 +211,8 @@ class CatalogController < ApplicationController
     #
     config.add_facet_field 'access_facet', label: 'Access', collapse: false
     config.add_facet_field 'format', label: 'Format', limit: true
-    config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: -1, single: true
-    config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: -1, single: true
+    config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: true, single: true
+    config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: true, single: true
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
@@ -206,15 +231,55 @@ class CatalogController < ApplicationController
     # Facets that are configured but are not in the solr response
     #
     config.add_facet_field 'all_authors_facet', show: false
-    config.add_facet_field 'genre_full_facet', show: false, limit: 0
+    config.add_facet_field 'genre_full_facet', show: false, limit: true
     config.add_facet_field 'lc_1letter_facet', label: 'Classification', show: false, sort: 'index'
     config.add_facet_field 'lc_rest_facet', label: 'Full call number code', show: false, sort: 'index'
-    config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: -1, single: true # just advanced search
-    config.add_facet_field 'location_facet', label: 'Location', sort: 'index', show: false, limit: -1, single: true # just advanced search
-    config.add_facet_field 'subject_browse_facet', show: false, limit: 0
+    config.add_facet_field 'library_facet', label: 'Library', sort: 'index', show: false, limit: true, single: true # just advanced search
+    config.add_facet_field 'location_facet', label: 'Location', sort: 'index', show: false, limit: true, single: true # just advanced search
+    config.add_facet_field 'subject_browse_facet', show: false, limit: true
     config.add_facet_field 'subject_facet', show: false
     config.add_facet_field 'title_sort', label: 'Title', show: false
     config.add_facet_field 'thesis_dept_facet', label: 'Graduate Program', show: false
+
+    #
+    # Facets that only appear on the home page
+    #
+    config.add_home_facet_field 'access_facet',
+                                label: 'Access',
+                                collapse: false,
+                                presenter: Blacklight::FacetFieldPresenter
+
+    config.add_home_facet_field 'format',
+                                label: 'Format',
+                                limit: true,
+                                collapse: false,
+                                presenter: Blacklight::FacetFieldPresenter
+
+    config.add_home_facet_field 'campus_facet',
+                                label: 'Campus',
+                                sort: 'index',
+                                limit: true,
+                                single: true,
+                                collapse: true,
+                                presenter: Blacklight::FacetFieldPresenter
+
+    config.add_home_facet_field 'media_type_facet',
+                                label: 'Media Type',
+                                limit: 20,
+                                index_range: 'A'..'Z',
+                                collapse: true,
+                                presenter: Blacklight::FacetFieldPresenter
+
+    config.add_home_facet_field 'classification_pivot_field',
+                                label: 'Call Number',
+                                pivot: %w[lc_1letter_facet lc_rest_facet],
+                                collapse: true,
+                                collapsing: true,
+                                presenter: Blacklight::FacetFieldPresenter,
+                                icons: {
+                                  show: "\uf0fe", # same as '<i class="fa fa-plus-square" aria-hidden="true"></i>',
+                                  hide: "\uf146"
+                                }
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
