@@ -1,33 +1,5 @@
 // scss-lint:disable PlaceholderInExtend
 
-.navbar-brand {
-  padding-left: 0;
-  padding-right: 0;
-
-  a {
-    display: inline-block;
-    max-width: 50%;
-    vertical-align: middle;
-
-    img {
-      max-height: 50px;
-    }
-  }
- }
-
-.site-title {
-  border-left: 1px solid $white;
-  color: $white;
-  font-family: $headings-font-family;
-  font-size: 25px;
-  margin-left: 10px;
-  padding-left: 1rem;
-
-  &:hover {
-    color: $white;
-    text-decoration: none;
-  }
-}
 
 .navbar-search {
   z-index: 1;
@@ -44,7 +16,7 @@
     }
 
     @include media-breakpoint-up(md) {
-      @include make-col(8);
+      @include make-col(12);
     }
   }
 
@@ -54,6 +26,10 @@
       @include visually-hidden();
     }
   }
+}
+
+.header-nav {
+  align-self: flex-end;
 }
 
 .navbar-nav {
