@@ -1,0 +1,17 @@
+<% document = @document %>
+<% doc_presenter = document_presenter(document) %>
+<dl class="row">
+  <% blacklight_config.show_fields.each do |field_name, field| -%>
+    <% if !field.top_field && !document[field_name].nil? %>
+      <dt class="blacklight-<%= field_name.parameterize %>-label">
+        <%= field.label %>
+      </dt>
+      <dd class="blacklight-<%= field_name.parameterize %> ms-5"><%= (doc_presenter.field_value field).first %>
+      <% if @document.respond_to?(:export_as_openurl_ctx_kev) %>
+              <!-- COinS, for Zotero among others. -->
+              <span class="Z3988" title="<%= @document.export_as_openurl_ctx_kev(doc_presenter.display_type) %>"></span>
+            <% end %>
+            </dd>
+    <% end %>
+  <% end %>
+</dl>
