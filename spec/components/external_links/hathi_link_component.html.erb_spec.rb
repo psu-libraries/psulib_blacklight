@@ -47,13 +47,27 @@ RSpec.describe ExternalLinks::HathiLinkComponent, type: :component do
     end
   end
 
-  context 'when document has an ISSN, but is Free to Read' do
-    let(:document) { { 'access_facet' => ['Free to Read', 'In the Library'], 'issn_ssm' => ['1234-1234'] } }
+  context 'when document has an ISSN' do
+    let(:document) { { 'access_facet' => access_facet, 'issn_ssm' => ['1234-1234'] } }
 
-    it 'renders a hidden link with no attached search term data' do
-      expect(rendered).to have_css("img[src*='Springshare-LibGuide-Image-100X100-872acafb7418ee18a303.png']",
-                                   visible: :hidden)
-        .and have_css("div[data-search-item='']", visible: :hidden)
+    context 'when it is Free to Read' do
+      let(:access_facet) { ['Free to Read', 'In the Library'] }
+
+      it 'renders a hidden link with no attached search term data' do
+        expect(rendered).to have_css("img[src*='Springshare-LibGuide-Image-100X100-872acafb7418ee18a303.png']",
+                                     visible: :hidden)
+          .and have_css("div[data-search-item='']", visible: :hidden)
+      end
+    end
+
+    context 'when it is Online' do
+      let(:access_facet) { ['Online', 'In the Library'] }
+
+      it 'renders a hidden link with no attached search term data' do
+        expect(rendered).to have_css("img[src*='Springshare-LibGuide-Image-100X100-872acafb7418ee18a303.png']",
+                                     visible: :hidden)
+          .and have_css("div[data-search-item='']", visible: :hidden)
+      end
     end
   end
 end
