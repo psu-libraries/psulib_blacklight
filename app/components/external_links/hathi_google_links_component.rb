@@ -20,7 +20,7 @@ module ExternalLinks
         access_facet = document[:document]['access_facet']
         return false if access_facet.nil?
 
-        access_facet.include?('Free to Read')
+        access_facet.intersect?(['Free to Read', 'Online'])
       end
 
       attr_reader :document
