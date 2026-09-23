@@ -43,21 +43,25 @@ RSpec.describe ExternalLinks::GooglePreviewLinkComponent, type: :component do
     end
   end
 
-  context 'when document has an LCCN, OCLC or ISBN, but is Free to Read' do
-    let(:document) { { 'access_facet' => ['Free to Read', 'In the Library'], 'isbn_valid_ssm' => ['92746'] } }
+  context 'when document has an LCCN, OCLC or ISBN' do
+    let(:document) { { 'access_facet' => access_facet, 'isbn_valid_ssm' => ['92746'] } }
 
-    it 'renders a hidden link with no attached search term data' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("div[data-search-item='']", visible: :hidden)
+    context 'when it is Free to Read' do
+      let(:access_facet) { ['Free to Read', 'In the Library'] }
+
+      it 'renders a hidden link with no attached search term data' do
+        expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
+          .and have_css("div[data-search-item='']", visible: :hidden)
+      end
     end
-  end
 
-  context 'when document has an LCCN, OCLC or ISBN, but is Online' do
-    let(:document) { { 'access_facet' => ['Online', 'In the Library'], 'isbn_valid_ssm' => ['92746'] } }
+    context 'when it is Online' do
+      let(:access_facet) { ['Online', 'In the Library'] }
 
-    it 'renders a hidden link with no attached search term data' do
-      expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
-        .and have_css("div[data-search-item='']", visible: :hidden)
+      it 'renders a hidden link with no attached search term data' do
+        expect(rendered).to have_css("img[src*='gbs_preview_button1']", visible: :hidden)
+          .and have_css("div[data-search-item='']", visible: :hidden)
+      end
     end
   end
 end
