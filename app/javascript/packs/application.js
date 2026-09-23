@@ -13,7 +13,6 @@ import bookCovers from '../book_covers';
 import search from '../search';
 
 import '../psulib_blacklight';
-import '../psulib_blacklight_range_limit';
 import '../blacklight_overrides';
 import '../iiif_viewer';
 import '../search/add_search_header';

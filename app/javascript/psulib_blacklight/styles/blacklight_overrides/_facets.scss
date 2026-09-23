@@ -53,13 +53,12 @@
 }
 
 .facet-values {
-  display: table;
-  table-layout: fixed;
   width: 100%;
   margin-bottom: 0;
 
   li {
-    display: table-row;
+    display: flex;
+    align-items: flex-start;
     font-size: 14px;
     line-height: 1.4;
   }
@@ -81,17 +80,19 @@
   }
 
   .facet-label {
-    display: table-cell;
     padding-bottom: calc($spacer / 2);
     @include hyphens-auto;
+    margin-right: auto;
   }
 
   .facet-count {
-    display: table-cell;
-    vertical-align: top;
     text-align: right;
     width: 5em;
   }
+}
+
+.facet-values li.treeitem {
+  display: block;
 }
 
 .more_facets {
@@ -139,20 +140,5 @@
 .facet-leaf-node {
   margin-left: 1rem;
   padding-right: 1rem;
-  margin-top: -1.5rem;
 }
 
-.facet-toggle-handle {
-  font-family: "Font Awesome 5 Free";
-  font-size: 13px;
-  margin: -10px 0 0 -5px;
-  padding: 0;
-
-  &.collapsed {
-    .show { display: block; }
-    .hide { display: none; }
-  }
-
-  .show { display: none; }
-  .hide { display: block; }
-}

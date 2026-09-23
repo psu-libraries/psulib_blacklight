@@ -1,0 +1,50 @@
+@import '../theme';
+@import '../psulib_utilities';
+
+.documentHeader { // scss-lint:disable SelectorFormat
+  background-color: $off-white;
+  color: $nearly-black;
+
+  a {
+    background-color: inherit;
+    color: $psu-blue;
+  }
+
+  a:hover {
+    color: $psu-dark-blue;
+  }
+}
+
+.badge-secondary {
+  border-radius: 5px;
+  color: $psu-dark-blue;
+}
+
+.btn-outline-secondary {
+  color: $nearly-black;
+}
+
+
+.facet-toggle-handle {
+  font-family: 'Font Awesome 5 Free';
+  font-size: 13px;
+  margin: -10px 0 0 -5px;
+  padding: 0;
+
+  &.collapsed {
+    .show { display: block; }
+    .hide { display: none; }
+  }
+
+  .show { display: none; }
+  .hide { display: block; }
+}
+
+code {
+  color: $code-red;
+}
+
+.advanced .range_limit input { // scss-lint:disable SelectorFormat
+  display: inline-block;
+  width: 5.5em;
+}
