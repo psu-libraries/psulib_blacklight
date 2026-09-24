@@ -11,11 +11,11 @@ RSpec.describe SearchLinksHelper do
 
     it 'provides links to general subject search based on the given other subjects' do
       full_subject = other_subjectify other_subjects_doc
-      expect(full_subject).to eq('<ul><li><a class="search-subject" title="Search: Power Amplifiers" ' \
+      expect(full_subject).to eq('<ul><li><a class="search-subject" title="Check catalog for: Power Amplifiers" ' \
                                  'href="/?search_field=subject&amp;q=Power+Amplifiers">Power Amplifiers' \
-                                 '</a></li><li><a class="search-subject" title="Search: Research" ' \
+                                 '</a></li><li><a class="search-subject" title="Check catalog for: Research" ' \
                                  'href="/?search_field=subject&amp;q=Research">Research</a></li><li>' \
-                                 '<a class="search-subject" title="Search: Fluid Mechanics and Thermodynamics" ' \
+                                 '<a class="search-subject" title="Check catalog for: Fluid Mechanics and Thermodynamics" ' \
                                  'href="/?search_field=subject&amp;q=Fluid+Mechanics+and+Thermodynamics">' \
                                  'Fluid Mechanics and Thermodynamics</a></li></ul>')
     end
@@ -41,7 +41,7 @@ RSpec.describe SearchLinksHelper do
 
       it 'assembles the link correctly' do
         link = series_links link_doc
-        expect(link).to eql '<ul><li><a class="search-series" title="Search: Lecture Notes in ' \
+        expect(link).to eql '<ul><li><a class="search-series" title="Check catalog for: Lecture Notes in ' \
                             'Electrical Engineering" ' \
                             'href="/?search_field=series&amp;q=Lecture+Notes+in+Electrical+Engineering">' \
                             'Lecture Notes in Electrical Engineering, 1876-1100 ; 554</a></li></ul>'
@@ -53,7 +53,7 @@ RSpec.describe SearchLinksHelper do
 
       it 'assembles the link correctly' do
         link = series_links link_doc
-        link_expect = '<ul><li><a class="search-series" title="Search: Lecture Notes in Electrical Engineering, ' \
+        link_expect = '<ul><li><a class="search-series" title="Check catalog for: Lecture Notes in Electrical Engineering, ' \
                       '1876-1100 ; 554" href="/?search_field=series&amp;q=Lecture+Notes+in+Electrical+Engineering' \
                       '%2C+1876-1100+%3B+554">Lecture Notes in Electrical Engineering, 1876-1100 ; 554</a></li></ul>'
         expect(link).to eql link_expect
@@ -70,10 +70,10 @@ RSpec.describe SearchLinksHelper do
 
       it 'assembles the link correctly' do
         link = series_links link_doc
-        link_expect = '<ul><li><a class="search-series" title="Search: Lecture Notes in Electrical Engineering" ' \
+        link_expect = '<ul><li><a class="search-series" title="Check catalog for: Lecture Notes in Electrical Engineering" ' \
                       'href="/?search_field=series&amp;q=Lecture+Notes+in+Electrical+Engineering">' \
                       'Lecture Notes in Electrical Engineering, 1876-1100 ; 554</a></li><li><a class="search-series" ' \
-                      'title="Search: Series Title 2" href="/?search_field=series&amp;q=Series+Title+2">Series ' \
+                      'title="Check catalog for: Series Title 2" href="/?search_field=series&amp;q=Series+Title+2">Series ' \
                       'Title 2, 1999, abc123</a></li></ul>'
         expect(link).to eql link_expect
       end
@@ -86,8 +86,8 @@ RSpec.describe SearchLinksHelper do
 
     it 'assembles a link to title search and puts it in a list' do
       links = title_links title_doc
-      expect(links).to match '<ul><li><a href="/?search_field=title&amp;q=Some+Title">Some Title</a></li><li>' \
-                             '<a href="/?search_field=title&amp;q=Another+Title">Another Title</a></li></ul>'
+      expect(links).to match '<ul><li><a title="Check catalog for: Some Title" href="/?search_field=title&amp;q=Some+Title">Some Title</a></li><li>' \
+                             '<a title="Check catalog for: Another Title" href="/?search_field=title&amp;q=Another+Title">Another Title</a></li></ul>'
     end
   end
 
