@@ -34,7 +34,7 @@ module SearchLinksHelper
         lnk = link_to(item,
                       "/?#{search_query(search_type)}=#{CGI.escape(zipped || item)}",
                       class: search_html_class(search_type),
-                      title: search_field?(search_type) && search_type != :title ? "Search: #{zipped || item}" : nil)
+                      title: search_field?(search_type) ? "Check catalog for: #{zipped || item}" : nil)
         result << content_tag('li', lnk, nil, false)
       end
       content_tag 'ul', result.join, nil, false
