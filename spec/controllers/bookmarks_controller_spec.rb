@@ -24,5 +24,17 @@ RSpec.describe BookmarksController do
       expect(response.body).to match(/TI  - Becoming/)
       expect(response.body).to match(/TI  - Robot ethics/)
     end
+
+    it 'Does not fail if an unknown ID is present' do
+      allow(Rails.logger).to receive(:info)
+      get :bulk_ris, params: { item_ids: '999999999,38685872,24053587' }
+      expect(response.headers['Content-Disposition']).to include("attachment; filename=\"#{expected_file_name}\"")
+      expect(response.headers['Content-Type']).to eq(expected_content_type)
+      expect(response.body).to match(/TI  - Becoming/)
+      expect(response.body).to match(/TI  - Robot ethics/)
+      expect(Rails.logger)
+        .to have_received(:info)
+        .with('No record with id 999999999 found in catalog')
+    end
   end
 end
