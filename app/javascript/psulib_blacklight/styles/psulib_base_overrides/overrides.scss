@@ -1,6 +1,10 @@
 @import '../theme';
 @import '../psulib_utilities';
 
+:root, [data-bs-theme="light"] {
+  --bs-border-radius-pill: 0.375rem;
+}
+
 .documentHeader { // scss-lint:disable SelectorFormat
   background-color: $off-white;
   color: $nearly-black;
@@ -24,7 +28,6 @@
   color: $nearly-black;
 }
 
-
 .facet-toggle-handle {
   font-family: 'Font Awesome 5 Free';
   font-size: 13px;
@@ -47,4 +50,42 @@ code {
 .advanced .range_limit input { // scss-lint:disable SelectorFormat
   display: inline-block;
   width: 5.5em;
+}
+
+.accordion .btn {
+  --bs-btn-bg: aqua;
+  --bs-accordion-bg: $grayish;
+  --bs-accordion-btn-bg: $grayish;
+  --bs-accordion-active-bg: $grayish;
+}
+
+.accordion-header {
+  margin-bottom: 0 !important;
+}
+
+.accordion-button {
+  text-align: start;
+  background-image: none;
+}
+
+.accordion-button:not(.collapsed) {
+  box-shadow: none;
+}
+
+.accordion-item:first-of-type, .accordion-item:last-of-type, .accordion-item:not(:first-of-type){
+  border-radius: 0.375rem;
+  border: 1px solid rgba(0,0,0,.175);
+}
+
+// .accordion-item:not(:first-of-type) {
+// }
+
+.facet-field-heading button::after {
+  content: '';
+}
+
+.facet-limit {
+  margin-bottom: 1rem;
+  // border: 1px solid rgba(0,0,0,.175);
+  border-radius: 0.375rem;
 }
