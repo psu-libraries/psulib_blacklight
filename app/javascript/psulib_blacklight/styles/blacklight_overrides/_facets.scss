@@ -1,50 +1,9 @@
-// .sidenav {
-//   .navbar-toggler {
-//     border-color: $navbar-light-toggler-border-color;
-//     color: $navbar-light-active-color;
-//   }
-
-//   .navbar-toggler-icon {
-//     background-image: $navbar-light-toggler-icon-bg;
-//   }
-// }
-
-// .facets-toggleable {
-//   @each $breakpoint in map-keys($grid-breakpoints) {
-//     $next: breakpoint-next($breakpoint, $grid-breakpoints);
-//     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
-
-//     &#{$infix} {
-//       @include media-breakpoint-up($next) {
-
-//         // scss-lint:disable ImportantRule
-//         .facets-collapse {
-//           display: block !important;
-//           width: 100%;
-//         }
-//         // scss-lint:enable ImportantRule
-
-//         .navbar-toggler {
-//           display: none;
-//         }
-//       }
-//     }
-//   }
-// }
-
 .facets-header {
   display: flex;
   justify-content: space-between;
   padding-bottom: 0.5rem;
   padding-top: 0.5rem;
 }
-
-// .facets-heading {
-//   @extend .h4;
-//   line-height: inherit;
-// }
-
-
 
 .facet-values {
   width: 100%;
@@ -102,41 +61,3 @@
     float: left;
   }
 }
-
-// .facet-field-heading {
-//   @extend .h6;
-//   /* This prevents the contained stretch link from covering the panel body */
-//   position: relative;
-
-//   a {
-//     color: inherit;
-//   }
-
-// }
-
-// // Sidenav
-// .facet-pagination {
-//   @extend .clearfix;
-
-//   &.top {
-//     padding: $modal-inner-padding;
-//   }
-// }
-
-// /* style for pivot facet's nested list */
-
-// .pivot-facet {
-//   @extend .list-unstyled;
-//   @extend .py-1;
-//   @extend .px-4;
-// }
-
-// .facet-leaf-node {
-//   margin-left: 1rem;
-//   padding-right: 1rem;
-// }
-
-// .accordion-item {
-//   border: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color) !important;
-//   border-radius: 0.375rem !important;
-// }
