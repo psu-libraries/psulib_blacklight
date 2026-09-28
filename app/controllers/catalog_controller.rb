@@ -16,54 +16,7 @@ class CatalogController < ApplicationController
   bot_challenge only: :index, unless: -> { request.query_parameters.blank? || whitelisted_ip? }
 
   def index
-    cache_key = nil
-    # No other params presents indicates we are on the homepage
-    if params.keys.eql? %w[controller action]
-      cache_key = "#{params['controller']}/#{params['action']}facet_query"
-    end
-
-    if cache_key
-      cached_payload = begin
-        Rails.cache.fetch(cache_key, expires_in: 12.hours) do
-          response = search_service.search_results
-          {
-            data: response.to_h,
-            request_params: response.request_params.to_h
-          }
-        end
-      rescue ArgumentError, NameError, TypeError => e
-        Rails.logger.warn("Refreshing stale homepage facet cache #{cache_key}: #{e.class}: #{e.message}")
-        Rails.cache.delete(cache_key)
-        Rails.cache.fetch(cache_key, expires_in: 12.hours) do
-          response = search_service.search_results
-          {
-            data: response.to_h,
-            request_params: response.request_params.to_h
-          }
-        end
-      end
-
-      home_facet_fields = blacklight_config.home_facet_fields.each_with_object(ActiveSupport::HashWithIndifferentAccess.new) do |(key, field_config), memo|
-        default_field_config = blacklight_config.facet_fields[key]
-
-        cfg = field_config.dup
-        cfg.presenter ||= default_field_config&.presenter || blacklight_config.facet_field_presenter_class || Blacklight::FacetFieldPresenter
-        cfg.item_presenter ||= default_field_config&.item_presenter || blacklight_config.facet_item_presenter_class || Blacklight::FacetItemPresenter
-        cfg.component ||= default_field_config&.component || Blacklight::Facets::ListComponent
-
-        memo[key] = cfg
-      end
-
-      blacklight_config.facet_fields = home_facet_fields
-      @response = Blacklight::Solr::Response.new(
-        cached_payload[:data] || cached_payload['data'],
-        cached_payload[:request_params] || cached_payload['request_params'],
-        document_model: SolrDocument,
-        blacklight_config: blacklight_config
-      )
-    else
-      @response = search_service.search_results
-    end
+    @response = response_for_index
 
     respond_to do |format|
       format.html { store_preferred_view }
@@ -564,6 +517,79 @@ class CatalogController < ApplicationController
   end
 
   private
+
+    def response_for_index
+      cache_key = homepage_facet_cache_key
+      return search_service.search_results unless cache_key
+
+      cached_payload = fetch_homepage_facet_payload(cache_key)
+      blacklight_config.facet_fields = home_facet_fields_config
+
+      build_cached_solr_response(cached_payload)
+    end
+
+    def homepage_facet_cache_key
+      # No other params present indicates we are on the homepage.
+      return unless params.keys.eql?(%w[controller action])
+
+      "#{params['controller']}/#{params['action']}facet_query"
+    end
+
+    def fetch_homepage_facet_payload(cache_key)
+      Rails.cache.fetch(cache_key, expires_in: 12.hours) { serialize_search_response }
+    rescue ArgumentError, NameError, TypeError => e
+      Rails.logger.warn("Refreshing stale homepage facet cache #{cache_key}: #{e.class}: #{e.message}")
+      Rails.cache.delete(cache_key)
+      Rails.cache.fetch(cache_key, expires_in: 12.hours) { serialize_search_response }
+    end
+
+    def serialize_search_response
+      response = search_service.search_results
+      {
+        data: response.to_h,
+        request_params: response.request_params.to_h
+      }
+    end
+
+    def home_facet_fields_config
+      blacklight_config.home_facet_fields.each_with_object(ActiveSupport::HashWithIndifferentAccess.new) do |(key, field_config), memo|
+        memo[key] = build_home_facet_field_config(key, field_config)
+      end
+    end
+
+    def build_home_facet_field_config(key, field_config)
+      default_field_config = blacklight_config.facet_fields[key]
+
+      cfg = field_config.dup
+      cfg.presenter ||= first_non_nil(
+        default_field_config&.presenter,
+        blacklight_config.facet_field_presenter_class,
+        Blacklight::FacetFieldPresenter
+      )
+      cfg.item_presenter ||= first_non_nil(
+        default_field_config&.item_presenter,
+        blacklight_config.facet_item_presenter_class,
+        Blacklight::FacetItemPresenter
+      )
+      cfg.component ||= first_non_nil(
+        default_field_config&.component,
+        Blacklight::Facets::ListComponent
+      )
+      cfg
+    end
+
+    def first_non_nil(*values)
+      values.compact.first
+    end
+
+    def build_cached_solr_response(cached_payload)
+      Blacklight::Solr::Response.new(
+        cached_payload[:data] || cached_payload['data'],
+        cached_payload[:request_params] || cached_payload['request_params'],
+        document_model: SolrDocument,
+        blacklight_config: blacklight_config
+      )
+    end
 
     def trailing_punctuation?
       params[:id].match(/\d+[.,;:!"')\]]/)
