@@ -23,7 +23,7 @@ class BookmarksController < CatalogController
       solr_document = search_service.fetch(id)
       bulk_string += DocumentRis.new(solr_document).ris_to_string
     rescue Blacklight::Exceptions::RecordNotFound
-      Rails.logger.info("No record with id #{id} found in catalog")
+      Rails.logger.info("Bulk RIS export skipping id #{id}: no corresponding record found in catalog")
     end
 
     send_data bulk_string, filename: 'document.ris', type: :ris

@@ -34,7 +34,7 @@ RSpec.describe BookmarksController do
       expect(response.body).to match(/TI  - Robot ethics/)
       expect(Rails.logger)
         .to have_received(:info)
-        .with('No record with id 999999999 found in catalog')
+        .with('Bulk RIS export skipping id 999999999: no corresponding record found in catalog')
     end
   end
 end
