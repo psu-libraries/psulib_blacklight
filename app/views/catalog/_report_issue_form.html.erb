@@ -1,8 +1,7 @@
 <%= form_tag url_for(controller: controller_name, action: "report_issue"),
-             data: { blacklight_modal: 'trigger' },
+             data: { blacklight_modal: 'trigger', turbo_method: :post },
              id: 'report_issue_form',
-             class: "modal_form",
-             method: :post do %>
+             class: "modal_form" %>
   <div class="modal-body">
     <%= render '/shared/flash_msg' %>
 
