@@ -29,6 +29,25 @@
   color: $nearly-black;
 }
 
+.accordion {
+  --bs-accordion-active-bg: #{$grayish};
+  --bs-accordion-bg: #{$off-white};
+  --bs-accordion-btn-bg: #{$grayish};
+}
+
+.accordion-button {
+  --bs-btn-bg: #{$grayish};
+  --bs-btn-hover-bg: #{$grayish};
+  background-color: #{$grayish};
+  background-image: none;
+  text-align: start;
+}
+
+.accordion-button:hover,
+.accordion-button:not(.collapsed) {
+  background-color: #{$grayish};
+}
+
 .facet-toggle-handle {
   font-family: 'Font Awesome 5 Free';
   font-size: 13px;
@@ -53,20 +72,10 @@ code {
   width: 5.5em;
 }
 
-.accordion .btn {
-  --bs-accordion-active-bg: $grayish;
-  --bs-accordion-bg: $grayish;
-  --bs-accordion-btn-bg: $grayish;
-  --bs-btn-bg: $off-white;
-}
+
 
 .accordion-header {
   margin-bottom: 0;
-}
-
-.accordion-button {
-  background-image: none;
-  text-align: start;
 }
 
 .accordion-button:not(.collapsed) {
