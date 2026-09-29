@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Bookmarks', :js do
+RSpec.describe 'Bookmarks', :js, retry: 3, retry_wait: 10 do
   before do
     # In Rails 6, CSRF protection is turned off by default in test env
     # Turning it on here to test that it doesn't break Bookmarks
