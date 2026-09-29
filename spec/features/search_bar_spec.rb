@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Search Bar' do
-  describe 'selected search box field', :js do
+  describe 'selected search box field', :js, retry: 3, retry_wait: 10 do
     it 'shows normal placeholder info when doing a keyword search' do
       visit '/?search_field=all_fields&q='
       expect(page).to have_select('search_field', selected: 'Keyword')

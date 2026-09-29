@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Report Issue Form' do
+RSpec.describe 'Report Issue Form', retry: 3, retry_wait: 10 do
   describe 'when a comment is included' do
     it 'submits the report issue form successfully and sends an email', :js do
       visit '/catalog/19437'

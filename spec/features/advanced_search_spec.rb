@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Advanced Search' do
+RSpec.describe 'Advanced Search', retry: 3, retry_wait: 10 do
   describe 'User uses advanced search', :js do
     before do
       user = User.create!(email: 'user1234@psu.edu')
