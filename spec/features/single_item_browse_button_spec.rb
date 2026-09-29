@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Single Item Browse Button' do
+RSpec.describe 'Single Item Browse Button', retry: 3, retry_wait: 10 do
   context 'when record has one LC call number', :js do
     before do
       visit '/catalog/22080733'

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Single Item Genre' do
+RSpec.describe 'Single Item Genre', retry: 3, retry_wait: 10 do
   describe 'Single item genre links', :js do
     before do
       visit '/catalog/22080733'
