@@ -1,6 +1,6 @@
 import CheckboxSubmitAll from './checkbox_submit_all';
 
-$(document).ready(() => {
+document.addEventListener("turbo:load", function() {
   const bookmarkAllButton = $('#bookmark-all');
   bookmarkAllButton.on('click', () => {
     const bookmarkCheckboxes = $('form[data-absent="Bookmark"]');

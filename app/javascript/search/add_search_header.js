@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbo:load', () => {
   const inputGroup = document.querySelector('.input-group');
   const searchFieldSelect = inputGroup?.querySelector('#search_field');
 
