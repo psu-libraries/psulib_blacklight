@@ -15,7 +15,9 @@ if (viewerContainer) {
       allowMaximize: multipleManifests,
       allowFullscreen: true,
     },
-    windows: manifestURLs.map((url) => ({ manifestId: url.replace(/^http:/, 'https:') })),
+    windows: manifestURLs.map((url) => ({
+      manifestId: url.replace(/^http:/, 'https:'),
+    })),
     workspace: {
       showZoomControls: true,
       type: multipleManifests ? 'mosaic' : 'single',
