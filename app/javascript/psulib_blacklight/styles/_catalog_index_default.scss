@@ -20,15 +20,11 @@ article.document {
     margin-bottom: .25rem;
   }
 
-  .document-main-section {
-    padding-right: 6.5rem;
-  }
-
   .document-thumbnail {
     margin: 0;
     padding-left: 0;
     position: absolute;
-    right: 3.85rem;
+    right: 0rem;
     top: 4rem;
   }
 }
@@ -46,4 +42,6 @@ article.document {
     }
   }
 }
-
+.document-metadata {
+  padding-right: 9.5rem;
+}
