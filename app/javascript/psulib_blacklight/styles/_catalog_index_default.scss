@@ -24,7 +24,7 @@ article.document {
     margin: 0;
     padding-left: 0;
     position: absolute;
-    right: 0rem;
+    right: 0;
     top: 4rem;
   }
 }
@@ -42,6 +42,7 @@ article.document {
     }
   }
 }
+
 .document-metadata {
   padding-right: 9.5rem;
 }
