@@ -36,11 +36,17 @@ services:
     - solr-data:/var/solr
     ports:
     - ${SOLR_PORT:-8983}:8983
-    command: [
-      "/bin/bash",
-      "-c",
-      "solr -c && solr auth enable -credentials catalog:catalog -z localhost:9983; solr stop && solr -c -f",
-    ]
+    command:
+      - /bin/bash
+      - -ec
+      - |
+        solr -c
+        until curl -fsS http://localhost:8983/solr/admin/info/system >/dev/null; do
+          sleep 1
+        done
+        solr auth enable -blockUnknown true -credentials catalog:catalog -z localhost:9983
+        solr stop
+        exec solr -c -f
     healthcheck:
       test: [
         "CMD-SHELL",
