@@ -28,9 +28,7 @@ if (viewerContainer) {
       allowMaximize: multipleManifests,
       allowFullscreen: true,
     },
-    windows: manifestURLs.map((url) => ({
-      manifestId: url,
-    })),
+    windows: manifestURLs.map((url) => ({ manifestId: url })),
     workspace: {
       showZoomControls: true,
       type: multipleManifests ? 'mosaic' : 'single',
