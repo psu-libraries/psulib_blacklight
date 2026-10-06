@@ -228,13 +228,26 @@ jobs:
   test-application:
     docker:
       - image: cimg/ruby:3.4.9-browsers
+      - image: mariadb:11.4
+        environment:
+          MARIADB_DATABASE: psulcat_test
+          MARIADB_USER: mysql
+          MARIADB_PASSWORD: mysql
+          MARIADB_ROOT_PASSWORD: root
       - image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
         environment:
           SOLR_STOP_WAIT: 1
         command:
           - /bin/bash
-          - -c
-          - "solr -c && solr auth enable -credentials catalog:catalog -z localhost:9983; solr stop && solr -c -f"
+          - -ec
+          - |
+            solr -c
+            until curl -fsS http://localhost:8983/solr/admin/info/system >/dev/null; do
+              sleep 1
+            done
+            solr auth enable -blockUnknown true -credentials catalog:catalog -z localhost:9983
+            solr stop
+            exec solr -c -f
     environment:
       RAILS_ENV: test
       SETTINGS__solr__username: catalog
@@ -278,6 +291,9 @@ jobs:
     - run:
         name: "Wait for Solr"
         command: dockerize -wait tcp://localhost:8983 -timeout 2m
+    - run:
+        name: "Wait for MariaDB"
+        command: dockerize -wait tcp://localhost:3306 -timeout 2m
     - save_cache:
         paths:
           - vendor/bundle
