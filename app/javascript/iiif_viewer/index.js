@@ -3,6 +3,16 @@ import { viewer } from 'mirador';
 const viewerContainer = document.getElementById('iiif-viewer');
 
 if (viewerContainer) {
+  const originalFetch = window.fetch.bind(window);
+
+  window.fetch = (input, options) => {
+    if (typeof input !== 'string' || !input.startsWith('http:')) {
+      return originalFetch(input, options);
+    }
+
+    return originalFetch(input.replace(/^http:/, 'https:'), options);
+  };
+
   const manifestURLs = JSON.parse(
     viewerContainer.getAttribute('data-manifest'),
   );
@@ -16,7 +26,7 @@ if (viewerContainer) {
       allowFullscreen: true,
     },
     windows: manifestURLs.map((url) => ({
-      manifestId: url.replace(/^http:/, 'https:'),
+      manifestId: url,
     })),
     workspace: {
       showZoomControls: true,
