@@ -7,10 +7,10 @@ x-web_env: &web_env
       SETTINGS__solr__host: solr
       SETTINGS__solr__collection: 'psul_catalog'
       MYSQL_HOST: db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_USER: ${MYSQL_USER:-root}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
       MYSQL_CONNECTION_POOL: 10
-      MYSQL_DATABASE: psulcat_dev
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-psulcat_dev}
 services:
   web:
     tty: true
@@ -34,8 +34,8 @@ services:
         condition: service_healthy
   db:
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: psulcat_dev
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-psulcat_dev}
     image: mariadb:11.4
     ports:
     - "3306:3306"
