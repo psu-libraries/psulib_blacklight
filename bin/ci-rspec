@@ -4,8 +4,8 @@ set -e  # Exit on any error
 
 export MYSQL_USER=mysql
 export MYSQL_PASSWORD=mysql
-export MYSQL_HOST=mysql
-export MYSQL_DATABASE=mysql
+export MYSQL_HOST=127.0.0.1
+export MYSQL_DATABASE=psulcat_test
 
 echo "preparing directories"
 mkdir -p public/packs-test tmp/cache

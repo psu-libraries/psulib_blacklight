@@ -56,7 +56,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rubocop-capybara'
   gem 'sinatra'
-  gem 'sqlite3', '~> 2.1'
 end
 
 group :test do

@@ -198,7 +198,6 @@ GEM
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
     faraday-retry (1.0.4)
-    ffi (1.17.4)
     ffi (1.17.4-arm64-darwin)
     ffi (1.17.4-x86_64-linux-gnu)
     ffi-compiler (1.4.2)
@@ -534,8 +533,6 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
-    sqlite3 (2.9.5-arm64-darwin)
-    sqlite3 (2.9.5-x86_64-linux-gnu)
     stackprof (0.2.27)
     thor (1.5.0)
     tilt (2.7.0)
@@ -644,7 +641,6 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen
   sprockets-rails
-  sqlite3 (~> 2.1)
   stackprof
   vcr
   web-console
