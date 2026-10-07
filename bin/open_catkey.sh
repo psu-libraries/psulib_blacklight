@@ -48,7 +48,7 @@ case $2 in
 
   # Download the JSON file to the user's current directory
   "djson")
-    wget $catalog_url$key/raw.json; exit 0;
+    wget -O $key.json $catalog_url$key/raw.json; exit 0;
     ;;
 
   # Download the marc file to the user's current directory
