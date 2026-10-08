@@ -36,13 +36,11 @@ article.document {
     }
 
     .document-thumbnail {
-      margin-top: .5rem;
+      margin: .5rem auto 3rem;
       position: static;
+      float: none;
       text-align: left;
+      width: fit-content;
     }
   }
-}
-
-.document-metadata {
-  padding-right: 9.5rem;
 }
