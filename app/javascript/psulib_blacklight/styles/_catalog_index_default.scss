@@ -36,9 +36,9 @@ article.document {
     }
 
     .document-thumbnail {
+      float: none;
       margin: .5rem auto 3rem;
       position: static;
-      float: none;
       text-align: left;
       width: fit-content;
     }
