@@ -4,6 +4,7 @@ module Blacklight
   class MetadataFieldLayoutComponent < Blacklight::Component
     with_collection_parameter :field
     renders_one :label
+    # rubocop:disable Lint/UnusedBlockArgument
     renders_many :values, (lambda do |index:, value: nil, &block|
       classes = [@value_class, "blacklight-#{@key}"]
       classes.join(' ')
@@ -16,6 +17,7 @@ module Blacklight
         content_tag @value_tag, value, class: classes
       end
     end)
+    # rubocop:enable Lint/UnusedBlockArgument
 
     # @param field [Blacklight::FieldPresenter]
     def initialize(field:, value_tag: 'dd', value_class: 'metadata-field')
