@@ -93,7 +93,12 @@
 
         $.ajax({
           url: form.attr('action'),
-          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader(
+              'X-CSRF-Token',
+              $('meta[name="csrf-token"]').attr('content'),
+            );
+          },
           dataType: 'json',
           type: form.attr('method').toUpperCase(),
           data: form.serialize(),

@@ -7,7 +7,7 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import "@hotwired/turbo-rails";
+import '@hotwired/turbo-rails';
 import availability from '../availability';
 import bookCovers from '../book_covers';
 import search from '../search';
