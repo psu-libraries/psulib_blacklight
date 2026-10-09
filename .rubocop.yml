@@ -49,6 +49,7 @@ Lint/MissingSuper:
     - 'app/components/browse/*'
     - 'app/components/external_links/*'
     - 'app/models/concerns/null_object_pattern.rb'
+    - 'app/components/blacklight/metadata_field_layout_component.rb'
 
 Metrics/CyclomaticComplexity:
   Exclude:
