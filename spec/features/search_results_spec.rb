@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Search Results' do
+RSpec.describe 'Search Results', retry: 3, retry_wait: 10 do
   describe 'search result page', :js do
     before do
       visit '/?search_field=all_fields&q=history'

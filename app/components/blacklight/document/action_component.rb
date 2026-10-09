@@ -7,9 +7,9 @@ module Blacklight
       with_collection_parameter :action
 
       # @param [Blacklight::Document] document
+      # rubocop:disable Lint/MissingSuper
       def initialize(document:, action:, options: {}, url_opts: {}, id: nil,
-link_classes: 'nav-link ps-3 dropdown-item')
-        super
+             link_classes: 'nav-link ps-3 dropdown-item')
         @document = document
         @action = action
         @options = options
@@ -17,6 +17,7 @@ link_classes: 'nav-link ps-3 dropdown-item')
         @id = id || @action.fetch(:id, "#{@action.name}Link")
         @link_classes = link_classes
       end
+      # rubocop:enable Lint/MissingSuper
 
       def render_control
         return link_to_modal_control if using_default_document_action? && url
@@ -38,9 +39,8 @@ link_classes: 'nav-link ps-3 dropdown-item')
       end
 
       def render_partial
-        helpers.render(partial: @action.partial || @action.name.to_s,
-                       locals: { document: @document,
-                                 document_action_config: @action }.merge(@options))
+        render(partial: @action.partial || @action.name.to_s,
+               locals: { document: @document, document_action_config: @action }.merge(@options))
       end
 
       def label
@@ -70,9 +70,7 @@ link_classes: 'nav-link ps-3 dropdown-item')
         end
       end
 
-      def key
-        @action.key
-      end
+      delegate :key, to: :@action
     end
   end
 end

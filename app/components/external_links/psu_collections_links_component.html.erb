@@ -1,9 +1,9 @@
 <div class="bs-callout bs-callout-psu">
   <h5><%= heading %></h5>
 
-  <%= image_pack_tag('static/psulib_blacklight/images/psu-shield.png',
-                     alt: 'Penn State Shield',
-                     class: 'mr-3') %>
+  <%= image_tag(Shakapacker.manifest.lookup!('static/psulib_blacklight/images/psu-shield.png'),
+                alt: 'Penn State Shield',
+                class: 'mr-3') %>
 
   <ul class="external-links-psu-collections">
     <% links.map do |item| %>

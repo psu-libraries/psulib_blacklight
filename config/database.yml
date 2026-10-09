@@ -1,14 +1,11 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
 default: &default
-  username: blackcat
-  password: meowhiss
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  adapter: mysql2
+  encoding: utf8mb4
+  collation: utf8mb4_unicode_ci
+  host: <%= ENV.fetch("MYSQL_HOST") %>
+  pool: <%= ENV.fetch("MYSQL_CONNECTION_POOL", 10) %>
+  username: <%= ENV.fetch("MYSQL_USER") %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD") %>
   timeout: 5000
 
 development:
@@ -23,11 +20,5 @@ test:
   database: psulcat_test
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  host: <%= ENV.fetch("MYSQL_HOST", Settings.mysql.host ) %>
-  pool: <%= Settings.mysql.connection_pool %>
-  username: <%= ENV.fetch("MYSQL_USER", Settings.mysql.user ) %>
-  password: <%= ENV.fetch("MYSQL_PASSWORD", Settings.mysql.password ) %>
-  timeout: 5000
-  database: <%= ENV.fetch("MYSQL_DATABASE", Settings.mysql.database ) %>
+  <<: *default
+  database: <%= ENV.fetch("MYSQL_DATABASE") %>

@@ -6,6 +6,11 @@ x-web_env: &web_env
       SETTINGS__solr__password: catalog
       SETTINGS__solr__host: solr
       SETTINGS__solr__collection: 'psul_catalog'
+      MYSQL_HOST: db
+      MYSQL_USER: ${MYSQL_USER:-root}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
+      MYSQL_CONNECTION_POOL: 10
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-psulcat_dev}
 services:
   web:
     tty: true
@@ -27,6 +32,15 @@ services:
     depends_on:
       solr:
         condition: service_healthy
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-psulcat_dev}
+    image: mariadb:11.4
+    ports:
+    - "3306:3306"
+    volumes:
+    - db-data:/var/lib/mysql
   solr:
     image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
     environment:
@@ -36,11 +50,17 @@ services:
     - solr-data:/var/solr
     ports:
     - ${SOLR_PORT:-8983}:8983
-    command: [
-      "/bin/bash",
-      "-c",
-      "solr -c && solr auth enable -credentials catalog:catalog -z localhost:9983; solr stop && solr -c -f",
-    ]
+    command:
+      - /bin/bash
+      - -ec
+      - |
+        solr -c
+        until curl -fsS http://localhost:8983/solr/admin/info/system >/dev/null; do
+          sleep 1
+        done
+        solr auth enable -blockUnknown true -credentials catalog:catalog -z localhost:9983
+        solr stop
+        exec solr -c -f
     healthcheck:
       test: [
         "CMD-SHELL",
@@ -54,3 +74,4 @@ volumes:
   bundle-data:
   node-data:
   solr-data:
+  db-data:

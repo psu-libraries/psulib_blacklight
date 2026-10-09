@@ -1,6 +1,11 @@
 @import '../theme';
 @import '../psulib_utilities';
 
+:root,
+  [data-bs-theme="light"] {
+  --bs-border-radius-pill: 0.375rem;
+}
+
 .documentHeader { // scss-lint:disable SelectorFormat
   background-color: $off-white;
   color: $nearly-black;
@@ -24,6 +29,24 @@
   color: $nearly-black;
 }
 
+.accordion {
+  --bs-accordion-active-bg: #{$grayish};
+  --bs-accordion-bg: #{$off-white};
+  --bs-accordion-btn-bg: #{$grayish};
+}
+
+.accordion-button {
+  --bs-btn-bg: #{$grayish};
+  --bs-btn-hover-bg: #{$grayish};
+  background-color: #{$grayish};
+  background-image: none;
+  text-align: start;
+}
+
+.accordion-button:hover,
+.accordion-button:not(.collapsed) {
+  background-color: #{$grayish};
+}
 
 .facet-toggle-handle {
   font-family: 'Font Awesome 5 Free';
@@ -47,4 +70,31 @@ code {
 .advanced .range_limit input { // scss-lint:disable SelectorFormat
   display: inline-block;
   width: 5.5em;
+}
+
+
+
+.accordion-header {
+  margin-bottom: 0;
+}
+
+.accordion-button:not(.collapsed) {
+  box-shadow: none;
+}
+
+.accordion-item:first-of-type,
+.accordion-item:last-of-type,
+.accordion-item:not(:first-of-type) {
+  border: 1px solid $grayish;
+  border-radius: .375rem;
+}
+
+
+.facet-field-heading button::after {
+  content: '';
+}
+
+.facet-limit {
+  border-radius: .375rem;
+  margin-bottom: 1rem;
 }

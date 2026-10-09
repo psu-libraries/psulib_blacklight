@@ -65,9 +65,7 @@ RUN apt-get update && apt-get install -y x11vnc \
     xvfb \
     fluxbox \
     wget \
-    sqlite3 \
     rsync \
-    libsqlite3-dev \
     libnss3 \
     wmctrl \
     google-chrome-stable
