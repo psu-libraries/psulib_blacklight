@@ -32,16 +32,19 @@
   align-self: flex-end;
 }
 
-.navbar-nav {
-  @include media-breakpoint-down(md) {
-    flex-direction: row;
+.container .header-mark {
+  flex-direction: row;
+  align-items: center;
+}
 
+.container .header-nav .navbar-nav {
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
     .nav-item {
-      font-size: .75rem;
-      text-align: center;
+      text-align: left;
 
       &:not(:first-child) {
-        margin-left: 26px;
+        margin-left: 0px;
       }
     }
   }
@@ -51,5 +54,10 @@
 .toggle-bookmark {
   input {
     display: none;
+  }
+
+  @include media-breakpoint-down(sm) {
+    width: fit-content;
+    margin-left: auto;
   }
 }
