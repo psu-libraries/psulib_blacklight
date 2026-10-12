@@ -56,7 +56,9 @@
         .addClass(options.cssClass)
         .attr('for', `${options.cssClass}_${uniqueId}`)
         .attr('title', form.attr('title') || '');
-      const span = $('<span>').addClass('btn btn-outline-secondary btn-sm ms-0'); // The only piece that was changed
+      const span = $('<span>').addClass(
+        'btn btn-outline-secondary btn-sm ms-0',
+      );
       label.append(checkbox);
       label.append(' ');
       label.append(span);
