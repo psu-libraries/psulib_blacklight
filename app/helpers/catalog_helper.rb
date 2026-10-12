@@ -35,23 +35,6 @@ module CatalogHelper
     content_tag 'span', options[:value].join('<br>'), nil, false
   end
 
-  def sentence_join(values)
-    values = Array(values)
-    return if values.empty?
-    return values.first if values.one?
-
-    safe_join(values.each_with_index.flat_map do |value, index|
-      connector = if index.zero?
-                    nil
-                  elsif index == values.length - 1
-                    values.length == 2 ? ' and ' : ', and '
-                  else
-                    ', '
-                  end
-      [connector, value]
-    end.compact)
-  end
-
   # Turns NNNNNN into HH:MM:SS, attached to duration_ssm
   def display_duration(options = {})
     options[:value]&.map { |v| v.scan(/([0-9]{2})/).join(':') }

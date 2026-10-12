@@ -6,7 +6,7 @@
       <dt class="blacklight-<%= field_name.parameterize %>-label">
         <%= field.label %>
       </dt>
-      <dd class="blacklight-<%= field_name.parameterize %> ms-5"><%= sentence_join(doc_presenter.field_value(field)) %>
+      <dd class="blacklight-<%= field_name.parameterize %> ms-5"><%= doc_presenter.field_value(field, join: true).first %>
       <% if @document.respond_to?(:export_as_openurl_ctx_kev) %>
               <!-- COinS, for Zotero among others. -->
               <span class="Z3988" title="<%= @document.export_as_openurl_ctx_kev(doc_presenter.display_type) %>"></span>
