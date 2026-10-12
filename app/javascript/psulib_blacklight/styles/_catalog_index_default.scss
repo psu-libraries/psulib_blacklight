@@ -27,6 +27,10 @@ article.document {
     right: 0;
     top: 4rem;
   }
+
+  .toggle-bookmark {
+    float: right;
+  }
 }
 
 @include media-breakpoint-down(sm) {
