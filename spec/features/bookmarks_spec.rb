@@ -49,11 +49,11 @@ RSpec.describe 'Bookmarks', :js, retry: 3, retry_wait: 10 do
       bookmark_all_button.click
       sleep 0.5
       bookmark_counter = find('span[data-role="bookmark-counter"]')
-      bookmark_buttons.each do |button|
+      find_all('.toggle-bookmark').each do |button|
         expect(button.text).to eq 'In Bookmarks'
       end
       expect(bookmark_counter.text).to eq '10'
-      # Test that the individual Bookmark funtionality still works
+      # Test that the individual Bookmark functionality still works
       bookmark_buttons.first.click
       sleep 0.5
       expect(bookmark_buttons.first.text).to eq 'Bookmark'

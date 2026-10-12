@@ -3,7 +3,9 @@ export default class CheckboxSubmitAll {
     this.forms = forms;
   }
 
-  async clicked() {
+  async clicked(event) {
+    event.preventDefault();
+    event.stopPropagation();
     for (let i = 0; i < this.forms.length; i += 1) {
       if (!this.checked(i)) {
         this.forms[i].querySelector('span').innerHTML =
