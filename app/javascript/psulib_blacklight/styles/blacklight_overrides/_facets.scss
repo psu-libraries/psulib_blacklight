@@ -61,3 +61,19 @@
     float: left;
   }
 }
+
+.facets .facet-toggle-button [data-hide-label] {
+  display: inline;
+}
+
+.facets .facet-toggle-button [data-show-label] {
+  display: none;
+}
+
+.facets .facet-toggle-button[aria-expanded=false] [data-hide-label] {
+  display: none;
+}
+
+.facets .facet-toggle-button[aria-expanded=false] [data-show-label] {
+  display: inline;
+}
