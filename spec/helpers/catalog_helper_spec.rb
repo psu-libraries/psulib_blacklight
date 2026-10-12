@@ -63,6 +63,31 @@ RSpec.describe CatalogHelper do
     end
   end
 
+  describe '#sentence_join' do
+    it 'returns nil for an empty collection' do
+      expect(sentence_join([])).to be_nil
+    end
+
+    it 'returns a single value without a separator' do
+      expect(sentence_join(['Creator One'])).to eq 'Creator One'
+    end
+
+    it 'joins two values with and' do
+      expect(sentence_join(['Creator One', 'Creator Two'])).to eq 'Creator One and Creator Two'
+    end
+
+    it 'joins three values with commas and a final and' do
+      expect(sentence_join(['Creator One', 'Creator Two', 'Creator Three']))
+        .to eq 'Creator One, Creator Two, and Creator Three'
+    end
+
+    it 'preserves rendered links' do
+      values = [link_to('Creator One', '/catalog/1'), link_to('Creator Two', '/catalog/2')]
+
+      expect(sentence_join(values)).to eq '<a href="/catalog/1">Creator One</a> and <a href="/catalog/2">Creator Two</a>'
+    end
+  end
+
   describe '#display_duration' do
     let (:field_data) { { value: ['221850'] } }
 
