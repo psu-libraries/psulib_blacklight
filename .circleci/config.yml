@@ -32,10 +32,7 @@ parameters:
     default: "uldev"
   CLUSTERS_PROD:
     type: string
-    default: "prod"
-  CLUSTERS_ULPROD:
-    type: string
-    default: "ulprod"
+    default: "prod,ulprod"
   REGISTRY_HOST:
     type: string
     default: "harbor.k8s.libraries.psu.edu"
