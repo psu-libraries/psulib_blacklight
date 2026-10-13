@@ -224,7 +224,7 @@ jobs:
 
   test-application:
     docker:
-      - image: cimg/ruby:3.4.9-browsers
+      - image: cimg/ruby:3.4.11-browsers
       - image: mariadb:11.4
         environment:
           MARIADB_DATABASE: psulcat_test
