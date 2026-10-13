@@ -6,17 +6,27 @@
   --bs-border-radius-pill: 0.375rem;
 }
 
-.documentHeader { // scss-lint:disable SelectorFormat
-  background-color: $off-white;
-  color: $nearly-black;
+#documents {
+  .documentHeader { // scss-lint:disable SelectorFormat
+    background-color: $off-white;
+    color: $nearly-black;
 
-  a {
-    background-color: inherit;
-    color: $psu-blue;
-  }
+    a {
+      background-color: inherit;
+      color: $psu-blue;
+    }
 
-  a:hover {
-    color: $psu-dark-blue;
+    a:hover {
+      color: $psu-dark-blue;
+    }
+
+    .btn-outline-secondary {
+      color: $nearly-black;
+    }
+
+    .login-bookmark {
+      float: right;
+    }
   }
 }
 
