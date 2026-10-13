@@ -56,7 +56,9 @@
         .addClass(options.cssClass)
         .attr('for', `${options.cssClass}_${uniqueId}`)
         .attr('title', form.attr('title') || '');
-      const span = $('<span>').addClass('btn btn-outline-secondary btn-sm'); // The only piece that was changed
+      const span = $('<span>').addClass(
+        'btn btn-outline-secondary btn-sm ms-0',
+      );
       label.append(checkbox);
       label.append(' ');
       label.append(span);
@@ -93,6 +95,12 @@
 
         $.ajax({
           url: form.attr('action'),
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader(
+              'X-CSRF-Token',
+              $('meta[name="csrf-token"]').attr('content'),
+            );
+          },
           dataType: 'json',
           type: form.attr('method').toUpperCase(),
           data: form.serialize(),

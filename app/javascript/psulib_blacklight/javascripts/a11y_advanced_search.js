@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'select2';
 import 'select2/dist/css/select2.min.css';
 
-$(document).ready(() => {
+document.addEventListener('turbo:load', () => {
   const advancedSearchPage = document.getElementsByClassName(
     'advanced-search-form',
   );
@@ -26,7 +26,7 @@ $(document).ready(() => {
   }
 });
 
-$(document).ready(() => {
+document.addEventListener('turbo:load', () => {
   $('.js-example-basic-multiple').select2();
 });
 
@@ -35,7 +35,7 @@ $('.js-example-basic-multiple').select2({
   width: '100%', // Important!
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbo:load', () => {
   document.querySelectorAll('.select2-search__field').forEach((el) => {
     el.style.width = '8em';
     el.style.minWidth = '8em';
