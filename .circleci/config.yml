@@ -35,7 +35,7 @@ parameters:
     default: "prod,ulprod"
   REGISTRY_HOST:
     type: string
-    default: "harbor.k8s.libraries.psu.edu"
+    default: "harbor.libraries.psu.edu"
   PIPELINE_CONFIG_VERSION:
     type: string
     default: "1.0.1"
@@ -231,7 +231,7 @@ jobs:
           MARIADB_USER: mysql
           MARIADB_PASSWORD: mysql
           MARIADB_ROOT_PASSWORD: root
-      - image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
+      - image: harbor.libraries.psu.edu/library/solr:9.5.0
         environment:
           SOLR_STOP_WAIT: 1
         command:
