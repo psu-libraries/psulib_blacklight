@@ -529,6 +529,8 @@ class CatalogController < ApplicationController
     end
 
     def homepage_facet_cache_key
+      # Do not continue for things that inherit CatalogController (BookmarksController)
+      return unless instance_of?(CatalogController) || controller_name == 'catalog'
       # No other params present indicates we are on the homepage.
       return unless params.keys.eql?(%w[controller action])
 
