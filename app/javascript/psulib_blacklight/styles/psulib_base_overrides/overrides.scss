@@ -6,7 +6,10 @@
   --bs-border-radius-pill: 0.375rem;
 }
 
-#documents {
+#documents { // scss-lint:disable IdSelector
+  // We actually want an IdSelector here because PSU lib base has a tendency to change rules related to .documentHeader
+  // And if they give it more specificity (eg pseudo-classes), it will override these rules, making the links invisible.
+  // But an id rule will always beat any number of class selectors.
   .documentHeader { // scss-lint:disable SelectorFormat
     background-color: $off-white;
     color: $nearly-black;
