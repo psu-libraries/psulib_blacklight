@@ -1,7 +1,7 @@
 FROM harbor.k8s.libraries.psu.edu/library/ruby-3.4.9-node-22-yarn-4.16.0 AS base
 ARG UID=2000
 
-USER root
+USER root 
 RUN apt-get update -y && \
     apt-get install -y build-essential libxml2-dev libxslt1-dev zlib1g-dev libyaml-dev
 
