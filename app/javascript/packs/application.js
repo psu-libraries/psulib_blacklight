@@ -7,7 +7,7 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-import Rails from 'rails-ujs';
+import '@hotwired/turbo-rails';
 import availability from '../availability';
 import bookCovers from '../book_covers';
 import search from '../search';
@@ -18,8 +18,7 @@ import '../iiif_viewer';
 import '../search/add_search_header';
 
 require.context('../psulib_blacklight/images/', true);
-document.addEventListener('DOMContentLoaded', () => {
-  Rails.start();
+document.addEventListener('turbo:load', () => {
   availability.setUpAvailability();
   bookCovers.start();
   search.autoPlaceholder();
