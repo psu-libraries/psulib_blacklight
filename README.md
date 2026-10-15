@@ -34,7 +34,7 @@ The [config](https://rubygems.org/gems/config) gem provides a means for adding a
 
 Here is a sample of what the `settings.yml` file might look like:
 
-```rb
+```yaml
 # Strings
 announcement:
   # See https://fontawesome.com/icons
