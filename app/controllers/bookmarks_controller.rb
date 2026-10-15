@@ -31,6 +31,5 @@ class BookmarksController < CatalogController
 
   configure_blacklight do |config|
     config.index.collection_actions.delete(:sort_widget)
-    config.add_show_tools_partial(:bulk_ris, callback: :bulk_ris_action, html_class: 'dropdown-item')
   end
 end

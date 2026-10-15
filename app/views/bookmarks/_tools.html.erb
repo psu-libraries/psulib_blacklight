@@ -1,14 +1,1 @@
-<div class="share-widget" role="group" aria-label="Actions including with nested dropdown">
-  <div class="dropdown">
-    <a class="btn btn-outline-secondary btn-md dropdown-toggle" href="#" role="button" id="btnGroupDrop1" data-bs-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">Share</a>
-    <div class="dropdown-menu dropdown-menu-right dropdown-menu-md-left" aria-labelledby="btnGroupDrop1">
-      <%= render Blacklight::Document::ActionsComponent.new(document: nil,
-                                                            tag: 'div',
-                                                            classes: "#{controller_name}Tools",
-                                                            link_classes: 'btn btn-outline-primary',
-                                                            actions: document_actions(document_list, options: { document: nil }),
-                                                            options: { document_list: @response.documents },
-                                                            url_opts: Blacklight::Parameters.sanitize(params.to_unsafe_h)) %>
-    </div>
-  </div>
-</div>
+<%= render Blacklight::Document::ShowToolsComponent.new(document: @document) %>

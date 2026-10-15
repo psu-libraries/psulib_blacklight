@@ -15,7 +15,7 @@
   <%= stylesheet_pack_tag 'application' %>
   <link rel="stylesheet" href="https://assets.libraries.psu.edu/psulib_base/dist/peripheral/peripheral.min.css">
   <%= stylesheet_pack_tag 'overrides' %>
-  <%= javascript_pack_tag 'application', "data-turbo-track": "reload", defer: true %>
+  <%= javascript_pack_tag 'application', 'data-turbo-track': 'reload', defer: true %>
   <%= csrf_meta_tags %>
   <%= content_for(:head) %>
 
