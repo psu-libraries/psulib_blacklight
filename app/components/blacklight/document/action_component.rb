@@ -60,9 +60,11 @@ module Blacklight
           helpers.public_send(@action.path, url_opts)
         elsif url_opts[:id].class.respond_to?(:model_name)
           helpers.url_for([@action.key.to_sym, url_opts[:id]])
-        elsif @action.key == :bulk_ris && helpers.controller_name == 'bookmarks'
+        elsif @action.key == :ris && helpers.controller_name == 'bookmarks'
+          # For bookmarks, since there may be multiple documents, we use the bulk_ris url for the ris action
+          # This felt simpler than having two separate actions and then displaying them conditionally
           bookmark_ids = helpers.current_user.bookmarks.map { |b| b.document_id.to_s }.join(',')
-          helpers.public_send("#{@action.key}_#{helpers.controller_name}_path", bookmark_ids)
+          helpers.bulk_ris_bookmarks_path(bookmark_ids)
         elsif !(@action.key == :ris && helpers.controller_name == 'bookmarks')
           helpers.public_send("#{@action.key}_#{helpers.controller_name}_path", url_opts)
         else
