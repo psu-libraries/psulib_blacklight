@@ -6,8 +6,8 @@ The Penn State University Libraries' catalog. Built on Blacklight, using Traject
  
 | Software  | Version |
 |-----------|---------|
-| `ruby`    |  3.4.9  |
-| `rails`   |  7.2.2  |
+| `ruby`    |  3.4.11 |
+| `rails`   |  8.1.4  |
 | `mariadb` |  11.4   |
 | `solr`    |  9.6.1  |
 
@@ -34,7 +34,7 @@ The [config](https://rubygems.org/gems/config) gem provides a means for adding a
 
 Here is a sample of what the `settings.yml` file might look like:
 
-```rb
+```yaml
 # Strings
 announcement:
   # See https://fontawesome.com/icons

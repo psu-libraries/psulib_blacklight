@@ -42,7 +42,7 @@ services:
     volumes:
     - db-data:/var/lib/mysql
   solr:
-    image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
+    image: harbor.libraries.psu.edu/library/solr:9.5.0
     environment:
       SOLR_STOP_WAIT: 1
     restart: always

@@ -25,7 +25,7 @@ gem 'net-smtp', require: false
 gem 'okcomputer', '~> 1.18'
 gem 'puma'
 gem 'rack-mini-profiler'
-gem 'rails', '~> 8.1'
+gem 'rails', '~> 8.1.4'
 gem 'rsolr', '>= 2.5'
 gem 'rspec-rebound'
 gem 'rubyzip'

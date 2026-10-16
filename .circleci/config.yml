@@ -35,7 +35,7 @@ parameters:
     default: "prod,ulprod"
   REGISTRY_HOST:
     type: string
-    default: "harbor.k8s.libraries.psu.edu"
+    default: "harbor.libraries.psu.edu"
   PIPELINE_CONFIG_VERSION:
     type: string
     default: "1.0.1"
@@ -224,14 +224,14 @@ jobs:
 
   test-application:
     docker:
-      - image: cimg/ruby:3.4.9-browsers
+      - image: cimg/ruby:3.4.11-browsers
       - image: mariadb:11.4
         environment:
           MARIADB_DATABASE: psulcat_test
           MARIADB_USER: mysql
           MARIADB_PASSWORD: mysql
           MARIADB_ROOT_PASSWORD: root
-      - image: harbor.k8s.libraries.psu.edu/library/solr:9.5.0
+      - image: harbor.libraries.psu.edu/library/solr:9.5.0
         environment:
           SOLR_STOP_WAIT: 1
         command:
@@ -253,6 +253,7 @@ jobs:
     - run:
         name: "Add Google Chrome GPG key (Ubuntu jammy)"
         command: |
+          sudo rm /usr/share/keyrings/google-chrome.gpg
           curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg
           echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] https://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
     - run:
