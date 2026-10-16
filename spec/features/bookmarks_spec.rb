@@ -74,5 +74,39 @@ RSpec.describe 'Bookmarks', :js, retry: 3, retry_wait: 10 do
       expect(page).to have_content '1 - 10 of 10'
       expect(page).to have_content first_title
     end
+
+    it 'renders email prompt and sends email' do
+      visit '/?search_field=all_fields&q=robot+ethics'
+      bookmark_buttons = find_all('.toggle-bookmark')
+      bookmark_buttons.first.click
+      click_on 'Bookmarks'
+
+      sleep 0.5
+      click_on 'Share'
+      click_on 'Email'
+      expect(page).to have_content 'Email This'
+      fill_in 'Email:', with: 'test@psu.edu'
+      fill_in 'Message:', with: 'Message'
+      click_on 'Send'
+      expect(page).to have_content 'Email Sent'
+      expect(ActionMailer::Base.deliveries.count).to eq 1
+      expect(ActionMailer::Base.deliveries.first.to).to eq ['test@psu.edu']
+      expect(ActionMailer::Base.deliveries.first.from).to eq ['noreply@psu.edu']
+      expect(ActionMailer::Base.deliveries.first.body.to_s).to include 'Robot ethics'
+      expect(ActionMailer::Base.deliveries.first.body.to_s).to include 'Message: Message'
+      expect(ActionMailer::Base.deliveries.first.body.to_s).to include 'http://'
+      expect(ActionMailer::Base.deliveries.first.body.to_s).to include '/catalog/38685872'
+      expect(ActionMailer::Base.deliveries.first.subject).to include 'PSU Libraries Item Record: Robot ethics'
+    end
+
+    it 'renders RIS file in the dropdown' do
+      visit '/?search_field=all_fields&q='
+      bookmark_buttons = find_all('.toggle-bookmark')
+      bookmark_buttons.first.click
+      click_on 'Bookmarks'
+      sleep 0.5
+      click_on 'Share'
+      expect(page).to have_link 'RIS File'
+    end
   end
 end
