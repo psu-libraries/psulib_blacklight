@@ -105,7 +105,7 @@ Rails.application.configure do
       time: Time.now
     }
   end
-  config.lograge.custom_payload { |controller| { host: controller.request.host } }
+  config.lograge.custom_payload(&:lograge_payload)
   hostname = Socket.gethostname || 'production'
   config.paths['log'] = "log/#{hostname}.log"
 

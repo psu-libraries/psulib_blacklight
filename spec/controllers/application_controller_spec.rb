@@ -40,6 +40,31 @@ RSpec.describe ApplicationController do
     end
   end
 
+  describe '#lograge_payload' do
+    it 'includes the request host' do
+      get :login
+      expect(controller.lograge_payload[:host]).to eq(request.host)
+    end
+
+    context 'when the request is external' do
+      before { @request.headers['X-Forwarded-For'] = '203.0.113.1' }
+
+      it 'tags the payload with the solr namespace' do
+        get :login
+        expect(controller.lograge_payload[:solr_namespace]).to eq(:solr)
+      end
+    end
+
+    context 'when the request is internal' do
+      before { @request.headers['X-Forwarded-For'] = '10.0.0.5' }
+
+      it 'tags the payload with the solrcat namespace' do
+        get :login
+        expect(controller.lograge_payload[:solr_namespace]).to eq(:solrcat)
+      end
+    end
+  end
+
   describe '#authorize_profiler' do
     before do
       allow(Rack::MiniProfiler).to receive(:authorize_request)
