@@ -45,6 +45,10 @@ class ApplicationController < ActionController::Base
     blacklight_config.url = blacklight_solr_config.url
   end
 
+  def lograge_payload
+    { host: request.host, solr_namespace: blacklight_solr_config.selected_namespace }
+  end
+
   private
 
     def authorize_profiler
