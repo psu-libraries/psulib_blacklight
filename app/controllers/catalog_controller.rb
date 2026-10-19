@@ -12,7 +12,7 @@ class CatalogController < ApplicationController
   include ReportIssue
 
   before_action :redirect_browse
-  before_action :authenticate_or_limit_queries, if: -> { ENV.fetch('AUTH_FOR_QUERIES', 'true') == 'true' }
+  before_action :authenticate_or_limit_queries, if: -> { instance_limits_enabled? }
   bot_challenge only: :index, unless: -> { request.query_parameters.blank? || whitelisted_ip? }
 
   def index
@@ -617,6 +617,17 @@ class CatalogController < ApplicationController
         Rails.logger.info("Query length exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
         store_location_for(:user, request.fullpath)
         redirect_to '/query_limit'
+      end
+    end
+
+    def instance_limits_enabled?
+      case blacklight_solr_config.selected_namespace
+      when :solrcat
+        ENV.fetch('LIMIT_INT_QUERIES', 'false') == 'true'
+      when :solr
+        ENV.fetch('LIMIT_EXT_QUERIES', 'false') == 'true'
+      else
+        false
       end
     end
 end
