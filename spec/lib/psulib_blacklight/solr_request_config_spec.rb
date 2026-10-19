@@ -13,6 +13,9 @@ RSpec.describe PsulibBlacklight::SolrRequestConfig do
   end
 
   describe '#url' do
+    before { ENV['SOLRCAT_ENABLED'] = 'true' }
+    after { ENV['SOLRCAT_ENABLED'] = nil }
+
     context 'when the request is internal' do
       it 'creates a solrcat config for private network requests' do
         request.headers['X-Forwarded-For'] = '10.0.0.1'
@@ -81,6 +84,58 @@ RSpec.describe PsulibBlacklight::SolrRequestConfig do
         expect(PsulibBlacklight::SolrConfig)
           .to have_received(:new)
           .with(namespace: :solr, overrides: { host: 'solr.example.com', port: '8983' })
+      end
+    end
+  end
+
+  describe '#selected_namespace' do
+    context 'when SOLRCAT_ENABLED is true' do
+      before { ENV['SOLRCAT_ENABLED'] = 'true' }
+      after { ENV['SOLRCAT_ENABLED'] = nil }
+
+      context 'when the request is internal' do
+        it 'returns :solrcat' do
+          request.headers['X-Forwarded-For'] = '10.0.0.1'
+
+          namespace = described_class.new(request).selected_namespace
+
+          expect(namespace).to eq(:solrcat)
+        end
+      end
+
+      context 'when the request is external' do
+        it 'returns :solr' do
+          request.headers['X-Forwarded-For'] = '203.0.113.1'
+
+          namespace = described_class.new(request).selected_namespace
+
+          expect(namespace).to eq(:solr)
+        end
+      end
+    end
+
+    context 'when SOLRCAT_ENABLED is false' do
+      before { ENV['SOLRCAT_ENABLED'] = 'false' }
+      after { ENV['SOLRCAT_ENABLED'] = nil }
+
+      context 'when the request is internal' do
+        it 'returns :solr' do
+          request.headers['X-Forwarded-For'] = '10.0.0.1'
+
+          namespace = described_class.new(request).selected_namespace
+
+          expect(namespace).to eq(:solr)
+        end
+      end
+
+      context 'when the request is external' do
+        it 'returns :solr' do
+          request.headers['X-Forwarded-For'] = '203.0.113.1'
+
+          namespace = described_class.new(request).selected_namespace
+
+          expect(namespace).to eq(:solr)
+        end
       end
     end
   end
