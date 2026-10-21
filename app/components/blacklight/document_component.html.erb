@@ -1,0 +1,36 @@
+<%= content_tag @component,
+                id: @id,
+                data: {
+                  'document-id': document.id.to_s.parameterize,
+                  'document-counter': counter
+                },
+                itemscope: true,
+                itemtype: document.itemtype,
+                class: classes.flatten.join(' ') do %>
+  <%= header %>
+  <% if body.present? %>
+    <%= body %>
+  <% else %>
+    <div class="document-main-section">
+      <%= title %>
+      <%= embed %>
+      <%= content %>
+      <%# Our change to this component puts the thumbnail in a container along with the metadata, so flex can handle the sizing %>
+      <div class="row">
+        <div class="col-md-9">
+          <%= metadata %>
+          <% metadata_sections.each do |section| %>
+            <%= section %>
+          <% end %>
+
+          <% partials.each do |partial| %>
+            <%= partial %>
+            <% end %>
+        </div>
+        <%= thumbnail %>
+      </div>
+    </div>
+
+  <% end %>
+  <%= footer %>
+<% end %>
