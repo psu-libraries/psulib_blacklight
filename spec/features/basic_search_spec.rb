@@ -3,6 +3,38 @@
 require 'rails_helper'
 
 RSpec.describe 'Basic Search', retry: 3, retry_wait: 10 do
+  describe 'visiting the homepage' do
+    context 'when a query limit is enabled' do
+      before do
+        ENV['LIMIT_INT_QUERIES'] = 'true'
+      end
+
+      after do
+        ENV['LIMIT_INT_QUERIES'] = nil
+      end
+
+      it 'displays the query limit message' do
+        visit root_path
+        expect(page).to have_content 'Temporary Limits'
+      end
+    end
+
+    context 'when a query limit is not enabled' do
+      before do
+        ENV['LIMIT_INT_QUERIES'] = 'false'
+      end
+
+      after do
+        ENV['LIMIT_INT_QUERIES'] = nil
+      end
+
+      it 'does not display the query limit message' do
+        visit root_path
+        expect(page).to have_no_content 'Temporary Limits'
+      end
+    end
+  end
+
   describe 'User uses basic search', :js do
     before do
       user = User.create!(email: 'user1234@psu.edu')

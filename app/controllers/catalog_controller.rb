@@ -17,6 +17,7 @@ class CatalogController < ApplicationController
 
   def index
     @response = response_for_index
+    @query_limit_enabled = instance_limits_enabled?
 
     respond_to do |format|
       format.html { store_preferred_view }

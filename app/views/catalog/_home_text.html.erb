@@ -6,6 +6,10 @@
   <li><%= link_to 'Send us feedback', 'https://libraries.psu.edu/website-feedback' %> on how we can improve your experience</li>
 </ul>
 
+<% if @query_limit_enabled %>
+  <%= render 'shared/query_limit_enabled' %>
+<% end %>
+
 <h2>Other Library Resources</h2>
 <ul class="list-inline">
   <li class="list-inline-item"><%= link_to 'Articles', 'https://psu.summon.serialssolutions.com/' %></li>
