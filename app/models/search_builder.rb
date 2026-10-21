@@ -7,7 +7,8 @@ class SearchBuilder < Blacklight::SearchBuilder
   include ClauseCountLimiter
 
   self.default_processor_chain += [:add_advanced_parse_q_to_solr, :add_advanced_search_to_solr,
-                                   :add_all_online_to_query, :limit_clause_count]
+                                   :add_all_online_to_query, :limit_clause_count,
+                                   :force_advanced_language_facet_unlimited]
 
   def add_all_online_to_query(solr_parameters)
     if campus_facet_all_online_query?(solr_parameters)
@@ -16,6 +17,13 @@ class SearchBuilder < Blacklight::SearchBuilder
       solr_parameters[:fq].first.prepend('access_facet:Online OR ')
       solr_parameters[:fq][0] = solr_parameters[:fq].first.gsub('}', " v='") << "'}"
     end
+  end
+
+  def force_advanced_language_facet_unlimited(solr_parameters)
+    return unless search_state.controller&.action_name == 'advanced_search'
+
+    solr_parameters['f.language_facet.facet.limit'] = -1
+    solr_parameters[:'f.language_facet.facet.limit'] = -1
   end
 
   ##
