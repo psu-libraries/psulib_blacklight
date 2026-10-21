@@ -55,7 +55,7 @@ module PsulibBlacklight
     end
 
     def selected_namespace
-      internal_request? ? :solrcat : :solr
+      internal_request? && ENV.fetch('SOLRCAT_ENABLED', 'true') == 'true' ? :solrcat : :solr
     end
 
     private
