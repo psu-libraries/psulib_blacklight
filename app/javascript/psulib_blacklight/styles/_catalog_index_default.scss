@@ -21,15 +21,13 @@ article.document {
   }
 
   .document-thumbnail {
-    margin: 0;
-    padding-left: 0;
-    position: absolute;
-    right: 0;
-    top: 4rem;
+    flex: 0 0 auto;
+    width: 25%;
   }
 
   .toggle-bookmark {
     float: right;
+    margin-bottom: 1rem;
   }
 }
 
@@ -39,12 +37,21 @@ article.document {
       padding-right: 0;
     }
 
+    .index-document-functions {
+      // Bookmark area looks too cramped on small screens; give it its own line
+      width: 100%;
+    }
+
     .document-thumbnail {
       float: none;
       margin: .5rem auto 3rem;
-      position: static;
       text-align: left;
       width: fit-content;
+    }
+
+    .toggle-bookmark {
+      float: right;
+      margin-bottom: 0;
     }
   }
 }
