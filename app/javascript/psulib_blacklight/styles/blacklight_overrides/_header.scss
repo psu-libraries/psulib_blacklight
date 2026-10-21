@@ -35,6 +35,10 @@
 .container .header-mark {
   flex-direction: row;
   align-items: center;
+
+  .site-title {
+    padding-left: 1rem;
+  }
 }
 
 .container .header-nav .navbar-nav {
