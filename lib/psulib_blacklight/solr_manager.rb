@@ -24,6 +24,7 @@ module PsulibBlacklight
                             numShards: config.num_shards,
                             replicationFactor: config.replication_factor,
                             maxShardsPerNode: config.max_shards_per_node,
+                            createNodeSet: live_nodes.join(','),
                             'collection.configName': config.configset_name)
 
       check_resp(resp)
@@ -142,6 +143,13 @@ module PsulibBlacklight
       def collections
         resp = connection.get(PsulibBlacklight::SolrConfig::COLLECTION_PATH, action: 'LIST')
         JSON.parse(resp.body)['collections']
+      end
+
+      def live_nodes
+        resp = connection.get(PsulibBlacklight::SolrConfig::COLLECTION_PATH,
+                              action: 'CLUSTERSTATUS',
+                              wt: 'json')
+        JSON.parse(resp.body).dig('cluster', 'live_nodes') || []
       end
 
       def zipped_configset
