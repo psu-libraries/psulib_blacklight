@@ -29,6 +29,10 @@ article.document {
     float: right;
     margin-bottom: 1rem;
   }
+
+  .login-bookmark {
+    margin-bottom: 1rem;
+  }
 }
 
 @include media-breakpoint-down(sm) {
