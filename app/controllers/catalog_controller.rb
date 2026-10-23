@@ -74,15 +74,24 @@ class CatalogController < ApplicationController
     # config.advanced_search[:qt] ||= 'advanced'
     config.advanced_search[:url_key] ||= 'advanced'
     config.advanced_search[:query_parser] ||= 'edismax'
-    config.advanced_search[:form_solr_parameters] ||= {
-      'facet.field' => %w[access_facet format language_facet media_type_facet
-                          library_facet location_facet lc_1letter_facet thesis_dept_facet],
-      'facet.pivot' => '',
-      'facet.limit' => true,
-      'f.language_facet.facet.limit' => true,
-      'f.format.facet.limit' => true,
-      'facet.sort' => 'index'
-    }
+
+    advanced_facet_fields = %w[
+      access_facet format language_facet media_type_facet
+      library_facet location_facet lc_1letter_facet thesis_dept_facet
+    ]
+
+    advanced_facet_limits = advanced_facet_fields.each_with_object({}) do |field, params|
+      params["f.#{field}.facet.limit"] = -1
+    end
+
+    config.advanced_search[:form_solr_parameters] =
+      (config.advanced_search[:form_solr_parameters] || {}).merge(
+        'facet.field' => advanced_facet_fields,
+        'facet.pivot' => '',
+        'facet.limit' => -1,
+        'facet.sort' => 'index'
+      ).merge(advanced_facet_limits)
+
     config.advanced_search[:form_facet_partial] ||= 'advanced_search_facets_as_select'
 
     config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
