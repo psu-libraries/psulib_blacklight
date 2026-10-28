@@ -17,7 +17,8 @@ class CatalogController < ApplicationController
 
   def index
     @response = response_for_index
-    @query_limit_enabled = instance_limits_enabled?
+    @query_limit_enabled = instance_limits_enabled? || browse_limit_enabled?
+    @limit_message = limit_message
 
     respond_to do |format|
       format.html { store_preferred_view }
@@ -614,16 +615,5 @@ class CatalogController < ApplicationController
         .map { |ip| IPAddr.new(ip.strip) unless ip.strip.empty? }
         .compact
       ip_whitelist.any? { |ip| ip.include?(IPAddr.new(request.remote_ip)) }
-    end
-
-    def instance_limits_enabled?
-      case blacklight_solr_config.selected_namespace
-      when :solrcat
-        ENV.fetch('LIMIT_INT_QUERIES', 'false') == 'true'
-      when :solr
-        ENV.fetch('LIMIT_EXT_QUERIES', 'false') == 'true'
-      else
-        false
-      end
     end
 end

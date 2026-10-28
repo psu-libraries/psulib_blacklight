@@ -73,12 +73,36 @@ class ApplicationController < ActionController::Base
       if query_limit_redirect?
         log_limit_message
         store_location_for(:user, request.fullpath)
-        redirect_to '/query_limit'
+        redirect_to '/query_limit_error'
       end
     end
 
     def browse_limit_enabled?
       ENV.fetch('BROWSE_LIMIT_ENABLED', 'false') == 'true'
+    end
+
+    def instance_limits_enabled?
+      case blacklight_solr_config.selected_namespace
+      when :solrcat
+        ENV.fetch('LIMIT_INT_QUERIES', 'false') == 'true'
+      when :solr
+        ENV.fetch('LIMIT_EXT_QUERIES', 'false') == 'true'
+      else
+        false
+      end
+    end
+
+    def limit_message
+      query_message = 'introduced a limit on the number of search terms'
+      browse_message = 'temporarily restricted access to browse views'
+
+      if instance_limits_enabled? && browse_limit_enabled?
+        "#{query_message} and #{browse_message}"
+      elsif instance_limits_enabled?
+        query_message
+      else
+        browse_message
+      end
     end
 
     def query_limit_redirect?
