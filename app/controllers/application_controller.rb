@@ -62,4 +62,35 @@ class ApplicationController < ActionController::Base
 
       warden.authenticate(scope: :user)
     end
+
+    def authenticate_or_limit_queries
+      return if user_signed_in?
+
+      warden.authenticate(scope: :user)
+
+      return if user_signed_in?
+
+      if query_limit_redirect?
+        log_limit_message
+        store_location_for(:user, request.fullpath)
+        redirect_to '/query_limit'
+      end
+    end
+
+    def browse_limit_enabled?
+      ENV.fetch('BROWSE_LIMIT_ENABLED', 'false') == 'true'
+    end
+
+    def query_limit_redirect?
+      SearchLimitService.new(params).search_volume_exceeded? ||
+        (browse_limit_enabled? && request.fullpath.include?('/browse/'))
+    end
+
+    def log_limit_message
+      if SearchLimitService.new(params).search_volume_exceeded?
+        Rails.logger.info("Query length exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
+      else
+        Rails.logger.info("Browse limit enabled for #{request.ip} (#{request.user_agent}). Params: #{params}")
+      end
+    end
 end

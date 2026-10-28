@@ -616,20 +616,6 @@ class CatalogController < ApplicationController
       ip_whitelist.any? { |ip| ip.include?(IPAddr.new(request.remote_ip)) }
     end
 
-    def authenticate_or_limit_queries
-      return if user_signed_in?
-
-      warden.authenticate(scope: :user)
-
-      return if user_signed_in?
-
-      if SearchLimitService.new(params).search_volume_exceeded?
-        Rails.logger.info("Query length exceeded for #{request.ip} (#{request.user_agent}). Params: #{params}")
-        store_location_for(:user, request.fullpath)
-        redirect_to '/query_limit'
-      end
-    end
-
     def instance_limits_enabled?
       case blacklight_solr_config.selected_namespace
       when :solrcat
