@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class BrowseController < ApplicationController
+  before_action :authenticate_or_limit_queries, if: -> { browse_limit_enabled? }
+
   def call_numbers
     @shelf_list = ShelfListPresenter.new(shelf_list_params)
   end
