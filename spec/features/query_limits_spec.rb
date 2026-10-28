@@ -69,14 +69,14 @@ RSpec.describe 'Query Limits' do
           end
 
           it 'redirects to query limit page' do
-            expect(page).to have_current_path('/query_limit')
+            expect(page).to have_current_path('/query_limit_error')
           end
 
           context 'when the user is able to login' do
             before do
               user = User.create!(email: 'user1234@psu.edu')
               login_as(user, scope: :user)
-              click_link 'log in'
+              click_link 'Log In', href: login_path
             end
 
             it 'resumes the search' do
@@ -156,14 +156,14 @@ RSpec.describe 'Query Limits' do
           end
 
           it 'redirects to query limit page' do
-            expect(page).to have_current_path('/query_limit')
+            expect(page).to have_current_path('/query_limit_error')
           end
 
           context 'when the user is able to login' do
             before do
               user = User.create!(email: 'user1234@psu.edu')
               login_as(user, scope: :user)
-              click_link 'log in'
+              click_link 'Log In', href: login_path
             end
 
             it 'resumes the search' do
@@ -203,7 +203,7 @@ RSpec.describe 'Query Limits' do
 
     it 'redirects to query limit page when browsing' do
       visit '/browse/authors?prefix=matt+dinniman'
-      expect(page).to have_current_path('/query_limit')
+      expect(page).to have_current_path('/query_limit_error')
     end
   end
 

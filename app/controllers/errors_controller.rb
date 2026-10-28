@@ -11,4 +11,8 @@ class ErrorsController < ApplicationController
   def internal_server_error
     render status: :internal_server_error
   end
+
+  def query_limit_error
+    @limit_message = limit_message
+  end
 end
