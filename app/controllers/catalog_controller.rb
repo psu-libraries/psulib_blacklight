@@ -175,7 +175,7 @@ class CatalogController < ApplicationController
     #
     config.add_facet_field 'access_facet', label: 'Access', collapse: false
     config.add_facet_field 'format', label: 'Format', limit: true
-    config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', limit: true, single: true, include_in_advanced_search: false
+    config.add_facet_field 'campus_facet', label: 'Campus', sort: 'index', single: true, include_in_advanced_search: false
     config.add_facet_field 'up_library_facet', label: 'University Park Libraries', sort: 'index', limit: true, single: true, include_in_advanced_search: false
     config.add_facet_field 'language_facet', label: 'Language', limit: true
     config.add_facet_field 'subject_topic_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z', include_in_advanced_search: false
@@ -223,7 +223,6 @@ class CatalogController < ApplicationController
     config.add_home_facet_field 'campus_facet',
                                 label: 'Campus',
                                 sort: 'index',
-                                limit: true,
                                 single: true,
                                 collapse: true,
                                 presenter: Blacklight::FacetFieldPresenter
