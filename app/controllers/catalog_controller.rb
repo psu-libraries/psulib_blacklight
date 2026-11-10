@@ -475,15 +475,17 @@ class CatalogController < ApplicationController
       field.placeholder_text = 'e.g. Microbiology'
     end
 
-    config.add_search_field('browse_dewey') do |field|
-      field.include_in_advanced_search = false
-      field.label = 'Browse by Dewey Call Number'
-      field.placeholder_text = 'e.g. 332.094K634f'
-    end
+    unless Rails.env.production?
+      config.add_search_field('browse_dewey') do |field|
+        field.include_in_advanced_search = false
+        field.label = 'Browse by Dewey Call Number'
+        field.placeholder_text = 'e.g. 332.094K634f'
+      end
 
-    config.add_search_field('browse_titles') do |field|
-      field.include_in_advanced_search = false
-      field.label = 'Browse by Title'
+      config.add_search_field('browse_titles') do |field|
+        field.include_in_advanced_search = false
+        field.label = 'Browse by Title'
+      end
     end
 
     # "sort results by" select (pulldown)
