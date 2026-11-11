@@ -475,8 +475,7 @@ class CatalogController < ApplicationController
       field.placeholder_text = 'e.g. Microbiology'
     end
 
-    # @todo Temporarily restricts this to non-production hosts
-    unless Settings.matomo_id.to_i == 7
+    unless Rails.env.production?
       config.add_search_field('browse_dewey') do |field|
         field.include_in_advanced_search = false
         field.label = 'Browse by Dewey Call Number'
