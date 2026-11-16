@@ -7,6 +7,10 @@ BotChallengePage.configure do |config|
 
   config.enabled = enabled
 
+  # Keep the challenge inline so a successful pass reloads the current search URL instead
+  # of bouncing the user back to the home page.
+  config.redirect_for_challenge = false
+
   # Get from CloudFlare Turnstile: https://www.cloudflare.com/application-services/products/turnstile/
   # Some testing keys are also available: https://developers.cloudflare.com/turnstile/troubleshooting/testing/
   #
